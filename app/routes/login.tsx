@@ -5,34 +5,31 @@ import {
   Divider,
   Group,
   Paper,
-  PaperProps,
   PasswordInput,
   Stack,
   Text,
-  TextInput,
-} from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { upperFirst, useToggle } from "@mantine/hooks";
-import GoogleIcon from "~/components/GoogleIcon";
-import XIcon from "~/components/XIcon";
+  TextInput
+} from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { upperFirst, useToggle } from '@mantine/hooks';
+import GoogleIcon from '~/components/GoogleIcon';
+import XIcon from '~/components/XIcon';
 
 const Login = () => {
-  const [type, toggle] = useToggle(["login", "register"]);
+  const [type, toggle] = useToggle(['login', 'register']);
   const form = useForm({
     initialValues: {
-      email: "",
-      name: "",
-      password: "",
-      terms: true,
+      email: '',
+      name: '',
+      password: '',
+      terms: true
     },
 
     validate: {
-      email: (val) => (/^\S+@\S+$/.test(val) ? null : "Invalid email"),
-      password: (val) =>
-        val.length <= 6
-          ? "Password should include at least 6 characters"
-          : null,
-    },
+      email: val => (/^\S+@\S+$/.test(val) ? null : 'Invalid email'),
+      password: val =>
+        val.length <= 6 ? 'Password should include at least 6 characters' : null
+    }
   });
 
   return (
@@ -50,13 +47,13 @@ const Login = () => {
 
       <form onSubmit={form.onSubmit(() => {})}>
         <Stack>
-          {type === "register" && (
+          {type === 'register' && (
             <TextInput
               label="Name"
               placeholder="Your name"
               value={form.values.name}
-              onChange={(event) =>
-                form.setFieldValue("name", event.currentTarget.value)
+              onChange={event =>
+                form.setFieldValue('name', event.currentTarget.value)
               }
               radius="md"
             />
@@ -67,10 +64,10 @@ const Login = () => {
             label="Email"
             placeholder="hello@mantine.dev"
             value={form.values.email}
-            onChange={(event) =>
-              form.setFieldValue("email", event.currentTarget.value)
+            onChange={event =>
+              form.setFieldValue('email', event.currentTarget.value)
             }
-            error={form.errors.email && "Invalid email"}
+            error={form.errors.email && 'Invalid email'}
             radius="md"
           />
 
@@ -79,22 +76,22 @@ const Login = () => {
             label="Password"
             placeholder="Your password"
             value={form.values.password}
-            onChange={(event) =>
-              form.setFieldValue("password", event.currentTarget.value)
+            onChange={event =>
+              form.setFieldValue('password', event.currentTarget.value)
             }
             error={
               form.errors.password &&
-              "Password should include at least 6 characters"
+              'Password should include at least 6 characters'
             }
             radius="md"
           />
 
-          {type === "register" && (
+          {type === 'register' && (
             <Checkbox
               label="I accept terms and conditions"
               checked={form.values.terms}
-              onChange={(event) =>
-                form.setFieldValue("terms", event.currentTarget.checked)
+              onChange={event =>
+                form.setFieldValue('terms', event.currentTarget.checked)
               }
             />
           )}
@@ -108,8 +105,8 @@ const Login = () => {
             onClick={() => toggle()}
             size="xs"
           >
-            {type === "register"
-              ? "Already have an account? Login"
+            {type === 'register'
+              ? 'Already have an account? Login'
               : "Don't have an account? Register"}
           </Anchor>
           <Button type="submit" radius="xl">
@@ -122,3 +119,7 @@ const Login = () => {
 };
 
 export default Login;
+
+export const loader = () => {
+  throw Error();
+};

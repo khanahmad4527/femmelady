@@ -17,15 +17,15 @@ export const theme: MantineThemeOverride = createTheme({
   },
   black: '#333333',
   white: '#F5F5F5',
-  primaryShade: 6,
+  primaryShade: 7,
   primaryColor: 'artichoke',
-  fontFamily: '"Playfair Display", serif',
+  fontFamily: 'Playfair Display, serif',
   headings: {
-    fontFamily: '"Playfair Display", serif'
+    fontFamily: 'Playfair Display, serif'
   },
   components: {
     Container: {
-      defaultProps: { size: 1280, px: { base: 0, md: 'xl' } }
+      defaultProps: { size: 1280, px: { base: 'md', md: 0 } }
     }
   }
 });

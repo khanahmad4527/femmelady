@@ -10,6 +10,7 @@ import {
 import type { LinksFunction } from '@remix-run/node';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { theme } from './theme';
+import Document from './components/Document';
 
 export const links: LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -44,5 +45,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <Document>
+      <Outlet />
+    </Document>
+  );
+}
+
+export function ErrorBoundary() {
+  return (
+    <Document>
+      <p>Oops! Something went wrong on our end</p>
+    </Document>
+  );
 }
