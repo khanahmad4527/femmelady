@@ -119,7 +119,3 @@ const Login = () => {
 };
 
 export default Login;
-
-export const loader = () => {
-  throw Error();
-};
