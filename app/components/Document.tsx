@@ -1,9 +1,11 @@
 import { AppShell, Container, ScrollArea } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useLocation } from '@remix-run/react';
+import { ROUTES_WITHOUT_HEADER_AND_FOOTER } from '~/constant';
+import { OutletContext } from '~/types/types';
 
 const Document = (
-  props: any & {
+  props: OutletContext & {
     children: React.ReactNode;
   }
 ) => {
@@ -12,6 +14,11 @@ const Document = (
   const { pathname } = useLocation();
 
   const { children, ...restData } = props;
+
+  const { isLoggedIn } = restData;
+
+  const basePath = pathname.split('/')[1];
+  const isExcludedRoute = ROUTES_WITHOUT_HEADER_AND_FOOTER.has(`/${basePath}`);
 
   return (
     <AppShell
@@ -22,6 +29,7 @@ const Document = (
         collapsed: { desktop: true, mobile: !opened }
       }}
       footer={{ height: 100 }}
+      disabled={!isExcludedRoute || !isLoggedIn}
     >
       <AppShell.Header>
         <Container>Header</Container>

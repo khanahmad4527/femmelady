@@ -25,7 +25,7 @@ export const theme: MantineThemeOverride = createTheme({
   },
   components: {
     Container: {
-      defaultProps: { size: 1280, px: { base: 'md', md: 0 } }
+      defaultProps: { size: 1280 }
     }
   }
 });
