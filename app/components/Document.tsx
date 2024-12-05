@@ -46,9 +46,7 @@ const Document = (
         </AppShell.Section>
       </AppShell.Navbar>
 
-      <AppShell.Main>
-        <Container>{children}</Container>
-      </AppShell.Main>
+      <AppShell.Main component={Container}>{children}</AppShell.Main>
 
       <AppShell.Footer pos={'relative'}>
         <Container>Footer</Container>

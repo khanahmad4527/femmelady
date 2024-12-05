@@ -1,121 +1,26 @@
-import {
-  Anchor,
-  Button,
-  Checkbox,
-  Divider,
-  Group,
-  Paper,
-  PasswordInput,
-  Stack,
-  Text,
-  TextInput
-} from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { upperFirst, useToggle } from '@mantine/hooks';
-import GoogleIcon from '~/components/GoogleIcon';
-import XIcon from '~/components/XIcon';
+import { ActionFunction } from '@remix-run/node';
+import { z } from 'zod';
+import Login from '~/components/Auth/Login';
+import { loginFormSchema } from '~/schema';
+import { parseZodError } from '~/utils';
 
-const Login = () => {
-  const [type, toggle] = useToggle(['login', 'register']);
-  const form = useForm({
-    initialValues: {
-      email: '',
-      name: '',
-      password: '',
-      terms: true
-    },
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  try {
+    const validatedData = loginFormSchema.parse(data);
 
-    validate: {
-      email: val => (/^\S+@\S+$/.test(val) ? null : 'Invalid email'),
-      password: val =>
-        val.length <= 6 ? 'Password should include at least 6 characters' : null
+    return { success: true };
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return parseZodError(error);
     }
-  });
-
-  return (
-    <Paper radius="md" p="xl" withBorder>
-      <Text size="lg" fw={500}>
-        Welcome to Mantine, {type} with
-      </Text>
-
-      <Group grow mb="md" mt="md">
-        <Button leftSection={<GoogleIcon />}>Google</Button>
-        <Button leftSection={<XIcon />}>X</Button>
-      </Group>
-
-      <Divider label="Or continue with email" labelPosition="center" my="lg" />
-
-      <form onSubmit={form.onSubmit(() => {})}>
-        <Stack>
-          {type === 'register' && (
-            <TextInput
-              label="Name"
-              placeholder="Your name"
-              value={form.values.name}
-              onChange={event =>
-                form.setFieldValue('name', event.currentTarget.value)
-              }
-              radius="md"
-            />
-          )}
-
-          <TextInput
-            required
-            label="Email"
-            placeholder="hello@mantine.dev"
-            value={form.values.email}
-            onChange={event =>
-              form.setFieldValue('email', event.currentTarget.value)
-            }
-            error={form.errors.email && 'Invalid email'}
-            radius="md"
-          />
-
-          <PasswordInput
-            required
-            label="Password"
-            placeholder="Your password"
-            value={form.values.password}
-            onChange={event =>
-              form.setFieldValue('password', event.currentTarget.value)
-            }
-            error={
-              form.errors.password &&
-              'Password should include at least 6 characters'
-            }
-            radius="md"
-          />
-
-          {type === 'register' && (
-            <Checkbox
-              label="I accept terms and conditions"
-              checked={form.values.terms}
-              onChange={event =>
-                form.setFieldValue('terms', event.currentTarget.checked)
-              }
-            />
-          )}
-        </Stack>
-
-        <Group justify="space-between" mt="xl">
-          <Anchor
-            component="button"
-            type="button"
-            c="dimmed"
-            onClick={() => toggle()}
-            size="xs"
-          >
-            {type === 'register'
-              ? 'Already have an account? Login'
-              : "Don't have an account? Register"}
-          </Anchor>
-          <Button type="submit" radius="xl">
-            {upperFirst(type)}
-          </Button>
-        </Group>
-      </form>
-    </Paper>
-  );
+    throw error;
+  }
 };
 
-export default Login;
+const login = () => {
+  return <Login />;
+};
+
+export default login;

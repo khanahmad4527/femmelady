@@ -2,6 +2,7 @@ import { vitePlugin as remix } from '@remix-run/dev';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { flatRoutes } from 'remix-flat-routes';
+import path from 'path';
 
 declare module '@remix-run/node' {
   interface Future {
@@ -25,5 +26,10 @@ export default defineConfig({
     }),
     tsconfigPaths()
   ],
+  resolve: {
+    alias: {
+      '@assets': path.resolve(__dirname, 'assets')
+    }
+  },
   server: { open: true, port: 3000 }
 });
