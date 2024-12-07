@@ -1,5 +1,6 @@
 export interface OutletContext {
   isLoggedIn: boolean;
+  currentLanguage: TranslationKeys;
 }
 
 export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {

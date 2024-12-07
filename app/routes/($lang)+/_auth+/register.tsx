@@ -16,7 +16,7 @@ import {
 } from '@mantine/core';
 import { useForm, UseFormReturnType, zodResolver } from '@mantine/form';
 import { ActionFunction } from '@remix-run/node';
-import { Link, useFetcher } from '@remix-run/react';
+import { Link, useFetcher, useOutletContext } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { z } from 'zod';
 import { GoogleIcon, IconCheck, IconX, XIcon } from '~/icons';
@@ -24,7 +24,7 @@ import { registerFormSchema, TRegisterFormSchema } from '~/schema';
 import { parseZodError } from '~/utils';
 import useTranslation from '~/hooks/useTranslation';
 import { validateFormWithTranslations } from '~/server/validateFormWithTranslations';
-import { TranslationKeys } from '~/types/types';
+import { OutletContext, TranslationKeys } from '~/types/types';
 
 export const action: ActionFunction = async ({ request, params }) => {
   const language = (params.lang ?? 'en') as TranslationKeys;
@@ -49,6 +49,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 };
 
 const register = () => {
+  const { currentLanguage } = useOutletContext<OutletContext>();
   const t = useTranslation();
   const fetcher = useFetcher<{ errors: TRegisterFormSchema }>();
   const form = useForm<TRegisterFormSchema>({
@@ -154,7 +155,7 @@ const register = () => {
           />
 
           <Group justify="space-between">
-            <Anchor component={Link} to={'/login'}>
+            <Anchor component={Link} to={`/${currentLanguage}/login`}>
               {t('register.accountLogin')}
             </Anchor>
             <Button type="submit"> {t('register.register')}</Button>

@@ -6,12 +6,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData
+  useLoaderData,
+  useParams
 } from '@remix-run/react';
-import type { LinksFunction } from '@remix-run/node';
+import type { LinksFunction, LoaderFunction } from '@remix-run/node';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { theme } from './theme';
 import Document from './components/Document';
+import { TranslationKeys } from './types/types';
+import useCurrentLanguage from './hooks/useCurrentLanguage';
 
 export const links: LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -26,8 +29,9 @@ export const links: LinksFunction = () => [
   }
 ];
 
-export const loader = async () => {
-  return { isLoggedIn: false };
+export const loader: LoaderFunction = async ({ params }) => {
+  const currentLanguage = (params.lang ?? 'en') as TranslationKeys;
+  return { isLoggedIn: false, currentLanguage };
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -61,8 +65,10 @@ export default function App() {
 const isProduction = process.env.NODE_ENV === 'production';
 
 const ErrorBoundaryComponent = () => {
+  const { currentLanguage } = useCurrentLanguage();
+
   return (
-    <Document isLoggedIn={false}>
+    <Document isLoggedIn={false} currentLanguage={currentLanguage}>
       <p>Oops! Something went wrong on our end</p>
     </Document>
   );

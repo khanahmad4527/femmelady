@@ -1,7 +1,7 @@
-import { useParams } from '@remix-run/react';
 import { TranslationKeys } from '~/types/types';
 import en from '../locales/en.json';
 import ja from '../locales/ja.json';
+import useCurrentLanguage from './useCurrentLanguage';
 
 type Translations = {
   [key in TranslationKeys]: typeof en;
@@ -13,13 +13,11 @@ const translations: Translations = {
 };
 
 const useTranslation = () => {
-  const params = useParams<{ lang: TranslationKeys }>();
-
-  const language = params.lang ?? 'en';
+  const { currentLanguage } = useCurrentLanguage();
 
   const t = (key: string): string => {
     const keys = key.split('.');
-    let translation: any = translations[language];
+    let translation: any = translations[currentLanguage];
 
     for (let i = 0; i < keys.length; i++) {
       const keyPart = keys[i];

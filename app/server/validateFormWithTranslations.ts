@@ -1,7 +1,7 @@
 import { TranslationKeys } from '~/types/types';
+import { ZodType, ZodTypeDef } from 'zod';
 import en from '../locales/en.json';
 import ja from '../locales/ja.json';
-import { ZodSchema, ZodType, ZodTypeDef } from 'zod';
 
 type Translations = {
   [key in TranslationKeys]: typeof en;
