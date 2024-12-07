@@ -1,4 +1,5 @@
 import { rem } from "@mantine/core";
+import { IconProps } from "~/types/types";
 
 export const XIcon = ({ size = 25, style, ...others }: IconProps) => {
   return (
