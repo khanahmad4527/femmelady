@@ -5,3 +5,4 @@ export { default as IconX } from './IconX';
 export { default as IconBrandYoutube } from './IconBrandYoutube';
 export { default as IconBrandPinterest } from './IconBrandPinterest';
 export { default as IconBrandInstagram } from './IconBrandInstagram';
+export { default as IconSearch } from './IconSearch';

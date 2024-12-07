@@ -28,7 +28,7 @@ const Footer = () => {
   const items = links.map(link => (
     <Anchor
       component={Link}
-      c="dimmed"
+      c="artichoke"
       key={link.label}
       to={link.link}
       lh={1}

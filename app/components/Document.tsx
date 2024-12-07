@@ -4,6 +4,7 @@ import { useLocation } from '@remix-run/react';
 import { ROUTES_WITHOUT_HEADER_AND_FOOTER } from '~/constant';
 import { OutletContext } from '~/types/types';
 import Footer from './Footer';
+import Header from './Header';
 
 const Document = (
   props: OutletContext & {
@@ -23,17 +24,18 @@ const Document = (
 
   return (
     <AppShell
-      header={{ height: 80 }}
+      header={{ height: { base: 190, md: 132 }, offset: true }}
       navbar={{
         width: 300,
         breakpoint: 'md',
         collapsed: { desktop: true, mobile: !opened }
       }}
-      footer={{ height: 100 }}
       disabled={isExcludedRoute || !isLoggedIn}
     >
       <AppShell.Header>
-        <Container>Header</Container>
+        <Container>
+          <Header />
+        </Container>
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
