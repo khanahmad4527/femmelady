@@ -19,6 +19,7 @@ import { PRODUCT_NAME } from '~/constant';
 import { loginFormSchema, TLoginFormSchema } from '~/schema';
 import { parseZodError } from '~/utils';
 import { GoogleIcon, XIcon } from '~/icons';
+import useTranslation from '~/hooks/useTranslation';
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -36,6 +37,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 const login = () => {
+  const t = useTranslation();
   const fetcher = useFetcher<{ errors: TLoginFormSchema }>();
   const form = useForm<TLoginFormSchema>({
     mode: 'uncontrolled',
@@ -65,7 +67,7 @@ const login = () => {
       withBorder
     >
       <Text size="lg" fw={500}>
-        Welcome to {PRODUCT_NAME}, Login with
+        Welcome to {PRODUCT_NAME}, {t('login.login')} with
       </Text>
 
       <Group grow>
