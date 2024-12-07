@@ -1,5 +1,42 @@
 {
   "login": {
-    "login": "lllllogin"
+    "welcome": "Welcome to Unthaa, login with",
+    "accountRegister": "Don't have an account? Register",
+    "login": "Login"
+  },
+  "register": {
+    "welcome": "Welcome to Unthaa, register with",
+    "accountLogin": " Already have an account? Login",
+    "register": "Register",
+    "includesNumber": "Includes number",
+    "includesLowercaseLetter": "Includes lowercase letter",
+    "includesUppercaseLetter": "Includes uppercase letter",
+    "includesSpecialSymbol": "Includes special symbol",
+    "noSpacesAllowed": "No spaces allowed",
+    "includes8Char": "Includes at least 8 characters"
+  },
+  "authForm": {
+    "email": "Email",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "terms": "I accept terms and conditions",
+    "continueWithEmail": "Or continue with email"
+  },
+  "authFormValidationError": {
+    "invalidEmail": "Invalid email",
+    "firstNameMin": "First name should have at least 2 letters",
+    "lastNameMin": "Last name should have at least 2 letters",
+    "invalidEmailAddress": "Invalid email address",
+    "passwordMin": "Password must be at least 8 characters long",
+    "passwordUppercase": "Password must contain at least one uppercase letter",
+    "passwordLowercase": "Password must contain at least one lowercase letter",
+    "passwordNumber": "Password must contain at least one number",
+    "passwordSpecial": "Password must contain at least one special character",
+    "passwordNoSpaces": "Password must not contain spaces",
+    "confirmPasswordRequired": "Both password and confirm password are required",
+    "passwordMismatch": "Passwords do not match",
+    "termsRequired": "You must accept the terms to proceed."
   }
 }

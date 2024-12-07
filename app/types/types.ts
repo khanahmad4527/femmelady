@@ -5,3 +5,5 @@ export interface OutletContext {
 export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {
   size?: number | string;
 }
+
+export type TranslationKeys = 'en' | 'ja';

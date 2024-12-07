@@ -1,0 +1,42 @@
+{
+  "login": {
+    "welcome": "Unthaaへようこそ、ログインするには",
+    "accountRegister": "アカウントをお持ちでないですか？登録する",
+    "login": "ログイン"
+  },
+  "register": {
+    "welcome": "Unthaaへようこそ、登録するには",
+    "accountLogin": "すでにアカウントをお持ちですか？ログイン",
+    "register": "登録する",
+    "includesNumber": "数字を含む",
+    "includesLowercaseLetter": "小文字を含む",
+    "includesUppercaseLetter": "大文字を含む",
+    "includesSpecialSymbol": "特殊記号を含む",
+    "noSpacesAllowed": "スペースは使用できません",
+    "includes8Char": "8文字以上を含む"
+  },
+  "authForm": {
+    "email": "メールアドレス",
+    "firstName": "名",
+    "lastName": "姓",
+    "password": "パスワード",
+    "confirmPassword": "パスワード確認",
+    "terms": "利用規約に同意する",
+    "continueWithEmail": "またはメールで続行"
+  },
+  "authFormValidationError": {
+    "invalidEmail": "無効なメールアドレス",
+    "firstNameMin": "名前は少なくとも2文字以上である必要があります",
+    "lastNameMin": "苗字は少なくとも2文字以上である必要があります",
+    "invalidEmailAddress": "無効なメールアドレス",
+    "passwordMin": "パスワードは8文字以上でなければなりません",
+    "passwordUppercase": "パスワードには少なくとも1つの大文字が含まれている必要があります",
+    "passwordLowercase": "パスワードには少なくとも1つの小文字が含まれている必要があります",
+    "passwordNumber": "パスワードには少なくとも1つの数字が含まれている必要があります",
+    "passwordSpecial": "パスワードには少なくとも1つの特殊文字が含まれている必要があります",
+    "passwordNoSpaces": "パスワードにはスペースを含めることはできません",
+    "confirmPasswordRequired": "パスワードと確認用パスワードの両方が必要です",
+    "passwordMismatch": "パスワードが一致しません",
+    "termsRequired": "先に進むためには利用規約に同意する必要があります"
+  }
+}

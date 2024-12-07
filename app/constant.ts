@@ -4,5 +4,3 @@ export const ROUTES_WITHOUT_HEADER_AND_FOOTER = new Set([
   '/change-password',
   '/reset-password'
 ]);
-
-export const PRODUCT_NAME = "Unthaa"

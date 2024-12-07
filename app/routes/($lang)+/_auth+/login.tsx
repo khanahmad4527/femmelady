@@ -15,17 +15,23 @@ import { ActionFunction } from '@remix-run/node';
 import { Link, useFetcher } from '@remix-run/react';
 import { useEffect } from 'react';
 import { z } from 'zod';
-import { PRODUCT_NAME } from '~/constant';
 import { loginFormSchema, TLoginFormSchema } from '~/schema';
 import { parseZodError } from '~/utils';
 import { GoogleIcon, XIcon } from '~/icons';
 import useTranslation from '~/hooks/useTranslation';
+import { validateFormWithTranslations } from '~/server/validateFormWithTranslations';
+import { TranslationKeys } from '~/types/types';
 
-export const action: ActionFunction = async ({ request }) => {
+export const action: ActionFunction = async ({ request, params }) => {
+  const language = (params.lang ?? 'en') as TranslationKeys;
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   try {
-    const validatedData = loginFormSchema.parse(data);
+    const validatedData = validateFormWithTranslations({
+      language,
+      schema: loginFormSchema,
+      data
+    });
 
     return { success: true };
   } catch (error) {
@@ -46,7 +52,7 @@ const login = () => {
       password: ''
     },
 
-    validate: zodResolver(loginFormSchema)
+    validate: zodResolver(loginFormSchema(t))
   });
 
   const serverErrors = fetcher.data?.errors;
@@ -67,7 +73,7 @@ const login = () => {
       withBorder
     >
       <Text size="lg" fw={500}>
-        Welcome to {PRODUCT_NAME}, {t('login.login')} with
+        {t('login.welcome')}
       </Text>
 
       <Group grow>
@@ -79,7 +85,11 @@ const login = () => {
         </Button>
       </Group>
 
-      <Divider label="Or continue with email" labelPosition="center" my="lg" />
+      <Divider
+        label={t('authForm.continueWithEmail')}
+        labelPosition="center"
+        my="lg"
+      />
 
       <fetcher.Form
         method="POST"
@@ -88,7 +98,7 @@ const login = () => {
         <Stack>
           <TextInput
             withAsterisk
-            label="Email"
+            label={t('authForm.email')}
             name={'email'}
             placeholder="your@email.com"
             key={form.key('email')}
@@ -97,7 +107,7 @@ const login = () => {
 
           <PasswordInput
             withAsterisk
-            label="Password"
+            label={t('authForm.password')}
             name={'password'}
             placeholder="Your password"
             key={form.key('password')}
@@ -106,9 +116,9 @@ const login = () => {
 
           <Group justify="space-between">
             <Anchor component={Link} to={'/register'}>
-              Don't have an account? Register
+              {t('login.accountRegister')}
             </Anchor>
-            <Button type="submit">Login</Button>
+            <Button type="submit"> {t('login.login')}</Button>
           </Group>
         </Stack>
       </fetcher.Form>

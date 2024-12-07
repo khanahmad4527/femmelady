@@ -19,17 +19,24 @@ import { ActionFunction } from '@remix-run/node';
 import { Link, useFetcher } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { z } from 'zod';
-import { PRODUCT_NAME } from '~/constant';
 import { GoogleIcon, IconCheck, IconX, XIcon } from '~/icons';
 import { registerFormSchema, TRegisterFormSchema } from '~/schema';
 import { parseZodError } from '~/utils';
+import useTranslation from '~/hooks/useTranslation';
+import { validateFormWithTranslations } from '~/server/validateFormWithTranslations';
+import { TranslationKeys } from '~/types/types';
 
-export const action: ActionFunction = async ({ request }) => {
+export const action: ActionFunction = async ({ request, params }) => {
+  const language = (params.lang ?? 'en') as TranslationKeys;
   const formData = await request.formData();
-  console.log({ formData });
+
   const data = Object.fromEntries(formData);
   try {
-    const validatedData = registerFormSchema.parse(data);
+    const validatedData = validateFormWithTranslations({
+      language,
+      schema: registerFormSchema,
+      data
+    });
 
     return { success: true };
   } catch (error) {
@@ -42,6 +49,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 const register = () => {
+  const t = useTranslation();
   const fetcher = useFetcher<{ errors: TRegisterFormSchema }>();
   const form = useForm<TRegisterFormSchema>({
     mode: 'uncontrolled',
@@ -54,7 +62,7 @@ const register = () => {
       terms: 'on'
     },
 
-    validate: zodResolver(registerFormSchema)
+    validate: zodResolver(registerFormSchema(t))
   });
 
   const serverErrors = fetcher.data?.errors;
@@ -76,7 +84,7 @@ const register = () => {
       withBorder
     >
       <Text size="lg" fw={500}>
-        Welcome to {PRODUCT_NAME}, Register with
+        {t('register.welcome')}
       </Text>
 
       <Group grow>
@@ -88,7 +96,11 @@ const register = () => {
         </Button>
       </Group>
 
-      <Divider label="Or continue with email" labelPosition="center" my="lg" />
+      <Divider
+        label={t('authForm.continueWithEmail')}
+        labelPosition="center"
+        my="lg"
+      />
 
       <fetcher.Form
         method="POST"
@@ -98,7 +110,7 @@ const register = () => {
           <Group grow>
             <TextInput
               withAsterisk
-              label="First name"
+              label={t('authForm.firstName')}
               name="first_name"
               placeholder="Ahmad"
               key={form.key('first_name')}
@@ -106,7 +118,7 @@ const register = () => {
             />
 
             <TextInput
-              label="Last name"
+              label={t('authForm.lastName')}
               name="last_name"
               placeholder="Khan"
               key={form.key('last_name')}
@@ -116,7 +128,7 @@ const register = () => {
 
           <TextInput
             withAsterisk
-            label="Email"
+            label={t('authForm.email')}
             name="email"
             placeholder="your@email.com"
             key={form.key('email')}
@@ -127,7 +139,7 @@ const register = () => {
 
           <PasswordInput
             withAsterisk
-            label="Confirm Password"
+            label={t('authForm.confirmPassword')}
             name="confirm_password"
             placeholder="Confirm Password"
             key={form.key('confirm_password')}
@@ -136,16 +148,16 @@ const register = () => {
 
           <Checkbox
             name="terms"
+            label={t('authForm.terms')}
             key={form.key('terms')}
             {...form.getInputProps('terms', { type: 'checkbox' })}
-            label="I accept terms and conditions"
           />
 
           <Group justify="space-between">
             <Anchor component={Link} to={'/login'}>
-              Already have an account? Login
+              {t('register.accountLogin')}
             </Anchor>
-            <Button type="submit">Register</Button>
+            <Button type="submit"> {t('register.register')}</Button>
           </Group>
         </Stack>
       </fetcher.Form>
@@ -162,8 +174,33 @@ const Password = ({
   form: UseFormReturnType<TRegisterFormSchema>;
   minLength: number;
 }) => {
+  const t = useTranslation();
   const [popoverOpened, setPopoverOpened] = useState(false);
   const [value, setValue] = useState('');
+
+  const requirements = [
+    { re: /[0-9]/, label: t('register.includesNumber') },
+    { re: /[a-z]/, label: t('register.includesLowercaseLetter') },
+    { re: /[A-Z]/, label: t('register.includesUppercaseLetter') },
+    {
+      re: /[$&+,:;=?@#|'<>.^*()%!-]/,
+      label: t('register.includesSpecialSymbol')
+    },
+    { re: /^\S*$/, label: t('register.noSpacesAllowed') }
+  ];
+
+  const getStrength = (password: string, minLength: number) => {
+    let multiplier = password.length >= minLength ? 0 : 1;
+
+    requirements.forEach(requirement => {
+      if (!requirement.re.test(password)) {
+        multiplier += 1;
+      }
+    });
+
+    return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 10);
+  };
+
   const checks = requirements.map((requirement, index) => (
     <PasswordRequirement
       key={index}
@@ -188,7 +225,7 @@ const Password = ({
           onBlurCapture={() => setPopoverOpened(false)}
         >
           <PasswordInput
-            label="Password"
+            label={t('authForm.password')}
             name="password"
             placeholder="Password"
             value={value}
@@ -201,7 +238,7 @@ const Password = ({
       <Popover.Dropdown>
         <Progress color={color} value={strength} size={5} mb="xs" />
         <PasswordRequirement
-          label={`Includes at least ${minLength} characters`}
+          label={t('register.includes8Char')}
           meets={value.length >= minLength}
         />
         {checks}
@@ -228,24 +265,4 @@ const PasswordRequirement = ({
       <Box ml={10}>{label}</Box>
     </Text>
   );
-};
-
-const requirements = [
-  { re: /[0-9]/, label: 'Includes number' },
-  { re: /[a-z]/, label: 'Includes lowercase letter' },
-  { re: /[A-Z]/, label: 'Includes uppercase letter' },
-  { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: 'Includes special symbol' },
-  { re: /^\S*$/, label: 'No spaces allowed' }
-];
-
-const getStrength = (password: string, minLength: number) => {
-  let multiplier = password.length >= minLength ? 0 : 1;
-
-  requirements.forEach(requirement => {
-    if (!requirement.re.test(password)) {
-      multiplier += 1;
-    }
-  });
-
-  return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 10);
 };
