@@ -31,7 +31,7 @@ export const links: LinksFunction = () => [
 
 export const loader: LoaderFunction = async ({ params }) => {
   const currentLanguage = (params.lang ?? 'en') as TranslationKeys;
-  return { isLoggedIn: false, currentLanguage };
+  return { isLoggedIn: true, currentLanguage };
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {

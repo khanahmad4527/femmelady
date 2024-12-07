@@ -19,7 +19,7 @@ import { ActionFunction } from '@remix-run/node';
 import { Link, useFetcher, useOutletContext } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { z } from 'zod';
-import { GoogleIcon, IconCheck, IconX, XIcon } from '~/icons';
+import { GoogleIcon, IconCheck, IconX, IconBrandX } from '~/icons';
 import { registerFormSchema, TRegisterFormSchema } from '~/schema';
 import { parseZodError } from '~/utils';
 import useTranslation from '~/hooks/useTranslation';
@@ -92,7 +92,7 @@ const register = () => {
         <Button radius={'xl'} variant="light" leftSection={<GoogleIcon />}>
           Google
         </Button>
-        <Button radius={'xl'} variant="light" leftSection={<XIcon />}>
+        <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>
           X
         </Button>
       </Group>

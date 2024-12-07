@@ -1,12 +1,18 @@
-import { rem } from "@mantine/core";
-import { IconProps } from "~/types/types";
+import { rem } from '@mantine/core';
+import { IconProps } from '~/types/types';
 
-export const GoogleIcon = ({ size = 25, style, ...others }: IconProps) => {
+export const GoogleIcon = ({
+  size = 25,
+  color = 'var(--mantine-primary-color-7)',
+  stroke = '1.5',
+  style,
+  ...others
+}: IconProps) => {
   return (
     <svg
       preserveAspectRatio="xMidYMid"
       viewBox="0 0 256 262"
-      fill="none"
+      fill={color}
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"

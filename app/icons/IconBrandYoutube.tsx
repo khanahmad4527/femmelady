@@ -1,9 +1,9 @@
 import { rem } from '@mantine/core';
 import { IconProps } from '~/types/types';
 
-export const IconCheck = ({
+export const IconBrandYoutube = ({
   size = 25,
-  color,
+  color = 'var(--mantine-primary-color-7)',
   stroke = '1.5',
   style,
   ...others
@@ -15,17 +15,18 @@ export const IconCheck = ({
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
+      stroke={color}
+      strokeWidth={stroke}
       strokeLinecap="round"
       strokeLinejoin="round"
       style={{ width: rem(size), height: rem(size), ...style }}
       {...others}
     >
-      <path stroke={color} strokeWidth={stroke} d="M0 0h24v24H0z" fill={color} />
-      <path d="M5 12l5 5l10 -10" />
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+      <path d="M10 9l5 3l-5 3z" />
     </svg>
   );
 };
 
-export default IconCheck;
+export default IconBrandYoutube;

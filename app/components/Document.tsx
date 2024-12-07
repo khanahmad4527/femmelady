@@ -3,6 +3,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { useLocation } from '@remix-run/react';
 import { ROUTES_WITHOUT_HEADER_AND_FOOTER } from '~/constant';
 import { OutletContext } from '~/types/types';
+import Footer from './Footer';
 
 const Document = (
   props: OutletContext & {
@@ -29,7 +30,7 @@ const Document = (
         collapsed: { desktop: true, mobile: !opened }
       }}
       footer={{ height: 100 }}
-      disabled={!isExcludedRoute || !isLoggedIn}
+      disabled={isExcludedRoute || !isLoggedIn}
     >
       <AppShell.Header>
         <Container>Header</Container>
@@ -49,7 +50,9 @@ const Document = (
       <AppShell.Main component={Container}>{children}</AppShell.Main>
 
       <AppShell.Footer pos={'relative'}>
-        <Container>Footer</Container>
+        <Container>
+          <Footer />
+        </Container>
       </AppShell.Footer>
     </AppShell>
   );

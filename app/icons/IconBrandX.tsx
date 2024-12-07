@@ -1,12 +1,18 @@
-import { rem } from "@mantine/core";
-import { IconProps } from "~/types/types";
+import { rem } from '@mantine/core';
+import { IconProps } from '~/types/types';
 
-export const XIcon = ({ size = 25, style, ...others }: IconProps) => {
+export const IconBrandX = ({
+  size = 25,
+  color = 'var(--mantine-primary-color-7)',
+  stroke = '1.5',
+  style,
+  ...others
+}: IconProps) => {
   return (
     <svg
       preserveAspectRatio="xMidYMid"
       viewBox="0 0 50 50"
-      fill="none"
+      fill={'none'}
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -18,4 +24,4 @@ export const XIcon = ({ size = 25, style, ...others }: IconProps) => {
   );
 };
 
-export default XIcon;
+export default IconBrandX;

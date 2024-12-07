@@ -1,9 +1,9 @@
 import { rem } from '@mantine/core';
 import { IconProps } from '~/types/types';
 
-export const IconCheck = ({
+export const IconBrandPinterest = ({
   size = 25,
-  color,
+  color = 'var(--mantine-primary-color-7)',
   stroke = '1.5',
   style,
   ...others
@@ -14,18 +14,20 @@ export const IconCheck = ({
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
+      fill={'none'}
+      stroke={color}
+      strokeWidth={stroke}
       strokeLinecap="round"
       strokeLinejoin="round"
       style={{ width: rem(size), height: rem(size), ...style }}
       {...others}
     >
-      <path stroke={color} strokeWidth={stroke} d="M0 0h24v24H0z" fill={color} />
-      <path d="M5 12l5 5l10 -10" />
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M8 20l4 -9" />
+      <path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" />
+      <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
     </svg>
   );
 };
 
-export default IconCheck;
+export default IconBrandPinterest;

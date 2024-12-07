@@ -38,5 +38,15 @@
     "confirmPasswordRequired": "Both password and confirm password are required",
     "passwordMismatch": "Passwords do not match",
     "termsRequired": "You must accept the terms to proceed."
+  },
+  "footer": {
+    "links": {
+      "contact": "Contact",
+      "privacy": "Privacy",
+      "blog": "Blog",
+      "store": "Store",
+      "careers": "Careers"
+    },
+    "copyright": "© 2024 Unthaa. All rights reserved."
   }
 }

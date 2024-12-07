@@ -38,5 +38,15 @@
     "confirmPasswordRequired": "パスワードと確認用パスワードの両方が必要です",
     "passwordMismatch": "パスワードが一致しません",
     "termsRequired": "先に進むためには利用規約に同意する必要があります"
+  },
+  "footer": {
+    "links": {
+      "contact": "お問い合わせ",
+      "privacy": "プライバシー",
+      "blog": "ブログ",
+      "store": "ストア",
+      "careers": "採用情報"
+    },
+    "copyright": "© Unthaa. すべての権利を保有します。"
   }
 }

@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 import { z } from 'zod';
 import { loginFormSchema, TLoginFormSchema } from '~/schema';
 import { parseZodError } from '~/utils';
-import { GoogleIcon, XIcon } from '~/icons';
+import { GoogleIcon, IconBrandX } from '~/icons';
 import useTranslation from '~/hooks/useTranslation';
 import { validateFormWithTranslations } from '~/server/validateFormWithTranslations';
 import { OutletContext, TranslationKeys } from '~/types/types';
@@ -81,7 +81,7 @@ const login = () => {
         <Button radius={'xl'} variant="light" leftSection={<GoogleIcon />}>
           Google
         </Button>
-        <Button radius={'xl'} variant="light" leftSection={<XIcon />}>
+        <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>
           X
         </Button>
       </Group>
