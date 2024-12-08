@@ -50,6 +50,27 @@
     "copyright": "© 2024 Unthaa. All rights reserved."
   },
   "header": {
-    "search": "Search"
+    "search": "Search",
+    "new": "New!",
+    "topRated": "Top-Rated",
+    "dresses": "Dresses",
+    "clothing": "Clothing",
+    "shoes": "Shoes",
+    "accessories": "Accessories",
+    "weddings": "Weddings",
+    "homeFurniture": "Home & Furniture",
+    "beautyWellness": "Beauty & Wellness",
+    "giftsCandles": "Gifts & Candles",
+    "sale": "Sale"
+  },
+  "home": {
+    "weddings": "Weddings",
+    "candles": "Candles",
+    "jewelry": "Jewelry",
+    "dresses": "Dresses",
+    "bags": "Bags",
+    "perfumes": "Perfumes",
+    "watches": "Watches",
+    "shoes": "Shoes"
   }
 }
