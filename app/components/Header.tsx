@@ -1,14 +1,4 @@
-import {
-  Anchor,
-  Group,
-  Input,
-  Stack,
-  Grid,
-  Avatar,
-  Select,
-  Box,
-  Flex
-} from '@mantine/core';
+import { Anchor, Group, Input, Avatar, Select, Flex } from '@mantine/core';
 import { Link, useNavigate } from '@remix-run/react';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
@@ -75,6 +65,7 @@ const Header = () => {
         <Select
           defaultValue={currentLanguage}
           data={languageOptions}
+          allowDeselect={false}
           onChange={(_value, option) =>
             navigate(`/${option.value}`, { replace: true })
           }

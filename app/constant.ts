@@ -1,6 +1,6 @@
 export const ROUTES_WITHOUT_HEADER_AND_FOOTER = new Set([
-  '/login',
-  '/register',
-  '/change-password',
-  '/reset-password'
+  'login',
+  'register',
+  'change-password',
+  'reset-password'
 ]);

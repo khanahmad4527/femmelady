@@ -1,4 +1,4 @@
-import { AppShell, Container, ScrollArea } from '@mantine/core';
+import { Container } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useLocation } from '@remix-run/react';
 import { ROUTES_WITHOUT_HEADER_AND_FOOTER } from '~/constant';
@@ -19,44 +19,16 @@ const Document = (
 
   const { isLoggedIn } = restData;
 
-  const basePath = pathname.split('/')[1];
-  const isExcludedRoute = ROUTES_WITHOUT_HEADER_AND_FOOTER.has(`/${basePath}`);
+  const basePath = pathname.split('/').at(-1) ?? '';
+
+  const isExcludedRoute = ROUTES_WITHOUT_HEADER_AND_FOOTER.has(basePath);
 
   return (
-    <AppShell
-      header={{ height: { base: 190, md: 132 }, offset: true }}
-      navbar={{
-        width: 300,
-        breakpoint: 'md',
-        collapsed: { desktop: true, mobile: !opened }
-      }}
-      disabled={isExcludedRoute || !isLoggedIn}
-    >
-      <AppShell.Header>
-        <Container>
-          <Header />
-        </Container>
-      </AppShell.Header>
-
-      <AppShell.Navbar p="md">
-        <AppShell.Section
-          grow
-          component={ScrollArea}
-          scrollbars="y"
-          type="scroll"
-        >
-          Mobile Menu
-        </AppShell.Section>
-      </AppShell.Navbar>
-
-      <AppShell.Main component={Container}>{children}</AppShell.Main>
-
-      <AppShell.Footer pos={'relative'}>
-        <Container>
-          <Footer />
-        </Container>
-      </AppShell.Footer>
-    </AppShell>
+    <Container>
+      {!isExcludedRoute && <Header />}
+      {children}
+      {!isExcludedRoute && <Footer />}
+    </Container>
   );
 };
 
