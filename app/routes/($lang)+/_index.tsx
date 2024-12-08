@@ -80,7 +80,7 @@ export default function Index() {
                 radius={0}
                 pos={'absolute'}
                 bottom={0}
-                w={'min-content'}
+                w={'max-content'}
                 py={5}
                 px={'sm'}
                 bg="white"
