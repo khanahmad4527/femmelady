@@ -6,8 +6,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
-  useParams
+  useLoaderData
 } from '@remix-run/react';
 import type { LinksFunction, LoaderFunction } from '@remix-run/node';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
@@ -35,8 +34,9 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { currentLanguage } = useCurrentLanguage();
   return (
-    <html lang="en">
+    <html lang={currentLanguage}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
