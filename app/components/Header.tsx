@@ -23,15 +23,17 @@ const Header = () => {
     _value: string | null,
     option: ComboboxItem
   ) => {
-    const newPath = location.pathname.replace(
-      `/${currentLanguage}`,
-      `/${option.value}`
-    );
+    if (currentLanguage !== option.value) {
+      const newPath = location.pathname.replace(
+        `/${currentLanguage}`,
+        `/${option.value}`
+      );
 
-    navigate({
-      pathname: newPath,
-      search: location.search
-    });
+      navigate({
+        pathname: newPath,
+        search: location.search
+      });
+    }
   };
 
   const languageOptions = [
