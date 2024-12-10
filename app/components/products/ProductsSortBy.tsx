@@ -1,8 +1,22 @@
 import { Select } from '@mantine/core';
+import { useSearchParams } from '@remix-run/react';
 import useTranslation from '~/hooks/useTranslation';
 
 const ProductsSortBy = () => {
   const t = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleFilterChange = (value: string | null) => {
+    const newFilter = value || null;
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (newFilter) {
+      newSearchParams.set('sort', newFilter);
+    } else {
+      newSearchParams.delete('sort');
+    }
+    setSearchParams(newSearchParams, { preventScrollReset: true });
+  };
+
   return (
     <Select
       label={t('products.sortBy')}
@@ -13,6 +27,7 @@ const ProductsSortBy = () => {
         { value: 'alphabetic-a-to-z', label: t('products.alphabeticAtoZ') },
         { value: 'alphabetic-z-to-a', label: t('products.alphabeticZtoA') }
       ]}
+      onChange={handleFilterChange}
       clearable
       allowDeselect
     />
