@@ -1,5 +1,13 @@
-import { Anchor, Group, Input, Avatar, Select, Flex } from '@mantine/core';
-import { Link, useNavigate } from '@remix-run/react';
+import {
+  Anchor,
+  Group,
+  Input,
+  Avatar,
+  Select,
+  Flex,
+  ComboboxItem
+} from '@mantine/core';
+import { Link, useLocation, useNavigate } from '@remix-run/react';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconSearch } from '~/icons';
@@ -9,6 +17,22 @@ const Header = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLanguageChange = (
+    _value: string | null,
+    option: ComboboxItem
+  ) => {
+    const newPath = location.pathname.replace(
+      `/${currentLanguage}`,
+      `/${option.value}`
+    );
+
+    navigate({
+      pathname: newPath,
+      search: location.search
+    });
+  };
 
   const languageOptions = [
     { value: 'en', label: 'English' },
@@ -33,26 +57,26 @@ const Header = () => {
   ));
 
   const categoryLinks = [
-    { link: `/${currentLanguage}/new`, label: t('header.new') },
-    { link: `/${currentLanguage}/top-rated`, label: t('header.topRated') },
-    { link: `/${currentLanguage}/dresses`, label: t('header.dresses') },
-    { link: `/${currentLanguage}/clothing`, label: t('header.clothing') },
-    { link: `/${currentLanguage}/shoes`, label: t('header.shoes') },
-    { link: `/${currentLanguage}/accessories`, label: t('header.accessories') },
-    { link: `/${currentLanguage}/weddings`, label: t('header.weddings') },
+    { link: `/${currentLanguage}/products`, label: t('header.new') },
+    { link: `/${currentLanguage}/products`, label: t('header.topRated') },
+    { link: `/${currentLanguage}/products`, label: t('header.dresses') },
+    { link: `/${currentLanguage}/products`, label: t('header.clothing') },
+    { link: `/${currentLanguage}/products`, label: t('header.shoes') },
+    { link: `/${currentLanguage}/products`, label: t('header.accessories') },
+    { link: `/${currentLanguage}/products`, label: t('header.weddings') },
     {
-      link: `/${currentLanguage}/home-furniture`,
+      link: `/${currentLanguage}/products`,
       label: t('header.homeFurniture')
     },
     {
-      link: `/${currentLanguage}/beauty-wellness`,
+      link: `/${currentLanguage}/products`,
       label: t('header.beautyWellness')
     },
     {
-      link: `/${currentLanguage}/gifts-candles`,
+      link: `/${currentLanguage}/products`,
       label: t('header.giftsCandles')
     },
-    { link: `/${currentLanguage}/sale`, label: t('header.sale') }
+    { link: `/${currentLanguage}/products`, label: t('header.sale') }
   ];
 
   const categoryItems = categoryLinks.map(link => (
@@ -102,9 +126,7 @@ const Header = () => {
             defaultValue={currentLanguage}
             data={languageOptions}
             allowDeselect={false}
-            onChange={(_value, option) =>
-              navigate(`/${option.value}`, { replace: true })
-            }
+            onChange={handleLanguageChange}
           />
         </Group>
       </Flex>
