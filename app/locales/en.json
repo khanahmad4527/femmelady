@@ -72,5 +72,21 @@
     "perfumes": "Perfumes",
     "watches": "Watches",
     "shoes": "Shoes"
+  },
+  "products": {
+    "filterBy": "Filter By",
+    "clearFilter": "Clear Filter",
+    "category": "Category",
+    "price": "Price",
+    "discount": "Discount",
+    "brand": "Brand",
+    "rating": "Rating",
+    "sortBy": "Sort By",
+    "popularity": "Popularity",
+    "priceLowToHigh": "Price: Low to High",
+    "priceHighToLow": "Price: High to Low",
+    "alphabeticAtoZ": "Alphabetically: A to Z",
+    "alphabeticZtoA": "Alphabetically: Z to A",
+     "productsPerPage": "Products Per Page"
   }
 }

@@ -1,12 +1,4 @@
-import {
-  Box,
-  Center,
-  Image,
-  Paper,
-  SimpleGrid,
-  Stack,
-  Text
-} from '@mantine/core';
+import { Box, Image, Paper, SimpleGrid, Stack } from '@mantine/core';
 import type { MetaFunction } from '@remix-run/node';
 import wedding from '@assets/images/wedding.jpg';
 import candle from '@assets/images/candle.jpg';
@@ -70,12 +62,12 @@ export default function Index() {
 
   return (
     <Stack>
-      <Image src={banner.image} mah={200} fit={'contain'} />
+      <Image src={banner.image} alt={'banner'} mah={200} fit={'contain'} />
       <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
         {heroImages.map(h => {
           return (
-            <Box component={Link} to={'/'} pos={'relative'}>
-              <Image src={h.image} h={500} />
+            <Box key={h.title} component={Link} to={'/'} pos={'relative'}>
+              <Image alt={h.title} src={h.image} h={500} />
               <Paper
                 radius={0}
                 pos={'absolute'}

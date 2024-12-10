@@ -72,5 +72,21 @@
     "perfumes": "香水",
     "watches": "腕時計",
     "shoes": "靴"
+  },
+  "products": {
+    "filterBy": "フィルター条件",
+    "category": "カテゴリー",
+    "price": "価格",
+    "discount": "割引",
+    "brand": "ブランド",
+    "rating": "評価",
+    "clearFilter": "フィルターをクリア",
+    "sortBy": "並び替え",
+    "popularity": "人気順",
+    "priceLowToHigh": "価格: 低い順",
+    "priceHighToLow": "価格: 高い順",
+    "alphabeticAtoZ": "アルファベット順: AからZ",
+    "alphabeticZtoA": "アルファベット順: ZからA",
+    "productsPerPage": "1ページあたりの商品数"
   }
 }

@@ -29,7 +29,7 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const currentLanguage = (params.lang ?? 'en') as TranslationKeys;
+  const currentLanguage = (params?.lang ?? 'en') as TranslationKeys;
   return { isLoggedIn: true, currentLanguage };
 };
 

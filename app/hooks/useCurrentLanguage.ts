@@ -4,7 +4,7 @@ import { TranslationKeys } from '~/types/types';
 const useCurrentLanguage = () => {
   const params = useParams<{ lang: TranslationKeys }>();
 
-  const currentLanguage = params.lang ?? 'en';
+  const currentLanguage = params?.lang ?? 'en';
 
   return { currentLanguage };
 };
