@@ -7,26 +7,19 @@ const Products = () => {
   return (
     <Stack>
       <Box ml={{ base: 'none', md: 'auto' }}>
-        <Box display={{ base: 'block', md: 'none' }}>
-          <ProductsFilterBy />
-        </Box>
-
-        <Group>
+        <Group mt={'md'} align="flex-end">
+          <ProductsFilterBy render={'mobile'} />
           <ProductsPerPage />
           <ProductsSortBy />
         </Group>
       </Box>
-
-      {/* <Box display={{ base: 'none', md: 'block' }}>
-        <ProductsFilterBy />
-      </Box> */}
 
       <Grid>
         <Grid.Col span={{ base: 12, md: 2 }}>
           <ProductsFilterBy />
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 10 }}>
-          <SimpleGrid cols={3}>
+          <SimpleGrid cols={{ base: 1, xs: 2, md: 3 }}>
             {new Array(20).fill('*').map((_, i) => (
               <Box bg="red" h={300}>
                 {++i}

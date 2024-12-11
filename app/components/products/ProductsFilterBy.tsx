@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Group,
+  Menu,
   RangeSlider,
   Rating,
   ScrollArea,
@@ -13,7 +14,7 @@ import {
 import { useState } from 'react';
 import useTranslation from '~/hooks/useTranslation';
 
-const ProductsFilterBy = () => {
+const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
   const t = useTranslation();
 
   const productsFilterByAccordionData = [
@@ -39,20 +40,42 @@ const ProductsFilterBy = () => {
     }
   ];
 
-  const items = productsFilterByAccordionData.map(item => (
+  const accordionItems = productsFilterByAccordionData.map(item => (
     <Accordion.Item key={item.value} value={item.value}>
       <Accordion.Control>{item.label}</Accordion.Control>
       <Accordion.Panel>{item?.component}</Accordion.Panel>
     </Accordion.Item>
   ));
 
-  return (
-    <Box>
+  const menuItems = productsFilterByAccordionData.map(item => (
+    <>
+      <Menu.Label>{item.label}</Menu.Label>
+      <Menu.Item key={item.value} value={item.value}>
+        {item?.component}
+      </Menu.Item>
+    </>
+  ));
+
+  return render === 'mobile' ? (
+    <Box display={{ base: 'block', md: 'none' }}>
+      <Menu shadow="md" width={200}>
+        <Menu.Target>
+          <Button fullWidth>{t('products.filterBy')}</Button>
+        </Menu.Target>
+
+        <Menu.Dropdown>
+          {/* <Menu.Label>{t('products.filterBy')}</Menu.Label> */}
+          {menuItems}
+        </Menu.Dropdown>
+      </Menu>
+    </Box>
+  ) : (
+    <Box display={{ base: 'none', md: 'block' }}>
       <Group>
         <Text>{t('products.filterBy')}</Text>
         <Button>{t('products.clearFilter')}</Button>
       </Group>
-      <Accordion defaultValue="Apples">{items}</Accordion>
+      <Accordion defaultValue="Apples">{accordionItems}</Accordion>
     </Box>
   );
 };
