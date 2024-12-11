@@ -1,4 +1,4 @@
-import { Box, Group, Stack } from '@mantine/core';
+import { Box, Grid, Group, SimpleGrid, Stack } from '@mantine/core';
 import ProductsFilterBy from '~/components/products/ProductsFilterBy';
 import ProductsPerPage from '~/components/products/ProductsPerPage';
 import ProductsSortBy from '~/components/products/ProductsSortBy';
@@ -17,9 +17,24 @@ const Products = () => {
         </Group>
       </Box>
 
-      <Box display={{ base: 'none', md: 'block' }}>
+      {/* <Box display={{ base: 'none', md: 'block' }}>
         <ProductsFilterBy />
-      </Box>
+      </Box> */}
+
+      <Grid>
+        <Grid.Col span={{ base: 12, md: 2 }}>
+          <ProductsFilterBy />
+        </Grid.Col>
+        <Grid.Col span={{ base: 12, md: 10 }}>
+          <SimpleGrid cols={3}>
+            {new Array(20).fill('*').map((_, i) => (
+              <Box bg="red" h={300}>
+                {++i}
+              </Box>
+            ))}
+          </SimpleGrid>
+        </Grid.Col>
+      </Grid>
     </Stack>
   );
 };
