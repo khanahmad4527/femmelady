@@ -1,4 +1,9 @@
-import { createTheme, rem, type MantineThemeOverride } from '@mantine/core';
+import {
+  Button,
+  createTheme,
+  rem,
+  type MantineThemeOverride
+} from '@mantine/core';
 
 export const theme: MantineThemeOverride = createTheme({
   colors: {
@@ -25,6 +30,11 @@ export const theme: MantineThemeOverride = createTheme({
   components: {
     Container: {
       defaultProps: { size: 1280 }
+    },
+    Button: {
+      defaultProps: {
+        radius: 0
+      }
     }
   }
 });

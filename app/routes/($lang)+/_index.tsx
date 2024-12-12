@@ -103,10 +103,10 @@ export default function Index() {
       </Box>
 
       <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
-        {heroImages.map(h => {
+        {heroImages.map((h, i) => {
           return (
-            <Box key={h.title} component={Link} to={'/'} pos={'relative'}>
-              <Image alt={h.title} src={h.image} h={500} />
+            <Box key={i} component={Link} to={'/'} pos={'relative'}>
+              <Image alt={'product'} src={h.image} h={500} />
               <Paper
                 radius={0}
                 pos={'absolute'}

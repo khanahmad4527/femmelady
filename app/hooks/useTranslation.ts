@@ -15,7 +15,10 @@ const translations: Translations = {
 const useTranslation = () => {
   const { currentLanguage } = useCurrentLanguage();
 
-  const t = (key: string): string => {
+  const t = (
+    key: string,
+    replacements?: Record<string, React.ReactNode>
+  ) => {
     const keys = key.split('.');
     let translation: any = translations[currentLanguage];
 
@@ -32,6 +35,24 @@ const useTranslation = () => {
         translation = key;
         break;
       }
+    }
+
+    if (replacements) {
+      return Object.entries(replacements).reduce<React.ReactNode[]>(
+        (result, [placeholder, value]) => {
+          // Split the translation on the placeholder and insert the replacement
+          return result.flatMap(part =>
+            typeof part === 'string'
+              ? part
+                  .split(`{${placeholder}}`)
+                  .flatMap((splitPart, index, arr) =>
+                    index < arr.length - 1 ? [splitPart, value] : [splitPart]
+                  )
+              : [part]
+          );
+        },
+        [translation as string]
+      );
     }
 
     return translation as string;

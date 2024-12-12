@@ -47,7 +47,12 @@
       "store": "ストア",
       "careers": "採用情報"
     },
-    "copyright": "© Unthaa. すべての権利を保有します。"
+    "copyright": "© Unthaa. すべての権利を保有します。",
+    "signUpAgreement": "サインアップすることで、{privacyPolicy} と {termsOfService} に同意することになります。",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約",
+    "subscribeButton": "購読して",
+    "getLatestNews": "最新のニュースを受け取りましょう"
   },
   "header": {
     "search": "検索",

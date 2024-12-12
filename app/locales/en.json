@@ -47,7 +47,12 @@
       "store": "Store",
       "careers": "Careers"
     },
-    "copyright": "© 2024 Unthaa. All rights reserved."
+    "copyright": "© 2024 Unthaa. All rights reserved.",
+    "signUpAgreement": "By signing up, you agree to our {privacyPolicy} and {termsOfService}.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "subscribeButton": "Subscribe",
+    "getLatestNews": "Get the latest news from us"
   },
   "header": {
     "search": "Search",
