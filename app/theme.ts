@@ -1,28 +1,27 @@
-import { createTheme, type MantineThemeOverride } from '@mantine/core';
+import { createTheme, rem, type MantineThemeOverride } from '@mantine/core';
 
 export const theme: MantineThemeOverride = createTheme({
   colors: {
-    artichoke: [
-      '#f4f7ea',
-      '#e8ebe0',
-      '#d0d4c5',
-      '#b6bca7',
-      '#a0a78e',
-      '#929a7d',
-      '#8b9473',
-      '#788061',
-      '#6a7254',
-      '#5a6343'
+    primary: [
+      '#f5f5f5',
+      '#e7e7e7',
+      '#cdcdcd',
+      '#b2b2b2',
+      '#9a9a9a',
+      '#8b8b8b',
+      '#848484',
+      '#717171',
+      '#656565',
+      '#575757'
     ]
   },
   black: '#333333',
   white: '#F5F5F5',
-  primaryShade: 7,
-  primaryColor: 'artichoke',
-  fontFamily: 'StyreneA, serif',
-  headings: {
-    fontFamily: 'StyreneA, serif'
+  spacing: {
+    '2xl': rem(64)
   },
+  primaryShade: 7,
+  primaryColor: 'primary',
   components: {
     Container: {
       defaultProps: { size: 1280 }

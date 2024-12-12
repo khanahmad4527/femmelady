@@ -71,7 +71,12 @@
     "bags": "Bags",
     "perfumes": "Perfumes",
     "watches": "Watches",
-    "shoes": "Shoes"
+    "shoes": "Shoes",
+    "heroSecText1": "Elevate Your Style",
+    "heroSecText2": "Timeless Fashion, Sustainable Choices",
+    "shopNow": "Shop Now",
+    "text1": "The Art of Fewer, Better Choices",
+    "text2": "Opting for quality over quantity means selecting timeless, durable, and responsibly made items. This approach simplifies our lives and fosters a deeper appreciation for our surroundings. Emphasizing longevity and responsible production resonates with a more sustainable and mindful lifestyle."
   },
   "products": {
     "filterBy": "Filter By",
@@ -87,6 +92,6 @@
     "priceHighToLow": "Price: High to Low",
     "alphabeticAtoZ": "Alphabetically: A to Z",
     "alphabeticZtoA": "Alphabetically: Z to A",
-     "productsPerPage": "Products Per Page"
+    "productsPerPage": "Products Per Page"
   }
 }

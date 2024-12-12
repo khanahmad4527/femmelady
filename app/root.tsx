@@ -1,5 +1,4 @@
 import '@mantine/core/styles.css';
-import '~/styles/StyreneA.css';
 
 import {
   Links,

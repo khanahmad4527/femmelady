@@ -5,7 +5,8 @@ import {
   Avatar,
   Select,
   Flex,
-  ComboboxItem
+  ComboboxItem,
+  Text
 } from '@mantine/core';
 import { Link, useLocation, useNavigate } from '@remix-run/react';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -49,7 +50,7 @@ const Header = () => {
   const items = links.map(link => (
     <Anchor
       component={Link}
-      c="artichoke.1"
+      c="primary.1"
       key={link.label}
       to={link.link}
       lh={1}
@@ -84,7 +85,7 @@ const Header = () => {
   const categoryItems = categoryLinks.map(link => (
     <Anchor
       component={Link}
-      c="artichoke.7"
+      c="primary.7"
       key={link.label}
       to={link.link}
       lh={1}
@@ -101,7 +102,7 @@ const Header = () => {
         direction={{ base: 'column', md: 'row' }}
         gap={'md'}
         p="md"
-        bg="artichoke"
+        bg="primary"
       >
         <Avatar
           component={Link}
@@ -135,7 +136,7 @@ const Header = () => {
       <Group
         p={'md'}
         pos={'sticky'}
-        bg={'artichoke.1'}
+        bg={'primary.1'}
         top={0}
         style={{ zIndex: 100 }}
       >
