@@ -1,4 +1,5 @@
 import '@mantine/core/styles.css';
+import '~/styles/StyreneA.css';
 
 import {
   Links,
@@ -15,18 +16,14 @@ import Document from './components/Document';
 import { TranslationKeys } from './types/types';
 import useCurrentLanguage from './hooks/useCurrentLanguage';
 
-export const links: LinksFunction = () => [
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-  {
-    rel: 'preconnect',
-    href: 'https://fonts.gstatic.com',
-    crossOrigin: 'anonymous'
-  },
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap'
-  }
-];
+// export const links: LinksFunction = () => [
+//   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+//   {
+//     rel: 'preconnect',
+//     href: 'https://fonts.gstatic.com',
+//     crossOrigin: 'anonymous'
+//   }
+// ];
 
 export const loader: LoaderFunction = async ({ params }) => {
   const currentLanguage = (params?.lang ?? 'en') as TranslationKeys;

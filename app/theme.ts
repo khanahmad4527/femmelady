@@ -19,9 +19,9 @@ export const theme: MantineThemeOverride = createTheme({
   white: '#F5F5F5',
   primaryShade: 7,
   primaryColor: 'artichoke',
-  fontFamily: 'Playfair Display, serif',
+  fontFamily: 'StyreneA, serif',
   headings: {
-    fontFamily: 'Playfair Display, serif'
+    fontFamily: 'StyreneA, serif'
   },
   components: {
     Container: {
