@@ -4,15 +4,15 @@ import {
   Links,
   Meta,
   Outlet,
+  redirect,
   Scripts,
   ScrollRestoration,
   useLoaderData
 } from '@remix-run/react';
-import type { LinksFunction, LoaderFunction } from '@remix-run/node';
+import type {  LoaderFunction } from '@remix-run/node';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { theme } from './theme';
 import Document from './components/Document';
-import { TranslationKeys } from './types/types';
 import useCurrentLanguage from './hooks/useCurrentLanguage';
 
 // export const links: LinksFunction = () => [
@@ -25,7 +25,11 @@ import useCurrentLanguage from './hooks/useCurrentLanguage';
 // ];
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const currentLanguage = (params?.lang ?? 'en') as TranslationKeys;
+  const currentLanguage = params?.lang;
+  if (!currentLanguage) {
+    return redirect('/en');
+  }
+
   return { isLoggedIn: true, currentLanguage };
 };
 

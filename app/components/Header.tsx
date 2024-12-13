@@ -8,7 +8,7 @@ import {
   ComboboxItem,
   Text
 } from '@mantine/core';
-import { Link, useLocation, useNavigate } from '@remix-run/react';
+import { Link, useLocation, useNavigate, useParams } from '@remix-run/react';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconSearch } from '~/icons';
@@ -48,13 +48,7 @@ const Header = () => {
   ];
 
   const items = links.map((link, i) => (
-    <Anchor
-      component={Link}
-      c="primary.1"
-      key={i}
-      to={link.link}
-      lh={1}
-    >
+    <Anchor component={Link} c="primary.1" key={i} to={link.link} lh={1}>
       {link.label}
     </Anchor>
   ));
@@ -83,13 +77,7 @@ const Header = () => {
   ];
 
   const categoryItems = categoryLinks.map((link, i) => (
-    <Anchor
-      component={Link}
-      c="primary.7"
-      key={i}
-      to={link.link}
-      lh={1}
-    >
+    <Anchor component={Link} c="primary.7" key={i} to={link.link} lh={1}>
       {link.label}
     </Anchor>
   ));
