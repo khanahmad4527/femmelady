@@ -1,13 +1,13 @@
 import { rem } from '@mantine/core';
 import { IconProps } from '~/types/types';
 
-export const IconSearch = ({
+export default function IconSearch({
   size = 25,
   color = 'var(--mantine-primary-color-7)',
   stroke = '1.5',
   style,
   ...others
-}: IconProps) => {
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,6 +27,4 @@ export const IconSearch = ({
       <path d="M21 21l-6 -6" />
     </svg>
   );
-};
-
-export default IconSearch;
+}

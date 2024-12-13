@@ -1,23 +1,49 @@
 import {
   ActionIcon,
+  Avatar,
   Box,
   Card,
-  Center,
-  ColorSwatch,
   Group,
   Image,
   Paper,
   Stack,
   Text
 } from '@mantine/core';
-import { IconHeartFilled, IconPlus } from '~/icons';
+import { useState } from 'react';
+import { IconHeart, IconPlus } from '~/icons';
 
-const ProductCard = () => {
+type TProductCard = {
+  id: string;
+  name: string;
+  image: string;
+  colors: {
+    id: string;
+    name: string;
+    value?: string | null;
+    hex: null | string;
+    isPattern: boolean | null;
+    pattern_img: null | string;
+  }[];
+};
+
+const ProductCard = (props: TProductCard) => {
+  const { name, colors, image } = props;
+
+  const [activeColor, setActiveColor] = useState<
+    TProductCard['colors'][number]
+  >(colors[0]);
+
   const value = 1234.56;
   const formattedValue = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
   }).format(value);
+
+  const handleActiveColor = (id: string, index: number) => {
+    if (id !== activeColor.id) {
+      setActiveColor(colors[index]);
+    }
+  };
 
   return (
     <Card
@@ -34,55 +60,74 @@ const ProductCard = () => {
         variant="transparent"
         aria-label="mark as favorite"
       >
-        <IconHeartFilled />
+        <IconHeart />
       </ActionIcon>
 
       <Image
-        src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+        fit={'contain'}
+        src={image}
         height={300}
-        alt="Norway"
+        alt={name}
+        loading={'lazy'}
       />
 
-      <Card.Section component={Group} wrap="nowrap" bg="red" inheritPadding>
-        <Box w={'50%'} display={'inline'}>
-          <Text>Black</Text>
-          <Group gap={4}>
-            {new Array(3).fill('*').map(c => {
-              return (
-                <Paper
-                  w={30}
-                  h={30}
-                  p={4}
-                  withBorder
-                  radius={'xl'}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderColor: 'black'
-                  }}
-                >
-                  <Paper w={'100%'} h={'100%'} bg="#009790" radius={'xl'} />
-                </Paper>
-              );
-            })}
-          </Group>
-        </Box>
-        <Box display={'inline'}>
-          <ActionIcon
-            ml={'auto'}
-            variant="light"
-            size="lg"
-            radius="xl"
-            aria-label="add to cart"
-          >
-            <IconPlus />
-          </ActionIcon>
-        </Box>
+      <Card.Section bg="primary.1" inheritPadding py={'md'}>
+        <Group align={'flex-end'}>
+          <Box mr={'auto'}>
+            <Text mb={4}>{activeColor.name}</Text>
+            <Group gap={4}>
+              {colors?.map((c, index) => {
+                return (
+                  <Paper
+                    w={30}
+                    h={30}
+                    radius={'xl'}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderColor: 'black',
+                      border: c.id === activeColor.id ? '2px solid black' : '',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {c.isPattern ? (
+                      <ActionIcon
+                        size="sm"
+                        radius="xl"
+                        aria-label="Settings"
+                        onClick={() => handleActiveColor(c.id, index)}
+                      >
+                        <Avatar src={c.pattern_img!} radius="xl" />
+                      </ActionIcon>
+                    ) : (
+                      <ActionIcon
+                        color={c.hex!}
+                        size="sm"
+                        radius="xl"
+                        onClick={() => handleActiveColor(c.id, index)}
+                      />
+                    )}
+                  </Paper>
+                );
+              })}
+            </Group>
+          </Box>
+          <Box ml={'auto'}>
+            <ActionIcon
+              variant="light"
+              size="lg"
+              radius="xl"
+              aria-label="add to cart"
+            >
+              <IconPlus />
+            </ActionIcon>
+          </Box>
+        </Group>
       </Card.Section>
 
       <Box>
-        <Text>Classic Pant</Text>
+        <Text>{name}</Text>
         <Text>{formattedValue}</Text>
       </Box>
     </Card>

@@ -1,13 +1,13 @@
 import { rem } from '@mantine/core';
 import { IconProps } from '~/types/types';
 
-export const IconBrandPinterest = ({
+export default function IconBrandPinterest({
   size = 25,
   color = 'var(--mantine-primary-color-7)',
   stroke = '1.5',
   style,
   ...others
-}: IconProps) => {
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -28,6 +28,4 @@ export const IconBrandPinterest = ({
       <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
     </svg>
   );
-};
-
-export default IconBrandPinterest;
+}
