@@ -21,7 +21,7 @@ const Products = () => {
         <Grid.Col span={{ base: 12, md: 10 }}>
           <SimpleGrid cols={{ base: 1, xs: 2, md: 3 }}>
             {new Array(20).fill('*').map((_, i) => (
-              <Box bg="red" h={300}>
+              <Box key={i} bg="red" h={300}>
                 {++i}
               </Box>
             ))}

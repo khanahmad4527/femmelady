@@ -1,12 +1,17 @@
 import { z } from 'zod';
 
-const emailSchema = (t: (key: string) => string) =>
+type Tt = (
+  key: string,
+  replacements?: Record<string, React.ReactNode>
+) => string;
+
+const emailSchema = (t: Tt) =>
   z
     .string()
     .email({ message: t('authFormValidationError.invalidEmail') })
     .transform(value => value.trim().toLowerCase());
 
-const passwordSchema = (t: (key: string) => string) =>
+const passwordSchema = (t: Tt) =>
   z
     .string()
     .min(8, { message: t('authFormValidationError.passwordMin') })
@@ -27,7 +32,7 @@ const passwordSchema = (t: (key: string) => string) =>
     })
     .transform(value => value.trim());
 
-export const loginFormSchema = (t: (key: string) => string) =>
+export const loginFormSchema = (t: Tt) =>
   z.object({
     email: emailSchema(t),
     password: passwordSchema(t)
@@ -35,7 +40,7 @@ export const loginFormSchema = (t: (key: string) => string) =>
 
 export type TLoginFormSchema = z.infer<ReturnType<typeof loginFormSchema>>;
 
-export const registerFormSchema = (t: (key: string) => string) =>
+export const registerFormSchema = (t: Tt) =>
   z
     .object({
       first_name: z

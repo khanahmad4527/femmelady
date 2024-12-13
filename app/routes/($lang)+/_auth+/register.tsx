@@ -63,7 +63,7 @@ const register = () => {
       terms: 'on'
     },
 
-    validate: zodResolver(registerFormSchema(t))
+    validate: zodResolver(registerFormSchema(t as any))
   });
 
   const serverErrors = fetcher.data?.errors;
@@ -205,7 +205,7 @@ const Password = ({
   const checks = requirements.map((requirement, index) => (
     <PasswordRequirement
       key={index}
-      label={requirement.label}
+      label={requirement.label as string}
       meets={requirement.re.test(value)}
     />
   ));
@@ -239,7 +239,7 @@ const Password = ({
       <Popover.Dropdown>
         <Progress color={color} value={strength} size={5} mb="xs" />
         <PasswordRequirement
-          label={t('register.includes8Char')}
+          label={t('register.includes8Char') as string}
           meets={value.length >= minLength}
         />
         {checks}

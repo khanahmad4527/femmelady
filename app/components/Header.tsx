@@ -47,11 +47,11 @@ const Header = () => {
     { link: `/${currentLanguage}/register`, label: t('register.register') }
   ];
 
-  const items = links.map(link => (
+  const items = links.map((link, i) => (
     <Anchor
       component={Link}
       c="primary.1"
-      key={link.label}
+      key={i}
       to={link.link}
       lh={1}
     >
@@ -82,11 +82,11 @@ const Header = () => {
     { link: `/${currentLanguage}/products`, label: t('header.sale') }
   ];
 
-  const categoryItems = categoryLinks.map(link => (
+  const categoryItems = categoryLinks.map((link, i) => (
     <Anchor
       component={Link}
       c="primary.7"
-      key={link.label}
+      key={i}
       to={link.link}
       lh={1}
     >
@@ -115,7 +115,7 @@ const Header = () => {
           w={{ base: '100%', md: '40%' }}
           size="md"
           rightSection={<IconSearch />}
-          placeholder={t('header.search')}
+          placeholder={t('header.search') as string}
         />
 
         <Group

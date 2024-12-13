@@ -127,7 +127,7 @@ const BrandFilter = () => {
       <Stack gap={'sm'}>
         {brandNamesWithSlugs.map(n => {
           return (
-            <Badge variant="light" color="primary">
+            <Badge key={n.value} variant="light" color="primary">
               {n.label}
             </Badge>
           );
@@ -154,7 +154,7 @@ const CategoryFilter = () => {
       <Stack gap={'sm'}>
         {categoriesWithSlugs.map(n => {
           return (
-            <Badge variant="light" color="primary">
+            <Badge key={n.value} variant="light" color="primary">
               {n.label}
             </Badge>
           );
