@@ -1,4 +1,49 @@
 {
+  "header": {
+    "search": "検索",
+    "new": "新着！",
+    "topRated": "高評価",
+    "dresses": "ドレス",
+    "clothing": "衣類",
+    "shoes": "靴",
+    "accessories": "アクセサリー",
+    "weddings": "結婚式",
+    "homeFurniture": "ホーム＆家具",
+    "beautyWellness": "美容＆健康",
+    "giftsCandles": "ギフト＆キャンドル",
+    "sale": "セール",
+    "slogan": "数値ではなく品質を重視"
+  },
+  "home": {
+    "weddings": "結婚式",
+    "candles": "キャンドル",
+    "jewelry": "ジュエリー",
+    "dresses": "ドレス",
+    "bags": "バッグ",
+    "perfumes": "香水",
+    "watches": "腕時計",
+    "shoes": "靴",
+    "heroSecText1": "あなたのスタイルを高める",
+    "heroSecText2": "時代を超えたファッション、持続可能な選択",
+    "shopNow": "日本語: 今すぐ購入",
+    "text1": "より少ない、より良い選択の芸術",
+    "text2": "量より質を選ぶことは、時代を超えた耐久性のある責任ある生産品を選ぶことを意味します。このアプローチは私たちの生活をシンプルにし、周囲への深い感謝を育みます。長寿と責任ある生産を強調することは、より持続可能で意識的なライフスタイルと共鳴します。"
+  },
+  "footer": {
+    "links": {
+      "contact": "お問い合わせ",
+      "privacy": "プライバシー",
+      "blog": "ブログ",
+      "store": "ストア",
+      "careers": "採用情報"
+    },
+    "copyright": "© Unthaa. すべての権利を保有します。",
+    "signUpAgreement": "サインアップすることで、{privacyPolicy} と {termsOfService} に同意することになります。",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約",
+    "subscribeButton": "購読して",
+    "getLatestNews": "最新のニュースを受け取りましょう"
+  },
   "login": {
     "welcome": "Unthaaへようこそ、ログインするには",
     "accountRegister": "アカウントをお持ちでないですか？登録する",
@@ -38,50 +83,6 @@
     "confirmPasswordRequired": "パスワードと確認用パスワードの両方が必要です",
     "passwordMismatch": "パスワードが一致しません",
     "termsRequired": "先に進むためには利用規約に同意する必要があります"
-  },
-  "footer": {
-    "links": {
-      "contact": "お問い合わせ",
-      "privacy": "プライバシー",
-      "blog": "ブログ",
-      "store": "ストア",
-      "careers": "採用情報"
-    },
-    "copyright": "© Unthaa. すべての権利を保有します。",
-    "signUpAgreement": "サインアップすることで、{privacyPolicy} と {termsOfService} に同意することになります。",
-    "privacyPolicy": "プライバシーポリシー",
-    "termsOfService": "利用規約",
-    "subscribeButton": "購読して",
-    "getLatestNews": "最新のニュースを受け取りましょう"
-  },
-  "header": {
-    "search": "検索",
-    "new": "新着！",
-    "topRated": "高評価",
-    "dresses": "ドレス",
-    "clothing": "衣類",
-    "shoes": "靴",
-    "accessories": "アクセサリー",
-    "weddings": "結婚式",
-    "homeFurniture": "ホーム＆家具",
-    "beautyWellness": "美容＆健康",
-    "giftsCandles": "ギフト＆キャンドル",
-    "sale": "セール"
-  },
-  "home": {
-    "weddings": "結婚式",
-    "candles": "キャンドル",
-    "jewelry": "ジュエリー",
-    "dresses": "ドレス",
-    "bags": "バッグ",
-    "perfumes": "香水",
-    "watches": "腕時計",
-    "shoes": "靴",
-    "heroSecText1": "あなたのスタイルを高める",
-    "heroSecText2": "時代を超えたファッション、持続可能な選択",
-    "shopNow": "日本語: 今すぐ購入",
-    "text1": "より少ない、より良い選択の芸術",
-    "text2": "量より質を選ぶことは、時代を超えた耐久性のある責任ある生産品を選ぶことを意味します。このアプローチは私たちの生活をシンプルにし、周囲への深い感謝を育みます。長寿と責任ある生産を強調することは、より持続可能で意識的なライフスタイルと共鳴します。"
   },
   "products": {
     "filterBy": "フィルター条件",

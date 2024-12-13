@@ -2,17 +2,15 @@ import {
   Anchor,
   Group,
   Input,
-  Avatar,
   Select,
   Flex,
-  ComboboxItem,
-  Text
+  ComboboxItem
 } from '@mantine/core';
-import { Link, useLocation, useNavigate, useParams } from '@remix-run/react';
+import { Link, useLocation, useNavigate } from '@remix-run/react';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconSearch } from '~/icons';
-import LOGO from '@assets/images/logo.png';
+import Logo from './Logo';
 
 const Header = () => {
   const t = useTranslation();
@@ -92,12 +90,7 @@ const Header = () => {
         p="md"
         bg="primary"
       >
-        <Avatar
-          component={Link}
-          src={LOGO}
-          size={100}
-          to={`/${currentLanguage}`}
-        />
+        <Logo />
 
         <Input
           w={{ base: '100%', md: '40%' }}
