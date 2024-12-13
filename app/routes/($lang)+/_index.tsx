@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Center,
+  Group,
   Image,
   Paper,
   SimpleGrid,
@@ -23,6 +24,7 @@ import heroSection1 from '@assets/images/hero-section-1.jpg';
 import useTranslation from '~/hooks/useTranslation';
 import { Link } from '@remix-run/react';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import ProductCard from '~/components/products/ProductCard';
 
 export const meta: MetaFunction = () => {
   return [
@@ -134,6 +136,12 @@ export default function Index() {
           </Text>
         </Stack>
       </Paper>
+
+      <Group wrap='nowrap'>
+        {new Array(4).fill('*').map(v => (
+          <ProductCard />
+        ))}
+      </Group>
     </Stack>
   );
 }

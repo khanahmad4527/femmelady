@@ -6,3 +6,5 @@ export { default as IconBrandYoutube } from './IconBrandYoutube';
 export { default as IconBrandPinterest } from './IconBrandPinterest';
 export { default as IconBrandInstagram } from './IconBrandInstagram';
 export { default as IconSearch } from './IconSearch';
+export { default as IconHeartFilled } from './IconHeartFilled';
+export { default as IconPlus } from './IconPlus';
