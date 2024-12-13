@@ -63,13 +63,15 @@ const ProductCard = (props: TProductCard) => {
         <IconHeart />
       </ActionIcon>
 
-      <Image
-        fit={'contain'}
-        src={image}
-        height={300}
-        alt={name}
-        loading={'lazy'}
-      />
+      <Box h={300}>
+        <Image
+          h={'100%'}
+          fit={'contain'}
+          src={image}
+          alt={name}
+          loading={'lazy'}
+        />
+      </Box>
 
       <Card.Section bg="primary.1" inheritPadding py={'md'}>
         <Group align={'flex-end'}>
