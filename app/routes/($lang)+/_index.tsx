@@ -137,9 +137,9 @@ export default function Index() {
         </Stack>
       </Paper>
 
-      <Group wrap='nowrap'>
-        {new Array(4).fill('*').map(v => (
-          <ProductCard />
+      <Group wrap="nowrap">
+        {new Array(4).fill('*').map((v, i) => (
+          <ProductCard key={i} />
         ))}
       </Group>
     </Stack>

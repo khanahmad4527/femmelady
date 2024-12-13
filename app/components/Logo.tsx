@@ -1,12 +1,19 @@
 import { Text, Title, Box } from '@mantine/core';
+import { Link } from '@remix-run/react';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 
 const Logo = () => {
   const t = useTranslation();
+  const { currentLanguage } = useCurrentLanguage();
   return (
-    <Box>
-      <Title c="primary.1">UNTHAA</Title>
-      <Text c="primary.1">{t('header.slogan')}</Text>
+    <Box
+      component={Link}
+      to={`/${currentLanguage}`}
+      style={{ textDecoration: 'none' }}
+    >
+      <Title c="black">UNTHAA</Title>
+      <Text c="black">{t('header.slogan')}</Text>
     </Box>
   );
 };
