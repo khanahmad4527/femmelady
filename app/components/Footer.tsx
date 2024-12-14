@@ -51,13 +51,34 @@ const Footer = () => {
         <Stack>
           <Group>{items}</Group>
           <Group gap="xs" wrap="nowrap">
-            <ActionIcon size="lg" variant="default" radius="xl">
+            <ActionIcon
+              component={'a'}
+              href={'https://x.com/khanahmad4527'}
+              target="_blank"
+              size="lg"
+              variant="default"
+              radius="xl"
+            >
               <IconBrandX size={18} />
             </ActionIcon>
-            <ActionIcon size="lg" variant="default" radius="xl">
+            <ActionIcon
+              component={'a'}
+              href={'https://www.youtube.com/@khanahmad452'}
+              target="_blank"
+              size="lg"
+              variant="default"
+              radius="xl"
+            >
               <IconBrandYoutube size={18} />
             </ActionIcon>
-            <ActionIcon size="lg" variant="default" radius="xl">
+            <ActionIcon
+              component={'a'}
+              href={'https://www.instagram.com/khanahmad4527'}
+              target="_blank"
+              size="lg"
+              variant="default"
+              radius="xl"
+            >
               <IconBrandInstagram size={18} />
             </ActionIcon>
           </Group>

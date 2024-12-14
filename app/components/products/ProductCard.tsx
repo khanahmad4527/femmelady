@@ -81,6 +81,7 @@ const ProductCard = (props: TProductCard) => {
               {colors?.map((c, index) => {
                 return (
                   <Paper
+                    key={c.id}
                     w={30}
                     h={30}
                     radius={'xl'}
