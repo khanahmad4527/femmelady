@@ -1,0 +1,22 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="400"
+  height="200"
+  viewBox="0 0 400 200"
+>
+  <!-- U Shape -->
+  <path
+    d="M50,20 
+       H147 
+       V147 
+       A50,50 0 0,1 50,147 
+       Z"
+    fill="#717171"
+  />
+
+  <!-- Triangle Shape -->
+  <polygon
+    points="250,20 170,180 330,180"
+    fill="#717171"
+  />
+</svg>

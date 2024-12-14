@@ -2,8 +2,16 @@ import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
-import type { LoaderFunction } from 'react-router';
-import { Links, Meta, Outlet, redirect, Scripts, ScrollRestoration, useLoaderData } from 'react-router';
+import type { LinksFunction, LoaderFunction } from 'react-router';
+import {
+  Links,
+  Meta,
+  Outlet,
+  redirect,
+  Scripts,
+  ScrollRestoration,
+  useLoaderData
+} from 'react-router';
 
 import Document from './components/Document';
 import useCurrentLanguage from './hooks/useCurrentLanguage';
@@ -16,6 +24,12 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
 
   return { isLoggedIn: true, currentLanguage };
+};
+
+export const links: LinksFunction = () => {
+  return [
+    { rel: 'icon', href: '/favicon.svg' } // Point to your favicon
+  ];
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
