@@ -21,7 +21,7 @@ const ProductsSortBy = () => {
   return (
     <Select
       label={t('products.sortBy')}
-      placeholder={t('products.sortBy')}
+      placeholder={t('products.sortBy') }
       data={[
         { value: 'popularity', label: t('products.popularity') },
         { value: 'price-low-to-high', label: t('products.priceLowToHigh') },

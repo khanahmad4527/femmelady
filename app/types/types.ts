@@ -23,4 +23,4 @@ export interface IProductCard  {
     isPattern: boolean | null;
     pattern_img: null | string;
   }[];
-};
+}

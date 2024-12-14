@@ -1,3 +1,5 @@
+import { string } from 'zod';
+
 import { TranslationKeys } from '~/types/types';
 
 import en from '../locales/en.json';
@@ -16,10 +18,7 @@ const translations: Translations = {
 const useTranslation = () => {
   const { currentLanguage } = useCurrentLanguage();
 
-  const t = (
-    key: string,
-    replacements?: Record<string, React.ReactNode>
-  ) => {
+  const t = (key: string, replacements?: Record<string, React.ReactNode>) => {
     const keys = key.split('.');
     let translation: any = translations[currentLanguage];
 
@@ -53,7 +52,7 @@ const useTranslation = () => {
           );
         },
         [translation as string]
-      );
+      ) as any as string;
     }
 
     return translation as string;

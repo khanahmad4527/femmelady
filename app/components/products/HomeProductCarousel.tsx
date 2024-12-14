@@ -1,7 +1,4 @@
 import { Carousel } from '@mantine/carousel';
-import { useInViewport } from '@mantine/hooks';
-import { useRef } from 'react';
-import AutoScroll from 'embla-carousel-auto-scroll';
 import {
   ActionIcon,
   Avatar,
@@ -14,9 +11,13 @@ import {
   Text,
   Title
 } from '@mantine/core';
-import { IProductCard } from '~/types/types';
+import { useInViewport } from '@mantine/hooks';
+import AutoScroll from 'embla-carousel-auto-scroll';
+import { useEffect, useRef } from 'react';
+
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
+import { IProductCard } from '~/types/types';
 
 const HomeProductCarousel = ({ products }: { products: IProductCard[] }) => {
   if (!products || !products?.length) {
@@ -32,13 +33,15 @@ const HomeProductCarousel = ({ products }: { products: IProductCard[] }) => {
     autoScroll.current[action]();
   };
 
-  if (inViewport) {
-    handleAction('play');
-  } else {
-    handleAction('stop');
-  }
-
   const canLoop = products.length > 3;
+
+  useEffect(() => {
+    if (inViewport) {
+      handleAction('play');
+    } else {
+      handleAction('stop');
+    }
+  }, [inViewport]);
 
   return (
     <Stack className={commonClasses.consistentSpacing}>

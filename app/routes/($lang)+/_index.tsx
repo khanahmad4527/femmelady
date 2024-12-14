@@ -20,12 +20,12 @@ import {
 import type { MetaFunction } from '@remix-run/node';
 import { Link } from '@remix-run/react';
 
-import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import useTranslation from '~/hooks/useTranslation';
 import HomeProductCarousel from '~/components/products/HomeProductCarousel';
 import { PRODUCTS } from '~/constant';
-import { IProductCard } from '~/types/types';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
+import { IProductCard } from '~/types/types';
 
 export const meta: MetaFunction = () => {
   return [
