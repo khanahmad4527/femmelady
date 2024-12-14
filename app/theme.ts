@@ -1,4 +1,5 @@
 import { createTheme, rem, type MantineThemeOverride } from '@mantine/core';
+import selectClasses from './styles/Select.module.css';
 
 export const theme: MantineThemeOverride = createTheme({
   colors: {
@@ -39,6 +40,12 @@ export const theme: MantineThemeOverride = createTheme({
     Card: {
       defaultProps: {
         radius: 0
+      }
+    },
+    Select: {
+      classNames: selectClasses,
+      defaultProps: {
+        withScrollArea: false
       }
     }
   }

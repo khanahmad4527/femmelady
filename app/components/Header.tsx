@@ -9,7 +9,7 @@ import {
 import { Link, useLocation, useNavigate } from '@remix-run/react';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
-import { IconSearch } from '~/icons';
+import { IconSearch, IconSwitch } from '~/icons';
 import Logo from './Logo';
 
 const Header = () => {
@@ -111,6 +111,7 @@ const Header = () => {
             data={languageOptions}
             allowDeselect={false}
             onChange={handleLanguageChange}
+            rightSection={<IconSwitch color='white' size={18}/>}
           />
         </Group>
       </Flex>

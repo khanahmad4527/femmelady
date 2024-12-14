@@ -1,4 +1,4 @@
-import classes from '~/styles/common.module.css';
+import classes from '~/styles/Common.module.css';
 import {
   Anchor,
   Button,
@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 import { z } from 'zod';
 import { loginFormSchema, TLoginFormSchema } from '~/schema';
 import { parseZodError } from '~/utils';
-import { GoogleIcon, IconBrandX } from '~/icons';
+import { IconGoogle, IconBrandX } from '~/icons';
 import useTranslation from '~/hooks/useTranslation';
 import { validateFormWithTranslations } from '~/server/validateFormWithTranslations';
 import { OutletContext, TranslationKeys } from '~/types/types';
@@ -78,7 +78,7 @@ const login = () => {
       </Text>
 
       <Group grow>
-        <Button radius={'xl'} variant="light" leftSection={<GoogleIcon />}>
+        <Button radius={'xl'} variant="light" leftSection={<IconGoogle />}>
           Google
         </Button>
         <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>

@@ -1,4 +1,4 @@
-export { default as GoogleIcon } from './GoogleIcon';
+export { default as IconGoogle } from './IconGoogle';
 export { default as IconBrandX } from './IconBrandX';
 export { default as IconCheck } from './IconCheck';
 export { default as IconX } from './IconX';
@@ -9,3 +9,4 @@ export { default as IconSearch } from './IconSearch';
 export { default as IconHeartFilled } from './IconHeartFilled';
 export { default as IconPlus } from './IconPlus';
 export { default as IconHeart } from './IconHeart';
+export { default as IconSwitch } from './IconSwitch';

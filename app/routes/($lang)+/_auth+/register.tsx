@@ -1,4 +1,4 @@
-import classes from '~/styles/common.module.css';
+import classes from '~/styles/Common.module.css';
 import {
   Anchor,
   Box,
@@ -19,7 +19,7 @@ import { ActionFunction } from '@remix-run/node';
 import { Link, useFetcher, useOutletContext } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { z } from 'zod';
-import { GoogleIcon, IconCheck, IconX, IconBrandX } from '~/icons';
+import { IconGoogle, IconCheck, IconX, IconBrandX } from '~/icons';
 import { registerFormSchema, TRegisterFormSchema } from '~/schema';
 import { parseZodError } from '~/utils';
 import useTranslation from '~/hooks/useTranslation';
@@ -89,7 +89,7 @@ const register = () => {
       </Text>
 
       <Group grow>
-        <Button radius={'xl'} variant="light" leftSection={<GoogleIcon />}>
+        <Button radius={'xl'} variant="light" leftSection={<IconGoogle />}>
           Google
         </Button>
         <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>

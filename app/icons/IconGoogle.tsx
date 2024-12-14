@@ -1,7 +1,7 @@
 import { rem } from '@mantine/core';
 import { IconProps } from '~/types/types';
 
-export default function GoogleIcon({
+export default function IconGoogle({
   size = 25,
   color = 'var(--mantine-primary-color-7)',
   stroke = '1.5',
