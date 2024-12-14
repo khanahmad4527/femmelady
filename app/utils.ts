@@ -32,3 +32,21 @@ export const parseZodError = (error: z.ZodError) => {
   return { errors: fieldErrors };
 };
 
+/**
+ * Formats a number as a currency string.
+ *
+ * @param value - The number to format.
+ * @param currency - The currency code (e.g., "USD", "EUR").
+ * @param locale - The locale to use for formatting (default is "en-US").
+ * @returns The formatted currency string.
+ */
+export const formatCurrency = (
+  value: number,
+  currency: string = 'USD',
+  locale: string = 'en-US'
+) => {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency
+  }).format(value);
+};

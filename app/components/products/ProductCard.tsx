@@ -12,33 +12,15 @@ import {
 import { useState } from 'react';
 
 import { IconHeart, IconPlus } from '~/icons';
+import { IProductCard } from '~/types/types';
+import { formatCurrency } from '~/utils';
 
-type TProductCard = {
-  id: string;
-  name: string;
-  image: string;
-  colors: {
-    id: string;
-    name: string;
-    value?: string | null;
-    hex: null | string;
-    isPattern: boolean | null;
-    pattern_img: null | string;
-  }[];
-};
-
-const ProductCard = (props: TProductCard) => {
+const ProductCard = (props: IProductCard) => {
   const { name, colors, image } = props;
 
   const [activeColor, setActiveColor] = useState<
-    TProductCard['colors'][number]
+    IProductCard['colors'][number]
   >(colors[0]);
-
-  const value = 1234.56;
-  const formattedValue = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(value);
 
   const handleActiveColor = (id: string, index: number) => {
     if (id !== activeColor.id) {
@@ -132,7 +114,7 @@ const ProductCard = (props: TProductCard) => {
 
       <Box>
         <Text>{name}</Text>
-        <Text>{formattedValue}</Text>
+        <Text>{formatCurrency(1234.56, 'USD', 'en-US')}</Text>
       </Box>
     </Card>
   );

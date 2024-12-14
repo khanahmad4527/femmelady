@@ -8,11 +8,8 @@ import shoe from '@assets/images/shoe.jpg';
 import watch from '@assets/images/watch.jpg';
 import wedding from '@assets/images/wedding.jpg';
 import {
-  BackgroundImage,
   Box,
   Button,
-  Center,
-  Group,
   Image,
   Paper,
   SimpleGrid,
@@ -23,9 +20,11 @@ import {
 import type { MetaFunction } from '@remix-run/node';
 import { Link } from '@remix-run/react';
 
-import ProductCard from '~/components/products/ProductCard';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
+import HomeProductCarousel from '~/components/products/HomeProductCarousel';
+import { PRODUCTS } from '~/constant';
+import { IProductCard } from '~/types/types';
 
 export const meta: MetaFunction = () => {
   return [
@@ -137,6 +136,8 @@ export default function Index() {
           </Text>
         </Stack>
       </Paper>
+
+      <HomeProductCarousel products={PRODUCTS as IProductCard[]} />
     </Stack>
   );
 }

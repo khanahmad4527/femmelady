@@ -4,7 +4,8 @@ import {
   Flex,
   Group,
   Input,
-  Select} from '@mantine/core';
+  Select
+} from '@mantine/core';
 import { Link, useLocation, useNavigate } from '@remix-run/react';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -112,15 +113,15 @@ const Header = () => {
             data={languageOptions}
             allowDeselect={false}
             onChange={handleLanguageChange}
-            rightSection={<IconSwitch color='white' size={18}/>}
+            rightSection={<IconSwitch color="white" size={18} />}
           />
         </Group>
       </Flex>
       <Group
         p={'md'}
-        pos={'sticky'}
+        // pos={'sticky'}
+        // top={0}
         bg={'primary.1'}
-        top={0}
         style={{ zIndex: 100 }}
       >
         {categoryItems}

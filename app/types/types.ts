@@ -11,3 +11,16 @@ export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {
 
 export type TranslationKeys = 'en' | 'ja';
 
+export interface IProductCard  {
+  id: string;
+  name: string;
+  image: string;
+  colors: {
+    id: string;
+    name: string;
+    value?: string | null;
+    hex: null | string;
+    isPattern: boolean | null;
+    pattern_img: null | string;
+  }[];
+};
