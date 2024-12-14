@@ -1,4 +1,3 @@
-import React from 'react';
 import { LANGUAGE_TO_LOCALE_LANGUAGE } from '~/constant';
 import { TranslationKeys } from '~/types/types';
 

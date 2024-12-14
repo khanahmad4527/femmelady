@@ -3,6 +3,10 @@
   background-color: var(--mantine-color-primary-5) !important;
   color: var(--mantine-color-white);
   border: none;
+
+  &::placeholder {
+    color: var(--mantine-color-white);
+  }
 }
 
 .dropdown {

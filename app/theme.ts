@@ -45,7 +45,9 @@ export const theme: MantineThemeOverride = createTheme({
     Select: {
       classNames: selectClasses,
       defaultProps: {
-        withScrollArea: false
+        withScrollArea: false,
+        withCheckIcon: false,
+        clearable: true
       }
     }
   }
