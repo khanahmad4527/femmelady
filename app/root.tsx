@@ -2,16 +2,8 @@ import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
-import type { LoaderFunction } from '@remix-run/node';
-import {
-  Links,
-  Meta,
-  Outlet,
-  redirect,
-  Scripts,
-  ScrollRestoration,
-  useLoaderData
-} from '@remix-run/react';
+import type { LoaderFunction } from 'react-router';
+import { Links, Meta, Outlet, redirect, Scripts, ScrollRestoration, useLoaderData } from 'react-router';
 
 import Document from './components/Document';
 import useCurrentLanguage from './hooks/useCurrentLanguage';

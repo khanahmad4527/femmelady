@@ -10,9 +10,8 @@ import {
   TextInput
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
-import { ActionFunction } from '@remix-run/node';
-import { Link, useFetcher, useOutletContext } from '@remix-run/react';
 import { useEffect } from 'react';
+import { ActionFunction , Link, useFetcher, useOutletContext } from 'react-router';
 import { z } from 'zod';
 
 import useTranslation from '~/hooks/useTranslation';

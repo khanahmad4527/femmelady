@@ -6,7 +6,7 @@ import {
   Input,
   Select
 } from '@mantine/core';
-import { Link, useLocation, useNavigate } from '@remix-run/react';
+import { Link, useLocation, useNavigate } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';

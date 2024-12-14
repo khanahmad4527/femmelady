@@ -1,5 +1,5 @@
 import { Select } from '@mantine/core';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';

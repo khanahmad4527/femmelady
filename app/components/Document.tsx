@@ -1,6 +1,6 @@
 import { Container } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { useLocation } from '@remix-run/react';
+import { useLocation } from 'react-router';
 
 import { ROUTES_WITHOUT_HEADER_AND_FOOTER } from '~/constant';
 import { OutletContext } from '~/types/types';

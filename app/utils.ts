@@ -1,5 +1,5 @@
 import { useForm } from '@mantine/form';
-import { useFetcher } from '@remix-run/react';
+import { useFetcher } from 'react-router';
 import { z } from 'zod';
 
 export const submitForm = <T extends Record<string, any>>(
