@@ -1,4 +1,12 @@
-import { Box, Grid, Group, SimpleGrid, Stack, Text } from '@mantine/core';
+import {
+  Box,
+  Grid,
+  Group,
+  Pagination,
+  SimpleGrid,
+  Stack,
+  Text
+} from '@mantine/core';
 
 import ProductCard from '~/components/products/ProductCard';
 import ProductsFilterBy from '~/components/products/ProductsFilterBy';
@@ -6,12 +14,13 @@ import ProductsPerPage from '~/components/products/ProductsPerPage';
 import ProductsSortBy from '~/components/products/ProductsSortBy';
 import { PRODUCTS } from '~/constant';
 import useTranslation from '~/hooks/useTranslation';
+import commonClasses from '~/styles/Common.module.scss';
 
 const Products = () => {
   const t = useTranslation();
   return (
-    <Stack>
-      <Group py={'md'} align="flex-end">
+    <Stack className={commonClasses.consistentSpacing}>
+      <Group align="flex-end">
         <Text span>
           {t('products.resultsCount', {
             count: <Text span>13</Text>
@@ -27,7 +36,7 @@ const Products = () => {
         </Box>
       </Group>
 
-      <Grid>
+      <Grid >
         <Grid.Col span={{ base: 12, md: 2 }}>
           <ProductsFilterBy />
         </Grid.Col>
@@ -39,6 +48,7 @@ const Products = () => {
           </SimpleGrid>
         </Grid.Col>
       </Grid>
+      <Pagination total={10} m={'auto'} />
     </Stack>
   );
 };

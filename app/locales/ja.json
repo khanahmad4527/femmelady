@@ -100,6 +100,6 @@
     "alphabeticAtoZ": "アルファベット順: AからZ",
     "alphabeticZtoA": "アルファベット順: ZからA",
     "productsPerPage": "ページあたりの商品数",
-    "resultsCount": "{{count}} 結果"
+    "resultsCount": "{count} 結果"
   }
 }

@@ -41,12 +41,11 @@ const Footer = () => {
   ));
 
   return (
-    <Stack p={'md'}>
+    <Stack py={{ base: 'md', md: 'xl' }}>
       <Flex
         direction={{ base: 'column', sm: 'row' }}
         justify={'space-between'}
         align={{ base: 'center', sm: 'flex-end' }}
-        p={'md'}
         gap={'md'}
       >
         <Stack>
