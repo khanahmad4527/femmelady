@@ -36,7 +36,7 @@ const ProductsPerPage = () => {
   return (
     <Select
       label={t('products.productsPerPage')}
-      placeholder={t('products.productsPerPage') as string}
+      placeholder={t('products.productsPerPage')}
       defaultValue={limitValue}
       data={data}
       onChange={handleFilterChange}

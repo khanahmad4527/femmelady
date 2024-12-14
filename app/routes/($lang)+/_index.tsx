@@ -8,11 +8,8 @@ import shoe from '@assets/images/shoe.jpg';
 import watch from '@assets/images/watch.jpg';
 import wedding from '@assets/images/wedding.jpg';
 import {
-  ActionIcon,
   Box,
   Button,
-  Center,
-  Flex,
   Image,
   Paper,
   SimpleGrid,
@@ -83,35 +80,6 @@ export default function Index() {
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
-
-
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          borderRadius: 120,
-          backgroundColor: '#717171',
-
-          height: 120,
-          width: 120
-        }}
-      >
-        <div
-          style={{
-            color: '#333333',
-            fontSize: 32,
-            fontWeight: 700,
-            marginBottom: -20
-          }}
-        >
-          UNT
-        </div>
-        <div style={{ color: '#333333', fontSize: 32, fontWeight: 700 }}>
-          HAA
-        </div>
-      </div>
       <Image src={banner.image} alt={'banner'} mah={200} fit={'contain'} />
 
       <Box

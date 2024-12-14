@@ -239,7 +239,7 @@ const Password = ({
       <Popover.Dropdown>
         <Progress color={color} value={strength} size={5} mb="xs" />
         <PasswordRequirement
-          label={t('register.includes8Char') as string}
+          label={t('register.includes8Char')}
           meets={value.length >= minLength}
         />
         {checks}

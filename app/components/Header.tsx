@@ -3,8 +3,8 @@ import {
   ComboboxItem,
   Flex,
   Group,
-  Input,
-  Select
+  Select,
+  TextInput
 } from '@mantine/core';
 import { Link, useLocation, useNavigate } from 'react-router';
 
@@ -94,11 +94,11 @@ const Header = () => {
       >
         <Logo />
 
-        <Input
+        <TextInput
           w={{ base: '100%', md: '40%' }}
           size="md"
           rightSection={<IconSearch />}
-          placeholder={t('header.search') as string}
+          placeholder={t('header.search')}
         />
 
         <Group
@@ -106,7 +106,7 @@ const Header = () => {
           justify="space-between"
           p="sm"
         >
-          {items}
+          <Group> {items}</Group>
 
           <Select
             defaultValue={currentLanguage}
