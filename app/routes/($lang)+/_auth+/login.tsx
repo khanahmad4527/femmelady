@@ -16,10 +16,10 @@ import { useEffect } from 'react';
 import { z } from 'zod';
 
 import useTranslation from '~/hooks/useTranslation';
-import { IconBrandX,IconGoogle } from '~/icons';
+import { IconBrandX, IconGoogle } from '~/icons';
 import { loginFormSchema, TLoginFormSchema } from '~/schema';
 import { validateFormWithTranslations } from '~/server/validateFormWithTranslations';
-import classes from '~/styles/Common.module.css';
+import classes from '~/styles/Common.module.scss';
 import { OutletContext, TranslationKeys } from '~/types/types';
 import { parseZodError } from '~/utils';
 

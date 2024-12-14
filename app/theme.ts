@@ -1,6 +1,6 @@
 import { createTheme, type MantineThemeOverride, rem } from '@mantine/core';
 
-import selectClasses from './styles/Select.module.css';
+import selectClasses from './styles/Select.module.scss';
 
 export const theme: MantineThemeOverride = createTheme({
   colors: {

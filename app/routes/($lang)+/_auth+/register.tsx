@@ -20,10 +20,10 @@ import { useEffect, useState } from 'react';
 import { z } from 'zod';
 
 import useTranslation from '~/hooks/useTranslation';
-import { IconBrandX,IconCheck, IconGoogle, IconX } from '~/icons';
+import { IconBrandX, IconCheck, IconGoogle, IconX } from '~/icons';
 import { registerFormSchema, TRegisterFormSchema } from '~/schema';
 import { validateFormWithTranslations } from '~/server/validateFormWithTranslations';
-import classes from '~/styles/Common.module.css';
+import classes from '~/styles/Common.module.scss';
 import { OutletContext, TranslationKeys } from '~/types/types';
 import { parseZodError } from '~/utils';
 

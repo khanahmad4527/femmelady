@@ -25,6 +25,7 @@ import useTranslation from '~/hooks/useTranslation';
 import HomeProductCarousel from '~/components/products/HomeProductCarousel';
 import { PRODUCTS } from '~/constant';
 import { IProductCard } from '~/types/types';
+import commonClasses from '~/styles/Common.module.scss';
 
 export const meta: MetaFunction = () => {
   return [
@@ -78,7 +79,7 @@ export default function Index() {
   ];
 
   return (
-    <Stack>
+    <Stack className={commonClasses.consistentSpacing}>
       <Image src={banner.image} alt={'banner'} mah={200} fit={'contain'} />
 
       <Box
