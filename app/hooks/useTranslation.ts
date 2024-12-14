@@ -1,4 +1,5 @@
 import { TranslationKeys } from '~/types/types';
+
 import en from '../locales/en.json';
 import ja from '../locales/ja.json';
 import useCurrentLanguage from './useCurrentLanguage';

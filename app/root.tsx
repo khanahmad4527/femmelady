@@ -1,5 +1,8 @@
 import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
 
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import type { LoaderFunction } from '@remix-run/node';
 import {
   Links,
   Meta,
@@ -9,20 +12,10 @@ import {
   ScrollRestoration,
   useLoaderData
 } from '@remix-run/react';
-import type {  LoaderFunction } from '@remix-run/node';
-import { ColorSchemeScript, MantineProvider } from '@mantine/core';
-import { theme } from './theme';
+
 import Document from './components/Document';
 import useCurrentLanguage from './hooks/useCurrentLanguage';
-
-// export const links: LinksFunction = () => [
-//   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-//   {
-//     rel: 'preconnect',
-//     href: 'https://fonts.gstatic.com',
-//     crossOrigin: 'anonymous'
-//   }
-// ];
+import { theme } from './theme';
 
 export const loader: LoaderFunction = async ({ params }) => {
   const currentLanguage = params?.lang;

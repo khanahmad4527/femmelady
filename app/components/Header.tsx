@@ -1,15 +1,16 @@
 import {
   Anchor,
+  ComboboxItem,
+  Flex,
   Group,
   Input,
-  Select,
-  Flex,
-  ComboboxItem
-} from '@mantine/core';
+  Select} from '@mantine/core';
 import { Link, useLocation, useNavigate } from '@remix-run/react';
+
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconSearch, IconSwitch } from '~/icons';
+
 import Logo from './Logo';
 
 const Header = () => {

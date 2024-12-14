@@ -1,5 +1,7 @@
-import { TranslationKeys } from '~/types/types';
 import { ZodType, ZodTypeDef } from 'zod';
+
+import { TranslationKeys } from '~/types/types';
+
 import en from '../locales/en.json';
 import ja from '../locales/ja.json';
 

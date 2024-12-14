@@ -9,10 +9,11 @@ import {
   Text,
   TextInput
 } from '@mantine/core';
-import { IconBrandInstagram, IconBrandX, IconBrandYoutube } from '~/icons';
-import useTranslation from '~/hooks/useTranslation';
-import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { Link } from '@remix-run/react';
+
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useTranslation from '~/hooks/useTranslation';
+import { IconBrandInstagram, IconBrandX, IconBrandYoutube } from '~/icons';
 
 const Footer = () => {
   const t = useTranslation();

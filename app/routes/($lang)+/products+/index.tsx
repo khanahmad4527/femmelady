@@ -1,4 +1,5 @@
 import { Box, Grid, Group, SimpleGrid, Stack } from '@mantine/core';
+
 import ProductCard from '~/components/products/ProductCard';
 import ProductsFilterBy from '~/components/products/ProductsFilterBy';
 import ProductsPerPage from '~/components/products/ProductsPerPage';

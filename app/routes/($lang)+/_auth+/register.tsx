@@ -1,4 +1,3 @@
-import classes from '~/styles/Common.module.css';
 import {
   Anchor,
   Box,
@@ -19,12 +18,14 @@ import { ActionFunction } from '@remix-run/node';
 import { Link, useFetcher, useOutletContext } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { z } from 'zod';
-import { IconGoogle, IconCheck, IconX, IconBrandX } from '~/icons';
-import { registerFormSchema, TRegisterFormSchema } from '~/schema';
-import { parseZodError } from '~/utils';
+
 import useTranslation from '~/hooks/useTranslation';
+import { IconBrandX,IconCheck, IconGoogle, IconX } from '~/icons';
+import { registerFormSchema, TRegisterFormSchema } from '~/schema';
 import { validateFormWithTranslations } from '~/server/validateFormWithTranslations';
+import classes from '~/styles/Common.module.css';
 import { OutletContext, TranslationKeys } from '~/types/types';
+import { parseZodError } from '~/utils';
 
 export const action: ActionFunction = async ({ request, params }) => {
   const language = (params.lang ?? 'en') as TranslationKeys;

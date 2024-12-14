@@ -1,3 +1,12 @@
+import bag from '@assets/images/bag.jpg';
+import candle from '@assets/images/candle.jpg';
+import dress from '@assets/images/dress.jpeg';
+import heroSection1 from '@assets/images/hero-section-1.jpg';
+import jewelry from '@assets/images/jewelry.jpeg';
+import perfume from '@assets/images/perfume.jpg';
+import shoe from '@assets/images/shoe.jpg';
+import watch from '@assets/images/watch.jpg';
+import wedding from '@assets/images/wedding.jpg';
 import {
   BackgroundImage,
   Box,
@@ -12,19 +21,11 @@ import {
   Title
 } from '@mantine/core';
 import type { MetaFunction } from '@remix-run/node';
-import wedding from '@assets/images/wedding.jpg';
-import candle from '@assets/images/candle.jpg';
-import jewelry from '@assets/images/jewelry.jpeg';
-import dress from '@assets/images/dress.jpeg';
-import bag from '@assets/images/bag.jpg';
-import shoe from '@assets/images/shoe.jpg';
-import perfume from '@assets/images/perfume.jpg';
-import watch from '@assets/images/watch.jpg';
-import heroSection1 from '@assets/images/hero-section-1.jpg';
-import useTranslation from '~/hooks/useTranslation';
 import { Link } from '@remix-run/react';
-import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+
 import ProductCard from '~/components/products/ProductCard';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useTranslation from '~/hooks/useTranslation';
 
 export const meta: MetaFunction = () => {
   return [

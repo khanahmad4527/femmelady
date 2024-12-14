@@ -1,5 +1,6 @@
-import { Text, Title, Box } from '@mantine/core';
+import { Box,Text, Title } from '@mantine/core';
 import { Link } from '@remix-run/react';
+
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 

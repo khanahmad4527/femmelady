@@ -1,4 +1,5 @@
 import { useParams } from '@remix-run/react';
+
 import { TranslationKeys } from '~/types/types';
 
 const useCurrentLanguage = () => {

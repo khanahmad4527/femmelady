@@ -12,6 +12,7 @@ import {
   Text
 } from '@mantine/core';
 import { useState } from 'react';
+
 import useTranslation from '~/hooks/useTranslation';
 
 const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {

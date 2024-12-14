@@ -10,6 +10,7 @@ import {
   Text
 } from '@mantine/core';
 import { useState } from 'react';
+
 import { IconHeart, IconPlus } from '~/icons';
 
 type TProductCard = {
