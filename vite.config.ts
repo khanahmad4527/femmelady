@@ -31,5 +31,13 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, 'assets')
     }
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+        additionalData: `@use "${path.join(process.cwd(), '_mantine').replace(/\\/g, '/')}" as mantine;`,
+      },
+    },
+  },
   server: { open: true, port: 3000 }
 });

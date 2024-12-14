@@ -21,13 +21,13 @@ importers:
         specifier: ^7.13.4
         version: 7.15.1(react@18.3.1)
       '@remix-run/node':
-        specifier: ^2.15.0
+        specifier: ^2.14.0
         version: 2.15.0(typescript@5.7.2)
       '@remix-run/react':
-        specifier: ^2.15.0
+        specifier: ^2.14.0
         version: 2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
       '@remix-run/serve':
-        specifier: ^2.15.0
+        specifier: ^2.14.0
         version: 2.15.0(typescript@5.7.2)
       embla-carousel-auto-scroll:
         specifier: ^8.3.0
@@ -49,14 +49,14 @@ importers:
         version: 18.3.1(react@18.3.1)
       remix-flat-routes:
         specifier: ^0.6.5
-        version: 0.6.5(@remix-run/dev@2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))))
+        version: 0.6.5(@remix-run/dev@2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))))
       zod:
         specifier: ^3.23.8
         version: 3.23.8
     devDependencies:
       '@remix-run/dev':
-        specifier: ^2.15.0
-        version: 2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49)))
+        specifier: ^2.14.0
+        version: 2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49)))
       '@types/react':
         specifier: ^18.2.20
         version: 18.3.12
@@ -102,6 +102,9 @@ importers:
       postcss-simple-vars:
         specifier: ^7.0.1
         version: 7.0.1(postcss@8.4.49)
+      sass-embedded:
+        specifier: ^1.83.0
+        version: 1.83.0
       tailwindcss:
         specifier: ^3.4.4
         version: 3.4.15
@@ -110,10 +113,10 @@ importers:
         version: 5.7.2
       vite:
         specifier: ^5.1.0
-        version: 5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))
+        version: 5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))
       vite-tsconfig-paths:
         specifier: ^4.2.1
-        version: 4.3.2(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49)))
+        version: 4.3.2(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49)))
 
 packages:
 
@@ -263,6 +266,9 @@ packages:
   '@babel/types@7.26.0':
     resolution: {integrity: sha512-Z/yiTPj+lDVnF7lWeKCIJzaIkI0vYO87dMpZ4bg4TDrFe4XXLFWL1TbXU27gBP3QccxV9mZICCrnjnYlJjXHOA==}
     engines: {node: '>=6.9.0'}
+
+  '@bufbuild/protobuf@2.2.3':
+    resolution: {integrity: sha512-tFQoXHJdkEOSwj5tRIZSPNUuXK3RaR7T1nUrPgbYX1pUbvqqaaZAsfo+NXBPsz5rZMSKVFrgK1WL8Q/MSLvprg==}
 
   '@emotion/hash@0.9.2':
     resolution: {integrity: sha512-MyqliTZGuOm3+5ZRSaaBGP3USLw6+EGykkwZns2EPC5g8jJ4z9OrdZY9apkl3+UP9+sdz76YYkwCKP5gh8iY3g==}
@@ -1156,6 +1162,9 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
+  buffer-builder@0.2.0:
+    resolution: {integrity: sha512-7VPMEPuYznPSoR21NE1zvd2Xna6c/CloiZCfcMXR1Jny6PjX0N4Nsa38zcBFo/FMK+BlA+FLKbJCQ0i2yxp+Xg==}
+
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
 
@@ -1245,6 +1254,9 @@ packages:
 
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+
+  colorjs.io@0.5.2:
+    resolution: {integrity: sha512-twmVoizEW7ylZSN32OgKdXRmo1qg+wT5/6C3xu5b9QsWzSFAhHLn2xd8ro0diCsKfCj1RdaTP/nrcW+vAoQPIw==}
 
   comma-separated-tokens@2.0.3:
     resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==}
@@ -1940,6 +1952,9 @@ packages:
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
+
+  immutable@5.0.3:
+    resolution: {integrity: sha512-P8IdPQHq3lA1xVeBRi5VPqUm5HDgKnx0Ru51wZz5mjxHr5n3RWhjIpOFU7ybkUxfB+5IToy+OLaHYDBIWsv+uw==}
 
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -3089,6 +3104,9 @@ packages:
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
+  rxjs@7.8.1:
+    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
+
   sade@1.8.1:
     resolution: {integrity: sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A==}
     engines: {node: '>=6'}
@@ -3109,6 +3127,131 @@ packages:
 
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
+
+  sass-embedded-android-arm64@1.83.0:
+    resolution: {integrity: sha512-GBiCvM4a2rkWBLdYDxI6XYnprfk5U5c81g69RC2X6kqPuzxzx8qTArQ9M6keFK4+iDQ5N9QTwFCr0KbZTn+ZNQ==}
+    engines: {node: '>=14.0.0'}
+    cpu: [arm64]
+    os: [android]
+
+  sass-embedded-android-arm@1.83.0:
+    resolution: {integrity: sha512-uwFSXzJlfbd4Px189xE5l+cxN8+TQpXdQgJec7TIrb4HEY7imabtpYufpVdqUVwT1/uiis5V4+qIEC4Vl5XObQ==}
+    engines: {node: '>=14.0.0'}
+    cpu: [arm]
+    os: [android]
+
+  sass-embedded-android-ia32@1.83.0:
+    resolution: {integrity: sha512-5ATPdGo2SICqAhiJl/Z8KQ23zH4sGgobGgux0TnrNtt83uHZ+r+To/ubVJ7xTkZxed+KJZnIpolGD8dQyQqoTg==}
+    engines: {node: '>=14.0.0'}
+    cpu: [ia32]
+    os: [android]
+
+  sass-embedded-android-riscv64@1.83.0:
+    resolution: {integrity: sha512-aveknUOB8GZewOzVn2Uwk+DKcncTR50Q6vtzslNMGbYnxtgQNHzy8A1qVEviNUruex+pHofppeMK4iMPFAbiEQ==}
+    engines: {node: '>=14.0.0'}
+    cpu: [riscv64]
+    os: [android]
+
+  sass-embedded-android-x64@1.83.0:
+    resolution: {integrity: sha512-WqIay/72ncyf9Ph4vS742J3a73wZihWmzFUwpn1OD6lme1Aj4eWzWIve5IVnlTEJgcZcDHu6ECID9IZgehJKoA==}
+    engines: {node: '>=14.0.0'}
+    cpu: [x64]
+    os: [android]
+
+  sass-embedded-darwin-arm64@1.83.0:
+    resolution: {integrity: sha512-XQl9QqgxFFIPm/CzHhmppse5o9ocxrbaAdC2/DAnlAqvYWBBtgFqPjGoYlej13h9SzfvNoogx+y9r+Ap+e+hYg==}
+    engines: {node: '>=14.0.0'}
+    cpu: [arm64]
+    os: [darwin]
+
+  sass-embedded-darwin-x64@1.83.0:
+    resolution: {integrity: sha512-ERQ7Tvp1kFOW3ux4VDFIxb7tkYXHYc+zJpcrbs0hzcIO5ilIRU2tIOK1OrNwrFO6Qxyf7AUuBwYKLAtIU/Nz7g==}
+    engines: {node: '>=14.0.0'}
+    cpu: [x64]
+    os: [darwin]
+
+  sass-embedded-linux-arm64@1.83.0:
+    resolution: {integrity: sha512-syEAVTJt4qhaMLxrSwOWa46zdqHJdnqJkLUK+t9aCr8xqBZLPxSUeIGji76uOehQZ1C+KGFj6n9xstHN6wzOJw==}
+    engines: {node: '>=14.0.0'}
+    cpu: [arm64]
+    os: [linux]
+
+  sass-embedded-linux-arm@1.83.0:
+    resolution: {integrity: sha512-baG9RYBJxUFmqwDNC9h9ZFElgJoyO3jgHGjzEZ1wHhIS9anpG+zZQvO8bHx3dBpKEImX+DBeLX+CxsFR9n81gQ==}
+    engines: {node: '>=14.0.0'}
+    cpu: [arm]
+    os: [linux]
+
+  sass-embedded-linux-ia32@1.83.0:
+    resolution: {integrity: sha512-RRBxQxMpoxu5+XcSSc6QR/o9asEwUzR8AbCS83RaXcdTIHTa/CccQsiAoDDoPlRsMTLqnzs0LKL4CfOsf7zBbA==}
+    engines: {node: '>=14.0.0'}
+    cpu: [ia32]
+    os: [linux]
+
+  sass-embedded-linux-musl-arm64@1.83.0:
+    resolution: {integrity: sha512-Y7juhPHClUO2H5O+u+StRy6SEAcwZ+hTEk5WJdEmo1Bb1gDtfHvJaWB/iFZJ2tW0W1e865AZeUrC4OcOFjyAQA==}
+    engines: {node: '>=14.0.0'}
+    cpu: [arm64]
+    os: [linux]
+
+  sass-embedded-linux-musl-arm@1.83.0:
+    resolution: {integrity: sha512-Yc7u2TelCfBab+PRob9/MNJFh3EooMiz4urvhejXkihTiKSHGCv5YqDdtWzvyb9tY2Jb7YtYREVuHwfdVn3dTQ==}
+    engines: {node: '>=14.0.0'}
+    cpu: [arm]
+    os: [linux]
+
+  sass-embedded-linux-musl-ia32@1.83.0:
+    resolution: {integrity: sha512-arQeYwGmwXV8byx5G1PtSzZWW1jbkfR5qrIHMEbTFSAvAxpqjgSvCvrHMOFd73FcMxVaYh4BX9LQNbKinkbEdg==}
+    engines: {node: '>=14.0.0'}
+    cpu: [ia32]
+    os: [linux]
+
+  sass-embedded-linux-musl-riscv64@1.83.0:
+    resolution: {integrity: sha512-E6uzlIWz59rut+Z3XR6mLG915zNzv07ISvj3GUNZENdHM7dF8GQ//ANoIpl5PljMQKp89GnYdvo6kj2gnaBf/g==}
+    engines: {node: '>=14.0.0'}
+    cpu: [riscv64]
+    os: [linux]
+
+  sass-embedded-linux-musl-x64@1.83.0:
+    resolution: {integrity: sha512-eAMK6tyGqvqr21r9g8BnR3fQc1rYFj85RGduSQ3xkITZ6jOAnOhuU94N5fwRS852Hpws0lXhET+7JHXgg3U18w==}
+    engines: {node: '>=14.0.0'}
+    cpu: [x64]
+    os: [linux]
+
+  sass-embedded-linux-riscv64@1.83.0:
+    resolution: {integrity: sha512-Ojpi78pTv02sy2fUYirRGXHLY3fPnV/bvwuC2i5LwPQw2LpCcFyFTtN0c5h4LJDk9P6wr+/ZB/JXU8tHIOlK+Q==}
+    engines: {node: '>=14.0.0'}
+    cpu: [riscv64]
+    os: [linux]
+
+  sass-embedded-linux-x64@1.83.0:
+    resolution: {integrity: sha512-3iLjlXdoPfgZRtX4odhRvka1BQs5mAXqfCtDIQBgh/o0JnGPzJIWWl9bYLpHxK8qb+uyVBxXYgXpI0sCzArBOw==}
+    engines: {node: '>=14.0.0'}
+    cpu: [x64]
+    os: [linux]
+
+  sass-embedded-win32-arm64@1.83.0:
+    resolution: {integrity: sha512-iOHw/8/t2dlTW3lOFwG5eUbiwhEyGWawivlKWJ8lkXH7fjMpVx2VO9zCFAm8RvY9xOHJ9sf1L7g5bx3EnNP9BQ==}
+    engines: {node: '>=14.0.0'}
+    cpu: [arm64]
+    os: [win32]
+
+  sass-embedded-win32-ia32@1.83.0:
+    resolution: {integrity: sha512-2PxNXJ8Pad4geVcTXY4rkyTr5AwbF8nfrCTDv0ulbTvPhzX2mMKEGcBZUXWn5BeHZTBc6whNMfS7d5fQXR9dDQ==}
+    engines: {node: '>=14.0.0'}
+    cpu: [ia32]
+    os: [win32]
+
+  sass-embedded-win32-x64@1.83.0:
+    resolution: {integrity: sha512-muBXkFngM6eLTNqOV0FQi7Dv9s+YRQ42Yem26mosdan/GmJQc81deto6uDTgrYn+bzFNmiXcOdfm+0MkTWK3OQ==}
+    engines: {node: '>=14.0.0'}
+    cpu: [x64]
+    os: [win32]
+
+  sass-embedded@1.83.0:
+    resolution: {integrity: sha512-/8cYZeL39evUqe0o//193na51Q1VWZ61qhxioQvLJwOtWIrX+PgNhCyD8RSuTtmzc4+6+waFZf899bfp/MCUwA==}
+    engines: {node: '>=16.0.0'}
+    hasBin: true
 
   scheduler@0.23.2:
     resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
@@ -3291,9 +3434,21 @@ packages:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
 
+  supports-color@8.1.1:
+    resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
+    engines: {node: '>=10'}
+
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  sync-child-process@1.0.2:
+    resolution: {integrity: sha512-8lD+t2KrrScJ/7KXCSyfhT3/hRq78rC0wBFqNJXv3mZyn6hW2ypM05JmlSvtqRbeq6jqA94oHbxAr2vYsJ8vDA==}
+    engines: {node: '>=16.0.0'}
+
+  sync-message-port@1.1.3:
+    resolution: {integrity: sha512-GTt8rSKje5FilG+wEdfCkOcLL7LWqpMlr2c3LRuKt/YXxcJ52aGSbGBAdI4L3aaqfrBt6y711El53ItyH1NWzg==}
+    engines: {node: '>=16.0.0'}
 
   tabbable@6.2.0:
     resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
@@ -3554,6 +3709,9 @@ packages:
   validate-npm-package-name@5.0.1:
     resolution: {integrity: sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  varint@6.0.0:
+    resolution: {integrity: sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg==}
 
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
@@ -3906,6 +4064,8 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
+  '@bufbuild/protobuf@2.2.3': {}
+
   '@emotion/hash@0.9.2': {}
 
   '@esbuild/aix-ppc64@0.21.5':
@@ -4235,7 +4395,7 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@remix-run/dev@2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49)))':
+  '@remix-run/dev@2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49)))':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/generator': 7.26.2
@@ -4252,7 +4412,7 @@ snapshots:
       '@remix-run/router': 1.21.0
       '@remix-run/server-runtime': 2.15.0(typescript@5.7.2)
       '@types/mdx': 2.0.13
-      '@vanilla-extract/integration': 6.5.0(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))
+      '@vanilla-extract/integration': 6.5.0(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))
       arg: 5.0.2
       cacache: 17.1.4
       chalk: 4.1.2
@@ -4291,12 +4451,12 @@ snapshots:
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
       valibot: 0.41.0(typescript@5.7.2)
-      vite-node: 1.6.0(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))
+      vite-node: 1.6.0(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))
       ws: 7.5.10
     optionalDependencies:
       '@remix-run/serve': 2.15.0(typescript@5.7.2)
       typescript: 5.7.2
-      vite: 5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))
+      vite: 5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -4372,9 +4532,9 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.2
 
-  '@remix-run/v1-route-convention@0.1.4(@remix-run/dev@2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))))':
+  '@remix-run/v1-route-convention@0.1.4(@remix-run/dev@2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))))':
     dependencies:
-      '@remix-run/dev': 2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49)))
+      '@remix-run/dev': 2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49)))
       minimatch: 7.4.6
 
   '@remix-run/web-blob@3.1.0':
@@ -4623,7 +4783,7 @@ snapshots:
     transitivePeerDependencies:
       - babel-plugin-macros
 
-  '@vanilla-extract/integration@6.5.0(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))':
+  '@vanilla-extract/integration@6.5.0(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/plugin-syntax-typescript': 7.25.9(@babel/core@7.26.0)
@@ -4636,8 +4796,8 @@ snapshots:
       lodash: 4.17.21
       mlly: 1.7.3
       outdent: 0.8.0
-      vite: 5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))
-      vite-node: 1.6.0(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))
+      vite: 5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))
+      vite-node: 1.6.0(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -4857,6 +5017,8 @@ snapshots:
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.2)
 
+  buffer-builder@0.2.0: {}
+
   buffer-from@1.1.2: {}
 
   buffer@5.7.1:
@@ -4945,6 +5107,8 @@ snapshots:
       color-name: 1.1.4
 
   color-name@1.1.4: {}
+
+  colorjs.io@0.5.2: {}
 
   comma-separated-tokens@2.0.3: {}
 
@@ -5847,6 +6011,8 @@ snapshots:
   ieee754@1.2.1: {}
 
   ignore@5.3.2: {}
+
+  immutable@5.0.3: {}
 
   import-fresh@3.3.0:
     dependencies:
@@ -7103,10 +7269,10 @@ snapshots:
       mdast-util-to-hast: 12.3.0
       unified: 10.1.2
 
-  remix-flat-routes@0.6.5(@remix-run/dev@2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49)))):
+  remix-flat-routes@0.6.5(@remix-run/dev@2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49)))):
     dependencies:
-      '@remix-run/dev': 2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49)))
-      '@remix-run/v1-route-convention': 0.1.4(@remix-run/dev@2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))))
+      '@remix-run/dev': 2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49)))
+      '@remix-run/v1-route-convention': 0.1.4(@remix-run/dev@2.15.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/serve@2.15.0(typescript@5.7.2))(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))))
       fs-extra: 11.2.0
       minimatch: 5.1.6
 
@@ -7171,6 +7337,10 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
+  rxjs@7.8.1:
+    dependencies:
+      tslib: 2.8.1
+
   sade@1.8.1:
     dependencies:
       mri: 1.2.0
@@ -7193,6 +7363,98 @@ snapshots:
       is-regex: 1.2.0
 
   safer-buffer@2.1.2: {}
+
+  sass-embedded-android-arm64@1.83.0:
+    optional: true
+
+  sass-embedded-android-arm@1.83.0:
+    optional: true
+
+  sass-embedded-android-ia32@1.83.0:
+    optional: true
+
+  sass-embedded-android-riscv64@1.83.0:
+    optional: true
+
+  sass-embedded-android-x64@1.83.0:
+    optional: true
+
+  sass-embedded-darwin-arm64@1.83.0:
+    optional: true
+
+  sass-embedded-darwin-x64@1.83.0:
+    optional: true
+
+  sass-embedded-linux-arm64@1.83.0:
+    optional: true
+
+  sass-embedded-linux-arm@1.83.0:
+    optional: true
+
+  sass-embedded-linux-ia32@1.83.0:
+    optional: true
+
+  sass-embedded-linux-musl-arm64@1.83.0:
+    optional: true
+
+  sass-embedded-linux-musl-arm@1.83.0:
+    optional: true
+
+  sass-embedded-linux-musl-ia32@1.83.0:
+    optional: true
+
+  sass-embedded-linux-musl-riscv64@1.83.0:
+    optional: true
+
+  sass-embedded-linux-musl-x64@1.83.0:
+    optional: true
+
+  sass-embedded-linux-riscv64@1.83.0:
+    optional: true
+
+  sass-embedded-linux-x64@1.83.0:
+    optional: true
+
+  sass-embedded-win32-arm64@1.83.0:
+    optional: true
+
+  sass-embedded-win32-ia32@1.83.0:
+    optional: true
+
+  sass-embedded-win32-x64@1.83.0:
+    optional: true
+
+  sass-embedded@1.83.0:
+    dependencies:
+      '@bufbuild/protobuf': 2.2.3
+      buffer-builder: 0.2.0
+      colorjs.io: 0.5.2
+      immutable: 5.0.3
+      rxjs: 7.8.1
+      supports-color: 8.1.1
+      sync-child-process: 1.0.2
+      varint: 6.0.0
+    optionalDependencies:
+      sass-embedded-android-arm: 1.83.0
+      sass-embedded-android-arm64: 1.83.0
+      sass-embedded-android-ia32: 1.83.0
+      sass-embedded-android-riscv64: 1.83.0
+      sass-embedded-android-x64: 1.83.0
+      sass-embedded-darwin-arm64: 1.83.0
+      sass-embedded-darwin-x64: 1.83.0
+      sass-embedded-linux-arm: 1.83.0
+      sass-embedded-linux-arm64: 1.83.0
+      sass-embedded-linux-ia32: 1.83.0
+      sass-embedded-linux-musl-arm: 1.83.0
+      sass-embedded-linux-musl-arm64: 1.83.0
+      sass-embedded-linux-musl-ia32: 1.83.0
+      sass-embedded-linux-musl-riscv64: 1.83.0
+      sass-embedded-linux-musl-x64: 1.83.0
+      sass-embedded-linux-riscv64: 1.83.0
+      sass-embedded-linux-x64: 1.83.0
+      sass-embedded-win32-arm64: 1.83.0
+      sass-embedded-win32-ia32: 1.83.0
+      sass-embedded-win32-x64: 1.83.0
 
   scheduler@0.23.2:
     dependencies:
@@ -7413,7 +7675,17 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
+  supports-color@8.1.1:
+    dependencies:
+      has-flag: 4.0.0
+
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  sync-child-process@1.0.2:
+    dependencies:
+      sync-message-port: 1.1.3
+
+  sync-message-port@1.1.3: {}
 
   tabbable@6.2.0: {}
 
@@ -7713,6 +7985,8 @@ snapshots:
 
   validate-npm-package-name@5.0.1: {}
 
+  varint@6.0.0: {}
+
   vary@1.1.2: {}
 
   vfile-message@3.1.4:
@@ -7727,13 +8001,13 @@ snapshots:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
-  vite-node@1.6.0(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49)):
+  vite-node@1.6.0(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49)):
     dependencies:
       cac: 6.7.14
       debug: 4.3.7
       pathe: 1.1.2
       picocolors: 1.1.1
-      vite: 5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))
+      vite: 5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -7745,18 +8019,18 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@4.3.2(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))):
+  vite-tsconfig-paths@4.3.2(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))):
     dependencies:
       debug: 4.3.7
       globrex: 0.1.2
       tsconfck: 3.1.4(typescript@5.7.2)
     optionalDependencies:
-      vite: 5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49))
+      vite: 5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49))
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@5.4.11(@types/node@22.10.1)(sugarss@4.0.1(postcss@8.4.49)):
+  vite@5.4.11(@types/node@22.10.1)(sass-embedded@1.83.0)(sugarss@4.0.1(postcss@8.4.49)):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.49
@@ -7764,6 +8038,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.10.1
       fsevents: 2.3.3
+      sass-embedded: 1.83.0
       sugarss: 4.0.1(postcss@8.4.49)
 
   wcwidth@1.0.1:

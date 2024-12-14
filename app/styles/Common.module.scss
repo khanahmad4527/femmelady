@@ -8,7 +8,7 @@
 .consistentSpacing {
   gap: var(--mantine-spacing-xl);
 
-  @media (max-width: $mantine-breakpoint-md) {
+  @media (max-width: mantine.$mantine-breakpoint-md) {
     gap: var(--mantine-spacing-md);
   }
 }
