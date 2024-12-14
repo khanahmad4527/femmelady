@@ -99,6 +99,7 @@
     "priceHighToLow": "Price: High to Low",
     "alphabeticAtoZ": "Alphabetically: A to Z",
     "alphabeticZtoA": "Alphabetically: Z to A",
-    "productsPerPage": "Products Per Page"
+    "productsPerPage": "Products Per Page",
+    "resultsCount": "{count} results"
   }
 }

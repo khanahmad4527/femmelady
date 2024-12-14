@@ -1,21 +1,31 @@
-import { Box, Grid, Group, SimpleGrid, Stack } from '@mantine/core';
+import { Box, Grid, Group, SimpleGrid, Stack, Text } from '@mantine/core';
 
 import ProductCard from '~/components/products/ProductCard';
 import ProductsFilterBy from '~/components/products/ProductsFilterBy';
 import ProductsPerPage from '~/components/products/ProductsPerPage';
 import ProductsSortBy from '~/components/products/ProductsSortBy';
 import { PRODUCTS } from '~/constant';
+import useTranslation from '~/hooks/useTranslation';
 
 const Products = () => {
+  const t = useTranslation();
   return (
     <Stack>
-      <Box ml={{ base: 'none', md: 'auto' }}>
-        <Group mt={'md'} align="flex-end">
-          <ProductsFilterBy render={'mobile'} />
-          <ProductsPerPage />
-          <ProductsSortBy />
-        </Group>
-      </Box>
+      <Group py={'md'} align="flex-end">
+        <Text span>
+          {t('products.resultsCount', {
+            count: <Text span>13</Text>
+          })}
+        </Text>
+
+        <Box ml={{ base: 'none', md: 'auto' }}>
+          <Group align="flex-end">
+            <ProductsFilterBy render={'mobile'} />
+            <ProductsPerPage />
+            <ProductsSortBy />
+          </Group>
+        </Box>
+      </Group>
 
       <Grid>
         <Grid.Col span={{ base: 12, md: 2 }}>

@@ -1,4 +1,9 @@
-import { createTheme, type MantineThemeOverride, rem } from '@mantine/core';
+import {
+  Accordion,
+  createTheme,
+  type MantineThemeOverride,
+  rem
+} from '@mantine/core';
 
 import selectClasses from './styles/Select.module.scss';
 
@@ -50,6 +55,16 @@ export const theme: MantineThemeOverride = createTheme({
         withCheckIcon: false,
         clearable: true
       }
-    }
+    },
+    Accordion: Accordion.extend({
+      styles: {
+        content: {
+          padding: 0
+        },
+        control: {
+          paddingLeft: 0
+        }
+      }
+    })
   }
 });

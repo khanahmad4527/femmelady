@@ -99,6 +99,7 @@
     "priceHighToLow": "価格: 高い順",
     "alphabeticAtoZ": "アルファベット順: AからZ",
     "alphabeticZtoA": "アルファベット順: ZからA",
-    "productsPerPage": "ページあたりの商品数"
+    "productsPerPage": "ページあたりの商品数",
+    "resultsCount": "{{count}} 結果"
   }
 }

@@ -64,9 +64,7 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
           <Button fullWidth>{t('products.filterBy')}</Button>
         </Menu.Target>
 
-        <Menu.Dropdown>
-          {menuItems}
-        </Menu.Dropdown>
+        <Menu.Dropdown>{menuItems}</Menu.Dropdown>
       </Menu>
     </Box>
   ) : (
@@ -75,7 +73,7 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
         <Text>{t('products.filterBy')}</Text>
         <Button>{t('products.clearFilter')}</Button>
       </Group>
-      <Accordion defaultValue="Apples">{accordionItems}</Accordion>
+      <Accordion>{accordionItems}</Accordion>
     </Box>
   );
 };
@@ -127,9 +125,9 @@ const BrandFilter = () => {
       <Stack gap={'sm'}>
         {brandNamesWithSlugs.map(n => {
           return (
-            <Badge key={n.value} variant="light" color="primary">
+            <Button key={n.value} variant="light" color="primary">
               {n.label}
-            </Badge>
+            </Button>
           );
         })}
       </Stack>
@@ -154,9 +152,9 @@ const CategoryFilter = () => {
       <Stack gap={'sm'}>
         {categoriesWithSlugs.map(n => {
           return (
-            <Badge key={n.value} variant="light" color="primary">
+            <Button key={n.value} variant="light" color="primary">
               {n.label}
-            </Badge>
+            </Button>
           );
         })}
       </Stack>
