@@ -10,10 +10,13 @@ import {
   Text
 } from '@mantine/core';
 import { useState } from 'react';
+import { Link } from 'react-router';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import { IconHeart, IconPlus } from '~/icons';
 import { IProductCard } from '~/types/types';
 import { formatCurrency } from '~/utils';
+import ProductColorSwitcher from './ProductColorSwitcher';
 
 const ProductCard = (props: IProductCard) => {
   const { name, colors, image } = props;
@@ -21,6 +24,7 @@ const ProductCard = (props: IProductCard) => {
   const [activeColor, setActiveColor] = useState<
     IProductCard['colors'][number]
   >(colors[0]);
+  const { currentLanguage } = useCurrentLanguage();
 
   const handleActiveColor = (id: string, index: number) => {
     if (id !== activeColor.id) {
@@ -46,7 +50,7 @@ const ProductCard = (props: IProductCard) => {
         <IconHeart />
       </ActionIcon>
 
-      <Box h={300}>
+      <Box h={300} component={Link} to={`/${currentLanguage}/products/123`}>
         <Image
           h={'100%'}
           fit={'contain'}
@@ -59,45 +63,7 @@ const ProductCard = (props: IProductCard) => {
       <Card.Section bg="primary.1" inheritPadding py={'md'}>
         <Group align={'flex-end'}>
           <Box mr={'auto'}>
-            <Text mb={4}>{activeColor.name}</Text>
-            <Group gap={4}>
-              {colors?.map((c, index) => {
-                return (
-                  <Paper
-                    key={c.id}
-                    w={30}
-                    h={30}
-                    radius={'xl'}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderColor: 'black',
-                      border: c.id === activeColor.id ? '2px solid black' : '',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    {c.isPattern ? (
-                      <ActionIcon
-                        size="sm"
-                        radius="xl"
-                        aria-label="Settings"
-                        onClick={() => handleActiveColor(c.id, index)}
-                      >
-                        <Avatar src={c.pattern_img!} radius="xl" />
-                      </ActionIcon>
-                    ) : (
-                      <ActionIcon
-                        color={c.hex!}
-                        size="sm"
-                        radius="xl"
-                        onClick={() => handleActiveColor(c.id, index)}
-                      />
-                    )}
-                  </Paper>
-                );
-              })}
-            </Group>
+            <ProductColorSwitcher colors={colors}/>
           </Box>
           <Box ml={'auto'}>
             <ActionIcon

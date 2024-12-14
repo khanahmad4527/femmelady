@@ -14,6 +14,8 @@ import {
 import { useInViewport } from '@mantine/hooks';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
@@ -25,6 +27,7 @@ const HomeProductCarousel = ({ products }: { products: IProductCard[] }) => {
   }
 
   const t = useTranslation();
+  const { currentLanguage } = useCurrentLanguage();
   const { ref, inViewport } = useInViewport();
 
   const autoScroll = useRef(AutoScroll({ speed: 0.5, playOnInit: false }));
@@ -68,7 +71,11 @@ const HomeProductCarousel = ({ products }: { products: IProductCard[] }) => {
               padding={'md'}
               withBorder
             >
-              <Box h={300}>
+              <Box
+                h={300}
+                component={Link}
+                to={`/${currentLanguage}/products/123`}
+              >
                 <Image
                   h={'100%'}
                   fit={'contain'}
