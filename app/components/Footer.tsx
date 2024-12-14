@@ -43,15 +43,19 @@ const Footer = () => {
   return (
     <Stack p={'md'}>
       <Flex
-        direction={{ base: 'column', xs: 'row' }}
+        direction={{ base: 'column', sm: 'row' }}
         justify={'space-between'}
-        align={'flex-end'}
+        align={{ base: 'center', sm: 'flex-end' }}
         p={'md'}
         gap={'md'}
       >
         <Stack>
           <Group>{items}</Group>
-          <Group gap="xs" wrap="nowrap">
+          <Flex
+            gap="xs"
+            justify={{ base: 'center', sm: 'flex-start' }}
+            wrap="nowrap"
+          >
             <ActionIcon
               component={'a'}
               href={'https://x.com/khanahmad4527'}
@@ -82,7 +86,7 @@ const Footer = () => {
             >
               <IconBrandInstagram size={18} />
             </ActionIcon>
-          </Group>
+          </Flex>
         </Stack>
 
         <Stack>
