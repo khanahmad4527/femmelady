@@ -12,12 +12,14 @@
     "share": "lt -p 3000 -s unthaa"
   },
   "dependencies": {
+    "@mantine/carousel": "^7.15.1",
     "@mantine/core": "^7.14.3",
     "@mantine/form": "^7.14.3",
     "@mantine/hooks": "^7.14.3",
     "@remix-run/node": "^2.15.0",
     "@remix-run/react": "^2.15.0",
     "@remix-run/serve": "^2.15.0",
+    "embla-carousel-react": "^7.1.0",
     "isbot": "^4.1.0",
     "mantine-form-zod-resolver": "^1.1.0",
     "react": "^18.2.0",

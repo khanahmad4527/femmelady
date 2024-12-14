@@ -64,7 +64,6 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
         </Menu.Target>
 
         <Menu.Dropdown>
-          {/* <Menu.Label>{t('products.filterBy')}</Menu.Label> */}
           {menuItems}
         </Menu.Dropdown>
       </Menu>
