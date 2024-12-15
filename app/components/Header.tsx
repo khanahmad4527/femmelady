@@ -1,9 +1,12 @@
 import {
+  ActionIcon,
   Anchor,
+  Avatar,
   Box,
   ComboboxItem,
   Flex,
   Group,
+  Indicator,
   Select,
   TextInput
 } from '@mantine/core';
@@ -11,7 +14,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
-import { IconSearch, IconSwitch } from '~/icons';
+import { IconLogout, IconSearch, IconShoppingCart, IconSwitch } from '~/icons';
 
 import Logo from './Logo';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
@@ -112,8 +115,6 @@ const Header = () => {
           justify="space-between"
           p="sm"
         >
-          {!isLoggedIn && <Group> {items}</Group>}
-
           <Select
             w={150}
             defaultValue={currentLanguage}
@@ -122,6 +123,39 @@ const Header = () => {
             onChange={handleLanguageChange}
             rightSection={<IconSwitch color="white" size={18} />}
           />
+
+          {isLoggedIn && (
+            <>
+              <>
+                <Indicator
+                  inline
+                  label={'9+'}
+                  color="primary.5"
+                  size={30}
+                  styles={{
+                    indicator: {
+                      fontWeight: 500,
+                      fontSize: 16
+                    }
+                  }}
+                >
+                  <ActionIcon variant="transparent" size={'xl'}>
+                    <IconShoppingCart size={30} color={'white'} />
+                  </ActionIcon>
+                </Indicator>
+              </>
+              <ActionIcon
+                variant="transparent"
+                size={'xl'}
+                component={Link}
+                to={'/logout'}
+              >
+                <IconLogout color={'white'} />
+              </ActionIcon>
+            </>
+          )}
+
+          {!isLoggedIn && <Group> {items}</Group>}
         </Group>
       </Flex>
       <Group

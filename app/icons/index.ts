@@ -11,3 +11,5 @@ export { default as IconSearch } from './IconSearch';
 export { default as IconSwitch } from './IconSwitch';
 export { default as IconX } from './IconX';
 export { default as IconFlameFilled } from './IconFlameFilled';
+export { default as IconShoppingCart } from './IconShoppingCart';
+export { default as IconLogout } from './IconLogout';
