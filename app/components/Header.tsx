@@ -4,6 +4,7 @@ import {
   Avatar,
   Box,
   ComboboxItem,
+  Drawer,
   Flex,
   Group,
   Indicator,
@@ -18,8 +19,11 @@ import { IconLogout, IconSearch, IconShoppingCart, IconSwitch } from '~/icons';
 
 import Logo from './Logo';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
+import { useDisclosure } from '@mantine/hooks';
+import HeaderCart from './cart/HeaderCart';
 
 const Header = () => {
+  const [opened, { open, close }] = useDisclosure(false);
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const headerFooterContext = useHeaderFooterContext();
@@ -139,7 +143,7 @@ const Header = () => {
                     }
                   }}
                 >
-                  <ActionIcon variant="transparent" size={'xl'}>
+                  <ActionIcon variant="transparent" size={'xl'} onClick={open}>
                     <IconShoppingCart size={30} color={'white'} />
                   </ActionIcon>
                 </Indicator>
@@ -167,6 +171,8 @@ const Header = () => {
       >
         {categoryItems}
       </Group>
+
+      <HeaderCart close={close} opened={opened} />
     </Box>
   );
 };

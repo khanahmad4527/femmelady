@@ -106,5 +106,8 @@
     "productSize": "商品のサイズ:",
     "reviews": "{number} 件のレビューに基づく",
     "cartQuantity": "数量:"
+  },
+  "cart": {
+    "shoppingBag": "ショッピングバッグ"
   }
 }

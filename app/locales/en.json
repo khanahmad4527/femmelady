@@ -106,5 +106,8 @@
     "productSize": "Product Size:",
     "reviews": "Based on {number} reviews",
     "cartQuantity": "Quantity:"
+  },
+  "cart": {
+    "shoppingBag": "Shopping Bag"
   }
 }
