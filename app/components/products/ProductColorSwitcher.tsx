@@ -1,10 +1,21 @@
-import { ActionIcon, Avatar, Box, Group, Paper, Text } from '@mantine/core';
+import {
+  ActionIcon,
+  Avatar,
+  Box,
+  Group,
+  Paper,
+  Stack,
+  Text,
+  Title
+} from '@mantine/core';
 import { useState } from 'react';
+import useTranslation from '~/hooks/useTranslation';
 import { IProductCard } from '~/types/types';
 
 type Color = IProductCard['colors'][number];
 
 const ProductColorSwitcher = ({ colors }: { colors: Color[] }) => {
+  const t = useTranslation();
   const [activeColor, setActiveColor] = useState<Color>(colors[0]);
 
   const handleActiveColor = (id: string, index: number) => {
@@ -13,8 +24,9 @@ const ProductColorSwitcher = ({ colors }: { colors: Color[] }) => {
     }
   };
   return (
-    <Box>
-      <Text mb={4}>{activeColor.name}</Text>
+    <Stack gap={4}>
+      <Title order={5}>{t("products.productColor")}</Title>
+      <Text>{activeColor.name}</Text>
       <Group gap={4}>
         {colors?.map((c, index) => {
           return (
@@ -53,7 +65,7 @@ const ProductColorSwitcher = ({ colors }: { colors: Color[] }) => {
           );
         })}
       </Group>
-    </Box>
+    </Stack>
   );
 };
 

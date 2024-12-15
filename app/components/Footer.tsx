@@ -117,7 +117,7 @@ const Footer = () => {
               })}
             </Text>
           </Box>
-          <Button>{t('footer.subscribeButton')}</Button>
+          <Button color="black">{t('footer.subscribeButton')}</Button>
         </Stack>
       </Flex>
 

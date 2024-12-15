@@ -20,6 +20,7 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
 import { IProductCard } from '~/types/types';
+import ProductColorSwitcher from './ProductColorSwitcher';
 
 const HomeProductCarousel = ({ products }: { products: IProductCard[] }) => {
   if (!products || !products?.length) {
@@ -85,38 +86,7 @@ const HomeProductCarousel = ({ products }: { products: IProductCard[] }) => {
                 />
               </Box>
 
-              <Box>
-                <Text>{p.name}</Text>
-                <Group gap={4}>
-                  {p.colors?.map(c => {
-                    return (
-                      <Paper
-                        key={c.id}
-                        w={30}
-                        h={30}
-                        radius={'xl'}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center'
-                        }}
-                      >
-                        {c.isPattern ? (
-                          <ActionIcon
-                            size="sm"
-                            radius="xl"
-                            aria-label="Settings"
-                          >
-                            <Avatar src={c.pattern_img!} radius="xl" />
-                          </ActionIcon>
-                        ) : (
-                          <ActionIcon color={c.hex!} size="sm" radius="xl" />
-                        )}
-                      </Paper>
-                    );
-                  })}
-                </Group>
-              </Box>
+              <ProductColorSwitcher colors={p.colors}/>
             </Card>
           </Carousel.Slide>
         ))}

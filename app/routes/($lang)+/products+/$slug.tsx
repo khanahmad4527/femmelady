@@ -1,22 +1,22 @@
 import {
-  ActionIcon,
-  Avatar,
   Box,
+  Button,
   Grid,
-  Group,
   Image,
-  Paper,
   ScrollArea,
   Stack,
   Text,
   Title
 } from '@mantine/core';
 import ProductColorSwitcher from '~/components/products/ProductColorSwitcher';
+import { ProductSizeSwitcher } from '~/components/products/ProductSizeSwitcher';
 import { PRODUCTS } from '~/constant';
+import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
 import { formatCurrency } from '~/utils';
 
 const SingleProduct = () => {
+  const t = useTranslation();
   const product = PRODUCTS[1];
 
   return (
@@ -30,7 +30,7 @@ const SingleProduct = () => {
                   p={2}
                   style={{
                     cursor: 'pointer',
-                    border: i === 0 ? '1.5px solid black' : '',
+                    border: i === 0 ? '2px solid black' : '',
                     width: '100%'
                   }}
                 >
@@ -77,6 +77,10 @@ const SingleProduct = () => {
             tenetur.
           </Text>
           <ProductColorSwitcher colors={product.colors} />
+          <ProductSizeSwitcher />
+          <Button color="black" size="md">
+            {t('products.addToBag')}
+          </Button>
         </Grid.Col>
       </Grid>
     </Stack>
