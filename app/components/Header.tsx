@@ -1,5 +1,6 @@
 import {
   Anchor,
+  Box,
   ComboboxItem,
   Flex,
   Group,
@@ -83,7 +84,7 @@ const Header = () => {
   ));
 
   return (
-    <>
+    <Box>
       <Flex
         justify={{ base: 'center', md: 'space-between' }}
         align="center"
@@ -126,7 +127,7 @@ const Header = () => {
       >
         {categoryItems}
       </Group>
-    </>
+    </Box>
   );
 };
 

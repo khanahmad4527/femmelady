@@ -41,7 +41,7 @@ const Footer = () => {
   ));
 
   return (
-    <Stack py={{ base: 'md', md: 'xl' }}>
+    <Stack bg="primary" p="md" pb={{ base: 'md', md: 'xl' }}>
       <Flex
         direction={{ base: 'column', sm: 'row' }}
         justify={'space-between'}
@@ -89,13 +89,14 @@ const Footer = () => {
         </Stack>
 
         <Stack>
-          <Text> {t('footer.getLatestNews')}</Text>
+          <Text c={'white'}> {t('footer.getLatestNews')}</Text>
           <Box>
             <TextInput placeholder="ahmad@unthaa.com" />
-            <Text mt={5} fz={'xs'}>
+            <Text c={'white'} mt={5} fz={'xs'}>
               {t('footer.signUpAgreement', {
                 privacyPolicy: (
                   <Anchor
+                    c={'white'}
                     fz="xs"
                     component={Link}
                     to="/privacy-policy"
@@ -106,6 +107,7 @@ const Footer = () => {
                 ),
                 termsOfService: (
                   <Anchor
+                    c={'white'}
                     fz="xs"
                     component={Link}
                     to="/terms-of-service"
@@ -121,7 +123,7 @@ const Footer = () => {
         </Stack>
       </Flex>
 
-      <Text>{t('footer.copyright')}</Text>
+      <Text c={'white'}>{t('footer.copyright')}</Text>
     </Stack>
   );
 };

@@ -16,10 +16,10 @@ const Logo = () => {
       to={`/${currentLanguage}`}
       style={{ textDecoration: 'none' }}
     >
-      <Title c="black" ta={TEXT_ALIGN}>
+      <Title c="white" ta={TEXT_ALIGN}>
         UNTHAA
       </Title>
-      <Text c="black" ta={TEXT_ALIGN}>
+      <Text c="white" ta={TEXT_ALIGN}>
         {t('header.slogan')}
       </Text>
     </Box>
