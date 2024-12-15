@@ -10,3 +10,4 @@ export { default as IconPlus } from './IconPlus';
 export { default as IconSearch } from './IconSearch';
 export { default as IconSwitch } from './IconSwitch';
 export { default as IconX } from './IconX';
+export { default as IconFlameFilled } from './IconFlameFilled';

@@ -1,15 +1,13 @@
 import {
   ActionIcon,
-  Avatar,
   Box,
   Card,
   Group,
   Image,
-  Paper,
   Stack,
   Text
 } from '@mantine/core';
-import { useState } from 'react';
+
 import { Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
@@ -23,7 +21,7 @@ const ProductCard = (props: IProductCard) => {
 
   const { currentLanguage } = useCurrentLanguage();
 
-const topRightSpacing = 5
+  const topRightSpacing = 5;
 
   return (
     <Card
