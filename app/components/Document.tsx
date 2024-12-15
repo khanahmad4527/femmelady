@@ -7,6 +7,7 @@ import { OutletContext } from '~/types/types';
 import commonClasses from '~/styles/Common.module.scss';
 import Footer from './Footer';
 import Header from './Header';
+import { HeaderFooterContext } from '~/hooks/useHeaderFooterContext';
 
 const Document = (
   props: OutletContext & {
@@ -26,11 +27,13 @@ const Document = (
   const isExcludedRoute = ROUTES_WITHOUT_HEADER_AND_FOOTER.has(basePath);
 
   return (
-    <Container component={Stack} className={commonClasses.consistentSpacing}>
-      {!isExcludedRoute && <Header />}
-      {children}
-      {!isExcludedRoute && <Footer />}
-    </Container>
+    <HeaderFooterContext.Provider value={restData}>
+      <Container component={Stack} className={commonClasses.consistentSpacing}>
+        {!isExcludedRoute && <Header />}
+        {children}
+        {!isExcludedRoute && <Footer />}
+      </Container>
+    </HeaderFooterContext.Provider>
   );
 };
 

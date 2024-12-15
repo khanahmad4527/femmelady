@@ -14,10 +14,15 @@ import useTranslation from '~/hooks/useTranslation';
 import { IconSearch, IconSwitch } from '~/icons';
 
 import Logo from './Logo';
+import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 
 const Header = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
+  const headerFooterContext = useHeaderFooterContext();
+
+  const { isLoggedIn } = headerFooterContext;
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -107,9 +112,10 @@ const Header = () => {
           justify="space-between"
           p="sm"
         >
-          <Group> {items}</Group>
+          {!isLoggedIn && <Group> {items}</Group>}
 
           <Select
+            w={150}
             defaultValue={currentLanguage}
             data={languageOptions}
             allowDeselect={false}
