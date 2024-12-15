@@ -26,7 +26,7 @@ const HeaderCart = ({
       pos={'relative'}
     >
       {Array.from({ length: 2 }, (_, index) => (
-        <HeaderCartCard />
+        <HeaderCartCard key={index}/>
       ))}
 
       <Button
