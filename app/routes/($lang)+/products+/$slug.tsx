@@ -1,3 +1,4 @@
+import { Carousel } from '@mantine/carousel';
 import {
   Box,
   Button,
@@ -25,7 +26,10 @@ const SingleProduct = () => {
   return (
     <Stack className={commonClasses.consistentSpacing}>
       <Grid>
-        <Grid.Col span={{ base: 12, md: 1 }}>
+        <Grid.Col
+          display={{ base: 'none', md: 'grid' }}
+          span={{ base: 12, md: 1 }}
+        >
           <ScrollArea h={500}>
             <Stack gap={0} pb={2}>
               {new Array(5).fill('*').map((p, i) => (
@@ -59,6 +63,29 @@ const SingleProduct = () => {
               loading={'lazy'}
             />
           </Box>
+          <Carousel
+            display={{ base: 'block', md: 'none' }}
+            mt={'md'}
+            withIndicators
+            height={200}
+            slideGap={'md'}
+            slideSize={'33.3333%'}
+            dragFree={false}
+            align={'start'}
+            loop
+          >
+            {new Array(5).fill('*').map((p, i) => (
+              <Carousel.Slide key={p.id}>
+                <Image
+                  h={'100%'}
+                  fit={'contain'}
+                  src={product.image}
+                  alt={product.name}
+                  loading={'lazy'}
+                />
+              </Carousel.Slide>
+            ))}
+          </Carousel>
         </Grid.Col>
 
         <Grid.Col component={Stack} span={{ base: 12, md: 5 }}>
