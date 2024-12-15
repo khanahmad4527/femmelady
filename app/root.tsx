@@ -16,8 +16,9 @@ import {
 import Document from './components/Document';
 import useCurrentLanguage from './hooks/useCurrentLanguage';
 import { theme } from './theme';
+import { Route } from './+types/root';
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: Route.LoaderArgs) => {
   const currentLanguage = params?.lang;
   if (!currentLanguage) {
     return redirect('/en');
