@@ -11,7 +11,7 @@ export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {
 
 export type TranslationKeys = 'en' | 'ja';
 
-export interface IProductCard  {
+export interface IProductCard {
   id: string;
   name: string;
   image: string;
@@ -24,3 +24,8 @@ export interface IProductCard  {
     pattern_img: null | string;
   }[];
 }
+
+export type ValueLabel = {
+  link: string;
+  label: string;
+};

@@ -30,7 +30,7 @@ const Footer = () => {
   const items = links.map((link, i) => (
     <Anchor
       component={Link}
-      c="primary"
+      c="white"
       key={i}
       to={link.link}
       lh={1}

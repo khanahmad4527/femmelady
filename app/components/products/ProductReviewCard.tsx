@@ -1,11 +1,11 @@
-import { Box, Divider, Group, Rating, Stack, Text } from '@mantine/core';
+import { Divider, Group, Rating, Stack, Text } from '@mantine/core';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { formatDate } from '~/utils';
 
 const ProductReviewCard = () => {
   const { currentLanguage } = useCurrentLanguage();
   return (
-    <Box>
+    <>
       <Stack>
         <Group
           gap={'md'}
@@ -53,7 +53,7 @@ const ProductReviewCard = () => {
       </Stack>
 
       <Divider size="sm" my="md" color="black" />
-    </Box>
+    </>
   );
 };
 

@@ -44,7 +44,9 @@
     "subscribeButton": "Subscribe",
     "getLatestNews": "Get the latest news from us"
   },
-  "common": {},
+  "common": {
+    "logout": "Logout"
+  },
   "login": {
     "welcome": "Welcome to Unthaa, login with",
     "accountRegister": "Don't have an account? Register",

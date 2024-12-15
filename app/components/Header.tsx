@@ -1,69 +1,50 @@
 import {
   ActionIcon,
   Anchor,
-  Avatar,
   Box,
   Burger,
-  Center,
-  ComboboxItem,
-  Drawer,
   Flex,
   Group,
-  Indicator,
-  Select,
-  TextInput
+  Text,
+  TextInput,
+  Tooltip
 } from '@mantine/core';
-import { Link, useLocation, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
-import { IconLogout, IconSearch, IconShoppingCart, IconSwitch } from '~/icons';
+import { IconLogout, IconSearch, IconShoppingCart } from '~/icons';
 
 import Logo from './Logo';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import { useDisclosure } from '@mantine/hooks';
 import HeaderCart from './cart/HeaderCart';
+import MobileDrawer from './MobileDrawer';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Header = () => {
-  const [opened, { open, close }] = useDisclosure(false);
-  const [burgerOpened, { toggle: burgerToggle }] = useDisclosure();
+  const [
+    mobileDrawerOpened,
+    { open: mobileDrawerOpen, close: mobileDrawerClose }
+  ] = useDisclosure(false);
+  const [
+    headerCartDrawerOpened,
+    { close: headerCartDrawerClose, open: headerCartDrawerOpen }
+  ] = useDisclosure(false);
+  const [burgerOpened, { toggle: burgerToggle, close: burgerClose }] =
+    useDisclosure();
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const headerFooterContext = useHeaderFooterContext();
 
   const { isLoggedIn } = headerFooterContext;
 
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleLanguageChange = (
-    _value: string | null,
-    option: ComboboxItem
-  ) => {
-    if (currentLanguage !== option.value) {
-      const newPath = location.pathname.replace(
-        `/${currentLanguage}`,
-        `/${option.value}`
-      );
-
-      navigate({
-        pathname: newPath,
-        search: location.search
-      });
-    }
-  };
-
-  const languageOptions = [
-    { value: 'en', label: 'English' },
-    { value: 'ja', label: '日本語' }
-  ];
-
-  const links = [
+  const authLinks = [
     { link: `/${currentLanguage}/login`, label: t('login.login') },
     { link: `/${currentLanguage}/register`, label: t('register.register') }
   ];
 
-  const items = links.map((link, i) => (
+  const authItems = authLinks.map((link, i) => (
     <Anchor component={Link} c="primary.1" key={i} to={link.link} lh={1}>
       {link.label}
     </Anchor>
@@ -124,7 +105,10 @@ const Header = () => {
             display={{ base: 'block', md: 'none' }}
             color={'white'}
             opened={burgerOpened}
-            onClick={burgerToggle}
+            onClick={() => {
+              mobileDrawerOpen();
+              burgerToggle();
+            }}
           />
         </Group>
 
@@ -133,60 +117,62 @@ const Header = () => {
           justify="space-between"
           p="sm"
         >
-          <Select
-            w={150}
-            defaultValue={currentLanguage}
-            data={languageOptions}
-            allowDeselect={false}
-            onChange={handleLanguageChange}
-            rightSection={<IconSwitch color="white" size={18} />}
-          />
+          <LanguageSwitcher />
 
           {isLoggedIn && (
-            <>
-              <>
-                <Indicator
-                  inline
-                  label={'9+'}
-                  color="primary.5"
-                  size={30}
-                  styles={{
-                    indicator: {
-                      fontWeight: 500,
-                      fontSize: 16
-                    }
-                  }}
-                >
-                  <ActionIcon variant="transparent" size={'xl'} onClick={open}>
-                    <IconShoppingCart size={30} color={'white'} />
-                  </ActionIcon>
-                </Indicator>
-              </>
-              <ActionIcon
-                variant="transparent"
-                size={'xl'}
-                component={Link}
-                to={'/logout'}
+            <Flex>
+              <Group
+                gap={0}
+                wrap={'nowrap'}
+                onClick={headerCartDrawerOpen}
+                style={{ cursor: 'pointer' }}
               >
-                <IconLogout color={'white'} />
-              </ActionIcon>
-            </>
+                <ActionIcon variant="transparent" size={'xl'}>
+                  <IconShoppingCart size={30} color={'white'} />
+                </ActionIcon>
+                <Text fw={500} fz={'md'} c={'white'}>
+                  {'9+'}
+                </Text>
+              </Group>
+              <Tooltip label={t('common.logout')}>
+                <ActionIcon
+                  variant="transparent"
+                  size={'xl'}
+                  component={Link}
+                  to={'/logout'}
+                >
+                  <IconLogout color={'white'} />
+                </ActionIcon>
+              </Tooltip>
+            </Flex>
           )}
 
-          {!isLoggedIn && <Group> {items}</Group>}
+          {!isLoggedIn && <Group> {authItems}</Group>}
         </Group>
       </Flex>
       <Group
+        display={{ base: 'none', md: 'flex' }}
         p={'md'}
+        bg={'primary.1'}
         // pos={'sticky'}
         // top={0}
-        bg={'primary.1'}
-        style={{ zIndex: 100 }}
+        // style={{ zIndex: 100 }}
       >
         {categoryItems}
       </Group>
 
-      <HeaderCart close={close} opened={opened} />
+      <MobileDrawer
+        authLinks={authLinks}
+        categoryLinks={categoryLinks}
+        close={mobileDrawerClose}
+        burgerClose={burgerClose}
+        opened={mobileDrawerOpened}
+        headerCartDrawerOpen={headerCartDrawerOpen}
+      />
+      <HeaderCart
+        close={headerCartDrawerClose}
+        opened={headerCartDrawerOpened}
+      />
     </Box>
   );
 };

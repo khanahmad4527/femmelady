@@ -1,5 +1,6 @@
 import { Drawer } from '@mantine/core';
 import useTranslation from '~/hooks/useTranslation';
+import HeaderCartCard from './HeaderCartCard';
 
 const HeaderCart = ({
   opened,
@@ -14,10 +15,14 @@ const HeaderCart = ({
       position={'right'}
       overlayProps={{ blur: 10 }}
       opened={opened}
-      onClose={close}
+      onClose={() => {
+        close();
+      }}
       title={t('cart.shoppingBag')}
     >
-      {/* Drawer content */}
+      {Array.from({ length: 10 }, (_, index) => (
+        <HeaderCartCard />
+      ))}
     </Drawer>
   );
 };

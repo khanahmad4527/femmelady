@@ -44,7 +44,7 @@
     "subscribeButton": "購読して",
     "getLatestNews": "最新のニュースを受け取りましょう"
   },
-  "common": {},
+  "common": { "logout": "ログアウト" },
   "login": {
     "welcome": "Unthaaへようこそ、ログインするには",
     "accountRegister": "アカウントをお持ちでないですか？登録する",
