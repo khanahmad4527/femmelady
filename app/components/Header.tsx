@@ -3,6 +3,8 @@ import {
   Anchor,
   Avatar,
   Box,
+  Burger,
+  Center,
   ComboboxItem,
   Drawer,
   Flex,
@@ -24,6 +26,7 @@ import HeaderCart from './cart/HeaderCart';
 
 const Header = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  const [burgerOpened, { toggle: burgerToggle }] = useDisclosure();
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const headerFooterContext = useHeaderFooterContext();
@@ -107,12 +110,23 @@ const Header = () => {
       >
         <Logo />
 
-        <TextInput
+        <Group
+          justify={'center'}
+          wrap={'nowrap'}
           w={{ base: '100%', md: '40%' }}
-          size="md"
-          rightSection={<IconSearch />}
-          placeholder={t('header.search')}
-        />
+        >
+          <TextInput
+            w={'100%'}
+            rightSection={<IconSearch />}
+            placeholder={t('header.search')}
+          />
+          <Burger
+            display={{ base: 'block', md: 'none' }}
+            color={'white'}
+            opened={burgerOpened}
+            onClick={burgerToggle}
+          />
+        </Group>
 
         <Group
           display={{ base: 'none', md: 'flex' }}
