@@ -104,6 +104,7 @@
     "addToBag": "Add to Bag",
     "productColor": "Product Color:",
     "productSize": "Product Size:",
-    "reviews": "Based on {number} reviews"
+    "reviews": "Based on {number} reviews",
+    "cartQuantity": "Quantity:"
   }
 }

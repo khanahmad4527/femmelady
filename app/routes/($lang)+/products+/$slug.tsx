@@ -9,6 +9,7 @@ import {
   Text,
   Title
 } from '@mantine/core';
+import ProductCartQuantity from '~/components/products/ProductCartQuantity';
 import ProductColorSwitcher from '~/components/products/ProductColorSwitcher';
 import ProductReview from '~/components/products/ProductReview';
 import { ProductSizeSwitcher } from '~/components/products/ProductSizeSwitcher';
@@ -108,6 +109,7 @@ const SingleProduct = () => {
           </Text>
           <ProductColorSwitcher colors={product.colors} />
           <ProductSizeSwitcher />
+          <ProductCartQuantity />
           <Button color="black" size="md">
             {t('products.addToBag')}
           </Button>

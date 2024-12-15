@@ -1,12 +1,22 @@
-import { Box, Group, Pagination, Rating, Stack, Text } from '@mantine/core';
+import {
+  Box,
+  Group,
+  Pagination,
+  Rating,
+  Stack,
+  Text,
+  useMatches
+} from '@mantine/core';
 import ProductReviewCard from './ProductReviewCard';
 import useTranslation from '~/hooks/useTranslation';
 import { formatNumber } from '~/utils';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import { useMediaQuery } from '@mantine/hooks';
 
 const ProductReview = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
+  const isMobile = useMediaQuery('(max-width: 30em)');
 
   return (
     <Stack>
@@ -29,7 +39,12 @@ const ProductReview = () => {
       {new Array(10).fill('*').map(r => (
         <ProductReviewCard />
       ))}
-      <Pagination total={10} m={'auto'} color="black" />
+      <Pagination
+        siblings={isMobile ? 0 : 1}
+        total={10}
+        m={'auto'}
+        color="black"
+      />
     </Stack>
   );
 };

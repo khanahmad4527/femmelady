@@ -102,8 +102,9 @@
     "productsPerPage": "ページあたりの商品数",
     "resultsCount": "{count} 結果",
     "addToBag": "バッグに追加",
-    "productColor": "商品の色：",
-    "productSize": "商品のサイズ：",
-    "reviews": "{number} 件のレビューに基づく"
+    "productColor": "商品の色:",
+    "productSize": "商品のサイズ:",
+    "reviews": "{number} 件のレビューに基づく",
+    "cartQuantity": "数量:"
   }
 }
