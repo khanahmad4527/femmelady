@@ -1,20 +1,20 @@
 import {
   ActionIcon,
   Box,
-  Button,
   Divider,
   Grid,
   Group,
   Image,
   Stack,
-  Text
+  Text,
+  ThemeIcon
 } from '@mantine/core';
 import { Link } from 'react-router';
 import { PRODUCTS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
-import { IconX } from '~/icons';
-import { formatCurrency } from '~/utils';
+import { IconMinus, IconPlus, IconX } from '~/icons';
+import { buildLocalizedLink, formatCurrency } from '~/utils';
 
 const HeaderCartCard = () => {
   const t = useTranslation();
@@ -24,7 +24,14 @@ const HeaderCartCard = () => {
     <>
       <Grid>
         <Grid.Col span={4}>
-          <Box h={100} component={Link} to={`/${currentLanguage}/products/123`}>
+          <Box
+            component={Link}
+            to={buildLocalizedLink({
+              currentLanguage,
+              primaryPath: 'products',
+              secondaryPath: '123'
+            })}
+          >
             <Image
               h={'100%'}
               fit={'contain'}
@@ -37,9 +44,17 @@ const HeaderCartCard = () => {
         <Grid.Col span={6}>
           <Stack>
             <Text>{p.name}</Text>
-            <Text>Beige</Text>
+            <Text>{p.colors[0].name}</Text>
             <Text>{formatCurrency({ currentLanguage, value: 1234.56 })}</Text>
-            <Group><Button></Button></Group>
+            <Group>
+              <ActionIcon>
+                <IconMinus color={'white'} />
+              </ActionIcon>
+              <ThemeIcon>10</ThemeIcon>
+              <ActionIcon>
+                <IconPlus color={'white'} />
+              </ActionIcon>
+            </Group>
           </Stack>
         </Grid.Col>
         <Grid.Col span={2}>

@@ -26,6 +26,7 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
 import { IProductCard } from '~/types/types';
+import { buildLocalizedLink } from '~/utils';
 
 export const meta: MetaFunction = () => {
   return [
@@ -85,7 +86,7 @@ export default function Index() {
       <Box
         bg="red"
         component={Link}
-        to={`/${currentLanguage}/products`}
+        to={buildLocalizedLink({ currentLanguage, primaryPath: 'products' })}
         pos={'relative'}
       >
         <Image src={heroSection1} h={'100%'} fit="contain" loading={'lazy'} />
@@ -108,7 +109,15 @@ export default function Index() {
       <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
         {heroImages.map((h, i) => {
           return (
-            <Box key={i} component={Link} to={'/'} pos={'relative'}>
+            <Box
+              key={i}
+              component={Link}
+              to={buildLocalizedLink({
+                currentLanguage,
+                primaryPath: 'products'
+              })}
+              pos={'relative'}
+            >
               <Image alt={'product'} src={h.image} h={500} />
               <Paper
                 radius={0}

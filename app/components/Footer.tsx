@@ -14,28 +14,37 @@ import { Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconBrandInstagram, IconBrandX, IconBrandYoutube } from '~/icons';
+import { buildLocalizedLink } from '~/utils';
 
 const Footer = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
 
   const links = [
-    { link: `/${currentLanguage}/contact`, label: t('footer.links.contact') },
-    { link: `/${currentLanguage}/privacy`, label: t('footer.links.privacy') },
-    { link: `/${currentLanguage}/blog`, label: t('footer.links.blog') },
-    { link: `/${currentLanguage}/store`, label: t('footer.links.store') },
-    { link: `/${currentLanguage}/careers`, label: t('footer.links.careers') }
+    {
+      link: buildLocalizedLink({ currentLanguage, primaryPath: 'contact' }),
+      label: t('footer.links.contact')
+    },
+    {
+      link: buildLocalizedLink({ currentLanguage, primaryPath: 'privacy' }),
+      label: t('footer.links.privacy')
+    },
+    {
+      link: buildLocalizedLink({ currentLanguage, primaryPath: 'blog' }),
+      label: t('footer.links.blog')
+    },
+    {
+      link: buildLocalizedLink({ currentLanguage, primaryPath: 'store' }),
+      label: t('footer.links.store')
+    },
+    {
+      link: buildLocalizedLink({ currentLanguage, primaryPath: 'careers' }),
+      label: t('footer.links.careers')
+    }
   ];
 
   const items = links.map((link, i) => (
-    <Anchor
-      component={Link}
-      c="white"
-      key={i}
-      to={link.link}
-      lh={1}
-      size="sm"
-    >
+    <Anchor component={Link} c="white" key={i} to={link.link} lh={1} size="sm">
       {link.label}
     </Anchor>
   ));
@@ -99,7 +108,10 @@ const Footer = () => {
                     c={'white'}
                     fz="xs"
                     component={Link}
-                    to="/privacy-policy"
+                    to={buildLocalizedLink({
+                      currentLanguage,
+                      primaryPath: 'privacy-policy'
+                    })}
                     underline="always"
                   >
                     {t('footer.privacyPolicy')}
@@ -110,7 +122,10 @@ const Footer = () => {
                     c={'white'}
                     fz="xs"
                     component={Link}
-                    to="/terms-of-service"
+                    to={buildLocalizedLink({
+                      currentLanguage,
+                      primaryPath: 'terms-of-service'
+                    })}
                     underline="always"
                   >
                     {t('footer.termsOfService')}

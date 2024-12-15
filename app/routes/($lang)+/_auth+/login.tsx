@@ -11,7 +11,12 @@ import {
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { useEffect } from 'react';
-import { ActionFunction , Link, useFetcher, useOutletContext } from 'react-router';
+import {
+  ActionFunction,
+  Link,
+  useFetcher,
+  useOutletContext
+} from 'react-router';
 import { z } from 'zod';
 
 import useTranslation from '~/hooks/useTranslation';
@@ -20,7 +25,7 @@ import { loginFormSchema, TLoginFormSchema } from '~/schema';
 import { validateFormWithTranslations } from '~/server/validateFormWithTranslations';
 import classes from '~/styles/Common.module.scss';
 import { OutletContext, TranslationKeys } from '~/types/types';
-import { parseZodError } from '~/utils';
+import { buildLocalizedLink, parseZodError } from '~/utils';
 
 export const action: ActionFunction = async ({ request, params }) => {
   const language = (params.lang ?? 'en') as TranslationKeys;
@@ -116,7 +121,13 @@ const login = () => {
           />
 
           <Group justify="space-between">
-            <Anchor component={Link} to={`/${currentLanguage}/register`}>
+            <Anchor
+              component={Link}
+              to={buildLocalizedLink({
+                currentLanguage,
+                primaryPath: 'register'
+              })}
+            >
               {t('login.accountRegister')}
             </Anchor>
             <Button type="submit"> {t('login.login')}</Button>

@@ -13,7 +13,7 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import { IconHeart, IconPlus } from '~/icons';
 import { IProductCard } from '~/types/types';
-import { formatCurrency } from '~/utils';
+import { buildLocalizedLink, formatCurrency } from '~/utils';
 import ProductColorSwitcher from './ProductColorSwitcher';
 
 const ProductCard = (props: IProductCard) => {
@@ -44,7 +44,15 @@ const ProductCard = (props: IProductCard) => {
         <IconHeart />
       </ActionIcon>
 
-      <Box h={300} component={Link} to={`/${currentLanguage}/products/123`}>
+      <Box
+        h={300}
+        component={Link}
+        to={buildLocalizedLink({
+          currentLanguage,
+          primaryPath: 'products',
+          secondaryPath: '123'
+        })}
+      >
         <Image
           h={'100%'}
           fit={'contain'}

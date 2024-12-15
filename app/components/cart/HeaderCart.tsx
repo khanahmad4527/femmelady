@@ -1,6 +1,9 @@
-import { Drawer } from '@mantine/core';
+import { Box, Button, Drawer, Stack } from '@mantine/core';
 import useTranslation from '~/hooks/useTranslation';
 import HeaderCartCard from './HeaderCartCard';
+import { Link } from 'react-router';
+import { buildLocalizedLink } from '~/utils';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 const HeaderCart = ({
   opened,
@@ -10,6 +13,7 @@ const HeaderCart = ({
   close: () => void;
 }) => {
   const t = useTranslation();
+  const { currentLanguage } = useCurrentLanguage();
   return (
     <Drawer
       position={'right'}
@@ -19,10 +23,20 @@ const HeaderCart = ({
         close();
       }}
       title={t('cart.shoppingBag')}
+      pos={'relative'}
     >
-      {Array.from({ length: 10 }, (_, index) => (
+      {Array.from({ length: 2 }, (_, index) => (
         <HeaderCartCard />
       ))}
+
+      <Button
+        component={Link}
+        to={buildLocalizedLink({ currentLanguage, primaryPath: 'checkout' })}
+        color="black"
+        fullWidth
+      >
+        {t('cart.goToCheckout')}
+      </Button>
     </Drawer>
   );
 };

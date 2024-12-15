@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
+import { buildLocalizedLink } from '~/utils';
 
 const Logo = () => {
   const t = useTranslation();
@@ -13,7 +14,7 @@ const Logo = () => {
   return (
     <Box
       component={Link}
-      to={`/${currentLanguage}`}
+      to={buildLocalizedLink({ currentLanguage })}
       style={{ textDecoration: 'none' }}
     >
       <Title c="white" ta={TEXT_ALIGN}>

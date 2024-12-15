@@ -108,6 +108,7 @@
     "cartQuantity": "数量:"
   },
   "cart": {
-    "shoppingBag": "ショッピングバッグ"
+    "shoppingBag": "ショッピングバッグ",
+    "goToCheckout": "レジに進む"
   }
 }

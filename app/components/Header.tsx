@@ -21,6 +21,7 @@ import { useDisclosure } from '@mantine/hooks';
 import HeaderCart from './cart/HeaderCart';
 import MobileDrawer from './MobileDrawer';
 import LanguageSwitcher from './LanguageSwitcher';
+import { buildLocalizedLink } from '~/utils';
 
 const Header = () => {
   const [
@@ -40,8 +41,14 @@ const Header = () => {
   const { isLoggedIn } = headerFooterContext;
 
   const authLinks = [
-    { link: `/${currentLanguage}/login`, label: t('login.login') },
-    { link: `/${currentLanguage}/register`, label: t('register.register') }
+    {
+      link: buildLocalizedLink({ currentLanguage, primaryPath: 'login' }),
+      label: t('login.login')
+    },
+    {
+      link: buildLocalizedLink({ currentLanguage, primaryPath: 'register' }),
+      label: t('register.register')
+    }
   ];
 
   const authItems = authLinks.map((link, i) => (

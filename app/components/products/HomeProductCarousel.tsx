@@ -21,6 +21,7 @@ import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
 import { IProductCard } from '~/types/types';
 import ProductColorSwitcher from './ProductColorSwitcher';
+import { buildLocalizedLink } from '~/utils';
 
 const HomeProductCarousel = ({ products }: { products: IProductCard[] }) => {
   if (!products || !products?.length) {
@@ -75,7 +76,11 @@ const HomeProductCarousel = ({ products }: { products: IProductCard[] }) => {
               <Box
                 h={300}
                 component={Link}
-                to={`/${currentLanguage}/products/123`}
+                to={buildLocalizedLink({
+                  currentLanguage,
+                  primaryPath: 'products',
+                  secondaryPath: '123'
+                })}
               >
                 <Image
                   h={'100%'}
@@ -86,7 +91,7 @@ const HomeProductCarousel = ({ products }: { products: IProductCard[] }) => {
                 />
               </Box>
 
-              <ProductColorSwitcher colors={p.colors}/>
+              <ProductColorSwitcher colors={p.colors} />
             </Card>
           </Carousel.Slide>
         ))}

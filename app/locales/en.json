@@ -110,6 +110,7 @@
     "cartQuantity": "Quantity:"
   },
   "cart": {
-    "shoppingBag": "Shopping Bag"
+    "shoppingBag": "Shopping Bag",
+    "goToCheckout": "Go to checkout"
   }
 }

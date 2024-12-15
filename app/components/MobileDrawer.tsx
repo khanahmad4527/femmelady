@@ -1,5 +1,4 @@
-import { Button, Drawer, Group, Stack } from '@mantine/core';
-import { JSX } from 'react';
+import { Button, Drawer, Stack } from '@mantine/core';
 import { Link } from 'react-router';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
@@ -65,8 +64,6 @@ const MobileDrawer = ({
           </Button>
         ))}
       </Stack>
-
-      {/* Drawer content */}
     </Drawer>
   );
 };
