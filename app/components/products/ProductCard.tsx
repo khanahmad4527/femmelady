@@ -23,6 +23,8 @@ const ProductCard = (props: IProductCard) => {
 
   const { currentLanguage } = useCurrentLanguage();
 
+const topRightSpacing = 5
+
   return (
     <Card
       pos={'relative'}
@@ -33,10 +35,13 @@ const ProductCard = (props: IProductCard) => {
     >
       <ActionIcon
         pos={'absolute'}
-        top={2}
-        right={2}
-        variant="transparent"
+        top={topRightSpacing}
+        right={topRightSpacing}
+        size={'xl'}
         aria-label="mark as favorite"
+        variant="light"
+        color="primary"
+        radius="xl"
       >
         <IconHeart />
       </ActionIcon>
