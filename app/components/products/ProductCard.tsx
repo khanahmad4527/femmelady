@@ -21,16 +21,7 @@ import ProductColorSwitcher from './ProductColorSwitcher';
 const ProductCard = (props: IProductCard) => {
   const { name, colors, image } = props;
 
-  const [activeColor, setActiveColor] = useState<
-    IProductCard['colors'][number]
-  >(colors[0]);
   const { currentLanguage } = useCurrentLanguage();
-
-  const handleActiveColor = (id: string, index: number) => {
-    if (id !== activeColor.id) {
-      setActiveColor(colors[index]);
-    }
-  };
 
   return (
     <Card
@@ -63,7 +54,7 @@ const ProductCard = (props: IProductCard) => {
       <Card.Section bg="primary.1" inheritPadding py={'md'}>
         <Group align={'flex-end'}>
           <Box mr={'auto'}>
-            <ProductColorSwitcher colors={colors}/>
+            <ProductColorSwitcher colors={colors} />
           </Box>
           <Box ml={'auto'}>
             <ActionIcon
@@ -80,7 +71,7 @@ const ProductCard = (props: IProductCard) => {
 
       <Box>
         <Text>{name}</Text>
-        <Text>{formatCurrency(1234.56, 'USD', 'en-US')}</Text>
+        <Text>{formatCurrency({ currentLanguage, value: 1234.56 })}</Text>
       </Box>
     </Card>
   );

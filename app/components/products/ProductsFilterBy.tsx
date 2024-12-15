@@ -1,6 +1,5 @@
 import {
   Accordion,
-  Badge,
   Box,
   Button,
   Group,

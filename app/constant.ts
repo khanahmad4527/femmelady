@@ -609,3 +609,14 @@ export const PRODUCTS = [
     id: 'b33f046c-c1e8-4e27-bbd7-193247143c93'
   }
 ];
+
+export const LOCALE_TO_CURRENCY: Record<string, string> = {
+  'en-US': 'USD',
+  'fr-FR': 'EUR',
+  'de-DE': 'EUR',
+  'ja-JP': 'JPY',
+  'es-ES': 'EUR',
+  'it-IT': 'EUR',
+  'pt-BR': 'BRL',
+  'ru-RU': 'RUB'
+};

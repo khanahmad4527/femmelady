@@ -103,6 +103,7 @@
     "resultsCount": "{count} results",
     "addToBag": "Add to Bag",
     "productColor": "Product Color:",
-    "productSize": "Product Size:"
+    "productSize": "Product Size:",
+    "reviews": "Based on {number} reviews"
   }
 }

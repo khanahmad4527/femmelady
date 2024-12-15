@@ -36,7 +36,7 @@ const Products = () => {
         </Box>
       </Group>
 
-      <Grid >
+      <Grid>
         <Grid.Col span={{ base: 12, md: 2 }}>
           <ProductsFilterBy />
         </Grid.Col>
@@ -48,7 +48,7 @@ const Products = () => {
           </SimpleGrid>
         </Grid.Col>
       </Grid>
-      <Pagination total={10} m={'auto'} />
+      <Pagination total={10} m={'auto'} color={'black'} />
     </Stack>
   );
 };

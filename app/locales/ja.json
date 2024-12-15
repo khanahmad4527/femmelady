@@ -103,6 +103,7 @@
     "resultsCount": "{count} 結果",
     "addToBag": "バッグに追加",
     "productColor": "商品の色：",
-    "productSize": "商品のサイズ："
+    "productSize": "商品のサイズ：",
+    "reviews": "{number} 件のレビューに基づく"
   }
 }

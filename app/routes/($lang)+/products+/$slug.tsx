@@ -9,14 +9,17 @@ import {
   Title
 } from '@mantine/core';
 import ProductColorSwitcher from '~/components/products/ProductColorSwitcher';
+import ProductReview from '~/components/products/ProductReview';
 import { ProductSizeSwitcher } from '~/components/products/ProductSizeSwitcher';
 import { PRODUCTS } from '~/constant';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
 import { formatCurrency } from '~/utils';
 
 const SingleProduct = () => {
   const t = useTranslation();
+  const { currentLanguage } = useCurrentLanguage();
   const product = PRODUCTS[1];
 
   return (
@@ -61,7 +64,7 @@ const SingleProduct = () => {
         <Grid.Col component={Stack} span={{ base: 12, md: 5 }}>
           <Title aria-label="Product name">{product.name}</Title>
           <Title order={4} aria-label="Product price">
-            {formatCurrency(1234.56)}
+            {formatCurrency({ currentLanguage, value: 1234.56 })}
           </Title>
           <Text>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim
@@ -83,6 +86,8 @@ const SingleProduct = () => {
           </Button>
         </Grid.Col>
       </Grid>
+
+      <ProductReview />
     </Stack>
   );
 };
