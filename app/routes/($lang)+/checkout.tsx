@@ -21,14 +21,14 @@ const Checkout = () => {
     <Stack className={commonClasses.consistentSpacing}>
       <Title m={'auto'}>{t('checkout.shoppingBag')}</Title>
       <Grid>
-        <Grid.Col span={9}>
+        <Grid.Col span={{ base: 12, md: 9 }}>
           <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
             {Array.from({ length: 4 }, (_, index) => (
               <CheckoutCartCard key={index} />
             ))}
           </SimpleGrid>
         </Grid.Col>
-        <Grid.Col span={3}>
+        <Grid.Col span={{ base: 12, md: 3 }}>
           <Stack>
             <Paper withBorder p={'md'} ta={'center'} fw={500}>
               {t('checkout.summary')}

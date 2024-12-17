@@ -1,5 +1,3 @@
-import { string } from 'zod';
-
 import { TranslationKeys } from '~/types/types';
 
 import en from '../locales/en.json';

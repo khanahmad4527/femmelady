@@ -44,7 +44,14 @@ const Footer = () => {
   ];
 
   const items = links.map((link, i) => (
-    <Anchor component={Link} c="white" key={i} to={link.link} lh={1} size="sm">
+    <Anchor
+      component={Link}
+      c="white"
+      key={`footer_items_${i}`}
+      to={link.link}
+      lh={1}
+      size="sm"
+    >
       {link.label}
     </Anchor>
   ));
@@ -105,6 +112,7 @@ const Footer = () => {
               {t('footer.signUpAgreement', {
                 privacyPolicy: (
                   <Anchor
+                    key={'footer.privacyPolicy'}
                     c={'white'}
                     fz="xs"
                     component={Link}
@@ -119,6 +127,7 @@ const Footer = () => {
                 ),
                 termsOfService: (
                   <Anchor
+                  key={'footer.termsOfService'}
                     c={'white'}
                     fz="xs"
                     component={Link}
