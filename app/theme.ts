@@ -58,6 +58,11 @@ export const theme: MantineThemeOverride = createTheme({
         radius: 0
       }
     },
+    Paper: {
+      defaultProps: {
+        radius: 0
+      }
+    },
     Select: {
       classNames: selectClasses,
       defaultProps: {

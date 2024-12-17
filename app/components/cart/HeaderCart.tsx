@@ -22,7 +22,7 @@ const HeaderCart = ({
       onClose={() => {
         close();
       }}
-      title={t('cart.shoppingBag')}
+      title={t('checkout.shoppingBag')}
       pos={'relative'}
     >
       {Array.from({ length: 2 }, (_, index) => (
@@ -36,7 +36,7 @@ const HeaderCart = ({
         fullWidth
         onClick={close}
       >
-        {t('cart.goToCheckout')}{' '}
+        {t('checkout.goToCheckout')}{' '}
         {formatCurrency({ currentLanguage, value: 1234.56 })}
       </Button>
     </Drawer>

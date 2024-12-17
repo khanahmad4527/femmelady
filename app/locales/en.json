@@ -109,8 +109,12 @@
     "reviews": "Based on {number} reviews",
     "cartQuantity": "Quantity:"
   },
-  "cart": {
+  "checkout": {
     "shoppingBag": "Shopping Bag",
-    "goToCheckout": "Go to checkout"
+    "goToCheckout": "Go to checkout",
+    "summary": "Order Summary",
+    "subTotal": "SubTotal",
+    "total": "Total",
+    "pay": "Pay"
   }
 }

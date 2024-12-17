@@ -109,8 +109,12 @@
     "reviews": "{number} 件のレビューに基づく",
     "cartQuantity": "数量:"
   },
-  "cart": {
+  "checkout": {
     "shoppingBag": "ショッピングバッグ",
-    "goToCheckout": "レジに進む"
+    "goToCheckout": "レジに進む",
+    "summary": "注文概要",
+    "subTotal": "小計",
+    "total": "合計",
+    "pay": "支払う"
   }
 }

@@ -1,18 +1,19 @@
 const {
-  addOrUpdateKeys,
-  deleteKeys
+  addOrUpdateKeysBatch,
+  deleteKeysBatch
 } = require('./app/locales/localesHandler.cjs');
 
-// Example Usage
-
-// Add or update keys for multiple languages
-// addOrUpdateKeys('header.newFeature', {
-//   en: 'New Feature',
-//   ja: '新機能',
+// Add or update multiple keys at once
+// addOrUpdateKeysBatch({
+//   'order.summary': { en: 'Order Summary', ja: '注文概要' },
+//   'order.subTotal': { en: 'SubTotal', ja: '小計' },
+//   'order.total': { en: 'Total', ja: '合計' },
+//   'order.pay': { en: 'Pay', ja: '支払う' },
+//   'cart.checkout': { en: 'Go to Checkout', ja: 'チェックアウトに進む' },
 // });
 
-// Delete keys for specific languages
-// deleteKeys('header.newFeature', ['en', 'ja']);
+// Delete multiple keys at once
+// deleteKeysBatch(['order.subTotal', 'order.pay'], ['en', 'ja']);
 
 // Delete keys across all languages
-// deleteKeys('header.newFeature');
+// deleteKeysBatch(['order.subTotal', 'order.pay']);
