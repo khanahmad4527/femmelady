@@ -43,17 +43,46 @@ const Footer = () => {
     }
   ];
 
-  const items = links.map((link, i) => (
+  const items = links.map(link => (
     <Anchor
+      key={link.link}
       component={Link}
       c="white"
-      key={`footer_items_${i}`}
       to={link.link}
       lh={1}
       size="sm"
     >
       {link.label}
     </Anchor>
+  ));
+
+  const socialLinks = [
+    {
+      link: 'https://x.com/khanahmad4527',
+      icon: IconBrandX
+    },
+    {
+      link: 'https://www.youtube.com/@khanahmad452',
+      icon: IconBrandYoutube
+    },
+    {
+      link: 'https://www.instagram.com/khanahmad4527',
+      icon: IconBrandInstagram
+    }
+  ];
+
+  const socialItems = socialLinks.map(s => (
+    <ActionIcon
+      key={s.link}
+      component={'a'}
+      href={s.link}
+      target="_blank"
+      size="lg"
+      variant="default"
+      radius="xl"
+    >
+      <s.icon size={18} />
+    </ActionIcon>
   ));
 
   return (
@@ -71,36 +100,7 @@ const Footer = () => {
             justify={{ base: 'center', sm: 'flex-start' }}
             wrap="nowrap"
           >
-            <ActionIcon
-              component={'a'}
-              href={'https://x.com/khanahmad4527'}
-              target="_blank"
-              size="lg"
-              variant="default"
-              radius="xl"
-            >
-              <IconBrandX size={18} />
-            </ActionIcon>
-            <ActionIcon
-              component={'a'}
-              href={'https://www.youtube.com/@khanahmad452'}
-              target="_blank"
-              size="lg"
-              variant="default"
-              radius="xl"
-            >
-              <IconBrandYoutube size={18} />
-            </ActionIcon>
-            <ActionIcon
-              component={'a'}
-              href={'https://www.instagram.com/khanahmad4527'}
-              target="_blank"
-              size="lg"
-              variant="default"
-              radius="xl"
-            >
-              <IconBrandInstagram size={18} />
-            </ActionIcon>
+            {socialItems}
           </Flex>
         </Stack>
 
@@ -127,7 +127,7 @@ const Footer = () => {
                 ),
                 termsOfService: (
                   <Anchor
-                  key={'footer.termsOfService'}
+                    key={'footer.termsOfService'}
                     c={'white'}
                     fz="xs"
                     component={Link}

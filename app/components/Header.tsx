@@ -51,9 +51,9 @@ const Header = () => {
     }
   ];
 
-  const authItems = authLinks.map((link, i) => (
-    <Anchor component={Link} c="primary.1" key={i} to={link.link} lh={1}>
-      {link.label}
+  const authItems = authLinks.map(a => (
+    <Anchor key={a.link} component={Link} c="primary.1" to={a.link} lh={1}>
+      {a.label}
     </Anchor>
   ));
 
@@ -80,9 +80,9 @@ const Header = () => {
     { link: `/${currentLanguage}/products`, label: t('header.sale') }
   ];
 
-  const categoryItems = categoryLinks.map((link, i) => (
-    <Anchor component={Link} c="primary.7" key={i} to={link.link} lh={1}>
-      {link.label}
+  const categoryItems = categoryLinks.map(c => (
+    <Anchor key={c.link} component={Link} c="primary.7" to={c.link} lh={1}>
+      {c.label}
     </Anchor>
   ));
 

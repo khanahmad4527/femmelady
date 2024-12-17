@@ -107,10 +107,10 @@ export default function Index() {
       </Box>
 
       <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
-        {heroImages.map((h, i) => {
+        {heroImages.map(h => {
           return (
             <Box
-              key={i}
+              key={h.title}
               component={Link}
               to={buildLocalizedLink({
                 currentLanguage,

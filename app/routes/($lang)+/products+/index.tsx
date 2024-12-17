@@ -42,8 +42,8 @@ const Products = () => {
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 10 }}>
           <SimpleGrid cols={{ base: 1, xs: 2, md: 3 }}>
-            {PRODUCTS.map((p, i) => (
-              <ProductCard key={i} {...p} />
+            {PRODUCTS.map(p => (
+              <ProductCard key={p.id} {...p} />
             ))}
           </SimpleGrid>
         </Grid.Col>
