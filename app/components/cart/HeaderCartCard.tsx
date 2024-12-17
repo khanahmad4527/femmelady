@@ -23,7 +23,7 @@ const HeaderCartCard = () => {
   return (
     <>
       <Grid>
-        <Grid.Col span={4}>
+        <Grid.Col span={4} >
           <Box
             component={Link}
             to={buildLocalizedLink({

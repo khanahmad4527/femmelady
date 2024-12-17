@@ -27,7 +27,7 @@ const ProductCard = (props: IProductCard) => {
     <Card
       pos={'relative'}
       component={Stack}
-      shadow="sm"
+      shadow={'sm'}
       padding={'md'}
       withBorder
     >
