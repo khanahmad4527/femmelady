@@ -47,19 +47,19 @@ const HeaderCartCard = () => {
             <Text>{p.colors[0].name}</Text>
             <Text>{formatCurrency({ currentLanguage, value: 1234.56 })}</Text>
             <Group>
-              <ActionIcon>
+              <ActionIcon color="black">
                 <IconMinus color={'white'} />
               </ActionIcon>
-              <ThemeIcon>10</ThemeIcon>
-              <ActionIcon>
+              <ThemeIcon color="black">10</ThemeIcon>
+              <ActionIcon color="black">
                 <IconPlus color={'white'} />
               </ActionIcon>
             </Group>
           </Stack>
         </Grid.Col>
         <Grid.Col span={2}>
-          <ActionIcon>
-            <IconX />
+          <ActionIcon color="black">
+            <IconX color="black" />
           </ActionIcon>
         </Grid.Col>
       </Grid>

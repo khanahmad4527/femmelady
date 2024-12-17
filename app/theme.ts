@@ -38,6 +38,16 @@ export const theme: MantineThemeOverride = createTheme({
         radius: 0
       }
     },
+    ActionIcon: {
+      defaultProps: {
+        radius: 0
+      }
+    },
+    ThemeIcon: {
+      defaultProps: {
+        radius: 0
+      }
+    },
     TextInput: {
       defaultProps: {
         radius: 0
