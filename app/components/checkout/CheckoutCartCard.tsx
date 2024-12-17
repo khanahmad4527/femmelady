@@ -8,7 +8,8 @@ import {
   Image,
   Stack,
   Text,
-  ThemeIcon
+  ThemeIcon,
+  Title
 } from '@mantine/core';
 import { Link } from 'react-router';
 import { PRODUCTS } from '~/constant';
@@ -47,7 +48,7 @@ const CheckoutCartCard = () => {
       </Box>
 
       <Stack>
-        <Text>{p.name}</Text>
+        <Text fw={500}>{p.name}</Text>
         <Text>{p.colors[0].name}</Text>
         <Text>{formatCurrency({ currentLanguage, value: 1234.56 })}</Text>
         <Group>
@@ -61,7 +62,7 @@ const CheckoutCartCard = () => {
         </Group>
       </Stack>
 
-      <ActionIcon color="black">
+      <ActionIcon color="black" pos={'absolute'} mx={'md'} right={0}>
         <IconX color="black" />
       </ActionIcon>
     </Card>
