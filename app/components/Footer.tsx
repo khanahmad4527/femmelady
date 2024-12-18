@@ -38,8 +38,8 @@ const Footer = () => {
     },
     {
       id: 'cf72d496-5b84-42e9-a8e1-84f3c67b8a29',
-      link: buildLocalizedLink({ currentLanguage, primaryPath: 'store' }),
-      label: t('footer.links.store')
+      link: buildLocalizedLink({ currentLanguage, primaryPath: 'faq' }),
+      label: t('footer.links.faq')
     },
     {
       id: '7d4a5c83-9b2f-49e7-a5b4-2f1c3a8d6b47',
