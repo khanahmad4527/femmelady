@@ -146,9 +146,9 @@ const Faq = () => {
   ));
 
   return (
-    <Grid my={100} gutter={100}>
-      <Grid.Col span={4}>
-        <Text fw={500} mb={'xl'} fz={20}>
+    <Grid>
+      <Grid.Col span={{ base: 12, md: 4 }}>
+        <Text fw={500} mb={{ base: 'md', md: 'xl' }} fz={'xl'}>
           {t('common.categories')}
         </Text>
         <Stack>
@@ -168,11 +168,11 @@ const Faq = () => {
           ))}
         </Stack>
       </Grid.Col>
-      <Grid.Col span={8}>
-        <Text fw={500} mb={'xl'} fz={20}>
+      <Grid.Col span={{ base: 12, md: 8 }}>
+        <Text fw={500} mb={{ base: 'md', md: 'xl' }} fz={'xl'}>
           {faqAccordionTitle}
         </Text>
-        <Accordion defaultValue="Apples">{items}</Accordion>
+        <Accordion>{items}</Accordion>
       </Grid.Col>
     </Grid>
   );
