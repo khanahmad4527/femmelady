@@ -30,20 +30,20 @@ const contactUs = [
   {
     title: 'Support',
     content:
-      "<p>If you need assistance with a product or service, our support team is here to help. Please email <a href='mailto:support@unthaa.com'>support@unthaa.com</a> or fill out the contact form above, and we'll assist you as soon as possible.</p>"
+      "<p>If you need assistance with a product or service, our support team is here to help. Please email <a href='mailto:support@unthaa.com'>support@unthaa.com</a>.</p>"
   }
 ];
 
 const ContactUs = () => {
   return (
     <Stack>
-      {contactUs.map((pp, i) => (
+      {contactUs.map((c, i) => (
         <Fragment key={i}>
-          <Text fw={500}>{pp.title}</Text>
+          <Text fw={500}>{c.title}</Text>
           <Text>
             <div
               className="dangerouslySetInnerHTML"
-              dangerouslySetInnerHTML={{ __html: pp.content }}
+              dangerouslySetInnerHTML={{ __html: c.content }}
             />
           </Text>
           <Divider size="sm" my="md" />

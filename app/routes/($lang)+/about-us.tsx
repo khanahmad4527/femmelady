@@ -47,13 +47,13 @@ const aboutUs = [
 const AboutUs = () => {
   return (
     <Stack>
-      {aboutUs.map((pp, i) => (
+      {aboutUs.map((a, i) => (
         <Fragment key={i}>
-          <Text fw={500}>{pp.title}</Text>
+          <Text fw={500}>{a.title}</Text>
           <Text>
             <div
               className="dangerouslySetInnerHTML"
-              dangerouslySetInnerHTML={{ __html: pp.content }}
+              dangerouslySetInnerHTML={{ __html: a.content }}
             />
           </Text>
           <Divider size="sm" my="md" />
