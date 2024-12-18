@@ -5,7 +5,7 @@ const {
 
 // Add or update multiple keys at once
 // addOrUpdateKeysBatch({
-//   'common.categories': { en: 'Categories', ja: 'カテゴリー' }
+//   'order.summary': { en: 'Order Summary', ja: '注文概要' },
 // });
 
 // Delete multiple keys at once

@@ -31,11 +31,12 @@
   },
   "footer": {
     "links": {
-      "contact": "お問い合わせ",
-      "privacy": "プライバシー",
       "blog": "ブログ",
       "faq": "よくある質問",
-      "careers": "採用情報"
+      "aboutUs": "私たちについて",
+      "contactUs": "お問い合わせ",
+      "privacyPolicy": "プライバシーポリシー",
+      "termsOfService": "利用規約"
     },
     "copyright": "© Unthaa. すべての権利を保有します。",
     "signUpAgreement": "サインアップすることで、{privacyPolicy} と {termsOfService} に同意することになります。",
