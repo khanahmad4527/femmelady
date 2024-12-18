@@ -1,0 +1,9 @@
+.dangerouslySetInnerHTML {
+  padding: 0;
+  margin: 0;
+}
+
+.dangerouslySetInnerHTML p {
+  padding: 0;
+  margin: 0;
+}

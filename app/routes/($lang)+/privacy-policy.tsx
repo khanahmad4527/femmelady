@@ -1,4 +1,5 @@
-import { Box, Divider, Stack, Text, Title } from '@mantine/core';
+import { Divider, Stack, Text } from '@mantine/core';
+import { Fragment } from 'react/jsx-runtime';
 
 const privacyPolicies = [
   {
@@ -41,14 +42,17 @@ const privacyPolicies = [
 const PrivacyPolicy = () => {
   return (
     <Stack>
-      {privacyPolicies.map(pp => (
-        <Box>
+      {privacyPolicies.map((pp, i) => (
+        <Fragment key={i}>
           <Text fw={500}>{pp.title}</Text>
           <Text>
-            <div dangerouslySetInnerHTML={{ __html: pp.content }} />
+            <div
+              className="dangerouslySetInnerHTML"
+              dangerouslySetInnerHTML={{ __html: pp.content }}
+            />
           </Text>
           <Divider size="sm" my="md" />
-        </Box>
+        </Fragment>
       ))}
     </Stack>
   );
