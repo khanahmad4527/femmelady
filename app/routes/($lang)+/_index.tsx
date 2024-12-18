@@ -46,34 +46,42 @@ export default function Index() {
 
   const heroImages = [
     {
+      id: 'e8b1f3d7-6f8c-4b7d-89a3-c25f75d1a462',
       title: t('home.weddings'),
       image: wedding
     },
     {
+      id: 'c7a5e4f1-b2d8-4d7f-a6b1-89f3d42c7e75',
       title: t('home.candles'),
       image: candle
     },
     {
+      id: 'a2c4d7b9-85f3-41d6-b7e2-f47c8a1b925d',
       title: t('home.dresses'),
       image: dress
     },
     {
+      id: 'fbd8e7a1-0193-488b-bbc8-f5f23a5e34fc',
       title: t('home.jewelry'),
       image: jewelry
     },
     {
+      id: '3be2c5d7-9677-470f-b3ec-24d6eaa08f1a',
       title: t('home.bags'),
       image: bag
     },
     {
+      id: '9263c8ad-f0bc-423f-b2e7-cd74a6a31534',
       title: t('home.perfumes'),
       image: perfume
     },
     {
+      id: 'a59376ba-d431-4e6d-a06f-0bce86ab31db',
       title: t('home.watches'),
       image: watch
     },
     {
+      id: '75a254d3-f31b-4785-9b36-8d676df6fca5',
       title: t('home.shoes'),
       image: shoe
     }
@@ -110,7 +118,7 @@ export default function Index() {
         {heroImages.map(h => {
           return (
             <Box
-              key={h.title}
+              key={h.id}
               component={Link}
               to={buildLocalizedLink({
                 currentLanguage,

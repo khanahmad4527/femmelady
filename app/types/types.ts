@@ -26,6 +26,7 @@ export interface IProductCard {
 }
 
 export type ValueLabel = {
+  id: string;
   link: string;
   label: string;
 };

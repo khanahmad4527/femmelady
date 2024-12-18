@@ -22,50 +22,51 @@ const Footer = () => {
 
   const links = [
     {
+      id: '4b5f25a7-3d2e-4f79-a1b7-43767c88d1f3',
       link: buildLocalizedLink({ currentLanguage, primaryPath: 'contact' }),
       label: t('footer.links.contact')
     },
     {
+      id: 'd1c7f8a6-9b8e-4a27-a9f1-0c5f784e12c6',
       link: buildLocalizedLink({ currentLanguage, primaryPath: 'privacy' }),
       label: t('footer.links.privacy')
     },
     {
+      id: 'a34c8e57-6a41-4b39-9384-d4b7a1f27b89',
       link: buildLocalizedLink({ currentLanguage, primaryPath: 'blog' }),
       label: t('footer.links.blog')
     },
     {
+      id: 'cf72d496-5b84-42e9-a8e1-84f3c67b8a29',
       link: buildLocalizedLink({ currentLanguage, primaryPath: 'store' }),
       label: t('footer.links.store')
     },
     {
+      id: '7d4a5c83-9b2f-49e7-a5b4-2f1c3a8d6b47',
       link: buildLocalizedLink({ currentLanguage, primaryPath: 'careers' }),
       label: t('footer.links.careers')
     }
   ];
 
-  const items = links.map(link => (
-    <Anchor
-      key={link.link}
-      component={Link}
-      c="white"
-      to={link.link}
-      lh={1}
-      size="sm"
-    >
-      {link.label}
+  const items = links.map(l => (
+    <Anchor key={l.id} component={Link} c="white" to={l.link} lh={1} size="sm">
+      {l.label}
     </Anchor>
   ));
 
   const socialLinks = [
     {
+      id: 'e8b1f3d7-6f8c-4b7d-89a3-c25f75d1a462',
       link: 'https://x.com/khanahmad4527',
       icon: IconBrandX
     },
     {
+      id: 'c7a5e4f1-b2d8-4d7f-a6b1-89f3d42c7e75',
       link: 'https://www.youtube.com/@khanahmad452',
       icon: IconBrandYoutube
     },
     {
+      id: 'a2c4d7b9-85f3-41d6-b7e2-f47c8a1b925d',
       link: 'https://www.instagram.com/khanahmad4527',
       icon: IconBrandInstagram
     }
@@ -73,7 +74,7 @@ const Footer = () => {
 
   const socialItems = socialLinks.map(s => (
     <ActionIcon
-      key={s.link}
+      key={s.id}
       component={'a'}
       href={s.link}
       target="_blank"
@@ -112,7 +113,7 @@ const Footer = () => {
               {t('footer.signUpAgreement', {
                 privacyPolicy: (
                   <Anchor
-                    key={'footer.privacyPolicy'}
+                    key={'4f471f99-87e5-4df3-8ef4-9c2ddc7857b0'}
                     c={'white'}
                     fz="xs"
                     component={Link}
@@ -127,7 +128,7 @@ const Footer = () => {
                 ),
                 termsOfService: (
                   <Anchor
-                    key={'footer.termsOfService'}
+                    key={'5f38c819-c8d7-4512-b1e9-8ff2237ef3f2'}
                     c={'white'}
                     fz="xs"
                     component={Link}

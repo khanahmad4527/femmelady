@@ -38,7 +38,7 @@ const MobileDrawer = ({
         <LanguageSwitcher />
         {!isLoggedIn &&
           authLinks.map(l => (
-            <Button key={l.label} component={Link} to={l.link} color={'black'}>
+            <Button key={l.id} component={Link} to={l.link} color={'black'}>
               {l.label}
             </Button>
           ))}
@@ -59,7 +59,7 @@ const MobileDrawer = ({
           </>
         )}
         {categoryLinks.map(l => (
-          <Button key={l.label} component={Link} to={l.link} color={'black'}>
+          <Button key={l.id} component={Link} to={l.link} color={'black'}>
             {l.label}
           </Button>
         ))}
