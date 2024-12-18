@@ -7,3 +7,7 @@
   padding: 0;
   margin: 0;
 }
+
+.dangerouslySetInnerHTML a {
+  color: var(--mantine-color-black);
+}
