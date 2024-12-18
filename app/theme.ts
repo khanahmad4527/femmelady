@@ -6,6 +6,7 @@ import {
 } from '@mantine/core';
 
 import selectClasses from './styles/Select.module.scss';
+import accordionClasses from './styles/Accordion.module.scss';
 
 export const theme: MantineThemeOverride = createTheme({
   colors: {
@@ -72,6 +73,7 @@ export const theme: MantineThemeOverride = createTheme({
       }
     },
     Accordion: Accordion.extend({
+      classNames: accordionClasses,
       styles: {
         content: {
           padding: 0

@@ -45,7 +45,8 @@
     "getLatestNews": "最新のニュースを受け取りましょう"
   },
   "common": {
-    "logout": "ログアウト"
+    "logout": "ログアウト",
+    "categories": "カテゴリー"
   },
   "login": {
     "welcome": "Unthaaへようこそ、ログインするには",

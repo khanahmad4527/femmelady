@@ -45,7 +45,8 @@
     "getLatestNews": "Get the latest news from us"
   },
   "common": {
-    "logout": "Logout"
+    "logout": "Logout",
+    "categories": "Categories"
   },
   "login": {
     "welcome": "Welcome to Unthaa, login with",
