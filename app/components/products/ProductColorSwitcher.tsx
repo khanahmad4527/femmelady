@@ -1,7 +1,5 @@
 import {
   ActionIcon,
-  Avatar,
-  Center,
   Group,
   Image,
   Paper,
@@ -12,12 +10,22 @@ import {
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
-import { ProductColor, ProductColorTranslation } from '~/types/types';
+import {
+  ProductColor,
+  ProductColorTranslation,
+  ProductProductColor
+} from '~/types/types';
 import { getSingleTranslation } from '~/utils';
 
-const ProductColorSwitcher = ({ colors }: { colors: ProductColor[] }) => {
+const ProductColorSwitcher = ({
+  productColors
+}: {
+  productColors: ProductProductColor[];
+}) => {
   const t = useTranslation();
-  const [activeColor, setActiveColor] = useState<ProductColor>(colors[0]);
+  const [activeColor, setActiveColor] = useState<ProductColor>(
+    productColors[0].product_color_id as ProductColor
+  );
   const [searchParams, setSearchParams] = useSearchParams();
 
   const translation = getSingleTranslation(
@@ -26,7 +34,7 @@ const ProductColorSwitcher = ({ colors }: { colors: ProductColor[] }) => {
 
   const handleActiveColor = (id: string, index: number) => {
     if (id !== activeColor.id) {
-      setActiveColor(colors[index]);
+      setActiveColor(productColors[index].product_color_id as ProductColor);
     }
   };
 
@@ -40,7 +48,8 @@ const ProductColorSwitcher = ({ colors }: { colors: ProductColor[] }) => {
       <Title order={5}>{t('products.productColor')}</Title>
       <Text tt={'capitalize'}>{translation.name}</Text>
       <Group gap={4}>
-        {colors?.map((c, index) => {
+        {productColors?.map((pc, index) => {
+          const c = pc.product_color_id as ProductColor;
           return (
             <Paper
               key={c.id}

@@ -12,7 +12,12 @@ import { Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import { IconHeart, IconPlus } from '~/icons';
-import { Product, ProductColor, ProductTranslation } from '~/types/types';
+import {
+  Product,
+  ProductColor,
+  ProductProductColor,
+  ProductTranslation
+} from '~/types/types';
 import {
   buildLocalizedLink,
   formatCurrency,
@@ -20,9 +25,13 @@ import {
   getSingleTranslation
 } from '~/utils';
 import ProductColorSwitcher from './ProductColorSwitcher';
+import { useHover } from '@mantine/hooks';
 
 const ProductCard = (props: Product) => {
-  const { colors, feature_image_1, translations } = props;
+  const { hovered, ref } = useHover();
+
+  const { colors, feature_image_1, feature_image_2, translations, price, id } =
+    props;
 
   const translation = getSingleTranslation({
     translations
@@ -53,18 +62,21 @@ const ProductCard = (props: Product) => {
       </ActionIcon>
 
       <Box
+        ref={ref as any}
         h={300}
         component={Link}
         to={buildLocalizedLink({
           currentLanguage,
           primaryPath: 'products',
-          secondaryPath: '123'
+          secondaryPath: id
         })}
       >
         <Image
           h={'100%'}
           fit={'contain'}
-          src={getImageUrl({ id: feature_image_1 as string })}
+          src={getImageUrl({
+            id: (hovered ? feature_image_2 : feature_image_1) as string
+          })}
           alt={translation.title!}
           loading={'lazy'}
         />
@@ -73,7 +85,9 @@ const ProductCard = (props: Product) => {
       <Card.Section bg="primary.1" inheritPadding py={'md'}>
         <Group align={'flex-end'}>
           <Box mr={'auto'}>
-            <ProductColorSwitcher colors={colors as ProductColor[]} />
+            <ProductColorSwitcher
+              productColors={colors as ProductProductColor[]}
+            />
           </Box>
           <Box ml={'auto'}>
             <ActionIcon
@@ -89,8 +103,10 @@ const ProductCard = (props: Product) => {
       </Card.Section>
 
       <Box>
-        <Text tt={'capitalize'}>{translation.title}</Text>
-        <Text>{formatCurrency({ currentLanguage, value: 1234.56 })}</Text>
+        <Text tt={'capitalize'}>{translation?.title}</Text>
+        <Text>
+          {formatCurrency({ currentLanguage, value: price as number })}
+        </Text>
       </Box>
     </Card>
   );

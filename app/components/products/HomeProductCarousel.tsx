@@ -1,16 +1,5 @@
 import { Carousel } from '@mantine/carousel';
-import {
-  ActionIcon,
-  Avatar,
-  Box,
-  Card,
-  Group,
-  Image,
-  Paper,
-  Stack,
-  Text,
-  Title
-} from '@mantine/core';
+import { Box, Card, Image, Stack, Title } from '@mantine/core';
 import { useHover, useInViewport } from '@mantine/hooks';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { useEffect, useRef } from 'react';
@@ -19,7 +8,11 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
-import { Product, ProductColor, ProductTranslation } from '~/types/types';
+import {
+  Product,
+  ProductProductColor,
+  ProductTranslation
+} from '~/types/types';
 import ProductColorSwitcher from './ProductColorSwitcher';
 import { buildLocalizedLink, getImageUrl, getSingleTranslation } from '~/utils';
 
@@ -103,7 +96,9 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                   />
                 </Box>
 
-                <ProductColorSwitcher colors={p.colors as ProductColor[]} />
+                <ProductColorSwitcher
+                  productColors={p.colors as ProductProductColor[]}
+                />
               </Card>
             </Carousel.Slide>
           );

@@ -7,7 +7,6 @@ import perfume from '@assets/images/perfume.jpg';
 import shoe from '@assets/images/shoe.jpg';
 import watch from '@assets/images/watch.jpg';
 import wedding from '@assets/images/wedding.jpg';
-import { readItems } from '@directus/sdk';
 import {
   Box,
   Button,
@@ -24,9 +23,9 @@ import { Link, useLoaderData } from 'react-router';
 import HomeProductCarousel from '~/components/products/HomeProductCarousel';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
-import { directus } from '~/server/directus';
+import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
-import { buildLocalizedLink, getImageUrl } from '~/utils';
+import { buildLocalizedLink } from '~/utils';
 
 export const meta: MetaFunction = () => {
   return [
@@ -36,17 +35,7 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async () => {
-  const products = await directus.request(
-    readItems('product', {
-      fields: [
-        '*',
-        { sizes: ['*'] },
-        { translations: ['*'] },
-        { images: ['*', { images: ['*'] }] },
-        { colors: ['*', { translations: ['*'] }] }
-      ]
-    })
-  );
+  const products = await getProducts();
 
   return { products };
 };

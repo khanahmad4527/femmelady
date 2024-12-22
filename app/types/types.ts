@@ -17,6 +17,7 @@ export type TranslationKeys = 'en' | 'ja';
 
 export type Product = components['schemas']['ItemsProduct'];
 
+export type ProductProductColor = components['schemas']['ItemsProductProductColor'];
 export type ProductColor = components['schemas']['ItemsProductColor'];
 
 export type ProductSize = components['schemas']['ItemsProductSize'];

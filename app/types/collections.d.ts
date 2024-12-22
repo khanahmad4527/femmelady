@@ -1857,6 +1857,45 @@ export interface paths {
      */
     patch: operations["updateSingleItemsProductColorTranslations"];
   };
+  "/items/product_product_color": {
+    /**
+     * List Items
+     * @description List the product_product_color items.
+     */
+    get: operations["readItemsProductProductColor"];
+    /**
+     * Create an Item
+     * @description Create a new product_product_color item.
+     */
+    post: operations["createItemsProductProductColor"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing product_product_color items.
+     */
+    delete: operations["deleteItemsProductProductColor"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple product_product_color items at the same time.
+     */
+    patch: operations["updateItemsProductProductColor"];
+  };
+  "/items/product_product_color/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single product_product_color item by unique identifier.
+     */
+    get: operations["readSingleItemsProductProductColor"];
+    /**
+     * Delete an Item
+     * @description Delete an existing product_product_color item.
+     */
+    delete: operations["deleteSingleItemsProductProductColor"];
+    /**
+     * Update an Item
+     * @description Update an existing product_product_color item.
+     */
+    patch: operations["updateSingleItemsProductProductColor"];
+  };
   "/items/product_image_files_1": {
     /**
      * List Items
@@ -1934,6 +1973,45 @@ export interface paths {
      * @description Update an existing product_color item.
      */
     patch: operations["updateSingleItemsProductColor"];
+  };
+  "/items/product_product_image": {
+    /**
+     * List Items
+     * @description List the product_product_image items.
+     */
+    get: operations["readItemsProductProductImage"];
+    /**
+     * Create an Item
+     * @description Create a new product_product_image item.
+     */
+    post: operations["createItemsProductProductImage"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing product_product_image items.
+     */
+    delete: operations["deleteItemsProductProductImage"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple product_product_image items at the same time.
+     */
+    patch: operations["updateItemsProductProductImage"];
+  };
+  "/items/product_product_image/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single product_product_image item by unique identifier.
+     */
+    get: operations["readSingleItemsProductProductImage"];
+    /**
+     * Delete an Item
+     * @description Delete an existing product_product_image item.
+     */
+    delete: operations["deleteSingleItemsProductProductImage"];
+    /**
+     * Update an Item
+     * @description Update an existing product_product_image item.
+     */
+    patch: operations["updateSingleItemsProductProductImage"];
   };
 }
 
@@ -2950,8 +3028,8 @@ export interface components {
       sizes?: string[] | components["schemas"]["ItemsProductSize"][] | null;
       coupons?: number[] | components["schemas"]["ItemsProductCouponJunction"][] | null;
       translations?: number[] | components["schemas"]["ItemsProductTranslations"][] | null;
-      images?: string[] | components["schemas"]["ItemsProductImage"][] | null;
-      colors?: string[] | components["schemas"]["ItemsProductColor"][] | null;
+      colors?: number[] | components["schemas"]["ItemsProductProductColor"][] | null;
+      images?: number[] | components["schemas"]["ItemsProductProductImage"][] | null;
     };
     ItemsAddresses: {
       city?: string | null;
@@ -3211,6 +3289,11 @@ export interface components {
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       name?: string | null;
     };
+    ItemsProductProductColor: {
+      id?: number;
+      product_id?: string | components["schemas"]["ItemsProduct"] | null;
+      product_color_id?: string | components["schemas"]["ItemsProductColor"] | null;
+    };
     ItemsProductImageFiles1: {
       id?: number;
       product_image_id?: string | components["schemas"]["ItemsProductImage"] | null;
@@ -3228,6 +3311,11 @@ export interface components {
       image_set?: string | components["schemas"]["ItemsProductImage"] | null;
       product?: string | components["schemas"]["ItemsProduct"] | null;
       translations?: number[] | components["schemas"]["ItemsProductColorTranslations"][] | null;
+    };
+    ItemsProductProductImage: {
+      id?: number;
+      product_id?: string | components["schemas"]["ItemsProduct"] | null;
+      product_image_id?: string | components["schemas"]["ItemsProductImage"] | null;
     };
   };
   responses: {
@@ -12695,6 +12783,189 @@ export interface operations {
   };
   /**
    * List Items
+   * @description List the product_product_color items.
+   */
+  readItemsProductProductColor: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsProductProductColor"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new product_product_color item.
+   */
+  createItemsProductProductColor: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsProductProductColor"][] | components["schemas"]["ItemsProductProductColor"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing product_product_color items.
+   */
+  deleteItemsProductProductColor: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple product_product_color items at the same time.
+   */
+  updateItemsProductProductColor: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsProductProductColor"][] | components["schemas"]["ItemsProductProductColor"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single product_product_color item by unique identifier.
+   */
+  readSingleItemsProductProductColor: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsProductProductColor"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing product_product_color item.
+   */
+  deleteSingleItemsProductProductColor: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing product_product_color item.
+   */
+  updateSingleItemsProductProductColor: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsProductProductColor"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsProductProductColor"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
    * @description List the product_image_files_1 items.
    */
   readItemsProductImageFiles1: {
@@ -13059,6 +13330,189 @@ export interface operations {
       404: components["responses"]["NotFoundError"];
     };
   };
+  /**
+   * List Items
+   * @description List the product_product_image items.
+   */
+  readItemsProductProductImage: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsProductProductImage"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new product_product_image item.
+   */
+  createItemsProductProductImage: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsProductProductImage"][] | components["schemas"]["ItemsProductProductImage"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing product_product_image items.
+   */
+  deleteItemsProductProductImage: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple product_product_image items at the same time.
+   */
+  updateItemsProductProductImage: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsProductProductImage"][] | components["schemas"]["ItemsProductProductImage"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single product_product_image item by unique identifier.
+   */
+  readSingleItemsProductProductImage: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsProductProductImage"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing product_product_image item.
+   */
+  deleteSingleItemsProductProductImage: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing product_product_image item.
+   */
+  updateSingleItemsProductProductImage: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsProductProductImage"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsProductProductImage"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
 }
 
 
@@ -13090,6 +13544,8 @@ export type Schema = {
   product_image_files: components["schemas"]["ItemsProductImageFiles"][];
   product_image: components["schemas"]["ItemsProductImage"][];
   product_color_translations: components["schemas"]["ItemsProductColorTranslations"][];
+  product_product_color: components["schemas"]["ItemsProductProductColor"][];
   product_image_files_1: components["schemas"]["ItemsProductImageFiles1"][];
   product_color: components["schemas"]["ItemsProductColor"][];
+  product_product_image: components["schemas"]["ItemsProductProductImage"][];
 };

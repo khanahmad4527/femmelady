@@ -2,17 +2,13 @@ import {
   ActionIcon,
   Box,
   Card,
-  Divider,
-  Grid,
   Group,
   Image,
   Stack,
   Text,
-  ThemeIcon,
-  Title
+  ThemeIcon
 } from '@mantine/core';
 import { Link } from 'react-router';
-import { PRODUCTS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconMinus, IconPlus, IconX } from '~/icons';
@@ -21,7 +17,7 @@ import { buildLocalizedLink, formatCurrency, getImageUrl } from '~/utils';
 const CheckoutCartCard = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
-  const p = PRODUCTS[1];
+  const p = {};
   return (
     <Card
       pos={'relative'}
