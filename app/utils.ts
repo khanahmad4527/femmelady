@@ -1,7 +1,7 @@
 import { useForm } from '@mantine/form';
-import { useFetcher } from 'react-router';
+import { useFetcher, useOutletContext } from 'react-router';
 import { z } from 'zod';
-import { TranslationKeys } from './types/types';
+import { OutletContext, TranslationKeys } from './types/types';
 import { LANGUAGE_TO_LOCALE_LANGUAGE, LOCALE_TO_CURRENCY } from './constant';
 
 export const submitForm = <T extends Record<string, any>>(
@@ -136,4 +136,28 @@ export const buildLocalizedLink = ({
   }
 
   return `/${currentLanguage}`;
+};
+
+export const getSingleTranslation = (translations: any) => {
+  if (typeof translations?.[0] !== 'object') {
+    return {};
+  }
+
+  return translations[0];
+};
+
+export const getImageUrl = ({
+  id,
+  h = 300,
+  w = 300,
+  DIRECTUS_URL
+}: {
+  id: string;
+  h?: number;
+  w?: number;
+  DIRECTUS_URL?: string;
+}) => {
+  const { env } = useOutletContext<OutletContext>();
+
+  return `${env?.DIRECTUS_URL || DIRECTUS_URL}/assets/${id}?height=${h}&width=${w}`;
 };

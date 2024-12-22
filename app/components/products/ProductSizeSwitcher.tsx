@@ -2,11 +2,11 @@ import { Center, Group, Stack, Title } from '@mantine/core';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
-import { IProductSize } from '~/types/types';
+import { ProductSize } from '~/types/types';
 
 const switchSize = 40;
 
-const ProductSizeSwitcher = ({ sizes }: { sizes: IProductSize[] }) => {
+const ProductSizeSwitcher = ({ sizes }: { sizes: ProductSize[] }) => {
   const t = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -42,9 +42,9 @@ const ProductSizeSwitcher = ({ sizes }: { sizes: IProductSize[] }) => {
                   : '2px solid transparent',
               cursor: 'pointer'
             }}
-            onClick={() => handleActiveSize(s.size)}
+            onClick={() => handleActiveSize(s.size as string)}
           >
-            {s.size.toLocaleUpperCase()}
+            {s.size?.toLocaleUpperCase()}
           </Center>
         ))}
       </Group>

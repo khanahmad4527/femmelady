@@ -17,7 +17,7 @@ import ProductSizeSwitcher from '~/components/products/ProductSizeSwitcher';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
-import { formatCurrency } from '~/utils';
+import { formatCurrency, getImageUrl } from '~/utils';
 
 export const loader = async () => {
   const product = {
@@ -204,7 +204,7 @@ const SingleProduct = () => {
                   <Image
                     w={'100%'}
                     fit={'contain'}
-                    src={`http://localhost:8055/assets/${i.directus_files_id}`}
+                    src={getImageUrl({ id: i.directus_files_id })}
                     alt={productTranslation.title}
                     loading={'lazy'}
                   />
@@ -218,7 +218,7 @@ const SingleProduct = () => {
             <Image
               h={'100%'}
               fit={'contain'}
-              src={`http://localhost:8055/assets/${activeImageId}`}
+              src={getImageUrl({ id: activeImageId })}
               alt={productTranslation.title}
               loading={'lazy'}
             />
@@ -239,7 +239,7 @@ const SingleProduct = () => {
                 <Image
                   h={'100%'}
                   fit={'contain'}
-                  src={`http://localhost:8055/assets/${i.directus_files_id}`}
+                  src={getImageUrl({ id: i.directus_files_id })}
                   alt={productTranslation.title}
                   loading={'lazy'}
                 />

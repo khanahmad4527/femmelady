@@ -14,7 +14,7 @@ import { PRODUCTS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconMinus, IconPlus, IconX } from '~/icons';
-import { buildLocalizedLink, formatCurrency } from '~/utils';
+import { buildLocalizedLink, formatCurrency, getImageUrl } from '~/utils';
 
 const HeaderCartCard = () => {
   const t = useTranslation();
@@ -23,7 +23,7 @@ const HeaderCartCard = () => {
   return (
     <>
       <Grid>
-        <Grid.Col span={4} >
+        <Grid.Col span={4}>
           <Box
             component={Link}
             to={buildLocalizedLink({
@@ -35,7 +35,7 @@ const HeaderCartCard = () => {
             <Image
               h={'100%'}
               fit={'contain'}
-              src={p.image}
+              src={getImageUrl({ id: p.image })}
               alt={p.name}
               loading={'lazy'}
             />

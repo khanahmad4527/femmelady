@@ -12,12 +12,21 @@ import { Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import { IconHeart, IconPlus } from '~/icons';
-import { IProductCard } from '~/types/types';
-import { buildLocalizedLink, formatCurrency } from '~/utils';
+import { Product, ProductColor, ProductTranslation } from '~/types/types';
+import {
+  buildLocalizedLink,
+  formatCurrency,
+  getImageUrl,
+  getSingleTranslation
+} from '~/utils';
 import ProductColorSwitcher from './ProductColorSwitcher';
 
-const ProductCard = (props: IProductCard) => {
-  const { name, colors, image } = props;
+const ProductCard = (props: Product) => {
+  const { colors, feature_image_1, translations } = props;
+
+  const translation = getSingleTranslation({
+    translations
+  }) as ProductTranslation;
 
   const { currentLanguage } = useCurrentLanguage();
 
@@ -55,8 +64,8 @@ const ProductCard = (props: IProductCard) => {
         <Image
           h={'100%'}
           fit={'contain'}
-          src={image}
-          alt={name}
+          src={getImageUrl({ id: feature_image_1 as string })}
+          alt={translation.title!}
           loading={'lazy'}
         />
       </Box>
@@ -64,7 +73,7 @@ const ProductCard = (props: IProductCard) => {
       <Card.Section bg="primary.1" inheritPadding py={'md'}>
         <Group align={'flex-end'}>
           <Box mr={'auto'}>
-            <ProductColorSwitcher colors={colors} />
+            <ProductColorSwitcher colors={colors as ProductColor[]} />
           </Box>
           <Box ml={'auto'}>
             <ActionIcon
@@ -80,7 +89,7 @@ const ProductCard = (props: IProductCard) => {
       </Card.Section>
 
       <Box>
-        <Text>{name}</Text>
+        <Text tt={'capitalize'}>{translation.title}</Text>
         <Text>{formatCurrency({ currentLanguage, value: 1234.56 })}</Text>
       </Box>
     </Card>

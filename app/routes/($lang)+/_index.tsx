@@ -7,6 +7,7 @@ import perfume from '@assets/images/perfume.jpg';
 import shoe from '@assets/images/shoe.jpg';
 import watch from '@assets/images/watch.jpg';
 import wedding from '@assets/images/wedding.jpg';
+import { readItems } from '@directus/sdk';
 import {
   Box,
   Button,
@@ -18,15 +19,14 @@ import {
   Title
 } from '@mantine/core';
 import type { MetaFunction } from 'react-router';
-import { Link } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 
 import HomeProductCarousel from '~/components/products/HomeProductCarousel';
-import { PRODUCTS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
+import { directus } from '~/server/directus';
 import commonClasses from '~/styles/Common.module.scss';
-import { IProductCard } from '~/types/types';
-import { buildLocalizedLink } from '~/utils';
+import { buildLocalizedLink, getImageUrl } from '~/utils';
 
 export const meta: MetaFunction = () => {
   return [
@@ -35,7 +35,25 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export const loader = async () => {
+  const products = await directus.request(
+    readItems('product', {
+      fields: [
+        '*',
+        { sizes: ['*'] },
+        { translations: ['*'] },
+        { images: ['*', { images: ['*'] }] },
+        { colors: ['*', { translations: ['*'] }] }
+      ]
+    })
+  );
+
+  return { products };
+};
+
 export default function Index() {
+  const { products } = useLoaderData<typeof loader>();
+
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
 
@@ -155,7 +173,7 @@ export default function Index() {
         </Stack>
       </Paper>
 
-      <HomeProductCarousel products={PRODUCTS as IProductCard[]} />
+      <HomeProductCarousel products={products} />
     </Stack>
   );
 }

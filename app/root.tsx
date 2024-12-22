@@ -18,14 +18,17 @@ import Document from './components/Document';
 import useCurrentLanguage from './hooks/useCurrentLanguage';
 import { theme } from './theme';
 import { Route } from './+types/root';
+import { TranslationKeys } from './types/types';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
-  const currentLanguage = params?.lang;
+  const currentLanguage = params?.lang as TranslationKeys;
   if (!currentLanguage) {
     return redirect('/en');
   }
 
-  return { isLoggedIn: true, currentLanguage };
+  const env = { DIRECTUS_URL: process.env?.DIRECTUS_URL };
+
+  return { isLoggedIn: true, currentLanguage, env };
 };
 
 export const links: LinksFunction = () => {

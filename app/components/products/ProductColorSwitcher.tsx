@@ -1,7 +1,9 @@
 import {
   ActionIcon,
   Avatar,
+  Center,
   Group,
+  Image,
   Paper,
   Stack,
   Text,
@@ -10,14 +12,17 @@ import {
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
-import { IProductColor } from '~/types/types';
+import { ProductColor, ProductColorTranslation } from '~/types/types';
+import { getSingleTranslation } from '~/utils';
 
-const ProductColorSwitcher = ({ colors }: { colors: IProductColor[] }) => {
+const ProductColorSwitcher = ({ colors }: { colors: ProductColor[] }) => {
   const t = useTranslation();
-  const [activeColor, setActiveColor] = useState<IProductColor>(colors[0]);
+  const [activeColor, setActiveColor] = useState<ProductColor>(colors[0]);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const translation = activeColor.translations[0];
+  const translation = getSingleTranslation(
+    activeColor.translations
+  ) as ProductColorTranslation;
 
   const handleActiveColor = (id: string, index: number) => {
     if (id !== activeColor.id) {
@@ -33,7 +38,7 @@ const ProductColorSwitcher = ({ colors }: { colors: IProductColor[] }) => {
   return (
     <Stack gap={4}>
       <Title order={5}>{t('products.productColor')}</Title>
-      <Text>{translation.name}</Text>
+      <Text tt={'capitalize'}>{translation.name}</Text>
       <Group gap={4}>
         {colors?.map((c, index) => {
           return (
@@ -52,12 +57,12 @@ const ProductColorSwitcher = ({ colors }: { colors: IProductColor[] }) => {
               }}
               onClick={() => {
                 handleActiveColor(c.id, index);
-                handleActiveImageSet(activeColor.image_set);
+                handleActiveImageSet(activeColor?.image_set as string);
               }}
             >
-              {c.isTexture ? (
-                <ActionIcon size="sm" radius="xl" aria-label="Settings">
-                  <Avatar src={c.texture!} radius="xl" />
+              {c?.isTexture ? (
+                <ActionIcon size="sm" radius="xl">
+                  <Image src={c.texture as string} radius="xl" />
                 </ActionIcon>
               ) : (
                 <ActionIcon color={c.hex!} size="sm" radius="xl" />
