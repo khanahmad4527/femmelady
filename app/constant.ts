@@ -168,31 +168,31 @@ export const PRODUCTS = [
         name: 'Black',
         value: 'black',
         hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: 'e6e9a520-6456-4fcc-a1a9-c00bffb48f1e'
       },
       {
         name: 'Red',
         value: 'red',
         hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '066f4f0f-9376-42a6-a2f2-4c2d0d19a042'
       },
       {
         name: 'Blue',
         hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '78eb1c3e-6077-458e-b229-5f442635e89a'
       },
       {
         name: 'Pattern',
         value: 'pattern',
         hex: null,
-        isPattern: true,
-        pattern_img:
+        isTexture: true,
+        texture:
           'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
         id: '33721c22-73e7-471d-80a5-8a208b0f2d6d'
       }
@@ -208,31 +208,31 @@ export const PRODUCTS = [
         name: 'Black',
         value: 'black',
         hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '4a2ec589-d583-4ed5-bbd9-0e02568ee857'
       },
       {
         name: 'Red',
         value: 'red',
         hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '6799331d-6ae3-40a3-aefc-2ae217191b8a'
       },
       {
         name: 'Blue',
         hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '48ed9214-8d9a-491e-bf6f-22c1ce4cca18'
       },
       {
         name: 'Pattern',
         value: 'pattern',
         hex: null,
-        isPattern: true,
-        pattern_img:
+        isTexture: true,
+        texture:
           'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
         id: '726c4489-c0ff-47c3-9878-85e53248000b'
       }
@@ -248,32 +248,32 @@ export const PRODUCTS = [
         name: 'Black',
         value: 'black',
         hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: 'b866231f-54e3-4961-8fe3-a6c9f3dca0f0'
       },
       {
         name: 'Red',
         value: 'red',
         hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '77328e84-de2d-440d-aedc-64ae57a09731'
       },
       {
         name: 'Blue',
         value: 'blue',
         hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '8a7b67d0-8411-48af-8af0-a61bead6d415'
       },
       {
         name: 'Pattern',
         value: 'pattern',
         hex: null,
-        isPattern: true,
-        pattern_img:
+        isTexture: true,
+        texture:
           'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
         id: '2af77ba4-2ed9-4abe-9000-f78afc05c2aa'
       }
@@ -289,32 +289,32 @@ export const PRODUCTS = [
         name: 'Black',
         value: 'black',
         hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: 'b0990ace-4767-4e78-878d-aa264d72ac51'
       },
       {
         name: 'Red',
         value: 'red',
         hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '3b5b03dd-3eec-4b96-8430-be94940bf98b'
       },
       {
         name: 'Blue',
         value: 'blue',
         hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: 'ef56626d-c6f6-4af3-b219-c331e67b7dd6'
       },
       {
         name: 'Pattern',
         value: 'pattern',
         hex: null,
-        isPattern: true,
-        pattern_img:
+        isTexture: true,
+        texture:
           'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
         id: '013994c8-da0a-40cb-ad3e-12f3907cd2f8'
       }
@@ -330,32 +330,32 @@ export const PRODUCTS = [
         name: 'Black',
         value: 'black',
         hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '92f7563a-ba09-42e7-97c7-63dc5302d8ab'
       },
       {
         name: 'Red',
         value: 'red',
         hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '7a35d66c-76bb-46a7-8332-e25f293ceb03'
       },
       {
         name: 'Blue',
         value: 'blue',
         hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '3036e216-3a46-43b3-96df-6bc27054a172'
       },
       {
         name: 'Pattern',
         value: 'pattern',
         hex: null,
-        isPattern: true,
-        pattern_img:
+        isTexture: true,
+        texture:
           'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
         id: 'ef3ec3fd-fdd4-4d84-b823-bb126de69082'
       }
@@ -371,32 +371,32 @@ export const PRODUCTS = [
         name: 'Black',
         value: 'black',
         hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: 'd29b5412-2af3-49a2-b08e-1995bd31d67d'
       },
       {
         name: 'Red',
         value: 'red',
         hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '6cb824e7-ac68-4ee9-84d6-5e2c9b0f1f40'
       },
       {
         name: 'Blue',
         value: 'blue',
         hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '9f591012-72c0-4179-866f-1858cd68802b'
       },
       {
         name: 'Pattern',
         value: 'pattern',
         hex: null,
-        isPattern: true,
-        pattern_img:
+        isTexture: true,
+        texture:
           'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
         id: '9dec6ad0-a79f-454f-b395-ca3fea7c6f23'
       }
@@ -412,32 +412,32 @@ export const PRODUCTS = [
         name: 'Black',
         value: 'black',
         hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '6c0ef15f-c754-4e44-b64f-d5937a0e1697'
       },
       {
         name: 'Red',
         value: 'red',
         hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '117cf2fa-6482-455b-b2b7-e2d15181d50a'
       },
       {
         name: 'Blue',
         value: 'blue',
         hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '5247635c-0843-4a0e-8bd4-16ee71caa5e4'
       },
       {
         name: 'Pattern',
         value: 'pattern',
         hex: null,
-        isPattern: true,
-        pattern_img:
+        isTexture: true,
+        texture:
           'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
         id: 'be95b276-5ec0-4d06-bc3e-2bcec773355c'
       }
@@ -453,32 +453,32 @@ export const PRODUCTS = [
         name: 'Black',
         value: 'black',
         hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '458c6e92-51c0-48ad-ae85-71aa21ee1138'
       },
       {
         name: 'Red',
         value: 'red',
         hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '1f94bf93-f840-435b-9bf6-b446ab87e355'
       },
       {
         name: 'Blue',
         value: 'blue',
         hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '13d86268-18f3-4f99-a98b-9b238ee66bd1'
       },
       {
         name: 'Pattern',
         value: 'pattern',
         hex: null,
-        isPattern: true,
-        pattern_img:
+        isTexture: true,
+        texture:
           'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
         id: 'ae7e130a-f853-45d4-b82f-927d8925b54f'
       }
@@ -494,32 +494,32 @@ export const PRODUCTS = [
         name: 'Black',
         value: 'black',
         hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '45d073f8-6f05-42df-8c19-09d7df2f57b7'
       },
       {
         name: 'Red',
         value: 'red',
         hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '4d54b2db-225f-41ef-bf0e-09e1b289a8a4'
       },
       {
         name: 'Blue',
         value: 'blue',
         hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '3213ee52-cd68-4658-b03a-1009306c0370'
       },
       {
         name: 'Pattern',
         value: 'pattern',
         hex: null,
-        isPattern: true,
-        pattern_img:
+        isTexture: true,
+        texture:
           'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
         id: '7d141d5a-2843-4796-a7ed-cbf215104617'
       }
@@ -535,32 +535,32 @@ export const PRODUCTS = [
         name: 'Black',
         value: 'black',
         hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '8dd518f7-8426-4711-bc9c-2a0e8e8a9440'
       },
       {
         name: 'Red',
         value: 'red',
         hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: '4e25ad3d-4695-4da5-82b1-5e7c472c25e9'
       },
       {
         name: 'Blue',
         value: 'blue',
         hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: 'dabacb98-039f-42fd-a3a0-2c8ebc2a34a5'
       },
       {
         name: 'Pattern',
         value: 'pattern',
         hex: null,
-        isPattern: true,
-        pattern_img:
+        isTexture: true,
+        texture:
           'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
         id: '634c9b5b-7e08-4ab7-b982-656aad9378cf'
       }
@@ -576,32 +576,32 @@ export const PRODUCTS = [
         name: 'Black',
         value: 'black',
         hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: 'aa4158b1-c5e8-40e2-9582-e3e87e256663'
       },
       {
         name: 'Red',
         value: 'red',
         hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: 'de21bd2c-3776-41e6-9d7c-f4e40f2b8ad8'
       },
       {
         name: 'Blue',
         value: 'blue',
         hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
+        isTexture: false,
+        texture: null,
         id: 'e70d98ab-064d-4f34-b8f2-aadc696126c5'
       },
       {
         name: 'Pattern',
         value: 'pattern',
         hex: null,
-        isPattern: true,
-        pattern_img:
+        isTexture: true,
+        texture:
           'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
         id: 'a7453220-bfe9-4e00-afc4-5828691718fd'
       }

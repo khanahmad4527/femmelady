@@ -121,7 +121,7 @@ export const formatNumber = ({
 export const buildLocalizedLink = ({
   currentLanguage,
   primaryPath,
-  secondaryPath,
+  secondaryPath
 }: {
   currentLanguage: TranslationKeys;
   primaryPath?: string;
@@ -137,4 +137,3 @@ export const buildLocalizedLink = ({
 
   return `/${currentLanguage}`;
 };
-
