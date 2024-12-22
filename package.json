@@ -13,6 +13,7 @@
     "share": "lt -p 3000 -s unthaa"
   },
   "dependencies": {
+    "@directus/sdk": "^18.0.3",
     "@mantine/carousel": "^7.15.1",
     "@mantine/core": "^7.15.1",
     "@mantine/form": "^7.15.1",
