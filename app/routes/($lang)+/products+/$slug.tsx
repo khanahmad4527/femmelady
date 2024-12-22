@@ -6,22 +6,18 @@ import {
   Image,
   ScrollArea,
   Stack,
-  Text,
   Title
 } from '@mantine/core';
-import { i } from 'node_modules/@react-router/dev/dist/routes-DHIOx0R9';
+import { memo, useState } from 'react';
 import { useLoaderData, useSearchParams } from 'react-router';
 import ProductCartQuantity from '~/components/products/ProductCartQuantity';
 import ProductColorSwitcher from '~/components/products/ProductColorSwitcher';
 import ProductReview from '~/components/products/ProductReview';
 import ProductSizeSwitcher from '~/components/products/ProductSizeSwitcher';
-import { PRODUCTS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
 import { formatCurrency } from '~/utils';
-
-export const shouldRevalidate = () => false;
 
 export const loader = async () => {
   const product = {
@@ -157,26 +153,29 @@ export const loader = async () => {
 
 const SingleProduct = () => {
   const product = useLoaderData<typeof loader>();
+  const t = useTranslation();
+  const { currentLanguage } = useCurrentLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const imageSet = searchParams.get('image-set');
-
   const activeImageSet =
-    product.images.find(i => i.id === imageSet) ?? product.images[0];
+    product.images.find(i => i.id === searchParams.get('image-set')) ??
+    product.images[0];
 
-  const activeImageId =
-    searchParams.get('image-id') ?? activeImageSet.images[0].directus_files_id;
+  const [activeImageId, setActiveImageId] = useState(
+    searchParams.get('image-id') ?? activeImageSet.images[0].directus_files_id
+  );
 
   const productTranslation = product.translations[0];
 
-  const t = useTranslation();
-  const { currentLanguage } = useCurrentLanguage();
-  // const product = PRODUCTS[1];
+  const handleActiveImage = (id: string) => {
+    setActiveImageId(id);
 
-  const handleActiveImageId = (imageId: string) => {
     const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set('image-id', imageId);
-    setSearchParams(newSearchParams, { preventScrollReset: true });
+    newSearchParams.set('image-id', id);
+
+    setSearchParams(newSearchParams, {
+      preventScrollReset: true
+    });
   };
 
   return (
@@ -197,10 +196,10 @@ const SingleProduct = () => {
                     border:
                       i.directus_files_id === activeImageId
                         ? '2px solid black'
-                        : '',
+                        : '2px solid transparent',
                     width: '100%'
                   }}
-                  onClick={() => handleActiveImageId(i.directus_files_id)}
+                  onClick={() => handleActiveImage(i.directus_files_id)}
                 >
                   <Image
                     w={'100%'}
@@ -278,4 +277,4 @@ const SingleProduct = () => {
   );
 };
 
-export default SingleProduct;
+export default memo(SingleProduct);

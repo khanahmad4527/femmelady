@@ -1,5 +1,5 @@
 import { Center, Group, Stack, Title } from '@mantine/core';
-import { memo } from 'react';
+import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
 import { IProductSize } from '~/types/types';
@@ -7,15 +7,22 @@ import { IProductSize } from '~/types/types';
 const switchSize = 40;
 
 const ProductSizeSwitcher = ({ sizes }: { sizes: IProductSize[] }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
   const t = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const activeSize = searchParams.get('size');
+  const [activeSize, setActiveSize] = useState(
+    searchParams.get('size') ?? sizes[0].size
+  );
 
-  const handleActiveSize = (imageSet: string) => {
+  const handleActiveSize = (size: string) => {
+    setActiveSize(size);
+
     const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set('size', imageSet);
-    setSearchParams(newSearchParams, { preventScrollReset: true });
+    newSearchParams.set('size', size);
+
+    setSearchParams(newSearchParams, {
+      preventScrollReset: true
+    });
   };
 
   return (
@@ -30,7 +37,9 @@ const ProductSizeSwitcher = ({ sizes }: { sizes: IProductSize[] }) => {
             p={'sm'}
             style={{
               border:
-                s.size === activeSize ? '2px solid black' : '',
+                s.size === activeSize
+                  ? '2px solid black'
+                  : '2px solid transparent',
               cursor: 'pointer'
             }}
             onClick={() => handleActiveSize(s.size)}
@@ -43,4 +52,4 @@ const ProductSizeSwitcher = ({ sizes }: { sizes: IProductSize[] }) => {
   );
 };
 
-export default memo(ProductSizeSwitcher);
+export default ProductSizeSwitcher;
