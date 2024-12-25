@@ -8,13 +8,12 @@ import {
   Text
 } from '@mantine/core';
 
-import { Link, useSearchParams } from 'react-router';
+import { Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import { IconHeart, IconPlus } from '~/icons';
 import {
   Product,
-  ProductColor,
   ProductProductColor,
   ProductTranslation
 } from '~/types/types';
@@ -27,65 +26,25 @@ import {
 import ProductColorSwitcher from './ProductColorSwitcher';
 import { useHover } from '@mantine/hooks';
 import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
-import { useState } from 'react';
-import getStringDto from '~/dto/getStringDto';
-import getFirstObjectDto from '~/dto/getFirstObjectDto';
-import { PARAMS } from '~/constant';
 
-const ProductCard = (props: Product) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
 
-  let defaultActiveColor = getFirstObjectDto(
-    (getFirstObjectDto(props?.colors) as ProductProductColor)?.product_color_id
-  ) as ProductColor;
-
-  const paramsProductId = searchParams.get(PARAMS.PRODUCT_ID);
-  const paramsImageSet = searchParams.get(PARAMS.IMAGE_SET);
-
-  if (
-    paramsProductId === props?.id &&
-    props?.colors?.length &&
-    props?.colors.length > 1
-  ) {
-    const selectedColor = props?.colors?.find(c => {
-      const color = getFirstObjectDto(c) as ProductProductColor;
-      const productColor = getFirstObjectDto(
-        color?.product_color_id
-      ) as ProductColor;
-      return productColor?.image_set === paramsImageSet;
-    });
-
-    // Extract the product_color_id for the matched color, if any
-    if (selectedColor) {
-      defaultActiveColor = getFirstObjectDto(selectedColor)?.product_color_id;
-    }
-  }
-
-  const [activeColor, setActiveColor] = useState(defaultActiveColor);
+const ProductCard = (product: Product) => {
+  const { activeColor, setActiveColor } = useCurrentActiveColor({ product });
 
   const { hovered, ref } = useHover();
   const { featureImage1, featureImage2 } = useCurrentFeaturedImage({
-    product: props,
+    product,
     activeColor
   });
 
-  const { colors, translations, price, id } = props;
+  const { colors, translations, price, id } = product;
 
   const translation = getSingleTranslation({
     translations
   }) as ProductTranslation;
 
   const { currentLanguage } = useCurrentLanguage();
-
-  const handleActiveProduct = () => {
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set(PARAMS.PRODUCT_ID, props.id);
-    newSearchParams.set(
-      PARAMS.IMAGE_SET,
-      getStringDto(activeColor?.image_set)!
-    );
-    setSearchParams(newSearchParams, { preventScrollReset: true });
-  };
 
   return (
     <Card
@@ -132,7 +91,7 @@ const ProductCard = (props: Product) => {
 
       <Card.Section bg="primary.1" inheritPadding py={'md'}>
         <Group align={'flex-end'}>
-          <Box mr={'auto'} onClick={() => handleActiveProduct()}>
+          <Box mr={'auto'}>
             <ProductColorSwitcher
               activeColor={activeColor}
               setActiveColor={setActiveColor}

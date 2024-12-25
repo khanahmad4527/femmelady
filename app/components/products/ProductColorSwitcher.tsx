@@ -8,6 +8,9 @@ import {
   Title
 } from '@mantine/core';
 import { useSearchParams } from 'react-router';
+import { PARAMS } from '~/constant';
+import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import getStringDto from '~/dto/getStringDto';
 import useTranslation from '~/hooks/useTranslation';
 import {
   ProductColor,
@@ -25,15 +28,31 @@ const ProductColorSwitcher = ({
   setActiveColor: React.Dispatch<React.SetStateAction<ProductColor>>;
   productColors: ProductProductColor[];
 }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const t = useTranslation();
 
   const translation = getSingleTranslation(
     activeColor.translations
   ) as ProductColorTranslation;
 
-  const handleActiveColor = (id: string, index: number) => {
-    if (id !== activeColor.id) {
-      setActiveColor(productColors[index].product_color_id as ProductColor);
+  const paramsProductId = searchParams.get(PARAMS.PRODUCT_ID);
+  const paramsImageSet = searchParams.get(PARAMS.IMAGE_SET);
+
+  const handleActiveColor = ({
+    color,
+    pId
+  }: {
+    color: ProductColor;
+    pId?: string;
+  }) => {
+    if (pId !== paramsProductId || color?.image_set !== paramsImageSet) {
+      setActiveColor(color);
+      const productId = getStringDto(productColors?.[0]?.product_id);
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.set(PARAMS.PRODUCT_ID, productId!);
+      newSearchParams.set(PARAMS.IMAGE_SET, getStringDto(color?.image_set)!);
+      setSearchParams(newSearchParams, { preventScrollReset: true });
     }
   };
 
@@ -42,8 +61,10 @@ const ProductColorSwitcher = ({
       <Title order={5}>{t('products.productColor')}</Title>
       <Text tt={'capitalize'}>{translation.name}</Text>
       <Group gap={4}>
-        {productColors?.map((pc, index) => {
-          const c = pc.product_color_id as ProductColor;
+        {productColors?.map(pc => {
+          const productId = getStringDto(pc?.product_id);
+          const c = getFirstObjectDto(pc?.product_color_id) as ProductColor;
+
           return (
             <Paper
               key={c.id}
@@ -59,7 +80,7 @@ const ProductColorSwitcher = ({
                 cursor: 'pointer'
               }}
               onClick={() => {
-                handleActiveColor(c.id, index);
+                handleActiveColor({ color: c, pId: productId });
               }}
             >
               {c?.isTexture ? (
