@@ -7,14 +7,15 @@ import {
   Stack,
   Text
 } from '@mantine/core';
-import { useEffect, useRef } from 'react';
-import { useLoaderData, useSearchParams } from 'react-router';
+
+import { useLoaderData } from 'react-router';
 
 import ProductCard from '~/components/products/ProductCard';
 import ProductsFilterBy from '~/components/products/ProductsFilterBy';
 import ProductsPerPage from '~/components/products/ProductsPerPage';
 import ProductsSortBy from '~/components/products/ProductsSortBy';
-import { PARAMS } from '~/constant';
+
+import useScrollToProduct from '~/hooks/useScrollToProduct';
 import useTranslation from '~/hooks/useTranslation';
 import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
@@ -27,27 +28,10 @@ export const loader = async () => {
 
 const Products = () => {
   const { products } = useLoaderData<typeof loader>();
-  const [searchParams, setSearchParams] = useSearchParams();
 
-  const paramsProductId = searchParams.get(PARAMS.PRODUCT_ID);
-  const productCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const productCardRefs = useScrollToProduct({ products });
 
   const t = useTranslation();
-
-  useEffect(() => {
-    // Find the index of the product card that matches the productId from params
-    const targetIndex = products.findIndex(
-      product => product.id === paramsProductId
-    );
-
-    // If a valid product is found, scroll to the corresponding card
-    if (targetIndex !== -1 && productCardRefs.current[targetIndex]) {
-      productCardRefs.current[targetIndex]?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
-    }
-  }, []);
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
