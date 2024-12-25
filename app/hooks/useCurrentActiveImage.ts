@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { SetURLSearchParams } from 'react-router';
 import { PARAMS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
@@ -22,6 +22,9 @@ const useCurrentActiveImage = ({
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
 }) => {
+  // Create a ref to track the initial mount
+  const hasMounted = useRef(false);
+
   const paramsImageId = searchParams.get(PARAMS.IMAGE_ID);
   const paramsImageSet =
     searchParams.get(PARAMS.IMAGE_SET) ?? getStringDto(activeColor?.image_set);
@@ -60,6 +63,13 @@ const useCurrentActiveImage = ({
 
   // Recompute active image whenever activeColor dependencies change
   useEffect(() => {
+    if (!hasMounted.current) {
+      // Skip the effect on the initial mount
+      hasMounted.current = true;
+      return;
+    }
+
+    // Run the effect only when activeColor changes after the initial mount
     const newActiveImage = (getFirstObjectDto(currentImageSet)
       ?.directus_files_id ?? defaultImage) as string;
 

@@ -6,10 +6,8 @@ import {
   Image,
   ScrollArea,
   Stack,
-  Text,
   Title
 } from '@mantine/core';
-import { memo, useState } from 'react';
 import { useLoaderData, useSearchParams } from 'react-router';
 import ProductCartQuantity from '~/components/products/ProductCartQuantity';
 import ProductColorSwitcher from '~/components/products/ProductColorSwitcher';
@@ -28,30 +26,29 @@ import {
 import { formatCurrency, getImageUrl } from '~/utils';
 import { Route } from './+types/$slug';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
-import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
 import { PARAMS } from '~/constant';
 
-export const loader = async ({ params, request }: Route.LoaderArgs) => {
+export const loader = async ({ params }: Route.LoaderArgs) => {
   const productId = params.slug;
   const product = await getSingleProduct(productId);
 
-  const fullUrl = request.url;
-
-  return { product, fullUrl };
+  return { product };
 };
 
 const SingleProduct = () => {
-  const { product, fullUrl } = useLoaderData<{
+  const { product } = useLoaderData<{
     product: Product;
-    fullUrl: any;
   }>();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Manage the current active color
-  const { activeColor, setActiveColor } = useCurrentActiveColor({ product, searchParams });
+  const { activeColor, setActiveColor } = useCurrentActiveColor({
+    product,
+    searchParams
+  });
 
   // Manage the featureImages based on the active color
   const { activeImage, setActiveImage, currentImageSet } =
@@ -70,19 +67,16 @@ const SingleProduct = () => {
   ) as ProductTranslation;
 
   const handleActiveImage = (id?: string) => {
-    if (id) {
+    if (id && id !== activeImage) {
       setActiveImage(id);
 
-      // Clone searchParams to avoid overriding
-      const updatedSearchParams = new URLSearchParams(searchParams);
-      updatedSearchParams.set(PARAMS.IMAGE_ID, id);
-      setSearchParams(updatedSearchParams, { preventScrollReset: true });
+      searchParams.set(PARAMS.IMAGE_ID, id);
+      setSearchParams(searchParams, { preventScrollReset: true });
     }
   };
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
-      <Text fw={500}>{fullUrl}</Text>
       <Grid>
         <Grid.Col
           display={{ base: 'none', md: 'grid' }}
@@ -132,7 +126,7 @@ const SingleProduct = () => {
               loading={'lazy'}
             />
           </Box>
-          {/* <Carousel
+          <Carousel
             display={{ base: 'block', md: 'none' }}
             mt={'md'}
             withIndicators
@@ -143,18 +137,22 @@ const SingleProduct = () => {
             align={'start'}
             loop
           >
-            {activeImageSet.images.map(i => (
-              <Carousel.Slide key={i.directus_files_id}>
+            {currentImageSet?.map(i => (
+              <Carousel.Slide key={getStringDto(i.directus_files_id)}>
                 <Image
                   h={'100%'}
                   fit={'contain'}
-                  src={getImageUrl({ id: i.directus_files_id })}
+                  src={getImageUrl({
+                    id: getStringDto(i.directus_files_id),
+                    h: 200,
+                    w: 200
+                  })}
                   alt={productTranslation?.title!}
                   loading={'lazy'}
                 />
               </Carousel.Slide>
             ))}
-          </Carousel> */}
+          </Carousel>
         </Grid.Col>
 
         <Grid.Col component={Stack} span={{ base: 12, md: 5 }}>

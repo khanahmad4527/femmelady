@@ -82,6 +82,11 @@ export const theme: MantineThemeOverride = createTheme({
           paddingLeft: 0
         }
       }
-    })
+    }),
+    Image: {
+      defaultProps: {
+        loading: 'lazy'
+      }
+    }
   }
 });
