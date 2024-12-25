@@ -29,12 +29,17 @@ import { useHover } from '@mantine/hooks';
 import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 import { useState } from 'react';
 import getStringDto from '~/dto/getStringDto';
+import getFirstObjectDto from '~/dto/getFirstObjectDto';
 
 const ProductCard = (props: Product) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  let defaultActiveColor = getFirstObjectDto(
+    props.colors
+  ) as ProductProductColor;
+
   const [activeColor, setActiveColor] = useState<ProductColor>(
-    props.colors?.[0].product_color_id
+    getFirstObjectDto(defaultActiveColor.product_color_id)
   );
 
   const { hovered, ref } = useHover();
