@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router';
+import { SetURLSearchParams } from 'react-router';
 import { PARAMS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import getStringDto from '~/dto/getStringDto';
@@ -13,13 +13,15 @@ import {
 
 const useCurrentActiveImage = ({
   product,
-  activeColor
+  activeColor,
+  searchParams,
+  setSearchParams
 }: {
   product: Product;
   activeColor: ProductColor;
+  searchParams: URLSearchParams;
+  setSearchParams: SetURLSearchParams;
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const paramsImageId = searchParams.get(PARAMS.IMAGE_ID);
   const paramsImageSet =
     searchParams.get(PARAMS.IMAGE_SET) ?? getStringDto(activeColor?.image_set);
@@ -58,18 +60,14 @@ const useCurrentActiveImage = ({
 
   // Recompute active image whenever activeColor dependencies change
   useEffect(() => {
-    const newActiveImage =
-      paramsImageId ??
-      getFirstObjectDto(currentImageSet)?.directus_files_id ??
-      defaultImage;
+    const newActiveImage = (getFirstObjectDto(currentImageSet)
+      ?.directus_files_id ?? defaultImage) as string;
 
     if (newActiveImage !== activeImage) {
       setActiveImage(newActiveImage);
 
-      // TODO: Causing sync problem
-      // Update the URL parameters if needed
-      // searchParams.set(PARAMS.IMAGE_ID, newActiveImage || '');
-      // setSearchParams(searchParams, { preventScrollReset: true });
+      searchParams.set(PARAMS.IMAGE_ID, newActiveImage);
+      setSearchParams(searchParams, { preventScrollReset: true });
     }
   }, [activeColor]);
 

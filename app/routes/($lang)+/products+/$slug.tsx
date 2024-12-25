@@ -6,6 +6,7 @@ import {
   Image,
   ScrollArea,
   Stack,
+  Text,
   Title
 } from '@mantine/core';
 import { memo, useState } from 'react';
@@ -32,29 +33,37 @@ import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
 import { PARAMS } from '~/constant';
 
-export const loader = async ({ params }: Route.LoaderArgs) => {
+export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const productId = params.slug;
   const product = await getSingleProduct(productId);
 
-  return product;
+  const fullUrl = request.url;
+
+  return { product, fullUrl };
 };
 
 const SingleProduct = () => {
-  const product = useLoaderData<Product>();
+  const { product, fullUrl } = useLoaderData<{
+    product: Product;
+    fullUrl: any;
+  }>();
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // Manage the current active color
-  const { activeColor, setActiveColor } = useCurrentActiveColor({ product });
+  const { activeColor, setActiveColor } = useCurrentActiveColor({ product, searchParams });
 
   // Manage the featureImages based on the active color
   const { activeImage, setActiveImage, currentImageSet } =
     useCurrentActiveImage({
       product,
-      activeColor
+      activeColor,
+      searchParams,
+      setSearchParams
     });
 
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const productTranslation = getFirstObjectDto(
     product?.translations
@@ -64,14 +73,16 @@ const SingleProduct = () => {
     if (id) {
       setActiveImage(id);
 
-      // searchParams.set(PARAMS.IMAGE_ID, id);
-
-      // setSearchParams(searchParams, { preventScrollReset: true });
+      // Clone searchParams to avoid overriding
+      const updatedSearchParams = new URLSearchParams(searchParams);
+      updatedSearchParams.set(PARAMS.IMAGE_ID, id);
+      setSearchParams(updatedSearchParams, { preventScrollReset: true });
     }
   };
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
+      <Text fw={500}>{fullUrl}</Text>
       <Grid>
         <Grid.Col
           display={{ base: 'none', md: 'grid' }}
@@ -167,6 +178,8 @@ const SingleProduct = () => {
             activeColor={activeColor}
             setActiveColor={setActiveColor}
             productColors={product.colors as ProductProductColor[]}
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
           />
           {/* <ProductSizeSwitcher sizes={product.sizes} /> */}
           <ProductCartQuantity />
