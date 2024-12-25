@@ -168,3 +168,8 @@ export const LOCALE_TO_CURRENCY: Record<string, string> = {
   'pt-BR': 'BRL',
   'ru-RU': 'RUB'
 };
+
+export const PARAMS = {
+  PRODUCT_ID: 'product-id',
+  IMAGE_SET: 'image-set'
+};

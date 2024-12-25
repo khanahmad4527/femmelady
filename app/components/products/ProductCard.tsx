@@ -30,17 +30,38 @@ import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 import { useState } from 'react';
 import getStringDto from '~/dto/getStringDto';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import { PARAMS } from '~/constant';
 
 const ProductCard = (props: Product) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   let defaultActiveColor = getFirstObjectDto(
-    props.colors
-  ) as ProductProductColor;
+    (getFirstObjectDto(props?.colors) as ProductProductColor)?.product_color_id
+  ) as ProductColor;
 
-  const [activeColor, setActiveColor] = useState<ProductColor>(
-    getFirstObjectDto(defaultActiveColor.product_color_id)
-  );
+  const paramsProductId = searchParams.get(PARAMS.PRODUCT_ID);
+  const paramsImageSet = searchParams.get(PARAMS.IMAGE_SET);
+
+  if (
+    paramsProductId === props?.id &&
+    props?.colors?.length &&
+    props?.colors.length > 1
+  ) {
+    const selectedColor = props?.colors?.find(c => {
+      const color = getFirstObjectDto(c) as ProductProductColor;
+      const productColor = getFirstObjectDto(
+        color?.product_color_id
+      ) as ProductColor;
+      return productColor?.image_set === paramsImageSet;
+    });
+
+    // Extract the product_color_id for the matched color, if any
+    if (selectedColor) {
+      defaultActiveColor = getFirstObjectDto(selectedColor)?.product_color_id;
+    }
+  }
+
+  const [activeColor, setActiveColor] = useState(defaultActiveColor);
 
   const { hovered, ref } = useHover();
   const { featureImage1, featureImage2 } = useCurrentFeaturedImage({
@@ -58,8 +79,11 @@ const ProductCard = (props: Product) => {
 
   const handleActiveProduct = () => {
     const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set('product-id', props.id);
-    newSearchParams.set('image-set', getStringDto(activeColor?.image_set)!);
+    newSearchParams.set(PARAMS.PRODUCT_ID, props.id);
+    newSearchParams.set(
+      PARAMS.IMAGE_SET,
+      getStringDto(activeColor?.image_set)!
+    );
     setSearchParams(newSearchParams, { preventScrollReset: true });
   };
 
