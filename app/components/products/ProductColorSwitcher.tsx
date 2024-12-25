@@ -7,7 +7,6 @@ import {
   Text,
   Title
 } from '@mantine/core';
-import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
 import {
@@ -18,15 +17,15 @@ import {
 import { getSingleTranslation } from '~/utils';
 
 const ProductColorSwitcher = ({
+  activeColor,
+  setActiveColor,
   productColors
 }: {
+  activeColor: ProductColor;
+  setActiveColor: React.Dispatch<React.SetStateAction<ProductColor>>;
   productColors: ProductProductColor[];
 }) => {
   const t = useTranslation();
-  const [activeColor, setActiveColor] = useState<ProductColor>(
-    productColors[0].product_color_id as ProductColor
-  );
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const translation = getSingleTranslation(
     activeColor.translations
@@ -38,11 +37,6 @@ const ProductColorSwitcher = ({
     }
   };
 
-  const handleActiveImageSet = (imageSet: string) => {
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set('image-set', imageSet);
-    setSearchParams(newSearchParams, { preventScrollReset: true });
-  };
   return (
     <Stack gap={4}>
       <Title order={5}>{t('products.productColor')}</Title>
@@ -66,7 +60,6 @@ const ProductColorSwitcher = ({
               }}
               onClick={() => {
                 handleActiveColor(c.id, index);
-                handleActiveImageSet(activeColor?.image_set as string);
               }}
             >
               {c?.isTexture ? (

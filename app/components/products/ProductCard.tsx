@@ -8,7 +8,7 @@ import {
   Text
 } from '@mantine/core';
 
-import { Link } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import { IconHeart, IconPlus } from '~/icons';
@@ -26,18 +26,37 @@ import {
 } from '~/utils';
 import ProductColorSwitcher from './ProductColorSwitcher';
 import { useHover } from '@mantine/hooks';
+import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
+import { useState } from 'react';
+import getStringDto from '~/dto/getStringDto';
 
 const ProductCard = (props: Product) => {
-  const { hovered, ref } = useHover();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const { colors, feature_image_1, feature_image_2, translations, price, id } =
-    props;
+  const [activeColor, setActiveColor] = useState<ProductColor>(
+    props.colors?.[0].product_color_id
+  );
+
+  const { hovered, ref } = useHover();
+  const { featureImage1, featureImage2 } = useCurrentFeaturedImage({
+    product: props,
+    activeColor
+  });
+
+  const { colors, translations, price, id } = props;
 
   const translation = getSingleTranslation({
     translations
   }) as ProductTranslation;
 
   const { currentLanguage } = useCurrentLanguage();
+
+  const handleActiveProduct = () => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('product-id', props.id);
+    newSearchParams.set('image-set', getStringDto(activeColor?.image_set)!);
+    setSearchParams(newSearchParams, { preventScrollReset: true });
+  };
 
   return (
     <Card
@@ -75,7 +94,7 @@ const ProductCard = (props: Product) => {
           h={'100%'}
           fit={'contain'}
           src={getImageUrl({
-            id: (hovered ? feature_image_2 : feature_image_1) as string
+            id: hovered ? featureImage2 : featureImage1
           })}
           alt={translation.title!}
           loading={'lazy'}
@@ -84,8 +103,10 @@ const ProductCard = (props: Product) => {
 
       <Card.Section bg="primary.1" inheritPadding py={'md'}>
         <Group align={'flex-end'}>
-          <Box mr={'auto'}>
+          <Box mr={'auto'} onClick={() => handleActiveProduct()}>
             <ProductColorSwitcher
+              activeColor={activeColor}
+              setActiveColor={setActiveColor}
               productColors={colors as ProductProductColor[]}
             />
           </Box>

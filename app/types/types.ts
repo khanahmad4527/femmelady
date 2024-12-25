@@ -17,7 +17,8 @@ export type TranslationKeys = 'en' | 'ja';
 
 export type Product = components['schemas']['ItemsProduct'];
 
-export type ProductProductColor = components['schemas']['ItemsProductProductColor'];
+export type ProductProductColor =
+  components['schemas']['ItemsProductProductColor'];
 export type ProductColor = components['schemas']['ItemsProductColor'];
 
 export type ProductSize = components['schemas']['ItemsProductSize'];
@@ -27,6 +28,13 @@ export type ProductTranslation =
 
 export type ProductColorTranslation =
   components['schemas']['ItemsProductColorTranslations'];
+
+export type ProductProductImage =
+  components['schemas']['ItemsProductProductImage'];
+
+export type ProductImage = components['schemas']['ItemsProductImage'];
+
+export type ProductImageFile = components['schemas']['ItemsProductImageFiles'];
 
 export type ValueLabel = {
   id: string;

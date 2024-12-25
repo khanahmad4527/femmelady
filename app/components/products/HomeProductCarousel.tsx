@@ -4,16 +4,12 @@ import { useHover, useInViewport } from '@mantine/hooks';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router';
+import getStringDto from '~/dto/getStringDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
-import {
-  Product,
-  ProductProductColor,
-  ProductTranslation
-} from '~/types/types';
-import ProductColorSwitcher from './ProductColorSwitcher';
+import { Product, ProductTranslation } from '~/types/types';
 import { buildLocalizedLink, getImageUrl, getSingleTranslation } from '~/utils';
 
 const HomeProductCarousel = ({ products }: { products: Product[] }) => {
@@ -87,18 +83,14 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                     h={'100%'}
                     fit={'contain'}
                     src={getImageUrl({
-                      id: (hovered
-                        ? p.feature_image_2
-                        : p.feature_image_1) as string
+                      id: hovered
+                        ? getStringDto(p?.feature_image_2)
+                        : getStringDto(p?.feature_image_1)
                     })}
                     alt={translation.title!}
                     loading={'lazy'}
                   />
                 </Box>
-
-                <ProductColorSwitcher
-                  productColors={p.colors as ProductProductColor[]}
-                />
               </Card>
             </Carousel.Slide>
           );

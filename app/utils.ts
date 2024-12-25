@@ -152,12 +152,18 @@ export const getImageUrl = ({
   w = 300,
   DIRECTUS_URL
 }: {
-  id: string;
+  id?: string;
   h?: number;
   w?: number;
   DIRECTUS_URL?: string;
 }) => {
+  if (!id) {
+    return undefined;
+  }
+
   const { env } = useOutletContext<OutletContext>();
 
-  return `${env?.DIRECTUS_URL || DIRECTUS_URL}/assets/${id}?height=${h}&width=${w}`;
+  return `${
+    env?.DIRECTUS_URL || DIRECTUS_URL
+  }/assets/${id}?height=${h}&width=${w}`;
 };
