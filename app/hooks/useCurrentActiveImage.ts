@@ -1,0 +1,79 @@
+import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router';
+import { PARAMS } from '~/constant';
+import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import getStringDto from '~/dto/getStringDto';
+import {
+  Product,
+  ProductColor,
+  ProductImage,
+  ProductImageFile,
+  ProductProductImage
+} from '~/types/types';
+
+const useCurrentActiveImage = ({
+  product,
+  activeColor
+}: {
+  product: Product;
+  activeColor: ProductColor;
+}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const paramsImageId = searchParams.get(PARAMS.IMAGE_ID);
+  const paramsImageSet =
+    searchParams.get(PARAMS.IMAGE_SET) ?? getStringDto(activeColor?.image_set);
+
+  const images = product?.images as ProductProductImage[];
+
+  const defaultImage = getFirstObjectDto(
+    getFirstObjectDto(images[0]?.product_image_id)?.images
+  )?.directus_files_id as string;
+
+  // Memoize the current image set
+  const currentImageSet = useMemo(() => {
+    if (paramsImageSet) {
+      return ((
+        images.find(
+          i => (i.product_image_id as ProductImage)?.id === paramsImageSet
+        )?.product_image_id as unknown as ProductImage
+      )?.images ?? []) as ProductImageFile[];
+    }
+
+    // Default to the first image set if no paramsImageSet is provided
+    return (getFirstObjectDto(getFirstObjectDto(images)?.product_image_id)
+      ?.images ?? []) as ProductImageFile[];
+  }, [activeColor]);
+
+  // Compute the initial active image
+  const initialActiveImage = useMemo(() => {
+    return (
+      paramsImageId ??
+      getFirstObjectDto(currentImageSet)?.directus_files_id ??
+      defaultImage // Default fallback
+    );
+  }, []);
+
+  const [activeImage, setActiveImage] = useState<string>(initialActiveImage!);
+
+  // Recompute active image whenever activeColor dependencies change
+  useEffect(() => {
+    const newActiveImage =
+      paramsImageId ??
+      getFirstObjectDto(currentImageSet)?.directus_files_id ??
+      defaultImage;
+
+    if (newActiveImage !== activeImage) {
+      setActiveImage(newActiveImage);
+
+      // TODO: Causing sync problem
+      // Update the URL parameters if needed
+      // searchParams.set(PARAMS.IMAGE_ID, newActiveImage || '');
+      // setSearchParams(searchParams, { preventScrollReset: true });
+    }
+  }, [activeColor]);
+
+  return { activeImage, setActiveImage, currentImageSet };
+};
+
+export default useCurrentActiveImage;

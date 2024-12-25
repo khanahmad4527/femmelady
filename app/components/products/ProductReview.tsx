@@ -1,17 +1,10 @@
-import {
-  Box,
-  Group,
-  Pagination,
-  Rating,
-  Stack,
-  Text,
-  useMatches
-} from '@mantine/core';
+import { Box, Group, Pagination, Rating, Stack, Text } from '@mantine/core';
 import ProductReviewCard from './ProductReviewCard';
 import useTranslation from '~/hooks/useTranslation';
 import { formatNumber } from '~/utils';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { useMediaQuery } from '@mantine/hooks';
+import { memo } from 'react';
 
 const ProductReview = () => {
   const t = useTranslation();
@@ -49,4 +42,4 @@ const ProductReview = () => {
   );
 };
 
-export default ProductReview;
+export default memo(ProductReview);

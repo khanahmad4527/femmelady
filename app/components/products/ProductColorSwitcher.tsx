@@ -7,6 +7,7 @@ import {
   Text,
   Title
 } from '@mantine/core';
+import { memo } from 'react';
 import { useSearchParams } from 'react-router';
 import { PARAMS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
@@ -29,16 +30,16 @@ const ProductColorSwitcher = ({
   productColors: ProductProductColor[];
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const paramsProductId = searchParams.get(PARAMS.PRODUCT_ID);
+  const paramsImageSet = searchParams.get(PARAMS.IMAGE_SET);
 
   const t = useTranslation();
 
   const translation = getSingleTranslation(
-    activeColor.translations
+    activeColor?.translations
   ) as ProductColorTranslation;
 
-  const paramsProductId = searchParams.get(PARAMS.PRODUCT_ID);
-  const paramsImageSet = searchParams.get(PARAMS.IMAGE_SET);
-
+  // Set active color and the params
   const handleActiveColor = ({
     color,
     pId
@@ -49,10 +50,11 @@ const ProductColorSwitcher = ({
     if (pId !== paramsProductId || color?.image_set !== paramsImageSet) {
       setActiveColor(color);
       const productId = getStringDto(productColors?.[0]?.product_id);
-      const newSearchParams = new URLSearchParams(searchParams);
-      newSearchParams.set(PARAMS.PRODUCT_ID, productId!);
-      newSearchParams.set(PARAMS.IMAGE_SET, getStringDto(color?.image_set)!);
-      setSearchParams(newSearchParams, { preventScrollReset: true });
+
+      // searchParams.set(PARAMS.PRODUCT_ID, productId!);
+      // searchParams.set(PARAMS.IMAGE_SET, getStringDto(color?.image_set)!);
+
+      // setSearchParams(searchParams, { preventScrollReset: true });
     }
   };
 
@@ -98,4 +100,4 @@ const ProductColorSwitcher = ({
   );
 };
 
-export default ProductColorSwitcher;
+export default memo(ProductColorSwitcher);

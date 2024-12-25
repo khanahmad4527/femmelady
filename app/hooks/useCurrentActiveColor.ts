@@ -3,14 +3,12 @@ import { useSearchParams } from 'react-router';
 import { PARAMS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import { Product, ProductColor, ProductProductColor } from '~/types/types';
+import useDefaultColor from './useDefaultColor';
 
 const useCurrentActiveColor = ({ product }: { product: Product }) => {
   const [searchParams] = useSearchParams();
 
-  let defaultActiveColor = getFirstObjectDto(
-    (getFirstObjectDto(product?.colors) as ProductProductColor)
-      ?.product_color_id
-  ) as ProductColor;
+  let defaultActiveColor = useDefaultColor({ product });
 
   const paramsProductId = searchParams.get(PARAMS.PRODUCT_ID);
   const paramsImageSet = searchParams.get(PARAMS.IMAGE_SET);

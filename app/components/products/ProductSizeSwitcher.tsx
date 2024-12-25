@@ -1,5 +1,5 @@
 import { Center, Group, Stack, Title } from '@mantine/core';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
 import { ProductSize } from '~/types/types';
@@ -52,4 +52,4 @@ const ProductSizeSwitcher = ({ sizes }: { sizes: ProductSize[] }) => {
   );
 };
 
-export default ProductSizeSwitcher;
+export default memo(ProductSizeSwitcher);

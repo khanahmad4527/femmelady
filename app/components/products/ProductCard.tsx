@@ -30,9 +30,12 @@ import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
 
 const ProductCard = (product: Product) => {
+  const { hovered, ref } = useHover();
+
+  // Manage the current active color
   const { activeColor, setActiveColor } = useCurrentActiveColor({ product });
 
-  const { hovered, ref } = useHover();
+  // Manage the featureImages based on the active color
   const { featureImage1, featureImage2 } = useCurrentFeaturedImage({
     product,
     activeColor

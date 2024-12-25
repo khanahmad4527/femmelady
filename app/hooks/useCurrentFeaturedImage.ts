@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import getStringDto from '~/dto/getStringDto';
 import {
   Product,
@@ -17,7 +18,10 @@ const useCurrentFeaturedImage = ({
 }) => {
   const [featureImageSet, setFeatureImageSet] = useState({
     featureImage1: getStringDto(product?.feature_image_1),
-    featureImage2: getStringDto(product?.feature_image_2)
+    featureImage2: getStringDto(product?.feature_image_2),
+    currentImageSet: getFirstObjectDto(
+      getFirstObjectDto(product?.images)?.product_image_id
+    )?.images as ProductImageFile[]
   });
 
   const currentImageSetId = getStringDto(activeColor.image_set);
@@ -43,7 +47,7 @@ const useCurrentFeaturedImage = ({
       );
 
       if (featureImage1 && featureImage2) {
-        setFeatureImageSet({ featureImage1, featureImage2 });
+        setFeatureImageSet({ featureImage1, featureImage2, currentImageSet });
       }
     }
   }, [currentImageSetId]);

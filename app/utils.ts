@@ -157,10 +157,6 @@ export const getImageUrl = ({
   w?: number;
   DIRECTUS_URL?: string;
 }) => {
-  if (!id) {
-    return undefined;
-  }
-
   const { env } = useOutletContext<OutletContext>();
 
   return `${
