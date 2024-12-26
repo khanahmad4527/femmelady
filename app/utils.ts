@@ -2,7 +2,11 @@ import { useForm } from '@mantine/form';
 import { useFetcher, useOutletContext } from 'react-router';
 import { z } from 'zod';
 import { OutletContext, TranslationKeys } from './types/types';
-import { LANGUAGE_TO_LOCALE_LANGUAGE, LOCALE_TO_CURRENCY } from './constant';
+import {
+  FALL_BACK_LANG,
+  LANGUAGE_TO_LOCALE_LANGUAGE,
+  LOCALE_TO_CURRENCY
+} from './constant';
 
 export const submitForm = <T extends Record<string, any>>(
   fetcher: ReturnType<typeof useFetcher>,
@@ -162,4 +166,17 @@ export const getImageUrl = ({
   return `${
     env?.DIRECTUS_URL || DIRECTUS_URL
   }/assets/${id}?height=${h}&width=${w}`;
+};
+
+export const validateUUID = (uuid: string) => {
+  const uuidRegex =
+    /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+  return uuidRegex.test(uuid);
+};
+
+export const getLanguageCode = (params: { lang?: string }) => {
+  const languageCode =
+    LANGUAGE_TO_LOCALE_LANGUAGE[params?.lang ?? FALL_BACK_LANG];
+
+  return languageCode;
 };

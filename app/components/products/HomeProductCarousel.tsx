@@ -76,7 +76,7 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                   to={buildLocalizedLink({
                     currentLanguage,
                     primaryPath: 'products',
-                    secondaryPath: '123'
+                    secondaryPath: translation?.slug ?? p?.id
                   })}
                 >
                   <Image

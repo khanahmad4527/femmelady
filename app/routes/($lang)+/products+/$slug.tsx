@@ -24,16 +24,22 @@ import {
   ProductSize,
   ProductTranslation
 } from '~/types/types';
-import { formatCurrency, getImageUrl } from '~/utils';
+import { formatCurrency, getImageUrl, getLanguageCode } from '~/utils';
 import { Route } from './+types/$slug';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
-import { PARAMS } from '~/constant';
+import {
+  FALL_BACK_LANG,
+  LANGUAGE_TO_LOCALE_LANGUAGE,
+  PARAMS
+} from '~/constant';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
-  const productId = params.slug;
-  const product = await getSingleProduct(productId);
+  const languageCode = getLanguageCode(params);
+
+  const productSlug = params?.slug;
+  const product = await getSingleProduct({ slug: productSlug, languageCode });
 
   return { product };
 };

@@ -21,10 +21,10 @@ import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
 import { Route } from '../+types/_index';
 import { FALL_BACK_LANG, LANGUAGE_TO_LOCALE_LANGUAGE } from '~/constant';
+import { getLanguageCode } from '~/utils';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
-  const languageCode =
-    LANGUAGE_TO_LOCALE_LANGUAGE[params?.lang ?? FALL_BACK_LANG];
+  const languageCode = getLanguageCode(params);
 
   const products = await getProducts({ languageCode });
 

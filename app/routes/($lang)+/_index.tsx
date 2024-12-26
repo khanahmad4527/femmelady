@@ -25,7 +25,8 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
-import { buildLocalizedLink } from '~/utils';
+import { buildLocalizedLink, getLanguageCode } from '~/utils';
+import { Route } from './+types/_index';
 
 export const meta: MetaFunction = () => {
   return [
@@ -34,8 +35,10 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader = async () => {
-  const products = await getProducts();
+export const loader = async ({ params }: Route.LoaderArgs) => {
+  const languageCode = getLanguageCode(params);
+
+  const products = await getProducts({ languageCode });
 
   return { products };
 };

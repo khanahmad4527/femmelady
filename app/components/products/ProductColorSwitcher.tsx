@@ -1,12 +1,4 @@
-import {
-  ActionIcon,
-  Group,
-  Image,
-  Paper,
-  Stack,
-  Text,
-  Title
-} from '@mantine/core';
+import { ActionIcon, Group, Image, Paper, Stack, Text } from '@mantine/core';
 import { memo } from 'react';
 import { SetURLSearchParams } from 'react-router';
 import { PARAMS } from '~/constant';

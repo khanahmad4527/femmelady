@@ -28,6 +28,7 @@ import { useHover } from '@mantine/hooks';
 import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 
 import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
+import { memo } from 'react';
 
 const ProductCard = (product: Product) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -81,7 +82,7 @@ const ProductCard = (product: Product) => {
         to={buildLocalizedLink({
           currentLanguage,
           primaryPath: 'products',
-          secondaryPath: id
+          secondaryPath: translation?.slug ?? id
         })}
       >
         <Image
@@ -129,4 +130,4 @@ const ProductCard = (product: Product) => {
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);
