@@ -110,22 +110,6 @@ const RatingFilter = () => {
       color={'primary'}
     />
   );
-
-  const ratings = [5, 4, 3, 2, 1];
-
-  return (
-    <Stack gap="sm">
-      {ratings.map(stars => (
-        <Rating
-          key={stars}
-          value={stars}
-          size="sm"
-          color={'primary'}
-          readOnly
-        />
-      ))}
-    </Stack>
-  );
 };
 
 const BrandFilter = () => {
