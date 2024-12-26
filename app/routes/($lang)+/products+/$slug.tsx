@@ -8,7 +8,7 @@ import {
   Stack,
   Title
 } from '@mantine/core';
-import { useLoaderData, useSearchParams } from 'react-router';
+import { useLoaderData, useOutletContext } from 'react-router';
 import ProductCartQuantity from '~/components/products/ProductCartQuantity';
 import ProductColorSwitcher from '~/components/products/ProductColorSwitcher';
 import ProductReview from '~/components/products/ProductReview';
@@ -19,6 +19,7 @@ import useTranslation from '~/hooks/useTranslation';
 import { getSingleProduct } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
 import {
+  OutletContext,
   Product,
   ProductProductColor,
   ProductSize,
@@ -29,11 +30,7 @@ import { Route } from './+types/$slug';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
-import {
-  FALL_BACK_LANG,
-  LANGUAGE_TO_LOCALE_LANGUAGE,
-  PARAMS
-} from '~/constant';
+import { PARAMS } from '~/constant';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -47,7 +44,7 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
 const SingleProduct = () => {
   const { product } = useLoaderData<{ product: Product }>();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
   // Manage the current active color
   const { activeColor, setActiveColor } = useCurrentActiveColor({

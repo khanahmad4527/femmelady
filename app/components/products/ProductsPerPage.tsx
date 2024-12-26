@@ -1,15 +1,17 @@
 import { Select } from '@mantine/core';
-import { useSearchParams } from 'react-router';
+import { useOutletContext } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import useUserLocale from '~/hooks/useUserLocale';
+import { OutletContext } from '~/types/types';
 
 const ProductsPerPage = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const userLocale = useUserLocale(currentLanguage);
-  const [searchParams, setSearchParams] = useSearchParams();
+
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
   const formatNumber = (value: number) => value.toLocaleString(userLocale);
 

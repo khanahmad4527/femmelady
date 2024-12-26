@@ -1,10 +1,13 @@
+import { SetURLSearchParams } from 'react-router';
 import { components } from './collections';
 
-export type Env = { DIRECTUS_URL: String };
+export type Env = { DIRECTUS_URL?: String };
 export interface OutletContext {
   isLoggedIn: boolean;
   currentLanguage: TranslationKeys;
   env: Env;
+  searchParams: URLSearchParams;
+  setSearchParams: SetURLSearchParams;
 }
 
 export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {

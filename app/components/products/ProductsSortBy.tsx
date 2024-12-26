@@ -1,11 +1,12 @@
 import { Select } from '@mantine/core';
-import { useSearchParams } from 'react-router';
+import { useOutletContext } from 'react-router';
 
 import useTranslation from '~/hooks/useTranslation';
+import { OutletContext } from '~/types/types';
 
 const ProductsSortBy = () => {
   const t = useTranslation();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
   const handleFilterChange = (value: string | null) => {
     const newFilter = value || null;
@@ -21,7 +22,7 @@ const ProductsSortBy = () => {
   return (
     <Select
       label={t('products.sortBy')}
-      placeholder={t('products.sortBy') }
+      placeholder={t('products.sortBy')}
       data={[
         { value: 'popularity', label: t('products.popularity') },
         { value: 'price-low-to-high', label: t('products.priceLowToHigh') },

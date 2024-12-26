@@ -8,11 +8,12 @@ import {
   Text
 } from '@mantine/core';
 
-import { Link, useSearchParams } from 'react-router';
+import { Link, useOutletContext } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import { IconHeart, IconPlus } from '~/icons';
 import {
+  OutletContext,
   Product,
   ProductProductColor,
   ProductTranslation
@@ -31,7 +32,7 @@ import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
 import { memo } from 'react';
 
 const ProductCard = (product: Product) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
   const { hovered, ref } = useHover();
 

@@ -3,7 +3,7 @@ import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
-import type { LinksFunction, LoaderFunction } from 'react-router';
+import type { LinksFunction } from 'react-router';
 import {
   Links,
   Meta,
@@ -11,14 +11,15 @@ import {
   redirect,
   Scripts,
   ScrollRestoration,
-  useLoaderData
+  useLoaderData,
+  useSearchParams
 } from 'react-router';
 
 import Document from './components/Document';
 import useCurrentLanguage from './hooks/useCurrentLanguage';
 import { theme } from './theme';
+import { OutletContext, TranslationKeys } from './types/types';
 import { Route } from './+types/root';
-import { TranslationKeys } from './types/types';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const currentLanguage = params?.lang as TranslationKeys;
@@ -58,10 +59,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const loaderData = useLoaderData<typeof loader>();
+  const loaderData = useLoaderData();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const ctx: OutletContext = { searchParams, setSearchParams, ...loaderData };
   return (
-    <Document {...loaderData}>
-      <Outlet context={loaderData} />
+    <Document {...ctx}>
+      <Outlet context={ctx} />
     </Document>
   );
 }
@@ -70,9 +74,17 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const ErrorBoundaryComponent = () => {
   const { currentLanguage } = useCurrentLanguage();
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  const ctx: OutletContext = {
+    currentLanguage,
+    env: {},
+    isLoggedIn: false,
+    searchParams,
+    setSearchParams
+  };
   return (
-    <Document isLoggedIn={false} currentLanguage={currentLanguage}>
+    <Document {...ctx}>
       <p>Oops! Something went wrong on our end</p>
     </Document>
   );

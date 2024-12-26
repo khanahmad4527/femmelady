@@ -1,6 +1,7 @@
 import { Accordion, Button, Grid, Stack, Text } from '@mantine/core';
-import { useSearchParams } from 'react-router';
+import { useOutletContext } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
+import { OutletContext } from '~/types/types';
 
 const faq = [
   {
@@ -127,7 +128,7 @@ const faq = [
 
 const Faq = () => {
   const t = useTranslation();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
   const currentIndex = Number(searchParams.get('faq') ?? 1) - 1;
 

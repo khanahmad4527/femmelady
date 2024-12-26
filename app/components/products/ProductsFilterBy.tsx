@@ -10,6 +10,7 @@ import {
   Stack,
   Text
 } from '@mantine/core';
+import { useDebouncedCallback } from '@mantine/hooks';
 import { useState } from 'react';
 
 import useTranslation from '~/hooks/useTranslation';
@@ -164,12 +165,19 @@ const CategoryFilter = () => {
 const PriceFilter = () => {
   const [value, setValue] = useState<[number, number]>([20, 500]);
 
+  const handleSearch = useDebouncedCallback(() => {
+    console.log({ value });
+  }, 500);
+
   return (
     <RangeSlider
       min={20}
       max={500}
       value={value}
-      onChange={setValue}
+      onChange={e => {
+        handleSearch();
+        setValue(e);
+      }}
       step={10}
     />
   );
