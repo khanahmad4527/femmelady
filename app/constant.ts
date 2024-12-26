@@ -174,5 +174,6 @@ export const LOCALE_TO_CURRENCY: Record<string, string> = {
 export const PARAMS = {
   PRODUCT_ID: 'product-id',
   IMAGE_SET: 'image-set',
-  IMAGE_ID: 'image-id'
+  IMAGE_ID: 'image-id',
+  PRICE: 'price'
 };

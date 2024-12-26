@@ -180,3 +180,19 @@ export const getLanguageCode = (params: { lang?: string }) => {
 
   return languageCode;
 };
+
+export const getPriceRange = (request: Request) => {
+  const url = new URL(request.url);
+  const priceParam = url.searchParams.get('price');
+
+  // If the price parameter is missing, return undefined
+  if (!priceParam) return undefined;
+
+  // Split the price range and map it to numbers
+  const priceRange = priceParam.split(',').map(Number);
+
+  // Validate the parsed numbers
+  if (priceRange.some(isNaN) || priceRange.length !== 2) return undefined;
+
+  return [priceRange[0], priceRange[1]] as [number, number];
+};

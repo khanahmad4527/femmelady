@@ -12,8 +12,11 @@ import {
 } from '@mantine/core';
 import { useDebouncedCallback } from '@mantine/hooks';
 import { useState } from 'react';
+import { useOutletContext } from 'react-router';
+import { PARAMS } from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
+import { OutletContext } from '~/types/types';
 
 const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
   const t = useTranslation();
@@ -163,22 +166,24 @@ const CategoryFilter = () => {
 };
 
 const PriceFilter = () => {
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
   const [value, setValue] = useState<[number, number]>([20, 500]);
 
   const handleSearch = useDebouncedCallback(() => {
-    console.log({ value });
+    searchParams.set(PARAMS.PRICE, String(value));
+    setSearchParams(searchParams, { preventScrollReset: true });
   }, 500);
 
   return (
     <RangeSlider
       min={20}
-      max={500}
+      max={1000}
       value={value}
       onChange={e => {
         handleSearch();
         setValue(e);
       }}
-      step={10}
+      step={20}
     />
   );
 };

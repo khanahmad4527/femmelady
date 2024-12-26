@@ -20,12 +20,18 @@ import useTranslation from '~/hooks/useTranslation';
 import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
 import { Route } from '../+types/_index';
-import { getLanguageCode } from '~/utils';
+import { getLanguageCode, getPriceRange } from '~/utils';
 
-export const loader = async ({ params }: Route.LoaderArgs) => {
+export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
 
-  const products = await getProducts({ languageCode, page: 'products' });
+  const priceRange = getPriceRange(request);
+
+  const products = await getProducts({
+    page: 'products',
+    languageCode,
+    priceRange
+  });
 
   return { products };
 };

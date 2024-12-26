@@ -24,11 +24,13 @@ const productTranslationBaseQuery = (languageCode: string) => {
 };
 
 export const getProducts = async ({
+  page,
   languageCode,
-  page
+  priceRange
 }: {
-  languageCode: string;
   page: Page;
+  languageCode: string;
+  priceRange?: [number, number];
 }) => {
   // Define fields based on the page
   const pageFields: Record<Page, Query<Schema, Product>['fields']> = {
@@ -76,6 +78,11 @@ export const getProducts = async ({
 
   // Build the query dynamically based on the page
   const query: Query<Schema, Product> = {
+    filter: {
+      price: {
+        _between: priceRange
+      }
+    },
     fields: pageFields[page],
     deep: pageDeep[page]
   };
