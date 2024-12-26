@@ -8,7 +8,7 @@ import {
   Text
 } from '@mantine/core';
 
-import { Link } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import { IconHeart, IconPlus } from '~/icons';
@@ -30,10 +30,15 @@ import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
 
 const ProductCard = (product: Product) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const { hovered, ref } = useHover();
 
   // Manage the current active color
-  const { activeColor, setActiveColor } = useCurrentActiveColor({ product });
+  const { activeColor, setActiveColor } = useCurrentActiveColor({
+    product,
+    searchParams
+  });
 
   // Manage the featureImages based on the active color
   const { featureImage1, featureImage2 } = useCurrentFeaturedImage({
@@ -99,6 +104,8 @@ const ProductCard = (product: Product) => {
               activeColor={activeColor}
               setActiveColor={setActiveColor}
               productColors={colors as ProductProductColor[]}
+              searchParams={searchParams}
+              setSearchParams={setSearchParams}
             />
           </Box>
           <Box ml={'auto'}>

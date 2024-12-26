@@ -38,9 +38,7 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
 };
 
 const SingleProduct = () => {
-  const { product } = useLoaderData<{
-    product: Product;
-  }>();
+  const { product } = useLoaderData<{ product: Product }>();
 
   const [searchParams, setSearchParams] = useSearchParams();
 

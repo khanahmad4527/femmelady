@@ -1,3 +1,9 @@
+.boxShadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* For rendering html content */
+
 .dangerouslySetInnerHTML {
   padding: 0;
   margin: 0;
@@ -12,11 +18,25 @@
   color: var(--mantine-color-black);
 }
 
-.boxShadow {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
 .dangerouslySetInnerHTML p {
   padding: 0;
   margin: 0;
+}
+
+/* For glow effect when scrolling to a particular product */
+@keyframes glow-animation {
+  0% {
+    box-shadow: 0 0 10px 5px var(--mantine-color-primary-5);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px var(--mantine-color-primary-5);
+  }
+  100% {
+    box-shadow: 0 0 10px 5px var(--mantine-color-primary-5);
+  }
+}
+
+/* Glow effect class */
+.productCardGlow {
+  animation: glow-animation 2s ease-in-out;
 }
