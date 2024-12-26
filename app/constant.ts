@@ -5,6 +5,8 @@ export const ROUTES_WITHOUT_HEADER_AND_FOOTER = new Set([
   'reset-password'
 ]);
 
+export const FALL_BACK_LANG = 'en';
+
 export const LANGUAGE_TO_LOCALE_LANGUAGE: Record<string, string> = {
   en: 'en-US', // English (United States)
   ja: 'ja-JP', // Japanese (Japan)

@@ -95,9 +95,14 @@ const ProductCard = (product: Product) => {
         />
       </Box>
 
-      <Text tt={'capitalize'}>{translation?.title}</Text>
+      <Box>
+        <Text tt={'capitalize'}>{translation?.title}</Text>
+        <Text>
+          {formatCurrency({ currentLanguage, value: price as number })}
+        </Text>
+      </Box>
 
-      <Card.Section bg="primary.1" inheritPadding>
+      <Card.Section bg="primary.1" inheritPadding pb={4}>
         <Group align={'flex-end'}>
           <Box mr={'auto'}>
             <ProductColorSwitcher
@@ -120,13 +125,6 @@ const ProductCard = (product: Product) => {
           </Box>
         </Group>
       </Card.Section>
-
-      <Box>
-        <Text tt={'capitalize'}>{translation?.title}</Text>
-        <Text>
-          {formatCurrency({ currentLanguage, value: price as number })}
-        </Text>
-      </Box>
     </Card>
   );
 };

@@ -19,9 +19,14 @@ import useScrollToProduct from '~/hooks/useScrollToProduct';
 import useTranslation from '~/hooks/useTranslation';
 import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
+import { Route } from '../+types/_index';
+import { FALL_BACK_LANG, LANGUAGE_TO_LOCALE_LANGUAGE } from '~/constant';
 
-export const loader = async () => {
-  const products = await getProducts();
+export const loader = async ({ params }: Route.LoaderArgs) => {
+  const languageCode =
+    LANGUAGE_TO_LOCALE_LANGUAGE[params?.lang ?? FALL_BACK_LANG];
+
+  const products = await getProducts({ languageCode });
 
   return { products };
 };
