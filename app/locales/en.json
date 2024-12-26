@@ -106,8 +106,8 @@
     "productsPerPage": "Products Per Page",
     "resultsCount": "{count} results",
     "addToBag": "Add to Bag",
-    "productColor": "Color",
-    "productSize": "Size",
+    "productColor": "Color:",
+    "productSize": "Size:",
     "reviews": "Based on {number} reviews",
     "cartQuantity": "Quantity:"
   },
