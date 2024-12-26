@@ -1,4 +1,4 @@
-import { Center, Group, Stack, Title } from '@mantine/core';
+import { Center, Group, Stack, Text, Title } from '@mantine/core';
 import { useState } from 'react';
 import { SetURLSearchParams } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
@@ -18,7 +18,7 @@ const ProductSizeSwitcher = ({
   const t = useTranslation();
 
   const [activeSize, setActiveSize] = useState(
-    searchParams.get('size') ?? sizes[0].size
+    searchParams.get('size') ?? sizes?.[0]?.size
   );
 
   const handleActiveSize = (size: string) => {
@@ -30,7 +30,13 @@ const ProductSizeSwitcher = ({
 
   return (
     <Stack gap={4}>
-      <Title order={5}>{t('products.productSize')}</Title>
+      <Text span>
+        {t('products.productSize')}
+
+        <Text ml={4} span>
+          {activeSize?.toLocaleUpperCase()}
+        </Text>
+      </Text>
       <Group>
         {sizes.map(s => (
           <Center

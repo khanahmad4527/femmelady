@@ -18,7 +18,7 @@ import {
   ProductColorTranslation,
   ProductProductColor
 } from '~/types/types';
-import { getSingleTranslation } from '~/utils';
+import { getImageUrl, getSingleTranslation } from '~/utils';
 
 const ProductColorSwitcher = ({
   activeColor,
@@ -69,8 +69,14 @@ const ProductColorSwitcher = ({
 
   return (
     <Stack gap={4}>
-      <Title order={5}>{t('products.productColor')}</Title>
-      <Text tt={'capitalize'}>{translation.name}</Text>
+      <Text span>
+        {t('products.productColor')}
+
+        <Text ml={4} tt={'capitalize'} span>
+          {translation.name}
+        </Text>
+      </Text>
+
       <Group gap={4}>
         {productColors?.map(pc => {
           const productId = getStringDto(pc?.product_id);
@@ -96,7 +102,14 @@ const ProductColorSwitcher = ({
             >
               {c?.isTexture ? (
                 <ActionIcon size="sm" radius="xl">
-                  <Image src={c.texture as string} radius="xl" />
+                  <Image
+                    src={getImageUrl({
+                      id: getStringDto(c?.texture),
+                      h: 50,
+                      w: 50
+                    })}
+                    radius="xl"
+                  />
                 </ActionIcon>
               ) : (
                 <ActionIcon color={c.hex!} size="sm" radius="xl" />
