@@ -1,5 +1,5 @@
 import { Carousel } from '@mantine/carousel';
-import { Box, Card, Image, Stack, Title } from '@mantine/core';
+import { Box, Card, Image, Stack, Text, Title } from '@mantine/core';
 import { useHover, useInViewport } from '@mantine/hooks';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { useEffect, useRef } from 'react';
@@ -10,7 +10,12 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
 import { Product, ProductTranslation } from '~/types/types';
-import { buildLocalizedLink, getImageUrl, getSingleTranslation } from '~/utils';
+import {
+  buildLocalizedLink,
+  formatCurrency,
+  getImageUrl,
+  getSingleTranslation
+} from '~/utils';
 
 const HomeProductCarousel = ({ products }: { products: Product[] }) => {
   if (!products || !products?.length) {
@@ -90,6 +95,15 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                     alt={translation.title!}
                     loading={'lazy'}
                   />
+                </Box>
+                <Box>
+                  <Text tt={'capitalize'}>{translation?.title}</Text>
+                  <Text>
+                    {formatCurrency({
+                      currentLanguage,
+                      value: p?.price as number
+                    })}
+                  </Text>
                 </Box>
               </Card>
             </Carousel.Slide>

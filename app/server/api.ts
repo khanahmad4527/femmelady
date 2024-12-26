@@ -1,7 +1,7 @@
 import { readItem, readItems, Query } from '@directus/sdk';
 import { directus } from './directus';
 import { Schema } from '~/types/collections';
-import { Product } from '~/types/types';
+import { Page, Product } from '~/types/types';
 import { validateUUID } from '~/utils';
 
 const productTranslationBaseQuery = (languageCode: string) => {
@@ -24,23 +24,63 @@ const productTranslationBaseQuery = (languageCode: string) => {
 };
 
 export const getProducts = async ({
-  languageCode
+  languageCode,
+  page
 }: {
   languageCode: string;
+  page: Page;
 }) => {
-  const products = await directus.request(
-    readItems('product', {
-      fields: [
-        '*',
-        { sizes: ['*'] },
-        { translations: ['*'] },
-        { images: ['*', { product_image_id: ['*', { images: ['*'] }] }] },
-        { colors: ['*', { product_color_id: ['*', { translations: ['*'] }] }] }
-      ],
-      deep: productTranslationBaseQuery(languageCode)
-    })
-  );
+  // Define fields based on the page
+  const pageFields: Record<Page, Query<Schema, Product>['fields']> = {
+    home: [
+      'feature_image_1',
+      'feature_image_2',
+      'price',
+      { translations: ['*'] }
+    ],
+    products: [
+      '*',
+      { sizes: ['*'] },
+      { translations: ['*'] },
+      { images: ['*', { product_image_id: ['*', { images: ['*'] }] }] },
+      { colors: ['*', { product_color_id: ['*', { translations: ['*'] }] }] }
+    ]
+  };
 
+  // Define deep options based on the page
+  const pageDeep: Record<Page, Query<Schema, Product>['deep']> = {
+    home: {
+      translations: {
+        _filter: {
+          languages_code: languageCode
+        }
+      }
+    },
+    products: {
+      translations: {
+        _filter: {
+          languages_code: languageCode
+        }
+      },
+      colors: {
+        product_color_id: {
+          translations: {
+            _filter: {
+              languages_code: languageCode
+            }
+          }
+        }
+      } as any
+    }
+  };
+
+  // Build the query dynamically based on the page
+  const query: Query<Schema, Product> = {
+    fields: pageFields[page],
+    deep: pageDeep[page]
+  };
+
+  const products = await directus.request(readItems('product', query));
   return products;
 };
 

@@ -38,7 +38,7 @@ export const meta: MetaFunction = () => {
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
 
-  const products = await getProducts({ languageCode });
+  const products = await getProducts({ languageCode, page: 'home' });
 
   return { products };
 };

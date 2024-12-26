@@ -41,3 +41,5 @@ export type ValueLabel = {
   link: string;
   label: string;
 };
+
+export type Page = 'home' | 'products';
