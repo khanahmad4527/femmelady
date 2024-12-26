@@ -4,9 +4,9 @@ const {
 } = require('./app/locales/localesHandler.cjs');
 
 // Add or update multiple keys at once
-// addOrUpdateKeysBatch({
-//   'order.summary': { en: 'Order Summary', ja: '注文概要' },
-// });
+addOrUpdateKeysBatch({
+  'products.productSize': { en: 'Size', ja: 'サイズ' },
+});
 
 // Delete multiple keys at once
 // deleteKeysBatch(['order.subTotal', 'order.pay'], ['en', 'ja']);

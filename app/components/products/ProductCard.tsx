@@ -48,9 +48,7 @@ const ProductCard = (product: Product) => {
 
   const { colors, translations, price, id } = product;
 
-  const translation = getSingleTranslation({
-    translations
-  }) as ProductTranslation;
+  const translation = getSingleTranslation(translations) as ProductTranslation;
 
   const { currentLanguage } = useCurrentLanguage();
 
@@ -92,12 +90,14 @@ const ProductCard = (product: Product) => {
           src={getImageUrl({
             id: hovered ? featureImage2 : featureImage1
           })}
-          alt={translation.title!}
+          alt={translation?.title!}
           loading={'lazy'}
         />
       </Box>
 
-      <Card.Section bg="primary.1" inheritPadding py={'md'}>
+      <Text tt={'capitalize'}>{translation?.title}</Text>
+
+      <Card.Section bg="primary.1" inheritPadding>
         <Group align={'flex-end'}>
           <Box mr={'auto'}>
             <ProductColorSwitcher
