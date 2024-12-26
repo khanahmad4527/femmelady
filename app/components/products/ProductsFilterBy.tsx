@@ -12,14 +12,20 @@ import {
 } from '@mantine/core';
 import { useDebouncedCallback } from '@mantine/hooks';
 import { useState } from 'react';
-import { useOutletContext } from 'react-router';
+import { useOutletContext, useSearchParams } from 'react-router';
 import { PARAMS } from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
 import { OutletContext } from '~/types/types';
 
 const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
+  const [, setSearchParams] = useSearchParams();
   const t = useTranslation();
+
+  const clearSearchParams = () => {
+    // Clears all search params from the URL
+    setSearchParams(undefined);
+  };
 
   const productsFilterByAccordionData = [
     {
@@ -74,7 +80,7 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
     <Box display={{ base: 'none', md: 'block' }}>
       <Group>
         <Text>{t('products.filterBy')}</Text>
-        <Button>{t('products.clearFilter')}</Button>
+        <Button onClick={clearSearchParams}>{t('products.clearFilter')}</Button>
       </Group>
       <Accordion>{accordionItems}</Accordion>
     </Box>
@@ -172,7 +178,7 @@ const PriceFilter = () => {
   const handleSearch = useDebouncedCallback(() => {
     searchParams.set(PARAMS.PRICE, String(value));
     setSearchParams(searchParams, { preventScrollReset: true });
-  }, 500);
+  }, 1000);
 
   return (
     <RangeSlider
