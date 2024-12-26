@@ -1,14 +1,21 @@
 import { Center, Group, Stack, Title } from '@mantine/core';
-import { memo, useState } from 'react';
-import { useSearchParams } from 'react-router';
+import { useState } from 'react';
+import { SetURLSearchParams } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
 import { ProductSize } from '~/types/types';
 
 const switchSize = 40;
 
-const ProductSizeSwitcher = ({ sizes }: { sizes: ProductSize[] }) => {
+const ProductSizeSwitcher = ({
+  sizes,
+  searchParams,
+  setSearchParams
+}: {
+  sizes: ProductSize[];
+  searchParams: URLSearchParams;
+  setSearchParams: SetURLSearchParams;
+}) => {
   const t = useTranslation();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const [activeSize, setActiveSize] = useState(
     searchParams.get('size') ?? sizes[0].size
@@ -17,12 +24,8 @@ const ProductSizeSwitcher = ({ sizes }: { sizes: ProductSize[] }) => {
   const handleActiveSize = (size: string) => {
     setActiveSize(size);
 
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set('size', size);
-
-    setSearchParams(newSearchParams, {
-      preventScrollReset: true
-    });
+    searchParams.set('size', size);
+    setSearchParams(searchParams, { preventScrollReset: true });
   };
 
   return (
@@ -52,4 +55,4 @@ const ProductSizeSwitcher = ({ sizes }: { sizes: ProductSize[] }) => {
   );
 };
 
-export default memo(ProductSizeSwitcher);
+export default ProductSizeSwitcher;

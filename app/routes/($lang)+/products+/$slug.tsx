@@ -21,6 +21,7 @@ import commonClasses from '~/styles/Common.module.scss';
 import {
   Product,
   ProductProductColor,
+  ProductSize,
   ProductTranslation
 } from '~/types/types';
 import { formatCurrency, getImageUrl } from '~/utils';
@@ -177,7 +178,11 @@ const SingleProduct = () => {
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />
-          {/* <ProductSizeSwitcher sizes={product.sizes} /> */}
+          <ProductSizeSwitcher
+            sizes={product.sizes as ProductSize[]}
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+          />
           <ProductCartQuantity />
           <Button color="black" size="md">
             {t('products.addToBag')}
