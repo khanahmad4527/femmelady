@@ -26,11 +26,13 @@ const productTranslationBaseQuery = (languageCode: string) => {
 export const getProducts = async ({
   page,
   languageCode,
-  priceRange
+  priceRange,
+  rating
 }: {
   page: Page;
   languageCode: string;
   priceRange?: [number, number];
+  rating?: number;
 }) => {
   // Define fields based on the page
   const pageFields: Record<Page, Query<Schema, Product>['fields']> = {
@@ -81,6 +83,9 @@ export const getProducts = async ({
     filter: {
       price: {
         _between: priceRange
+      },
+      average_rating: {
+        _lte: 2
       }
     },
     fields: pageFields[page],

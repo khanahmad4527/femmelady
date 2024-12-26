@@ -17,7 +17,7 @@ import { PARAMS } from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
 import { OutletContext } from '~/types/types';
-import { getPriceRange } from '~/utils';
+import { getPriceRange, getRating } from '~/utils';
 
 const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
   const [, setSearchParams] = useSearchParams();
@@ -91,12 +91,38 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
 export default ProductsFilterBy;
 
 const RatingFilter = () => {
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
+  const [value, setValue] = useState(getRating({ searchParams }) ?? 3);
+
+  const handleSearch = (value: number) => {
+    searchParams.set(PARAMS.RATING, String(value));
+    setSearchParams(searchParams, { preventScrollReset: true });
+  };
+
+  return (
+    <Rating
+      value={value}
+      onChange={e => {
+        handleSearch(e);
+        setValue(e);
+      }}
+      size="sm"
+      color={'primary'}
+    />
+  );
+
   const ratings = [5, 4, 3, 2, 1];
 
   return (
     <Stack gap="sm">
       {ratings.map(stars => (
-        <Rating key={stars} value={stars} readOnly size="sm" />
+        <Rating
+          key={stars}
+          value={stars}
+          size="sm"
+          color={'primary'}
+          readOnly
+        />
       ))}
     </Stack>
   );
@@ -178,7 +204,7 @@ const PriceFilter = () => {
     getPriceRange({ searchParams }) ?? [20, 500]
   );
 
-  const handleSearch = useDebouncedCallback(() => {
+  const handleSearch = useDebouncedCallback((value: [number, number]) => {
     searchParams.set(PARAMS.PRICE, String(value));
     setSearchParams(searchParams, { preventScrollReset: true });
   }, 1000);
@@ -189,7 +215,7 @@ const PriceFilter = () => {
       max={1000}
       value={value}
       onChange={e => {
-        handleSearch();
+        handleSearch(e);
         setValue(e);
       }}
       step={20}

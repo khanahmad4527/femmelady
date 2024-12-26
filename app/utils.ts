@@ -5,7 +5,8 @@ import { OutletContext, TranslationKeys } from './types/types';
 import {
   FALL_BACK_LANG,
   LANGUAGE_TO_LOCALE_LANGUAGE,
-  LOCALE_TO_CURRENCY
+  LOCALE_TO_CURRENCY,
+  PARAMS
 } from './constant';
 
 export const submitForm = <T extends Record<string, any>>(
@@ -192,12 +193,12 @@ export const getPriceRange = ({
     return undefined;
   }
   let priceParam: string | undefined | null = undefined;
-  
+
   if (request) {
     const url = new URL(request.url);
-    priceParam = url.searchParams.get('price');
+    priceParam = url.searchParams.get(PARAMS.PRICE);
   } else if (searchParams) {
-    priceParam = searchParams.get('price');
+    priceParam = searchParams.get(PARAMS.PRICE);
   }
 
   // If the price parameter is missing, return undefined
@@ -210,4 +211,29 @@ export const getPriceRange = ({
   if (priceRange.some(isNaN) || priceRange.length !== 2) return undefined;
 
   return [priceRange[0], priceRange[1]] as [number, number];
+};
+
+export const getRating = ({
+  request,
+  searchParams
+}: {
+  request?: Request;
+  searchParams?: URLSearchParams;
+}) => {
+  if (!request && !searchParams) {
+    return undefined;
+  }
+  let rating: string | undefined | null = undefined;
+
+  if (request) {
+    const url = new URL(request.url);
+    rating = url.searchParams.get(PARAMS.RATING);
+  } else if (searchParams) {
+    rating = searchParams.get(PARAMS.RATING);
+  }
+
+  // If the price parameter is missing, return undefined
+  if (!rating) return undefined;
+
+  return Number(rating);
 };
