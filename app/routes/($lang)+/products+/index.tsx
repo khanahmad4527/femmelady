@@ -25,7 +25,7 @@ import { getLanguageCode, getPriceRange } from '~/utils';
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
 
-  const priceRange = getPriceRange(request);
+  const priceRange = getPriceRange({ request });
 
   const products = await getProducts({
     page: 'products',

@@ -181,9 +181,24 @@ export const getLanguageCode = (params: { lang?: string }) => {
   return languageCode;
 };
 
-export const getPriceRange = (request: Request) => {
-  const url = new URL(request.url);
-  const priceParam = url.searchParams.get('price');
+export const getPriceRange = ({
+  request,
+  searchParams
+}: {
+  request?: Request;
+  searchParams?: URLSearchParams;
+}) => {
+  if (!request && !searchParams) {
+    return undefined;
+  }
+  let priceParam: string | undefined | null = undefined;
+  
+  if (request) {
+    const url = new URL(request.url);
+    priceParam = url.searchParams.get('price');
+  } else if (searchParams) {
+    priceParam = searchParams.get('price');
+  }
 
   // If the price parameter is missing, return undefined
   if (!priceParam) return undefined;

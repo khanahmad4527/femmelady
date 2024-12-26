@@ -17,6 +17,7 @@ import { PARAMS } from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
 import { OutletContext } from '~/types/types';
+import { getPriceRange } from '~/utils';
 
 const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
   const [, setSearchParams] = useSearchParams();
@@ -173,7 +174,9 @@ const CategoryFilter = () => {
 
 const PriceFilter = () => {
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
-  const [value, setValue] = useState<[number, number]>([20, 500]);
+  const [value, setValue] = useState<[number, number]>(
+    getPriceRange({ searchParams }) ?? [20, 500]
+  );
 
   const handleSearch = useDebouncedCallback(() => {
     searchParams.set(PARAMS.PRICE, String(value));
