@@ -93,6 +93,7 @@ export const getProducts = async ({
   > = {
     home: {
       fields: [
+        'id',
         'feature_image_1',
         'feature_image_2',
         'price',
@@ -133,6 +134,7 @@ export const getProducts = async ({
   const baseQuery: Query<Schema, Product> = {
     filter: filters,
     fields,
+    limit: DEFAULT_PRODUCT_LIMIT,
     deep
   };
 
