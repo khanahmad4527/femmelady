@@ -20,20 +20,25 @@ import useTranslation from '~/hooks/useTranslation';
 import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
 import { Route } from '../+types/_index';
-import { getLanguageCode, getPriceRange, getRating } from '~/utils';
+import {
+  getAverageRatingRange,
+  getLanguageCode,
+  getPriceRange,
+  getRating
+} from '~/utils';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
 
   const priceRange = getPriceRange({ request });
 
-  const rating = getRating({ request });
+  const averageRatingRange = getAverageRatingRange(getRating({ request }));
 
   const products = await getProducts({
     page: 'products',
     languageCode,
     priceRange,
-    rating
+    averageRatingRange
   });
 
   return { products };

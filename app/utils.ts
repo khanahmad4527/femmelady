@@ -237,3 +237,18 @@ export const getRating = ({
 
   return Number(rating);
 };
+
+export const getAverageRatingRange = (rating?: number) => {
+  if (!rating) {
+    return undefined;
+  }
+  
+  if (rating < 1 || rating > 5) {
+    return undefined; // Handle invalid ratings
+  }
+
+  const lowerBound = Math.floor(rating);
+  const upperBound = rating === 5 ? 5 : lowerBound + 0.9; // Special case for 5
+
+  return [lowerBound, upperBound] as [number, number];
+};

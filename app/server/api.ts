@@ -27,12 +27,12 @@ export const getProducts = async ({
   page,
   languageCode,
   priceRange,
-  rating
+  averageRatingRange
 }: {
   page: Page;
   languageCode: string;
   priceRange?: [number, number];
-  rating?: number;
+  averageRatingRange?: [number, number];
 }) => {
   // Define fields based on the page
   const pageFields: Record<Page, Query<Schema, Product>['fields']> = {
@@ -85,7 +85,7 @@ export const getProducts = async ({
         _between: priceRange
       },
       average_rating: {
-        _lte: 2
+        _between: averageRatingRange
       }
     },
     fields: pageFields[page],
