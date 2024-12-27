@@ -68,6 +68,7 @@ const Products = () => {
   const t = useTranslation();
 
   const productPerPage = getLimit({ searchParams });
+  const currentPage = getPage({ searchParams });
 
   const totalPaginationButtons = Math.ceil(totalProductCount / productPerPage);
 
@@ -115,6 +116,7 @@ const Products = () => {
         </Grid.Col>
       </Grid>
       <Pagination
+        defaultValue={currentPage}
         total={totalPaginationButtons}
         onChange={handlePagination}
         m={'auto'}

@@ -79,6 +79,7 @@ const ProductColorSwitcher = ({
               key={c.id}
               w={30}
               h={30}
+              bg={'primary.1'}
               radius={'xl'}
               style={{
                 display: 'flex',
