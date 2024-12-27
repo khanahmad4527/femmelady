@@ -77,7 +77,7 @@ const Products = () => {
       <Group align="flex-end">
         <Text span>
           {t('products.resultsCount', {
-            count: <Text span>13</Text>
+            count: <Text span>{totalProductCount}</Text>
           })}
         </Text>
 
