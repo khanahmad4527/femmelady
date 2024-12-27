@@ -5,6 +5,7 @@ import { GetParam, OutletContext, TranslationKeys } from './types/types';
 import {
   DEFAULT_PRODUCT_LIMIT,
   DEFAULT_PRODUCT_PAGE,
+  DEFAULT_PRODUCT_SORT,
   FALL_BACK_LANG,
   LANGUAGE_TO_LOCALE_LANGUAGE,
   LOCALE_TO_CURRENCY,
@@ -265,9 +266,9 @@ export const getLimit = ({ request, searchParams }: GetParam) => {
 
   if (request) {
     const url = new URL(request.url);
-    limit = Number(url.searchParams.get(PARAMS.LIMIT));
+    limit = Number(url.searchParams.get(PARAMS.LIMIT)) ?? DEFAULT_PRODUCT_LIMIT;
   } else if (searchParams) {
-    limit = Number(searchParams.get(PARAMS.LIMIT));
+    limit = Number(searchParams.get(PARAMS.LIMIT)) ?? DEFAULT_PRODUCT_LIMIT;
   }
 
   // If the limit parameter is missing, return DEFAULT_PRODUCT_LIMIT
@@ -284,13 +285,32 @@ export const getPage = ({ request, searchParams }: GetParam) => {
 
   if (request) {
     const url = new URL(request.url);
-    page = Number(url.searchParams.get(PARAMS.PAGE));
+    page = Number(url.searchParams.get(PARAMS.PAGE)) ?? DEFAULT_PRODUCT_PAGE;
   } else if (searchParams) {
-    page = Number(searchParams.get(PARAMS.PAGE));
+    page = Number(searchParams.get(PARAMS.PAGE)) ?? DEFAULT_PRODUCT_PAGE;
   }
 
   // If the page parameter is missing, return DEFAULT_PRODUCT_PAGE
   if (!page) return DEFAULT_PRODUCT_PAGE;
 
   return Number(page);
+};
+
+export const getSort = ({ request, searchParams }: GetParam) => {
+  if (!request && !searchParams) {
+    return DEFAULT_PRODUCT_SORT;
+  }
+  let sort = DEFAULT_PRODUCT_SORT;
+
+  if (request) {
+    const url = new URL(request.url);
+    sort = url.searchParams.get(PARAMS.PAGE) ?? DEFAULT_PRODUCT_SORT;
+  } else if (searchParams) {
+    sort = searchParams.get(PARAMS.PAGE) ?? DEFAULT_PRODUCT_SORT;
+  }
+
+  // If the sort parameter is missing, return DEFAULT_PRODUCT_SORT
+  if (!sort) return DEFAULT_PRODUCT_SORT;
+
+  return sort;
 };

@@ -186,3 +186,5 @@ export const PARAMS = {
 export const DEFAULT_PRODUCT_LIMIT = 10;
 
 export const DEFAULT_PRODUCT_PAGE = 1;
+
+export const DEFAULT_PRODUCT_SORT = 'popularity';

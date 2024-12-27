@@ -3149,6 +3149,8 @@ export interface components {
       feature_image_2?: string | components["schemas"]["Files"] | null;
       average_rating?: number | null;
       review_count?: number | null;
+      favorite_by_count?: number | null;
+      viewed_count?: number | null;
       categories?: number[] | components["schemas"]["ItemsProductCategoryJunction"][] | null;
       sizes?: string[] | components["schemas"]["ItemsProductSize"][] | null;
       coupons?: number[] | components["schemas"]["ItemsProductCouponJunction"][] | null;
