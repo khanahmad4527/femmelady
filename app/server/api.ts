@@ -3,6 +3,37 @@ import { directus } from './directus';
 import { Schema } from '~/types/collections';
 import { Page, Product } from '~/types/types';
 import { validateUUID } from '~/utils';
+import { DEFAULT_PRODUCT_LIMIT, DEFAULT_PRODUCT_PAGE } from '~/constant';
+import NodeCache from 'node-cache';
+
+const cache = new NodeCache();
+
+// Utility function to fetch exchange rates
+export const getExchangeRate = async (currency: string): Promise<number> => {
+  // Check if the exchange rate is already cached
+  const cachedRate = cache.get<number>(`exchange-rate-${currency}`);
+  if (cachedRate) {
+    return cachedRate;
+  }
+
+  try {
+    const response = await fetch(process.env?.EXCHANGE_RATE_API_URL ?? '');
+    if (!response.ok) {
+      throw new Error(`Failed to fetch exchange rates: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    const rate = data?.rates?.[currency] || 1; // Default to 1 if no rate is found
+
+    // Cache the exchange rate
+    cache.set(`exchange-rate-${currency}`, rate, 3600);
+
+    return rate;
+  } catch (error) {
+    console.error(`Error fetching exchange rate for ${currency}:`, error);
+    return 1; // Default fallback rate
+  }
+};
 
 const productTranslationBaseQuery = (languageCode: string) => {
   return {
@@ -28,8 +59,8 @@ export const getProducts = async ({
   languageCode,
   priceRange,
   averageRatingRange,
-  productsPerPage,
-  currentPage
+  productsPerPage = DEFAULT_PRODUCT_LIMIT,
+  currentPage = DEFAULT_PRODUCT_PAGE
 }: {
   route: Page;
   languageCode: string;

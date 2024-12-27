@@ -8,6 +8,7 @@ export interface OutletContext {
   env: Env;
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
+  exchangeRate: number;
 }
 
 export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {

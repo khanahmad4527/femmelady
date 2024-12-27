@@ -20,6 +20,9 @@ import useCurrentLanguage from './hooks/useCurrentLanguage';
 import { theme } from './theme';
 import { OutletContext, TranslationKeys } from './types/types';
 import { Route } from './+types/root';
+import { getExchangeRate } from './server/api';
+import { getUserLocale } from './utils';
+import { LOCALE_TO_CURRENCY } from './constant';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const currentLanguage = params?.lang as TranslationKeys;
@@ -27,9 +30,15 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
     return redirect('/en');
   }
 
+  const locale = getUserLocale(currentLanguage);
+
+  const currency = LOCALE_TO_CURRENCY[locale] || 'USD';
+
+  const exchangeRate = await getExchangeRate(currency);
+
   const env = { DIRECTUS_URL: process.env?.DIRECTUS_URL };
 
-  return { isLoggedIn: true, currentLanguage, env };
+  return { isLoggedIn: true, currentLanguage, env, exchangeRate };
 };
 
 export const links: LinksFunction = () => {
@@ -81,7 +90,8 @@ const ErrorBoundaryComponent = () => {
     env: {},
     isLoggedIn: false,
     searchParams,
-    setSearchParams
+    setSearchParams,
+    exchangeRate: 1
   };
   return (
     <Document {...ctx}>

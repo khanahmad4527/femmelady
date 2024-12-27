@@ -64,14 +64,28 @@ export const formatCurrency = ({
   currentLanguage: TranslationKeys;
   value: number;
 }) => {
-  const locale = getUserLocale(currentLanguage);
+  const outletContext = useOutletContext<OutletContext>();
 
+  const locale = getUserLocale(currentLanguage);
   const currency = LOCALE_TO_CURRENCY[locale] || 'USD';
 
+  const exchangeRate = outletContext?.exchangeRate;
+
+  // If the currency is USD, no need to convert
+  if (currency === 'USD') {
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency
+    }).format(value);
+  }
+
+  const convertedValue = value * exchangeRate;
+
+  // Format the converted value
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency
-  }).format(value);
+  }).format(convertedValue);
 };
 
 /**
