@@ -26,7 +26,8 @@ import {
   getLimit,
   getPage,
   getPriceRange,
-  getRating
+  getRating,
+  getSort
 } from '~/utils';
 import { OutletContext } from '~/types/types';
 import { PARAMS } from '~/constant';
@@ -42,13 +43,16 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   const currentPage = getPage({ request });
 
+  const productSort = getSort({ request });
+
   const { products, totalProductCount } = await getProducts({
     route: 'products',
     languageCode,
     priceRange,
     averageRatingRange,
     productsPerPage,
-    currentPage
+    currentPage,
+    productSort
   });
 
   return { products, totalProductCount };

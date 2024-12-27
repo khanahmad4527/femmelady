@@ -54,6 +54,8 @@ const ProductCard = (product: Product) => {
 
   const { currentLanguage } = useCurrentLanguage();
 
+  
+
   return (
     <Card
       pos={'relative'}

@@ -1,6 +1,6 @@
 import { Select } from '@mantine/core';
 import { useOutletContext } from 'react-router';
-import { DEFAULT_PRODUCT_SORT } from '~/constant';
+import { DEFAULT_PRODUCT_SORT, PARAMS } from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
 import { OutletContext } from '~/types/types';
@@ -11,7 +11,7 @@ const ProductsSortBy = () => {
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
   const handleFilterChange = (value: string | null) => {
-    searchParams.set('sort', value ?? DEFAULT_PRODUCT_SORT);
+    searchParams.set(PARAMS.SORT, value ?? DEFAULT_PRODUCT_SORT);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
@@ -21,11 +21,11 @@ const ProductsSortBy = () => {
       placeholder={t('products.sortBy')}
       defaultValue={getSort({ searchParams })}
       data={[
-        { value: 'popularity', label: t('products.popularity') },
-        { value: 'price-low-to-high', label: t('products.priceLowToHigh') },
-        { value: 'price-high-to-low', label: t('products.priceHighToLow') },
-        { value: 'alphabetic-a-to-z', label: t('products.alphabeticAtoZ') },
-        { value: 'alphabetic-z-to-a', label: t('products.alphabeticZtoA') }
+        { value: '-viewed_count', label: t('products.popularity') },
+        { value: 'price', label: t('products.priceLowToHigh') },
+        { value: '-price', label: t('products.priceHighToLow') },
+        { value: 'translations.title', label: t('products.alphabeticAtoZ') },
+        { value: '-translations.title', label: t('products.alphabeticZtoA') }
       ]}
       onChange={handleFilterChange}
       clearable={false}

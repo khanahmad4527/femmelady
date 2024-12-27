@@ -304,9 +304,9 @@ export const getSort = ({ request, searchParams }: GetParam) => {
 
   if (request) {
     const url = new URL(request.url);
-    sort = url.searchParams.get(PARAMS.PAGE) ?? DEFAULT_PRODUCT_SORT;
+    sort = url.searchParams.get(PARAMS.SORT) ?? DEFAULT_PRODUCT_SORT;
   } else if (searchParams) {
-    sort = searchParams.get(PARAMS.PAGE) ?? DEFAULT_PRODUCT_SORT;
+    sort = searchParams.get(PARAMS.SORT) ?? DEFAULT_PRODUCT_SORT;
   }
 
   // If the sort parameter is missing, return DEFAULT_PRODUCT_SORT

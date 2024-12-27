@@ -180,11 +180,12 @@ export const PARAMS = {
   CATEGORY: 'category',
   BRAND: 'brand',
   LIMIT: 'limit',
-  PAGE: 'page'
+  PAGE: 'page',
+  SORT: 'sort'
 };
 
 export const DEFAULT_PRODUCT_LIMIT = 10;
 
 export const DEFAULT_PRODUCT_PAGE = 1;
 
-export const DEFAULT_PRODUCT_SORT = 'popularity';
+export const DEFAULT_PRODUCT_SORT = '-viewed_count';

@@ -3,7 +3,11 @@ import { directus } from './directus';
 import { Schema } from '~/types/collections';
 import { Page, Product } from '~/types/types';
 import { validateUUID } from '~/utils';
-import { DEFAULT_PRODUCT_LIMIT, DEFAULT_PRODUCT_PAGE } from '~/constant';
+import {
+  DEFAULT_PRODUCT_LIMIT,
+  DEFAULT_PRODUCT_PAGE,
+  DEFAULT_PRODUCT_SORT
+} from '~/constant';
 import NodeCache from 'node-cache';
 
 const cache = new NodeCache();
@@ -60,7 +64,8 @@ export const getProducts = async ({
   priceRange,
   averageRatingRange,
   productsPerPage = DEFAULT_PRODUCT_LIMIT,
-  currentPage = DEFAULT_PRODUCT_PAGE
+  currentPage = DEFAULT_PRODUCT_PAGE,
+  productSort = DEFAULT_PRODUCT_SORT
 }: {
   route: Page;
   languageCode: string;
@@ -68,6 +73,7 @@ export const getProducts = async ({
   averageRatingRange?: [number, number];
   productsPerPage?: number;
   currentPage?: number;
+  productSort?: string;
 }): Promise<{ products: Product[]; totalProductCount: number }> => {
   // Common filters
   const filters = {
@@ -134,7 +140,8 @@ export const getProducts = async ({
   const productQuery: Query<Schema, Product> = {
     ...baseQuery,
     limit: productsPerPage,
-    page: currentPage
+    page: currentPage,
+    sort: [productSort as any]
   };
 
   if (route === 'home') {
