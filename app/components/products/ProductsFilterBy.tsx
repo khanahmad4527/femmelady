@@ -20,7 +20,7 @@ import { OutletContext } from '~/types/types';
 import { getPriceRange, getRating } from '~/utils';
 
 const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const t = useTranslation();
 
   const clearSearchParams = () => {
@@ -30,22 +30,22 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
 
   const productsFilterByAccordionData = [
     {
-      value: 'category',
+      value: PARAMS.CATEGORY,
       label: t('products.category'),
       component: <CategoryFilter />
     },
     {
-      value: 'price',
+      value: PARAMS.PRICE,
       label: t('products.price'),
       component: <PriceFilter />
     },
     {
-      value: 'brand',
+      value: PARAMS.BRAND,
       label: t('products.brand'),
       component: <BrandFilter />
     },
     {
-      value: 'rating',
+      value: PARAMS.RATING,
       label: t('products.rating'),
       component: <RatingFilter />
     }
@@ -83,7 +83,9 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
         <Text>{t('products.filterBy')}</Text>
         <Button onClick={clearSearchParams}>{t('products.clearFilter')}</Button>
       </Group>
-      <Accordion>{accordionItems}</Accordion>
+      <Accordion defaultValue={Array.from(searchParams.keys())} multiple>
+        {accordionItems}
+      </Accordion>
     </Box>
   );
 };

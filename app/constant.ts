@@ -176,5 +176,7 @@ export const PARAMS = {
   IMAGE_SET: 'image-set',
   IMAGE_ID: 'image-id',
   PRICE: 'price',
-  RATING: 'rating'
+  RATING: 'rating',
+  CATEGORY: 'category',
+  BRAND: 'brand'
 };
