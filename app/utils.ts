@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { GetParam, OutletContext, TranslationKeys } from './types/types';
 import {
   DEFAULT_PRODUCT_LIMIT,
+  DEFAULT_PRODUCT_PAGE,
   FALL_BACK_LANG,
   LANGUAGE_TO_LOCALE_LANGUAGE,
   LOCALE_TO_CURRENCY,
@@ -259,4 +260,23 @@ export const getLimit = ({ request, searchParams }: GetParam) => {
   if (!limit) return DEFAULT_PRODUCT_LIMIT;
 
   return Number(limit);
+};
+
+export const getPage = ({ request, searchParams }: GetParam) => {
+  if (!request && !searchParams) {
+    return DEFAULT_PRODUCT_PAGE;
+  }
+  let page = DEFAULT_PRODUCT_PAGE;
+
+  if (request) {
+    const url = new URL(request.url);
+    page = Number(url.searchParams.get(PARAMS.PAGE));
+  } else if (searchParams) {
+    page = Number(searchParams.get(PARAMS.PAGE));
+  }
+
+  // If the page parameter is missing, return DEFAULT_PRODUCT_PAGE
+  if (!page) return DEFAULT_PRODUCT_PAGE;
+
+  return Number(page);
 };

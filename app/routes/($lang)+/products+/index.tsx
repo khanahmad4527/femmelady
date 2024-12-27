@@ -8,7 +8,7 @@ import {
   Text
 } from '@mantine/core';
 
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useOutletContext } from 'react-router';
 
 import ProductCard from '~/components/products/ProductCard';
 import ProductsFilterBy from '~/components/products/ProductsFilterBy';
@@ -24,9 +24,12 @@ import {
   getAverageRatingRange,
   getLanguageCode,
   getLimit,
+  getPage,
   getPriceRange,
   getRating
 } from '~/utils';
+import { OutletContext } from '~/types/types';
+import { PARAMS } from '~/constant';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -35,25 +38,39 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   const averageRatingRange = getAverageRatingRange(getRating({ request }));
 
-  const limit = getLimit({ request });
+  const productsPerPage = getLimit({ request });
 
-  const products = await getProducts({
-    page: 'products',
+  const currentPage = getPage({ request });
+
+  const { products, totalProductCount } = await getProducts({
+    route: 'products',
     languageCode,
     priceRange,
     averageRatingRange,
-    limit
+    productsPerPage,
+    currentPage
   });
 
-  return { products };
+  return { products, totalProductCount };
 };
 
 const Products = () => {
-  const { products } = useLoaderData<typeof loader>();
+  const { products, totalProductCount } = useLoaderData<typeof loader>();
+
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
   const productCardRefs = useScrollToProduct({ products });
 
   const t = useTranslation();
+
+  const productPerPage = getLimit({ searchParams });
+
+  const totalPaginationButtons = Math.ceil(totalProductCount / productPerPage);
+
+  const handlePagination = (value: number) => {
+    searchParams.set(PARAMS.PAGE, String(value));
+    setSearchParams(searchParams, { preventScrollReset: true });
+  };
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
@@ -93,7 +110,12 @@ const Products = () => {
           </SimpleGrid>
         </Grid.Col>
       </Grid>
-      <Pagination total={10} m={'auto'} color={'black'} />
+      <Pagination
+        total={totalPaginationButtons}
+        onChange={handlePagination}
+        m={'auto'}
+        color={'black'}
+      />
     </Stack>
   );
 };

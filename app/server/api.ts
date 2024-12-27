@@ -24,103 +24,109 @@ const productTranslationBaseQuery = (languageCode: string) => {
 };
 
 export const getProducts = async ({
-  page,
+  route,
   languageCode,
   priceRange,
   averageRatingRange,
-  limit
+  productsPerPage,
+  currentPage
 }: {
-  page: Page;
+  route: Page;
   languageCode: string;
   priceRange?: [number, number];
   averageRatingRange?: [number, number];
-  limit?: number;
-}) => {
-  // Define fields based on the page
-  const pageFields: Record<Page, Query<Schema, Product>['fields']> = {
-    home: [
-      'feature_image_1',
-      'feature_image_2',
-      'price',
-      { translations: ['*'] }
-    ],
-    products: [
-      '*',
-      { sizes: ['*'] },
-      { translations: ['*'] },
-      { images: ['*', { product_image_id: ['*', { images: ['*'] }] }] },
-      { colors: ['*', { product_color_id: ['*', { translations: ['*'] }] }] }
-    ]
+  productsPerPage?: number;
+  currentPage?: number;
+}): Promise<{ products: Product[]; totalProductCount: number }> => {
+  // Common filters
+  const filters = {
+    price: priceRange ? { _between: priceRange } : undefined,
+    average_rating: averageRatingRange
+      ? { _between: averageRatingRange }
+      : undefined
   };
 
-  // Define deep options based on the page
-  const pageDeep: Record<Page, Query<Schema, Product>['deep']> = {
+  // Common fields and deep options based on the route
+  const routeConfig: Record<
+    Page,
+    {
+      fields: Query<Schema, Product>['fields'];
+      deep: Query<Schema, Product>['deep'];
+    }
+  > = {
     home: {
-      translations: {
-        _filter: {
-          languages_code: languageCode
+      fields: [
+        'feature_image_1',
+        'feature_image_2',
+        'price',
+        { translations: ['*'] }
+      ],
+      deep: {
+        translations: {
+          _filter: { languages_code: languageCode }
         }
       }
     },
     products: {
-      translations: {
-        _filter: {
-          languages_code: languageCode
-        }
-      },
-      colors: {
-        product_color_id: {
-          translations: {
-            _filter: {
-              languages_code: languageCode
+      fields: [
+        '*',
+        { sizes: ['*'] },
+        { translations: ['*'] },
+        { images: ['*', { product_image_id: ['*', { images: ['*'] }] }] },
+        { colors: ['*', { product_color_id: ['*', { translations: ['*'] }] }] }
+      ],
+      deep: {
+        translations: {
+          _filter: { languages_code: languageCode }
+        },
+        colors: {
+          product_color_id: {
+            translations: {
+              _filter: { languages_code: languageCode }
             }
           }
-        }
-      } as any
+        } as any
+      }
     }
   };
 
-  // Build the query dynamically based on the page
-  const aggregateQuery: Query<Schema, Product> = {
-    filter: {
-      price: {
-        _between: priceRange
-      },
-      average_rating: {
-        _between: averageRatingRange
-      }
-    },
-    fields: pageFields[page],
-    deep: pageDeep[page]
+  const { fields, deep } = routeConfig[route];
+
+  // Build the query dynamically
+  const baseQuery: Query<Schema, Product> = {
+    filter: filters,
+    fields,
+    deep
   };
 
-  // Build the query dynamically based on the page
-  const query: Query<Schema, Product> = {
-    filter: {
-      price: {
-        _between: priceRange
-      },
-      average_rating: {
-        _between: averageRatingRange
-      }
-    },
-    limit,
-    fields: pageFields[page],
-    deep: pageDeep[page]
+  // Query for products
+  const productQuery: Query<Schema, Product> = {
+    ...baseQuery,
+    limit: productsPerPage,
+    page: currentPage
   };
 
-  const [productCount] = await directus.request(
-    aggregate('product', {
-      aggregate: { count: '*' },
-      query: aggregateQuery
-    })
-  );
+  if (route === 'home') {
+    const products = await directus.request(readItems('product', productQuery));
+    return { products, totalProductCount: 0 };
+  }
 
-  console.log(productCount?.count);
+  if (route === 'products') {
+    // Aggregate query for product count
+    const [productCount] = await directus.request(
+      aggregate('product', {
+        aggregate: { count: '*' },
+        query: baseQuery
+      })
+    );
 
-  const products = await directus.request(readItems('product', query));
+    // Fetch products
+    const products = await directus.request(readItems('product', productQuery));
+    return { products, totalProductCount: Number(productCount?.count) };
+  }
 
-  return products;
+  // Default case for unsupported routes
+  return { products: [], totalProductCount: 0 };
 };
 
 export const getSingleProduct = async ({

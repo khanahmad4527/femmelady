@@ -179,7 +179,10 @@ export const PARAMS = {
   RATING: 'rating',
   CATEGORY: 'category',
   BRAND: 'brand',
-  LIMIT: 'limit'
+  LIMIT: 'limit',
+  PAGE: 'page'
 };
 
 export const DEFAULT_PRODUCT_LIMIT = 10;
+
+export const DEFAULT_PRODUCT_PAGE = 1;
