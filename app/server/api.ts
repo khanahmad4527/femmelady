@@ -1,4 +1,4 @@
-import { readItem, readItems, Query } from '@directus/sdk';
+import { readItem, readItems, Query, aggregate } from '@directus/sdk';
 import { directus } from './directus';
 import { Schema } from '~/types/collections';
 import { Page, Product } from '~/types/types';
@@ -27,12 +27,14 @@ export const getProducts = async ({
   page,
   languageCode,
   priceRange,
-  averageRatingRange
+  averageRatingRange,
+  limit
 }: {
   page: Page;
   languageCode: string;
   priceRange?: [number, number];
   averageRatingRange?: [number, number];
+  limit?: number;
 }) => {
   // Define fields based on the page
   const pageFields: Record<Page, Query<Schema, Product>['fields']> = {
@@ -79,7 +81,7 @@ export const getProducts = async ({
   };
 
   // Build the query dynamically based on the page
-  const query: Query<Schema, Product> = {
+  const aggregateQuery: Query<Schema, Product> = {
     filter: {
       price: {
         _between: priceRange
@@ -92,7 +94,32 @@ export const getProducts = async ({
     deep: pageDeep[page]
   };
 
+  // Build the query dynamically based on the page
+  const query: Query<Schema, Product> = {
+    filter: {
+      price: {
+        _between: priceRange
+      },
+      average_rating: {
+        _between: averageRatingRange
+      }
+    },
+    limit,
+    fields: pageFields[page],
+    deep: pageDeep[page]
+  };
+
+  const [productCount] = await directus.request(
+    aggregate('product', {
+      aggregate: { count: '*' },
+      query: aggregateQuery
+    })
+  );
+
+  console.log(productCount?.count);
+
   const products = await directus.request(readItems('product', query));
+
   return products;
 };
 

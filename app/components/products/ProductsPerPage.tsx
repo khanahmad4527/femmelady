@@ -1,10 +1,12 @@
 import { Select } from '@mantine/core';
 import { useOutletContext } from 'react-router';
+import { DEFAULT_PRODUCT_LIMIT, PARAMS } from '~/constant';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import useUserLocale from '~/hooks/useUserLocale';
 import { OutletContext } from '~/types/types';
+import { getLimit } from '~/utils';
 
 const ProductsPerPage = () => {
   const t = useTranslation();
@@ -15,7 +17,7 @@ const ProductsPerPage = () => {
 
   const formatNumber = (value: number) => value.toLocaleString(userLocale);
 
-  const limitValue = searchParams.get('limit') ?? '10';
+  const limitValue = getLimit({ searchParams });
 
   const data = [
     { value: '10', label: formatNumber(10) },
@@ -25,25 +27,19 @@ const ProductsPerPage = () => {
   ];
 
   const handleFilterChange = (value: string | null) => {
-    const newFilter = value || null;
-    const newSearchParams = new URLSearchParams(searchParams);
-    if (newFilter) {
-      newSearchParams.set('limit', newFilter);
-    } else {
-      newSearchParams.delete('limit');
-    }
-    setSearchParams(newSearchParams, { preventScrollReset: true });
+    searchParams.set(PARAMS.LIMIT, value ?? String(DEFAULT_PRODUCT_LIMIT));
+    setSearchParams(searchParams, { preventScrollReset: true });
   };
 
   return (
     <Select
       label={t('products.productsPerPage')}
       placeholder={t('products.productsPerPage')}
-      defaultValue={limitValue}
+      defaultValue={String(limitValue)}
       data={data}
       onChange={handleFilterChange}
-      clearable
-      allowDeselect
+      clearable={false}
+      allowDeselect={false}
     />
   );
 };

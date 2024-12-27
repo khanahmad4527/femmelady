@@ -1,8 +1,9 @@
 import { useForm } from '@mantine/form';
 import { useFetcher, useOutletContext } from 'react-router';
 import { z } from 'zod';
-import { OutletContext, TranslationKeys } from './types/types';
+import { GetParam, OutletContext, TranslationKeys } from './types/types';
 import {
+  DEFAULT_PRODUCT_LIMIT,
   FALL_BACK_LANG,
   LANGUAGE_TO_LOCALE_LANGUAGE,
   LOCALE_TO_CURRENCY,
@@ -182,13 +183,7 @@ export const getLanguageCode = (params: { lang?: string }) => {
   return languageCode;
 };
 
-export const getPriceRange = ({
-  request,
-  searchParams
-}: {
-  request?: Request;
-  searchParams?: URLSearchParams;
-}) => {
+export const getPriceRange = ({ request, searchParams }: GetParam) => {
   if (!request && !searchParams) {
     return undefined;
   }
@@ -213,13 +208,7 @@ export const getPriceRange = ({
   return [priceRange[0], priceRange[1]] as [number, number];
 };
 
-export const getRating = ({
-  request,
-  searchParams
-}: {
-  request?: Request;
-  searchParams?: URLSearchParams;
-}) => {
+export const getRating = ({ request, searchParams }: GetParam) => {
   if (!request && !searchParams) {
     return undefined;
   }
@@ -242,7 +231,7 @@ export const getAverageRatingRange = (rating?: number) => {
   if (!rating) {
     return undefined;
   }
-  
+
   if (rating < 1 || rating > 5) {
     return undefined; // Handle invalid ratings
   }
@@ -251,4 +240,23 @@ export const getAverageRatingRange = (rating?: number) => {
   const upperBound = rating === 5 ? 5 : lowerBound + 0.9; // Special case for 5
 
   return [lowerBound, upperBound] as [number, number];
+};
+
+export const getLimit = ({ request, searchParams }: GetParam) => {
+  if (!request && !searchParams) {
+    return DEFAULT_PRODUCT_LIMIT;
+  }
+  let limit = DEFAULT_PRODUCT_LIMIT;
+
+  if (request) {
+    const url = new URL(request.url);
+    limit = Number(url.searchParams.get(PARAMS.LIMIT));
+  } else if (searchParams) {
+    limit = Number(searchParams.get(PARAMS.LIMIT));
+  }
+
+  // If the limit parameter is missing, return DEFAULT_PRODUCT_LIMIT
+  if (!limit) return DEFAULT_PRODUCT_LIMIT;
+
+  return Number(limit);
 };

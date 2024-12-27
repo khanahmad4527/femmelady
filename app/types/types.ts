@@ -18,6 +18,19 @@ export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {
 
 export type TranslationKeys = 'en' | 'ja';
 
+export type ValueLabel = {
+  id: string;
+  link: string;
+  label: string;
+};
+
+export type Page = 'home' | 'products';
+
+export type GetParam = {
+  request?: Request;
+  searchParams?: URLSearchParams;
+};
+
 export type Product = components['schemas']['ItemsProduct'];
 
 export type ProductProductColor =
@@ -38,11 +51,3 @@ export type ProductProductImage =
 export type ProductImage = components['schemas']['ItemsProductImage'];
 
 export type ProductImageFile = components['schemas']['ItemsProductImageFiles'];
-
-export type ValueLabel = {
-  id: string;
-  link: string;
-  label: string;
-};
-
-export type Page = 'home' | 'products';

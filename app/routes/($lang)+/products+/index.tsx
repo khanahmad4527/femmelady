@@ -23,6 +23,7 @@ import { Route } from '../+types/_index';
 import {
   getAverageRatingRange,
   getLanguageCode,
+  getLimit,
   getPriceRange,
   getRating
 } from '~/utils';
@@ -34,11 +35,14 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   const averageRatingRange = getAverageRatingRange(getRating({ request }));
 
+  const limit = getLimit({ request });
+
   const products = await getProducts({
     page: 'products',
     languageCode,
     priceRange,
-    averageRatingRange
+    averageRatingRange,
+    limit
   });
 
   return { products };

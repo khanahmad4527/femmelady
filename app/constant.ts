@@ -178,5 +178,8 @@ export const PARAMS = {
   PRICE: 'price',
   RATING: 'rating',
   CATEGORY: 'category',
-  BRAND: 'brand'
+  BRAND: 'brand',
+  LIMIT: 'limit'
 };
+
+export const DEFAULT_PRODUCT_LIMIT = 10;
