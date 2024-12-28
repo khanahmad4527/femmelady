@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { PARAMS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import { Product, ProductColor, ProductProductColor } from '~/types/types';
@@ -44,14 +44,7 @@ const useCurrentActiveColor = ({
   // Initialize the activeColor state
   const [activeColor, setActiveColor] = useState(defaultActiveColor);
 
-  // Sync the activeColor state with memoized defaultActiveColor
-  useEffect(() => {
-    if (defaultActiveColor.id !== activeColor.id) {
-      setActiveColor(defaultActiveColor);
-    }
-  }, [product.translations]);
-
-  return { activeColor, setActiveColor };
+  return { activeColor, defaultActiveColor, setActiveColor };
 };
 
 export default useCurrentActiveColor;
