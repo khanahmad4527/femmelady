@@ -115,6 +115,7 @@ const RatingFilter = () => {
 };
 
 const BrandFilter = () => {
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
   const t = useTranslation();
 
   const brandNamesWithSlugs = [
@@ -144,12 +145,37 @@ const BrandFilter = () => {
     { label: t('brands.radiantMoments'), value: 'radiant-moments' }
   ];
 
+  const handleBrandSearch = (value: string) => {
+    const currentCategories = searchParams.get(PARAMS.BRANDS)?.split(',') || [];
+    const updatedCategories = currentCategories.includes(value)
+      ? currentCategories.filter(brand => brand !== value) // Remove if already selected
+      : [...currentCategories, value]; // Add new brand
+
+    if (updatedCategories.length === 0) {
+      searchParams.delete(PARAMS.BRANDS); // Remove param if empty
+    } else {
+      searchParams.set(PARAMS.BRANDS, updatedCategories.join(','));
+    }
+
+    setSearchParams(searchParams, { preventScrollReset: true });
+  };
+
   return (
     <ScrollArea h={250}>
       <Stack gap={'sm'}>
         {brandNamesWithSlugs.map(n => {
+          const isSelected = searchParams
+            .get(PARAMS.BRANDS)
+            ?.split(',')
+            .includes(n.value);
+
           return (
-            <Button key={n.value} variant="light" color="primary">
+            <Button
+              key={n.value}
+              variant={isSelected ? 'filled' : 'light'}
+              color="primary"
+              onClick={() => handleBrandSearch(n.value)}
+            >
               {n.label}
             </Button>
           );
@@ -160,25 +186,84 @@ const BrandFilter = () => {
 };
 
 const CategoryFilter = () => {
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
   const t = useTranslation();
 
   const categoriesWithSlugs = [
-    { label: t('products.filter.weddingDresses'), value: 'wedding-dresses' },
-    { label: t('products.filter.shoes'), value: 'shoes' },
-    { label: t('products.filter.candles'), value: 'candles' },
-    { label: t('products.filter.dresses'), value: 'dresses' },
-    { label: t('products.filter.jewelry'), value: 'jewelry' },
-    { label: t('products.filter.bags'), value: 'bags' },
-    { label: t('products.filter.perfumes'), value: 'perfumes' },
-    { label: t('products.filter.watches'), value: 'watches' }
+    {
+      label: t('products.filter.weddingDresses'),
+      value: 'wedding-dresses',
+      id: '418ae741-d5cf-4442-8b6a-70b397bd2cec'
+    },
+    {
+      label: t('products.filter.shoes'),
+      value: 'shoes',
+      id: '1816621b-dfa4-4e50-a983-1fe126773fce'
+    },
+    {
+      label: t('products.filter.candles'),
+      value: 'candles',
+      id: 'e76acfbc-a0f6-4a59-a962-a4bc4df54926'
+    },
+    {
+      label: t('products.filter.dresses'),
+      value: 'dresses',
+      id: '2d94f3a4-c004-4e74-b928-248a0bb8210f'
+    },
+    {
+      label: t('products.filter.jewelry'),
+      value: 'jewelry',
+      id: '68a0f6f7-120c-4758-9ca8-9863a5885a90'
+    },
+    {
+      label: t('products.filter.bags'),
+      value: 'bags',
+      id: 'cfe393ba-b6a7-46f7-8b93-88d58b42fd2c'
+    },
+    {
+      label: t('products.filter.perfumes'),
+      value: 'perfumes',
+      id: 'ee5d7591-983a-4d7a-87aa-e6030f78ae43'
+    },
+    {
+      label: t('products.filter.watches'),
+      value: 'watches',
+      id: '66c302b5-f2da-40b5-83e9-3189ecf2fb18'
+    }
   ];
+
+  const handleCategorySearch = (value: string) => {
+    const currentCategories =
+      searchParams.get(PARAMS.CATEGORIES)?.split(',') || [];
+    const updatedCategories = currentCategories.includes(value)
+      ? currentCategories.filter(category => category !== value) // Remove if already selected
+      : [...currentCategories, value]; // Add new category
+
+    if (updatedCategories.length === 0) {
+      searchParams.delete(PARAMS.CATEGORIES); // Remove param if empty
+    } else {
+      searchParams.set(PARAMS.CATEGORIES, updatedCategories.join(','));
+    }
+
+    setSearchParams(searchParams, { preventScrollReset: true });
+  };
 
   return (
     <ScrollArea h={250}>
       <Stack gap={'sm'}>
         {categoriesWithSlugs.map(n => {
+          const isSelected = searchParams
+            .get(PARAMS.CATEGORIES)
+            ?.split(',')
+            .includes(n.value);
+
           return (
-            <Button key={n.value} variant="light" color="primary">
+            <Button
+              key={n.id}
+              variant={isSelected ? 'filled' : 'light'}
+              color="primary"
+              onClick={() => handleCategorySearch(n.value)}
+            >
               {n.label}
             </Button>
           );

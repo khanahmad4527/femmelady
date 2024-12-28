@@ -76,11 +76,18 @@ export const getProducts = async ({
   productSort?: string;
 }): Promise<{ products: Product[]; totalProductCount: number }> => {
   // Common filters
-  const filters = {
+  const filters: Query<Schema, Product>['filter'] = {
     price: priceRange ? { _between: priceRange } : undefined,
     average_rating: averageRatingRange
       ? { _between: averageRatingRange }
       : undefined
+    // categories: {
+    //   product_category_id: {
+    //     id: {
+    //       _in: ['2d94f3a4-c004-4e74-b928-248a0bb8210f']
+    //     }
+    //   }
+    // }
   };
 
   // Common fields and deep options based on the route
