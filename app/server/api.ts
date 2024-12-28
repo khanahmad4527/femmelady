@@ -234,7 +234,7 @@ export const getReviews = async ({
 
   const fields: Query<Schema, Review>['fields'] = [
     '*',
-    { user_created: ['first_name', 'last_name'] },
+    { user_created: ['first_name', 'last_name'] } as any,
     { translations: ['*'] }
   ];
 
@@ -247,11 +247,11 @@ export const getReviews = async ({
   const filter: Query<Schema, Review>['filter'] = isUUID
     ? {
         ...baseFilter,
-        id: { _eq: slug }
+        product: { id: { _eq: slug } }
       }
     : {
         ...baseFilter,
-        translations: { slug }
+        product: { translations: { slug } }
       };
 
   const query: Query<Schema, Review> = {
