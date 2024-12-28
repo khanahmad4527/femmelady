@@ -74,7 +74,7 @@ const Products = () => {
 
   const handlePagination = (value: number) => {
     searchParams.set(PARAMS.PAGE, String(value));
-    setSearchParams(searchParams, { preventScrollReset: true });
+    setSearchParams(searchParams);
   };
 
   return (

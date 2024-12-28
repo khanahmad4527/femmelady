@@ -46,8 +46,10 @@ const useCurrentActiveColor = ({
 
   // Sync the activeColor state with memoized defaultActiveColor
   useEffect(() => {
-    setActiveColor(defaultActiveColor);
-  }, [defaultActiveColor]);
+    if (defaultActiveColor.id !== activeColor.id) {
+      setActiveColor(defaultActiveColor);
+    }
+  }, [product.translations]);
 
   return { activeColor, setActiveColor };
 };
