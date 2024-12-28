@@ -32,6 +32,8 @@ export type GetParam = {
   searchParams?: URLSearchParams;
 };
 
+export type User = components['schemas']['Users'];
+
 export type Product = components['schemas']['ItemsProduct'];
 
 export type ProductProductColor =
@@ -52,3 +54,8 @@ export type ProductProductImage =
 export type ProductImage = components['schemas']['ItemsProductImage'];
 
 export type ProductImageFile = components['schemas']['ItemsProductImageFiles'];
+
+export type Review = components['schemas']['ItemsReview'];
+
+export type ReviewTranslation =
+  components['schemas']['ItemsReviewTranslations'];

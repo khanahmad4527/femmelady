@@ -8,10 +8,9 @@ import {
   Stack,
   Title
 } from '@mantine/core';
-import { useLoaderData, useOutletContext } from 'react-router';
+import { Outlet, useLoaderData, useOutletContext } from 'react-router';
 import ProductCartQuantity from '~/components/products/ProductCartQuantity';
 import ProductColorSwitcher from '~/components/products/ProductColorSwitcher';
-import ProductReview from '~/components/products/ProductReview';
 import ProductSizeSwitcher from '~/components/products/ProductSizeSwitcher';
 import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -44,7 +43,9 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
 const SingleProduct = () => {
   const { product } = useLoaderData<{ product: Product }>();
 
-  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
+  const outletContext = useOutletContext<OutletContext>();
+
+  const { searchParams, setSearchParams } = outletContext;
 
   // Manage the current active color
   const { activeColor, setActiveColor } = useCurrentActiveColor({
@@ -193,7 +194,7 @@ const SingleProduct = () => {
         </Grid.Col>
       </Grid>
 
-      <ProductReview />
+      <Outlet context={outletContext} />
     </Stack>
   );
 };

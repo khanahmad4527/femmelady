@@ -1,7 +1,7 @@
 import { readItem, readItems, Query, aggregate } from '@directus/sdk';
 import { directus } from './directus';
 import { Schema } from '~/types/collections';
-import { Page, Product } from '~/types/types';
+import { Page, Product, Review } from '~/types/types';
 import { validateUUID } from '~/utils';
 import {
   DEFAULT_PRODUCT_LIMIT,
@@ -81,7 +81,7 @@ export const getProducts = async ({
 }): Promise<{ products: Product[]; totalProductCount: number }> => {
   // Common filters
 
-  const filters: Query<Schema, Product>['filter'] = {
+  const filter: Query<Schema, Product>['filter'] = {
     price: priceRange ? { _between: priceRange } : undefined,
     average_rating: averageRatingRange
       ? { _between: averageRatingRange }
@@ -151,7 +151,7 @@ export const getProducts = async ({
 
   // Build the query dynamically
   const baseQuery: Query<Schema, Product> = {
-    filter: filters,
+    filter,
     fields,
     limit: DEFAULT_PRODUCT_LIMIT,
     deep
@@ -221,4 +221,43 @@ export const getSingleProduct = async ({
     );
     return product;
   }
+};
+
+export const getReviews = async ({
+  slug,
+  languageCode
+}: {
+  slug: string;
+  languageCode: string;
+}) => {
+  const isUUID = validateUUID(slug);
+
+  const fields: Query<Schema, Review>['fields'] = [
+    '*',
+    { user_created: ['first_name', 'last_name'] },
+    { translations: ['*'] }
+  ];
+
+  const baseFilter = {
+    translations: {
+      languages_code: languageCode
+    }
+  };
+
+  const filter: Query<Schema, Review>['filter'] = isUUID
+    ? {
+        ...baseFilter,
+        id: { _eq: slug }
+      }
+    : {
+        ...baseFilter,
+        translations: { slug }
+      };
+
+  const query: Query<Schema, Review> = {
+    fields,
+    filter
+  };
+
+  return directus.request(readItems('review', query));
 };
