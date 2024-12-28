@@ -115,31 +115,33 @@ const RatingFilter = () => {
 };
 
 const BrandFilter = () => {
+  const t = useTranslation();
+
   const brandNamesWithSlugs = [
-    { label: 'Vera Luxe', value: 'vera-luxe' },
-    { label: 'Monique Couture', value: 'monique-couture' },
-    { label: 'Pristine Vows', value: 'pristine-vows' },
-    { label: 'Crimson Soles', value: 'crimson-soles' },
-    { label: 'Jewel Heels', value: 'jewel-heels' },
-    { label: 'Sophia Grace', value: 'sophia-grace' },
-    { label: 'Aroma Luxe', value: 'aroma-luxe' },
-    { label: 'Glow Essence', value: 'glow-essence' },
-    { label: 'Luminous Bliss', value: 'luminous-bliss' },
-    { label: 'Chantelle', value: 'chantelle' },
-    { label: 'Divine Elegance', value: 'divine-elegance' },
-    { label: 'Olivia de Luxe', value: 'olivia-de-luxe' },
-    { label: 'Luxe & Co.', value: 'luxe-co' },
-    { label: 'Caratierre', value: 'caratierre' },
-    { label: 'Velvet Charms', value: 'velvet-charms' },
-    { label: 'Elyse Bags', value: 'elyse-bags' },
-    { label: 'Chérie Luxe', value: 'cherie-luxe' },
-    { label: 'Gilded Grace', value: 'gilded-grace' },
-    { label: 'Scent Noire', value: 'scent-noire' },
-    { label: 'Dame Fleur', value: 'dame-fleur' },
-    { label: 'La Belle', value: 'la-belle' },
-    { label: 'Timeless Lady', value: 'timeless-lady' },
-    { label: 'Crystal Orb', value: 'crystal-orb' },
-    { label: 'Radiant Moments', value: 'radiant-moments' }
+    { label: t('brands.veraLuxe'), value: 'vera-luxe' },
+    { label: t('brands.moniqueCouture'), value: 'monique-couture' },
+    { label: t('brands.pristineVows'), value: 'pristine-vows' },
+    { label: t('brands.crimsonSoles'), value: 'crimson-soles' },
+    { label: t('brands.jewelHeels'), value: 'jewel-heels' },
+    { label: t('brands.sophiaGrace'), value: 'sophia-grace' },
+    { label: t('brands.aromaLuxe'), value: 'aroma-luxe' },
+    { label: t('brands.glowEssence'), value: 'glow-essence' },
+    { label: t('brands.luminousBliss'), value: 'luminous-bliss' },
+    { label: t('brands.chantelle'), value: 'chantelle' },
+    { label: t('brands.divineElegance'), value: 'divine-elegance' },
+    { label: t('brands.oliviaDeLuxe'), value: 'olivia-de-luxe' },
+    { label: t('brands.luxeCo'), value: 'luxe-co' },
+    { label: t('brands.caratierre'), value: 'caratierre' },
+    { label: t('brands.velvetCharms'), value: 'velvet-charms' },
+    { label: t('brands.elyseBags'), value: 'elyse-bags' },
+    { label: t('brands.cherieLuxe'), value: 'cherie-luxe' },
+    { label: t('brands.gildedGrace'), value: 'gilded-grace' },
+    { label: t('brands.scentNoire'), value: 'scent-noire' },
+    { label: t('brands.dameFleur'), value: 'dame-fleur' },
+    { label: t('brands.laBelle'), value: 'la-belle' },
+    { label: t('brands.timelessLady'), value: 'timeless-lady' },
+    { label: t('brands.crystalOrb'), value: 'crystal-orb' },
+    { label: t('brands.radiantMoments'), value: 'radiant-moments' }
   ];
 
   return (
@@ -158,15 +160,17 @@ const BrandFilter = () => {
 };
 
 const CategoryFilter = () => {
+  const t = useTranslation();
+
   const categoriesWithSlugs = [
-    { label: 'Wedding Dresses', value: 'wedding-dresses' },
-    { label: 'Shoes', value: 'shoes' },
-    { label: 'Candles', value: 'candles' },
-    { label: 'Dresses', value: 'dresses' },
-    { label: 'Jewelry', value: 'jewelry' },
-    { label: 'Bags', value: 'bags' },
-    { label: 'Perfumes', value: 'perfumes' },
-    { label: 'Watches', value: 'watches' }
+    { label: t('products.filter.weddingDresses'), value: 'wedding-dresses' },
+    { label: t('products.filter.shoes'), value: 'shoes' },
+    { label: t('products.filter.candles'), value: 'candles' },
+    { label: t('products.filter.dresses'), value: 'dresses' },
+    { label: t('products.filter.jewelry'), value: 'jewelry' },
+    { label: t('products.filter.bags'), value: 'bags' },
+    { label: t('products.filter.perfumes'), value: 'perfumes' },
+    { label: t('products.filter.watches'), value: 'watches' }
   ];
 
   return (
