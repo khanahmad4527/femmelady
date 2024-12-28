@@ -32,21 +32,21 @@ const ProductReviewCard = ({ review }: { review: Review }) => {
             display={{ base: 'none', md: 'flex' }}
           >
             <Group gap={10}>
-              <Rating defaultValue={2} color="black" readOnly />
+              <Rating defaultValue={review?.rating!} color="black" readOnly />
               <Text fw={500}>{translation?.title}</Text>
             </Group>
             <Text>{translation?.description}</Text>
           </Stack>
 
           <Text ta={'right'} w={'30%'}>
-            {formatDate({ currentLanguage, isoDate: '2024-12-14T15:30:00Z' })}
+            {formatDate({ currentLanguage, isoDate: review?.date_created! })}
           </Text>
         </Group>
 
         {/* For mobile display */}
         <Stack display={{ base: 'flex', md: 'none' }}>
           <Group gap={10}>
-            <Rating defaultValue={2} color="black" readOnly />
+            <Rating defaultValue={review?.rating!} color="black" readOnly />
             <Text fw={500}>{translation?.title}</Text>
           </Group>
           <Text>{translation?.description}</Text>
