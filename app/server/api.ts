@@ -124,8 +124,10 @@ export const getProducts = async ({
     },
     products: {
       fields: [
-        '*',
-        { sizes: ['*'] },
+        'id',
+        'price',
+        'feature_image_1',
+        'feature_image_2',
         { translations: ['*'] },
         { images: ['*', { product_image_id: ['*', { images: ['*'] }] }] },
         { colors: ['*', { product_color_id: ['*', { translations: ['*'] }] }] }
