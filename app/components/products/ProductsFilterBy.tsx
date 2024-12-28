@@ -146,16 +146,15 @@ const BrandFilter = () => {
   ];
 
   const handleBrandSearch = (value: string) => {
-    const currentCategories = searchParams.get(PARAMS.BRANDS)?.split(',') || [];
-    const updatedCategories = currentCategories.includes(value)
-      ? currentCategories.filter(brand => brand !== value) // Remove if already selected
-      : [...currentCategories, value]; // Add new brand
+    const currentBrands = searchParams.getAll(PARAMS.BRANDS);
+    const updatedBrands = currentBrands.includes(value)
+      ? currentBrands.filter(brand => brand !== value) // Remove if already selected
+      : [...currentBrands, value]; // Add new brand
 
-    if (updatedCategories.length === 0) {
-      searchParams.delete(PARAMS.BRANDS); // Remove param if empty
-    } else {
-      searchParams.set(PARAMS.BRANDS, updatedCategories.join(','));
-    }
+    searchParams.delete(PARAMS.BRANDS); // Clear existing values
+
+    // Append updated categories back
+    updatedBrands.forEach(brand => searchParams.append(PARAMS.BRANDS, brand));
 
     setSearchParams(searchParams, { preventScrollReset: true });
   };
@@ -233,17 +232,17 @@ const CategoryFilter = () => {
   ];
 
   const handleCategorySearch = (value: string) => {
-    const currentCategories =
-      searchParams.get(PARAMS.CATEGORIES)?.split(',') || [];
+    const currentCategories = searchParams.getAll(PARAMS.CATEGORIES);
     const updatedCategories = currentCategories.includes(value)
       ? currentCategories.filter(category => category !== value) // Remove if already selected
       : [...currentCategories, value]; // Add new category
 
-    if (updatedCategories.length === 0) {
-      searchParams.delete(PARAMS.CATEGORIES); // Remove param if empty
-    } else {
-      searchParams.set(PARAMS.CATEGORIES, updatedCategories.join(','));
-    }
+    searchParams.delete(PARAMS.CATEGORIES); // Clear existing values
+
+    // Append updated categories back
+    updatedCategories.forEach(category =>
+      searchParams.append(PARAMS.CATEGORIES, category)
+    );
 
     setSearchParams(searchParams, { preventScrollReset: true });
   };
@@ -253,8 +252,7 @@ const CategoryFilter = () => {
       <Stack gap={'sm'}>
         {categoriesWithSlugs.map(n => {
           const isSelected = searchParams
-            .get(PARAMS.CATEGORIES)
-            ?.split(',')
+            .getAll(PARAMS.CATEGORIES)
             .includes(n.value);
 
           return (

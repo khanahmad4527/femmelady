@@ -22,6 +22,8 @@ import commonClasses from '~/styles/Common.module.scss';
 import { Route } from '../+types/_index';
 import {
   getAverageRatingRange,
+  getBrandsId,
+  getCategoriesId,
   getLanguageCode,
   getLimit,
   getPage,
@@ -45,6 +47,10 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   const productSort = getSort({ request });
 
+  const categoriesId = getCategoriesId({ request });
+
+  const brandsId = getBrandsId({ request });
+
   const { products, totalProductCount } = await getProducts({
     route: 'products',
     languageCode,
@@ -52,7 +58,9 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     averageRatingRange,
     productsPerPage,
     currentPage,
-    productSort
+    productSort,
+    categoriesId,
+    brandsId
   });
 
   return { products, totalProductCount };

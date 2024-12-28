@@ -65,7 +65,9 @@ export const getProducts = async ({
   averageRatingRange,
   productsPerPage = DEFAULT_PRODUCT_LIMIT,
   currentPage = DEFAULT_PRODUCT_PAGE,
-  productSort = DEFAULT_PRODUCT_SORT
+  productSort = DEFAULT_PRODUCT_SORT,
+  categoriesId,
+  brandsId
 }: {
   route: Page;
   languageCode: string;
@@ -74,20 +76,28 @@ export const getProducts = async ({
   productsPerPage?: number;
   currentPage?: number;
   productSort?: string;
+  categoriesId?: string[];
+  brandsId?: string[];
 }): Promise<{ products: Product[]; totalProductCount: number }> => {
   // Common filters
+
   const filters: Query<Schema, Product>['filter'] = {
     price: priceRange ? { _between: priceRange } : undefined,
     average_rating: averageRatingRange
       ? { _between: averageRatingRange }
-      : undefined
-    // categories: {
-    //   product_category_id: {
-    //     id: {
-    //       _in: ['2d94f3a4-c004-4e74-b928-248a0bb8210f']
-    //     }
-    //   }
-    // }
+      : undefined,
+    categories: !categoriesId
+      ? categoriesId
+      : {
+          product_category_id: {
+            _in: categoriesId
+          }
+        },
+    brand: !brandsId
+      ? brandsId
+      : {
+          _in: brandsId
+        }
   };
 
   // Common fields and deep options based on the route

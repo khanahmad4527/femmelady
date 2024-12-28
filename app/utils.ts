@@ -3,6 +3,8 @@ import { useFetcher, useOutletContext } from 'react-router';
 import { z } from 'zod';
 import { GetParam, OutletContext, TranslationKeys } from './types/types';
 import {
+  BRAND_WITH_ID_MAP,
+  CATEGORIES_WITH_ID_MAP,
   DEFAULT_PRODUCT_LIMIT,
   DEFAULT_PRODUCT_PAGE,
   DEFAULT_PRODUCT_SORT,
@@ -313,4 +315,55 @@ export const getSort = ({ request, searchParams }: GetParam) => {
   if (!sort) return DEFAULT_PRODUCT_SORT;
 
   return sort;
+};
+
+type IdMap = Record<string, string>;
+type Key = string;
+
+const mapToIds = <T extends Key>(keys: T[], idMap: IdMap): string[] => {
+  return keys.map(key => idMap[key]).filter(Boolean);
+};
+
+const getIdsFromParams = ({
+  request,
+  searchParams,
+  paramKey,
+  idMap
+}: {
+  request?: Request;
+  searchParams?: URLSearchParams;
+  paramKey: string;
+  idMap: IdMap;
+}): string[] | undefined => {
+  if (!request && !searchParams) return undefined;
+
+  let keys: string[] | undefined = undefined;
+
+  if (request) {
+    const url = new URL(request.url);
+    keys = url.searchParams.getAll(paramKey);
+  } else if (searchParams) {
+    keys = searchParams.getAll(paramKey);
+  }
+
+  if (!keys?.length) return undefined;
+
+  const ids = mapToIds(keys, idMap);
+  return ids.length ? ids : undefined;
+};
+
+export const getCategoriesId = (params: GetParam) => {
+  return getIdsFromParams({
+    ...params,
+    paramKey: PARAMS.CATEGORIES,
+    idMap: CATEGORIES_WITH_ID_MAP
+  });
+};
+
+export const getBrandsId = (params: GetParam) => {
+  return getIdsFromParams({
+    ...params,
+    paramKey: PARAMS.BRANDS,
+    idMap: BRAND_WITH_ID_MAP
+  });
 };
