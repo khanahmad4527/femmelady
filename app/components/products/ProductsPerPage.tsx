@@ -14,7 +14,7 @@ import { getLimit } from '~/utils';
 
 const ProductsPerPage = () => {
   const t = useTranslation();
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
   const userLocale = useUserLocale(currentLanguage);
 
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();

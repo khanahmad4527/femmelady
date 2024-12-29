@@ -16,7 +16,7 @@ import { buildLocalizedLink, formatCurrency, getImageUrl } from '~/utils';
 
 const CheckoutCartCard = () => {
   const t = useTranslation();
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
   const p = {};
   return (
     <Card

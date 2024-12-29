@@ -47,7 +47,7 @@ export default function Index() {
   const { products } = useLoaderData<typeof loader>();
 
   const t = useTranslation();
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
 
   const banner = {
     image:

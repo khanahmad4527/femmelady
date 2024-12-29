@@ -5,7 +5,7 @@ import { Review, ReviewTranslation, User } from '~/types/types';
 import { formatDate, getSingleTranslation } from '~/utils';
 
 const ProductReviewCard = ({ review }: { review: Review }) => {
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
 
   const user = getFirstObjectDto(review?.user_created) as User;
 

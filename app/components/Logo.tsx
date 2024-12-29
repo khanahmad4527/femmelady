@@ -7,7 +7,7 @@ import { buildLocalizedLink } from '~/utils';
 
 const Logo = () => {
   const t = useTranslation();
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
 
   const TEXT_ALIGN = { base: 'center', md: 'left' } as any;
 

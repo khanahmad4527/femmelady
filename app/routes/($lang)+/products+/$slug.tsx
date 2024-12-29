@@ -89,7 +89,7 @@ const SingleProduct = () => {
     });
 
   const t = useTranslation();
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
 
   const productTranslation = getFirstObjectDto(
     product?.translations
@@ -223,7 +223,10 @@ const SingleProduct = () => {
       <Box py={{ base: 'md', md: 'xl' }}>
         <Group>
           <Text fz={20} fw={500} span>
-            {formatNumber({ currentLanguage, number: product?.average_rating! })}
+            {formatNumber({
+              currentLanguage,
+              number: product?.average_rating!
+            })}
           </Text>
           <Rating
             value={product?.average_rating}

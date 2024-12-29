@@ -13,7 +13,7 @@ const HeaderCart = ({
   close: () => void;
 }) => {
   const t = useTranslation();
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
   return (
     <Drawer
       position={'right'}

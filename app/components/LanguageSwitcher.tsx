@@ -5,7 +5,7 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { IconSwitch } from '~/icons';
 
 const LanguageSwitcher = () => {
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 

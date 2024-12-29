@@ -14,7 +14,7 @@ const translations: Translations = {
 };
 
 const useTranslation = () => {
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
 
   const t = (key: string, replacements?: Record<string, React.ReactNode>) => {
     const keys = key.split('.');

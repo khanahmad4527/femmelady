@@ -7,7 +7,7 @@ const useCurrentLanguage = () => {
 
   const currentLanguage = params?.lang ?? 'en';
 
-  return { currentLanguage };
+  return currentLanguage;
 };
 
 export default useCurrentLanguage;

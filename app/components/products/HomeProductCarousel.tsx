@@ -23,7 +23,7 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
   }
 
   const t = useTranslation();
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
 
   const { ref, inViewport } = useInViewport();
   const autoScroll = useRef(AutoScroll({ speed: 0.5, playOnInit: false }));

@@ -58,7 +58,7 @@ export const links: LinksFunction = () => {
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
 
   return (
     <html lang={currentLanguage}>
@@ -112,7 +112,7 @@ export default function App() {
 const isProduction = process.env.NODE_ENV === 'production';
 
 const ErrorBoundaryComponent = () => {
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const ctx: OutletContext = {

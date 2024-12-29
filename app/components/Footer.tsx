@@ -18,7 +18,7 @@ import { buildLocalizedLink } from '~/utils';
 
 const Footer = () => {
   const t = useTranslation();
-  const { currentLanguage } = useCurrentLanguage();
+  const currentLanguage = useCurrentLanguage();
 
   const links = [
     {

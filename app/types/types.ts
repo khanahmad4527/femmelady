@@ -1,7 +1,7 @@
 import { SetURLSearchParams } from 'react-router';
 import { components } from './collections';
 
-export type Env = { DIRECTUS_URL?: String };
+export type Env = { DIRECTUS_URL?: string };
 export interface OutletContext {
   isLoggedIn: boolean;
   currentLanguage: TranslationKeys;

@@ -358,3 +358,21 @@ export const getBrandsId = (params: GetParam) => {
     idMap: BRAND_WITH_ID_MAP
   });
 };
+
+export const getSearchQuery = ({ request, searchParams }: GetParam) => {
+  if (!request && !searchParams) {
+    return undefined;
+  }
+  let searchQuery = undefined;
+
+  if (request) {
+    const url = new URL(request.url);
+    searchQuery = url.searchParams.get('q') ?? undefined;
+  } else if (searchParams) {
+    searchQuery = searchParams.get('q') ?? undefined;
+  }
+
+  if (!searchQuery) return undefined;
+
+  return searchQuery;
+};

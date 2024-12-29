@@ -67,7 +67,8 @@ export const getProducts = async ({
   currentPage = DEFAULT_PRODUCT_PAGE,
   productSort = DEFAULT_PRODUCT_SORT,
   categoriesId,
-  brandsId
+  brandsId,
+  searchQuery
 }: {
   route: Page;
   languageCode: string;
@@ -78,6 +79,7 @@ export const getProducts = async ({
   productSort?: string;
   categoriesId?: string[];
   brandsId?: string[];
+  searchQuery?: string;
 }): Promise<{ products: Product[]; totalProductCount: number }> => {
   // Common filters
 
@@ -97,7 +99,12 @@ export const getProducts = async ({
       ? brandsId
       : {
           _in: brandsId
-        }
+        },
+    translations: {
+      title: {
+        _icontains: searchQuery
+      }
+    }
   };
 
   // Common fields and deep options based on the route
