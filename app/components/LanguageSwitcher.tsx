@@ -32,23 +32,6 @@ const LanguageSwitcher = () => {
     }
   };
 
-  // const handleLanguageChange = (
-  //   _value: string | null,
-  //   option: ComboboxItem
-  // ) => {
-  //   if (currentLanguage !== option.value) {
-  //     const newPath = location.pathname.replace(
-  //       `/${currentLanguage}`,
-  //       `/${option.value}`
-  //     );
-
-  //     navigate({
-  //       pathname: newPath,
-  //       search: location.search
-  //     });
-  //   }
-  // };
-
   const languageOptions = [
     { value: 'en', label: 'English' },
     { value: 'ja', label: '日本語' }
