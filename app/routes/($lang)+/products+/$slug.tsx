@@ -86,6 +86,8 @@ const SingleProduct = () => {
     }
   };
 
+  console.log({ activeColor, activeImage });
+
   return (
     <Stack className={commonClasses.consistentSpacing}>
       <Grid>

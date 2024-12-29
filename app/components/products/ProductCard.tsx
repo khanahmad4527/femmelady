@@ -29,23 +29,18 @@ import { useHover } from '@mantine/hooks';
 import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 
 import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
-import { memo, useEffect, useRef } from 'react';
-import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import { memo } from 'react';
 
 const ProductCard = (product: Product) => {
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
-  // Create a ref to track the initial mount
-  const hasMounted = useRef(false);
-
   const { hovered, ref } = useHover();
 
   // Manage the current active color
-  const { activeColor, defaultActiveColor, setActiveColor } =
-    useCurrentActiveColor({
-      product,
-      searchParams
-    });
+  const { activeColor, setActiveColor } = useCurrentActiveColor({
+    product,
+    searchParams
+  });
 
   // Manage the featureImages based on the active color
   const { featureImage1, featureImage2 } = useCurrentFeaturedImage({
@@ -58,18 +53,6 @@ const ProductCard = (product: Product) => {
   const translation = getSingleTranslation(translations) as ProductTranslation;
 
   const { currentLanguage } = useCurrentLanguage();
-
-  // Sync the activeColor state with memoized defaultActiveColor
-  // We only want to run this when color translation changed
-  useEffect(() => {
-    if (!hasMounted.current) {
-      // Skip the effect on the initial mount
-      hasMounted.current = true;
-      return;
-    }
-
-    setActiveColor(defaultActiveColor);
-  }, [product.translations]);
 
   return (
     <Card

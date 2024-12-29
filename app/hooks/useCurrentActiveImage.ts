@@ -69,7 +69,7 @@ const useCurrentActiveImage = ({
       return;
     }
 
-    // Run the effect only when activeColor changes after the initial mount
+    // Run the effect only when activeColor ID changes after the initial mount
     const newActiveImage = (getFirstObjectDto(currentImageSet)
       ?.directus_files_id ?? defaultImage) as string;
 
@@ -79,7 +79,7 @@ const useCurrentActiveImage = ({
       searchParams.set(PARAMS.IMAGE_ID, newActiveImage);
       setSearchParams(searchParams, { preventScrollReset: true });
     }
-  }, [activeColor]);
+  }, [activeColor.id]);
 
   return { activeImage, setActiveImage, currentImageSet };
 };

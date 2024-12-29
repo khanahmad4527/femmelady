@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { PARAMS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import { Product, ProductColor, ProductProductColor } from '~/types/types';
@@ -43,6 +43,21 @@ const useCurrentActiveColor = ({
 
   // Initialize the activeColor state
   const [activeColor, setActiveColor] = useState(defaultActiveColor);
+
+  // Create a ref to track the initial mount
+  const hasMounted = useRef(false);
+
+  // Sync the activeColor state with memoized defaultActiveColor
+  // We only want to run this when color translation changed
+  useEffect(() => {
+    if (!hasMounted.current) {
+      // Skip the effect on the initial mount
+      hasMounted.current = true;
+      return;
+    }
+
+    setActiveColor(defaultActiveColor);
+  }, [product.translations]);
 
   return { activeColor, defaultActiveColor, setActiveColor };
 };
