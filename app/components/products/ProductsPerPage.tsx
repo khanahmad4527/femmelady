@@ -17,7 +17,7 @@ const ProductsPerPage = () => {
 
   const formatNumber = (value: number) => value.toLocaleString(userLocale);
 
-  const limitValue = getLimit({ searchParams });
+  const limitValue = String(getLimit({ searchParams }));
 
   const data = [
     { value: '10', label: formatNumber(10) },
@@ -33,11 +33,11 @@ const ProductsPerPage = () => {
 
   return (
     <Select
+      value={limitValue}
+      onChange={handleFilterChange}
       label={t('products.productsPerPage')}
       placeholder={t('products.productsPerPage')}
-      defaultValue={String(limitValue)}
       data={data}
-      onChange={handleFilterChange}
       clearable={false}
       allowDeselect={false}
     />
