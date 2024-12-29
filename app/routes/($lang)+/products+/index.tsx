@@ -78,7 +78,7 @@ const Products = () => {
   const productPerPage = getLimit({ searchParams });
   const currentPage = getPage({ searchParams });
 
-  const totalPaginationButtons = Math.ceil(totalProductCount / productPerPage);
+  const totalPaginationButtons = Math.floor(totalProductCount / productPerPage);
 
   const handlePagination = (value: number) => {
     searchParams.set(PARAMS.PAGE, String(value));

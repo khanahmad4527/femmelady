@@ -225,10 +225,14 @@ export const getSingleProduct = async ({
 
 export const getReviews = async ({
   slug,
-  languageCode
+  languageCode,
+  reviewsPerPage = DEFAULT_PRODUCT_LIMIT,
+  currentPage = DEFAULT_PRODUCT_PAGE
 }: {
   slug: string;
   languageCode: string;
+  reviewsPerPage?: number;
+  currentPage?: number;
 }) => {
   const isUUID = validateUUID(slug);
 
@@ -256,7 +260,10 @@ export const getReviews = async ({
 
   const query: Query<Schema, Review> = {
     fields,
-    filter
+    filter,
+    limit: reviewsPerPage,
+    page: currentPage,
+    sort: ['-rating']
   };
 
   return directus.request(readItems('review', query));

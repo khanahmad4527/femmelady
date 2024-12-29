@@ -1,20 +1,33 @@
 import ProductReview from '~/components/products/ProductReview';
 import { Route } from './+types/$slug.reviews';
-import { getLanguageCode } from '~/utils';
-import { useLoaderData } from 'react-router';
+import { getLanguageCode, getLimit, getPage } from '~/utils';
+import { useLoaderData, useOutletContext } from 'react-router';
 import { getReviews } from '~/server/api';
+import { OutletContext } from '~/types/types';
 
-export const loader = async ({ params }: Route.LoaderArgs) => {
+export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
   const productSlug = params?.slug;
 
-  const reviews = await getReviews({ languageCode, slug: productSlug });
+  const reviewsPerPage = getLimit({ request });
 
-  return { reviews, totalReviewsCount: 10 };
+  const currentPage = getPage({ request });
+
+  const reviews = await getReviews({
+    languageCode,
+    slug: productSlug,
+    currentPage,
+    reviewsPerPage
+  });
+
+  return { reviews };
 };
 
 const Reviews = () => {
-  const { reviews, totalReviewsCount } = useLoaderData<typeof loader>();
+  const { totalReviewsCount } = useOutletContext<
+    OutletContext & { totalReviewsCount: number }
+  >();
+  const { reviews } = useLoaderData<typeof loader>();
 
   return (
     <div>

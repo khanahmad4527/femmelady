@@ -3,9 +3,12 @@ import {
   Box,
   Button,
   Grid,
+  Group,
   Image,
+  Rating,
   ScrollArea,
   Stack,
+  Text,
   Title
 } from '@mantine/core';
 import { Outlet, useLoaderData, useOutletContext } from 'react-router';
@@ -24,7 +27,12 @@ import {
   ProductSize,
   ProductTranslation
 } from '~/types/types';
-import { formatCurrency, getImageUrl, getLanguageCode } from '~/utils';
+import {
+  formatCurrency,
+  formatNumber,
+  getImageUrl,
+  getLanguageCode
+} from '~/utils';
 import { Route } from './+types/$slug';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
@@ -194,7 +202,33 @@ const SingleProduct = () => {
         </Grid.Col>
       </Grid>
 
-      <Outlet context={outletContext} />
+      <Box py={{ base: 'md', md: 'xl' }}>
+        <Group>
+          <Text fz={20} fw={500} span>
+            {formatNumber({ currentLanguage, number: 4.4 })}
+          </Text>
+          <Rating value={3.7} fractions={10} color={'black'} readOnly />
+        </Group>
+
+        <Text>
+          {t('products.reviews', {
+            number: (
+              <Text span>
+                {formatNumber({
+                  currentLanguage,
+                  number: productTranslation?.review_count!
+                })}
+              </Text>
+            )
+          })}
+        </Text>
+      </Box>
+      <Outlet
+        context={{
+          ...outletContext,
+          totalReviewsCount: productTranslation?.review_count
+        }}
+      />
     </Stack>
   );
 };
