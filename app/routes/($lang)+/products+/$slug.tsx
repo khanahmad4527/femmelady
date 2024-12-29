@@ -42,12 +42,15 @@ import { Route } from './+types/$slug';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
-import { PARAMS } from '~/constant';
+import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
+import { p } from 'node_modules/@react-router/dev/dist/routes-DHIOx0R9';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {
   const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
-
-  if (forceValidate) {
+  if (
+    forceValidate === FORCE_REVALIDATE_MAP.GLOBAL ||
+    forceValidate === FORCE_REVALIDATE_MAP.SINGLE_PRODUCT
+  ) {
     return true;
   }
 
@@ -59,7 +62,7 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
 
   const productSlug = params?.slug;
   const product = await getSingleProduct({ slug: productSlug, languageCode });
-  console.log('getSingleProduct');
+
   return { product };
 };
 
@@ -220,9 +223,14 @@ const SingleProduct = () => {
       <Box py={{ base: 'md', md: 'xl' }}>
         <Group>
           <Text fz={20} fw={500} span>
-            {formatNumber({ currentLanguage, number: 4.4 })}
+            {formatNumber({ currentLanguage, number: product?.average_rating! })}
           </Text>
-          <Rating value={3.7} fractions={10} color={'black'} readOnly />
+          <Rating
+            value={product?.average_rating}
+            fractions={10}
+            color={'black'}
+            readOnly
+          />
         </Group>
 
         <Text>

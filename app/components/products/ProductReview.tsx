@@ -5,7 +5,11 @@ import { useMediaQuery } from '@mantine/hooks';
 import { memo } from 'react';
 import { useOutletContext } from 'react-router';
 import { OutletContext, Review } from '~/types/types';
-import { PARAMS } from '~/constant';
+import {
+  DEFAULT_PRODUCT_LIMIT,
+  FORCE_REVALIDATE_MAP,
+  PARAMS
+} from '~/constant';
 
 const ProductReview = ({
   reviews,
@@ -20,12 +24,16 @@ const ProductReview = ({
 
   const currentPage = getPage({ searchParams });
 
-  const reviewsPerPage = 8;
+  const reviewsPerPage = DEFAULT_PRODUCT_LIMIT;
 
-  const totalPaginationButtons = Math.floor(totalReviewsCount / reviewsPerPage);
+  const totalPaginationButtons = Math.ceil(totalReviewsCount / reviewsPerPage);
 
   const handlePagination = (value: number) => {
     searchParams.set(PARAMS.PAGE, String(value));
+    searchParams.set(
+      PARAMS.FORCE_REVALIDATE,
+      FORCE_REVALIDATE_MAP.PRODUCT_REVIEW
+    );
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 

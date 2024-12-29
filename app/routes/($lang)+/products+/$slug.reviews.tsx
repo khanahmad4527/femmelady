@@ -8,18 +8,15 @@ import {
 } from 'react-router';
 import { getReviews } from '~/server/api';
 import { OutletContext } from '~/types/types';
-import { PARAMS } from '~/constant';
+import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {
   const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
 
-  if (forceValidate) {
-    return true;
-  }
-
-  const page = nextUrl.searchParams.get(PARAMS.PAGE);
-
-  if (page) {
+  if (
+    forceValidate === FORCE_REVALIDATE_MAP.GLOBAL ||
+    forceValidate === FORCE_REVALIDATE_MAP.PRODUCT_REVIEW
+  ) {
     return true;
   }
 
@@ -33,7 +30,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const reviewsPerPage = getLimit({ request });
 
   const currentPage = getPage({ request });
-  console.log('getReviews');
+
   const reviews = await getReviews({
     languageCode,
     slug: productSlug,

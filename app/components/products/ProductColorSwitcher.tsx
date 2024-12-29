@@ -1,7 +1,7 @@
 import { ActionIcon, Group, Image, Paper, Stack, Text } from '@mantine/core';
 import { memo } from 'react';
 import { SetURLSearchParams } from 'react-router';
-import { PARAMS } from '~/constant';
+import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import getStringDto from '~/dto/getStringDto';
 import useTranslation from '~/hooks/useTranslation';
@@ -54,7 +54,10 @@ const ProductColorSwitcher = ({
 
       searchParams.set(PARAMS.PRODUCT_ID, productId!);
       searchParams.set(PARAMS.IMAGE_SET, getStringDto(color?.image_set)!);
-      searchParams.set(PARAMS.FORCE_REVALIDATE, 'true');
+      searchParams.set(
+        PARAMS.FORCE_REVALIDATE,
+        FORCE_REVALIDATE_MAP.SINGLE_PRODUCT
+      );
       setSearchParams(searchParams, { preventScrollReset: true });
     }
   };

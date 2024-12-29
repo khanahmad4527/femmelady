@@ -231,3 +231,9 @@ export const BRAND_WITH_ID_MAP = {
   'crystal-orb': '319157bf-5d3d-45d5-8516-fef388434435',
   'radiant-moments': '07c12562-4200-4421-bb64-8f6392155106'
 };
+
+export const FORCE_REVALIDATE_MAP = {
+  GLOBAL: 'global',
+  SINGLE_PRODUCT: 'single-product',
+  PRODUCT_REVIEW: 'product-review'
+};
