@@ -44,24 +44,15 @@ import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
 import { PARAMS } from '~/constant';
 
-// export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {
-//   const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_VALIDATE);
+export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {
+  const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
 
-//   if (forceValidate) {
-//     return true;
-//   }
+  if (forceValidate) {
+    return true;
+  }
 
-//   const size = nextUrl.searchParams.get(PARAMS.SIZE);
-//   const imageId = nextUrl.searchParams.get(PARAMS.IMAGE_ID);
-//   const productId = nextUrl.searchParams.get(PARAMS.PRODUCT_ID);
-//   const imageSet = nextUrl.searchParams.get(PARAMS.IMAGE_SET);
-
-//   if (size || imageId || productId || imageSet) {
-//     return false;
-//   }
-
-//   return true;
-// };
+  return false;
+};
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);

@@ -54,7 +54,7 @@ const ProductColorSwitcher = ({
 
       searchParams.set(PARAMS.PRODUCT_ID, productId!);
       searchParams.set(PARAMS.IMAGE_SET, getStringDto(color?.image_set)!);
-
+      searchParams.set(PARAMS.FORCE_REVALIDATE, 'true');
       setSearchParams(searchParams, { preventScrollReset: true });
     }
   };

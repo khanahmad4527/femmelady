@@ -10,18 +10,21 @@ import { getReviews } from '~/server/api';
 import { OutletContext } from '~/types/types';
 import { PARAMS } from '~/constant';
 
-// export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {
-//   const size = nextUrl.searchParams.get(PARAMS.SIZE);
-//   const imageId = nextUrl.searchParams.get(PARAMS.IMAGE_ID);
-//   const productId = nextUrl.searchParams.get(PARAMS.PRODUCT_ID);
-//   const imageSet = nextUrl.searchParams.get(PARAMS.IMAGE_SET);
+export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {
+  const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
 
-//   if (size || imageId || productId || imageSet) {
-//     return false;
-//   }
+  if (forceValidate) {
+    return true;
+  }
 
-//   return true;
-// };
+  const page = nextUrl.searchParams.get(PARAMS.PAGE);
+
+  if (page) {
+    return true;
+  }
+
+  return false;
+};
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);

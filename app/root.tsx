@@ -23,6 +23,7 @@ import { Route } from './+types/root';
 import { getExchangeRate } from './server/api';
 import { getUserLocale } from './utils';
 import { LOCALE_TO_CURRENCY } from './constant';
+import useSyncForceRevalidate from './hooks/useSyncForceRevalidate';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const currentLanguage = params?.lang as TranslationKeys;
@@ -49,6 +50,7 @@ export const links: LinksFunction = () => {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { currentLanguage } = useCurrentLanguage();
+
   return (
     <html lang={currentLanguage}>
       <head>
@@ -70,6 +72,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   const loaderData = useLoaderData();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // This is used to remove force revalidate param from the url
+  useSyncForceRevalidate({ searchParams, setSearchParams });
 
   const ctx: OutletContext = { searchParams, setSearchParams, ...loaderData };
   return (

@@ -185,7 +185,7 @@ export const PARAMS = {
   CATEGORIES: 'categories',
   BRANDS: 'brands',
   SIZE: 'size',
-  FORCE_VALIDATE: 'force-validate'
+  FORCE_REVALIDATE: 'force-validate'
 };
 
 export const DEFAULT_PRODUCT_LIMIT = 10;
