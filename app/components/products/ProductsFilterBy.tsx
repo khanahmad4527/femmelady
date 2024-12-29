@@ -164,8 +164,7 @@ const BrandFilter = () => {
       <Stack gap={'sm'}>
         {brandNamesWithSlugs.map(n => {
           const isSelected = searchParams
-            .get(PARAMS.BRANDS)
-            ?.split(',')
+            .getAll(PARAMS.BRANDS)
             .includes(n.value);
 
           return (
