@@ -43,7 +43,7 @@ const ProductReview = ({
         <ProductReviewCard key={r.id} review={r} />
       ))}
       <Pagination
-        defaultValue={currentPage}
+        value={currentPage}
         total={totalPaginationButtons}
         onChange={handlePagination}
         siblings={isMobile ? 0 : 1}

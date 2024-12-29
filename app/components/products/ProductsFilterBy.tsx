@@ -13,7 +13,7 @@ import {
 import { useDebouncedCallback } from '@mantine/hooks';
 import { useState } from 'react';
 import { useOutletContext, useSearchParams } from 'react-router';
-import { PARAMS } from '~/constant';
+import { DEFAULT_PRODUCT_PAGE, PARAMS } from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
 import { OutletContext } from '~/types/types';
@@ -83,7 +83,7 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
         <Text>{t('products.filterBy')}</Text>
         <Button onClick={clearSearchParams}>{t('products.clearFilter')}</Button>
       </Group>
-      <Accordion defaultValue={Array.from(searchParams.keys())} multiple>
+      <Accordion value={Array.from(searchParams.keys())} multiple>
         {accordionItems}
       </Accordion>
     </Box>
@@ -97,6 +97,7 @@ const RatingFilter = () => {
   const [value, setValue] = useState(getRating({ searchParams }) ?? 3);
 
   const handleSearch = (value: number) => {
+    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
     searchParams.set(PARAMS.RATING, String(value));
     setSearchParams(searchParams, { preventScrollReset: true });
   };
@@ -155,7 +156,7 @@ const BrandFilter = () => {
 
     // Append updated categories back
     updatedBrands.forEach(brand => searchParams.append(PARAMS.BRANDS, brand));
-
+    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
@@ -242,7 +243,7 @@ const CategoryFilter = () => {
     updatedCategories.forEach(category =>
       searchParams.append(PARAMS.CATEGORIES, category)
     );
-
+    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
@@ -277,6 +278,7 @@ const PriceFilter = () => {
   );
 
   const handleSearch = useDebouncedCallback((value: [number, number]) => {
+    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
     searchParams.set(PARAMS.PRICE, String(value));
     setSearchParams(searchParams, { preventScrollReset: true });
   }, 1000);

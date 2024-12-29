@@ -1,6 +1,10 @@
 import { Select } from '@mantine/core';
 import { useOutletContext } from 'react-router';
-import { DEFAULT_PRODUCT_LIMIT, PARAMS } from '~/constant';
+import {
+  DEFAULT_PRODUCT_LIMIT,
+  DEFAULT_PRODUCT_PAGE,
+  PARAMS
+} from '~/constant';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
@@ -27,6 +31,7 @@ const ProductsPerPage = () => {
   ];
 
   const handleFilterChange = (value: string | null) => {
+    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
     searchParams.set(PARAMS.LIMIT, value ?? String(DEFAULT_PRODUCT_LIMIT));
     setSearchParams(searchParams, { preventScrollReset: true });
   };

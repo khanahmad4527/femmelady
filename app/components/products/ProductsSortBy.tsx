@@ -1,6 +1,6 @@
 import { Select } from '@mantine/core';
 import { useOutletContext } from 'react-router';
-import { DEFAULT_PRODUCT_SORT, PARAMS } from '~/constant';
+import { DEFAULT_PRODUCT_PAGE, DEFAULT_PRODUCT_SORT, PARAMS } from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
 import { OutletContext } from '~/types/types';
@@ -11,6 +11,7 @@ const ProductsSortBy = () => {
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
   const handleFilterChange = (value: string | null) => {
+    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
     searchParams.set(PARAMS.SORT, value ?? DEFAULT_PRODUCT_SORT);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
@@ -19,7 +20,7 @@ const ProductsSortBy = () => {
     <Select
       label={t('products.sortBy')}
       placeholder={t('products.sortBy')}
-      defaultValue={getSort({ searchParams })}
+      value={getSort({ searchParams })}
       data={[
         { value: '-viewed_count', label: t('products.popularity') },
         { value: 'price', label: t('products.priceLowToHigh') },

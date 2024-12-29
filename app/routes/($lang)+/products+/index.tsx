@@ -124,7 +124,7 @@ const Products = () => {
         </Grid.Col>
       </Grid>
       <Pagination
-        defaultValue={currentPage}
+        value={currentPage}
         total={totalPaginationButtons}
         onChange={handlePagination}
         m={'auto'}

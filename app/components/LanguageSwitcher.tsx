@@ -57,7 +57,7 @@ const LanguageSwitcher = () => {
   return (
     <Select
       w={{ base: '100%', md: 150 }}
-      defaultValue={currentLanguage}
+      value={currentLanguage}
       data={languageOptions}
       allowDeselect={false}
       onChange={handleLanguageChange}

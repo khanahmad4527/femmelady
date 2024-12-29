@@ -32,7 +32,7 @@ const ProductReviewCard = ({ review }: { review: Review }) => {
             display={{ base: 'none', md: 'flex' }}
           >
             <Group gap={10}>
-              <Rating defaultValue={review?.rating!} color="black" readOnly />
+              <Rating value={review?.rating!} color="black" readOnly />
               <Text fw={500}>{translation?.title}</Text>
             </Group>
             <Text>{translation?.description}</Text>
@@ -46,7 +46,7 @@ const ProductReviewCard = ({ review }: { review: Review }) => {
         {/* For mobile display */}
         <Stack display={{ base: 'flex', md: 'none' }}>
           <Group gap={10}>
-            <Rating defaultValue={review?.rating!} color="black" readOnly />
+            <Rating value={review?.rating!} color="black" readOnly />
             <Text fw={500}>{translation?.title}</Text>
           </Group>
           <Text>{translation?.description}</Text>
