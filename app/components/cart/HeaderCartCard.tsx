@@ -13,12 +13,13 @@ import { Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconMinus, IconPlus, IconX } from '~/icons';
+import { Product } from '~/types/types';
 import { buildLocalizedLink, formatCurrency, getImageUrl } from '~/utils';
 
 const HeaderCartCard = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
-  const p = {};
+  const p: Product = {};
   return (
     <>
       <Grid>
@@ -27,8 +28,7 @@ const HeaderCartCard = () => {
             component={Link}
             to={buildLocalizedLink({
               currentLanguage,
-              primaryPath: 'products',
-              secondaryPath: '123'
+              paths: ['products', p.id]
             })}
           >
             <Image

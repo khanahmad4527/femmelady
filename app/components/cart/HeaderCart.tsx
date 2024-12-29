@@ -31,7 +31,7 @@ const HeaderCart = ({
 
       <Button
         component={Link}
-        to={buildLocalizedLink({ currentLanguage, primaryPath: 'checkout' })}
+        to={buildLocalizedLink({ currentLanguage, paths: ['checkout'] })}
         color="black"
         fullWidth
         onClick={close}

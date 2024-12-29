@@ -23,35 +23,38 @@ const Footer = () => {
   const links = [
     {
       id: '7d4a5c83-9b2f-49e7-a5b4-2f1c3a8d6b47',
-      link: buildLocalizedLink({ currentLanguage, primaryPath: 'about-us' }),
+      link: buildLocalizedLink({ currentLanguage, paths: ['about-us'] }),
       label: t('footer.links.aboutUs')
     },
     {
       id: '4b5f25a7-3d2e-4f79-a1b7-43767c88d1f3',
-      link: buildLocalizedLink({ currentLanguage, primaryPath: 'contact-us' }),
+      link: buildLocalizedLink({ currentLanguage, paths: ['contact-us'] }),
       label: t('footer.links.contactUs')
     },
     {
       id: 'd1c7f8a6-9b8e-4a27-a9f1-0c5f784e12c6',
       link: buildLocalizedLink({
         currentLanguage,
-        primaryPath: 'privacy-policy'
+        paths: ['privacy-policy']
       }),
       label: t('footer.links.privacyPolicy')
     },
     {
       id: 'c8967158-00be-4683-bb82-dfc55c8bc0e8',
-      link: buildLocalizedLink({ currentLanguage, primaryPath: 'terms-of-service' }),
+      link: buildLocalizedLink({
+        currentLanguage,
+        paths: ['terms-of-service']
+      }),
       label: t('footer.links.termsOfService')
     },
     {
       id: 'a34c8e57-6a41-4b39-9384-d4b7a1f27b89',
-      link: buildLocalizedLink({ currentLanguage, primaryPath: 'blog' }),
+      link: buildLocalizedLink({ currentLanguage, paths: ['blog'] }),
       label: t('footer.links.blog')
     },
     {
       id: 'cf72d496-5b84-42e9-a8e1-84f3c67b8a29',
-      link: buildLocalizedLink({ currentLanguage, primaryPath: 'faq' }),
+      link: buildLocalizedLink({ currentLanguage, paths: ['faq'] }),
       label: t('footer.links.faq')
     }
   ];
@@ -127,7 +130,7 @@ const Footer = () => {
                     component={Link}
                     to={buildLocalizedLink({
                       currentLanguage,
-                      primaryPath: 'privacy-policy'
+                      paths: ['privacy-policy']
                     })}
                     underline="always"
                   >
@@ -142,7 +145,7 @@ const Footer = () => {
                     component={Link}
                     to={buildLocalizedLink({
                       currentLanguage,
-                      primaryPath: 'terms-of-service'
+                      paths: ['terms-of-service']
                     })}
                     underline="always"
                   >

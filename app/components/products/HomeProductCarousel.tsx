@@ -80,8 +80,7 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                   component={Link}
                   to={buildLocalizedLink({
                     currentLanguage,
-                    primaryPath: 'products',
-                    secondaryPath: translation?.slug ?? p?.id
+                    paths: ['products', translation?.slug ?? p?.id, 'reviews']
                   })}
                 >
                   <Image

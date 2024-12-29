@@ -125,7 +125,7 @@ const login = () => {
               component={Link}
               to={buildLocalizedLink({
                 currentLanguage,
-                primaryPath: 'register'
+                paths: ['register']
               })}
             >
               {t('login.accountRegister')}

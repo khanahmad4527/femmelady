@@ -30,8 +30,7 @@ const CheckoutCartCard = () => {
         component={Link}
         to={buildLocalizedLink({
           currentLanguage,
-          primaryPath: 'products',
-          secondaryPath: '123'
+          paths: ['products']
         })}
       >
         <Image

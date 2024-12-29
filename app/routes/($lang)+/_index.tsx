@@ -104,7 +104,7 @@ export default function Index() {
       <Box
         bg="red"
         component={Link}
-        to={buildLocalizedLink({ currentLanguage, primaryPath: 'products' })}
+        to={buildLocalizedLink({ currentLanguage, paths: ['products'] })}
         pos={'relative'}
       >
         <Image src={heroSection1} h={'100%'} fit="contain" loading={'lazy'} />
@@ -132,7 +132,7 @@ export default function Index() {
               component={Link}
               to={buildLocalizedLink({
                 currentLanguage,
-                primaryPath: 'products'
+                paths: ['products']
               })}
               pos={'relative'}
             >

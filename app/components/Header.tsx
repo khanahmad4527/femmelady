@@ -43,12 +43,12 @@ const Header = () => {
   const authLinks = [
     {
       id: 'a3f5c2e8-9d4b-46f1-8b47-c1d9a7f83412',
-      link: buildLocalizedLink({ currentLanguage, primaryPath: 'login' }),
+      link: buildLocalizedLink({ currentLanguage, paths: ['login'] }),
       label: t('login.login')
     },
     {
       id: 'b7e3f6a2-d8c1-44e9-b519-e7c5a4b39127',
-      link: buildLocalizedLink({ currentLanguage, primaryPath: 'register' }),
+      link: buildLocalizedLink({ currentLanguage, paths: ['register'] }),
       label: t('register.register')
     }
   ];

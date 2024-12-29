@@ -99,8 +99,7 @@ const ProductCard = (product: Product) => {
         component={Link}
         to={buildLocalizedLink({
           currentLanguage,
-          primaryPath: 'products',
-          secondaryPath: translation?.slug ?? id
+          paths: ['products', translation?.slug ?? id, 'reviews']
         })}
       >
         <Image
