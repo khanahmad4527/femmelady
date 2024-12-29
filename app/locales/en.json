@@ -47,7 +47,8 @@
   },
   "common": {
     "logout": "Logout",
-    "categories": "Categories"
+    "categories": "Categories",
+    "scrollToTop": "Scroll to top"
   },
   "login": {
     "welcome": "Welcome to Unthaa, login with",

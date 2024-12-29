@@ -22,6 +22,7 @@ import HeaderCart from './cart/HeaderCart';
 import MobileDrawer from './MobileDrawer';
 import LanguageSwitcher from './LanguageSwitcher';
 import { buildLocalizedLink } from '~/utils';
+import TopSearchBar from './TopSearchBar';
 
 const Header = () => {
   const [
@@ -72,22 +73,34 @@ const Header = () => {
     },
     {
       id: 'b7f4e6d3-f1c8-439d-91a7-c57b1a98d319',
-      link: buildLocalizedLink({ currentLanguage, paths: ['products?categories=dresses'] }),
+      link: buildLocalizedLink({
+        currentLanguage,
+        paths: ['products?categories=dresses']
+      }),
       label: t('header.dresses')
     },
     {
       id: 'd6e3c7b2-e1d7-472c-b519-d91e2b43f2a7',
-      link: buildLocalizedLink({ currentLanguage, paths: ['products?categories=dresses'] }),
+      link: buildLocalizedLink({
+        currentLanguage,
+        paths: ['products?categories=dresses']
+      }),
       label: t('header.clothing')
     },
     {
       id: 'e5f7c4a9-a9b2-4d38-b716-d84f9a1b5e13',
-      link: buildLocalizedLink({ currentLanguage, paths: ['products?categories=shoes'] }),
+      link: buildLocalizedLink({
+        currentLanguage,
+        paths: ['products?categories=shoes']
+      }),
       label: t('header.shoes')
     },
     {
       id: 'f3c8e6d2-d3c9-4a15-81f9-c16b2a43d719',
-      link: buildLocalizedLink({ currentLanguage, paths: ['products?categories=jewelry'] }),
+      link: buildLocalizedLink({
+        currentLanguage,
+        paths: ['products?categories=jewelry']
+      }),
       label: t('header.accessories')
     },
     {
@@ -110,7 +123,10 @@ const Header = () => {
     },
     {
       id: 'f7b3c9e2-d6c8-471a-b4e7-a91b8e36d412',
-      link: buildLocalizedLink({ currentLanguage, paths: ['products?categories=candles'] }),
+      link: buildLocalizedLink({
+        currentLanguage,
+        paths: ['products?categories=candles']
+      }),
       label: t('header.giftsCandles')
     },
     {
@@ -143,11 +159,7 @@ const Header = () => {
           wrap={'nowrap'}
           w={{ base: '100%', md: '40%' }}
         >
-          <TextInput
-            w={'100%'}
-            rightSection={<IconSearch />}
-            placeholder={t('header.search')}
-          />
+          <TopSearchBar />
           <Burger
             display={{ base: 'block', md: 'none' }}
             color={'white'}
@@ -197,14 +209,7 @@ const Header = () => {
           {!isLoggedIn && <Group> {authItems}</Group>}
         </Group>
       </Flex>
-      <Group
-        display={{ base: 'none', md: 'flex' }}
-        p={'md'}
-        bg={'primary.1'}
-        // pos={'sticky'}
-        // top={0}
-        // style={{ zIndex: 100 }}
-      >
+      <Group display={{ base: 'none', md: 'flex' }} p={'md'} bg={'primary.1'}>
         {categoryItems}
       </Group>
 

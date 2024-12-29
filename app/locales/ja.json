@@ -47,7 +47,8 @@
   },
   "common": {
     "logout": "ログアウト",
-    "categories": "カテゴリー"
+    "categories": "カテゴリー",
+    "scrollToTop": "上にスクロール"
   },
   "login": {
     "welcome": "Unthaaへようこそ、ログインするには",

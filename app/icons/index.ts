@@ -14,3 +14,4 @@ export { default as IconFlameFilled } from './IconFlameFilled';
 export { default as IconShoppingCart } from './IconShoppingCart';
 export { default as IconLogout } from './IconLogout';
 export { default as IconMinus } from './IconMinus';
+export { default as IconArrowUp } from './IconArrowUp';

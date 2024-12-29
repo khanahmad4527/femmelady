@@ -2,7 +2,13 @@ import '~/styles/style.css';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 
-import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import {
+  Affix,
+  Button,
+  ColorSchemeScript,
+  MantineProvider,
+  Transition
+} from '@mantine/core';
 import type { LinksFunction } from 'react-router';
 import {
   Links,
@@ -24,6 +30,9 @@ import { getExchangeRate } from './server/api';
 import { getUserLocale } from './utils';
 import { LOCALE_TO_CURRENCY } from './constant';
 import useSyncForceRevalidate from './hooks/useSyncForceRevalidate';
+import { useWindowScroll } from '@mantine/hooks';
+import { IconArrowUp } from './icons';
+import useTranslation from './hooks/useTranslation';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const currentLanguage = params?.lang as TranslationKeys;
@@ -72,6 +81,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   const loaderData = useLoaderData();
   const [searchParams, setSearchParams] = useSearchParams();
+  const t = useTranslation();
+  const [scroll, scrollTo] = useWindowScroll();
 
   // This is used to remove force revalidate param from the url
   useSyncForceRevalidate({ searchParams, setSearchParams });
@@ -80,6 +91,20 @@ export default function App() {
   return (
     <Document {...ctx}>
       <Outlet context={ctx} />
+
+      <Affix position={{ bottom: 20, right: 20 }}>
+        <Transition transition="slide-up" mounted={scroll.y > 0}>
+          {transitionStyles => (
+            <Button
+              leftSection={<IconArrowUp />}
+              style={transitionStyles}
+              onClick={() => scrollTo({ y: 0 })}
+            >
+              {t('common.scrollToTop')}
+            </Button>
+          )}
+        </Transition>
+      </Affix>
     </Document>
   );
 }
