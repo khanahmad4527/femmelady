@@ -9,7 +9,7 @@ import {
   Text,
   TextInput
 } from '@mantine/core';
-import { useDebouncedCallback, useFetch, useHover } from '@mantine/hooks';
+import { useDebouncedCallback, useHover } from '@mantine/hooks';
 import React, { memo, useEffect, useState } from 'react';
 import { Link, useFetcher } from 'react-router';
 import getStringDto from '~/dto/getStringDto';
@@ -27,21 +27,21 @@ import {
 
 const TopSearchBar = () => {
   const t = useTranslation();
-  const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [searchValue, setSearchValue] = useState('');
 
   const fetcher = useFetcher<{ products: Product[]; searchQuery: string }>();
 
   const handleSearch = useDebouncedCallback((value: string) => {
-    fetcher.load(`/search-query?index&q=${value}`);
+    if (value !== fetcher.data?.searchQuery && value.length >= 3) {
+      fetcher.load(`/search-query?index&q=${value}`);
+    }
   }, 500);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value.trim();
-    if (value !== fetcher.data?.searchQuery) {
-      setSearch(value);
-      handleSearch(value);
-    }
+    setSearchValue(value);
+    handleSearch(value);
   };
 
   // An effect for appending data to items state
@@ -62,7 +62,7 @@ const TopSearchBar = () => {
           <TextInput
             w={'100%'}
             placeholder={t('header.search')}
-            value={search}
+            value={searchValue}
             onChange={handleChange}
             rightSection={
               fetcher.state === 'loading' ? (
@@ -76,7 +76,12 @@ const TopSearchBar = () => {
         {searchResults.length > 0 && (
           <Menu.Dropdown>
             <ScrollArea h={250}>
-              <Stack>
+              <Stack
+                onClick={() => {
+                  setSearchValue('');
+                  setSearchResults([]);
+                }}
+              >
                 {searchResults.map(p => {
                   return <Card key={p.id} {...p} />;
                 })}
@@ -104,7 +109,12 @@ const Card = (p: Product) => {
     <Link
       to={buildLocalizedLink({
         currentLanguage,
-        paths: ['products', translation?.slug ?? p?.id, 'reviews']
+        paths: [
+          'products',
+          translation?.slug ?? p?.id,
+          'reviews',
+          '?force-validate=global'
+        ]
       })}
       style={{ textDecoration: 'none' }}
     >

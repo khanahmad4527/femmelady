@@ -43,7 +43,6 @@ import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
 import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
-import { p } from 'node_modules/@react-router/dev/dist/routes-DHIOx0R9';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {
   const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
@@ -125,9 +124,9 @@ const SingleProduct = () => {
                         : '2px solid transparent',
                     width: '100%'
                   }}
-                  onClick={() =>
-                    handleActiveImage(getStringDto(i.directus_files_id))
-                  }
+                  onClick={() => {
+                    handleActiveImage(getStringDto(i.directus_files_id));
+                  }}
                 >
                   <Image
                     w={'100%'}
