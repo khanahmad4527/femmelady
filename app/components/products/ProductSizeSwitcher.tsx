@@ -1,4 +1,4 @@
-import { Center, Group, Stack, Text, Title } from '@mantine/core';
+import { Button, Group, Stack, Text } from '@mantine/core';
 import { useState } from 'react';
 import { SetURLSearchParams } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
@@ -38,24 +38,28 @@ const ProductSizeSwitcher = ({
         </Text>
       </Text>
       <Group>
-        {sizes.map(s => (
-          <Center
-            w={switchSize}
-            h={switchSize}
-            key={s.id}
-            p={'sm'}
-            style={{
-              border:
-                s.size === activeSize
-                  ? '2px solid black'
-                  : '2px solid transparent',
-              cursor: 'pointer'
-            }}
-            onClick={() => handleActiveSize(s.size as string)}
-          >
-            {s.size?.toLocaleUpperCase()}
-          </Center>
-        ))}
+        {sizes.map(s => {
+          const isStockLeft = !Boolean(s.stock);
+          return (
+            <Button
+              key={s.id}
+              variant="transparent"
+              p={0}
+              w={switchSize}
+              h={switchSize}
+              style={{
+                border:
+                  s.size === activeSize
+                    ? '2px solid black'
+                    : '2px solid transparent'
+              }}
+              onClick={() => handleActiveSize(s?.size as string)}
+              disabled={isStockLeft}
+            >
+              {s?.size?.toLocaleUpperCase()}
+            </Button>
+          );
+        })}
       </Group>
     </Stack>
   );
