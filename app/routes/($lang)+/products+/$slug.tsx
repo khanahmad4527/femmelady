@@ -11,7 +11,12 @@ import {
   Text,
   Title
 } from '@mantine/core';
-import { Outlet, useLoaderData, useOutletContext } from 'react-router';
+import {
+  Outlet,
+  ShouldRevalidateFunction,
+  useLoaderData,
+  useOutletContext
+} from 'react-router';
 import ProductCartQuantity from '~/components/products/ProductCartQuantity';
 import ProductColorSwitcher from '~/components/products/ProductColorSwitcher';
 import ProductSizeSwitcher from '~/components/products/ProductSizeSwitcher';
@@ -39,12 +44,31 @@ import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
 import { PARAMS } from '~/constant';
 
+// export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {
+//   const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_VALIDATE);
+
+//   if (forceValidate) {
+//     return true;
+//   }
+
+//   const size = nextUrl.searchParams.get(PARAMS.SIZE);
+//   const imageId = nextUrl.searchParams.get(PARAMS.IMAGE_ID);
+//   const productId = nextUrl.searchParams.get(PARAMS.PRODUCT_ID);
+//   const imageSet = nextUrl.searchParams.get(PARAMS.IMAGE_SET);
+
+//   if (size || imageId || productId || imageSet) {
+//     return false;
+//   }
+
+//   return true;
+// };
+
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
 
   const productSlug = params?.slug;
   const product = await getSingleProduct({ slug: productSlug, languageCode });
-
+  console.log('getSingleProduct');
   return { product };
 };
 
@@ -85,8 +109,6 @@ const SingleProduct = () => {
       setSearchParams(searchParams, { preventScrollReset: true });
     }
   };
-
-  console.log({ activeColor, activeImage });
 
   return (
     <Stack className={commonClasses.consistentSpacing}>

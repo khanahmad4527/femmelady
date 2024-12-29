@@ -183,7 +183,9 @@ export const PARAMS = {
   PAGE: 'page',
   SORT: 'sort',
   CATEGORIES: 'categories',
-  BRANDS: 'brands'
+  BRANDS: 'brands',
+  SIZE: 'size',
+  FORCE_VALIDATE: 'force-validate'
 };
 
 export const DEFAULT_PRODUCT_LIMIT = 10;

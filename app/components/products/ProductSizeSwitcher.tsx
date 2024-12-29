@@ -1,6 +1,7 @@
 import { Button, Group, Stack, Text } from '@mantine/core';
 import { useState } from 'react';
 import { SetURLSearchParams } from 'react-router';
+import { PARAMS } from '~/constant';
 import useTranslation from '~/hooks/useTranslation';
 import { ProductSize } from '~/types/types';
 
@@ -18,13 +19,13 @@ const ProductSizeSwitcher = ({
   const t = useTranslation();
 
   const [activeSize, setActiveSize] = useState(
-    searchParams.get('size') ?? sizes?.[0]?.size
+    searchParams.get(PARAMS.SIZE) ?? sizes?.[0]?.size
   );
 
   const handleActiveSize = (size: string) => {
     setActiveSize(size);
 
-    searchParams.set('size', size);
+    searchParams.set(PARAMS.SIZE, size);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
