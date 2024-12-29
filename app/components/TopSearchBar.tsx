@@ -4,15 +4,13 @@ import {
   Image,
   Loader,
   Menu,
-  Paper,
-  Popover,
+  ScrollArea,
   Stack,
   Text,
-  TextInput,
-  Transition
+  TextInput
 } from '@mantine/core';
 import { useDebouncedCallback, useFetch, useHover } from '@mantine/hooks';
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Link, useFetcher } from 'react-router';
 import getStringDto from '~/dto/getStringDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -32,23 +30,28 @@ const TopSearchBar = () => {
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState<Product[]>([]);
 
-  const fetcher = useFetcher();
-
-  console.log({ fetcher });
+  const fetcher = useFetcher<{ products: Product[]; searchQuery: string }>();
 
   const handleSearch = useDebouncedCallback((value: string) => {
     fetcher.load(`/search-query?index&q=${value}`);
   }, 500);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.currentTarget.value.trim());
-    handleSearch(event.currentTarget.value.trim());
+    const value = event.currentTarget.value.trim();
+    if (value !== fetcher.data?.searchQuery) {
+      setSearch(value);
+      handleSearch(value);
+    }
   };
 
   // An effect for appending data to items state
   useEffect(() => {
     if (!fetcher.data || fetcher.state === 'loading') {
       return;
+    }
+
+    if (fetcher.data?.products) {
+      setSearchResults(fetcher.data.products);
     }
   }, [fetcher.data]);
 
@@ -70,20 +73,23 @@ const TopSearchBar = () => {
             }
           />
         </Menu.Target>
-
-        <Menu.Dropdown>
-          <Stack>
-            {searchResults.map(p => {
-              return <Card key={p.id} {...p} />;
-            })}
-          </Stack>
-        </Menu.Dropdown>
+        {searchResults.length > 0 && (
+          <Menu.Dropdown>
+            <ScrollArea h={250}>
+              <Stack>
+                {searchResults.map(p => {
+                  return <Card key={p.id} {...p} />;
+                })}
+              </Stack>
+            </ScrollArea>
+          </Menu.Dropdown>
+        )}
       </Menu>
     </Box>
   );
 };
 
-export default TopSearchBar;
+export default memo(TopSearchBar);
 
 const Card = (p: Product) => {
   const { hovered, ref } = useHover();
@@ -95,39 +101,41 @@ const Card = (p: Product) => {
   ) as ProductTranslation;
 
   return (
-    <Group wrap={'nowrap'} align={'flex-start'}>
-      <Box
-        ref={ref as any}
-        h={50}
-        component={Link}
-        to={buildLocalizedLink({
-          currentLanguage,
-          paths: ['products', translation?.slug ?? p?.id, 'reviews']
-        })}
-      >
-        <Image
-          h={'100%'}
-          fit={'contain'}
-          src={getImageUrl({
-            id: hovered
-              ? getStringDto(p?.feature_image_2)
-              : getStringDto(p?.feature_image_1),
-            DIRECTUS_URL: (env as Env)?.DIRECTUS_URL
-          })}
-          alt={translation.title!}
-          loading={'lazy'}
-        />
-      </Box>
+    <Link
+      to={buildLocalizedLink({
+        currentLanguage,
+        paths: ['products', translation?.slug ?? p?.id, 'reviews']
+      })}
+      style={{ textDecoration: 'none' }}
+    >
+      <Group ref={ref as any} wrap={'nowrap'} align={'flex-start'}>
+        <Box h={50}>
+          <Image
+            h={'100%'}
+            fit={'contain'}
+            src={getImageUrl({
+              id: hovered
+                ? getStringDto(p?.feature_image_2)
+                : getStringDto(p?.feature_image_1),
+              DIRECTUS_URL: (env as Env)?.DIRECTUS_URL
+            })}
+            alt={translation.title!}
+            loading={'lazy'}
+          />
+        </Box>
 
-      <Box>
-        <Text tt={'capitalize'}>{translation?.title}</Text>
-        <Text>
-          {formatCurrency({
-            currentLanguage,
-            value: p?.price as number
-          })}
-        </Text>
-      </Box>
-    </Group>
+        <Box>
+          <Text tt={'capitalize'} c={'black'}>
+            {translation?.title}
+          </Text>
+          <Text c={'black'}>
+            {formatCurrency({
+              currentLanguage,
+              value: p?.price as number
+            })}
+          </Text>
+        </Box>
+      </Group>
+    </Link>
   );
 };

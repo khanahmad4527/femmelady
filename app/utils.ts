@@ -172,11 +172,11 @@ export const getImageUrl = ({
   w?: number;
   DIRECTUS_URL?: string;
 }) => {
-  const { env } = useOutletContext<OutletContext>();
+  const outletContext = useOutletContext<OutletContext>();
 
-  return `${
-    env?.DIRECTUS_URL || DIRECTUS_URL
-  }/assets/${id}?height=${h}&width=${w}`;
+  const directusUrl = outletContext?.env?.DIRECTUS_URL ?? DIRECTUS_URL;
+
+  return `${directusUrl}/assets/${id}?height=${h}&width=${w}`;
 };
 
 export const validateUUID = (uuid: string) => {

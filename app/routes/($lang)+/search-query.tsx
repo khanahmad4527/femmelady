@@ -13,5 +13,5 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     searchQuery
   });
 
-  return { products };
+  return { products, searchQuery };
 };
