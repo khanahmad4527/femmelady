@@ -144,35 +144,14 @@ export const formatNumber = ({
 
 export const buildLocalizedLink = ({
   currentLanguage,
-  paths = [],
+  paths = []
 }: {
   currentLanguage: TranslationKeys;
   paths?: string[]; // Accepts an array of paths
 }) => {
-  const validPaths = paths.filter((path) => path); // Filter out undefined or empty paths
+  const validPaths = paths.filter(path => path); // Filter out undefined or empty paths
   return `/${[currentLanguage, ...validPaths].join('/')}`;
 };
-
-
-// export const buildLocalizedLink = ({
-//   currentLanguage,
-//   primaryPath,
-//   secondaryPath
-// }: {
-//   currentLanguage: TranslationKeys;
-//   primaryPath?: string;
-//   secondaryPath?: string;
-// }) => {
-//   if (primaryPath && secondaryPath) {
-//     return `/${currentLanguage}/${primaryPath}/${secondaryPath}`;
-//   }
-
-//   if (primaryPath) {
-//     return `/${currentLanguage}/${primaryPath}`;
-//   }
-
-//   return `/${currentLanguage}`;
-// };
 
 export const getSingleTranslation = (translations: any) => {
   if (typeof translations?.[0] !== 'object') {
