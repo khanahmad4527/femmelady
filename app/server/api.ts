@@ -1,7 +1,13 @@
-import { readItem, readItems, Query, aggregate } from '@directus/sdk';
+import {
+  readItem,
+  readItems,
+  Query,
+  aggregate,
+  readSingleton
+} from '@directus/sdk';
 import { directus } from './directus';
 import { Schema } from '~/types/collections';
-import { Page, Product, Review } from '~/types/types';
+import { AboutUs, Page, Product, Review } from '~/types/types';
 import { validateUUID } from '~/utils';
 import {
   DEFAULT_PRODUCT_LIMIT,
@@ -273,5 +279,40 @@ export const getReviews = async ({
     sort: ['-rating']
   };
 
-  return directus.request(readItems('review', query));
+  return await directus.request(readItems('review', query));
+};
+
+export const getAboutUs = async ({
+  languageCode
+}: {
+  languageCode: string;
+}) => {
+  const cacheKey = `about_us_${languageCode}`;
+
+  // Check if data is in the cache
+  const cachedData = cache.get(cacheKey);
+  if (cachedData) {
+    return cachedData as AboutUs;
+  }
+
+  // If not cached, fetch from Directus
+  const data = await directus.request(
+    readSingleton('about_us' as never, {
+      fields: ['*', { translations: ['*'] }] as never,
+      deep: {
+        translations: {
+          _filter: {
+            languages_code: {
+              _eq: languageCode
+            }
+          }
+        }
+      } as any
+    })
+  );
+
+  // Store fetched data in cache for 24 hours
+  cache.set(cacheKey, data, 86400);
+
+  return data as AboutUs;
 };

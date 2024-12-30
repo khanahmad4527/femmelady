@@ -59,3 +59,20 @@ export type Review = components['schemas']['ItemsReview'];
 
 export type ReviewTranslation =
   components['schemas']['ItemsReviewTranslations'];
+
+export type AboutUs = components['schemas']['ItemsAboutUs'];
+
+export type AboutUsTranslation =
+  components['schemas']['ItemsAboutUsTranslations'];
+
+// Define the extended type for `content`
+interface AboutUsContent {
+  title: string;
+  content: string;
+  is_featured: boolean;
+}
+
+// Extend the `ItemsAboutUsTranslations` type
+export type ExtendedAboutUsTranslation = Omit<AboutUsTranslation, 'content'> & {
+  content: AboutUsContent[];
+};
