@@ -7,7 +7,14 @@ import {
 } from '@directus/sdk';
 import { directus } from './directus';
 import { Schema } from '~/types/collections';
-import { AboutUs, Page, Product, Review } from '~/types/types';
+import {
+  AboutUs,
+  AboutUsContent,
+  ExtendedAboutUsTranslation,
+  Page,
+  Product,
+  Review
+} from '~/types/types';
 import { validateUUID } from '~/utils';
 import {
   DEFAULT_PRODUCT_LIMIT,
@@ -15,6 +22,7 @@ import {
   DEFAULT_PRODUCT_SORT
 } from '~/constant';
 import NodeCache from 'node-cache';
+import getFirstObjectDto from '~/dto/getFirstObjectDto';
 
 const cache = new NodeCache();
 
@@ -292,11 +300,11 @@ export const getAboutUs = async ({
   // Check if data is in the cache
   const cachedData = cache.get(cacheKey);
   if (cachedData) {
-    return cachedData as AboutUs;
+    return cachedData as AboutUsContent[];
   }
 
   // If not cached, fetch from Directus
-  const data = await directus.request(
+  const data = (await directus.request(
     readSingleton('about_us' as never, {
       fields: ['*', { translations: ['*'] }] as never,
       deep: {
@@ -309,10 +317,15 @@ export const getAboutUs = async ({
         }
       } as any
     })
-  );
+  )) as AboutUs;
+
+  const extendedAboutUsTranslation: ExtendedAboutUsTranslation =
+    getFirstObjectDto(data?.translations);
+
+  const aboutUs = extendedAboutUsTranslation.content.filter(a => a.is_featured);
 
   // Store fetched data in cache for 24 hours
-  cache.set(cacheKey, data, 86400);
+  cache.set(cacheKey, aboutUs, 86400);
 
-  return data as AboutUs;
+  return aboutUs as AboutUsContent[];
 };

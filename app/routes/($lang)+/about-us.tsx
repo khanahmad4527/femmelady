@@ -4,24 +4,17 @@ import { getAboutUs } from '~/server/api';
 import { getLanguageCode } from '~/utils';
 import { Route } from './+types/about-us';
 import { useLoaderData } from 'react-router';
-import getFirstObjectDto from '~/dto/getFirstObjectDto';
-import { ExtendedAboutUsTranslation } from '~/types/types';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
 
-  const aboutUsContent = await getAboutUs({ languageCode });
+  const aboutUs = await getAboutUs({ languageCode });
 
-  return { aboutUsContent };
+  return { aboutUs };
 };
 
 const AboutUs = () => {
-  const { aboutUsContent } = useLoaderData<typeof loader>();
-
-  const extendedAboutUsTranslation: ExtendedAboutUsTranslation =
-    getFirstObjectDto(aboutUsContent?.translations);
-
-  const aboutUs = extendedAboutUsTranslation.content;
+  const { aboutUs } = useLoaderData<typeof loader>();
 
   return (
     <Stack>

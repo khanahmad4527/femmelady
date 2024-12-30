@@ -66,7 +66,7 @@ export type AboutUsTranslation =
   components['schemas']['ItemsAboutUsTranslations'];
 
 // Define the extended type for `content`
-interface AboutUsContent {
+export interface AboutUsContent {
   title: string;
   content: string;
   is_featured: boolean;
