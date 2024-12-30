@@ -1,6 +1,7 @@
 import '~/styles/style.css';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
+import '@mantine/nprogress/styles.css';
 
 import {
   Affix,
@@ -9,7 +10,7 @@ import {
   MantineProvider,
   Transition
 } from '@mantine/core';
-import type { LinksFunction } from 'react-router';
+import type { LinksFunction, ShouldRevalidateFunction } from 'react-router';
 import {
   Links,
   Meta,
@@ -18,6 +19,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useNavigation,
   useSearchParams
 } from 'react-router';
 
@@ -28,11 +30,22 @@ import { OutletContext, TranslationKeys } from './types/types';
 import { Route } from './+types/root';
 import { getExchangeRate } from './server/api';
 import { getUserLocale } from './utils';
-import { LOCALE_TO_CURRENCY } from './constant';
+import { FORCE_REVALIDATE_MAP, LOCALE_TO_CURRENCY, PARAMS } from './constant';
 import useSyncForceRevalidate from './hooks/useSyncForceRevalidate';
 import { useWindowScroll } from '@mantine/hooks';
 import { IconArrowUp } from './icons';
 import useTranslation from './hooks/useTranslation';
+import { NavigationProgress, nprogress } from '@mantine/nprogress';
+import { useEffect } from 'react';
+
+export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {
+  const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
+  if (forceValidate === FORCE_REVALIDATE_MAP.GLOBAL) {
+    return true;
+  }
+
+  return false;
+};
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const currentLanguage = params?.lang as TranslationKeys;
@@ -80,6 +93,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const loaderData = useLoaderData();
+  const navigation = useNavigation();
   const [searchParams, setSearchParams] = useSearchParams();
   const t = useTranslation();
   const [scroll, scrollTo] = useWindowScroll();
@@ -88,8 +102,20 @@ export default function App() {
   useSyncForceRevalidate({ searchParams, setSearchParams });
 
   const ctx: OutletContext = { searchParams, setSearchParams, ...loaderData };
+
+  useEffect(() => {
+    // when the state is idle then we can to complete the progress bar
+    if (navigation.state === 'idle') {
+      nprogress.complete();
+    }
+    // and when it's something else it means it's either submitting a form or
+    // waiting for the loaders of the next location so we start it
+    else nprogress.start();
+  }, [navigation.state]);
+
   return (
     <Document {...ctx}>
+      <NavigationProgress color="primary.3" />
       <Outlet context={ctx} />
 
       <Affix position={{ bottom: 20, right: 20 }}>
