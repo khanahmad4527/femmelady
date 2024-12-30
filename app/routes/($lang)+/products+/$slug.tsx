@@ -241,7 +241,7 @@ const SingleProduct = () => {
               <Text span>
                 {formatNumber({
                   currentLanguage,
-                  number: productTranslation?.review_count!
+                  number: product?.review_count!
                 })}
               </Text>
             )
