@@ -29,7 +29,7 @@ import { theme } from './theme';
 import { OutletContext, TranslationKeys } from './types';
 import { Route } from './+types/root';
 import { getExchangeRate } from './server/api';
-import { getUserLocale } from './utils';
+import { getUserLocale, shouldRevalidateLogic } from './utils';
 import { FORCE_REVALIDATE_MAP, LOCALE_TO_CURRENCY, PARAMS } from './constant';
 import useSyncForceRevalidate from './hooks/useSyncForceRevalidate';
 import { useWindowScroll } from '@mantine/hooks';
@@ -38,10 +38,15 @@ import useTranslation from './hooks/useTranslation';
 import { NavigationProgress, nprogress } from '@mantine/nprogress';
 import { useEffect } from 'react';
 
-export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {
-  const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
-  if (forceValidate === FORCE_REVALIDATE_MAP.GLOBAL) {
-    return true;
+export const shouldRevalidate: ShouldRevalidateFunction = ({
+  nextUrl,
+  currentUrl
+}) => {
+  // Use shared logic
+  const commonResult = shouldRevalidateLogic(nextUrl, currentUrl);
+
+  if (commonResult) {
+    return true; // If shared logic already decided to revalidate, no need to check further
   }
 
   return false;

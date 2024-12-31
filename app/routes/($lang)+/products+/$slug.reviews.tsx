@@ -1,6 +1,11 @@
 import ProductReview from '~/components/products/ProductReview';
 import { Route } from './+types/$slug.reviews';
-import { getLanguageCode, getLimit, getPage } from '~/utils';
+import {
+  getLanguageCode,
+  getLimit,
+  getPage,
+  shouldRevalidateLogic
+} from '~/utils';
 import {
   ShouldRevalidateFunction,
   useLoaderData,
@@ -10,13 +15,20 @@ import { getReviews } from '~/server/api';
 import { OutletContext } from '~/types';
 import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
 
-export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {
+export const shouldRevalidate: ShouldRevalidateFunction = ({
+  nextUrl,
+  currentUrl
+}) => {
+  // Use shared logic
+  const commonResult = shouldRevalidateLogic(nextUrl, currentUrl);
+
+  if (commonResult) {
+    return true; // If shared logic already decided to revalidate, no need to check further
+  }
+
   const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
 
-  if (
-    forceValidate === FORCE_REVALIDATE_MAP.GLOBAL ||
-    forceValidate === FORCE_REVALIDATE_MAP.PRODUCT_REVIEW
-  ) {
+  if (forceValidate === FORCE_REVALIDATE_MAP.PRODUCT_REVIEW) {
     return true;
   }
 

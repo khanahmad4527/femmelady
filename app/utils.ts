@@ -9,6 +9,7 @@ import {
   DEFAULT_PRODUCT_PAGE,
   DEFAULT_PRODUCT_SORT,
   FALL_BACK_LANG,
+  FORCE_REVALIDATE_MAP,
   LANGUAGE_TO_LOCALE_LANGUAGE,
   LOCALE_TO_CURRENCY,
   PARAMS
@@ -376,3 +377,20 @@ export const getSearchQuery = ({ request, searchParams }: GetParam) => {
 
   return searchQuery;
 };
+
+export function shouldRevalidateLogic(
+  nextUrl: URL,
+  currentUrl: URL
+): boolean {
+  if (nextUrl.pathname === currentUrl.pathname) {
+    return false;
+  }
+
+  const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
+  
+  if (forceValidate === FORCE_REVALIDATE_MAP.GLOBAL) {
+    return true;
+  }
+
+  return false;
+}
