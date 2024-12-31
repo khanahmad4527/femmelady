@@ -57,7 +57,12 @@ const TopSearchBar = () => {
 
   return (
     <Box w={'100%'}>
-      <Menu opened={Boolean(searchResults.length)} shadow="md" width={300}>
+      <Menu
+        opened={Boolean(searchResults.length)}
+        shadow="md"
+        width={300}
+        styles={{ dropdown: { padding: 0, borderRadius: 0 } }}
+      >
         <Menu.Target>
           <TextInput
             w={'100%'}
@@ -75,8 +80,9 @@ const TopSearchBar = () => {
         </Menu.Target>
         {searchResults.length > 0 && (
           <Menu.Dropdown>
-            <ScrollArea h={250}>
+            <ScrollArea mah={250}>
               <Stack
+                gap={0}
                 onClick={() => {
                   setSearchValue('');
                   setSearchResults([]);
@@ -118,7 +124,13 @@ const Card = (p: Product) => {
       })}
       style={{ textDecoration: 'none' }}
     >
-      <Group ref={ref as any} wrap={'nowrap'} align={'flex-start'}>
+      <Group
+        p={'xs'}
+        bg={hovered ? 'primary.5' : 'white'}
+        ref={ref as any}
+        wrap={'nowrap'}
+        align={'flex-start'}
+      >
         <Box h={50}>
           <Image
             h={'100%'}
@@ -135,10 +147,10 @@ const Card = (p: Product) => {
         </Box>
 
         <Box>
-          <Text tt={'capitalize'} c={'black'}>
+          <Text tt={'capitalize'} c={hovered ? 'white' : 'black'}>
             {translation?.title}
           </Text>
-          <Text c={'black'}>
+          <Text c={hovered ? 'white' : 'black'}>
             {formatCurrency({
               currentLanguage,
               value: p?.price as number
