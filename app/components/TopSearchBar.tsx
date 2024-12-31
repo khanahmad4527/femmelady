@@ -17,7 +17,7 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
 import { IconSearch } from '~/icons';
-import { Env, Product, ProductTranslation } from '~/types/types';
+import { Env, Product, ProductTranslation } from '~/types';
 import {
   buildLocalizedLink,
   formatCurrency,

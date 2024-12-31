@@ -1,6 +1,6 @@
 import { rem } from '@mantine/core';
 
-import { IconProps } from '~/types/types';
+import { IconProps } from '~/types';
 
 export default function IconCheck({
   size = 25,

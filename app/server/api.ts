@@ -9,12 +9,14 @@ import { directus } from './directus';
 import { Schema } from '~/types/collections';
 import {
   AboutUs,
-  AboutUsContent,
+  GenericContent,
   ExtendedAboutUsTranslation,
   Page,
   Product,
-  Review
-} from '~/types/types';
+  Review,
+  ExtendedContactUsTranslation,
+  ContactUs
+} from '~/types';
 import { validateUUID } from '~/utils';
 import {
   DEFAULT_PRODUCT_LIMIT,
@@ -300,7 +302,7 @@ export const getAboutUs = async ({
   // Check if data is in the cache
   const cachedData = cache.get(cacheKey);
   if (cachedData) {
-    return cachedData as AboutUsContent[];
+    return cachedData as GenericContent[];
   }
 
   // If not cached, fetch from Directus
@@ -327,5 +329,47 @@ export const getAboutUs = async ({
   // Store fetched data in cache for 24 hours
   cache.set(cacheKey, aboutUs, 86400);
 
-  return aboutUs as AboutUsContent[];
+  return aboutUs as GenericContent[];
+};
+
+export const getContactUs = async ({
+  languageCode
+}: {
+  languageCode: string;
+}) => {
+  const cacheKey = `contact_us_${languageCode}`;
+
+  // Check if data is in the cache
+  const cachedData = cache.get(cacheKey);
+  if (cachedData) {
+    return cachedData as GenericContent[];
+  }
+
+  // If not cached, fetch from Directus
+  const data = (await directus.request(
+    readSingleton('contact_us' as never, {
+      fields: ['*', { translations: ['*'] }] as never,
+      deep: {
+        translations: {
+          _filter: {
+            languages_code: {
+              _eq: languageCode
+            }
+          }
+        }
+      } as any
+    })
+  )) as ContactUs;
+
+  const extendedContactUsTranslation: ExtendedContactUsTranslation =
+    getFirstObjectDto(data?.translations);
+
+  const contactUs = extendedContactUsTranslation.content.filter(
+    a => a.is_featured
+  );
+
+  // Store fetched data in cache for 24 hours
+  cache.set(cacheKey, contactUs, 86400);
+
+  return contactUs as GenericContent[];
 };

@@ -31,7 +31,7 @@ import {
   ProductProductColor,
   ProductSize,
   ProductTranslation
-} from '~/types/types';
+} from '~/types';
 import {
   formatCurrency,
   formatNumber,

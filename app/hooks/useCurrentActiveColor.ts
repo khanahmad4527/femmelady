@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { PARAMS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
-import { Product, ProductColor, ProductProductColor } from '~/types/types';
+import { Product, ProductColor, ProductProductColor } from '~/types';
 import useDefaultColor from './useDefaultColor';
 
 const useCurrentActiveColor = ({

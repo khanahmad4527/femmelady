@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router';
 import { PARAMS } from '~/constant';
-import { Product } from '~/types/types';
+import { Product } from '~/types';
 
 const useScrollToProduct = ({ products }: { products: Product[] }) => {
   const [searchParams] = useSearchParams();

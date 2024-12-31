@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
 
-import { TranslationKeys } from '~/types/types';
+import { TranslationKeys } from '~/types';
 
 const useCurrentLanguage = () => {
   const params = useParams<{ lang: TranslationKeys }>();

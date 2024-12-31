@@ -9,7 +9,7 @@ import {
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import useUserLocale from '~/hooks/useUserLocale';
-import { OutletContext } from '~/types/types';
+import { OutletContext } from '~/types';
 import { getLimit } from '~/utils';
 
 const ProductsPerPage = () => {

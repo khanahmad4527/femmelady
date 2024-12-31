@@ -9,7 +9,7 @@ import {
   ProductColor,
   ProductColorTranslation,
   ProductProductColor
-} from '~/types/types';
+} from '~/types';
 import { getImageUrl, getSingleTranslation } from '~/utils';
 
 const ProductColorSwitcher = ({

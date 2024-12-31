@@ -4,7 +4,7 @@ import { getPage } from '~/utils';
 import { useMediaQuery } from '@mantine/hooks';
 import { memo } from 'react';
 import { useOutletContext } from 'react-router';
-import { OutletContext, Review } from '~/types/types';
+import { OutletContext, Review } from '~/types';
 import {
   DEFAULT_PRODUCT_LIMIT,
   FORCE_REVALIDATE_MAP,

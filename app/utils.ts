@@ -1,7 +1,7 @@
 import { useForm } from '@mantine/form';
 import { useFetcher, useOutletContext } from 'react-router';
 import { z } from 'zod';
-import { GetParam, OutletContext, TranslationKeys } from './types/types';
+import { GetParam, OutletContext, TranslationKeys } from './types';
 import {
   BRAND_WITH_ID_MAP,
   CATEGORIES_WITH_ID_MAP,

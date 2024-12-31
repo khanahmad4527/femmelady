@@ -3,7 +3,7 @@ import { useOutletContext } from 'react-router';
 import { DEFAULT_PRODUCT_PAGE, DEFAULT_PRODUCT_SORT, PARAMS } from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
-import { OutletContext } from '~/types/types';
+import { OutletContext } from '~/types';
 import { getSort } from '~/utils';
 
 const ProductsSortBy = () => {

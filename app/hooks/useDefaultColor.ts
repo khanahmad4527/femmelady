@@ -1,5 +1,5 @@
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
-import { Product, ProductColor, ProductProductColor } from '~/types/types';
+import { Product, ProductColor, ProductProductColor } from '~/types';
 
 const useDefaultColor = ({ product }: { product: Product }) => {
   const defaultActiveColor = getFirstObjectDto(

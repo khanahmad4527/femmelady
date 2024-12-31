@@ -24,7 +24,7 @@ import { IconBrandX, IconGoogle } from '~/icons';
 import { loginFormSchema, TLoginFormSchema } from '~/schema';
 import { validateFormWithTranslations } from '~/server/validateFormWithTranslations';
 import classes from '~/styles/Common.module.scss';
-import { OutletContext, TranslationKeys } from '~/types/types';
+import { OutletContext, TranslationKeys } from '~/types';
 import { buildLocalizedLink, parseZodError } from '~/utils';
 
 export const action: ActionFunction = async ({ request, params }) => {

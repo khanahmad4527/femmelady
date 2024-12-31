@@ -17,7 +17,7 @@ import {
   Product,
   ProductProductColor,
   ProductTranslation
-} from '~/types/types';
+} from '~/types';
 import {
   buildLocalizedLink,
   formatCurrency,

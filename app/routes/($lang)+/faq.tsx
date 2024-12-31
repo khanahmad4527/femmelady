@@ -1,7 +1,7 @@
 import { Accordion, Button, Grid, Stack, Text } from '@mantine/core';
 import { useOutletContext } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
-import { OutletContext } from '~/types/types';
+import { OutletContext } from '~/types';
 
 const faq = [
   {

@@ -16,7 +16,7 @@ import { useOutletContext, useSearchParams } from 'react-router';
 import { DEFAULT_PRODUCT_PAGE, PARAMS } from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
-import { OutletContext } from '~/types/types';
+import { OutletContext } from '~/types';
 import { getPriceRange, getRating } from '~/utils';
 
 const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {

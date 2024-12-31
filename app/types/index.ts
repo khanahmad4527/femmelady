@@ -65,8 +65,13 @@ export type AboutUs = components['schemas']['ItemsAboutUs'];
 export type AboutUsTranslation =
   components['schemas']['ItemsAboutUsTranslations'];
 
+export type ContactUs = components['schemas']['ItemsContactUs'];
+
+export type ContactUsTranslation =
+  components['schemas']['ItemsContactUsTranslations'];
+
 // Define the extended type for `content`
-export interface AboutUsContent {
+export interface GenericContent {
   title: string;
   content: string;
   is_featured: boolean;
@@ -74,5 +79,13 @@ export interface AboutUsContent {
 
 // Extend the `ItemsAboutUsTranslations` type
 export type ExtendedAboutUsTranslation = Omit<AboutUsTranslation, 'content'> & {
-  content: AboutUsContent[];
+  content: GenericContent[];
+};
+
+// Extend the `ItemsAboutUsTranslations` type
+export type ExtendedContactUsTranslation = Omit<
+  ContactUsTranslation,
+  'content'
+> & {
+  content: GenericContent[];
 };

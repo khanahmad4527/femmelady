@@ -26,7 +26,7 @@ import {
 import Document from './components/Document';
 import useCurrentLanguage from './hooks/useCurrentLanguage';
 import { theme } from './theme';
-import { OutletContext, TranslationKeys } from './types/types';
+import { OutletContext, TranslationKeys } from './types';
 import { Route } from './+types/root';
 import { getExchangeRate } from './server/api';
 import { getUserLocale } from './utils';

@@ -9,7 +9,7 @@ import {
   ProductImage,
   ProductImageFile,
   ProductProductImage
-} from '~/types/types';
+} from '~/types';
 
 const useCurrentActiveImage = ({
   product,

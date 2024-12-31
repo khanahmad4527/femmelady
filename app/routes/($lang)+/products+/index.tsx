@@ -31,7 +31,7 @@ import {
   getRating,
   getSort
 } from '~/utils';
-import { OutletContext } from '~/types/types';
+import { OutletContext } from '~/types';
 import { PARAMS } from '~/constant';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {

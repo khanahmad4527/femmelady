@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { OutletContext } from '~/types/types';
+import { OutletContext } from '~/types';
 
 export const HeaderFooterContext = createContext<
   OutletContext | Record<string, string>

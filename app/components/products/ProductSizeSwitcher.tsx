@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { SetURLSearchParams } from 'react-router';
 import { PARAMS } from '~/constant';
 import useTranslation from '~/hooks/useTranslation';
-import { ProductSize } from '~/types/types';
+import { ProductSize } from '~/types';
 
 const switchSize = 40;
 

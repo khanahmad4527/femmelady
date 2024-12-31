@@ -2,7 +2,7 @@ import { Button, Drawer, Stack } from '@mantine/core';
 import { Link } from 'react-router';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
-import { ValueLabel } from '~/types/types';
+import { ValueLabel } from '~/types';
 import LanguageSwitcher from './LanguageSwitcher';
 import { IconShoppingCart } from '~/icons';
 

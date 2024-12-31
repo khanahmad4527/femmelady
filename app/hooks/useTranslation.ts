@@ -1,4 +1,4 @@
-import { TranslationKeys } from '~/types/types';
+import { TranslationKeys } from '~/types';
 
 import en from '../locales/en.json';
 import ja from '../locales/ja.json';

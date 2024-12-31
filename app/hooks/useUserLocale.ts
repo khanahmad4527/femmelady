@@ -1,4 +1,4 @@
-import { TranslationKeys } from '~/types/types';
+import { TranslationKeys } from '~/types';
 import { getUserLocale } from '~/utils';
 
 const useUserLocale = (currentLanguage: TranslationKeys = 'en') => {

@@ -1,7 +1,7 @@
 import { Divider, Group, Rating, Stack, Text } from '@mantine/core';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import { Review, ReviewTranslation, User } from '~/types/types';
+import { Review, ReviewTranslation, User } from '~/types';
 import { formatDate, getSingleTranslation } from '~/utils';
 
 const ProductReviewCard = ({ review }: { review: Review }) => {

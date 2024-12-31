@@ -13,7 +13,7 @@ import { Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconMinus, IconPlus, IconX } from '~/icons';
-import { Product } from '~/types/types';
+import { Product } from '~/types';
 import { buildLocalizedLink, formatCurrency, getImageUrl } from '~/utils';
 
 const HeaderCartCard = () => {

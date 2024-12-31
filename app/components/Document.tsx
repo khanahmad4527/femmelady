@@ -3,7 +3,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { useLocation } from 'react-router';
 
 import { ROUTES_WITHOUT_HEADER_AND_FOOTER } from '~/constant';
-import { OutletContext } from '~/types/types';
+import { OutletContext } from '~/types';
 import commonClasses from '~/styles/Common.module.scss';
 import Footer from './Footer';
 import Header from './Header';

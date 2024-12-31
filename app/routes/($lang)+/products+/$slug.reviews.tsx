@@ -7,7 +7,7 @@ import {
   useOutletContext
 } from 'react-router';
 import { getReviews } from '~/server/api';
-import { OutletContext } from '~/types/types';
+import { OutletContext } from '~/types';
 import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({ nextUrl }) => {

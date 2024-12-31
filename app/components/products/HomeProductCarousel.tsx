@@ -9,7 +9,7 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
-import { Product, ProductTranslation } from '~/types/types';
+import { Product, ProductTranslation } from '~/types';
 import {
   buildLocalizedLink,
   formatCurrency,
