@@ -11,7 +11,7 @@ import {
   Text
 } from '@mantine/core';
 import { useDebouncedCallback } from '@mantine/hooks';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useOutletContext, useSearchParams } from 'react-router';
 import { DEFAULT_PRODUCT_PAGE, PARAMS } from '~/constant';
 
@@ -30,7 +30,7 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
 
   const productsFilterByAccordionData = [
     {
-      value: PARAMS.CATEGORY,
+      value: PARAMS.CATEGORIES,
       label: t('products.category'),
       component: <CategoryFilter />
     },
@@ -40,7 +40,7 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
       component: <PriceFilter />
     },
     {
-      value: PARAMS.BRAND,
+      value: PARAMS.BRANDS,
       label: t('products.brand'),
       component: <BrandFilter />
     },
@@ -59,12 +59,10 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
   ));
 
   const menuItems = productsFilterByAccordionData.map(item => (
-    <>
+    <Fragment key={item.value}>
       <Menu.Label>{item.label}</Menu.Label>
-      <Menu.Item key={item.value} value={item.value}>
-        {item?.component}
-      </Menu.Item>
-    </>
+      <Menu.Item value={item.value}>{item?.component}</Menu.Item>
+    </Fragment>
   ));
 
   return render === 'mobile' ? (
@@ -83,7 +81,7 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
         <Text>{t('products.filterBy')}</Text>
         <Button onClick={clearSearchParams}>{t('products.clearFilter')}</Button>
       </Group>
-      <Accordion value={Array.from(searchParams.keys())} multiple>
+      <Accordion multiple defaultValue={Array.from(searchParams.keys())}>
         {accordionItems}
       </Accordion>
     </Box>
