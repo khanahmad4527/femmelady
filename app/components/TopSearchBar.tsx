@@ -88,20 +88,22 @@ const TopSearchBar = () => {
         </Menu.Target>
         {searchResults.length > 0 && (
           <Menu.Dropdown>
-            <ScrollArea mah={250}>
-              <Stack
-                gap={0}
-                onClick={() => {
-                  setSearchValue('');
-                  setPreviousSearchValue('');
-                  setSearchResults([]);
-                }}
-              >
-                {searchResults.map(p => {
-                  return <Card key={p.id} {...p} />;
-                })}
-              </Stack>
-            </ScrollArea>
+            <Stack
+              mah={250}
+              style={{
+                overflowY: 'auto' // Enables scrolling if content exceeds 250px
+              }}
+              gap={0}
+              onClick={() => {
+                setSearchValue('');
+                setPreviousSearchValue('');
+                setSearchResults([]);
+              }}
+            >
+              {searchResults.map(p => {
+                return <Card key={p.id} {...p} />;
+              })}
+            </Stack>
           </Menu.Dropdown>
         )}
       </Menu>
