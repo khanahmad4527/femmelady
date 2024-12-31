@@ -29,11 +29,12 @@ const TopSearchBar = () => {
   const t = useTranslation();
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const [searchValue, setSearchValue] = useState('');
+  const [previousSearchValue, setPreviousSearchValue] = useState('');
 
   const fetcher = useFetcher<{ products: Product[]; searchQuery: string }>();
 
   const handleSearch = useDebouncedCallback((value: string) => {
-    if (value !== fetcher.data?.searchQuery && value.length >= 3) {
+    if (value !== previousSearchValue && value.length >= 3) {
       fetcher.load(`/search-query?index&q=${value}`);
     }
   }, 500);
@@ -52,13 +53,20 @@ const TopSearchBar = () => {
 
     if (fetcher.data?.products) {
       setSearchResults(fetcher.data.products);
+      setPreviousSearchValue(fetcher.data?.searchQuery);
     }
   }, [fetcher.data]);
+
+  const canShowDropDown = Boolean(
+    searchValue.length &&
+      searchResults.length &&
+      searchValue === previousSearchValue
+  );
 
   return (
     <Box w={'100%'}>
       <Menu
-        opened={Boolean(searchResults.length)}
+        opened={canShowDropDown}
         shadow="md"
         width={300}
         styles={{ dropdown: { padding: 0, borderRadius: 0 } }}
@@ -85,6 +93,7 @@ const TopSearchBar = () => {
                 gap={0}
                 onClick={() => {
                   setSearchValue('');
+                  setPreviousSearchValue('');
                   setSearchResults([]);
                 }}
               >
