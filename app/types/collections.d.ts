@@ -2091,44 +2091,83 @@ export interface paths {
      */
     patch: operations["updateSingleItemsAboutUs"];
   };
-  "/items/about_us_translations": {
+  "/items/privacy_policy": {
     /**
      * List Items
-     * @description List the about_us_translations items.
+     * @description List the privacy_policy items.
      */
-    get: operations["readItemsAboutUsTranslations"];
+    get: operations["readItemsPrivacyPolicy"];
     /**
      * Create an Item
-     * @description Create a new about_us_translations item.
+     * @description Create a new privacy_policy item.
      */
-    post: operations["createItemsAboutUsTranslations"];
+    post: operations["createItemsPrivacyPolicy"];
     /**
      * Delete Multiple Items
-     * @description Delete multiple existing about_us_translations items.
+     * @description Delete multiple existing privacy_policy items.
      */
-    delete: operations["deleteItemsAboutUsTranslations"];
+    delete: operations["deleteItemsPrivacyPolicy"];
     /**
      * Update Multiple Items
-     * @description Update multiple about_us_translations items at the same time.
+     * @description Update multiple privacy_policy items at the same time.
      */
-    patch: operations["updateItemsAboutUsTranslations"];
+    patch: operations["updateItemsPrivacyPolicy"];
   };
-  "/items/about_us_translations/{id}": {
+  "/items/privacy_policy/{id}": {
     /**
      * Retrieve an Item
-     * @description Retrieve a single about_us_translations item by unique identifier.
+     * @description Retrieve a single privacy_policy item by unique identifier.
      */
-    get: operations["readSingleItemsAboutUsTranslations"];
+    get: operations["readSingleItemsPrivacyPolicy"];
     /**
      * Delete an Item
-     * @description Delete an existing about_us_translations item.
+     * @description Delete an existing privacy_policy item.
      */
-    delete: operations["deleteSingleItemsAboutUsTranslations"];
+    delete: operations["deleteSingleItemsPrivacyPolicy"];
     /**
      * Update an Item
-     * @description Update an existing about_us_translations item.
+     * @description Update an existing privacy_policy item.
      */
-    patch: operations["updateSingleItemsAboutUsTranslations"];
+    patch: operations["updateSingleItemsPrivacyPolicy"];
+  };
+  "/items/faq": {
+    /**
+     * List Items
+     * @description List the faq items.
+     */
+    get: operations["readItemsFAQ"];
+    /**
+     * Create an Item
+     * @description Create a new faq item.
+     */
+    post: operations["createItemsFAQ"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing faq items.
+     */
+    delete: operations["deleteItemsFAQ"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple faq items at the same time.
+     */
+    patch: operations["updateItemsFAQ"];
+  };
+  "/items/faq/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single faq item by unique identifier.
+     */
+    get: operations["readSingleItemsFAQ"];
+    /**
+     * Delete an Item
+     * @description Delete an existing faq item.
+     */
+    delete: operations["deleteSingleItemsFAQ"];
+    /**
+     * Update an Item
+     * @description Update an existing faq item.
+     */
+    patch: operations["updateSingleItemsFAQ"];
   };
   "/items/contact_us": {
     /**
@@ -2168,6 +2207,201 @@ export interface paths {
      * @description Update an existing contact_us item.
      */
     patch: operations["updateSingleItemsContactUs"];
+  };
+  "/items/about_us_translations": {
+    /**
+     * List Items
+     * @description List the about_us_translations items.
+     */
+    get: operations["readItemsAboutUsTranslations"];
+    /**
+     * Create an Item
+     * @description Create a new about_us_translations item.
+     */
+    post: operations["createItemsAboutUsTranslations"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing about_us_translations items.
+     */
+    delete: operations["deleteItemsAboutUsTranslations"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple about_us_translations items at the same time.
+     */
+    patch: operations["updateItemsAboutUsTranslations"];
+  };
+  "/items/about_us_translations/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single about_us_translations item by unique identifier.
+     */
+    get: operations["readSingleItemsAboutUsTranslations"];
+    /**
+     * Delete an Item
+     * @description Delete an existing about_us_translations item.
+     */
+    delete: operations["deleteSingleItemsAboutUsTranslations"];
+    /**
+     * Update an Item
+     * @description Update an existing about_us_translations item.
+     */
+    patch: operations["updateSingleItemsAboutUsTranslations"];
+  };
+  "/items/faq_translations": {
+    /**
+     * List Items
+     * @description List the faq_translations items.
+     */
+    get: operations["readItemsFAQTranslations"];
+    /**
+     * Create an Item
+     * @description Create a new faq_translations item.
+     */
+    post: operations["createItemsFAQTranslations"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing faq_translations items.
+     */
+    delete: operations["deleteItemsFAQTranslations"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple faq_translations items at the same time.
+     */
+    patch: operations["updateItemsFAQTranslations"];
+  };
+  "/items/faq_translations/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single faq_translations item by unique identifier.
+     */
+    get: operations["readSingleItemsFAQTranslations"];
+    /**
+     * Delete an Item
+     * @description Delete an existing faq_translations item.
+     */
+    delete: operations["deleteSingleItemsFAQTranslations"];
+    /**
+     * Update an Item
+     * @description Update an existing faq_translations item.
+     */
+    patch: operations["updateSingleItemsFAQTranslations"];
+  };
+  "/items/terms_of_services_translations": {
+    /**
+     * List Items
+     * @description List the terms_of_services_translations items.
+     */
+    get: operations["readItemsTermsofServicesTranslations"];
+    /**
+     * Create an Item
+     * @description Create a new terms_of_services_translations item.
+     */
+    post: operations["createItemsTermsofServicesTranslations"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing terms_of_services_translations items.
+     */
+    delete: operations["deleteItemsTermsofServicesTranslations"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple terms_of_services_translations items at the same time.
+     */
+    patch: operations["updateItemsTermsofServicesTranslations"];
+  };
+  "/items/terms_of_services_translations/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single terms_of_services_translations item by unique identifier.
+     */
+    get: operations["readSingleItemsTermsofServicesTranslations"];
+    /**
+     * Delete an Item
+     * @description Delete an existing terms_of_services_translations item.
+     */
+    delete: operations["deleteSingleItemsTermsofServicesTranslations"];
+    /**
+     * Update an Item
+     * @description Update an existing terms_of_services_translations item.
+     */
+    patch: operations["updateSingleItemsTermsofServicesTranslations"];
+  };
+  "/items/terms_of_services": {
+    /**
+     * List Items
+     * @description List the terms_of_services items.
+     */
+    get: operations["readItemsTermsofServices"];
+    /**
+     * Create an Item
+     * @description Create a new terms_of_services item.
+     */
+    post: operations["createItemsTermsofServices"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing terms_of_services items.
+     */
+    delete: operations["deleteItemsTermsofServices"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple terms_of_services items at the same time.
+     */
+    patch: operations["updateItemsTermsofServices"];
+  };
+  "/items/terms_of_services/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single terms_of_services item by unique identifier.
+     */
+    get: operations["readSingleItemsTermsofServices"];
+    /**
+     * Delete an Item
+     * @description Delete an existing terms_of_services item.
+     */
+    delete: operations["deleteSingleItemsTermsofServices"];
+    /**
+     * Update an Item
+     * @description Update an existing terms_of_services item.
+     */
+    patch: operations["updateSingleItemsTermsofServices"];
+  };
+  "/items/privacy_policy_translations": {
+    /**
+     * List Items
+     * @description List the privacy_policy_translations items.
+     */
+    get: operations["readItemsPrivacyPolicyTranslations"];
+    /**
+     * Create an Item
+     * @description Create a new privacy_policy_translations item.
+     */
+    post: operations["createItemsPrivacyPolicyTranslations"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing privacy_policy_translations items.
+     */
+    delete: operations["deleteItemsPrivacyPolicyTranslations"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple privacy_policy_translations items at the same time.
+     */
+    patch: operations["updateItemsPrivacyPolicyTranslations"];
+  };
+  "/items/privacy_policy_translations/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single privacy_policy_translations item by unique identifier.
+     */
+    get: operations["readSingleItemsPrivacyPolicyTranslations"];
+    /**
+     * Delete an Item
+     * @description Delete an existing privacy_policy_translations item.
+     */
+    delete: operations["deleteSingleItemsPrivacyPolicyTranslations"];
+    /**
+     * Update an Item
+     * @description Update an existing privacy_policy_translations item.
+     */
+    patch: operations["updateSingleItemsPrivacyPolicyTranslations"];
   };
   "/items/contact_us_translations": {
     /**
@@ -3542,22 +3776,55 @@ export interface components {
       id: string;
       translations?: number[] | components["schemas"]["ItemsAboutUsTranslations"][] | null;
     };
-    ItemsAboutUsTranslations: {
-      id?: number;
-      about_us_id?: string | components["schemas"]["ItemsAboutUs"] | null;
-      languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
-      content: unknown;
+    ItemsPrivacyPolicy: {
+      /** Format: uuid */
+      id: string;
+      translations?: number[] | components["schemas"]["ItemsPrivacyPolicyTranslations"][] | null;
+    };
+    ItemsFAQ: {
+      /** Format: uuid */
+      id: string;
+      translations?: number[] | components["schemas"]["ItemsFAQTranslations"][] | null;
     };
     ItemsContactUs: {
       /** Format: uuid */
       id: string;
       translations?: number[] | components["schemas"]["ItemsContactUsTranslations"][] | null;
     };
+    ItemsAboutUsTranslations: {
+      id?: number;
+      about_us_id?: string | components["schemas"]["ItemsAboutUs"] | null;
+      languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
+      contents?: unknown;
+    };
+    ItemsFAQTranslations: {
+      id?: number;
+      faq_id?: string | components["schemas"]["ItemsFAQ"] | null;
+      languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
+      faqs: unknown;
+    };
+    ItemsTermsofServicesTranslations: {
+      id?: number;
+      terms_of_services_id?: string | components["schemas"]["ItemsTermsofServices"] | null;
+      languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
+      contents?: unknown;
+    };
+    ItemsTermsofServices: {
+      /** Format: uuid */
+      id: string;
+      translations?: number[] | components["schemas"]["ItemsTermsofServicesTranslations"][] | null;
+    };
+    ItemsPrivacyPolicyTranslations: {
+      id?: number;
+      privacy_policy_id?: string | components["schemas"]["ItemsPrivacyPolicy"] | null;
+      languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
+      contents?: unknown;
+    };
     ItemsContactUsTranslations: {
       id?: number;
       contact_us_id?: string | components["schemas"]["ItemsContactUs"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
-      content: unknown;
+      contents?: unknown;
     };
   };
   responses: {
@@ -14123,9 +14390,9 @@ export interface operations {
   };
   /**
    * List Items
-   * @description List the about_us_translations items.
+   * @description List the privacy_policy items.
    */
-  readItemsAboutUsTranslations: {
+  readItemsPrivacyPolicy: {
     parameters: {
       query?: {
         fields?: components["parameters"]["Fields"];
@@ -14142,7 +14409,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: components["schemas"]["ItemsAboutUsTranslations"][];
+            data?: components["schemas"]["ItemsPrivacyPolicy"][];
             meta?: components["schemas"]["x-metadata"];
           };
         };
@@ -14152,9 +14419,9 @@ export interface operations {
   };
   /**
    * Create an Item
-   * @description Create a new about_us_translations item.
+   * @description Create a new privacy_policy item.
    */
-  createItemsAboutUsTranslations: {
+  createItemsPrivacyPolicy: {
     parameters: {
       query?: {
         meta?: components["parameters"]["Meta"];
@@ -14162,7 +14429,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["ItemsAboutUsTranslations"][] | components["schemas"]["ItemsAboutUsTranslations"];
+        "application/json": components["schemas"]["ItemsPrivacyPolicy"][] | components["schemas"]["ItemsPrivacyPolicy"];
       };
     };
     responses: {
@@ -14179,9 +14446,9 @@ export interface operations {
   };
   /**
    * Delete Multiple Items
-   * @description Delete multiple existing about_us_translations items.
+   * @description Delete multiple existing privacy_policy items.
    */
-  deleteItemsAboutUsTranslations: {
+  deleteItemsPrivacyPolicy: {
     responses: {
       /** @description Successful request */
       200: {
@@ -14192,9 +14459,9 @@ export interface operations {
   };
   /**
    * Update Multiple Items
-   * @description Update multiple about_us_translations items at the same time.
+   * @description Update multiple privacy_policy items at the same time.
    */
-  updateItemsAboutUsTranslations: {
+  updateItemsPrivacyPolicy: {
     parameters: {
       query?: {
         fields?: components["parameters"]["Fields"];
@@ -14208,7 +14475,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["ItemsAboutUsTranslations"][] | components["schemas"]["ItemsAboutUsTranslations"];
+        "application/json": components["schemas"]["ItemsPrivacyPolicy"][] | components["schemas"]["ItemsPrivacyPolicy"];
       };
     };
     responses: {
@@ -14224,9 +14491,9 @@ export interface operations {
   };
   /**
    * Retrieve an Item
-   * @description Retrieve a single about_us_translations item by unique identifier.
+   * @description Retrieve a single privacy_policy item by unique identifier.
    */
-  readSingleItemsAboutUsTranslations: {
+  readSingleItemsPrivacyPolicy: {
     parameters: {
       query?: {
         fields?: components["parameters"]["Fields"];
@@ -14243,7 +14510,7 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: components["schemas"]["ItemsAboutUsTranslations"];
+            data?: components["schemas"]["ItemsPrivacyPolicy"];
           };
         };
       };
@@ -14253,9 +14520,9 @@ export interface operations {
   };
   /**
    * Delete an Item
-   * @description Delete an existing about_us_translations item.
+   * @description Delete an existing privacy_policy item.
    */
-  deleteSingleItemsAboutUsTranslations: {
+  deleteSingleItemsPrivacyPolicy: {
     parameters: {
       path: {
         /** @description Index of the item. */
@@ -14273,9 +14540,9 @@ export interface operations {
   };
   /**
    * Update an Item
-   * @description Update an existing about_us_translations item.
+   * @description Update an existing privacy_policy item.
    */
-  updateSingleItemsAboutUsTranslations: {
+  updateSingleItemsPrivacyPolicy: {
     parameters: {
       query?: {
         fields?: components["parameters"]["Fields"];
@@ -14288,7 +14555,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["ItemsAboutUsTranslations"];
+        "application/json": components["schemas"]["ItemsPrivacyPolicy"];
       };
     };
     responses: {
@@ -14296,7 +14563,190 @@ export interface operations {
       200: {
         content: {
           "application/json": {
-            data?: components["schemas"]["ItemsAboutUsTranslations"];
+            data?: components["schemas"]["ItemsPrivacyPolicy"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
+   * @description List the faq items.
+   */
+  readItemsFAQ: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsFAQ"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new faq item.
+   */
+  createItemsFAQ: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsFAQ"][] | components["schemas"]["ItemsFAQ"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing faq items.
+   */
+  deleteItemsFAQ: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple faq items at the same time.
+   */
+  updateItemsFAQ: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsFAQ"][] | components["schemas"]["ItemsFAQ"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single faq item by unique identifier.
+   */
+  readSingleItemsFAQ: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsFAQ"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing faq item.
+   */
+  deleteSingleItemsFAQ: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing faq item.
+   */
+  updateSingleItemsFAQ: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsFAQ"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsFAQ"];
           };
         };
       };
@@ -14480,6 +14930,921 @@ export interface operations {
         content: {
           "application/json": {
             data?: components["schemas"]["ItemsContactUs"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
+   * @description List the about_us_translations items.
+   */
+  readItemsAboutUsTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAboutUsTranslations"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new about_us_translations item.
+   */
+  createItemsAboutUsTranslations: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsAboutUsTranslations"][] | components["schemas"]["ItemsAboutUsTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing about_us_translations items.
+   */
+  deleteItemsAboutUsTranslations: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple about_us_translations items at the same time.
+   */
+  updateItemsAboutUsTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsAboutUsTranslations"][] | components["schemas"]["ItemsAboutUsTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single about_us_translations item by unique identifier.
+   */
+  readSingleItemsAboutUsTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAboutUsTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing about_us_translations item.
+   */
+  deleteSingleItemsAboutUsTranslations: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing about_us_translations item.
+   */
+  updateSingleItemsAboutUsTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsAboutUsTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAboutUsTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
+   * @description List the faq_translations items.
+   */
+  readItemsFAQTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsFAQTranslations"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new faq_translations item.
+   */
+  createItemsFAQTranslations: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsFAQTranslations"][] | components["schemas"]["ItemsFAQTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing faq_translations items.
+   */
+  deleteItemsFAQTranslations: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple faq_translations items at the same time.
+   */
+  updateItemsFAQTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsFAQTranslations"][] | components["schemas"]["ItemsFAQTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single faq_translations item by unique identifier.
+   */
+  readSingleItemsFAQTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsFAQTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing faq_translations item.
+   */
+  deleteSingleItemsFAQTranslations: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing faq_translations item.
+   */
+  updateSingleItemsFAQTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsFAQTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsFAQTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
+   * @description List the terms_of_services_translations items.
+   */
+  readItemsTermsofServicesTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTermsofServicesTranslations"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new terms_of_services_translations item.
+   */
+  createItemsTermsofServicesTranslations: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsTermsofServicesTranslations"][] | components["schemas"]["ItemsTermsofServicesTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing terms_of_services_translations items.
+   */
+  deleteItemsTermsofServicesTranslations: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple terms_of_services_translations items at the same time.
+   */
+  updateItemsTermsofServicesTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsTermsofServicesTranslations"][] | components["schemas"]["ItemsTermsofServicesTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single terms_of_services_translations item by unique identifier.
+   */
+  readSingleItemsTermsofServicesTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTermsofServicesTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing terms_of_services_translations item.
+   */
+  deleteSingleItemsTermsofServicesTranslations: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing terms_of_services_translations item.
+   */
+  updateSingleItemsTermsofServicesTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsTermsofServicesTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTermsofServicesTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
+   * @description List the terms_of_services items.
+   */
+  readItemsTermsofServices: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTermsofServices"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new terms_of_services item.
+   */
+  createItemsTermsofServices: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsTermsofServices"][] | components["schemas"]["ItemsTermsofServices"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing terms_of_services items.
+   */
+  deleteItemsTermsofServices: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple terms_of_services items at the same time.
+   */
+  updateItemsTermsofServices: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsTermsofServices"][] | components["schemas"]["ItemsTermsofServices"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single terms_of_services item by unique identifier.
+   */
+  readSingleItemsTermsofServices: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTermsofServices"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing terms_of_services item.
+   */
+  deleteSingleItemsTermsofServices: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing terms_of_services item.
+   */
+  updateSingleItemsTermsofServices: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsTermsofServices"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTermsofServices"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
+   * @description List the privacy_policy_translations items.
+   */
+  readItemsPrivacyPolicyTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsPrivacyPolicyTranslations"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new privacy_policy_translations item.
+   */
+  createItemsPrivacyPolicyTranslations: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsPrivacyPolicyTranslations"][] | components["schemas"]["ItemsPrivacyPolicyTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing privacy_policy_translations items.
+   */
+  deleteItemsPrivacyPolicyTranslations: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple privacy_policy_translations items at the same time.
+   */
+  updateItemsPrivacyPolicyTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsPrivacyPolicyTranslations"][] | components["schemas"]["ItemsPrivacyPolicyTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single privacy_policy_translations item by unique identifier.
+   */
+  readSingleItemsPrivacyPolicyTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsPrivacyPolicyTranslations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing privacy_policy_translations item.
+   */
+  deleteSingleItemsPrivacyPolicyTranslations: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing privacy_policy_translations item.
+   */
+  updateSingleItemsPrivacyPolicyTranslations: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsPrivacyPolicyTranslations"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsPrivacyPolicyTranslations"];
           };
         };
       };
@@ -14707,7 +16072,13 @@ export type Schema = {
   product_size: components["schemas"]["ItemsProductSize"][];
   review_translations: components["schemas"]["ItemsReviewTranslations"][];
   about_us: components["schemas"]["ItemsAboutUs"][];
-  about_us_translations: components["schemas"]["ItemsAboutUsTranslations"][];
+  privacy_policy: components["schemas"]["ItemsPrivacyPolicy"][];
+  faq: components["schemas"]["ItemsFAQ"][];
   contact_us: components["schemas"]["ItemsContactUs"][];
+  about_us_translations: components["schemas"]["ItemsAboutUsTranslations"][];
+  faq_translations: components["schemas"]["ItemsFAQTranslations"][];
+  terms_of_services_translations: components["schemas"]["ItemsTermsofServicesTranslations"][];
+  terms_of_services: components["schemas"]["ItemsTermsofServices"][];
+  privacy_policy_translations: components["schemas"]["ItemsPrivacyPolicyTranslations"][];
   contact_us_translations: components["schemas"]["ItemsContactUsTranslations"][];
 };

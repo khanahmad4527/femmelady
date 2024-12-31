@@ -60,15 +60,10 @@ export type Review = components['schemas']['ItemsReview'];
 export type ReviewTranslation =
   components['schemas']['ItemsReviewTranslations'];
 
-export type AboutUs = components['schemas']['ItemsAboutUs'];
+export type GenericSingleton = components['schemas']['ItemsAboutUs'];
 
-export type AboutUsTranslation =
+export type GenericTranslation =
   components['schemas']['ItemsAboutUsTranslations'];
-
-export type ContactUs = components['schemas']['ItemsContactUs'];
-
-export type ContactUsTranslation =
-  components['schemas']['ItemsContactUsTranslations'];
 
 // Define the extended type for `content`
 export interface GenericContent {
@@ -77,15 +72,22 @@ export interface GenericContent {
   is_featured: boolean;
 }
 
-// Extend the `ItemsAboutUsTranslations` type
-export type ExtendedAboutUsTranslation = Omit<AboutUsTranslation, 'content'> & {
-  content: GenericContent[];
+export type ExtendedGenericTranslation = Omit<
+  GenericTranslation,
+  'contents'
+> & {
+  contents: GenericContent[];
 };
 
-// Extend the `ItemsAboutUsTranslations` type
-export type ExtendedContactUsTranslation = Omit<
-  ContactUsTranslation,
-  'content'
-> & {
-  content: GenericContent[];
+export type FAQ = components['schemas']['ItemsFAQ'];
+
+export type FAQTranslation = components['schemas']['ItemsFAQTranslations'];
+
+export interface Faqs {
+  title: string;
+  faqs: { question: string; answer: string; is_featured: boolean }[];
+}
+
+export type ExtendedFAQTranslation = Omit<FAQTranslation, 'faqs'> & {
+  faqs: Faqs[];
 };

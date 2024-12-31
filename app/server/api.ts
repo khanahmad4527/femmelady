@@ -8,14 +8,15 @@ import {
 import { directus } from './directus';
 import { Schema } from '~/types/collections';
 import {
-  AboutUs,
   GenericContent,
-  ExtendedAboutUsTranslation,
   Page,
   Product,
   Review,
-  ExtendedContactUsTranslation,
-  ContactUs
+  GenericSingleton,
+  ExtendedGenericTranslation,
+  FAQ,
+  ExtendedFAQTranslation,
+  Faqs
 } from '~/types';
 import { validateUUID } from '~/utils';
 import {
@@ -25,6 +26,7 @@ import {
 } from '~/constant';
 import NodeCache from 'node-cache';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import { fetchModule } from 'vite';
 
 const cache = new NodeCache();
 
@@ -319,12 +321,14 @@ export const getAboutUs = async ({
         }
       } as any
     })
-  )) as AboutUs;
+  )) as GenericSingleton;
 
-  const extendedAboutUsTranslation: ExtendedAboutUsTranslation =
+  const extendedAboutUsTranslation: ExtendedGenericTranslation =
     getFirstObjectDto(data?.translations);
 
-  const aboutUs = extendedAboutUsTranslation.content.filter(a => a.is_featured);
+  const aboutUs = extendedAboutUsTranslation.contents.filter(
+    a => a.is_featured
+  );
 
   // Store fetched data in cache for 24 hours
   cache.set(cacheKey, aboutUs, 86400);
@@ -359,12 +363,12 @@ export const getContactUs = async ({
         }
       } as any
     })
-  )) as ContactUs;
+  )) as GenericSingleton;
 
-  const extendedContactUsTranslation: ExtendedContactUsTranslation =
+  const extendedContactUsTranslation: ExtendedGenericTranslation =
     getFirstObjectDto(data?.translations);
 
-  const contactUs = extendedContactUsTranslation.content.filter(
+  const contactUs = extendedContactUsTranslation.contents.filter(
     a => a.is_featured
   );
 
@@ -372,4 +376,129 @@ export const getContactUs = async ({
   cache.set(cacheKey, contactUs, 86400);
 
   return contactUs as GenericContent[];
+};
+
+export const getPrivacyPolicy = async ({
+  languageCode
+}: {
+  languageCode: string;
+}) => {
+  const cacheKey = `privacy_policy_${languageCode}`;
+
+  // Check if data is in the cache
+  const cachedData = cache.get(cacheKey);
+  if (cachedData) {
+    return cachedData as GenericContent[];
+  }
+
+  // If not cached, fetch from Directus
+  const data = (await directus.request(
+    readSingleton('privacy_policy' as never, {
+      fields: ['*', { translations: ['*'] }] as never,
+      deep: {
+        translations: {
+          _filter: {
+            languages_code: {
+              _eq: languageCode
+            }
+          }
+        }
+      } as any
+    })
+  )) as GenericSingleton;
+
+  const extendedPrivacyPolicyTranslation: ExtendedGenericTranslation =
+    getFirstObjectDto(data?.translations);
+
+  const privacyPolicy = extendedPrivacyPolicyTranslation.contents.filter(
+    a => a.is_featured
+  );
+
+  // Store fetched data in cache for 24 hours
+  cache.set(cacheKey, privacyPolicy, 86400);
+
+  return privacyPolicy as GenericContent[];
+};
+
+export const getTermsOfServices = async ({
+  languageCode
+}: {
+  languageCode: string;
+}) => {
+  const cacheKey = `terms_of_services_${languageCode}`;
+
+  // Check if data is in the cache
+  const cachedData = cache.get(cacheKey);
+  if (cachedData) {
+    return cachedData as GenericContent[];
+  }
+
+  // If not cached, fetch from Directus
+  const data = (await directus.request(
+    readSingleton('terms_of_services' as never, {
+      fields: ['*', { translations: ['*'] }] as never,
+      deep: {
+        translations: {
+          _filter: {
+            languages_code: {
+              _eq: languageCode
+            }
+          }
+        }
+      } as any
+    })
+  )) as GenericSingleton;
+
+  const extendedTermsOfServicesTranslation: ExtendedGenericTranslation =
+    getFirstObjectDto(data?.translations);
+
+  const termsOfServices = extendedTermsOfServicesTranslation.contents.filter(
+    a => a.is_featured
+  );
+
+  // Store fetched data in cache for 24 hours
+  cache.set(cacheKey, termsOfServices, 86400);
+
+  return termsOfServices as GenericContent[];
+};
+
+export const getFaqs = async ({ languageCode }: { languageCode: string }) => {
+  const cacheKey = `faq_${languageCode}`;
+
+  // Check if data is in the cache
+  const cachedData = cache.get(cacheKey);
+  if (cachedData) {
+    return cachedData as Faqs[];
+  }
+
+  // If not cached, fetch from Directus
+  const data = (await directus.request(
+    readSingleton('faq' as never, {
+      fields: ['*', { translations: ['*'] }] as never,
+      deep: {
+        translations: {
+          _filter: {
+            languages_code: {
+              _eq: languageCode
+            }
+          }
+        }
+      } as any
+    })
+  )) as FAQ;
+
+  const extendedExtendedFAQTranslation: ExtendedFAQTranslation =
+    getFirstObjectDto(data?.translations);
+
+  const faqs = extendedExtendedFAQTranslation.faqs.map(f => {
+    return {
+      ...f,
+      faqs: f.faqs.filter(a => a.is_featured)
+    };
+  });
+
+  // Store fetched data in cache for 24 hours
+  cache.set(cacheKey, faqs, 86400);
+
+  return faqs as Faqs[];
 };
