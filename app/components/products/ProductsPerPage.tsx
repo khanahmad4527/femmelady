@@ -3,6 +3,7 @@ import { useOutletContext } from 'react-router';
 import {
   DEFAULT_PRODUCT_LIMIT,
   DEFAULT_PRODUCT_PAGE,
+  FORCE_REVALIDATE_MAP,
   PARAMS
 } from '~/constant';
 
@@ -33,6 +34,9 @@ const ProductsPerPage = () => {
   const handleFilterChange = (value: string | null) => {
     searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
     searchParams.set(PARAMS.LIMIT, value ?? String(DEFAULT_PRODUCT_LIMIT));
+    if (value !== limitValue) {
+      searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+    }
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 

@@ -171,23 +171,6 @@ export const LOCALE_TO_CURRENCY: Record<string, string> = {
   'ru-RU': 'RUB'
 };
 
-export const PARAMS = {
-  PRODUCT_ID: 'product-id',
-  IMAGE_SET: 'image-set',
-  IMAGE_ID: 'image-id',
-  PRICE: 'price',
-  RATING: 'rating',
-  CATEGORY: 'category',
-  BRAND: 'brand',
-  LIMIT: 'limit',
-  PAGE: 'page',
-  SORT: 'sort',
-  CATEGORIES: 'categories',
-  BRANDS: 'brands',
-  SIZE: 'size',
-  FORCE_REVALIDATE: 'force-validate'
-};
-
 export const DEFAULT_PRODUCT_LIMIT = 10;
 
 export const DEFAULT_PRODUCT_PAGE = 1;
@@ -232,8 +215,41 @@ export const BRAND_WITH_ID_MAP = {
   'radiant-moments': '07c12562-4200-4421-bb64-8f6392155106'
 };
 
+export const PARAMS = {
+  PRODUCT_ID: 'product-id',
+  IMAGE_SET: 'image-set',
+  IMAGE_ID: 'image-id',
+  PRICE: 'price',
+  RATING: 'rating',
+  CATEGORY: 'category',
+  BRAND: 'brand',
+  LIMIT: 'limit',
+  PAGE: 'page',
+  SORT: 'sort',
+  CATEGORIES: 'categories',
+  BRANDS: 'brands',
+  SIZE: 'size',
+  FORCE_REVALIDATE: 'force-validate'
+};
+
 export const FORCE_REVALIDATE_MAP = {
   GLOBAL: 'global',
   SINGLE_PRODUCT: 'single-product',
   PRODUCT_REVIEW: 'product-review'
+};
+
+export const PRE_PARAMS = {
+  PRODUCT_ID: 'pre-product-id',
+  IMAGE_SET: 'pre-image-set',
+  IMAGE_ID: 'pre-image-id',
+  PRICE: 'pre-price',
+  RATING: 'pre-rating',
+  CATEGORY: 'pre-category',
+  BRAND: 'pre-brand',
+  LIMIT: 'pre-limit',
+  PAGE: 'pre-page',
+  SORT: 'pre-sort',
+  CATEGORIES: 'pre-categories',
+  BRANDS: 'pre-brands',
+  SIZE: 'pre-size'
 };

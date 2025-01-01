@@ -8,7 +8,11 @@ import {
   Text
 } from '@mantine/core';
 
-import { useLoaderData, useOutletContext } from 'react-router';
+import {
+  ShouldRevalidateFunction,
+  useLoaderData,
+  useOutletContext
+} from 'react-router';
 
 import ProductCard from '~/components/products/ProductCard';
 import ProductsFilterBy from '~/components/products/ProductsFilterBy';
@@ -29,10 +33,26 @@ import {
   getPage,
   getPriceRange,
   getRating,
-  getSort
+  getSort,
+  shouldRevalidateLogic
 } from '~/utils';
 import { OutletContext } from '~/types';
-import { PARAMS } from '~/constant';
+import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
+import { useEffect, useState } from 'react';
+
+export const shouldRevalidate: ShouldRevalidateFunction = ({
+  currentUrl,
+  nextUrl
+}) => {
+  // Use shared logic
+  const commonResult = shouldRevalidateLogic(nextUrl, currentUrl);
+
+  if (commonResult) {
+    return true; // If shared logic already decided to revalidate, no need to check further
+  }
+
+  return false;
+};
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -41,15 +61,15 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   const averageRatingRange = getAverageRatingRange(getRating({ request }));
 
+  const categoriesId = getCategoriesId({ request });
+
+  const brandsId = getBrandsId({ request });
+
   const productsPerPage = getLimit({ request });
 
   const currentPage = getPage({ request });
 
   const productSort = getSort({ request });
-
-  const categoriesId = getCategoriesId({ request });
-
-  const brandsId = getBrandsId({ request });
 
   const { products, totalProductCount } = await getProducts({
     route: 'products',
@@ -82,6 +102,9 @@ const Products = () => {
 
   const handlePagination = (value: number) => {
     searchParams.set(PARAMS.PAGE, String(value));
+    if (value !== currentPage) {
+      searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+    }
     setSearchParams(searchParams);
   };
 

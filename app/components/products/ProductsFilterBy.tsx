@@ -12,20 +12,28 @@ import {
 } from '@mantine/core';
 import { useDebouncedCallback } from '@mantine/hooks';
 import { Fragment, useState } from 'react';
-import { useOutletContext, useSearchParams } from 'react-router';
-import { DEFAULT_PRODUCT_PAGE, PARAMS } from '~/constant';
+import { useOutletContext } from 'react-router';
+import { FORCE_REVALIDATE_MAP, PARAMS, PRE_PARAMS } from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
 import { OutletContext } from '~/types';
 import { getPriceRange, getRating } from '~/utils';
 
 const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
   const t = useTranslation();
 
   const clearSearchParams = () => {
-    // Clears all search params from the URL
-    setSearchParams(undefined);
+    // Check if there are any search parameters
+    if (Array.from(searchParams.keys()).length > 0) {
+      // Create a new URLSearchParams instance to clear all parameters
+      const newSearchParams = new URLSearchParams();
+      // Set the desired parameter
+
+      newSearchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+      // Update the URL with the new parameters
+      setSearchParams(newSearchParams, { preventScrollReset: true });
+    }
   };
 
   const productsFilterByAccordionData = [
@@ -94,10 +102,12 @@ const RatingFilter = () => {
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
   const [value, setValue] = useState(getRating({ searchParams }) ?? 3);
 
-  const handleSearch = (value: number) => {
-    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
-    searchParams.set(PARAMS.RATING, String(value));
-    setSearchParams(searchParams, { preventScrollReset: true });
+  const handleSearch = (v: number) => {
+    if (value !== v) {
+      searchParams.set(PARAMS.RATING, String(v));
+      searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+      setSearchParams(searchParams, { preventScrollReset: true });
+    }
   };
 
   return (
@@ -154,7 +164,8 @@ const BrandFilter = () => {
 
     // Append updated categories back
     updatedBrands.forEach(brand => searchParams.append(PARAMS.BRANDS, brand));
-    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
+
+    searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
@@ -241,7 +252,8 @@ const CategoryFilter = () => {
     updatedCategories.forEach(category =>
       searchParams.append(PARAMS.CATEGORIES, category)
     );
-    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
+
+    searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
@@ -275,10 +287,17 @@ const PriceFilter = () => {
     getPriceRange({ searchParams }) ?? [20, 500]
   );
 
-  const handleSearch = useDebouncedCallback((value: [number, number]) => {
-    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
-    searchParams.set(PARAMS.PRICE, String(value));
-    setSearchParams(searchParams, { preventScrollReset: true });
+  const handleSearch = useDebouncedCallback((v: [number, number]) => {
+    if (value[0] !== v[0] || value[1] !== v[1]) {
+      searchParams.set(PARAMS.PRICE, String(v));
+      searchParams.set(
+        PRE_PARAMS.PRICE,
+        String(getPriceRange({ searchParams }))
+      );
+
+      searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+      setSearchParams(searchParams, { preventScrollReset: true });
+    }
   }, 1000);
 
   return (

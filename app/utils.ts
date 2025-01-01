@@ -378,16 +378,13 @@ export const getSearchQuery = ({ request, searchParams }: GetParam) => {
   return searchQuery;
 };
 
-export function shouldRevalidateLogic(
-  nextUrl: URL,
-  currentUrl: URL
-): boolean {
-  if (nextUrl.pathname === currentUrl.pathname) {
+export function shouldRevalidateLogic(nextUrl: URL, currentUrl: URL): boolean {
+  if (nextUrl.href === currentUrl.href) {
     return false;
   }
 
   const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
-  
+
   if (forceValidate === FORCE_REVALIDATE_MAP.GLOBAL) {
     return true;
   }
