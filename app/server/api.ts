@@ -199,14 +199,17 @@ export const getProducts = async ({
     // Aggregate query for product count
     const [productCount] = await directus.request(
       aggregate('product', {
-        aggregate: { count: '*' },
+        aggregate: { countDistinct: '*' },
         query: baseQuery
       })
     );
 
     // Fetch products
     const products = await directus.request(readItems('product', productQuery));
-    return { products, totalProductCount: Number(productCount?.count) };
+    return {
+      products,
+      totalProductCount: Number(productCount?.countDistinct?.['*' as any] ?? 0)
+    };
   }
 
   // Default case for unsupported routes
