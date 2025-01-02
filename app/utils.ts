@@ -391,3 +391,109 @@ export function shouldRevalidateLogic(nextUrl: URL, currentUrl: URL): boolean {
 
   return false;
 }
+
+/**
+ * Builds a filter object and compares it to the URL's filter parameter.
+ * @param params - Parameters to build the filter, including potential functions.
+ * @param requestUrl - The URL to extract the filter parameter from.
+ * @returns An object containing a boolean indicating equality and the built filter object.
+ */
+export const buildAndCompareFilter = (
+  params: {
+    priceRange?: number[];
+    averageRatingRange?: number[];
+    categoriesId?: string[];
+    brandsId?: string[];
+    [key: string]: any; // Allow additional dynamic keys, including functions.
+  },
+  requestUrl: string
+) => {
+  // Step 1: Build the filter object
+  const { priceRange, averageRatingRange, categoriesId, brandsId } = params;
+
+  let filter = null;
+  if (priceRange || averageRatingRange || categoriesId || brandsId) {
+    filter = {
+      price: priceRange,
+      rating: averageRatingRange,
+      category: categoriesId,
+      brand: brandsId
+    };
+  }
+
+  // Step 2: Extract filter from the URL
+  const url = new URL(requestUrl);
+
+  const urlFilter = JSON.parse(url.searchParams.get('filter') ?? '{}');
+  const count = url.searchParams.get('count');
+
+  let parsedUrlFilter: Record<string, any> | null = null;
+  try {
+    parsedUrlFilter = isEmptyObject(urlFilter) ? null : urlFilter;
+  } catch (error) {
+    console.error('Failed to parse URL filter:', error);
+  }
+
+  if (!filter && !parsedUrlFilter && count === null) {
+    return { isSame: false, productCount: 0 };
+  } else if (!filter && !parsedUrlFilter && count !== null) {
+    return { isSame: true, productCount: safeParseInt(count) };
+  }
+
+  // Step 3: Perform deep comparison
+  const isSame = deepEqual(filter, parsedUrlFilter);
+
+  return { isSame, productCount: safeParseInt(count) };
+};
+
+/**
+ * Deep comparison of two values, including objects, arrays, and functions.
+ * @param val1 - The first value to compare.
+ * @param val2 - The second value to compare.
+ * @returns True if the values are deeply equal, otherwise false.
+ */
+const deepEqual = (val1: any, val2: any): boolean => {
+  // If both values are strictly equal (including undefined), return true
+  if (val1 === val2) return true;
+
+  // If either value is not an object, or either is null, return false
+  if (
+    typeof val1 !== 'object' ||
+    typeof val2 !== 'object' ||
+    val1 === null ||
+    val2 === null
+  ) {
+    return false;
+  }
+
+  // Get keys from both objects, ignoring keys with undefined values
+  const keys1 = Object.keys(val1).filter(key => val1[key] !== undefined);
+  const keys2 = Object.keys(val2).filter(key => val2[key] !== undefined);
+
+  // If the number of keys is different, return false
+  if (keys1.length !== keys2.length) return false;
+
+  // Recursively check each key
+  for (const key of keys1) {
+    if (!keys2.includes(key)) return false;
+    if (!deepEqual(val1[key], val2[key])) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+const isEmptyObject = (obj: any): boolean => {
+  return (
+    obj &&
+    typeof obj === 'object' &&
+    !Array.isArray(obj) &&
+    Object.keys(obj).length === 0
+  );
+};
+
+function safeParseInt(value: any): number {
+  const parsed = parseInt(value, 10);
+  return Number.isNaN(parsed) ? 0 : parsed;
+}

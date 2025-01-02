@@ -78,6 +78,8 @@ const productTranslationBaseQuery = (languageCode: string) => {
 
 export const getProducts = async ({
   route,
+  isSame,
+  productCount,
   languageCode,
   priceRange,
   averageRatingRange,
@@ -89,6 +91,8 @@ export const getProducts = async ({
   searchQuery
 }: {
   route: Page;
+  isSame: boolean;
+  productCount: number;
   languageCode: string;
   priceRange?: [number, number];
   averageRatingRange?: [number, number];
@@ -196,19 +200,28 @@ export const getProducts = async ({
   }
 
   if (route === 'products') {
-    // Aggregate query for product count
-    const [productCount] = await directus.request(
-      aggregate('product', {
-        aggregate: { countDistinct: '*' },
-        query: baseQuery
-      })
-    );
+    let count = productCount;
+
+    if (!isSame) {
+      console.log('could not save query');
+      // Aggregate query for product count
+      const [productCount] = await directus.request(
+        aggregate('product', {
+          aggregate: { countDistinct: '*' },
+          query: baseQuery
+        })
+      );
+
+      count = Number(productCount?.countDistinct?.['*' as any] ?? 0);
+    } else {
+      console.log('saved query');
+    }
 
     // Fetch products
     const products = await directus.request(readItems('product', productQuery));
     return {
       products,
-      totalProductCount: Number(productCount?.countDistinct?.['*' as any] ?? 0)
+      totalProductCount: count
     };
   }
 

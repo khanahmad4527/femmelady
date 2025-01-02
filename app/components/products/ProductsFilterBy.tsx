@@ -13,7 +13,12 @@ import {
 import { useDebouncedCallback } from '@mantine/hooks';
 import { Fragment, useState } from 'react';
 import { useOutletContext } from 'react-router';
-import { FORCE_REVALIDATE_MAP, PARAMS, PRE_PARAMS } from '~/constant';
+import {
+  DEFAULT_PRODUCT_PAGE,
+  FORCE_REVALIDATE_MAP,
+  PARAMS,
+  PRE_PARAMS
+} from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
 import { OutletContext } from '~/types';
@@ -104,6 +109,7 @@ const RatingFilter = () => {
 
   const handleSearch = (v: number) => {
     if (value !== v) {
+      searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
       searchParams.set(PARAMS.RATING, String(v));
       searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
       setSearchParams(searchParams, { preventScrollReset: true });
@@ -164,7 +170,7 @@ const BrandFilter = () => {
 
     // Append updated categories back
     updatedBrands.forEach(brand => searchParams.append(PARAMS.BRANDS, brand));
-
+    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
     searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
@@ -252,7 +258,7 @@ const CategoryFilter = () => {
     updatedCategories.forEach(category =>
       searchParams.append(PARAMS.CATEGORIES, category)
     );
-
+    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
     searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
@@ -294,7 +300,7 @@ const PriceFilter = () => {
         PRE_PARAMS.PRICE,
         String(getPriceRange({ searchParams }))
       );
-
+      searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
       searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
       setSearchParams(searchParams, { preventScrollReset: true });
     }

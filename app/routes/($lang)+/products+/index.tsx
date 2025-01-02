@@ -25,6 +25,7 @@ import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
 import { Route } from '../+types/_index';
 import {
+  buildAndCompareFilter,
   getAverageRatingRange,
   getBrandsId,
   getCategoriesId,
@@ -71,8 +72,21 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   const productSort = getSort({ request });
 
+  const args = {
+    priceRange,
+    averageRatingRange,
+    categoriesId,
+    brandsId
+  };
+
+  // Aim of this function is to save the query made to the get the count of total product
+  //Iif the filter is same
+  const { isSame, productCount } = buildAndCompareFilter(args, request.url);
+  
   const { products, totalProductCount } = await getProducts({
     route: 'products',
+    isSame,
+    productCount,
     languageCode,
     priceRange,
     averageRatingRange,
@@ -83,11 +97,21 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     brandsId
   });
 
-  return { products, totalProductCount };
+  return {
+    products,
+    totalProductCount,
+    filter: {
+      price: priceRange,
+      rating: averageRatingRange,
+      category: categoriesId,
+      brand: brandsId
+    }
+  };
 };
 
 const Products = () => {
-  const { products, totalProductCount } = useLoaderData<typeof loader>();
+  const { products, totalProductCount, filter } =
+    useLoaderData<typeof loader>();
 
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
@@ -107,6 +131,12 @@ const Products = () => {
     }
     setSearchParams(searchParams);
   };
+
+  useEffect(() => {
+    searchParams.set('filter', JSON.stringify(filter));
+    searchParams.set('count', String(totalProductCount));
+    setSearchParams(searchParams, { preventScrollReset: true });
+  }, [products]);
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
