@@ -203,7 +203,6 @@ export const getProducts = async ({
     let count = productCount;
 
     if (!isSame) {
-      console.log('could not save query');
       // Aggregate query for product count
       const [productCount] = await directus.request(
         aggregate('product', {
@@ -213,8 +212,6 @@ export const getProducts = async ({
       );
 
       count = Number(productCount?.countDistinct?.['*' as any] ?? 0);
-    } else {
-      console.log('saved query');
     }
 
     // Fetch products
