@@ -26,7 +26,6 @@ import {
 } from '~/constant';
 import NodeCache from 'node-cache';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
-import { fetchModule } from 'vite';
 
 const cache = new NodeCache();
 
