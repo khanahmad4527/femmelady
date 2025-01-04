@@ -29,6 +29,7 @@ import {
   OutletContext,
   Product,
   ProductProductColor,
+  ProductProductImage,
   ProductSize,
   ProductTranslation
 } from '~/types';
@@ -56,7 +57,8 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
     return true; // If shared logic already decided to revalidate, no need to check further
   }
 
-  const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
+  const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE) ?? '';
+
   if (forceValidate === FORCE_REVALIDATE_MAP.SINGLE_PRODUCT) {
     return true;
   }
@@ -91,8 +93,7 @@ const SingleProduct = () => {
     useCurrentActiveImage({
       product,
       activeColor,
-      searchParams,
-      setSearchParams
+      searchParams
     });
 
   const t = useTranslation();
@@ -211,6 +212,8 @@ const SingleProduct = () => {
           <ProductColorSwitcher
             activeColor={activeColor}
             setActiveColor={setActiveColor}
+            images={product?.images as ProductProductImage[]}
+            handleActiveImage={handleActiveImage}
             productColors={product.colors as ProductProductColor[]}
             searchParams={searchParams}
             setSearchParams={setSearchParams}

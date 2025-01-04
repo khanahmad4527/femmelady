@@ -1,26 +1,33 @@
 import { ActionIcon, Group, Image, Paper, Stack, Text } from '@mantine/core';
 import { memo } from 'react';
 import { SetURLSearchParams } from 'react-router';
-import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
+import { PARAMS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import getStringDto from '~/dto/getStringDto';
 import useTranslation from '~/hooks/useTranslation';
 import {
   ProductColor,
   ProductColorTranslation,
-  ProductProductColor
+  ProductProductColor,
+  ProductProductImage,
+  ProductImage,
+  ProductImageFile
 } from '~/types';
 import { getImageUrl, getSingleTranslation } from '~/utils';
 
 const ProductColorSwitcher = ({
   activeColor,
   setActiveColor,
+  images,
+  handleActiveImage,
   productColors,
   searchParams,
   setSearchParams
 }: {
   activeColor: ProductColor;
   setActiveColor: React.Dispatch<React.SetStateAction<ProductColor>>;
+  images: ProductProductImage[];
+  handleActiveImage: (id?: string) => void;
   productColors: ProductProductColor[];
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
@@ -34,7 +41,6 @@ const ProductColorSwitcher = ({
     activeColor?.translations
   ) as ProductColorTranslation;
 
-  // Set active color and the params
   const handleActiveColor = ({
     color,
     pId
@@ -42,22 +48,47 @@ const ProductColorSwitcher = ({
     color: ProductColor;
     pId?: string;
   }) => {
-    if (
-      pId !== paramsProductId ||
-      color?.image_set !== paramsImageSet ||
-      !paramsProductId ||
-      !paramsImageSet
-    ) {
+    // Destructure params to avoid repetitive access
+    const { PRODUCT_ID, IMAGE_SET } = PARAMS;
+    const currentProductId = paramsProductId;
+    const currentImageSet = paramsImageSet;
+
+    // Check if the product or image set needs to be updated
+    const shouldUpdate =
+      pId !== currentProductId || color?.image_set !== currentImageSet;
+
+    if (shouldUpdate) {
+      // Set the active color
       setActiveColor(color);
 
-      const productId = getStringDto(productColors?.[0]?.product_id);
-
-      searchParams.set(PARAMS.PRODUCT_ID, productId!);
-      searchParams.set(PARAMS.IMAGE_SET, getStringDto(color?.image_set)!);
-      searchParams.set(
-        PARAMS.FORCE_REVALIDATE,
-        FORCE_REVALIDATE_MAP.SINGLE_PRODUCT
+      // Find the image based on the color's image set
+      const matchingImage = images.find(
+        i => (i.product_image_id as ProductImage)?.id === color.image_set
       );
+
+      if (matchingImage) {
+        // Safely extract the active image ID
+        const newImageId = (
+          (matchingImage.product_image_id as ProductImage)
+            ?.images?.[0] as ProductImageFile
+        )?.directus_files_id;
+
+        if (typeof newImageId === 'string') {
+          handleActiveImage(newImageId);
+        }
+      }
+
+      // Update search params
+      const productId = getStringDto(productColors?.[0]?.product_id);
+      searchParams.set(PRODUCT_ID, productId || '');
+      searchParams.set(IMAGE_SET, getStringDto(color?.image_set) || '');
+
+      // Optional: Uncomment if FORCE_REVALIDATE is needed
+      // searchParams.set(
+      //   PARAMS.FORCE_REVALIDATE,
+      //   FORCE_REVALIDATE_MAP.SINGLE_PRODUCT
+      // );
+
       setSearchParams(searchParams, { preventScrollReset: true });
     }
   };
