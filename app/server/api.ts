@@ -16,13 +16,15 @@ import {
   ExtendedGenericTranslation,
   FAQ,
   ExtendedFAQTranslation,
-  Faqs
+  Faqs,
+  TranslationKeys
 } from '~/types';
-import { validateUUID } from '~/utils';
+import { getUserLocale, validateUUID } from '~/utils';
 import {
   DEFAULT_PRODUCT_LIMIT,
   DEFAULT_PRODUCT_PAGE,
-  DEFAULT_PRODUCT_SORT
+  DEFAULT_PRODUCT_SORT,
+  LOCALE_TO_CURRENCY
 } from '~/constant';
 import NodeCache from 'node-cache';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
@@ -30,7 +32,13 @@ import getFirstObjectDto from '~/dto/getFirstObjectDto';
 const cache = new NodeCache();
 
 // Utility function to fetch exchange rates
-export const getExchangeRate = async (currency: string): Promise<number> => {
+export const getExchangeRate = async (
+  currentLanguage: TranslationKeys
+): Promise<number> => {
+  const locale = getUserLocale(currentLanguage);
+
+  const currency = LOCALE_TO_CURRENCY[locale] || 'USD';
+
   // Check if the exchange rate is already cached
   const cachedRate = cache.get<number>(`exchange-rate-${currency}`);
   if (cachedRate) {
@@ -90,9 +98,9 @@ export const getProducts = async ({
   searchQuery
 }: {
   route: Page;
-  isSame: boolean;
-  productCount: number;
-  languageCode: string;
+  isSame?: boolean;
+  productCount?: number;
+  languageCode: TranslationKeys;
   priceRange?: [number, number];
   averageRatingRange?: [number, number];
   productsPerPage?: number;
@@ -217,7 +225,7 @@ export const getProducts = async ({
     const products = await directus.request(readItems('product', productQuery));
     return {
       products,
-      totalProductCount: count
+      totalProductCount: Number(count)
     };
   }
 

@@ -65,8 +65,7 @@ export const isAuthenticated = async (request: Request) => {
   const notLoggedIn = {
     isLoggedIn: false,
     token: null,
-    user: null,
-    header: null
+    user: null
   };
 
   try {
@@ -74,7 +73,7 @@ export const isAuthenticated = async (request: Request) => {
     if (!key) return notLoggedIn;
 
     // Lock the Redis key
-    const lock = await redisClient.lockKey(key);
+    const releaseLock = await redisClient.lockKey(key);
 
     try {
       let { token, refreshToken: currentRefreshToken } =
@@ -85,7 +84,6 @@ export const isAuthenticated = async (request: Request) => {
       }
 
       const expired = isTokenExpired(token);
-      let header;
 
       if (expired) {
         const authResponse = await refreshToken(currentRefreshToken);
@@ -103,8 +101,8 @@ export const isAuthenticated = async (request: Request) => {
 
       return { user, token, isLoggedIn: true };
     } finally {
-      // Release the lock
-      await lock.release();
+      // Release the releaseLock
+      await releaseLock();
     }
   } catch (e: any) {
     console.log('Failed to authenticate:', e);

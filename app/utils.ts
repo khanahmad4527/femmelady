@@ -14,6 +14,7 @@ import {
   LOCALE_TO_CURRENCY,
   PARAMS
 } from './constant';
+import crypto from 'crypto';
 
 export const submitForm = <T extends Record<string, any>>(
   fetcher: ReturnType<typeof useFetcher>,
@@ -198,11 +199,35 @@ export const validateUUID = (uuid: string) => {
   return uuidRegex.test(uuid);
 };
 
+/**
+ * Retrieves the language code in the `en-US` format based on the provided language parameter.
+ *
+ * If the `lang` parameter is provided and exists in the `LANGUAGE_TO_LOCALE_LANGUAGE` mapping,
+ * the corresponding locale-specific language code is returned. Otherwise, it falls back to
+ * the default language code defined by `FALL_BACK_LANG`.
+ *
+ * @param params - An object containing an optional `lang` parameter.
+ * @param params.lang - The language code (e.g., 'en', 'fr', etc.).
+ * @returns The corresponding locale-specific language code in the format `en-US`.
+ *
+ * @example
+ * const LANGUAGE_TO_LOCALE_LANGUAGE = {
+ *   en: 'en-US',
+ *   fr: 'fr-FR',
+ *   es: 'es-ES',
+ * };
+ *
+ * const FALL_BACK_LANG = 'en';
+ *
+ * console.log(getLanguageCode({ lang: 'fr' })); // Output: 'fr-FR'
+ * console.log(getLanguageCode({}));            // Output: 'en-US'
+ * console.log(getLanguageCode({ lang: 'de' })); // Output: 'en-US'
+ */
 export const getLanguageCode = (params: { lang?: string }) => {
   const languageCode =
     LANGUAGE_TO_LOCALE_LANGUAGE[params?.lang ?? FALL_BACK_LANG];
 
-  return languageCode;
+  return languageCode as TranslationKeys;
 };
 
 export const getPriceRange = ({ request, searchParams }: GetParam) => {
@@ -508,4 +533,15 @@ const isEmptyObject = (obj: any): boolean => {
 function safeParseInt(value: any): number {
   const parsed = parseInt(value, 10);
   return Number.isNaN(parsed) ? 0 : parsed;
+}
+
+export function generateUUID(): string {
+  return '10000000-1000-4000-8000-100000000000'.replace(
+    /[018]/g,
+    (c: string): string =>
+      (
+        Number(c) ^
+        (crypto.randomBytes(1)[0] & (15 >> (Number(c) / 4)))
+      ).toString(16)
+  );
 }

@@ -14,6 +14,8 @@ export const useForm = ({ schema, initialValues }: UseFormProps) => {
   const t = useTranslation();
   const fetcher = useFetcher();
 
+  const state = fetcher.state;
+
   const form = useFormMantine({
     initialValues,
     validate: (values): any => {
@@ -46,6 +48,7 @@ export const useForm = ({ schema, initialValues }: UseFormProps) => {
   return {
     Form,
     form, // expose form methods and properties if needed
-    errors: form.errors // expose errors if needed
+    errors: form.errors, // expose errors if needed,
+    state
   };
 };

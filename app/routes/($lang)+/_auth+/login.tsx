@@ -10,8 +10,11 @@ import {
   TextInput
 } from '@mantine/core';
 
-import { ActionFunction, Link, useOutletContext } from 'react-router';
+import { Link, useOutletContext } from 'react-router';
 import { z } from 'zod';
+import { login } from '~/auth/auth.server';
+import { createUserSession } from '~/auth/session.server';
+import { redisClient } from '~/entry.server';
 import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
@@ -19,38 +22,35 @@ import { IconGoogle } from '~/icons';
 import { loginFormSchema } from '~/schema';
 import classes from '~/styles/Common.module.scss';
 import { OutletContext } from '~/types';
-import { buildLocalizedLink, parseZodError } from '~/utils';
+import { buildLocalizedLink, generateUUID, parseZodError } from '~/utils';
+import { Route } from './+types/login';
+import { FALL_BACK_LANG } from '~/constant';
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request, params }: Route.ActionArgs) => {
+  const lang = params.lang ?? FALL_BACK_LANG;
   const formData = await request.formData();
-  const data = Object.fromEntries(formData);
 
   try {
-    loginFormSchema.parse(data);
-    /**
-     * // Call Directus login API to authenticate user
+    const { email, password } = loginFormSchema.parse(
+      Object.fromEntries(formData)
+    );
+
     const authResults = await login({ email, password });
     const { access_token, refresh_token } = authResults;
 
-    const user = (await getUserByToken(access_token!)) as User;
-    const sessionId = `${uuid()}#${(user as User).id}`; // random id # user Id
+    const sessionId = generateUUID();
+
     await redisClient.saveToken(sessionId, {
       token: access_token!,
       refreshToken: refresh_token!
     });
-    const redirectPath = url.searchParams.get('redirect_url_path');
+
     return createUserSession({
       request,
       userSessionId: sessionId,
       remember: true,
-      redirectTo: redirectPath
-        ? redirectPath
-        : DOMAIN +
-          `/${languages[user.language || FALLBACK_LANGUAGE] || DEFAULT_LANGUAGE}`
+      redirectTo: `/${lang}/`
     });
-     */
-
-    return { success: true };
   } catch (error) {
     if (error instanceof z.ZodError) {
       return parseZodError(error);
@@ -62,9 +62,12 @@ export const action: ActionFunction = async ({ request }) => {
 const Login = () => {
   const t = useTranslation();
   const { currentLanguage } = useOutletContext<OutletContext>();
-  const { Form, form } = useForm({
+  const { Form, form, state } = useForm({
     schema: loginFormSchema,
-    initialValues: { email: '' }
+    initialValues: {
+      email: 'khanahmad4527@gmail.com',
+      password: 'KuibKtc@#2kdon33VcIdMN'
+    }
   });
 
   return (
@@ -108,6 +111,7 @@ const Login = () => {
 
           <PasswordInput
             withAsterisk
+            radius={0}
             label={t('authForm.password')}
             name={'password'}
             placeholder="********"
@@ -125,7 +129,9 @@ const Login = () => {
             >
               {t('login.accountRegister')}
             </Anchor>
-            <Button type="submit"> {t('login.login')}</Button>
+            <Button type="submit" loading={state === 'submitting'}>
+              {t('login.login')}
+            </Button>
           </Group>
         </Form>
       </Stack>

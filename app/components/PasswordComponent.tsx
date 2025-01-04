@@ -82,6 +82,7 @@ const Password = ({
           onBlurCapture={() => setPopoverOpened(false)}
         >
           <PasswordInput
+            radius={0}
             label={t('authForm.password')}
             name="password"
             placeholder="********"

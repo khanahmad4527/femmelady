@@ -1,9 +1,9 @@
 import { createClient, RedisClientType } from 'redis';
-import Redlock from 'redlock';
+import createLock from 'redis-lock';
 
 class RedisClient {
   redisClient: RedisClientType;
-  redlock: Redlock;
+  lock: ReturnType<typeof createLock>;
 
   constructor() {
     this.redisClient = createClient({ url: process.env?.REDIS_URL });
@@ -36,12 +36,19 @@ class RedisClient {
 
     this.redisClient.connect().catch(console.error);
 
-    // Initialize Redlock
-    this.redlock = new Redlock([this.redisClient], {
-      driftFactor: 0.01, // Time to compensate for Redis drift
-      retryCount: 10, // Number of retry attempts
-      retryDelay: 200 // Time between retries in ms
-    });
+    // Create lock
+    this.lock = createLock(this.redisClient);
+  }
+
+  async lockKey(resource: string, ttl: number = 5000) {
+    try {
+      const unlock = await this.lock(resource, ttl); // Acquires lock for the given TTL
+      console.log(`Lock acquired for resource: ${resource}`);
+      return unlock; // Use unlock() to release the lock
+    } catch (error) {
+      console.error('Failed to acquire lock:', error);
+      throw error;
+    }
   }
 
   async saveToken(key: string, value: { token: string; refreshToken: string }) {
@@ -69,16 +76,6 @@ class RedisClient {
     } catch (error) {
       console.error(error);
       throw new Error('Failed to delete token');
-    }
-  }
-
-  async lockKey(resource: string, ttl: number = 10000) {
-    try {
-      const lock = await this.redlock.acquire([`lock:${resource}`], ttl);
-      return lock; // Use `lock.release()` to release the lock
-    } catch (error) {
-      console.error('Failed to acquire lock:', error);
-      throw new Error('Failed to lock key');
     }
   }
 }

@@ -37,6 +37,7 @@ import { IconArrowUp } from './icons';
 import useTranslation from './hooks/useTranslation';
 import { NavigationProgress, nprogress } from '@mantine/nprogress';
 import { useEffect } from 'react';
+import { isAuthenticated } from './auth/auth.server';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,
@@ -52,21 +53,19 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
   return false;
 };
 
-export const loader = async ({ params }: Route.LoaderArgs) => {
+export const loader = async ({ params, request }: Route.LoaderArgs) => {
+  const { isLoggedIn } = await isAuthenticated(request);
+
   const currentLanguage = params?.lang as TranslationKeys;
   if (!currentLanguage) {
     return redirect('/en');
   }
 
-  const locale = getUserLocale(currentLanguage);
-
-  const currency = LOCALE_TO_CURRENCY[locale] || 'USD';
-
-  const exchangeRate = await getExchangeRate(currency);
+  const exchangeRate = await getExchangeRate(currentLanguage);
 
   const env = { DIRECTUS_URL: process.env?.DIRECTUS_URL };
 
-  return { isLoggedIn: true, currentLanguage, env, exchangeRate };
+  return { isLoggedIn, currentLanguage, env, exchangeRate };
 };
 
 export const links: LinksFunction = () => {
