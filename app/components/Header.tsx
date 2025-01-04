@@ -13,7 +13,7 @@ import { Link } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
-import { IconLogout, IconSearch, IconShoppingCart } from '~/icons';
+import { IconLogout, IconShoppingCart } from '~/icons';
 
 import Logo from './Logo';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';

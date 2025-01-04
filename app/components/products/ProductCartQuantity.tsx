@@ -1,9 +1,12 @@
 import { Select, Stack, Title } from '@mantine/core';
+import { useOutletContext } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
+import { OutletContext } from '~/types';
 import { formatNumber } from '~/utils';
 
 const ProductCartQuantity = () => {
+  const { isLoggedIn } = useOutletContext<OutletContext>();
   const t = useTranslation();
   const currentLanguage = useCurrentLanguage();
   return (
@@ -17,6 +20,7 @@ const ProductCartQuantity = () => {
         defaultValue={'1'}
         allowDeselect={false}
         clearable={false}
+        disabled={!isLoggedIn}
         size="md"
       />
     </Stack>

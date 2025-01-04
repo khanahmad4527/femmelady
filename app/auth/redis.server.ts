@@ -43,7 +43,6 @@ class RedisClient {
   async lockKey(resource: string, ttl: number = 5000) {
     try {
       const unlock = await this.lock(resource, ttl); // Acquires lock for the given TTL
-      console.log(`Lock acquired for resource: ${resource}`);
       return unlock; // Use unlock() to release the lock
     } catch (error) {
       console.error('Failed to acquire lock:', error);
