@@ -9,34 +9,46 @@ import {
   Text,
   TextInput
 } from '@mantine/core';
-import { useForm, zodResolver } from '@mantine/form';
-import { useEffect } from 'react';
-import {
-  ActionFunction,
-  Link,
-  useFetcher,
-  useOutletContext
-} from 'react-router';
+
+import { ActionFunction, Link, useOutletContext } from 'react-router';
 import { z } from 'zod';
+import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
-import { IconBrandX, IconGoogle } from '~/icons';
-import { loginFormSchema, TLoginFormSchema } from '~/schema';
-import { validateFormWithTranslations } from '~/server/validateFormWithTranslations';
+import { IconGoogle } from '~/icons';
+import { loginFormSchema } from '~/schema';
 import classes from '~/styles/Common.module.scss';
-import { OutletContext, TranslationKeys } from '~/types';
+import { OutletContext } from '~/types';
 import { buildLocalizedLink, parseZodError } from '~/utils';
 
-export const action: ActionFunction = async ({ request, params }) => {
-  const language = (params.lang ?? 'en') as TranslationKeys;
+export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
+
   try {
-    const validatedData = validateFormWithTranslations({
-      language,
-      schema: loginFormSchema,
-      data
+    loginFormSchema.parse(data);
+    /**
+     * // Call Directus login API to authenticate user
+    const authResults = await login({ email, password });
+    const { access_token, refresh_token } = authResults;
+
+    const user = (await getUserByToken(access_token!)) as User;
+    const sessionId = `${uuid()}#${(user as User).id}`; // random id # user Id
+    await redisClient.saveToken(sessionId, {
+      token: access_token!,
+      refreshToken: refresh_token!
     });
+    const redirectPath = url.searchParams.get('redirect_url_path');
+    return createUserSession({
+      request,
+      userSessionId: sessionId,
+      remember: true,
+      redirectTo: redirectPath
+        ? redirectPath
+        : DOMAIN +
+          `/${languages[user.language || FALLBACK_LANGUAGE] || DEFAULT_LANGUAGE}`
+    });
+     */
 
     return { success: true };
   } catch (error) {
@@ -47,27 +59,13 @@ export const action: ActionFunction = async ({ request, params }) => {
   }
 };
 
-const login = () => {
+const Login = () => {
   const t = useTranslation();
   const { currentLanguage } = useOutletContext<OutletContext>();
-  const fetcher = useFetcher<{ errors: TLoginFormSchema }>();
-  const form = useForm<TLoginFormSchema>({
-    mode: 'uncontrolled',
-    initialValues: {
-      email: '',
-      password: ''
-    },
-
-    validate: zodResolver(loginFormSchema(t))
+  const { Form, form } = useForm({
+    schema: loginFormSchema,
+    initialValues: { email: '' }
   });
-
-  const serverErrors = fetcher.data?.errors;
-
-  useEffect(() => {
-    if (serverErrors) {
-      form.setErrors(serverErrors);
-    }
-  }, [serverErrors]);
 
   return (
     <Paper
@@ -86,9 +84,9 @@ const login = () => {
         <Button radius={'xl'} variant="light" leftSection={<IconGoogle />}>
           Google
         </Button>
-        <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>
+        {/* <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>
           X
-        </Button>
+        </Button> */}
       </Group>
 
       <Divider
@@ -97,16 +95,13 @@ const login = () => {
         my="lg"
       />
 
-      <fetcher.Form
-        method="POST"
-        //  onSubmit={submitForm(fetcher, form)}
-      >
-        <Stack>
+      <Stack>
+        <Form>
           <TextInput
             withAsterisk
-            label={t('authForm.email')}
             name={'email'}
-            placeholder="your@email.com"
+            label={t('authForm.email')}
+            placeholder={'john@gmail.com'}
             key={form.key('email')}
             {...form.getInputProps('email')}
           />
@@ -115,12 +110,12 @@ const login = () => {
             withAsterisk
             label={t('authForm.password')}
             name={'password'}
-            placeholder="Your password"
+            placeholder="********"
             key={form.key('password')}
             {...form.getInputProps('password')}
           />
 
-          <Group justify="space-between">
+          <Group mt={'md'} justify="space-between">
             <Anchor
               component={Link}
               to={buildLocalizedLink({
@@ -132,10 +127,10 @@ const login = () => {
             </Anchor>
             <Button type="submit"> {t('login.login')}</Button>
           </Group>
-        </Stack>
-      </fetcher.Form>
+        </Form>
+      </Stack>
     </Paper>
   );
 };
 
-export default login;
+export default Login;

@@ -45,6 +45,18 @@ export const parseZodError = (error: z.ZodError) => {
   return { errors: fieldErrors };
 };
 
+export const translateErrors = (
+  serverErrors: Record<string, string>, // Now expecting string values (not arrays)
+  t: (key: string) => string // Translation function
+) => {
+  return Object.fromEntries(
+    Object.entries(serverErrors).map(([key, errorKey]) => [
+      key, // Use the original field name
+      t(errorKey || '') // Translate the error message using the `t` function
+    ])
+  );
+};
+
 export const getUserLocale = (currentLanguage: TranslationKeys = 'en') => {
   return (
     LANGUAGE_TO_LOCALE_LANGUAGE[currentLanguage] || // Use language from URL

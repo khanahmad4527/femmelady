@@ -1,75 +1,60 @@
 import { z } from 'zod';
 
-type Tt = (
-  key: string,
-  replacements?: Record<string, React.ReactNode>
-) => string;
+const emailSchema = z
+  .string()
+  .email({ message: 'authFormValidationError.invalidEmail' })
+  .transform(value => value.trim().toLowerCase());
 
-const emailSchema = (t: Tt) =>
-  z
-    .string()
-    .email({ message: t('authFormValidationError.invalidEmail') })
-    .transform(value => value.trim().toLowerCase());
+const passwordSchema = z
+  .string()
+  .min(8, { message: 'authFormValidationError.passwordMin' })
+  .regex(/[A-Z]/, {
+    message: 'authFormValidationError.passwordUppercase'
+  })
+  .regex(/[a-z]/, {
+    message: 'authFormValidationError.passwordLowercase'
+  })
+  .regex(/[0-9]/, {
+    message: 'authFormValidationError.passwordNumber'
+  })
+  .regex(/[@$!%*?&#]/, {
+    message: 'authFormValidationError.passwordSpecial'
+  })
+  .regex(/^\S*$/, {
+    message: 'authFormValidationError.passwordNoSpaces'
+  })
+  .transform(value => value.trim());
 
-const passwordSchema = (t: Tt) =>
-  z
-    .string()
-    .min(8, { message: t('authFormValidationError.passwordMin') })
-    .regex(/[A-Z]/, {
-      message: t('authFormValidationError.passwordUppercase')
-    })
-    .regex(/[a-z]/, {
-      message: t('authFormValidationError.passwordLowercase')
-    })
-    .regex(/[0-9]/, {
-      message: t('authFormValidationError.passwordNumber')
-    })
-    .regex(/[@$!%*?&#]/, {
-      message: t('authFormValidationError.passwordSpecial')
-    })
-    .regex(/^\S*$/, {
-      message: t('authFormValidationError.passwordNoSpaces')
-    })
-    .transform(value => value.trim());
+export const loginFormSchema = z.object({
+  email: emailSchema,
+  password: passwordSchema
+});
 
-export const loginFormSchema = (t: Tt) =>
-  z.object({
-    email: emailSchema(t),
-    password: passwordSchema(t)
-  });
-
-export type TLoginFormSchema = z.infer<ReturnType<typeof loginFormSchema>>;
-
-export const registerFormSchema = (t: Tt) =>
-  z
-    .object({
-      first_name: z
-        .string()
-        .min(2, { message: t('authFormValidationError.firstNameMin') })
-        .transform(value => value.trim()),
-      last_name: z
-        .string()
-        .min(2, { message: t('authFormValidationError.lastNameMin') })
-        .transform(value => value.trim()),
-      email: emailSchema(t),
-      password: passwordSchema(t),
-      confirm_password: z.string().transform(value => value.trim()),
-      terms: z.string({
-        required_error: t('authFormValidationError.termsRequired')
-      })
+export const registerFormSchema = z
+  .object({
+    first_name: z
+      .string()
+      .min(2, { message: 'authFormValidationError.firstNameMin' })
+      .transform(value => value.trim()),
+    last_name: z
+      .string()
+      .min(2, { message: 'authFormValidationError.lastNameMin' })
+      .transform(value => value.trim()),
+    email: emailSchema,
+    password: passwordSchema,
+    confirm_password: z.string().transform(value => value.trim()),
+    terms: z.string({
+      required_error: 'authFormValidationError.termsRequired'
     })
-    .refine(
-      data => data.password.length > 0 && data.confirm_password.length > 0,
-      {
-        path: ['confirm_password'],
-        message: t('authFormValidationError.confirmPasswordRequired')
-      }
-    )
-    .refine(data => data.password === data.confirm_password, {
+  })
+  .refine(
+    data => data.password.length > 0 && data.confirm_password.length > 0,
+    {
       path: ['confirm_password'],
-      message: t('authFormValidationError.passwordMismatch')
-    });
-
-export type TRegisterFormSchema = z.infer<
-  ReturnType<typeof registerFormSchema>
->;
+      message: 'authFormValidationError.confirmPasswordRequired'
+    }
+  )
+  .refine(data => data.password === data.confirm_password, {
+    path: ['confirm_password'],
+    message: 'authFormValidationError.passwordMismatch'
+  });
