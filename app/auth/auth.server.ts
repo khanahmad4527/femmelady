@@ -87,8 +87,8 @@ export const isAuthenticated = async (request: Request) => {
 
       if (expired) {
         const authResponse = await refreshToken(currentRefreshToken);
-        token = authResponse.access_token;
-        currentRefreshToken = authResponse.refresh_token;
+        token = authResponse.access_token!;
+        currentRefreshToken = authResponse.refresh_token!;
 
         await redisClient.saveToken(key, {
           token,

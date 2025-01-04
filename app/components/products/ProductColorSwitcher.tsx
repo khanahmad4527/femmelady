@@ -128,7 +128,7 @@ const ProductColorSwitcher = ({
               }}
             >
               {c?.isTexture ? (
-                <ActionIcon size="sm" radius="xl">
+                <ActionIcon size="sm" radius="xl" disabled={!c.stock}>
                   <Image
                     src={getImageUrl({
                       id: getStringDto(c?.texture),
@@ -139,7 +139,12 @@ const ProductColorSwitcher = ({
                   />
                 </ActionIcon>
               ) : (
-                <ActionIcon color={c.hex!} size="sm" radius="xl" />
+                <ActionIcon
+                  color={c.hex!}
+                  size="sm"
+                  radius="xl"
+                  disabled={!c.stock}
+                />
               )}
             </Paper>
           );

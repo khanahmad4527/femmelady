@@ -230,6 +230,19 @@ export const getLanguageCode = (params: { lang?: string }) => {
   return languageCode as TranslationKeys;
 };
 
+/**
+ * Retrieves the current language, defaulting to the fallback language if none is provided.
+ *
+ * @param params - An object containing an optional `lang` property.
+ * @param params.lang - The desired language code (e.g., "en", "fr"). Optional.
+ * @returns The resolved language code (either the provided `lang` or the fallback language).
+ */
+export const getLang = (params: { lang?: string }): string => {
+  const lang = params.lang ?? FALL_BACK_LANG;
+  return lang as TranslationKeys;
+};
+
+
 export const getPriceRange = ({ request, searchParams }: GetParam) => {
   if (!request && !searchParams) {
     return undefined;

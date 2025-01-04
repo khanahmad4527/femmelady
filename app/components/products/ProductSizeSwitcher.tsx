@@ -1,5 +1,4 @@
 import { Button, Group, Stack, Text } from '@mantine/core';
-import { useState } from 'react';
 import { SetURLSearchParams } from 'react-router';
 import { PARAMS } from '~/constant';
 import useTranslation from '~/hooks/useTranslation';
@@ -9,23 +8,23 @@ const switchSize = 40;
 
 const ProductSizeSwitcher = ({
   sizes,
+  activeSize,
+  setActiveSize,
   searchParams,
   setSearchParams
 }: {
   sizes: ProductSize[];
+  activeSize: ProductSize;
+  setActiveSize: React.Dispatch<React.SetStateAction<ProductSize>>;
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
 }) => {
   const t = useTranslation();
 
-  const [activeSize, setActiveSize] = useState(
-    searchParams.get(PARAMS.SIZE) ?? sizes?.[0]?.size
-  );
-
-  const handleActiveSize = (size: string) => {
+  const handleActiveSize = (size: ProductSize) => {
     setActiveSize(size);
 
-    searchParams.set(PARAMS.SIZE, size);
+    searchParams.set(PARAMS.SIZE, String(size.size));
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
@@ -35,7 +34,7 @@ const ProductSizeSwitcher = ({
         {t('products.productSize')}
 
         <Text ml={4} span>
-          {activeSize?.toLocaleUpperCase()}
+          {activeSize.size?.toLocaleUpperCase()}
         </Text>
       </Text>
       <Group>
@@ -50,11 +49,11 @@ const ProductSizeSwitcher = ({
               h={switchSize}
               style={{
                 border:
-                  s.size === activeSize
+                  s.size === activeSize.size
                     ? '2px solid black'
                     : '2px solid transparent'
               }}
-              onClick={() => handleActiveSize(s?.size as string)}
+              onClick={() => handleActiveSize(s)}
               disabled={isStockLeft}
             >
               {s?.size?.toLocaleUpperCase()}

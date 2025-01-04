@@ -59,7 +59,9 @@ class RedisClient {
     }
   }
 
-  async getToken(key: string) {
+  async getToken(
+    key: string
+  ): Promise<{ token: string; refreshToken: string }> {
     try {
       const value = await this.redisClient.get(key);
       return value ? JSON.parse(value) : undefined;

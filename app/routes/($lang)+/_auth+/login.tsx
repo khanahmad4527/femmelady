@@ -22,12 +22,11 @@ import { IconGoogle } from '~/icons';
 import { loginFormSchema } from '~/schema';
 import classes from '~/styles/Common.module.scss';
 import { OutletContext } from '~/types';
-import { buildLocalizedLink, generateUUID, parseZodError } from '~/utils';
+import { buildLocalizedLink, generateUUID, getLang, parseZodError } from '~/utils';
 import { Route } from './+types/login';
-import { FALL_BACK_LANG } from '~/constant';
 
 export const action = async ({ request, params }: Route.ActionArgs) => {
-  const lang = params.lang ?? FALL_BACK_LANG;
+  const lang = getLang(params)
   const formData = await request.formData();
 
   try {

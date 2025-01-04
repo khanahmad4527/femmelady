@@ -45,6 +45,8 @@ import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
 import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
+import { useState } from 'react';
+import useCurrentActiveSize from '~/hooks/useCurrentActiveSize';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,
@@ -80,8 +82,12 @@ const SingleProduct = () => {
 
   const outletContext = useOutletContext<OutletContext>();
 
-  const { searchParams, setSearchParams } = outletContext;
+  const { searchParams, setSearchParams, isLoggedIn } = outletContext;
 
+  const { activeSize, setActiveSize } = useCurrentActiveSize({
+    product,
+    searchParams
+  });
   // Manage the current active color
   const { activeColor, setActiveColor } = useCurrentActiveColor({
     product,
@@ -111,6 +117,10 @@ const SingleProduct = () => {
       setSearchParams(searchParams, { preventScrollReset: true });
     }
   };
+
+  const disabledAddToBag = Boolean(
+    !isLoggedIn || !activeSize.stock || !activeColor.stock
+  );
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
@@ -220,11 +230,13 @@ const SingleProduct = () => {
           />
           <ProductSizeSwitcher
             sizes={product.sizes as ProductSize[]}
+            activeSize={activeSize}
+            setActiveSize={setActiveSize}
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />
           <ProductCartQuantity />
-          <Button color="black" size="md">
+          <Button color="black" size="md" disabled={disabledAddToBag}>
             {t('products.addToBag')}
           </Button>
         </Grid.Col>
