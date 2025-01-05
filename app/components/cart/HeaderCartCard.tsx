@@ -10,6 +10,7 @@ import {
   ThemeIcon
 } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
+import { useState } from 'react';
 import { Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
@@ -32,6 +33,7 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
   const { hovered, ref } = useHover();
   const {} = useHeaderFooterContext();
   const currentLanguage = useCurrentLanguage();
+  const [quantity, setQuantity] = useState(cart.quantity ?? 1);
 
   const product = cart?.product as Product;
 
@@ -44,6 +46,14 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
   const colorTranslation = getSingleTranslation(
     color.translations
   ) as ProductColorTranslation;
+
+  const handleQuantityDec = () =>{
+
+  }
+
+  const handleQuantityInc = () =>{
+    
+  }
 
   return (
     <>
@@ -82,11 +92,11 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
               {formatCurrency({ currentLanguage, value: product?.price! })}
             </Text>
             <Group>
-              <ActionIcon color="black">
+              <ActionIcon color="black" onClick={handleQuantityDec}>
                 <IconMinus color={'white'} />
               </ActionIcon>
               <ThemeIcon color="black">{cart.quantity}</ThemeIcon>
-              <ActionIcon color="black">
+              <ActionIcon color="black" onClick={handleQuantityInc}>
                 <IconPlus color={'white'} />
               </ActionIcon>
             </Group>
