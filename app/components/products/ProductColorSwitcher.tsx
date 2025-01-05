@@ -26,8 +26,8 @@ const ProductColorSwitcher = ({
 }: {
   activeColor: ProductColor;
   setActiveColor: React.Dispatch<React.SetStateAction<ProductColor>>;
-  images: ProductProductImage[];
-  handleActiveImage: (id?: string) => void;
+  images?: ProductProductImage[];
+  handleActiveImage?: (id?: string) => void;
   productColors: ProductProductColor[];
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
@@ -61,23 +61,24 @@ const ProductColorSwitcher = ({
       // Set the active color
       setActiveColor(color);
 
-      // Find the image based on the color's image set
-      const matchingImage = images.find(
-        i => (i.product_image_id as ProductImage)?.id === color.image_set
-      );
+      if (images !== undefined && handleActiveImage !== undefined) {
+        // Find the image based on the color's image set
+        const matchingImage = images.find(
+          i => (i.product_image_id as ProductImage)?.id === color.image_set
+        );
 
-      if (matchingImage) {
-        // Safely extract the active image ID
-        const newImageId = (
-          (matchingImage.product_image_id as ProductImage)
-            ?.images?.[0] as ProductImageFile
-        )?.directus_files_id;
+        if (matchingImage) {
+          // Safely extract the active image ID
+          const newImageId = (
+            (matchingImage.product_image_id as ProductImage)
+              ?.images?.[0] as ProductImageFile
+          )?.directus_files_id;
 
-        if (typeof newImageId === 'string') {
-          handleActiveImage(newImageId);
+          if (typeof newImageId === 'string') {
+            handleActiveImage(newImageId);
+          }
         }
       }
-
       // Update search params
       const productId = getStringDto(productColors?.[0]?.product_id);
       searchParams.set(PRODUCT_ID, productId || '');
