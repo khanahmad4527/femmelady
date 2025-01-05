@@ -169,6 +169,8 @@
       "quantityInvalidNumber": "数量は有効な数値でなければなりません",
       "quantityNotInteger": "数量は整数でなければなりません",
       "quantityOutOfRange": "数量は1から10の間でなければなりません"
-    }
+    },
+    "notificationTitle": "アイテムがカートに追加されました！",
+    "notificationMessage": "アイテムは正常にカートに追加されました。楽しいショッピングを！"
   }
 }

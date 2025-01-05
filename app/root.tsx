@@ -2,6 +2,7 @@ import '~/styles/style.css';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/nprogress/styles.css';
+import '@mantine/notifications/styles.css';
 
 import {
   Affix,
@@ -29,8 +30,7 @@ import { theme } from './theme';
 import { OutletContext, TranslationKeys } from './types';
 import { Route } from './+types/root';
 import { getExchangeRate } from './server/api';
-import { getUserLocale, shouldRevalidateLogic } from './utils';
-import { FORCE_REVALIDATE_MAP, LOCALE_TO_CURRENCY, PARAMS } from './constant';
+import { shouldRevalidateLogic } from './utils';
 import useSyncForceRevalidate from './hooks/useSyncForceRevalidate';
 import { useWindowScroll } from '@mantine/hooks';
 import { IconArrowUp } from './icons';
@@ -38,6 +38,7 @@ import useTranslation from './hooks/useTranslation';
 import { NavigationProgress, nprogress } from '@mantine/nprogress';
 import { useEffect } from 'react';
 import { isAuthenticated } from './auth/auth.server';
+import { Notifications } from '@mantine/notifications';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,
@@ -119,6 +120,7 @@ export default function App() {
 
   return (
     <Document {...ctx}>
+      <Notifications />
       <NavigationProgress color="primary.3" />
       <Outlet context={ctx} />
 

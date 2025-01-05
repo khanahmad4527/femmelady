@@ -5,9 +5,13 @@ const {
 
 // Add or update multiple keys at once
 addOrUpdateKeysBatch({
-  'common.errors': {
-    en: 'Errors',
-    ja: 'エラー'
+  'cart.notificationTitle': {
+    en: 'Item Added to Cart!',
+    ja: 'アイテムがカートに追加されました！'
+  },
+  'cart.notificationMessage': {
+    en: 'Your item has been successfully added to the cart. Happy shopping!',
+    ja: 'アイテムは正常にカートに追加されました。楽しいショッピングを！'
   }
 });
 

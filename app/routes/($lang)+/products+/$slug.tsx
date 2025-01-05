@@ -56,6 +56,8 @@ import { isAuthenticated } from '~/auth/auth.server';
 import { addToCartSchema } from '~/schema';
 import AddToCartError from '~/components/cart/AddToCartError';
 import { z } from 'zod';
+import { useEffect } from 'react';
+import { notifications } from '@mantine/notifications';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,
@@ -143,7 +145,10 @@ const SingleProduct = () => {
 
   const t = useTranslation();
   const currentLanguage = useCurrentLanguage();
-  const fetcher = useFetcher<{ errors: Record<string, string>[] }>();
+  const fetcher = useFetcher<{
+    errors: Record<string, string>[];
+    success: boolean;
+  }>();
 
   const productTranslation = getFirstObjectDto(
     product?.translations
@@ -161,6 +166,15 @@ const SingleProduct = () => {
   const disabledAddToBag = Boolean(
     !isLoggedIn || !activeSize.stock || !activeColor.stock
   );
+
+  useEffect(() => {
+    if (fetcher.data?.success) {
+      notifications.show({
+        title: t('cart.notificationTitle'),
+        message: t('cart.notificationMessage')
+      });
+    }
+  }, [fetcher.data]);
 
   return (
     <Stack className={commonClasses.consistentSpacing}>

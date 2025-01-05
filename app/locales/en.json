@@ -169,6 +169,8 @@
       "quantityInvalidNumber": "Quantity must be a valid number",
       "quantityNotInteger": "Quantity must be an integer",
       "quantityOutOfRange": "Quantity must be between 1 and 10"
-    }
+    },
+    "notificationTitle": "Item Added to Cart!",
+    "notificationMessage": "Your item has been successfully added to the cart. Happy shopping!"
   }
 }
