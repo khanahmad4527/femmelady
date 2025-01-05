@@ -94,9 +94,14 @@ export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
 
   try {
-    const { colorId, productId, quantity, sizeId } = addToCartSchema.parse(
-      Object.fromEntries(formData)
-    );
+    const {
+      colorId,
+      productId,
+      quantity,
+      sizeId,
+      featureImage1Id,
+      featureImage2Id
+    } = addToCartSchema.parse(Object.fromEntries(formData));
 
     await directus.request(
       withToken(
@@ -105,6 +110,8 @@ export const action = async ({ request }: Route.ActionArgs) => {
           product: productId,
           color: colorId,
           size: sizeId,
+          feature_image_1: featureImage1Id,
+          feature_image_2: featureImage2Id,
           quantity
         })
       )
@@ -300,6 +307,20 @@ const SingleProduct = () => {
               <input hidden name={'productId'} defaultValue={product.id} />
               <input hidden name={'sizeId'} defaultValue={activeSize.id} />
               <input hidden name={'colorId'} defaultValue={activeColor.id} />
+              <input
+                hidden
+                name={'featureImage1Id'}
+                defaultValue={getStringDto(
+                  currentImageSet?.[0]?.directus_files_id
+                )}
+              />
+              <input
+                hidden
+                name={'featureImage2Id'}
+                defaultValue={getStringDto(
+                  currentImageSet?.[1]?.directus_files_id
+                )}
+              />
               <Button
                 type={'submit'}
                 color="black"

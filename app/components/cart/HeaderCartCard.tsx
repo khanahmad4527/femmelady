@@ -22,7 +22,7 @@ const HeaderCartCard = () => {
   const p: Product = {};
   return (
     <>
-      <Grid>
+      {/* <Grid>
         <Grid.Col span={4}>
           <Box
             component={Link}
@@ -61,7 +61,7 @@ const HeaderCartCard = () => {
             <IconX color="black" />
           </ActionIcon>
         </Grid.Col>
-      </Grid>
+      </Grid> */}
 
       <Divider size="sm" my="md" color="black" />
     </>

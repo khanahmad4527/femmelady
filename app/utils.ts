@@ -205,34 +205,15 @@ export const validateUUID = (uuid: string) => {
 };
 
 /**
- * Retrieves the language code in the `en-US` format based on the provided language parameter.
  *
- * If the `lang` parameter is provided and exists in the `LANGUAGE_TO_LOCALE_LANGUAGE` mapping,
- * the corresponding locale-specific language code is returned. Otherwise, it falls back to
- * the default language code defined by `FALL_BACK_LANG`.
- *
- * @param params - An object containing an optional `lang` parameter.
- * @param params.lang - The language code (e.g., 'en', 'fr', etc.).
- * @returns The corresponding locale-specific language code in the format `en-US`.
- *
- * @example
- * const LANGUAGE_TO_LOCALE_LANGUAGE = {
- *   en: 'en-US',
- *   fr: 'fr-FR',
- *   es: 'es-ES',
- * };
- *
- * const FALL_BACK_LANG = 'en';
- *
- * console.log(getLanguageCode({ lang: 'fr' })); // Output: 'fr-FR'
- * console.log(getLanguageCode({}));            // Output: 'en-US'
- * console.log(getLanguageCode({ lang: 'de' })); // Output: 'en-US'
+ * @param params
+ * @returns en-US
  */
 export const getLanguageCode = (params: { lang?: string }) => {
   const languageCode =
     LANGUAGE_TO_LOCALE_LANGUAGE[params?.lang ?? FALL_BACK_LANG];
 
-  return languageCode as TranslationKeys;
+  return languageCode as string;
 };
 
 /**

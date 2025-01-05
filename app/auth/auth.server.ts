@@ -22,7 +22,8 @@ export const customReadMe = async (token: string) => {
           path: '/users/me',
           method: 'GET',
           params: {
-            fields: ['*']
+            fields: ['*'],
+            
           }
         })
       )

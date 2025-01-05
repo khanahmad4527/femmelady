@@ -168,7 +168,11 @@
       "quantityRequired": "数量は必須です",
       "quantityInvalidNumber": "数量は有効な数値でなければなりません",
       "quantityNotInteger": "数量は整数でなければなりません",
-      "quantityOutOfRange": "数量は1から10の間でなければなりません"
+      "quantityOutOfRange": "数量は1から10の間でなければなりません",
+      "featureImage1IdInvalid": "フィーチャー画像1のIDは有効なUUIDである必要があります",
+      "featureImage1IdRequired": "フィーチャー画像1は必須です",
+      "featureImage2IdInvalid": "フィーチャー画像2のIDは有効なUUIDである必要があります",
+      "featureImage2IdRequired": "フィーチャー画像2は必須です"
     },
     "notificationTitle": "アイテムがカートに追加されました！",
     "notificationMessage": "アイテムは正常にカートに追加されました。楽しいショッピングを！"

@@ -3,7 +3,8 @@ import {
   readItems,
   Query,
   aggregate,
-  readSingleton
+  readSingleton,
+  withToken
 } from '@directus/sdk';
 import { directus } from './directus';
 import { Schema } from '~/types/collections';
@@ -100,7 +101,7 @@ export const getProducts = async ({
   route: Page;
   isSame?: boolean;
   productCount?: number;
-  languageCode: TranslationKeys;
+  languageCode: string;
   priceRange?: [number, number];
   averageRatingRange?: [number, number];
   productsPerPage?: number;
@@ -521,4 +522,42 @@ export const getFaqs = async ({ languageCode }: { languageCode: string }) => {
   cache.set(cacheKey, faqs, 86400);
 
   return faqs as Faqs[];
+};
+
+export const getCarts = async ({
+  languageCode,
+  token,
+  page
+}: {
+  languageCode: string;
+  token: string;
+  page: number;
+}) => {
+  return await directus.request(
+    withToken(
+      token,
+      readItems('cart', {
+        fields: [
+          '*',
+          { product: [{ translations: ['*'] }] },
+          { color: [{ translations: ['*'] }] },
+          { size: ['*'] }
+        ],
+        page,
+        limit: 10,
+        deep: {
+          product: {
+            translations: {
+              _filter: { languages_code: languageCode }
+            }
+          },
+          color: {
+            translations: {
+              _filter: { languages_code: languageCode }
+            }
+          }
+        }
+      })
+    )
+  );
 };

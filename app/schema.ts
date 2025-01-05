@@ -69,6 +69,12 @@ export const addToCartSchema = z.object({
   colorId: z
     .string({ required_error: 'cart.errors.colorIdRequired' })
     .uuid('cart.errors.colorIdInvalid'),
+  featureImage1Id: z
+    .string({ required_error: 'cart.errors.featureImage1IdRequired' })
+    .uuid('cart.errors.featureImage1IdInvalid'),
+  featureImage2Id: z
+    .string({ required_error: 'cart.errors.featureImage2IdRequired' })
+    .uuid('cart.errors.featureImage2IdInvalid'),
   quantity: z
     .string({ required_error: 'cart.errors.quantityRequired' })
     .refine(value => !isNaN(Number(value)), 'cart.errors.quantityInvalidNumber')

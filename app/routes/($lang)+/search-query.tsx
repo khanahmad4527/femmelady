@@ -1,4 +1,4 @@
-import { getLanguageCode, getPage, getSearchQuery } from '~/utils';
+import { getLanguageCode, getSearchQuery } from '~/utils';
 import { Route } from './+types/search-query';
 import { getProducts } from '~/server/api';
 

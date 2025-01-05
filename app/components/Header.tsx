@@ -64,19 +64,25 @@ const Header = () => {
   const categoryLinks = [
     {
       id: 'c9d1e5d6-7d3a-4f7c-aafa-089fc58a3d62',
-      link: buildLocalizedLink({ currentLanguage, paths: ['products'] }),
+      link: buildLocalizedLink({
+        currentLanguage,
+        paths: ['products?force-validate=global']
+      }),
       label: t('header.new')
     },
     {
       id: 'a8e2f3b4-c2c9-48d6-a1e7-b05c4a89d816',
-      link: buildLocalizedLink({ currentLanguage, paths: ['products'] }),
+      link: buildLocalizedLink({
+        currentLanguage,
+        paths: ['products?force-validate=global']
+      }),
       label: t('header.topRated')
     },
     {
       id: 'b7f4e6d3-f1c8-439d-91a7-c57b1a98d319',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: ['products?categories=dresses']
+        paths: ['products?categories=dresses&force-validate=global']
       }),
       label: t('header.dresses')
     },
@@ -84,7 +90,7 @@ const Header = () => {
       id: 'd6e3c7b2-e1d7-472c-b519-d91e2b43f2a7',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: ['products?categories=dresses']
+        paths: ['products?categories=dresses&force-validate=global']
       }),
       label: t('header.clothing')
     },
@@ -92,7 +98,7 @@ const Header = () => {
       id: 'e5f7c4a9-a9b2-4d38-b716-d84f9a1b5e13',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: ['products?categories=shoes']
+        paths: ['products?categories=shoes&force-validate=global']
       }),
       label: t('header.shoes')
     },
@@ -100,7 +106,7 @@ const Header = () => {
       id: 'f3c8e6d2-d3c9-4a15-81f9-c16b2a43d719',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: ['products?categories=jewelry']
+        paths: ['products?categories=jewelry&force-validate=global']
       }),
       label: t('header.accessories')
     },
@@ -108,31 +114,40 @@ const Header = () => {
       id: 'a1b3d2f4-f7c2-4e39-b816-c47e9b31a517',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: ['products?categories=wedding-dresses']
+        paths: ['products?categories=wedding-dresses&force-validate=global']
       }),
       label: t('header.weddings')
     },
     {
       id: 'c2e1f7b4-d2c3-437f-a8e9-f19b4a27d816',
-      link: buildLocalizedLink({ currentLanguage, paths: ['products'] }),
+      link: buildLocalizedLink({
+        currentLanguage,
+        paths: ['products?force-validate=global']
+      }),
       label: t('header.homeFurniture')
     },
     {
       id: 'b5d2c8f1-c7a3-4f92-b8a7-e1b5a7f49c38',
-      link: buildLocalizedLink({ currentLanguage, paths: ['products'] }),
+      link: buildLocalizedLink({
+        currentLanguage,
+        paths: ['products?force-validate=global']
+      }),
       label: t('header.beautyWellness')
     },
     {
       id: 'f7b3c9e2-d6c8-471a-b4e7-a91b8e36d412',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: ['products?categories=candles']
+        paths: ['products?categories=candles&force-validate=global']
       }),
       label: t('header.giftsCandles')
     },
     {
       id: 'e1d3f6a4-a4b9-4297-a5b7-f18c4e31d9a5',
-      link: buildLocalizedLink({ currentLanguage, paths: ['products'] }),
+      link: buildLocalizedLink({
+        currentLanguage,
+        paths: ['products?force-validate=global']
+      }),
       label: t('header.sale')
     }
   ];

@@ -168,7 +168,11 @@
       "quantityRequired": "Quantity is required",
       "quantityInvalidNumber": "Quantity must be a valid number",
       "quantityNotInteger": "Quantity must be an integer",
-      "quantityOutOfRange": "Quantity must be between 1 and 10"
+      "quantityOutOfRange": "Quantity must be between 1 and 10",
+      "featureImage1IdInvalid": "Feature image 1 ID must be a valid UUID",
+      "featureImage1IdRequired": "Feature image 1 is required",
+      "featureImage2IdInvalid": "Feature image 2 ID must be a valid UUID",
+      "featureImage2IdRequired": "Feature image 2 is required"
     },
     "notificationTitle": "Item Added to Cart!",
     "notificationMessage": "Your item has been successfully added to the cart. Happy shopping!"
