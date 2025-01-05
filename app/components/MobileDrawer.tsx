@@ -5,6 +5,7 @@ import useTranslation from '~/hooks/useTranslation';
 import { ValueLabel } from '~/types';
 import LanguageSwitcher from './LanguageSwitcher';
 import { IconShoppingCart } from '~/icons';
+import CartCount from './cart/CartCount';
 
 const MobileDrawer = ({
   opened,
@@ -23,7 +24,7 @@ const MobileDrawer = ({
 }) => {
   const t = useTranslation();
   const context = useHeaderFooterContext();
-  const { isLoggedIn } = context;
+  const { isLoggedIn, cartCount, locale } = context;
   return (
     <Drawer
       position={'right'}
@@ -54,7 +55,7 @@ const MobileDrawer = ({
               leftSection={<IconShoppingCart color={'white'} />}
               onClick={headerCartDrawerOpen}
             >
-              {'9+'}
+              <CartCount cartCount={cartCount} locale={locale} />
             </Button>
           </>
         )}

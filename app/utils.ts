@@ -58,6 +58,11 @@ export const translateErrors = (
   );
 };
 
+/**
+ *
+ * @param currentLanguage
+ * @returns 'en-US' ...
+ */
 export const getUserLocale = (currentLanguage: TranslationKeys = 'en') => {
   return (
     LANGUAGE_TO_LOCALE_LANGUAGE[currentLanguage] || // Use language from URL
@@ -241,7 +246,6 @@ export const getLang = (params: { lang?: string }): string => {
   const lang = params.lang ?? FALL_BACK_LANG;
   return lang as TranslationKeys;
 };
-
 
 export const getPriceRange = ({ request, searchParams }: GetParam) => {
   if (!request && !searchParams) {

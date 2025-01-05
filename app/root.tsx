@@ -30,7 +30,7 @@ import { theme } from './theme';
 import { OutletContext, TranslationKeys } from './types';
 import { Route } from './+types/root';
 import { getExchangeRate } from './server/api';
-import { shouldRevalidateLogic } from './utils';
+import { getUserLocale, shouldRevalidateLogic } from './utils';
 import useSyncForceRevalidate from './hooks/useSyncForceRevalidate';
 import { useWindowScroll } from '@mantine/hooks';
 import { IconArrowUp } from './icons';
@@ -62,11 +62,13 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     return redirect('/en');
   }
 
+  const locale = getUserLocale(currentLanguage);
+
   const exchangeRate = await getExchangeRate(currentLanguage);
 
   const env = { DIRECTUS_URL: process.env?.DIRECTUS_URL };
 
-  return { isLoggedIn, user, currentLanguage, env, exchangeRate };
+  return { isLoggedIn, user, locale, currentLanguage, env, exchangeRate };
 };
 
 export const links: LinksFunction = () => {
@@ -147,13 +149,16 @@ const ErrorBoundaryComponent = () => {
   const currentLanguage = useCurrentLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const locale = getUserLocale(currentLanguage);
+
   const ctx: OutletContext = {
     currentLanguage,
     env: {},
     isLoggedIn: false,
     searchParams,
     setSearchParams,
-    exchangeRate: 1
+    exchangeRate: 1,
+    locale
   };
   return (
     <Document {...ctx}>

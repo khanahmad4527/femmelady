@@ -23,6 +23,7 @@ import MobileDrawer from './MobileDrawer';
 import LanguageSwitcher from './LanguageSwitcher';
 import { buildLocalizedLink } from '~/utils';
 import TopSearchBar from './TopSearchBar';
+import CartCount from './cart/CartCount';
 
 const Header = () => {
   const [
@@ -39,7 +40,7 @@ const Header = () => {
   const currentLanguage = useCurrentLanguage();
   const headerFooterContext = useHeaderFooterContext();
 
-  const { isLoggedIn, cartCount } = headerFooterContext;
+  const { isLoggedIn, cartCount, locale } = headerFooterContext;
 
   const authLinks = [
     {
@@ -189,11 +190,7 @@ const Header = () => {
                 <ActionIcon variant="transparent" size={'xl'}>
                   <IconShoppingCart size={30} color={'white'} />
                 </ActionIcon>
-                {cartCount > 0 && (
-                  <Text fw={500} fz={'md'} c={'white'}>
-                    {cartCount === 100 ? '99+' : cartCount}
-                  </Text>
-                )}
+                <CartCount cartCount={cartCount} locale={locale} />
               </Group>
               <Tooltip label={t('common.logout')}>
                 <ActionIcon

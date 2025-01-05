@@ -9,7 +9,7 @@ export interface OutletContext {
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
   exchangeRate: number;
-
+  locale: string;
   token?: string;
   user?: User;
 }
