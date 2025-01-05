@@ -5,12 +5,19 @@ const {
 
 // Add or update multiple keys at once
 addOrUpdateKeysBatch({
-  'common.loadMore': {
-    en: 'Load More',
-    ja: 'さらに読み込む'
+  'cart.errors.cartIdRequired': {
+    en: 'Cart ID is required',
+    ja: 'カートIDは必須です'
   },
+  'cart.errors.cartIdInvalid': {
+    en: 'Cart ID must be a valid UUID',
+    ja: 'カートIDは有効なUUIDである必要があります'
+  },
+  'cart.errors.intentRequired': {
+    en: 'Intent is required',
+    ja: 'インテントは必須です'
+  }
 });
-
 
 // Delete multiple keys at once
 // deleteKeysBatch(['order.subTotal', 'order.pay'], ['en', 'ja']);

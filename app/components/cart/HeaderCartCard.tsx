@@ -11,7 +11,7 @@ import {
 } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useFetcher } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import { IconMinus, IconPlus, IconX } from '~/icons';
@@ -34,7 +34,7 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
   const {} = useHeaderFooterContext();
   const currentLanguage = useCurrentLanguage();
   const [quantity, setQuantity] = useState(cart.quantity ?? 1);
-
+  const fetcher = useFetcher();
   const product = cart?.product as Product;
 
   const color = cart?.color as ProductColor;
@@ -47,13 +47,30 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
     color.translations
   ) as ProductColorTranslation;
 
-  const handleQuantityDec = () =>{
+  const fetcherQuantitySubmit = ({
+    intent,
+    quantity = 0
+  }: {
+    intent: 'dec' | 'inc';
+    quantity?: number;
+  }) => {
+    fetcher.submit(
+      { quantity, cartId: cart.id, intent },
+      { method: 'POST', action: '/en/load-carts' }
+    );
+  };
 
-  }
+  const handleQuantityDec = () => {
+    const newQuantity = quantity - 1;
+    fetcherQuantitySubmit({ intent: 'dec', quantity: newQuantity });
+    setQuantity(newQuantity);
+  };
 
-  const handleQuantityInc = () =>{
-    
-  }
+  const handleQuantityInc = () => {
+    const newQuantity = quantity + 1;
+    fetcherQuantitySubmit({ intent: 'inc', quantity: newQuantity });
+    setQuantity(newQuantity);
+  };
 
   return (
     <>
@@ -92,18 +109,34 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
               {formatCurrency({ currentLanguage, value: product?.price! })}
             </Text>
             <Group>
-              <ActionIcon color="black" onClick={handleQuantityDec}>
+              <ActionIcon
+                color="black"
+                onClick={handleQuantityDec}
+                disabled={quantity <= 1}
+              >
                 <IconMinus color={'white'} />
               </ActionIcon>
-              <ThemeIcon color="black">{cart.quantity}</ThemeIcon>
-              <ActionIcon color="black" onClick={handleQuantityInc}>
+              <ThemeIcon color="black">{quantity}</ThemeIcon>
+              <ActionIcon
+                color="black"
+                onClick={handleQuantityInc}
+                disabled={quantity >= 10}
+              >
                 <IconPlus color={'white'} />
               </ActionIcon>
             </Group>
           </Stack>
         </Grid.Col>
         <Grid.Col span={2}>
-          <ActionIcon color="black">
+          <ActionIcon
+            color="black"
+            onClick={() => {
+              fetcher.submit(
+                { cartId: cart.id, intent: 'cancel' },
+                { method: 'POST', action: '/en/load-carts' }
+              );
+            }}
+          >
             <IconX color="black" />
           </ActionIcon>
         </Grid.Col>

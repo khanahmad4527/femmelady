@@ -85,3 +85,28 @@ export const addToCartSchema = z.object({
       'cart.errors.quantityOutOfRange'
     )
 });
+
+export const mutateCartSchema = z.object({
+  cartId: z
+    .string({ required_error: 'cart.errors.cartIdRequired' })
+    .uuid('cart.errors.cartIdInvalid'),
+  quantity: z
+    .string()
+    .optional()
+    .refine(
+      value => value === undefined || !isNaN(Number(value)),
+      'cart.errors.quantityInvalidNumber'
+    )
+    .transform(value => (value === undefined ? undefined : Number(value)))
+    .refine(
+      value => value === undefined || Number.isInteger(value),
+      'cart.errors.quantityNotInteger'
+    )
+    .refine(
+      value => value === undefined || (value >= 1 && value <= 10),
+      'cart.errors.quantityOutOfRange'
+    ),
+  intent: z.enum(['inc', 'dec', 'cancel'], {
+    required_error: 'cart.errors.intentRequired'
+  })
+});

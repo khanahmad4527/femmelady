@@ -173,7 +173,10 @@
       "featureImage1IdInvalid": "Feature image 1 ID must be a valid UUID",
       "featureImage1IdRequired": "Feature image 1 is required",
       "featureImage2IdInvalid": "Feature image 2 ID must be a valid UUID",
-      "featureImage2IdRequired": "Feature image 2 is required"
+      "featureImage2IdRequired": "Feature image 2 is required",
+      "cartIdRequired": "Cart ID is required",
+      "cartIdInvalid": "Cart ID must be a valid UUID",
+      "intentRequired": "Intent is required"
     },
     "notificationTitle": "Item Added to Cart!",
     "notificationMessage": "Your item has been successfully added to the cart. Happy shopping!"
