@@ -556,7 +556,8 @@ export const getCarts = async ({
               _filter: { languages_code: languageCode }
             }
           }
-        }
+        },
+        sort: ['-date_created']
       })
     )
   );

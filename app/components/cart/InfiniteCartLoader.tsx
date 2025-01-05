@@ -1,13 +1,5 @@
-import {
-  Box,
-  Button,
-  Center,
-  Group,
-  Loader,
-  Skeleton,
-  Stack
-} from '@mantine/core';
-import { useEffect, useRef, useState } from 'react';
+import { Button, Group, Skeleton, Stack } from '@mantine/core';
+import { useEffect, useState } from 'react';
 import { Link, useFetcher } from 'react-router';
 import HeaderCartCard from './HeaderCartCard';
 import { buildLocalizedLink } from '~/utils';

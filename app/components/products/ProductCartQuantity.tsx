@@ -5,7 +5,13 @@ import useTranslation from '~/hooks/useTranslation';
 import { OutletContext } from '~/types';
 import { formatNumber } from '~/utils';
 
-const ProductCartQuantity = () => {
+const ProductCartQuantity = ({
+  quantity,
+  setQuantity
+}: {
+  quantity: string | null;
+  setQuantity: React.Dispatch<React.SetStateAction<string | null>>;
+}) => {
   const { isLoggedIn } = useOutletContext<OutletContext>();
   const t = useTranslation();
   const currentLanguage = useCurrentLanguage();
@@ -18,7 +24,8 @@ const ProductCartQuantity = () => {
           value: (index + 1).toString(),
           label: formatNumber({ currentLanguage, number: index + 1 })
         }))}
-        defaultValue={'1'}
+        value={quantity}
+        onChange={setQuantity}
         allowDeselect={false}
         clearable={false}
         disabled={!isLoggedIn}

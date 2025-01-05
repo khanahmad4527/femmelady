@@ -29,6 +29,7 @@ import useTranslation from '~/hooks/useTranslation';
 import { getSingleProduct } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
 import {
+  Cart,
   OutletContext,
   Product,
   ProductProductColor,
@@ -39,6 +40,7 @@ import {
 import {
   formatCurrency,
   formatNumber,
+  generateUuidv4,
   getImageUrl,
   getLanguageCode,
   parseZodError,
@@ -56,7 +58,7 @@ import { isAuthenticated } from '~/auth/auth.server';
 import { addToCartSchema } from '~/schema';
 import AddToCartError from '~/components/cart/AddToCartError';
 import { z } from 'zod';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { notifications } from '@mantine/notifications';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 
@@ -95,6 +97,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
   try {
     const {
+      cartId,
       colorId,
       productId,
       quantity,
@@ -107,6 +110,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
       withToken(
         token!,
         createItem('cart', {
+          id: cartId,
           product: productId,
           color: colorId,
           size: sizeId,
@@ -131,10 +135,10 @@ const SingleProduct = () => {
 
   const outletContext = useOutletContext<OutletContext>();
 
-  const { searchParams, setSearchParams, isLoggedIn } = outletContext;
+  const { searchParams, setSearchParams, isLoggedIn, user } = outletContext;
 
-  const { setCartCount } = useHeaderFooterContext();
-
+  const { setCartCount, setCarts } = useHeaderFooterContext();
+  const [quantity, setQuantity] = useState<string | null>('1');
   const { activeSize, setActiveSize } = useCurrentActiveSize({
     product,
     searchParams
@@ -186,6 +190,13 @@ const SingleProduct = () => {
       setCartCount(prev => prev + 1);
     }
   }, [fetcher.data]);
+
+  const cartId = generateUuidv4();
+  const productId = product.id;
+  const colorId = activeColor.id;
+  const sizeId = activeSize.id;
+  const featureImage1Id = getStringDto(currentImageSet?.[0]?.directus_files_id);
+  const featureImage2Id = getStringDto(currentImageSet?.[1]?.directus_files_id);
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
@@ -302,31 +313,53 @@ const SingleProduct = () => {
           />
           <fetcher.Form method="POST">
             <Stack>
-              <ProductCartQuantity />
+              <ProductCartQuantity
+                quantity={quantity}
+                setQuantity={setQuantity}
+              />
 
-              <input hidden name={'productId'} defaultValue={product.id} />
-              <input hidden name={'sizeId'} defaultValue={activeSize.id} />
-              <input hidden name={'colorId'} defaultValue={activeColor.id} />
+              <input hidden name={'cartId'} defaultValue={cartId} />
+              <input hidden name={'productId'} defaultValue={productId} />
+              <input hidden name={'sizeId'} defaultValue={sizeId} />
+              <input hidden name={'colorId'} defaultValue={colorId} />
               <input
                 hidden
                 name={'featureImage1Id'}
-                defaultValue={getStringDto(
-                  currentImageSet?.[0]?.directus_files_id
-                )}
+                defaultValue={featureImage1Id}
               />
               <input
                 hidden
                 name={'featureImage2Id'}
-                defaultValue={getStringDto(
-                  currentImageSet?.[1]?.directus_files_id
-                )}
+                defaultValue={featureImage2Id}
               />
+
               <Button
                 type={'submit'}
                 color="black"
                 size="md"
                 disabled={disabledAddToBag}
                 loading={fetcher.state !== 'idle'}
+                onClick={() => {
+                  const data = {
+                    date_created: new Date().toISOString(),
+                    id: cartId,
+                    quantity,
+                    sort: null,
+                    user: user?.id,
+                    feature_image_1: featureImage1Id,
+                    feature_image_2: featureImage2Id,
+                    product: {
+                      id: productId,
+                      price: product?.price,
+                      translations: product?.translations
+                    },
+                    color: {
+                      translations: activeColor?.translations
+                    },
+                    size: activeSize
+                  } as Cart;
+                  setCarts(prev => [data, ...prev]);
+                }}
                 fullWidth
               >
                 {t('products.addToBag')}

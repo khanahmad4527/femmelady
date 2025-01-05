@@ -60,6 +60,9 @@ export const registerFormSchema = z
   });
 
 export const addToCartSchema = z.object({
+  cartId: z
+    .string({ required_error: 'cart.errors.cartIdRequired' })
+    .uuid('cart.errors.cartIdInvalid'),
   productId: z
     .string({ required_error: 'cart.errors.productIdRequired' })
     .uuid('cart.errors.productIdInvalid'),

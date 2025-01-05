@@ -22,11 +22,16 @@ import { IconGoogle } from '~/icons';
 import { loginFormSchema } from '~/schema';
 import classes from '~/styles/Common.module.scss';
 import { OutletContext } from '~/types';
-import { buildLocalizedLink, generateUUID, getLang, parseZodError } from '~/utils';
+import {
+  buildLocalizedLink,
+  generateUuidv4,
+  getLang,
+  parseZodError
+} from '~/utils';
 import { Route } from './+types/login';
 
 export const action = async ({ request, params }: Route.ActionArgs) => {
-  const lang = getLang(params)
+  const lang = getLang(params);
   const formData = await request.formData();
 
   try {
@@ -37,7 +42,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
     const authResults = await login({ email, password });
     const { access_token, refresh_token } = authResults;
 
-    const sessionId = generateUUID();
+    const sessionId = generateUuidv4();
 
     await redisClient.saveToken(sessionId, {
       token: access_token!,

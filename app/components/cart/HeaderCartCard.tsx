@@ -72,6 +72,21 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
     setQuantity(newQuantity);
   };
 
+  let disabledIncButton = false;
+  let disabledDecButton = false;
+
+  if (fetcher?.formData) {
+    const intent = fetcher?.formData.get('intent');
+
+    if (intent === 'inc') {
+      disabledIncButton = true;
+    }
+
+    if (intent === 'dec') {
+      disabledDecButton = true;
+    }
+  }
+
   return (
     <>
       <Grid align="self-start">
@@ -112,7 +127,7 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
               <ActionIcon
                 color="black"
                 onClick={handleQuantityDec}
-                disabled={quantity <= 1}
+                disabled={disabledDecButton || quantity <= 1}
               >
                 <IconMinus color={'white'} />
               </ActionIcon>
@@ -120,7 +135,7 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
               <ActionIcon
                 color="black"
                 onClick={handleQuantityInc}
-                disabled={quantity >= 10}
+                disabled={disabledIncButton || quantity >= 10}
               >
                 <IconPlus color={'white'} />
               </ActionIcon>
