@@ -5,15 +5,12 @@ const {
 
 // Add or update multiple keys at once
 addOrUpdateKeysBatch({
-  'cart.notificationTitle': {
-    en: 'Item Added to Cart!',
-    ja: 'アイテムがカートに追加されました！'
+  'common.loadMore': {
+    en: 'Load More',
+    ja: 'さらに読み込む'
   },
-  'cart.notificationMessage': {
-    en: 'Your item has been successfully added to the cart. Happy shopping!',
-    ja: 'アイテムは正常にカートに追加されました。楽しいショッピングを！'
-  }
 });
+
 
 // Delete multiple keys at once
 // deleteKeysBatch(['order.subTotal', 'order.pay'], ['en', 'ja']);

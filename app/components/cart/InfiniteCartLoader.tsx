@@ -1,5 +1,13 @@
-import { Button, Center, Loader, Stack } from '@mantine/core';
-import { useEffect, useRef } from 'react';
+import {
+  Box,
+  Button,
+  Center,
+  Group,
+  Loader,
+  Skeleton,
+  Stack
+} from '@mantine/core';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useFetcher } from 'react-router';
 import HeaderCartCard from './HeaderCartCard';
 import { buildLocalizedLink } from '~/utils';
@@ -18,6 +26,7 @@ const InfiniteCartLoader = () => {
 
   const fetcher = useFetcher<ItemsResponse>();
   const { carts, setCarts } = useHeaderFooterContext();
+  const [noLoadMore, setNoLoadMore] = useState(false);
 
   useEffect(() => {
     if (!fetcher.data || fetcher.state === 'loading') {
@@ -40,6 +49,10 @@ const InfiniteCartLoader = () => {
         return Array.from(cartMap.values());
       });
     }
+
+    if (fetcher.data?.carts.length === 0) {
+      setNoLoadMore(true);
+    }
   }, [fetcher.data]);
 
   useEffect(() => {
@@ -51,75 +64,50 @@ const InfiniteCartLoader = () => {
   }, []);
 
   return (
-    <InfiniteScroller
-      loadNext={() => {
-        const page = fetcher.data ? fetcher.data.page + 1 : initialPage + 1;
-        const query = `/load-carts?index&page=${page}`;
+    <Stack>
+      {carts.map(c => (
+        <HeaderCartCard key={c.id} cart={c} />
+      ))}
 
-        fetcher.load(query);
-      }}
-      loading={fetcher.state === 'loading'}
-    >
-      <Stack>
-        {carts.map(c => (
-          <HeaderCartCard key={c.id} cart={c} />
+      {fetcher.state === 'loading' &&
+        Array.from({ length: 6 }).map((_, index) => (
+          <Group wrap={'nowrap'} h={100} align={'start'} key={index}>
+            <Skeleton w={'30%'} h={'100%'} radius={0} />
+            <Stack w={'70%'}>
+              {Array.from({ length: 4 }).map((_, index) => (
+                <Skeleton key={index} w={'100%'} height={8} radius={0} />
+              ))}
+            </Stack>
+          </Group>
         ))}
+      {carts.length > 0 && !noLoadMore && (
+        <Button
+          variant={'light'}
+          fullWidth
+          onClick={() => {
+            const page = fetcher.data ? fetcher.data.page + 1 : initialPage + 1;
+            const query = `/load-carts?index&page=${page}`;
 
-        {fetcher.state === 'loading' && (
-          <Center>
-            <Loader />
-          </Center>
-        )}
+            fetcher.load(query);
+          }}
+        >
+          {t('common.loadMore')}
+        </Button>
+      )}
 
-        {carts.length > 0 && (
-          <Button
-            component={Link}
-            to={buildLocalizedLink({ currentLanguage, paths: ['checkout'] })}
-            color="black"
-            fullWidth
-            onClick={close}
-          >
-            {t('checkout.goToCheckout')}
-          </Button>
-        )}
-      </Stack>
-    </InfiniteScroller>
+      {carts.length > 0 && (
+        <Button
+          component={Link}
+          to={buildLocalizedLink({ currentLanguage, paths: ['checkout'] })}
+          color="black"
+          fullWidth
+          onClick={close}
+        >
+          {t('checkout.goToCheckout')}
+        </Button>
+      )}
+    </Stack>
   );
 };
 
 export default InfiniteCartLoader;
-
-const InfiniteScroller = (props: {
-  children: any;
-  loading: boolean;
-  loadNext: () => void;
-}) => {
-  const { children, loading, loadNext } = props;
-  const scrollListener = useRef(loadNext);
-
-  useEffect(() => {
-    scrollListener.current = loadNext;
-  }, [loadNext]);
-
-  const onScroll = () => {
-    const documentHeight = document.documentElement.scrollHeight;
-    const scrollDifference = Math.floor(window.innerHeight + window.scrollY);
-    const scrollEnded = documentHeight == scrollDifference;
-
-    if (scrollEnded && !loading) {
-      scrollListener.current();
-    }
-  };
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', onScroll);
-    }
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
-  }, []);
-
-  return <>{children}</>;
-};
