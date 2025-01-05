@@ -58,6 +58,7 @@ import AddToCartError from '~/components/cart/AddToCartError';
 import { z } from 'zod';
 import { useEffect } from 'react';
 import { notifications } from '@mantine/notifications';
+import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,
@@ -125,6 +126,8 @@ const SingleProduct = () => {
 
   const { searchParams, setSearchParams, isLoggedIn } = outletContext;
 
+  const { setCartCount } = useHeaderFooterContext();
+
   const { activeSize, setActiveSize } = useCurrentActiveSize({
     product,
     searchParams
@@ -173,6 +176,7 @@ const SingleProduct = () => {
         title: t('cart.notificationTitle'),
         message: t('cart.notificationMessage')
       });
+      setCartCount(prev => prev + 1);
     }
   }, [fetcher.data]);
 

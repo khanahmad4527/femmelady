@@ -64,8 +64,8 @@ export const isTokenExpired = (token: string) => {
 export const isAuthenticated = async (request: Request) => {
   const notLoggedIn = {
     isLoggedIn: false,
-    token: null,
-    user: null
+    token: undefined,
+    user: undefined
   };
 
   try {

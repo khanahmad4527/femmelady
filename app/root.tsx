@@ -55,7 +55,7 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
 };
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
-  const { isLoggedIn } = await isAuthenticated(request);
+  const { isLoggedIn, user } = await isAuthenticated(request);
 
   const currentLanguage = params?.lang as TranslationKeys;
   if (!currentLanguage) {
@@ -66,7 +66,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   const env = { DIRECTUS_URL: process.env?.DIRECTUS_URL };
 
-  return { isLoggedIn, currentLanguage, env, exchangeRate };
+  return { isLoggedIn, user, currentLanguage, env, exchangeRate };
 };
 
 export const links: LinksFunction = () => {

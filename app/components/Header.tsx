@@ -39,7 +39,7 @@ const Header = () => {
   const currentLanguage = useCurrentLanguage();
   const headerFooterContext = useHeaderFooterContext();
 
-  const { isLoggedIn } = headerFooterContext;
+  const { isLoggedIn, cartCount } = headerFooterContext;
 
   const authLinks = [
     {
@@ -189,9 +189,11 @@ const Header = () => {
                 <ActionIcon variant="transparent" size={'xl'}>
                   <IconShoppingCart size={30} color={'white'} />
                 </ActionIcon>
-                <Text fw={500} fz={'md'} c={'white'}>
-                  {'9+'}
-                </Text>
+                {cartCount > 0 && (
+                  <Text fw={500} fz={'md'} c={'white'}>
+                    {cartCount === 100 ? '99+' : cartCount}
+                  </Text>
+                )}
               </Group>
               <Tooltip label={t('common.logout')}>
                 <ActionIcon

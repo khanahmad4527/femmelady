@@ -1,9 +1,14 @@
 import { createContext, useContext } from 'react';
 import { OutletContext } from '~/types';
 
-export const HeaderFooterContext = createContext<
-  OutletContext | Record<string, string>
->({});
+type HeaderFooterContextType = OutletContext & {
+  cartCount: number;
+  setCartCount: React.Dispatch<React.SetStateAction<number>>;
+};
+
+export const HeaderFooterContext = createContext<HeaderFooterContextType>(
+  {} as HeaderFooterContextType
+);
 
 const useHeaderFooterContext = () => {
   const headerFooterContext = useContext(HeaderFooterContext);

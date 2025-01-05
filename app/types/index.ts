@@ -9,6 +9,9 @@ export interface OutletContext {
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
   exchangeRate: number;
+
+  token?: string;
+  user?: User;
 }
 
 export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {
