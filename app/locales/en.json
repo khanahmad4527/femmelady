@@ -48,7 +48,8 @@
   "common": {
     "logout": "Logout",
     "categories": "Categories",
-    "scrollToTop": "Scroll to top"
+    "scrollToTop": "Scroll to top",
+    "errors": "Errors"
   },
   "login": {
     "welcome": "Welcome to Unthaa, login with",
@@ -155,5 +156,19 @@
     "subTotal": "SubTotal",
     "total": "Total",
     "pay": "Pay"
+  },
+  "cart": {
+    "errors": {
+      "productIdInvalid": "Product ID must be a valid UUID",
+      "productIdRequired": "Product ID is required",
+      "sizeIdInvalid": "Size ID must be a valid UUID",
+      "sizeIdRequired": "Size ID is required",
+      "colorIdInvalid": "Color ID must be a valid UUID",
+      "colorIdRequired": "Color ID is required",
+      "quantityRequired": "Quantity is required",
+      "quantityInvalidNumber": "Quantity must be a valid number",
+      "quantityNotInteger": "Quantity must be an integer",
+      "quantityOutOfRange": "Quantity must be between 1 and 10"
+    }
   }
 }

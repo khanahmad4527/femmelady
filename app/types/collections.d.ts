@@ -1038,45 +1038,6 @@ export interface paths {
      */
     patch: operations["updateSingleItemsBrand"];
   };
-  "/items/cart": {
-    /**
-     * List Items
-     * @description List the cart items.
-     */
-    get: operations["readItemsCart"];
-    /**
-     * Create an Item
-     * @description Create a new cart item.
-     */
-    post: operations["createItemsCart"];
-    /**
-     * Delete Multiple Items
-     * @description Delete multiple existing cart items.
-     */
-    delete: operations["deleteItemsCart"];
-    /**
-     * Update Multiple Items
-     * @description Update multiple cart items at the same time.
-     */
-    patch: operations["updateItemsCart"];
-  };
-  "/items/cart/{id}": {
-    /**
-     * Retrieve an Item
-     * @description Retrieve a single cart item by unique identifier.
-     */
-    get: operations["readSingleItemsCart"];
-    /**
-     * Delete an Item
-     * @description Delete an existing cart item.
-     */
-    delete: operations["deleteSingleItemsCart"];
-    /**
-     * Update an Item
-     * @description Update an existing cart item.
-     */
-    patch: operations["updateSingleItemsCart"];
-  };
   "/items/product": {
     /**
      * List Items
@@ -1115,6 +1076,45 @@ export interface paths {
      * @description Update an existing product item.
      */
     patch: operations["updateSingleItemsProduct"];
+  };
+  "/items/cart": {
+    /**
+     * List Items
+     * @description List the cart items.
+     */
+    get: operations["readItemsCart"];
+    /**
+     * Create an Item
+     * @description Create a new cart item.
+     */
+    post: operations["createItemsCart"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing cart items.
+     */
+    delete: operations["deleteItemsCart"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple cart items at the same time.
+     */
+    patch: operations["updateItemsCart"];
+  };
+  "/items/cart/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single cart item by unique identifier.
+     */
+    get: operations["readSingleItemsCart"];
+    /**
+     * Delete an Item
+     * @description Delete an existing cart item.
+     */
+    delete: operations["deleteSingleItemsCart"];
+    /**
+     * Update an Item
+     * @description Update an existing cart item.
+     */
+    patch: operations["updateSingleItemsCart"];
   };
   "/items/coupon": {
     /**
@@ -3509,20 +3509,6 @@ export interface components {
       coupons?: number[] | components["schemas"]["ItemsCouponBrandJunction"][] | null;
       products?: string[] | components["schemas"]["ItemsProduct"][] | null;
     };
-    ItemsCart: {
-      /** Format: timestamp */
-      date_created?: string | null;
-      /** Format: timestamp */
-      date_updated?: string | null;
-      /** Format: uuid */
-      id: string;
-      product?: string | components["schemas"]["ItemsProduct"] | null;
-      quantity?: number | null;
-      sort?: number | null;
-      status?: string;
-      user_created?: string | components["schemas"]["Users"] | null;
-      user_updated?: string | components["schemas"]["Users"] | null;
-    };
     ItemsProduct: {
       /** Format: timestamp */
       date_created?: string | null;
@@ -3551,6 +3537,18 @@ export interface components {
       colors?: number[] | components["schemas"]["ItemsProductProductColor"][] | null;
       images?: number[] | components["schemas"]["ItemsProductProductImage"][] | null;
       reviews?: string[] | components["schemas"]["ItemsReview"][] | null;
+    };
+    ItemsCart: {
+      /** Format: timestamp */
+      date_created?: string | null;
+      /** Format: uuid */
+      id: string;
+      product?: string | components["schemas"]["ItemsProduct"] | null;
+      quantity?: number | null;
+      sort?: number | null;
+      user_created?: string | components["schemas"]["Users"] | null;
+      color?: string | components["schemas"]["ItemsProductColor"] | null;
+      size?: string | components["schemas"]["ItemsProductSize"] | null;
     };
     ItemsCoupon: {
       code?: string | null;
@@ -9449,189 +9447,6 @@ export interface operations {
   };
   /**
    * List Items
-   * @description List the cart items.
-   */
-  readItemsCart: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        limit?: components["parameters"]["Limit"];
-        meta?: components["parameters"]["Meta"];
-        offset?: components["parameters"]["Offset"];
-        sort?: components["parameters"]["Sort"];
-        filter?: components["parameters"]["Filter"];
-        search?: components["parameters"]["Search"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsCart"][];
-            meta?: components["schemas"]["x-metadata"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Create an Item
-   * @description Create a new cart item.
-   */
-  createItemsCart: {
-    parameters: {
-      query?: {
-        meta?: components["parameters"]["Meta"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["ItemsCart"][] | components["schemas"]["ItemsCart"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: unknown;
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Delete Multiple Items
-   * @description Delete multiple existing cart items.
-   */
-  deleteItemsCart: {
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: never;
-      };
-      401: components["responses"]["UnauthorizedError"];
-    };
-  };
-  /**
-   * Update Multiple Items
-   * @description Update multiple cart items at the same time.
-   */
-  updateItemsCart: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        limit?: components["parameters"]["Limit"];
-        meta?: components["parameters"]["Meta"];
-        offset?: components["parameters"]["Offset"];
-        sort?: components["parameters"]["Sort"];
-        filter?: components["parameters"]["Filter"];
-        search?: components["parameters"]["Search"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["ItemsCart"][] | components["schemas"]["ItemsCart"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: unknown;
-          };
-        };
-      };
-    };
-  };
-  /**
-   * Retrieve an Item
-   * @description Retrieve a single cart item by unique identifier.
-   */
-  readSingleItemsCart: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        meta?: components["parameters"]["Meta"];
-        version?: components["parameters"]["Version"];
-      };
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsCart"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Delete an Item
-   * @description Delete an existing cart item.
-   */
-  deleteSingleItemsCart: {
-    parameters: {
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: never;
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * Update an Item
-   * @description Update an existing cart item.
-   */
-  updateSingleItemsCart: {
-    parameters: {
-      query?: {
-        fields?: components["parameters"]["Fields"];
-        meta?: components["parameters"]["Meta"];
-      };
-      path: {
-        /** @description Index of the item. */
-        id: number | string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["ItemsCart"];
-      };
-    };
-    responses: {
-      /** @description Successful request */
-      200: {
-        content: {
-          "application/json": {
-            data?: components["schemas"]["ItemsCart"];
-          };
-        };
-      };
-      401: components["responses"]["UnauthorizedError"];
-      404: components["responses"]["NotFoundError"];
-    };
-  };
-  /**
-   * List Items
    * @description List the product items.
    */
   readItemsProduct: {
@@ -9806,6 +9621,189 @@ export interface operations {
         content: {
           "application/json": {
             data?: components["schemas"]["ItemsProduct"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * List Items
+   * @description List the cart items.
+   */
+  readItemsCart: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsCart"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new cart item.
+   */
+  createItemsCart: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsCart"][] | components["schemas"]["ItemsCart"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing cart items.
+   */
+  deleteItemsCart: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple cart items at the same time.
+   */
+  updateItemsCart: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsCart"][] | components["schemas"]["ItemsCart"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single cart item by unique identifier.
+   */
+  readSingleItemsCart: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsCart"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing cart item.
+   */
+  deleteSingleItemsCart: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing cart item.
+   */
+  updateSingleItemsCart: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsCart"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsCart"];
           };
         };
       };
@@ -16045,8 +16043,8 @@ export type Schema = {
   banner_translations: components["schemas"]["ItemsBannerTranslations"][];
   languages: components["schemas"]["ItemsLanguages"][];
   brand: components["schemas"]["ItemsBrand"][];
-  cart: components["schemas"]["ItemsCart"][];
   product: components["schemas"]["ItemsProduct"][];
+  cart: components["schemas"]["ItemsCart"][];
   coupon: components["schemas"]["ItemsCoupon"][];
   coupon_brand_junction: components["schemas"]["ItemsCouponBrandJunction"][];
   coupon_product_category_junction: components["schemas"]["ItemsCouponProductCategoryJunction"][];

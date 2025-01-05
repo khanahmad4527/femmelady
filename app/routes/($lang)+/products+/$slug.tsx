@@ -1,10 +1,12 @@
 import { Carousel } from '@mantine/carousel';
 import {
+  Alert,
   Box,
   Button,
   Grid,
   Group,
   Image,
+  List,
   Rating,
   ScrollArea,
   Stack,
@@ -14,6 +16,7 @@ import {
 import {
   Outlet,
   ShouldRevalidateFunction,
+  useFetcher,
   useLoaderData,
   useOutletContext
 } from 'react-router';
@@ -38,6 +41,7 @@ import {
   formatNumber,
   getImageUrl,
   getLanguageCode,
+  parseZodError,
   shouldRevalidateLogic
 } from '~/utils';
 import { Route } from './+types/$slug';
@@ -45,8 +49,13 @@ import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
 import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
-import { useState } from 'react';
 import useCurrentActiveSize from '~/hooks/useCurrentActiveSize';
+import { directus } from '~/server/directus';
+import { createItem, withToken } from '@directus/sdk';
+import { isAuthenticated } from '~/auth/auth.server';
+import { addToCartSchema } from '~/schema';
+import AddToCartError from '~/components/cart/AddToCartError';
+import { z } from 'zod';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,
@@ -77,6 +86,36 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
   return { product };
 };
 
+export const action = async ({ request }: Route.ActionArgs) => {
+  const { token } = await isAuthenticated(request);
+  const formData = await request.formData();
+
+  try {
+    const { colorId, productId, quantity, sizeId } = addToCartSchema.parse(
+      Object.fromEntries(formData)
+    );
+
+    await directus.request(
+      withToken(
+        token!,
+        createItem('cart', {
+          product: productId,
+          color: colorId,
+          size: sizeId,
+          quantity
+        })
+      )
+    );
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return parseZodError(error);
+    }
+    throw error;
+  }
+
+  return { success: true };
+};
+
 const SingleProduct = () => {
   const { product } = useLoaderData<{ product: Product }>();
 
@@ -104,6 +143,7 @@ const SingleProduct = () => {
 
   const t = useTranslation();
   const currentLanguage = useCurrentLanguage();
+  const fetcher = useFetcher<{ errors: Record<string, string>[] }>();
 
   const productTranslation = getFirstObjectDto(
     product?.translations
@@ -235,10 +275,26 @@ const SingleProduct = () => {
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />
-          <ProductCartQuantity />
-          <Button color="black" size="md" disabled={disabledAddToBag}>
-            {t('products.addToBag')}
-          </Button>
+          <fetcher.Form method="POST">
+            <Stack>
+              <ProductCartQuantity />
+
+              <input hidden name={'productId'} defaultValue={product.id} />
+              <input hidden name={'sizeId'} defaultValue={activeSize.id} />
+              <input hidden name={'colorId'} defaultValue={activeColor.id} />
+              <Button
+                type={'submit'}
+                color="black"
+                size="md"
+                disabled={disabledAddToBag}
+                loading={fetcher.state !== 'idle'}
+                fullWidth
+              >
+                {t('products.addToBag')}
+              </Button>
+            </Stack>
+          </fetcher.Form>
+          {fetcher.data?.errors && <AddToCartError fetcher={fetcher} />}
         </Grid.Col>
       </Grid>
 

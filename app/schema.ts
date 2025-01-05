@@ -58,3 +58,24 @@ export const registerFormSchema = z
     path: ['confirm_password'],
     message: 'authFormValidationError.passwordMismatch'
   });
+
+export const addToCartSchema = z.object({
+  productId: z
+    .string({ required_error: 'cart.errors.productIdRequired' })
+    .uuid('cart.errors.productIdInvalid'),
+  sizeId: z
+    .string({ required_error: 'cart.errors.sizeIdRequired' })
+    .uuid('cart.errors.sizeIdInvalid'),
+  colorId: z
+    .string({ required_error: 'cart.errors.colorIdRequired' })
+    .uuid('cart.errors.colorIdInvalid'),
+  quantity: z
+    .string({ required_error: 'cart.errors.quantityRequired' })
+    .refine(value => !isNaN(Number(value)), 'cart.errors.quantityInvalidNumber')
+    .transform(value => Number(value))
+    .refine(value => Number.isInteger(value), 'cart.errors.quantityNotInteger')
+    .refine(
+      value => value >= 1 && value <= 10,
+      'cart.errors.quantityOutOfRange'
+    )
+});

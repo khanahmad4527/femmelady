@@ -5,7 +5,10 @@ const {
 
 // Add or update multiple keys at once
 addOrUpdateKeysBatch({
-  'common.scrollToTop': { en: 'Scroll to top', ja: '上にスクロール' }
+  'common.errors': {
+    en: 'Errors',
+    ja: 'エラー'
+  }
 });
 
 // Delete multiple keys at once

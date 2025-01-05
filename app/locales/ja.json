@@ -48,7 +48,8 @@
   "common": {
     "logout": "ログアウト",
     "categories": "カテゴリー",
-    "scrollToTop": "上にスクロール"
+    "scrollToTop": "上にスクロール",
+    "errors": "エラー"
   },
   "login": {
     "welcome": "Unthaaへようこそ、ログインするには",
@@ -155,5 +156,19 @@
     "subTotal": "小計",
     "total": "合計",
     "pay": "支払う"
+  },
+  "cart": {
+    "errors": {
+      "productIdInvalid": "製品IDは有効なUUIDでなければなりません",
+      "productIdRequired": "製品IDは必須です",
+      "sizeIdInvalid": "サイズIDは有効なUUIDでなければなりません",
+      "sizeIdRequired": "サイズIDは必須です",
+      "colorIdInvalid": "カラーIDは有効なUUIDでなければなりません",
+      "colorIdRequired": "カラーIDは必須です",
+      "quantityRequired": "数量は必須です",
+      "quantityInvalidNumber": "数量は有効な数値でなければなりません",
+      "quantityNotInteger": "数量は整数でなければなりません",
+      "quantityOutOfRange": "数量は1から10の間でなければなりません"
+    }
   }
 }

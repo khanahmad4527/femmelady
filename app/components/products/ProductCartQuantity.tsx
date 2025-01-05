@@ -13,6 +13,7 @@ const ProductCartQuantity = () => {
     <Stack gap={4}>
       <Title order={5}>{t('products.cartQuantity')}</Title>
       <Select
+        name={'quantity'}
         data={Array.from({ length: 10 }, (_, index) => ({
           value: (index + 1).toString(),
           label: formatNumber({ currentLanguage, number: index + 1 })
