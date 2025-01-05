@@ -116,7 +116,6 @@ export default memo(TopSearchBar);
 const Card = (p: Product) => {
   const { hovered, ref } = useHover();
   const currentLanguage = useCurrentLanguage();
-  const { env } = useHeaderFooterContext();
 
   const translation = getSingleTranslation(
     p.translations
@@ -149,8 +148,7 @@ const Card = (p: Product) => {
             src={getImageUrl({
               id: hovered
                 ? getStringDto(p?.feature_image_2)
-                : getStringDto(p?.feature_image_1),
-              DIRECTUS_URL: (env as Env)?.DIRECTUS_URL
+                : getStringDto(p?.feature_image_1)
             })}
             alt={translation.title!}
             loading={'lazy'}

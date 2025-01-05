@@ -1,9 +1,11 @@
 import { createContext, useContext } from 'react';
-import { OutletContext } from '~/types';
+import { Cart, OutletContext } from '~/types';
 
 type HeaderFooterContextType = OutletContext & {
   cartCount: number;
   setCartCount: React.Dispatch<React.SetStateAction<number>>;
+  carts: Cart[];
+  setCarts: React.Dispatch<React.SetStateAction<Cart[]>>;
 };
 
 export const HeaderFooterContext = createContext<HeaderFooterContextType>(

@@ -3,7 +3,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { useLocation } from 'react-router';
 
 import { ROUTES_WITHOUT_HEADER_AND_FOOTER } from '~/constant';
-import { OutletContext } from '~/types';
+import { Cart, OutletContext } from '~/types';
 import commonClasses from '~/styles/Common.module.scss';
 import Footer from './Footer';
 import Header from './Header';
@@ -26,8 +26,9 @@ const Document = (
   const isExcludedRoute = ROUTES_WITHOUT_HEADER_AND_FOOTER.has(basePath);
 
   const [cartCount, setCartCount] = useState(user?.carts?.length ?? 0);
+  const [carts, setCarts] = useState<Cart[]>([]);
 
-  const ctx = { ...restData, cartCount, setCartCount };
+  const ctx = { ...restData, cartCount, setCartCount, carts, setCarts };
 
   return (
     <HeaderFooterContext.Provider value={ctx}>

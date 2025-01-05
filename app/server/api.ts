@@ -539,7 +539,7 @@ export const getCarts = async ({
       readItems('cart', {
         fields: [
           '*',
-          { product: [{ translations: ['*'] }] },
+          { product: ['id', 'price', { translations: ['*'] }] },
           { color: [{ translations: ['*'] }] },
           { size: ['*'] }
         ],

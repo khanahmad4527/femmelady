@@ -15,6 +15,7 @@ import {
   PARAMS
 } from './constant';
 import crypto from 'crypto';
+import useHeaderFooterContext from './hooks/useHeaderFooterContext';
 
 export const submitForm = <T extends Record<string, any>>(
   fetcher: ReturnType<typeof useFetcher>,
@@ -192,8 +193,11 @@ export const getImageUrl = ({
   DIRECTUS_URL?: string;
 }) => {
   const outletContext = useOutletContext<OutletContext>();
-
-  const directusUrl = outletContext?.env?.DIRECTUS_URL ?? DIRECTUS_URL;
+  const headerFooterContext = useHeaderFooterContext();
+  const directusUrl =
+    outletContext?.env?.DIRECTUS_URL ??
+    headerFooterContext?.env?.DIRECTUS_URL ??
+    DIRECTUS_URL;
 
   return `${directusUrl}/assets/${id}?height=${h}&width=${w}`;
 };

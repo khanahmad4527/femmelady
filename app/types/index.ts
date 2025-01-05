@@ -94,3 +94,5 @@ export interface Faqs {
 export type ExtendedFAQTranslation = Omit<FAQTranslation, 'faqs'> & {
   faqs: Faqs[];
 };
+
+export type Cart = components['schemas']['ItemsCart'];
