@@ -9,7 +9,11 @@ import {
   Text,
   TextInput
 } from '@mantine/core';
-import { useDebouncedCallback, useHover } from '@mantine/hooks';
+import {
+  useClickOutside,
+  useDebouncedCallback,
+  useHover
+} from '@mantine/hooks';
 import React, { memo, useEffect, useState } from 'react';
 import { Link, useFetcher } from 'react-router';
 import getStringDto from '~/dto/getStringDto';
@@ -31,6 +35,8 @@ const TopSearchBar = () => {
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const [searchValue, setSearchValue] = useState('');
   const [previousSearchValue, setPreviousSearchValue] = useState('');
+  const [opened, setOpened] = useState(true);
+  const ref = useClickOutside(() => setOpened(false));
 
   const fetcher = useFetcher<{ products: Product[]; searchQuery: string }>();
 
@@ -61,11 +67,12 @@ const TopSearchBar = () => {
   const canShowDropDown = Boolean(
     searchValue.length &&
       searchResults.length &&
-      searchValue === previousSearchValue
+      searchValue === previousSearchValue &&
+      opened
   );
 
   return (
-    <Box w={'100%'}>
+    <Box w={'100%'} ref={ref}>
       <Menu
         opened={canShowDropDown}
         shadow="md"
@@ -77,6 +84,7 @@ const TopSearchBar = () => {
             w={'100%'}
             placeholder={t('header.search')}
             value={searchValue}
+            onClick={() => setOpened(true)}
             onChange={handleChange}
             rightSection={
               fetcher.state === 'loading' ? (

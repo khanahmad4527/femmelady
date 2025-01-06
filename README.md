@@ -64,4 +64,3 @@
 
 ## Bugs
 1. Reload the carts when language change only for Drawer
-2. Close the menu when click outside for the search bar
