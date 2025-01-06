@@ -32,7 +32,7 @@ import {
   getSingleTranslation
 } from '~/utils';
 
-const HeaderCartCard = ({ cart }: { cart: Cart }) => {
+const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
   const { hovered, ref } = useHover();
   const { setCarts, setCartCount } = useHeaderFooterContext();
   const { currentLanguage } = useCurrentLanguage();
@@ -102,9 +102,11 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
               paths: [
                 'products',
                 productTranslation?.slug ?? product?.id,
-                'reviews'
+                'reviews',
+                '?force-validate=global'
               ]
             })}
+            onClick={close}
             ref={ref as any}
           >
             <Image

@@ -22,7 +22,7 @@ const HeaderCart = ({
       title={t('checkout.shoppingBag')}
       pos={'relative'}
     >
-      <InfiniteCartLoader />
+      <InfiniteCartLoader close={close}/>
     </Drawer>
   );
 };

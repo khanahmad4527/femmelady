@@ -236,10 +236,12 @@ export const getProducts = async ({
 
 export const getSingleProduct = async ({
   slug,
-  languageCode
+  languageCode,
+  token
 }: {
   slug: string;
   languageCode: string;
+  token?: string;
 }) => {
   const isUUID = validateUUID(slug);
   const fields = [
@@ -255,18 +257,38 @@ export const getSingleProduct = async ({
     deep: productTranslationBaseQuery(languageCode)
   };
 
+  let product;
+
   if (isUUID) {
-    const product = await directus.request(readItem('product', slug, query));
-    return product;
+    if (token) {
+      product = await directus.request(
+        withToken(token, readItem('product', slug, query))
+      );
+    } else {
+      product = await directus.request(readItem('product', slug, query));
+    }
   } else {
-    const [product] = await directus.request(
-      readItems('product', {
-        filter: { translations: { slug } },
-        ...query
-      })
-    );
-    return product;
+    if (token) {
+      [product] = await directus.request(
+        withToken(
+          token,
+          readItems('product', {
+            filter: { translations: { slug } },
+            ...query
+          })
+        )
+      );
+    } else {
+      [product] = await directus.request(
+        readItems('product', {
+          filter: { translations: { slug } },
+          ...query
+        })
+      );
+    }
   }
+
+  return product;
 };
 
 export const getReviews = async ({
@@ -527,11 +549,13 @@ export const getFaqs = async ({ languageCode }: { languageCode: string }) => {
 export const getCarts = async ({
   languageCode,
   token,
-  page
+  page,
+  limit = 10
 }: {
   languageCode: string;
   token: string;
   page: number;
+  limit?: number;
 }) => {
   return await directus.request(
     withToken(
@@ -549,7 +573,7 @@ export const getCarts = async ({
           { size: ['*'] }
         ],
         page,
-        limit: 10,
+        limit: limit,
         deep: {
           products: {
             product_id: {

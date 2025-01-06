@@ -13,9 +13,9 @@ type ItemsResponse = { carts: Cart[]; page: number };
 
 const initialPage = 1;
 
-const InfiniteCartLoader = () => {
+const InfiniteCartLoader = ({ close }: { close: () => void }) => {
   const t = useTranslation();
-  const { currentLanguage, currentLanguageCode } = useCurrentLanguage();
+  const { currentLanguage } = useCurrentLanguage();
 
   const fetcher = useFetcher<ItemsResponse>();
   const { carts, setCarts } = useHeaderFooterContext();
@@ -59,7 +59,7 @@ const InfiniteCartLoader = () => {
   return (
     <Stack>
       {carts.map(c => (
-        <HeaderCartCard key={c.id} cart={c} />
+        <HeaderCartCard key={c.id} cart={c} close={close}/>
       ))}
 
       {fetcher.state === 'loading' &&

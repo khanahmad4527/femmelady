@@ -82,11 +82,16 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
   return false;
 };
 
-export const loader = async ({ params }: Route.LoaderArgs) => {
+export const loader = async ({ params, request }: Route.LoaderArgs) => {
+  const { token } = await isAuthenticated(request);
   const languageCode = getLanguageCode(params);
 
   const productSlug = params?.slug;
-  const product = await getSingleProduct({ slug: productSlug, languageCode });
+  const product = await getSingleProduct({
+    slug: productSlug,
+    languageCode,
+    token
+  });
 
   return { product };
 };
@@ -178,7 +183,11 @@ const SingleProduct = () => {
   };
 
   const disabledAddToBag = Boolean(
-    !isLoggedIn || !activeSize.stock || !activeColor.stock
+    (!isLoggedIn ||
+      !activeSize.stock ||
+      !activeColor.stock ||
+      product.carts?.length) &&
+      fetcher.state !== 'idle'
   );
 
   useEffect(() => {

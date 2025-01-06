@@ -11,22 +11,44 @@ import CheckoutCartCard from '~/components/checkout/CheckoutCartCard';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
-import { formatCurrency } from '~/utils';
+import { formatCurrency, getLanguageCode } from '~/utils';
+import { Route } from './+types/checkout';
+import { isAuthenticated } from '~/auth/auth.server';
+import { getCarts } from '~/server/api';
+import { useLoaderData } from 'react-router';
+
+export const loader = async ({ request, params }: Route.LoaderArgs) => {
+  const languageCode = getLanguageCode(params);
+
+  const { token } = await isAuthenticated(request);
+
+  const carts = await getCarts({
+    languageCode,
+    page: 1,
+    limit: -1,
+    token: token!
+  });
+
+  return { carts };
+};
 
 const Checkout = () => {
+  const { carts } = useLoaderData<typeof loader>();
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
+
+  console.log({ carts });
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
       <Title m={'auto'}>{t('checkout.shoppingBag')}</Title>
       <Grid>
         <Grid.Col span={{ base: 12, md: 9 }}>
-          <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
+          {/* <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
             {Array.from({ length: 4 }, (_, index) => (
               <CheckoutCartCard key={index} />
             ))}
-          </SimpleGrid>
+          </SimpleGrid> */}
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 3 }}>
           <Stack>
