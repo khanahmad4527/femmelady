@@ -96,3 +96,5 @@ export type ExtendedFAQTranslation = Omit<FAQTranslation, 'faqs'> & {
 };
 
 export type Cart = components['schemas']['ItemsCart'];
+
+export type ProductCart = components['schemas']['ItemsProductCart'];

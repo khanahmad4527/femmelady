@@ -2442,6 +2442,45 @@ export interface paths {
      */
     patch: operations["updateSingleItemsContactUsTranslations"];
   };
+  "/items/product_cart": {
+    /**
+     * List Items
+     * @description List the product_cart items.
+     */
+    get: operations["readItemsProductCart"];
+    /**
+     * Create an Item
+     * @description Create a new product_cart item.
+     */
+    post: operations["createItemsProductCart"];
+    /**
+     * Delete Multiple Items
+     * @description Delete multiple existing product_cart items.
+     */
+    delete: operations["deleteItemsProductCart"];
+    /**
+     * Update Multiple Items
+     * @description Update multiple product_cart items at the same time.
+     */
+    patch: operations["updateItemsProductCart"];
+  };
+  "/items/product_cart/{id}": {
+    /**
+     * Retrieve an Item
+     * @description Retrieve a single product_cart item by unique identifier.
+     */
+    get: operations["readSingleItemsProductCart"];
+    /**
+     * Delete an Item
+     * @description Delete an existing product_cart item.
+     */
+    delete: operations["deleteSingleItemsProductCart"];
+    /**
+     * Update an Item
+     * @description Update an existing product_cart item.
+     */
+    patch: operations["updateSingleItemsProductCart"];
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -3515,7 +3554,6 @@ export interface components {
       date_created?: string | null;
       /** Format: uuid */
       id: string;
-      product?: string | components["schemas"]["ItemsProduct"] | null;
       quantity?: number | null;
       sort?: number | null;
       color?: string | components["schemas"]["ItemsProductColor"] | null;
@@ -3523,6 +3561,7 @@ export interface components {
       user?: string | components["schemas"]["Users"] | null;
       feature_image_1?: string | components["schemas"]["Files"] | null;
       feature_image_2?: string | components["schemas"]["Files"] | null;
+      products?: number[] | components["schemas"]["ItemsProductCart"][] | null;
     };
     ItemsProduct: {
       /** Format: timestamp */
@@ -3545,13 +3584,14 @@ export interface components {
       average_rating?: number;
       remark?: string | null;
       review_count?: number;
-      translations?: number[] | components["schemas"]["ItemsProductTranslations"][] | null;
       categories?: number[] | components["schemas"]["ItemsProductCategoryJunction"][] | null;
+      translations?: number[] | components["schemas"]["ItemsProductTranslations"][] | null;
       sizes?: string[] | components["schemas"]["ItemsProductSize"][] | null;
       coupons?: number[] | components["schemas"]["ItemsProductCouponJunction"][] | null;
       colors?: number[] | components["schemas"]["ItemsProductProductColor"][] | null;
       images?: number[] | components["schemas"]["ItemsProductProductImage"][] | null;
       reviews?: string[] | components["schemas"]["ItemsReview"][] | null;
+      carts?: number[] | components["schemas"]["ItemsProductCart"][] | null;
     };
     ItemsCoupon: {
       code?: string | null;
@@ -3826,6 +3866,11 @@ export interface components {
       contact_us_id?: string | components["schemas"]["ItemsContactUs"] | null;
       languages_code?: string | components["schemas"]["ItemsLanguages"] | null;
       contents?: unknown;
+    };
+    ItemsProductCart: {
+      id?: number;
+      product_id?: string | components["schemas"]["ItemsProduct"] | null;
+      cart_id?: string | components["schemas"]["ItemsCart"] | null;
     };
   };
   responses: {
@@ -16036,6 +16081,189 @@ export interface operations {
       404: components["responses"]["NotFoundError"];
     };
   };
+  /**
+   * List Items
+   * @description List the product_cart items.
+   */
+  readItemsProductCart: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsProductCart"][];
+            meta?: components["schemas"]["x-metadata"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Create an Item
+   * @description Create a new product_cart item.
+   */
+  createItemsProductCart: {
+    parameters: {
+      query?: {
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsProductCart"][] | components["schemas"]["ItemsProductCart"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Delete Multiple Items
+   * @description Delete multiple existing product_cart items.
+   */
+  deleteItemsProductCart: {
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /**
+   * Update Multiple Items
+   * @description Update multiple product_cart items at the same time.
+   */
+  updateItemsProductCart: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        limit?: components["parameters"]["Limit"];
+        meta?: components["parameters"]["Meta"];
+        offset?: components["parameters"]["Offset"];
+        sort?: components["parameters"]["Sort"];
+        filter?: components["parameters"]["Filter"];
+        search?: components["parameters"]["Search"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsProductCart"][] | components["schemas"]["ItemsProductCart"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: unknown;
+          };
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an Item
+   * @description Retrieve a single product_cart item by unique identifier.
+   */
+  readSingleItemsProductCart: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+        version?: components["parameters"]["Version"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsProductCart"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Delete an Item
+   * @description Delete an existing product_cart item.
+   */
+  deleteSingleItemsProductCart: {
+    parameters: {
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: never;
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /**
+   * Update an Item
+   * @description Update an existing product_cart item.
+   */
+  updateSingleItemsProductCart: {
+    parameters: {
+      query?: {
+        fields?: components["parameters"]["Fields"];
+        meta?: components["parameters"]["Meta"];
+      };
+      path: {
+        /** @description Index of the item. */
+        id: number | string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemsProductCart"];
+      };
+    };
+    responses: {
+      /** @description Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsProductCart"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
 }
 
 
@@ -16082,4 +16310,5 @@ export type Schema = {
   terms_of_services: components["schemas"]["ItemsTermsofServices"][];
   privacy_policy_translations: components["schemas"]["ItemsPrivacyPolicyTranslations"][];
   contact_us_translations: components["schemas"]["ItemsContactUsTranslations"][];
+  product_cart: components["schemas"]["ItemsProductCart"][];
 };

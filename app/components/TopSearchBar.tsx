@@ -27,6 +27,7 @@ import {
 
 const TopSearchBar = () => {
   const t = useTranslation();
+  const currentLanguage = useCurrentLanguage();
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const [searchValue, setSearchValue] = useState('');
   const [previousSearchValue, setPreviousSearchValue] = useState('');
@@ -35,7 +36,7 @@ const TopSearchBar = () => {
 
   const handleSearch = useDebouncedCallback((value: string) => {
     if (value !== previousSearchValue && value.length >= 3) {
-      fetcher.load(`/search-query?index&q=${value}`);
+      fetcher.load(`/${currentLanguage}/search-query?index&q=${value}`);
     }
   }, 500);
 

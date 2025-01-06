@@ -49,7 +49,7 @@ const InfiniteCartLoader = () => {
 
   useEffect(() => {
     if (!carts.length) {
-      const query = '/load-carts?index&page=1';
+      const query = `/${currentLanguage}/load-carts?index&page=1`;
 
       fetcher.load(query);
     }
@@ -78,7 +78,7 @@ const InfiniteCartLoader = () => {
           fullWidth
           onClick={() => {
             const page = fetcher.data ? fetcher.data.page + 1 : initialPage + 1;
-            const query = `/load-carts?index&page=${page}`;
+            const query = `/${currentLanguage}/load-carts?index&page=${page}`;
 
             fetcher.load(query);
           }}

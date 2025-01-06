@@ -111,7 +111,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
         token!,
         createItem('cart', {
           id: cartId,
-          product: productId,
+          products: [{ product_id: productId }],
           color: colorId,
           size: sizeId,
           feature_image_1: featureImage1Id,
@@ -348,11 +348,16 @@ const SingleProduct = () => {
                     user: user?.id,
                     feature_image_1: featureImage1Id,
                     feature_image_2: featureImage2Id,
-                    product: {
-                      id: productId,
-                      price: product?.price,
-                      translations: product?.translations
-                    },
+                    products: [
+                      {
+                        product_id: {
+                          id: productId,
+                          price: product?.price,
+                          translations: product?.translations
+                        }
+                      }
+                    ],
+
                     color: {
                       translations: activeColor?.translations
                     },

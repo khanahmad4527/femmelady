@@ -12,14 +12,17 @@ import {
 import { useHover } from '@mantine/hooks';
 import { useState } from 'react';
 import { Link, useFetcher } from 'react-router';
+import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import { IconMinus, IconPlus, IconX } from '~/icons';
 import {
   Cart,
   Product,
+  ProductCart,
   ProductColor,
   ProductColorTranslation,
+  ProductSize,
   ProductTranslation
 } from '~/types';
 import {
@@ -31,11 +34,12 @@ import {
 
 const HeaderCartCard = ({ cart }: { cart: Cart }) => {
   const { hovered, ref } = useHover();
-  const {} = useHeaderFooterContext();
+  const { setCarts, setCartCount } = useHeaderFooterContext();
   const currentLanguage = useCurrentLanguage();
   const [quantity, setQuantity] = useState(cart.quantity ?? 1);
   const fetcher = useFetcher();
-  const product = cart?.product as Product;
+  const product = (getFirstObjectDto(cart?.products) as ProductCart)
+    .product_id as Product;
 
   const color = cart?.color as ProductColor;
 
@@ -56,7 +60,7 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
   }) => {
     fetcher.submit(
       { quantity, cartId: cart.id, intent },
-      { method: 'POST', action: '/en/load-carts' }
+      { method: 'POST', action: `/${currentLanguage}/load-carts` }
     );
   };
 
@@ -118,10 +122,18 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
         </Grid.Col>
         <Grid.Col span={6}>
           <Stack>
-            <Text tt={'capitalize'}>{productTranslation?.title}</Text>
+            <Text tt={'capitalize'}>
+              {productTranslation?.title} -{' '}
+              <Text span>
+                {(cart?.size as ProductSize)?.size?.toLocaleUpperCase()}
+              </Text>
+            </Text>
             <Text tt={'capitalize'}>{colorTranslation?.name}</Text>
             <Text>
-              {formatCurrency({ currentLanguage, value: product?.price! })}
+              {formatCurrency({
+                currentLanguage,
+                value: product?.price!
+              })}
             </Text>
             <Group>
               <ActionIcon
@@ -146,9 +158,11 @@ const HeaderCartCard = ({ cart }: { cart: Cart }) => {
           <ActionIcon
             color="black"
             onClick={() => {
+              setCarts(prev => prev.filter(p => p.id !== cart.id));
+              setCartCount(prev => prev - 1);
               fetcher.submit(
                 { cartId: cart.id, intent: 'cancel' },
-                { method: 'POST', action: '/en/load-carts' }
+                { method: 'POST', action: `/${currentLanguage}/load-carts` }
               );
             }}
           >

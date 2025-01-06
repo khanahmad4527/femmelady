@@ -88,11 +88,13 @@ export const formatCurrency = ({
   value: number;
 }) => {
   const outletContext = useOutletContext<OutletContext>();
+  const headerFooterContext = useHeaderFooterContext();
 
   const locale = getUserLocale(currentLanguage);
   const currency = LOCALE_TO_CURRENCY[locale] || 'USD';
 
-  const exchangeRate = outletContext?.exchangeRate;
+  const exchangeRate =
+    outletContext?.exchangeRate ?? headerFooterContext?.exchangeRate;
 
   // If the currency is USD, no need to convert
   if (currency === 'USD') {
