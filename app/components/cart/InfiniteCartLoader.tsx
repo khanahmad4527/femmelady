@@ -5,8 +5,9 @@ import HeaderCartCard from './HeaderCartCard';
 import { buildLocalizedLink } from '~/utils';
 import useTranslation from '~/hooks/useTranslation';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import { Cart } from '~/types';
+import { Cart, Product, ProductColor, ProductColorTranslation } from '~/types';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
+import getFirstObjectDto from '~/dto/getFirstObjectDto';
 
 type ItemsResponse = { carts: Cart[]; page: number };
 
@@ -14,7 +15,7 @@ const initialPage = 1;
 
 const InfiniteCartLoader = () => {
   const t = useTranslation();
-  const currentLanguage = useCurrentLanguage();
+  const { currentLanguage, currentLanguageCode } = useCurrentLanguage();
 
   const fetcher = useFetcher<ItemsResponse>();
   const { carts, setCarts } = useHeaderFooterContext();
@@ -53,7 +54,7 @@ const InfiniteCartLoader = () => {
 
       fetcher.load(query);
     }
-  }, []);
+  }, [currentLanguage]);
 
   return (
     <Stack>

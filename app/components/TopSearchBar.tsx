@@ -27,7 +27,7 @@ import {
 
 const TopSearchBar = () => {
   const t = useTranslation();
-  const currentLanguage = useCurrentLanguage();
+  const { currentLanguage } = useCurrentLanguage();
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const [searchValue, setSearchValue] = useState('');
   const [previousSearchValue, setPreviousSearchValue] = useState('');
@@ -116,7 +116,7 @@ export default memo(TopSearchBar);
 
 const Card = (p: Product) => {
   const { hovered, ref } = useHover();
-  const currentLanguage = useCurrentLanguage();
+  const { currentLanguage } = useCurrentLanguage();
 
   const translation = getSingleTranslation(
     p.translations

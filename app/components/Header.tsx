@@ -37,7 +37,7 @@ const Header = () => {
   const [burgerOpened, { toggle: burgerToggle, close: burgerClose }] =
     useDisclosure();
   const t = useTranslation();
-  const currentLanguage = useCurrentLanguage();
+  const { currentLanguage } = useCurrentLanguage();
   const headerFooterContext = useHeaderFooterContext();
 
   const { isLoggedIn, cartCount, locale } = headerFooterContext;

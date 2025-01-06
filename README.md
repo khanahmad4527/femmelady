@@ -62,3 +62,6 @@
 7. **Admin Insights**
    - Advanced analytics and insights for the admin dashboard.
 
+## Bugs
+1. Reload the carts when language change only for Drawer
+2. Close the menu when click outside for the search bar

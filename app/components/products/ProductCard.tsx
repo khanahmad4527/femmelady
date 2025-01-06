@@ -52,7 +52,7 @@ const ProductCard = (product: Product) => {
 
   const translation = getSingleTranslation(translations) as ProductTranslation;
 
-  const currentLanguage = useCurrentLanguage();
+  const { currentLanguage } = useCurrentLanguage();
 
   return (
     <Card

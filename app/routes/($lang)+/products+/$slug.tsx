@@ -158,7 +158,7 @@ const SingleProduct = () => {
     });
 
   const t = useTranslation();
-  const currentLanguage = useCurrentLanguage();
+  const { currentLanguage } = useCurrentLanguage();
   const fetcher = useFetcher<{
     errors: Record<string, string>[];
     success: boolean;

@@ -14,7 +14,7 @@ const ProductCartQuantity = ({
 }) => {
   const { isLoggedIn } = useOutletContext<OutletContext>();
   const t = useTranslation();
-  const currentLanguage = useCurrentLanguage();
+  const { currentLanguage } = useCurrentLanguage();
   return (
     <Stack gap={4}>
       <Title order={5}>{t('products.cartQuantity')}</Title>

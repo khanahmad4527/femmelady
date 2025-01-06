@@ -15,7 +15,7 @@ import { formatCurrency } from '~/utils';
 
 const Checkout = () => {
   const t = useTranslation();
-  const currentLanguage = useCurrentLanguage();
+  const { currentLanguage } = useCurrentLanguage();
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
