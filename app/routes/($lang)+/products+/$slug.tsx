@@ -32,6 +32,7 @@ import {
   Cart,
   OutletContext,
   Product,
+  ProductCart,
   ProductProductColor,
   ProductProductImage,
   ProductSize,
@@ -64,7 +65,8 @@ import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,
-  currentUrl
+  currentUrl,
+  actionStatus
 }) => {
   // Use shared logic
   const commonResult = shouldRevalidateLogic(nextUrl, currentUrl);
@@ -76,6 +78,10 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
   const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE) ?? '';
 
   if (forceValidate === FORCE_REVALIDATE_MAP.SINGLE_PRODUCT) {
+    return true;
+  }
+
+  if (actionStatus === 200) {
     return true;
   }
 
@@ -142,7 +148,7 @@ const SingleProduct = () => {
 
   const { searchParams, setSearchParams, isLoggedIn, user } = outletContext;
 
-  const { setCartCount, setCarts } = useHeaderFooterContext();
+  const { setCartCount, setCarts, carts } = useHeaderFooterContext();
   const [quantity, setQuantity] = useState<string | null>('1');
   const { activeSize, setActiveSize } = useCurrentActiveSize({
     product,
@@ -182,12 +188,14 @@ const SingleProduct = () => {
     }
   };
 
+  const inCart = (getFirstObjectDto(product?.carts) as ProductCart)
+    ?.cart_id as Cart;
+
   const disabledAddToBag = Boolean(
-    (!isLoggedIn ||
+    !isLoggedIn ||
       !activeSize.stock ||
       !activeColor.stock ||
-      product.carts?.length) &&
-      fetcher.state !== 'idle'
+      (inCart?.size === activeSize.id && inCart?.color === activeColor?.id)
   );
 
   useEffect(() => {
@@ -323,6 +331,7 @@ const SingleProduct = () => {
           <fetcher.Form method="POST">
             <Stack>
               <ProductCartQuantity
+                disabled={disabledAddToBag}
                 quantity={quantity}
                 setQuantity={setQuantity}
               />

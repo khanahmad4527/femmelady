@@ -249,12 +249,22 @@ export const getSingleProduct = async ({
     { sizes: ['*'] },
     { translations: ['*'] },
     { images: ['*', { product_image_id: ['*', { images: ['*'] }] }] },
-    { colors: ['*', { product_color_id: ['*', { translations: ['*'] }] }] }
+    { colors: ['*', { product_color_id: ['*', { translations: ['*'] }] }] },
+    { carts: [{ cart_id: ['color', 'size'] }] }
   ] as Query<Schema, Product>['fields'];
 
   const query: Query<Schema, Product> = {
     fields,
-    deep: productTranslationBaseQuery(languageCode)
+    deep: {
+      ...productTranslationBaseQuery(languageCode),
+      carts: {
+        _filter: {
+          product_id: {
+            ...(isUUID ? { _eq: slug } : { translations: { slug } })
+          }
+        }
+      }
+    }
   };
 
   let product;
