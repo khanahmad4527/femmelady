@@ -18,7 +18,7 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
   return { page: page, carts };
 };
 
-export const action = async ({ request, params }: Route.ActionArgs) => {
+export const action = async ({ request }: Route.ActionArgs) => {
   const { token } = await isAuthenticated(request);
 
   const formData = await request.formData();

@@ -10,7 +10,7 @@ import {
   ThemeIcon
 } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useFetcher } from 'react-router';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -37,7 +37,7 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
   const { setCarts, setCartCount } = useHeaderFooterContext();
   const { currentLanguage } = useCurrentLanguage();
   const [quantity, setQuantity] = useState(cart?.quantity ?? 1);
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<{ success: boolean }>();
   const product = (getFirstObjectDto(cart?.products) as ProductCart)
     .product_id as Product;
 
@@ -78,6 +78,7 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
 
   let disabledIncButton = false;
   let disabledDecButton = false;
+  let disabledCancelButton = false;
 
   if (fetcher?.formData) {
     const intent = fetcher?.formData.get('intent');
@@ -89,7 +90,22 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
     if (intent === 'dec') {
       disabledDecButton = true;
     }
+
+    if (intent === 'cancel') {
+      disabledCancelButton = true;
+    }
   }
+
+  const isCanceling = Boolean(
+    fetcher.data?.success && fetcher?.formData?.get('intent') === 'cancel'
+  );
+
+  useEffect(() => {
+    if (isCanceling) {
+      setCarts(prev => prev.filter(p => p.id !== cart.id));
+      setCartCount(prev => prev - 1);
+    }
+  }, [isCanceling]);
 
   return (
     <>
@@ -141,7 +157,8 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
               <ActionIcon
                 color="black"
                 onClick={handleQuantityDec}
-                disabled={disabledDecButton || quantity <= 1}
+                disabled={quantity <= 1}
+                loading={disabledDecButton}
               >
                 <IconMinus color={'white'} />
               </ActionIcon>
@@ -149,7 +166,8 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
               <ActionIcon
                 color="black"
                 onClick={handleQuantityInc}
-                disabled={disabledIncButton || quantity >= 10}
+                disabled={quantity >= 10}
+                loading={disabledIncButton}
               >
                 <IconPlus color={'white'} />
               </ActionIcon>
@@ -159,9 +177,8 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
         <Grid.Col span={2}>
           <ActionIcon
             color="black"
+            loading={disabledCancelButton}
             onClick={() => {
-              setCarts(prev => prev.filter(p => p.id !== cart.id));
-              setCartCount(prev => prev - 1);
               fetcher.submit(
                 { cartId: cart.id, intent: 'cancel' },
                 { method: 'POST', action: `/${currentLanguage}/load-carts` }

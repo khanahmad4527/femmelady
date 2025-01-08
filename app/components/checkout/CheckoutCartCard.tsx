@@ -74,6 +74,7 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
 
   let disabledIncButton = false;
   let disabledDecButton = false;
+  let disabledCancelButton = false;
 
   if (fetcher?.formData) {
     const intent = fetcher?.formData.get('intent');
@@ -84,6 +85,10 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
 
     if (intent === 'dec') {
       disabledDecButton = true;
+    }
+
+    if (intent === 'cancel') {
+      disabledCancelButton = true;
     }
   }
 
@@ -130,7 +135,7 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
           <ActionIcon
             color="black"
             onClick={handleQuantityDec}
-            disabled={disabledDecButton || quantity <= 1}
+            disabled={quantity <= 1}
             loading={disabledDecButton}
           >
             <IconMinus color={'white'} />
@@ -139,7 +144,7 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
           <ActionIcon
             color="black"
             onClick={handleQuantityInc}
-            disabled={disabledIncButton || quantity >= 10}
+            disabled={quantity >= 10}
             loading={disabledIncButton}
           >
             <IconPlus color={'white'} />
@@ -147,7 +152,19 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
         </Group>
       </Stack>
 
-      <ActionIcon color="black" pos={'absolute'} mx={'md'} right={0}>
+      <ActionIcon
+        color="black"
+        pos={'absolute'}
+        mx={'md'}
+        right={0}
+        loading={disabledCancelButton}
+        onClick={() => {
+          fetcher.submit(
+            { cartId: cart.id, intent: 'cancel' },
+            { method: 'POST' }
+          );
+        }}
+      >
         <IconX color="black" />
       </ActionIcon>
     </Card>
