@@ -53,12 +53,13 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
     if (intent === 'cancel') {
       await directus.request(withToken(token!, deleteItem('cart', cartId)));
     }
+
+    return { success: true };
   } catch (error) {
     if (error instanceof z.ZodError) {
       return parseZodError(error);
     }
+    console.error('Something went wrong', error);
     throw error;
   }
-
-  return { success: true };
 };

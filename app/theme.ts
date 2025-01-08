@@ -7,6 +7,8 @@ import {
 
 import selectClasses from './styles/Select.module.scss';
 import accordionClasses from './styles/Accordion.module.scss';
+import buttonClasses from './styles/Button.module.scss';
+import actionIconClasses from './styles/ActionIcon.module.scss';
 
 export const theme: MantineThemeOverride = createTheme({
   colors: {
@@ -35,11 +37,13 @@ export const theme: MantineThemeOverride = createTheme({
       defaultProps: { size: 1280 }
     },
     Button: {
+      classNames: buttonClasses,
       defaultProps: {
         radius: 0
       }
     },
     ActionIcon: {
+      classNames: actionIconClasses,
       defaultProps: {
         radius: 0
       }

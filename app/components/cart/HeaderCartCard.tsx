@@ -36,7 +36,7 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
   const { hovered, ref } = useHover();
   const { setCarts, setCartCount } = useHeaderFooterContext();
   const { currentLanguage } = useCurrentLanguage();
-  const [quantity, setQuantity] = useState(cart.quantity ?? 1);
+  const [quantity, setQuantity] = useState(cart?.quantity ?? 1);
   const fetcher = useFetcher();
   const product = (getFirstObjectDto(cart?.products) as ProductCart)
     .product_id as Product;

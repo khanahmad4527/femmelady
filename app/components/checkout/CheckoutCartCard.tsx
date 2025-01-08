@@ -8,16 +8,85 @@ import {
   Text,
   ThemeIcon
 } from '@mantine/core';
-import { Link } from 'react-router';
+import { useHover } from '@mantine/hooks';
+import { useState } from 'react';
+import { Link, useFetcher } from 'react-router';
+import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconMinus, IconPlus, IconX } from '~/icons';
-import { buildLocalizedLink, formatCurrency, getImageUrl } from '~/utils';
+import {
+  Cart,
+  Product,
+  ProductCart,
+  ProductColor,
+  ProductColorTranslation,
+  ProductTranslation
+} from '~/types';
+import {
+  buildLocalizedLink,
+  formatCurrency,
+  getImageUrl,
+  getSingleTranslation
+} from '~/utils';
 
-const CheckoutCartCard = () => {
+const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
-  const p = {};
+  const [quantity, setQuantity] = useState(cart?.quantity ?? 1);
+  const fetcher = useFetcher();
+  const { hovered, ref } = useHover();
+
+  const product = (getFirstObjectDto(cart?.products) as ProductCart)
+    ?.product_id as Product;
+
+  const color = cart?.color as ProductColor;
+
+  const productTranslation = getSingleTranslation(
+    product?.translations
+  ) as ProductTranslation;
+
+  const colorTranslation = getSingleTranslation(
+    color?.translations
+  ) as ProductColorTranslation;
+
+  const fetcherQuantitySubmit = ({
+    intent,
+    quantity = 0
+  }: {
+    intent: 'dec' | 'inc';
+    quantity?: number;
+  }) => {
+    fetcher.submit({ quantity, cartId: cart.id, intent }, { method: 'POST' });
+  };
+
+  const handleQuantityDec = () => {
+    const newQuantity = quantity - 1;
+    fetcherQuantitySubmit({ intent: 'dec', quantity: newQuantity });
+    setQuantity(newQuantity);
+  };
+
+  const handleQuantityInc = () => {
+    const newQuantity = quantity + 1;
+    fetcherQuantitySubmit({ intent: 'inc', quantity: newQuantity });
+    setQuantity(newQuantity);
+  };
+
+  let disabledIncButton = false;
+  let disabledDecButton = false;
+
+  if (fetcher?.formData) {
+    const intent = fetcher?.formData.get('intent');
+
+    if (intent === 'inc') {
+      disabledIncButton = true;
+    }
+
+    if (intent === 'dec') {
+      disabledDecButton = true;
+    }
+  }
+
   return (
     <Card
       pos={'relative'}
@@ -27,31 +96,52 @@ const CheckoutCartCard = () => {
       withBorder
     >
       <Box
+        ref={ref as any}
         component={Link}
         to={buildLocalizedLink({
           currentLanguage,
-          paths: ['products']
+          paths: [
+            'products',
+            productTranslation?.slug ?? product?.id,
+            'reviews'
+          ]
         })}
       >
         <Image
           h={'100%'}
           fit={'contain'}
-          src={getImageUrl({ id: p.image })}
-          alt={p.name}
+          src={getImageUrl({
+            id: (hovered
+              ? cart.feature_image_2
+              : cart?.feature_image_1) as string
+          })}
+          alt={productTranslation?.title!}
           loading={'lazy'}
         />
       </Box>
 
       <Stack>
-        <Text fw={500}>{p.name}</Text>
-        <Text>{p.colors[0].name}</Text>
-        <Text>{formatCurrency({ currentLanguage, value: 1234.56 })}</Text>
+        <Text fw={500}>{productTranslation?.title}</Text>
+        <Text>{colorTranslation?.name}</Text>
+        <Text>
+          {formatCurrency({ currentLanguage, value: product?.price! })}
+        </Text>
         <Group>
-          <ActionIcon color="black">
+          <ActionIcon
+            color="black"
+            onClick={handleQuantityDec}
+            disabled={disabledDecButton || quantity <= 1}
+            loading={disabledDecButton}
+          >
             <IconMinus color={'white'} />
           </ActionIcon>
-          <ThemeIcon color="black">10</ThemeIcon>
-          <ActionIcon color="black">
+          <ThemeIcon color="black">{quantity}</ThemeIcon>
+          <ActionIcon
+            color="black"
+            onClick={handleQuantityInc}
+            disabled={disabledIncButton || quantity >= 10}
+            loading={disabledIncButton}
+          >
             <IconPlus color={'white'} />
           </ActionIcon>
         </Group>
