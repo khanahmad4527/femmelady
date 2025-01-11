@@ -11,11 +11,16 @@ import CheckoutCartCard from '~/components/checkout/CheckoutCartCard';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
-import { formatCurrency, getLanguageCode, parseZodError } from '~/utils';
+import {
+  buildLocalizedLink,
+  formatCurrency,
+  getLanguageCode,
+  parseZodError
+} from '~/utils';
 import { Route } from './+types/checkout';
 import { isAuthenticated } from '~/auth/auth.server';
 import { getCarts } from '~/server/api';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import { mutateCartSchema } from '~/schema';
 import { directus } from '~/server/directus';
 import { deleteItem, updateItem, withToken } from '@directus/sdk';
@@ -144,7 +149,12 @@ const Checkout = () => {
               </Table.Tbody>
             </Table>
 
-            <Button color={'black'} disabled>
+            <Button
+              color={'black'}
+              disabled={!totalPrice}
+              component={Link}
+              to={buildLocalizedLink({ currentLanguage, paths: ['payment'] })}
+            >
               {t('checkout.pay')}
             </Button>
           </Stack>

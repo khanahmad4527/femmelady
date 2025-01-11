@@ -6,6 +6,7 @@ import {
   FORCE_REVALIDATE_MAP,
   PARAMS
 } from '~/constant';
+import selectClasses from '~/styles/Select.module.scss';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
@@ -49,6 +50,7 @@ const ProductsPerPage = () => {
       data={data}
       clearable={false}
       allowDeselect={false}
+      classNames={selectClasses}
     />
   );
 };

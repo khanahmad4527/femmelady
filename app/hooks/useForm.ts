@@ -37,16 +37,8 @@ export const useForm = ({ schema, initialValues }: UseFormProps) => {
     }
   }, [fetcher.data]);
 
-  // Define the `Form` component
-  const Form = ({ children }: { children: React.ReactNode }) => {
-    // Extract the `Form` component from `fetcher` explicitly
-    const FetcherForm = fetcher.Form;
-
-    return <FetcherForm method="POST">{children}</FetcherForm>;
-  };
-
   return {
-    Form,
+    Form: fetcher.Form,
     form, // expose form methods and properties if needed
     errors: form.errors, // expose errors if needed,
     state

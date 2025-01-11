@@ -1,7 +1,13 @@
 import { useForm } from '@mantine/form';
 import { useFetcher, useOutletContext } from 'react-router';
 import { z } from 'zod';
-import { GetParam, OutletContext, TranslationKeys } from './types';
+import {
+  Cart,
+  GetParam,
+  OutletContext,
+  ProductCart,
+  TranslationKeys
+} from './types';
 import {
   BRAND_WITH_ID_MAP,
   CATEGORIES_WITH_ID_MAP,
@@ -16,6 +22,7 @@ import {
 } from './constant';
 import crypto from 'crypto';
 import useHeaderFooterContext from './hooks/useHeaderFooterContext';
+import getFirstObjectDto from './dto/getFirstObjectDto';
 
 export const submitForm = <T extends Record<string, any>>(
   fetcher: ReturnType<typeof useFetcher>,
@@ -546,3 +553,30 @@ export function generateUuidv4(): string {
     return v.toString(16);
   });
 }
+
+export const calculateTotalPrice = ({ carts }: { carts: Cart[] }): number => {
+  if (!carts || !Array.isArray(carts)) {
+    throw new Error('Invalid carts data. Expected an array.');
+  }
+
+  return carts.reduce((total, cart) => {
+    const products = (cart.products || []) as ProductCart[];
+    const cartTotal = products.reduce((productTotal, product) => {
+      const price = getFirstObjectDto(product.product_id)?.price;
+
+      if (price === undefined) {
+        throw new Error(
+          `Price not found for product ID: ${product.product_id}`
+        );
+      }
+
+      return productTotal + price;
+    }, 0);
+
+    if (!cart.quantity) {
+      throw new Error(`Quantity not found for cart ID: ${cart.id}`);
+    }
+
+    return total + cartTotal * cart.quantity;
+  }, 0);
+};

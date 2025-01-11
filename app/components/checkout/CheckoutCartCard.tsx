@@ -9,10 +9,11 @@ import {
   ThemeIcon
 } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useFetcher } from 'react-router';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
 import { IconMinus, IconPlus, IconX } from '~/icons';
 import {
@@ -33,6 +34,7 @@ import {
 const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
+  const { setCarts, setCartCount } = useHeaderFooterContext();
   const [quantity, setQuantity] = useState(cart?.quantity ?? 1);
   const fetcher = useFetcher();
   const { hovered, ref } = useHover();
@@ -91,6 +93,17 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
       disabledCancelButton = true;
     }
   }
+
+  const isCanceling = Boolean(
+    fetcher.data?.success && fetcher?.formData?.get('intent') === 'cancel'
+  );
+
+  useEffect(() => {
+    if (isCanceling) {
+      setCarts(prev => prev.filter(p => p.id !== cart.id));
+      setCartCount(prev => prev - 1);
+    }
+  }, [isCanceling]);
 
   return (
     <Card

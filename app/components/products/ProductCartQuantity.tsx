@@ -2,6 +2,7 @@ import { Select, Stack, Title } from '@mantine/core';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { formatNumber } from '~/utils';
+import selectClasses from '~/styles/Select.module.scss';
 
 const ProductCartQuantity = ({
   disabled,
@@ -28,6 +29,7 @@ const ProductCartQuantity = ({
         allowDeselect={false}
         clearable={false}
         disabled={disabled}
+        classNames={selectClasses}
         size="md"
       />
     </Stack>

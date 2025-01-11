@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { IconSwitch } from '~/icons';
+import selectClasses from '~/styles/Select.module.scss';
 
 const LanguageSwitcher = () => {
   const { currentLanguage } = useCurrentLanguage();
@@ -45,6 +46,7 @@ const LanguageSwitcher = () => {
       allowDeselect={false}
       onChange={handleLanguageChange}
       rightSection={<IconSwitch color="white" size={18} />}
+      classNames={selectClasses}
     />
   );
 };

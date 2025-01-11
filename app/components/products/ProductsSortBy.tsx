@@ -1,6 +1,7 @@
 import { Select } from '@mantine/core';
 import { useOutletContext } from 'react-router';
 import { DEFAULT_PRODUCT_PAGE, DEFAULT_PRODUCT_SORT, PARAMS } from '~/constant';
+import selectClasses from '~/styles/Select.module.scss';
 
 import useTranslation from '~/hooks/useTranslation';
 import { OutletContext } from '~/types';
@@ -31,6 +32,7 @@ const ProductsSortBy = () => {
       onChange={handleFilterChange}
       clearable={false}
       allowDeselect={false}
+      classNames={selectClasses}
     />
   );
 };

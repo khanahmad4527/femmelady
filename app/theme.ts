@@ -5,7 +5,7 @@ import {
   rem
 } from '@mantine/core';
 
-import selectClasses from './styles/Select.module.scss';
+
 import accordionClasses from './styles/Accordion.module.scss';
 import buttonClasses from './styles/Button.module.scss';
 import actionIconClasses from './styles/ActionIcon.module.scss';
@@ -69,7 +69,6 @@ export const theme: MantineThemeOverride = createTheme({
       }
     },
     Select: {
-      classNames: selectClasses,
       defaultProps: {
         withScrollArea: false,
         withCheckIcon: false,

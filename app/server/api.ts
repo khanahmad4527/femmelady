@@ -603,3 +603,30 @@ export const getCarts = async ({
     )
   );
 };
+
+export const getCartsPrice = async ({
+  token,
+  page,
+  limit = 10
+}: {
+  token: string;
+  page: number;
+  limit?: number;
+}) => {
+  return await directus.request(
+    withToken(
+      token,
+      readItems('cart', {
+        fields: [
+          'quantity',
+          {
+            products: [{ product_id: ['id', 'price'] }]
+          }
+        ],
+        page,
+        limit: limit,
+        sort: ['-date_created']
+      })
+    )
+  );
+};

@@ -113,3 +113,30 @@ export const mutateCartSchema = z.object({
     required_error: 'cart.errors.intentRequired'
   })
 });
+
+const months = Array.from({ length: 12 }, (_, index) => {
+  const date = new Date(0, index); // Month 0 = January
+  return date.toLocaleString('default', { month: 'long' }).toLowerCase();
+});
+
+export const paymentFormSchema = z.object({
+  cardNumber: z
+    .string({ required_error: 'Card number is required' })
+    .regex(/^[0-9]{13,19}$/, 'Card number must be 13 to 19 digits'),
+
+  cvv: z
+    .string({ required_error: 'CVV is required' })
+    .regex(/^[0-9]{3,4}$/, 'CVV must be 3 or 4 digits'),
+
+  cardHolderName: z.string(),
+  expiryMonth: z
+    .string({ required_error: 'Expiry month is required' })
+    .refine(value => months.includes(value), 'Invalid expiry month'),
+  expiryYear: z
+    .string({ required_error: 'Expiry year is required' })
+    .regex(/^\d{4}$/, 'Expiry year must be a 4-digit number')
+    .refine(
+      year => parseInt(year) >= new Date().getFullYear(),
+      'Expiry year must not be in the past'
+    )
+});
