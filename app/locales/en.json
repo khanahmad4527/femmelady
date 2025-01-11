@@ -158,6 +158,9 @@
     "total": "Total",
     "pay": "Pay"
   },
+  "payment": {
+    "payAmount": "Pay {amount}"
+  },
   "cart": {
     "errors": {
       "productIdInvalid": "Product ID must be a valid UUID",

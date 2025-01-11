@@ -158,6 +158,9 @@
     "total": "合計",
     "pay": "支払う"
   },
+  "payment": {
+    "payAmount": "{{amount}} を支払う"
+  },
   "cart": {
     "errors": {
       "productIdInvalid": "製品IDは有効なUUIDでなければなりません",

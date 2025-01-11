@@ -25,6 +25,7 @@
     "@react-router/serve": "^7.0.2",
     "embla-carousel-auto-scroll": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
+    "fetch-retry": "^6.0.0",
     "isbot": "^5.1.17",
     "jwt-decode": "^4.0.0",
     "mantine-form-zod-resolver": "^1.1.0",

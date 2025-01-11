@@ -1,18 +1,39 @@
-import { Stack, Group, TextInput, Select, Button } from '@mantine/core';
+import { Stack, Group, TextInput, Select, Button, Text } from '@mantine/core';
 import { useForm } from '~/hooks/useForm';
 import { paymentFormSchema } from '~/schema';
 import classes from '~/styles/Payment.module.scss';
 import { Route } from './+types/payment';
 import { z } from 'zod';
-import { calculateTotalPrice, parseZodError } from '~/utils';
+import { calculateTotalPrice, formatCurrency, parseZodError } from '~/utils';
 import { getCartsPrice } from '~/server/api';
 import { isAuthenticated } from '~/auth/auth.server';
 import { Cart } from '~/types';
 import { directus } from '~/server/directus';
-import { createItem, withToken } from '@directus/sdk';
+import { createItem, deleteItems, withToken } from '@directus/sdk';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import { useLoaderData } from 'react-router';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useTranslation from '~/hooks/useTranslation';
 
-export const action = async ({ request, params }: Route.ActionArgs) => {
+export const loader = async ({ request }: Route.LoaderArgs) => {
+  const { token } = await isAuthenticated(request);
+
+  const carts = (await getCartsPrice({
+    page: 1,
+    limit: 100,
+    token: token!
+  })) as Cart[];
+
+  const totalPrice = calculateTotalPrice({ carts });
+
+  if (!totalPrice) {
+    throw Error(); //TODO:
+  }
+
+  return { totalPrice };
+};
+
+export const action = async ({ request }: Route.ActionArgs) => {
   const { token } = await isAuthenticated(request);
 
   const formData = await request.formData();
@@ -43,18 +64,25 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
         })
       )
     );
+
+    const cartIds = carts.map(c => c.id);
+
+    await directus.request(withToken(token!, deleteItems('cart', cartIds)));
+
+    return { success: true };
   } catch (error) {
     if (error instanceof z.ZodError) {
       return parseZodError(error);
     }
     throw error;
   }
-
-  return {};
 };
 
 const Payment = () => {
-  const { Form, form } = useForm({
+  const { totalPrice } = useLoaderData<typeof loader>();
+  const { currentLanguage } = useCurrentLanguage();
+  const t = useTranslation();
+  const { Form, form, state } = useForm({
     schema: paymentFormSchema,
     initialValues: {
       cardNumber: '9999999999999',
@@ -63,6 +91,11 @@ const Payment = () => {
       expiryMonth: 'march',
       expiryYear: '2027'
     }
+  });
+
+  const amount = formatCurrency({
+    currentLanguage,
+    value: totalPrice
   });
 
   const currentYear = new Date().getFullYear();
@@ -142,8 +175,10 @@ const Payment = () => {
             {...form.getInputProps('cardHolderName')}
           />
 
-          <Button color={'black'} type={'submit'}>
-            Pay 200
+          <Button loading={state !== 'idle'} color={'black'} type={'submit'}>
+            {t('payment.payAmount', {
+              amount
+            })}
           </Button>
         </Stack>
       </Form>

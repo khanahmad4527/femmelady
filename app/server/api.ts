@@ -618,6 +618,7 @@ export const getCartsPrice = async ({
       token,
       readItems('cart', {
         fields: [
+          'id',
           'quantity',
           {
             products: [{ product_id: ['id', 'price'] }]
