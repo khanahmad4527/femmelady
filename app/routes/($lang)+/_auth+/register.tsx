@@ -83,7 +83,7 @@ const register = () => {
         my="lg"
       />
 
-      <Form>
+      <Form method="POST">
         <Stack>
           <Group grow>
             <TextInput

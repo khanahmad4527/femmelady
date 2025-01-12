@@ -103,7 +103,7 @@ const Login = () => {
       />
 
       <Stack>
-        <Form>
+        <Form method="POST">
           <TextInput
             withAsterisk
             name={'email'}

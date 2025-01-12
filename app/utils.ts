@@ -153,7 +153,7 @@ export const formatDate = ({
  * @param number - The number to be formatted.
  * @returns The formatted number string.
  */
-export const formatNumber = ({
+export const formatNumberKmb = ({
   currentLanguage,
   number
 }: {
@@ -169,6 +169,14 @@ export const formatNumber = ({
 
   return formatter.format(number);
 };
+
+export const formatNumber = ({
+  userLocale,
+  value
+}: {
+  userLocale: string;
+  value: number;
+}) => new Intl.NumberFormat(userLocale, { useGrouping: false }).format(value);
 
 export const buildLocalizedLink = ({
   currentLanguage,
@@ -578,4 +586,15 @@ export const calculateTotalPrice = ({ carts }: { carts: Cart[] }): number => {
 
     return total + cartTotal * cart.quantity;
   }, 0);
+};
+
+export const getLocalizedMonth = ({
+  userLocale,
+  monthIndex
+}: {
+  userLocale: string;
+  monthIndex: number;
+}): string => {
+  const date = new Date(2000, monthIndex, 1); // Use a static year and day
+  return new Intl.DateTimeFormat(userLocale, { month: 'long' }).format(date);
 };

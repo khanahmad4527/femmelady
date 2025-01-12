@@ -41,6 +41,7 @@ export const useForm = ({ schema, initialValues }: UseFormProps) => {
     Form: fetcher.Form,
     form, // expose form methods and properties if needed
     errors: form.errors, // expose errors if needed,
-    state
+    state,
+    fetcher
   };
 };

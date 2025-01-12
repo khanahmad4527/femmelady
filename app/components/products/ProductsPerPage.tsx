@@ -12,7 +12,7 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import useUserLocale from '~/hooks/useUserLocale';
 import { OutletContext } from '~/types';
-import { getLimit } from '~/utils';
+import { formatNumber, getLimit } from '~/utils';
 
 const ProductsPerPage = () => {
   const t = useTranslation();
@@ -21,15 +21,13 @@ const ProductsPerPage = () => {
 
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
-  const formatNumber = (value: number) => value.toLocaleString(userLocale);
-
   const limitValue = String(getLimit({ searchParams }));
 
   const data = [
-    { value: '10', label: formatNumber(10) },
-    { value: '20', label: formatNumber(20) },
-    { value: '50', label: formatNumber(50) },
-    { value: '100', label: formatNumber(100) }
+    { value: '10', label: formatNumber({ userLocale, value: 10 }) },
+    { value: '20', label: formatNumber({ userLocale, value: 20 }) },
+    { value: '50', label: formatNumber({ userLocale, value: 50 }) },
+    { value: '100', label: formatNumber({ userLocale, value: 100 }) }
   ];
 
   const handleFilterChange = (value: string | null) => {

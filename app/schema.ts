@@ -121,22 +121,27 @@ const months = Array.from({ length: 12 }, (_, index) => {
 
 export const paymentFormSchema = z.object({
   cardNumber: z
-    .string({ required_error: 'Card number is required' })
-    .regex(/^[0-9]{13,19}$/, 'Card number must be 13 to 19 digits'),
+    .string({ required_error: 'payment.errors.cardNumberRequired' })
+    .regex(/^[0-9]{13,19}$/, 'payment.errors.cardNumberInvalid'),
 
   cvv: z
-    .string({ required_error: 'CVV is required' })
-    .regex(/^[0-9]{3,4}$/, 'CVV must be 3 or 4 digits'),
+    .string({ required_error: 'payment.errors.cvvRequired' })
+    .regex(/^[0-9]{3,4}$/, 'payment.errors.cvvInvalid'),
 
   cardHolderName: z.string(),
+
   expiryMonth: z
-    .string({ required_error: 'Expiry month is required' })
-    .refine(value => months.includes(value), 'Invalid expiry month'),
+    .string({ required_error: 'payment.errors.expiryMonthRequired' })
+    .refine(
+      value => months.includes(value),
+      'payment.errors.expiryMonthInvalid'
+    ),
+
   expiryYear: z
-    .string({ required_error: 'Expiry year is required' })
-    .regex(/^\d{4}$/, 'Expiry year must be a 4-digit number')
+    .string({ required_error: 'payment.errors.expiryYearRequired' })
+    .regex(/^\d{4}$/, 'payment.errors.expiryYearInvalidFormat')
     .refine(
       year => parseInt(year) >= new Date().getFullYear(),
-      'Expiry year must not be in the past'
+      'payment.errors.expiryYearInPast'
     )
 });

@@ -62,6 +62,7 @@ import { z } from 'zod';
 import { useEffect, useState } from 'react';
 import { notifications } from '@mantine/notifications';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
+import useUserLocale from '~/hooks/useUserLocale';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,
@@ -170,6 +171,7 @@ const SingleProduct = () => {
 
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
+  const userLocale = useUserLocale(currentLanguage);
   const fetcher = useFetcher<{
     errors: Record<string, string>[];
     success: boolean;
@@ -397,8 +399,8 @@ const SingleProduct = () => {
         <Group>
           <Text fz={20} fw={500} span>
             {formatNumber({
-              currentLanguage,
-              number: product?.average_rating!
+              userLocale,
+              value: product?.average_rating!
             })}
           </Text>
           <Rating
@@ -414,8 +416,8 @@ const SingleProduct = () => {
             number: (
               <Text span>
                 {formatNumber({
-                  currentLanguage,
-                  number: product?.review_count!
+                  userLocale,
+                  value: product?.review_count!
                 })}
               </Text>
             )

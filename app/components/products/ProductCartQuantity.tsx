@@ -3,6 +3,7 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { formatNumber } from '~/utils';
 import selectClasses from '~/styles/Select.module.scss';
+import useUserLocale from '~/hooks/useUserLocale';
 
 const ProductCartQuantity = ({
   disabled,
@@ -15,6 +16,8 @@ const ProductCartQuantity = ({
 }) => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
+  const userLocale = useUserLocale(currentLanguage);
+
   return (
     <Stack gap={4}>
       <Title order={5}>{t('products.cartQuantity')}</Title>
@@ -22,7 +25,7 @@ const ProductCartQuantity = ({
         name={'quantity'}
         data={Array.from({ length: 10 }, (_, index) => ({
           value: (index + 1).toString(),
-          label: formatNumber({ currentLanguage, number: index + 1 })
+          label: formatNumber({ userLocale, value: index + 1 })
         }))}
         value={quantity}
         onChange={setQuantity}

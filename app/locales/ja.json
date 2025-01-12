@@ -159,7 +159,25 @@
     "pay": "支払う"
   },
   "payment": {
-    "payAmount": "{{amount}} を支払う"
+    "payAmount": "{{amount}} を支払う",
+    "errors": {
+      "cardNumberInvalid": "カード番号は13～19桁で入力してください",
+      "cardNumberRequired": "カード番号は必須です",
+      "cvvInvalid": "CVVは3桁または4桁で入力してください",
+      "cvvRequired": "CVVは必須です",
+      "expiryMonthInvalid": "有効期限の月が無効です",
+      "expiryMonthRequired": "有効期限の月は必須です",
+      "expiryYearInvalidFormat": "有効期限の年は4桁の数字である必要があります",
+      "expiryYearInPast": "有効期限の年は過去であってはなりません",
+      "expiryYearRequired": "有効期限の年は必須です"
+    },
+    "cardNumber": "カード番号",
+    "cvv": "CVV",
+    "expiryMonth": "有効期限の月",
+    "expiryYear": "有効期限の年",
+    "cardHolderName": "カード名義人",
+    "orderPlaced": "注文が完了しました",
+    "orderPlacedSuccess": "注文が正常に完了しました"
   },
   "cart": {
     "errors": {

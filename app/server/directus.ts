@@ -16,7 +16,10 @@ export const directus = createDirectus<Schema>(
         return fetchWithRetry(input, {
           ...init,
           retries: 3, // Number of retry attempts
-          retryDelay: 1000, // Delay between retries (in ms)
+          retryDelay: attempt => {
+            // Custom delays: 1st -> 1s, 2nd -> 2s, 3rd -> 3s
+            return attempt * 1000; // Multiply the attempt number by 1000ms
+          },
           retryOn: (attempt, _, response) => {
             attempts = attempt;
 

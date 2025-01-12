@@ -159,7 +159,25 @@
     "pay": "Pay"
   },
   "payment": {
-    "payAmount": "Pay {amount}"
+    "payAmount": "Pay {amount}",
+    "errors": {
+      "cardNumberInvalid": "Card number must be 13 to 19 digits",
+      "cardNumberRequired": "Card number is required",
+      "cvvInvalid": "CVV must be 3 or 4 digits",
+      "cvvRequired": "CVV is required",
+      "expiryMonthInvalid": "Invalid expiry month",
+      "expiryMonthRequired": "Expiry month is required",
+      "expiryYearInvalidFormat": "Expiry year must be a 4-digit number",
+      "expiryYearInPast": "Expiry year must not be in the past",
+      "expiryYearRequired": "Expiry year is required"
+    },
+    "cardNumber": "Card Number",
+    "cvv": "CVV",
+    "expiryMonth": "Expiry Month",
+    "expiryYear": "Expiry Year",
+    "cardHolderName": "Card Holder Name",
+    "orderPlaced": "Order placed",
+    "orderPlacedSuccess": "Order placed successfully"
   },
   "cart": {
     "errors": {

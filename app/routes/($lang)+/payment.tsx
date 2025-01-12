@@ -1,10 +1,16 @@
-import { Stack, Group, TextInput, Select, Button, Text } from '@mantine/core';
+import { Stack, Group, TextInput, Select, Button, Alert } from '@mantine/core';
 import { useForm } from '~/hooks/useForm';
 import { paymentFormSchema } from '~/schema';
 import classes from '~/styles/Payment.module.scss';
 import { Route } from './+types/payment';
 import { z } from 'zod';
-import { calculateTotalPrice, formatCurrency, parseZodError } from '~/utils';
+import {
+  calculateTotalPrice,
+  formatCurrency,
+  formatNumber,
+  getLocalizedMonth,
+  parseZodError
+} from '~/utils';
 import { getCartsPrice } from '~/server/api';
 import { isAuthenticated } from '~/auth/auth.server';
 import { Cart } from '~/types';
@@ -14,6 +20,9 @@ import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import { useLoaderData } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
+import useUserLocale from '~/hooks/useUserLocale';
+import { useEffect } from 'react';
+import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const { token } = await isAuthenticated(request);
@@ -25,10 +34,6 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   })) as Cart[];
 
   const totalPrice = calculateTotalPrice({ carts });
-
-  if (!totalPrice) {
-    throw Error(); //TODO:
-  }
 
   return { totalPrice };
 };
@@ -82,7 +87,9 @@ const Payment = () => {
   const { totalPrice } = useLoaderData<typeof loader>();
   const { currentLanguage } = useCurrentLanguage();
   const t = useTranslation();
-  const { Form, form, state } = useForm({
+  const userLocale = useUserLocale(currentLanguage);
+  const { setCarts, setCartCount } = useHeaderFooterContext();
+  const { Form, form, state, fetcher } = useForm({
     schema: paymentFormSchema,
     initialValues: {
       cardNumber: '9999999999999',
@@ -112,14 +119,38 @@ const Payment = () => {
     };
   });
 
+  // Effect to clear cart and cart count
+  useEffect(() => {
+    if (fetcher.data?.success) {
+      setCarts([]);
+      setCartCount(0);
+    }
+  }, [fetcher.data?.success]);
+
+  if (fetcher.data?.success) {
+    return (
+      <Alert
+        variant="filled"
+        color="green"
+        radius={0}
+        title={t('payment.orderPlaced')}
+      >
+        {t('payment.orderPlacedSuccess')}
+      </Alert>
+    );
+  }
+
   return (
     <Stack w={{ base: '100%', md: 500 }}>
       <Form method="POST">
         <Stack>
           <Group wrap={'nowrap'} align={'flex-start'} grow>
             <TextInput
-              label="Card Number"
-              placeholder="9999 9999 9999 9999"
+              label={t('payment.cardNumber')}
+              placeholder={formatNumber({
+                userLocale,
+                value: 9999999999999
+              })}
               type="number"
               name={'cardNumber'}
               key={form.key('cardNumber')}
@@ -128,8 +159,11 @@ const Payment = () => {
             />
 
             <TextInput
-              label="Cvv"
-              placeholder="999"
+              label={t('payment.cvv')}
+              placeholder={formatNumber({
+                userLocale,
+                value: 999
+              })}
               type="number"
               name={'cvv'}
               key={form.key('cvv')}
@@ -140,8 +174,8 @@ const Payment = () => {
 
           <Group wrap={'nowrap'} align={'flex-start'} grow>
             <Select
-              label="Expiry Month"
-              placeholder="January"
+              label={t('payment.expiryMonth')}
+              placeholder={getLocalizedMonth({ userLocale, monthIndex: 0 })}
               data={months}
               classNames={{
                 dropdown: classes.dropdown,
@@ -153,8 +187,11 @@ const Payment = () => {
               withAsterisk
             />
             <Select
-              label="Expiry Year"
-              placeholder="2000"
+              label={t('payment.expiryYear')}
+              placeholder={formatNumber({
+                userLocale,
+                value: 2000
+              })}
               data={years}
               classNames={{
                 dropdown: classes.dropdown,
@@ -168,7 +205,7 @@ const Payment = () => {
           </Group>
 
           <TextInput
-            label="Card Holder Name"
+            label={t('payment.cardHolderName')}
             placeholder="John Doe"
             name={'cardHolderName'}
             key={form.key('cardHolderName')}
