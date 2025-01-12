@@ -50,7 +50,9 @@
     "categories": "Categories",
     "scrollToTop": "Scroll to top",
     "errors": "Errors",
-    "loadMore": "Load More"
+    "loadMore": "Load More",
+    "pageNotFound": "Page Not Found",
+    "goToHome": "Go to Home"
   },
   "login": {
     "welcome": "Welcome to Unthaa, login with",
