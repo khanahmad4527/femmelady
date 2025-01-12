@@ -15,3 +15,6 @@ export { default as IconShoppingCart } from './IconShoppingCart';
 export { default as IconLogout } from './IconLogout';
 export { default as IconMinus } from './IconMinus';
 export { default as IconArrowUp } from './IconArrowUp';
+export { default as IconUser } from './IconUser';
+export { default as IconBurger } from './IconBurger';
+export { default as IconTruckDelivery } from './IconTruckDelivery';

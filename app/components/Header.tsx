@@ -24,6 +24,7 @@ import LanguageSwitcher from './LanguageSwitcher';
 import { buildLocalizedLink } from '~/utils';
 import TopSearchBar from './TopSearchBar';
 import CartCount from './cart/CartCount';
+import BurgerMenu from './BurgerMenu';
 
 const Header = () => {
   const [
@@ -207,16 +208,7 @@ const Header = () => {
                 </ActionIcon>
                 <CartCount cartCount={cartCount} locale={locale} />
               </Group>
-              <Tooltip label={t('common.logout')}>
-                <ActionIcon
-                  variant="transparent"
-                  size={'xl'}
-                  component={Link}
-                  to={'/logout'}
-                >
-                  <IconLogout color={'white'} />
-                </ActionIcon>
-              </Tooltip>
+              <BurgerMenu />
             </Flex>
           )}
 
