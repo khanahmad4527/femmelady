@@ -5,7 +5,6 @@ import {
   rem
 } from '@mantine/core';
 
-
 import accordionClasses from './styles/Accordion.module.scss';
 import buttonClasses from './styles/Button.module.scss';
 import actionIconClasses from './styles/ActionIcon.module.scss';
@@ -32,6 +31,7 @@ export const theme: MantineThemeOverride = createTheme({
   },
   primaryShade: 7,
   primaryColor: 'primary',
+  fontFamily: 'Fuzzy Bubbles, sans-serif',
   components: {
     Container: {
       defaultProps: { size: 1280 }

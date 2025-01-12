@@ -66,3 +66,17 @@
   scrollbar-width: thin; /* Makes scrollbar thin */
   scrollbar-color: #aaa #f0f0f0; /* Thumb and track colors */
 }
+
+@font-face {
+  font-family: 'Fuzzy Bubbles';
+  src: url('/fonts/FuzzyBubbles/FuzzyBubbles-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fuzzy Bubbles';
+  src: url('/fonts/FuzzyBubbles/FuzzyBubbles-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
