@@ -169,6 +169,10 @@ const SingleProduct = () => {
       searchParams
     });
 
+  const initialSlide = currentImageSet.findIndex(
+    i => i.directus_files_id === activeImage
+  );
+
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const userLocale = useUserLocale(currentLanguage);
@@ -277,10 +281,24 @@ const SingleProduct = () => {
             slideSize={'33.3333%'}
             dragFree={false}
             align={'start'}
+            initialSlide={initialSlide}
             loop
           >
             {currentImageSet?.map(i => (
-              <Carousel.Slide key={getStringDto(i.directus_files_id)}>
+              <Carousel.Slide
+                key={getStringDto(i.directus_files_id)}
+                style={{
+                  cursor: 'pointer',
+                  border:
+                    i.directus_files_id === activeImage
+                      ? '2px solid black'
+                      : '2px solid transparent',
+                  width: '100%'
+                }}
+                onClick={() => {
+                  handleActiveImage(getStringDto(i.directus_files_id));
+                }}
+              >
                 <Image
                   h={'100%'}
                   fit={'contain'}
