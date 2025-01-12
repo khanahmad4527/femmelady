@@ -52,7 +52,11 @@
     "errors": "Errors",
     "loadMore": "Load More",
     "pageNotFound": "Page Not Found",
-    "goToHome": "Go to Home"
+    "goToHome": "Go to Home",
+    "somethingWentWrong": "Something went wrong",
+    "encounteredError": "We encountered an unexpected error. Please try again",
+    "noDataFoundTitle": "No data found",
+    "noDataFoundMessage": "We couldn't find any data matching your request."
   },
   "login": {
     "welcome": "Welcome to Unthaa, login with",
@@ -202,6 +206,7 @@
       "intentRequired": "Intent is required"
     },
     "notificationTitle": "Item Added to Cart!",
-    "notificationMessage": "Your item has been successfully added to the cart. Happy shopping!"
+    "notificationMessage": "Your item has been successfully added to the cart. Happy shopping!",
+    "cartEmptyMessage": "Browse products"
   }
 }

@@ -19,3 +19,5 @@ export { default as IconUser } from './IconUser';
 export { default as IconBurger } from './IconBurger';
 export { default as IconTruckDelivery } from './IconTruckDelivery';
 export { default as IconMoodSad } from './IconMoodSad';
+export { default as IconInfoTriangle } from './IconInfoTriangle';
+export { default as IconDatabaseExclamation } from './IconDatabaseExclamation';

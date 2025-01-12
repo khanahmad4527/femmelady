@@ -3,34 +3,33 @@ import { Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import useUserLocale from '~/hooks/useUserLocale';
-import { IconMoodSad } from '~/icons';
-import { buildLocalizedLink, formatNumber } from '~/utils';
+import { IconDatabaseExclamation } from '~/icons';
+import { buildLocalizedLink } from '~/utils';
 
-const $ = () => {
+const NoData = () => {
   const { currentLanguage } = useCurrentLanguage();
-  const userLocale = useUserLocale(currentLanguage);
   const t = useTranslation();
 
   return (
     <Stack align={'center'} gap={0}>
       <Box ta={'center'} w={{ base: 100, md: 200 }}>
-        <IconMoodSad size={'100%'} />
+        <IconDatabaseExclamation size={'100%'} />
       </Box>
       <Text ta={'center'} fz={{ base: 50, md: 100 }} fw={500} c={'primary'}>
-        {formatNumber({ userLocale, value: 404 })}
+        {t('common.noDataFoundTitle')}
       </Text>
       <Text ta={'center'} fz={{ base: 25, md: 50 }} c={'primary'}>
-        {t('common.pageNotFound')}
+        {t('common.noDataFoundMessage')}
       </Text>
       <Button
         mt={'md'}
         component={Link}
-        to={buildLocalizedLink({ currentLanguage, paths: [''] })}
+        to={buildLocalizedLink({ currentLanguage, paths: ['products'] })}
       >
-        {t('common.goToHome')}
+        {t('cart.cartEmptyMessage')}
       </Button>
     </Stack>
   );
 };
 
-export default $;
+export default NoData;

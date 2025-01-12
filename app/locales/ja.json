@@ -52,7 +52,11 @@
     "errors": "エラー",
     "loadMore": "さらに読み込む",
     "pageNotFound": "ページが見つかりません",
-    "goToHome": "ホームに戻る"
+    "goToHome": "ホームに戻る",
+    "somethingWentWrong": "問題が発生しました",
+    "encounteredError": "予期しないエラーが発生しました。もう一度お試しください",
+    "noDataFoundTitle": "データが見つかりません",
+    "noDataFoundMessage": "リクエストに一致するデータが見つかりませんでした"
   },
   "login": {
     "welcome": "Unthaaへようこそ、ログインするには",
@@ -202,6 +206,7 @@
       "intentRequired": "インテントは必須です"
     },
     "notificationTitle": "アイテムがカートに追加されました！",
-    "notificationMessage": "アイテムは正常にカートに追加されました。楽しいショッピングを！"
+    "notificationMessage": "アイテムは正常にカートに追加されました。楽しいショッピングを！",
+    "cartEmptyMessage": "商品を見てみる"
   }
 }

@@ -6,13 +6,17 @@ import '@mantine/notifications/styles.css';
 
 import {
   Affix,
+  Box,
   Button,
   ColorSchemeScript,
   MantineProvider,
+  Stack,
+  Text,
   Transition
 } from '@mantine/core';
 import type { LinksFunction, ShouldRevalidateFunction } from 'react-router';
 import {
+  Link,
   Links,
   Meta,
   Outlet,
@@ -30,10 +34,14 @@ import { theme } from './theme';
 import { OutletContext, TranslationKeys } from './types';
 import { Route } from './+types/root';
 import { getExchangeRate } from './server/api';
-import { getUserLocale, shouldRevalidateLogic } from './utils';
+import {
+  buildLocalizedLink,
+  getUserLocale,
+  shouldRevalidateLogic
+} from './utils';
 import useSyncForceRevalidate from './hooks/useSyncForceRevalidate';
 import { useWindowScroll } from '@mantine/hooks';
-import { IconArrowUp } from './icons';
+import { IconArrowUp, IconInfoTriangle } from './icons';
 import useTranslation from './hooks/useTranslation';
 import { NavigationProgress, nprogress } from '@mantine/nprogress';
 import { useEffect } from 'react';
@@ -148,6 +156,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const ErrorBoundaryComponent = () => {
   const { currentLanguage } = useCurrentLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
+  const t = useTranslation();
 
   const locale = getUserLocale(currentLanguage);
 
@@ -162,10 +171,27 @@ const ErrorBoundaryComponent = () => {
   };
   return (
     <Document {...ctx}>
-      <p>Oops! Something went wrong on our end</p>
+      <Stack align={'center'} gap={0}>
+        <Box ta={'center'} w={{ base: 100, md: 200 }}>
+          <IconInfoTriangle size={'100%'} />
+        </Box>
+        <Text ta={'center'} fz={{ base: 25, md: 50 }} fw={500} c={'primary'}>
+          {t('common.somethingWentWrong')}
+        </Text>
+        <Text ta={'center'} fz={{ base: 12, md: 25 }} c={'primary'}>
+          {t('common.encounteredError')}
+        </Text>
+        <Button
+          mt={'md'}
+          component={Link}
+          to={buildLocalizedLink({ currentLanguage, paths: [''] })}
+        >
+          {t('common.goToHome')}
+        </Button>
+      </Stack>
     </Document>
   );
 };
 
-// ErrorBoundary only in production
-export const ErrorBoundary = isProduction && ErrorBoundaryComponent;
+// // ErrorBoundary only in production
+// export const ErrorBoundary = isProduction && ErrorBoundaryComponent;
