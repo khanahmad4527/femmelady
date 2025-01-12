@@ -18,7 +18,7 @@ import { redisClient } from '~/entry.server';
 import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
-import { IconGoogle } from '~/icons';
+import { IconBrandX, IconGoogle } from '~/icons';
 import { loginFormSchema } from '~/schema';
 import classes from '~/styles/Common.module.scss';
 import { OutletContext } from '~/types';
@@ -53,7 +53,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       request,
       userSessionId: sessionId,
       remember: true,
-      redirectTo: `/${lang}/`
+      redirectTo: `/${lang}/?force-validate=global`
     });
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -77,7 +77,7 @@ const Login = () => {
   return (
     <Paper
       component={Stack}
-      radius="md"
+      radius={0}
       p={{ base: 'md', md: 'xl' }}
       w={{ base: '90%', md: '50%' }}
       className={classes.centerDiv}
@@ -91,9 +91,9 @@ const Login = () => {
         <Button radius={'xl'} variant="light" leftSection={<IconGoogle />}>
           Google
         </Button>
-        {/* <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>
+        <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>
           X
-        </Button> */}
+        </Button>
       </Group>
 
       <Divider

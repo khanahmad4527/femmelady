@@ -11,7 +11,7 @@ import { getLang } from '~/utils';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const lang = getLang(params);
-  const redirectTo = `/${lang}`;
+  const redirectTo = `/${lang}?force-validate=global`;
   try {
     const cookie = request.headers.get('Cookie');
     const session = await getSession(cookie);

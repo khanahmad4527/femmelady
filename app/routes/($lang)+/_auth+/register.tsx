@@ -16,7 +16,7 @@ import PasswordComponent from '~/components/PasswordComponent';
 import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
-import { IconGoogle } from '~/icons';
+import { IconBrandX, IconGoogle } from '~/icons';
 import { registerFormSchema } from '~/schema';
 import classes from '~/styles/Common.module.scss';
 import { OutletContext } from '~/types';
@@ -58,7 +58,7 @@ const register = () => {
   return (
     <Paper
       component={Stack}
-      radius="md"
+      radius={0}
       p={{ base: 'md', md: 'xl' }}
       w={{ base: '90%', md: '50%' }}
       className={classes.centerDiv}
@@ -72,9 +72,9 @@ const register = () => {
         <Button radius={'xl'} variant="light" leftSection={<IconGoogle />}>
           Google
         </Button>
-        {/* <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>
+        <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>
           X
-        </Button> */}
+        </Button>
       </Group>
 
       <Divider
