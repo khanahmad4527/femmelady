@@ -51,8 +51,7 @@ export default function Index() {
   const { currentLanguage } = useCurrentLanguage();
 
   const banner = {
-    image:
-      'https://images.ctfassets.net/5de70he6op10/6xJLuqOrwqZVNW4759T9UO/5f34c105c942c8dd336a80ed704cf0bd/686903480-120424_giftingpromo_secondaryhpgbanner_ls_et.jpg?w=2882&q=80&fm=webp'
+    image: ''
   };
 
   const heroImages = [
@@ -100,7 +99,7 @@ export default function Index() {
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
-      <Image src={banner.image} alt={'banner'} mah={200} fit={'contain'} />
+      {/* <Image src={banner.image} alt={'banner'} mah={200} fit={'contain'} /> */}
 
       <Box
         bg="red"
