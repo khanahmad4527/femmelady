@@ -56,7 +56,8 @@
     "somethingWentWrong": "Something went wrong",
     "encounteredError": "We encountered an unexpected error. Please try again",
     "noDataFoundTitle": "No data found",
-    "noDataFoundMessage": "We couldn't find any data matching your request."
+    "noDataFoundMessage": "We couldn't find any data matching your request.",
+    "cartEmptyMessage": "Browse products"
   },
   "login": {
     "welcome": "Welcome to Unthaa, login with",
@@ -207,6 +208,7 @@
     },
     "notificationTitle": "Item Added to Cart!",
     "notificationMessage": "Your item has been successfully added to the cart. Happy shopping!",
-    "cartEmptyMessage": "Browse products"
+    "emptyCartTitle": "Your cart looks empty",
+    "emptyCartMessage": "Start browsing our products and add some to your cart!"
   }
 }

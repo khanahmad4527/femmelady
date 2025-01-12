@@ -23,6 +23,7 @@ import useTranslation from '~/hooks/useTranslation';
 import useUserLocale from '~/hooks/useUserLocale';
 import { useEffect } from 'react';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
+import NoCart from '~/components/cart/NoCart';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const { token } = await isAuthenticated(request);
@@ -35,7 +36,7 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 
   const totalPrice = calculateTotalPrice({ carts });
 
-  return { totalPrice };
+  return { totalPrice, carts };
 };
 
 export const action = async ({ request }: Route.ActionArgs) => {
@@ -84,7 +85,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 };
 
 const Payment = () => {
-  const { totalPrice } = useLoaderData<typeof loader>();
+  const { totalPrice, carts } = useLoaderData<typeof loader>();
   const { currentLanguage } = useCurrentLanguage();
   const t = useTranslation();
   const userLocale = useUserLocale(currentLanguage);
@@ -138,6 +139,10 @@ const Payment = () => {
         {t('payment.orderPlacedSuccess')}
       </Alert>
     );
+  }
+
+  if (!carts?.length) {
+    return <NoCart />;
   }
 
   return (

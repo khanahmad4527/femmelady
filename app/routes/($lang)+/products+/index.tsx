@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Grid,
   Group,
   Pagination,
@@ -9,6 +10,7 @@ import {
 } from '@mantine/core';
 
 import {
+  Link,
   ShouldRevalidateFunction,
   useLoaderData,
   useOutletContext
@@ -26,6 +28,7 @@ import commonClasses from '~/styles/Common.module.scss';
 import { Route } from '../+types/_index';
 import {
   buildAndCompareFilter,
+  buildLocalizedLink,
   getAverageRatingRange,
   getBrandsId,
   getCategoriesId,
@@ -40,6 +43,8 @@ import {
 import { OutletContext } from '~/types';
 import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
 import { useEffect, useState } from 'react';
+import NoData from '~/components/NoData';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   currentUrl,
@@ -82,7 +87,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   // Aim of this function is to save the query made to the get the count of total product
   //Iif the filter is same
   const { isSame, productCount } = buildAndCompareFilter(args, request.url);
-  
+
   const { products, totalProductCount } = await getProducts({
     route: 'products',
     isSame,
@@ -114,7 +119,7 @@ const Products = () => {
     useLoaderData<typeof loader>();
 
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
-
+  const { currentLanguage } = useCurrentLanguage();
   const productCardRefs = useScrollToProduct({ products });
 
   const t = useTranslation();
@@ -161,19 +166,37 @@ const Products = () => {
           <ProductsFilterBy />
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 10 }}>
-          <SimpleGrid cols={{ base: 1, xs: 2, md: 3 }}>
-            {products.map((p, index) => (
-              <div
-                key={p.id}
-                ref={el => {
-                  // No return value here; just assign the element to the ref array
-                  productCardRefs.current[index] = el;
-                }}
-              >
-                <ProductCard {...p} />
-              </div>
-            ))}
-          </SimpleGrid>
+          {!!!products?.length && (
+            <NoData
+              button={
+                <Button
+                  mt={'md'}
+                  component={Link}
+                  to={buildLocalizedLink({
+                    currentLanguage,
+                    paths: ['products?force-validate=global']
+                  })}
+                >
+                  {t('common.cartEmptyMessage')}
+                </Button>
+              }
+            />
+          )}
+          {!!products?.length && (
+            <SimpleGrid cols={{ base: 1, xs: 2, md: 3 }}>
+              {products.map((p, index) => (
+                <div
+                  key={p.id}
+                  ref={el => {
+                    // No return value here; just assign the element to the ref array
+                    productCardRefs.current[index] = el;
+                  }}
+                >
+                  <ProductCard {...p} />
+                </div>
+              ))}
+            </SimpleGrid>
+          )}
         </Grid.Col>
       </Grid>
       <Pagination

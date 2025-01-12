@@ -2,11 +2,10 @@ import { Box, Button, Stack, Text } from '@mantine/core';
 import { Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
-import useUserLocale from '~/hooks/useUserLocale';
 import { IconDatabaseExclamation } from '~/icons';
 import { buildLocalizedLink } from '~/utils';
 
-const NoData = () => {
+const NoCart = () => {
   const { currentLanguage } = useCurrentLanguage();
   const t = useTranslation();
 
@@ -15,21 +14,21 @@ const NoData = () => {
       <Box ta={'center'} w={{ base: 100, md: 200 }}>
         <IconDatabaseExclamation size={'100%'} />
       </Box>
-      <Text ta={'center'} fz={{ base: 50, md: 100 }} fw={500} c={'primary'}>
-        {t('common.noDataFoundTitle')}
+      <Text ta={'center'} fz={{ base: 25, md: 50 }} fw={500} c={'primary'}>
+        {t('cart.emptyCartTitle')}
       </Text>
-      <Text ta={'center'} fz={{ base: 25, md: 50 }} c={'primary'}>
-        {t('common.noDataFoundMessage')}
+      <Text ta={'center'} fz={{ base: 12, md: 25 }} c={'primary'}>
+        {t('cart.emptyCartMessage')}
       </Text>
       <Button
         mt={'md'}
         component={Link}
         to={buildLocalizedLink({ currentLanguage, paths: ['products'] })}
       >
-        {t('cart.cartEmptyMessage')}
+        {t('common.cartEmptyMessage')}
       </Button>
     </Stack>
   );
 };
 
-export default NoData;
+export default NoCart;

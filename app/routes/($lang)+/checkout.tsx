@@ -27,6 +27,7 @@ import { deleteItem, updateItem, withToken } from '@directus/sdk';
 import { z } from 'zod';
 import { ProductCart } from '~/types';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import NoCart from '~/components/cart/NoCart';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -120,11 +121,14 @@ const Checkout = () => {
       <Title m={'auto'}>{t('checkout.shoppingBag')}</Title>
       <Grid>
         <Grid.Col span={{ base: 12, md: 9 }}>
-          <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
-            {carts.map(c => (
-              <CheckoutCartCard key={c.id} cart={c} />
-            ))}
-          </SimpleGrid>
+          {!!!carts?.length && <NoCart />}
+          {!!carts?.length && (
+            <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
+              {carts.map(c => (
+                <CheckoutCartCard key={c.id} cart={c} />
+              ))}
+            </SimpleGrid>
+          )}
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 3 }}>
           <Stack>
