@@ -14,6 +14,7 @@ import {
   Title
 } from '@mantine/core';
 import {
+  MetaFunction,
   Outlet,
   ShouldRevalidateFunction,
   useFetcher,
@@ -63,6 +64,29 @@ import { useEffect, useState } from 'react';
 import { notifications } from '@mantine/notifications';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useUserLocale from '~/hooks/useUserLocale';
+
+export const meta = ({ data }: Route.MetaArgs) => {
+  const product = data?.product;
+
+  const productTranslation = getFirstObjectDto(
+    product?.translations
+  ) as ProductTranslation;
+
+  return [
+    { title: `${productTranslation?.title} - Buy Now on Unthaa` },
+    {
+      description: `Get ${productTranslation?.title} for just $${product.price}. High-quality and trusted by thousands. Available now on Unthaa.`
+    },
+    { 'og:title': `${productTranslation?.title} - Unthaa` },
+    { 'og:description': productTranslation?.description },
+    { 'og:url': `https://www.unthaa.com/product/${product.id}` },
+    {
+      'og:image': getImageUrl({
+        id: product?.feature_image_1 as string
+      })
+    }
+  ];
+};
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,
