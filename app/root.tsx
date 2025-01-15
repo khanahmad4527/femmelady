@@ -14,7 +14,11 @@ import {
   Text,
   Transition
 } from '@mantine/core';
-import type { LinksFunction, ShouldRevalidateFunction } from 'react-router';
+import type {
+  LinksFunction,
+  MetaFunction,
+  ShouldRevalidateFunction
+} from 'react-router';
 import {
   Link,
   Links,
@@ -47,6 +51,11 @@ import { NavigationProgress, nprogress } from '@mantine/nprogress';
 import { useEffect } from 'react';
 import { isAuthenticated } from './auth/auth.server';
 import { Notifications } from '@mantine/notifications';
+import { getMeta } from './meta';
+
+export const meta: MetaFunction = ({ location }) => {
+  return getMeta({ pathname: location.pathname });
+};
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,

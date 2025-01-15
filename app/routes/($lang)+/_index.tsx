@@ -17,8 +17,8 @@ import {
   Text,
   Title
 } from '@mantine/core';
-import type { MetaFunction } from 'react-router';
-import { Link, useLoaderData, useOutletContext } from 'react-router';
+
+import { Link, useLoaderData } from 'react-router';
 
 import HomeProductCarousel from '~/components/products/HomeProductCarousel';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -27,14 +27,6 @@ import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
 import { buildLocalizedLink, getLanguageCode } from '~/utils';
 import { Route } from './+types/_index';
-import { OutletContext } from '~/types';
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: 'New Remix App' },
-    { name: 'description', content: 'Welcome to Remix!' }
-  ];
-};
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
