@@ -294,16 +294,11 @@ const PriceFilter = () => {
   );
 
   const handleSearch = useDebouncedCallback((v: [number, number]) => {
-    if (value[0] !== v[0] || value[1] !== v[1]) {
-      searchParams.set(PARAMS.PRICE, String(v));
-      searchParams.set(
-        PRE_PARAMS.PRICE,
-        String(getPriceRange({ searchParams }))
-      );
-      searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
-      searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
-      setSearchParams(searchParams, { preventScrollReset: true });
-    }
+    searchParams.set(PARAMS.PRICE, String(v));
+    searchParams.set(PRE_PARAMS.PRICE, String(getPriceRange({ searchParams })));
+    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
+    searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+    setSearchParams(searchParams, { preventScrollReset: true });
   }, 1000);
 
   return (
