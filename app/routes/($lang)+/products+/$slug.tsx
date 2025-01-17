@@ -1,12 +1,10 @@
 import { Carousel } from '@mantine/carousel';
 import {
-  Alert,
   Box,
   Button,
   Grid,
   Group,
   Image,
-  List,
   Rating,
   ScrollArea,
   Stack,
@@ -14,7 +12,6 @@ import {
   Title
 } from '@mantine/core';
 import {
-  MetaFunction,
   Outlet,
   ShouldRevalidateFunction,
   useFetcher,
@@ -64,28 +61,12 @@ import { useEffect, useState } from 'react';
 import { notifications } from '@mantine/notifications';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useUserLocale from '~/hooks/useUserLocale';
+import { getSingleProductPageMeta } from '~/meta';
 
-export const meta = ({ data }: Route.MetaArgs) => {
+export const meta = ({ data, location }: Route.MetaArgs) => {
   const product = data?.product;
 
-  const productTranslation = getFirstObjectDto(
-    product?.translations
-  ) as ProductTranslation;
-
-  return [
-    { title: `${productTranslation?.title} - Buy Now on Unthaa` },
-    {
-      description: `Get ${productTranslation?.title} for just $${product.price}. High-quality and trusted by thousands. Available now on Unthaa.`
-    },
-    { 'og:title': `${productTranslation?.title} - Unthaa` },
-    { 'og:description': productTranslation?.description },
-    { 'og:url': `https://www.unthaa.com/product/${product.id}` },
-    {
-      'og:image': getImageUrl({
-        id: product?.feature_image_1 as string
-      })
-    }
-  ];
+  return getSingleProductPageMeta({ pathname: location.pathname, product });
 };
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
