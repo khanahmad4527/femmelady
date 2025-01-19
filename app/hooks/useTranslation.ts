@@ -2,7 +2,6 @@ import { TranslationKeys } from '~/types';
 
 import en from '../locales/en.json';
 import ja from '../locales/ja.json';
-import ar from '../locales/ar.json';
 import useCurrentLanguage from './useCurrentLanguage';
 
 type Translations = {
@@ -11,8 +10,7 @@ type Translations = {
 
 const translations: Translations = {
   en,
-  ja,
-  ar
+  ja
 };
 
 const useTranslation = () => {
