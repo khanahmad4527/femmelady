@@ -75,6 +75,14 @@
     "noSpacesAllowed": "No spaces allowed",
     "includes8Char": "Includes at least 8 characters"
   },
+  "providerLoginFailed": {
+    "title": "Provider Authentication Failed",
+    "description": "An error occurred while authenticating with the provider. The credentials may be invalid, or the authentication request failed. Please try again."
+  },
+  "invalidProvider": {
+    "title": "Invalid Authentication Provider",
+    "description": "The selected authentication provider is not supported. Please choose a different provider to proceed."
+  },
   "authForm": {
     "email": "Email",
     "firstName": "First Name",

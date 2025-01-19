@@ -75,6 +75,14 @@
     "noSpacesAllowed": "スペースは使用できません",
     "includes8Char": "8文字以上を含む"
   },
+  "providerLoginFailed": {
+    "title": "プロバイダー認証に失敗しました",
+    "description": "プロバイダーとの認証中にエラーが発生しました。資格情報が無効であるか、認証リクエストが失敗した可能性があります。もう一度お試しください。"
+  },
+  "invalidProvider": {
+    "title": "無効な認証プロバイダー",
+    "description": "選択した認証プロバイダーはサポートされていません。別のプロバイダーを選択して続行してください。"
+  },
   "authForm": {
     "email": "メールアドレス",
     "firstName": "名",

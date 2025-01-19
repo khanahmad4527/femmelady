@@ -21,3 +21,4 @@ export { default as IconTruckDelivery } from './IconTruckDelivery';
 export { default as IconMoodSad } from './IconMoodSad';
 export { default as IconInfoTriangle } from './IconInfoTriangle';
 export { default as IconDatabaseExclamation } from './IconDatabaseExclamation';
+export { default as IconFacebook } from './IconFacebook';

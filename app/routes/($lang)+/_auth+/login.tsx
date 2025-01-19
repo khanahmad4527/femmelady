@@ -1,4 +1,5 @@
 import {
+  Alert,
   Anchor,
   Button,
   Divider,
@@ -18,7 +19,7 @@ import { redisClient } from '~/entry.server';
 import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
-import { IconBrandX, IconGoogle } from '~/icons';
+import { IconFacebook, IconGoogle } from '~/icons';
 import { loginFormSchema } from '~/schema';
 import classes from '~/styles/Common.module.scss';
 import { OutletContext } from '~/types';
@@ -65,12 +66,16 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
 
 const Login = () => {
   const t = useTranslation();
-  const { currentLanguage, env } = useOutletContext<OutletContext>();
+  const { currentLanguage, env, searchParams } =
+    useOutletContext<OutletContext>();
+
+  const error = searchParams.get('error');
+
   const { Form, form, state } = useForm({
     schema: loginFormSchema,
     initialValues: {
-      email: 'khanahmad4527@gmail.com',
-      password: 'KuibKtc@#2kdon33VcIdMN'
+      email: '',
+      password: ''
     }
   });
 
@@ -93,11 +98,12 @@ const Login = () => {
           variant="light"
           leftSection={<IconGoogle />}
           component={'a'}
-          href={
-            `${env?.DIRECTUS_URL}/auth/login/google?redirect=${env?.APP_URL}/${currentLanguage}/login-via-providers`
-          }
+          href={`${env?.DIRECTUS_URL}/auth/login/google?redirect=${env?.APP_URL}/${currentLanguage}/login-via-providers`}
         >
           Google
+        </Button>
+        <Button radius={'xl'} variant="light" leftSection={<IconFacebook />}>
+          Facebook
         </Button>
       </Group>
 
@@ -144,6 +150,22 @@ const Login = () => {
           </Group>
         </Form>
       </Stack>
+
+      {error && (
+        <Alert
+          variant="light"
+          color="red"
+          title={
+            error === 'invalidProvider'
+              ? t('invalidProvider.title')
+              : t('providerLoginFailed.title')
+          }
+        >
+          {error === 'invalidProvider' && t('invalidProvider.description')}
+          {error === 'providerLoginFailed' &&
+            t('providerLoginFailed.description')}
+        </Alert>
+      )}
     </Paper>
   );
 };

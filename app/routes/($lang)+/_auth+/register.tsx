@@ -1,4 +1,5 @@
 import {
+  Alert,
   Anchor,
   Button,
   Checkbox,
@@ -39,9 +40,11 @@ export const action: ActionFunction = async ({ request, params }) => {
 };
 
 const register = () => {
-  const { currentLanguage } = useOutletContext<OutletContext>();
+  const { currentLanguage, searchParams } = useOutletContext<OutletContext>();
 
   const t = useTranslation();
+
+  const error = searchParams.get('error');
 
   const { Form, form } = useForm({
     schema: registerFormSchema,
@@ -135,6 +138,22 @@ const register = () => {
           </Group>
         </Stack>
       </Form>
+
+      {error && (
+        <Alert
+          variant="light"
+          color="red"
+          title={
+            error === 'invalidProvider'
+              ? t('invalidProvider.title')
+              : t('providerLoginFailed.title')
+          }
+        >
+          {error === 'invalidProvider' && t('invalidProvider.description')}
+          {error === 'providerLoginFailed' &&
+            t('providerLoginFailed.description')}
+        </Alert>
+      )}
     </Paper>
   );
 };
