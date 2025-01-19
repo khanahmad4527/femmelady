@@ -83,7 +83,10 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   const exchangeRate = await getExchangeRate(currentLanguage);
 
-  const env = { DIRECTUS_URL: process.env?.DIRECTUS_URL };
+  const env = {
+    DIRECTUS_URL: process.env?.DIRECTUS_URL,
+    APP_URL: process.env?.APP_URL
+  };
 
   return { isLoggedIn, user, locale, currentLanguage, env, exchangeRate };
 };

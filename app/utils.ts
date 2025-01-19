@@ -243,7 +243,7 @@ export const getLanguageCode = (params: { lang?: string }) => {
  * @param params.lang - The desired language code (e.g., "en", "fr"). Optional.
  * @returns The resolved language code (either the provided `lang` or the fallback language).
  */
-export const getLang = (params: { lang?: string }): string => {
+export const getLang = (params: { lang?: string }) => {
   const lang = params.lang ?? FALL_BACK_LANG;
   return lang as TranslationKeys;
 };
@@ -598,3 +598,30 @@ export const getLocalizedMonth = ({
   const date = new Date(2000, monthIndex, 1); // Use a static year and day
   return new Intl.DateTimeFormat(userLocale, { month: 'long' }).format(date);
 };
+
+/**
+ * Get a specific cookie from the Cookie header
+ * @param request - The incoming request object
+ * @param cookieName - The name of the cookie to retrieve
+ * @returns The value of the cookie or undefined if not found
+ */
+export function getCookie(
+  request: Request,
+  cookieName: string
+): string | undefined {
+  const cookieHeader = request.headers.get('Cookie');
+  if (!cookieHeader) return undefined;
+
+  // Split the cookie header into individual cookies
+  const cookies = cookieHeader.split(';').map(cookie => cookie.trim());
+
+  // Find the cookie with the matching name
+  for (const cookie of cookies) {
+    const [name, ...valueParts] = cookie.split('=');
+    if (name === cookieName) {
+      return valueParts.join('='); // Join in case the value contains '='
+    }
+  }
+
+  return undefined; // Return undefined if the cookie is not found
+}

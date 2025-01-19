@@ -91,6 +91,76 @@ export const getMeta = ({ pathname }: { pathname: string }) => {
             'Create an account on Unthaa to get access to exclusive deals and a personalized shopping journey.'
         },
         { 'og:url': `${baseUrl}/en/register` }
+      ],
+      '/about-us': [
+        { title: 'About Us - Get to Know Unthaa' },
+        {
+          description:
+            'Learn more about Unthaa, our values, mission, and commitment to providing quality products and services.'
+        },
+        { 'og:title': 'About Us - Get to Know Unthaa' },
+        {
+          'og:description':
+            'Discover the story of Unthaa and our dedication to offering the best shopping experience.'
+        },
+        { 'og:url': `${baseUrl}/en/about-us` },
+        { 'og:image': `${baseUrl}/assets/about-us-og-image.jpg` }
+      ],
+      '/contact-us': [
+        { title: 'Contact Us - We’re Here to Help | Unthaa' },
+        {
+          description:
+            'Need assistance? Get in touch with Unthaa’s customer support team for any questions or concerns.'
+        },
+        { 'og:title': 'Contact Us - Unthaa' },
+        {
+          'og:description':
+            'Reach out to Unthaa for support, inquiries, or feedback. We’re here to assist you.'
+        },
+        { 'og:url': `${baseUrl}/en/contact-us` },
+        { 'og:image': `${baseUrl}/assets/contact-us-og-image.jpg` }
+      ],
+      '/privacy-policy': [
+        { title: 'Privacy Policy - Your Data is Safe with Us | Unthaa' },
+        {
+          description:
+            'Read Unthaa’s Privacy Policy to understand how we handle and protect your personal data.'
+        },
+        { 'og:title': 'Privacy Policy - Unthaa' },
+        {
+          'og:description':
+            'At Unthaa, we prioritize your privacy and safeguard your information with industry-standard practices.'
+        },
+        { 'og:url': `${baseUrl}/en/privacy-policy` },
+        { 'og:image': `${baseUrl}/assets/privacy-policy-og-image.jpg` }
+      ],
+      '/terms-of-service': [
+        { title: 'Terms of Service - Your Agreement with Unthaa' },
+        {
+          description:
+            'Read our Terms of Service to learn about the policies and rules that govern your use of Unthaa.'
+        },
+        { 'og:title': 'Terms of Service - Unthaa' },
+        {
+          'og:description':
+            'Understand the terms and conditions that outline your rights and responsibilities on Unthaa.'
+        },
+        { 'og:url': `${baseUrl}/en/terms-of-service` },
+        { 'og:image': `${baseUrl}/assets/terms-of-service-og-image.jpg` }
+      ],
+      '/faq': [
+        { title: 'Frequently Asked Questions - Unthaa' },
+        {
+          description:
+            'Find answers to the most common questions about shopping on Unthaa. Help is just a click away.'
+        },
+        { 'og:title': 'FAQ - Unthaa' },
+        {
+          'og:description':
+            'Get quick solutions to common inquiries about orders, payments, delivery, and more on Unthaa.'
+        },
+        { 'og:url': `${baseUrl}/en/faq` },
+        { 'og:image': `${baseUrl}/assets/faq-og-image.jpg` }
       ]
     },
     ja: {
@@ -174,6 +244,76 @@ export const getMeta = ({ pathname }: { pathname: string }) => {
             'Unthaaにアカウントを作成して、限定のお得な情報やパーソナライズされたショッピング体験にアクセスしてください。'
         },
         { 'og:url': `${baseUrl}/ja/register` }
+      ],
+      '/about-us': [
+        { title: '私たちについて - Unthaaについて知る' },
+        {
+          description:
+            'Unthaaの価値観、使命、そして質の高い商品やサービスを提供する取り組みについて詳しく知ることができます。'
+        },
+        { 'og:title': '私たちについて - Unthaaについて知る' },
+        {
+          'og:description':
+            'Unthaaのストーリーや最高のショッピング体験を提供するための取り組みをご紹介します。'
+        },
+        { 'og:url': `${baseUrl}/ja/about-us` },
+        { 'og:image': `${baseUrl}/assets/about-us-og-image.jpg` }
+      ],
+      '/contact-us': [
+        { title: 'お問い合わせ - Unthaaサポート' },
+        {
+          description:
+            'ご質問やお困りごとがある場合は、Unthaaのカスタマーサポートチームまでお気軽にお問い合わせください。'
+        },
+        { 'og:title': 'お問い合わせ - Unthaa' },
+        {
+          'og:description':
+            'サポートやフィードバック、その他のお問い合わせはUnthaaまで。迅速に対応いたします。'
+        },
+        { 'og:url': `${baseUrl}/ja/contact-us` },
+        { 'og:image': `${baseUrl}/assets/contact-us-og-image.jpg` }
+      ],
+      '/privacy-policy': [
+        { title: 'プライバシーポリシー - Unthaaでのデータ保護' },
+        {
+          description:
+            'Unthaaのプライバシーポリシーをお読みいただき、個人情報の取り扱いや保護方法についてご確認ください。'
+        },
+        { 'og:title': 'プライバシーポリシー - Unthaa' },
+        {
+          'og:description':
+            'Unthaaではお客様のプライバシーを最優先に考え、業界標準の方法で情報を保護しています。'
+        },
+        { 'og:url': `${baseUrl}/ja/privacy-policy` },
+        { 'og:image': `${baseUrl}/assets/privacy-policy-og-image.jpg` }
+      ],
+      '/terms-of-service': [
+        { title: '利用規約 - Unthaaのポリシー' },
+        {
+          description:
+            'Unthaaの利用規約をご確認いただき、当サイトの利用に関するポリシーやルールをご理解ください。'
+        },
+        { 'og:title': '利用規約 - Unthaa' },
+        {
+          'og:description':
+            'Unthaaでの権利や責任を定めた利用規約について詳しくお読みください。'
+        },
+        { 'og:url': `${baseUrl}/ja/terms-of-service` },
+        { 'og:image': `${baseUrl}/assets/terms-of-service-og-image.jpg` }
+      ],
+      '/faq': [
+        { title: 'よくある質問 - Unthaa' },
+        {
+          description:
+            'Unthaaでのお買い物に関するよくある質問をご覧ください。問題解決のヒントはこちらから。'
+        },
+        { 'og:title': 'よくある質問 - Unthaa' },
+        {
+          'og:description':
+            '注文、支払い、配送などに関するよくある質問をUnthaaで簡単に確認できます。'
+        },
+        { 'og:url': `${baseUrl}/ja/faq` },
+        { 'og:image': `${baseUrl}/assets/faq-og-image.jpg` }
       ]
     },
     ar: {

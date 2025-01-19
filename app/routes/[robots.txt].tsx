@@ -4,7 +4,7 @@ export const loader = () => {
           Disallow: /nogooglebot/
           User-agent: *
           Allow: /
-          Sitemap: ${process.env?.DOMAIN}/sitemap.xml`;
+          Sitemap: ${process.env?.APP_DOMAIN}/sitemap.xml`;
 
   return new Response(robotText, {
     status: 200,

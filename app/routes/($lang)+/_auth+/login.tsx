@@ -65,7 +65,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
 
 const Login = () => {
   const t = useTranslation();
-  const { currentLanguage } = useOutletContext<OutletContext>();
+  const { currentLanguage, env } = useOutletContext<OutletContext>();
   const { Form, form, state } = useForm({
     schema: loginFormSchema,
     initialValues: {
@@ -88,11 +88,16 @@ const Login = () => {
       </Text>
 
       <Group grow>
-        <Button radius={'xl'} variant="light" leftSection={<IconGoogle />}>
+        <Button
+          radius={'xl'}
+          variant="light"
+          leftSection={<IconGoogle />}
+          component={'a'}
+          href={
+            `${env?.DIRECTUS_URL}/auth/login/google?redirect=${env?.APP_URL}/${currentLanguage}/login-via-providers`
+          }
+        >
           Google
-        </Button>
-        <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>
-          X
         </Button>
       </Group>
 

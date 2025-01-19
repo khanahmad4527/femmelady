@@ -22,8 +22,7 @@ export const customReadMe = async (token: string) => {
           path: '/users/me',
           method: 'GET',
           params: {
-            fields: ['*'],
-            
+            fields: ['*']
           }
         })
       )
@@ -71,6 +70,7 @@ export const isAuthenticated = async (request: Request) => {
 
   try {
     const key = await getUserSessionKey(request);
+
     if (!key) return notLoggedIn;
 
     // Lock the Redis key
@@ -98,6 +98,7 @@ export const isAuthenticated = async (request: Request) => {
       }
 
       const user = await customReadMe(token);
+
       if (!user?.email) return notLoggedIn;
 
       return { user, token, isLoggedIn: true };

@@ -1,0 +1,134 @@
+{
+  "/": [
+    { "title": "Unthaa - مبني على الجودة، وليس على الكمية" },
+    {
+      "description": "اكتشف Unthaa للحصول على أفضل المنتجات بأسعار مذهلة. متجر شامل عبر الإنترنت لتلبية جميع احتياجاتك."
+    },
+    { "og:title": "Unthaa - مبني على الجودة، وليس على الكمية" },
+    {
+      "og:description": "استكشف أحدث وأفضل المنتجات في Unthaa. تسوّق بثقة!"
+    },
+    { "og:url": "https://unthaa.teicneo.com" },
+    { "og:image": "https://unthaa.teicneo.com/assets/home-og-image.jpg" },
+    { "twitter:card": "summary_large_image" }
+  ],
+  "/products": [
+    { "title": "تصفح المنتجات - Unthaa" },
+    {
+      "description": "تصفح مجموعتنا الواسعة من المنتجات عبر الفئات المختلفة. ستجد كل ما تحتاجه في Unthaa."
+    },
+    { "og:title": "تصفح المنتجات - Unthaa" },
+    {
+      "og:description": "اكتشف مجموعة متنوعة من المنتجات بأسعار لا مثيل لها في Unthaa."
+    },
+    { "og:url": "https://unthaa.teicneo.com/ar/products" },
+    { "og:image": "https://unthaa.teicneo.com/assets/products-og-image.jpg" }
+  ],
+  "/checkout": [
+    { "title": "الدفع - تسوق آمن | Unthaa" },
+    {
+      "description": "أكمل عملية الدفع الخاصة بك على Unthaa بأمان. خيارات دفع سهلة وسريعة وآمنة."
+    },
+    { "og:title": "الدفع - Unthaa" },
+    {
+      "og:description": "أكمل عملية الشراء الخاصة بك بأمان على Unthaa من خلال عملية دفع موثوقة وسريعة."
+    },
+    { "og:url": "https://unthaa.teicneo.com/ar/checkout" }
+  ],
+  "/payment": [
+    { "title": "الدفع - أكمل طلبك | Unthaa" },
+    {
+      "description": "أكمل عملية الدفع بأمان مع Unthaa. خيارات دفع موثوقة لحماية معاملاتك."
+    },
+    { "og:title": "الدفع - Unthaa" },
+    {
+      "og:description": "ادفع بثقة على Unthaa. عملية دفع آمنة وسريعة وسهلة."
+    },
+    { "og:url": "https://unthaa.teicneo.com/ar/payment" }
+  ],
+  "/login": [
+    { "title": "تسجيل الدخول إلى حسابك - Unthaa" },
+    {
+      "description": "قم بتسجيل الدخول إلى حسابك في Unthaa للوصول إلى طلباتك وقائمة الرغبات والتوصيات الشخصية."
+    },
+    { "og:title": "تسجيل الدخول - Unthaa" },
+    {
+      "og:description": "قم بتسجيل الدخول بأمان إلى حسابك في Unthaa واستمر في التسوق بسهولة."
+    },
+    { "og:url": "https://unthaa.teicneo.com/ar/login" }
+  ],
+  "/register": [
+    { "title": "إنشاء حساب - انضم إلى Unthaa" },
+    {
+      "description": "اشترك للحصول على حساب مجاني في Unthaa واستمتع بتجربة تسوق مخصصة."
+    },
+    { "og:title": "إنشاء حساب - Unthaa" },
+    {
+      "og:description": "قم بإنشاء حساب على Unthaa للحصول على عروض حصرية وتجربة تسوق مخصصة."
+    },
+    { "og:url": "https://unthaa.teicneo.com/ar/register" }
+  ],
+  "/about-us": [
+    { "title": "من نحن - تعرف على Unthaa" },
+    {
+      "description": "تعرف على المزيد عن Unthaa، قيمنا، مهمتنا، والتزامنا بتقديم منتجات وخدمات ذات جودة عالية."
+    },
+    { "og:title": "من نحن - تعرف على Unthaa" },
+    {
+      "og:description": "اكتشف قصة Unthaa والتزامنا بتقديم أفضل تجربة تسوق."
+    },
+    { "og:url": "https://unthaa.teicneo.com/ar/about-us" },
+    { "og:image": "https://unthaa.teicneo.com/assets/about-us-og-image.jpg" }
+  ],
+  "/contact-us": [
+    { "title": "اتصل بنا - نحن هنا لمساعدتك | Unthaa" },
+    {
+      "description": "تحتاج إلى مساعدة؟ تواصل مع فريق دعم العملاء في Unthaa لأي استفسارات أو مشكلات."
+    },
+    { "og:title": "اتصل بنا - Unthaa" },
+    {
+      "og:description": "تواصل مع Unthaa للحصول على الدعم أو الاستفسارات أو التعليقات. نحن هنا لمساعدتك."
+    },
+    { "og:url": "https://unthaa.teicneo.com/ar/contact-us" },
+    { "og:image": "https://unthaa.teicneo.com/assets/contact-us-og-image.jpg" }
+  ],
+  "/privacy-policy": [
+    { "title": "سياسة الخصوصية - بياناتك في أمان معنا | Unthaa" },
+    {
+      "description": "اقرأ سياسة الخصوصية الخاصة بـ Unthaa لفهم كيفية التعامل مع بياناتك الشخصية وحمايتها."
+    },
+    { "og:title": "سياسة الخصوصية - Unthaa" },
+    {
+      "og:description": "في Unthaa، نعطي الأولوية لخصوصيتك ونحمي معلوماتك وفقًا لأعلى المعايير."
+    },
+    { "og:url": "https://unthaa.teicneo.com/ar/privacy-policy" },
+    {
+      "og:image": "https://unthaa.teicneo.com/assets/privacy-policy-og-image.jpg"
+    }
+  ],
+  "/terms-of-service": [
+    { "title": "شروط الخدمة - اتفاقك مع Unthaa" },
+    {
+      "description": "اقرأ شروط الخدمة لفهم السياسات والقواعد التي تحكم استخدامك لـ Unthaa."
+    },
+    { "og:title": "شروط الخدمة - Unthaa" },
+    {
+      "og:description": "افهم الشروط والأحكام التي تحدد حقوقك ومسؤولياتك على Unthaa."
+    },
+    { "og:url": "https://unthaa.teicneo.com/ar/terms-of-service" },
+    {
+      "og:image": "https://unthaa.teicneo.com/assets/terms-of-service-og-image.jpg"
+    }
+  ],
+  "/faq": [
+    { "title": "الأسئلة الشائعة - Unthaa" },
+    {
+      "description": "اعثر على إجابات لأكثر الأسئلة شيوعًا حول التسوق في Unthaa. المساعدة على بعد نقرة واحدة."
+    },
+    { "og:title": "الأسئلة الشائعة - Unthaa" },
+    {
+      "og:description": "احصل على حلول سريعة للاستفسارات الشائعة حول الطلبات، المدفوعات، التوصيل، والمزيد في Unthaa."
+    },
+    { "og:url": "https://unthaa.teicneo.com/ar/faq" }
+  ]
+}
