@@ -1,6 +1,11 @@
 import { Select } from '@mantine/core';
 import { useOutletContext } from 'react-router';
-import { DEFAULT_PRODUCT_PAGE, DEFAULT_PRODUCT_SORT, PARAMS } from '~/constant';
+import {
+  DEFAULT_PRODUCT_PAGE,
+  DEFAULT_PRODUCT_SORT,
+  FORCE_REVALIDATE_MAP,
+  PARAMS
+} from '~/constant';
 import selectClasses from '~/styles/Select.module.scss';
 
 import useTranslation from '~/hooks/useTranslation';
@@ -12,8 +17,9 @@ const ProductsSortBy = () => {
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
   const handleFilterChange = (value: string | null) => {
-    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE));
+    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
     searchParams.set(PARAMS.SORT, value ?? DEFAULT_PRODUCT_SORT);
+    searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
