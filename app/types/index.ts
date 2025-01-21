@@ -98,3 +98,5 @@ export type ExtendedFAQTranslation = Omit<FAQTranslation, 'faqs'> & {
 export type Cart = components['schemas']['ItemsCart'];
 
 export type ProductCart = components['schemas']['ItemsProductCart'];
+
+export type Translation = (key: string, replacements?: Record<string, React.ReactNode>) => string

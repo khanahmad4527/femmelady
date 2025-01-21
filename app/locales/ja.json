@@ -57,7 +57,9 @@
     "encounteredError": "予期しないエラーが発生しました。もう一度お試しください",
     "noDataFoundTitle": "データが見つかりません",
     "noDataFoundMessage": "リクエストに一致するデータが見つかりませんでした",
-    "cartEmptyMessage": "商品を見てみる"
+    "cartEmptyMessage": "商品を見てみる",
+    "google": "グーグル",
+    "facebook": "フェイスブック"
   },
   "login": {
     "welcome": "Unthaaへようこそ、ログインするには",
@@ -82,6 +84,14 @@
   "invalidProvider": {
     "title": "無効な認証プロバイダー",
     "description": "選択した認証プロバイダーはサポートされていません。別のプロバイダーを選択して続行してください。"
+  },
+  "loginError": {
+    "title": "無効な認証情報",
+    "description": "認証情報を確認して、再度お試しください。"
+  },
+  "registerError": {
+    "title": "登録に失敗しました",
+    "description": "登録に失敗しました。もう一度お試しください。"
   },
   "authForm": {
     "email": "メールアドレス",

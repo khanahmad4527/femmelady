@@ -146,6 +146,7 @@ export default function App() {
       <NavigationProgress color="primary.3" />
       <Outlet context={ctx} />
 
+      {/* This shows the scroll to top button */}
       <Affix position={{ bottom: 20, right: 20 }}>
         <Transition transition="slide-up" mounted={scroll.y > 0}>
           {transitionStyles => (
@@ -153,6 +154,7 @@ export default function App() {
               leftSection={<IconArrowUp />}
               style={transitionStyles}
               onClick={() => scrollTo({ y: 0 })}
+              color={'primary.4'}
             >
               {t('common.scrollToTop')}
             </Button>
@@ -204,6 +206,8 @@ const ErrorBoundaryComponent = () => {
     </Document>
   );
 };
+
+// export const ErrorBoundary = ErrorBoundaryComponent;
 
 // // ErrorBoundary only in production
 // export const ErrorBoundary = isProduction && ErrorBoundaryComponent;

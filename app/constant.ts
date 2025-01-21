@@ -1,9 +1,7 @@
-export const ROUTES_WITHOUT_HEADER_AND_FOOTER = new Set([
-  'login',
-  'register',
-  'change-password',
-  'reset-password'
-]);
+export const ROUTES_WITHOUT_HEADER_AND_FOOTER = new Set(['/some']); // 'login',
+// 'register',
+// 'change-password',
+// 'reset-password'
 
 export const FALL_BACK_LANG = 'en';
 

@@ -86,10 +86,15 @@ const Password = ({
             label={t('authForm.password')}
             name="password"
             placeholder="********"
-            value={value}
+            value={form.values.password} // Use form's value
             key={form.key('password')}
-            {...form.getInputProps('password')}
-            onChange={event => setValue(event.currentTarget.value)}
+            {...form.getInputProps('password')} // Spread other form props
+            onChange={event => {
+              const inputValue = event.currentTarget.value;
+              form.setFieldValue('password', inputValue); // Update the form's value
+              setValue(inputValue); // Update the local state for strength calculation
+            }}
+            withAsterisk
           />
         </div>
       </Popover.Target>

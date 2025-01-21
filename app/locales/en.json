@@ -57,7 +57,9 @@
     "encounteredError": "We encountered an unexpected error. Please try again",
     "noDataFoundTitle": "No data found",
     "noDataFoundMessage": "We couldn't find any data matching your request.",
-    "cartEmptyMessage": "Browse products"
+    "cartEmptyMessage": "Browse products",
+    "google": "Google",
+    "facebook": "Facebook"
   },
   "login": {
     "welcome": "Welcome to Unthaa, login with",
@@ -82,6 +84,14 @@
   "invalidProvider": {
     "title": "Invalid Authentication Provider",
     "description": "The selected authentication provider is not supported. Please choose a different provider to proceed."
+  },
+  "loginError": {
+    "title": "Invalid credentials",
+    "description": "Please check your credentials and try again."
+  },
+  "registerError": {
+    "title": "Registration failed",
+    "description": "Registration failed. Please try again."
   },
   "authForm": {
     "email": "Email",

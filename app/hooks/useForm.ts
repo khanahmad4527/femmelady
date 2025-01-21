@@ -1,5 +1,5 @@
 import { useForm as useFormMantine } from '@mantine/form';
-import { useFetcher } from 'react-router';
+import { FetcherWithComponents, useFetcher } from 'react-router';
 import { useEffect } from 'react';
 import { z } from 'zod';
 import useTranslation from '~/hooks/useTranslation';
@@ -10,9 +10,12 @@ type UseFormProps = {
   initialValues: Record<string, any>;
 };
 
-export const useForm = ({ schema, initialValues }: UseFormProps) => {
+export const useForm = <T = Record<string, string>>({
+  schema,
+  initialValues
+}: UseFormProps) => {
   const t = useTranslation();
-  const fetcher = useFetcher();
+  const fetcher = useFetcher(); // Use the extended type
 
   const state = fetcher.state;
 
@@ -33,7 +36,8 @@ export const useForm = ({ schema, initialValues }: UseFormProps) => {
 
   useEffect(() => {
     if (fetcher.data?.errors) {
-      form.setErrors(translateErrors(fetcher.data?.errors, t));
+      form.setErrors(translateErrors(fetcher.data.errors, t));
+      console.log('first');
     }
   }, [fetcher.data]);
 
@@ -42,6 +46,6 @@ export const useForm = ({ schema, initialValues }: UseFormProps) => {
     form, // expose form methods and properties if needed
     errors: form.errors, // expose errors if needed,
     state,
-    fetcher
+    fetcher: fetcher as FetcherWithComponents<T>
   };
 };

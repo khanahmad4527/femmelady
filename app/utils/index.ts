@@ -7,7 +7,7 @@ import {
   OutletContext,
   ProductCart,
   TranslationKeys
-} from './types';
+} from '../types';
 import {
   BRAND_WITH_ID_MAP,
   CATEGORIES_WITH_ID_MAP,
@@ -19,9 +19,9 @@ import {
   LANGUAGE_TO_LOCALE_LANGUAGE,
   LOCALE_TO_CURRENCY,
   PARAMS
-} from './constant';
-import useHeaderFooterContext from './hooks/useHeaderFooterContext';
-import getFirstObjectDto from './dto/getFirstObjectDto';
+} from '../constant';
+import useHeaderFooterContext from '../hooks/useHeaderFooterContext';
+import getFirstObjectDto from '../dto/getFirstObjectDto';
 
 export const submitForm = <T extends Record<string, any>>(
   fetcher: ReturnType<typeof useFetcher>,

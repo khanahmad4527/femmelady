@@ -2,6 +2,7 @@ import {
   Alert,
   Anchor,
   Button,
+  Center,
   Divider,
   Group,
   Paper,
@@ -12,7 +13,6 @@ import {
 } from '@mantine/core';
 
 import { Link, useOutletContext } from 'react-router';
-import { z } from 'zod';
 import { login } from '~/auth/auth.server';
 import { createUserSession } from '~/auth/session.server';
 import { redisClient } from '~/entry.server';
@@ -21,15 +21,12 @@ import { useForm } from '~/hooks/useForm';
 import useTranslation from '~/hooks/useTranslation';
 import { IconFacebook, IconGoogle } from '~/icons';
 import { loginFormSchema } from '~/schema';
-import classes from '~/styles/Common.module.scss';
 import { OutletContext } from '~/types';
-import {
-  buildLocalizedLink,
-  generateUuidv4,
-  getLang,
-  parseZodError
-} from '~/utils';
+import { buildLocalizedLink, generateUuidv4, getLang } from '~/utils';
 import { Route } from './+types/login';
+import InvalidProvider from '~/components/error/InvalidProvider';
+import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
+import { handleError } from '~/utils/error';
 
 export const action = async ({ request, params }: Route.ActionArgs) => {
   const lang = getLang(params);
@@ -57,10 +54,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       redirectTo: `/${lang}/?force-validate=global`
     });
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return parseZodError(error);
-    }
-    throw error;
+    return handleError({ error, route: 'login' });
   }
 };
 
@@ -71,7 +65,10 @@ const Login = () => {
 
   const error = searchParams.get('error');
 
-  const { Form, form, state } = useForm({
+  const { Form, form, state, fetcher } = useForm<{
+    title: string;
+    description: string;
+  }>({
     schema: loginFormSchema,
     initialValues: {
       email: '',
@@ -80,93 +77,88 @@ const Login = () => {
   });
 
   return (
-    <Paper
-      component={Stack}
-      radius={0}
-      p={{ base: 'md', md: 'xl' }}
-      w={{ base: '90%', md: '50%' }}
-      className={classes.centerDiv}
-      withBorder
-    >
-      <Text size="lg" fw={500}>
-        {t('login.welcome')}
-      </Text>
+    <Center>
+      <Paper
+        component={Stack}
+        radius={0}
+        p={{ base: 'md', md: 'xl' }}
+        w={{ base: '90%', md: '50%' }}
+        withBorder
+      >
+        <Text size="lg" fw={500}>
+          {t('login.welcome')}
+        </Text>
 
-      <Group grow>
-        <Button
-          radius={'xl'}
-          variant="light"
-          leftSection={<IconGoogle />}
-          component={'a'}
-          href={`${env?.DIRECTUS_URL}/auth/login/google?redirect=${env?.APP_URL}/${currentLanguage}/login-via-providers`}
-        >
-          Google
-        </Button>
-        <Button radius={'xl'} variant="light" leftSection={<IconFacebook />}>
-          Facebook
-        </Button>
-      </Group>
+        <Group grow>
+          <Button
+            radius={'xl'}
+            variant="light"
+            leftSection={<IconGoogle />}
+            component={'a'}
+            href={`${env?.DIRECTUS_URL}/auth/login/google?redirect=${env?.APP_URL}/${currentLanguage}/login-via-providers?from=login`}
+          >
+            {t('common.google')}
+          </Button>
+          <Button radius={'xl'} variant="light" leftSection={<IconFacebook />}>
+            {t('common.facebook')}
+          </Button>
+        </Group>
 
-      <Divider
-        label={t('authForm.continueWithEmail')}
-        labelPosition="center"
-        my="lg"
-      />
+        <Divider
+          label={t('authForm.continueWithEmail')}
+          labelPosition="center"
+          my="lg"
+        />
 
-      <Stack>
-        <Form method="POST">
-          <TextInput
-            withAsterisk
-            name={'email'}
-            label={t('authForm.email')}
-            placeholder={'john@gmail.com'}
-            key={form.key('email')}
-            {...form.getInputProps('email')}
-          />
+        <Stack>
+          <Form method="POST">
+            <TextInput
+              withAsterisk
+              name={'email'}
+              label={t('authForm.email')}
+              placeholder={'john@gmail.com'}
+              key={form.key('email')}
+              {...form.getInputProps('email')}
+            />
 
-          <PasswordInput
-            withAsterisk
-            radius={0}
-            label={t('authForm.password')}
-            name={'password'}
-            placeholder="********"
-            key={form.key('password')}
-            {...form.getInputProps('password')}
-          />
+            <PasswordInput
+              withAsterisk
+              radius={0}
+              label={t('authForm.password')}
+              name={'password'}
+              placeholder="********"
+              key={form.key('password')}
+              {...form.getInputProps('password')}
+            />
 
-          <Group mt={'md'} justify="space-between">
-            <Anchor
-              component={Link}
-              to={buildLocalizedLink({
-                currentLanguage,
-                paths: ['register']
-              })}
-            >
-              {t('login.accountRegister')}
-            </Anchor>
-            <Button type="submit" loading={state === 'submitting'}>
-              {t('login.login')}
-            </Button>
-          </Group>
-        </Form>
-      </Stack>
+            <Group mt={'md'} justify="space-between">
+              <Anchor
+                component={Link}
+                to={buildLocalizedLink({
+                  currentLanguage,
+                  paths: ['register']
+                })}
+              >
+                {t('login.accountRegister')}
+              </Anchor>
+              <Button type="submit" loading={state === 'submitting'}>
+                {t('login.login')}
+              </Button>
+            </Group>
+          </Form>
+        </Stack>
 
-      {error && (
-        <Alert
-          variant="light"
-          color="red"
-          title={
-            error === 'invalidProvider'
-              ? t('invalidProvider.title')
-              : t('providerLoginFailed.title')
-          }
-        >
-          {error === 'invalidProvider' && t('invalidProvider.description')}
-          {error === 'providerLoginFailed' &&
-            t('providerLoginFailed.description')}
-        </Alert>
-      )}
-    </Paper>
+        {fetcher.data?.title && (
+          <Alert variant="light" color="red" title={t(fetcher.data?.title)}>
+            {t(fetcher.data?.description)}
+          </Alert>
+        )}
+
+        {error === 'invalidProvider' && <InvalidProvider t={t} />}
+
+        {error === 'providerLoginFailed' && <ProviderLoginFailed t={t} />}
+      </Paper>
+    </Center>
   );
 };
 

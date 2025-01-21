@@ -1,0 +1,44 @@
+import { z } from 'zod';
+import { parseZodError } from '.';
+
+export const handleError = ({
+  error,
+  route
+}: {
+  error: unknown;
+  route?: 'register' | 'login';
+}) => {
+  // Handle Zod validation errors
+  if (error instanceof z.ZodError) {
+    return parseZodError(error);
+  }
+
+  //   // Handle errors with a `response` property (e.g., HTTP errors)
+  if (error && typeof error === 'object' && 'response' in error) {
+    const response = (error as any).response;
+
+    // Handle specific HTTP status codes
+    if (response?.status === 401) {
+      return {
+        title: 'loginError.title',
+        description: 'loginError.description'
+      };
+    }
+
+    if (response?.status === 400 && route === 'register') {
+      return {
+        title: 'registerError.title',
+        description: 'registerError.description'
+      };
+    }
+
+    // You can add more status-specific handlers here if needed
+    // e.g., 404, 500, etc.
+  }
+
+  // Fallback for unhandled errors
+  return {
+    title: 'common.somethingWentWrong',
+    description: 'common.encounteredError'
+  };
+};

@@ -59,7 +59,7 @@ const InfiniteCartLoader = ({ close }: { close: () => void }) => {
   return (
     <Stack>
       {carts.map(c => (
-        <HeaderCartCard key={c.id} cart={c} close={close}/>
+        <HeaderCartCard key={c.id} cart={c} close={close} />
       ))}
 
       {fetcher.state === 'loading' &&

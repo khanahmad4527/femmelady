@@ -10,7 +10,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const url = new URL(request.url);
   const lang = getLang(params);
   const failureReason = url.searchParams.get('reason'); // This comes from Directus
-  const fromPage = url.searchParams.get('from'); // We send from login and register page
+  const fromPage = url.searchParams.get('from'); // We send from login and register page, to redirect user to same page they come from
   const redirectTo =
     fromPage === 'login' ? `/${lang}/login` : `/${lang}/register`;
   try {

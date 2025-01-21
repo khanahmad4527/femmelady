@@ -1,7 +1,9 @@
+import { createUser } from '@directus/sdk';
 import {
   Alert,
   Anchor,
   Button,
+  Center,
   Checkbox,
   Divider,
   Group,
@@ -11,42 +13,55 @@ import {
   TextInput
 } from '@mantine/core';
 
-import { ActionFunction, Link, useOutletContext } from 'react-router';
-import { z } from 'zod';
+import { ActionFunction, Link, redirect, useOutletContext } from 'react-router';
+import InvalidProvider from '~/components/error/InvalidProvider';
+import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
 import PasswordComponent from '~/components/PasswordComponent';
 import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
-import { IconBrandX, IconGoogle } from '~/icons';
+import { IconFacebook, IconGoogle } from '~/icons';
 import { registerFormSchema } from '~/schema';
-import classes from '~/styles/Common.module.scss';
+import { directus } from '~/server/directus';
 import { OutletContext } from '~/types';
-import { buildLocalizedLink, parseZodError } from '~/utils';
+import { buildLocalizedLink, getLang } from '~/utils';
+import { handleError } from '~/utils/error';
 
 export const action: ActionFunction = async ({ request, params }) => {
+  const lang = getLang(params);
   const formData = await request.formData();
 
   const data = Object.fromEntries(formData);
+
   try {
-    registerFormSchema.parse(data);
-    return { success: true };
+    const validatedData = registerFormSchema.parse(data);
+
+    await directus.request(
+      createUser({
+        email: validatedData.email,
+        first_name: validatedData.first_name,
+        last_name: validatedData?.last_name,
+        password: validatedData.password
+      })
+    );
+    return redirect(`/${lang}/login`);
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      console.log(error);
-      return parseZodError(error);
-    }
-    throw error;
+    return handleError({ error, route: 'register' });
   }
 };
 
 const register = () => {
-  const { currentLanguage, searchParams } = useOutletContext<OutletContext>();
+  const { currentLanguage, searchParams, env } =
+    useOutletContext<OutletContext>();
 
   const t = useTranslation();
 
   const error = searchParams.get('error');
 
-  const { Form, form } = useForm({
+  const { Form, form, state, fetcher } = useForm<{
+    title: string;
+    description: string;
+  }>({
     schema: registerFormSchema,
     initialValues: {
       email: '',
@@ -59,102 +74,106 @@ const register = () => {
   });
 
   return (
-    <Paper
-      component={Stack}
-      radius={0}
-      p={{ base: 'md', md: 'xl' }}
-      w={{ base: '90%', md: '50%' }}
-      className={classes.centerDiv}
-      withBorder
-    >
-      <Text size="lg" fw={500}>
-        {t('register.welcome')}
-      </Text>
+    <Center>
+      <Paper
+        component={Stack}
+        radius={0}
+        p={{ base: 'md', md: 'xl' }}
+        w={{ base: '90%', md: '50%' }}
+        withBorder
+      >
+        <Text size="lg" fw={500}>
+          {t('register.welcome')}
+        </Text>
 
-      <Group grow>
-        <Button radius={'xl'} variant="light" leftSection={<IconGoogle />}>
-          Google
-        </Button>
-        <Button radius={'xl'} variant="light" leftSection={<IconBrandX />}>
-          X
-        </Button>
-      </Group>
+        <Group grow>
+          <Button
+            radius={'xl'}
+            variant="light"
+            leftSection={<IconGoogle />}
+            component={'a'}
+            href={`${env?.DIRECTUS_URL}/auth/login/google?redirect=${env?.APP_URL}/${currentLanguage}/login-via-providers?from=register`}
+          >
+            {t('common.google')}
+          </Button>
+          <Button radius={'xl'} variant="light" leftSection={<IconFacebook />}>
+            {t('common.facebook')}
+          </Button>
+        </Group>
 
-      <Divider
-        label={t('authForm.continueWithEmail')}
-        labelPosition="center"
-        my="lg"
-      />
+        <Divider
+          label={t('authForm.continueWithEmail')}
+          labelPosition="center"
+          my="lg"
+        />
 
-      <Form method="POST">
-        <Stack>
-          <Group grow>
+        <Form method="POST">
+          <Stack>
+            <Group align={'start'} grow>
+              <TextInput
+                withAsterisk
+                label={t('authForm.firstName')}
+                name="first_name"
+                placeholder="John"
+                key={form.key('first_name')}
+                {...form.getInputProps('first_name')}
+              />
+
+              <TextInput
+                label={t('authForm.lastName')}
+                name="last_name"
+                placeholder="Doe"
+                key={form.key('last_name')}
+                {...form.getInputProps('last_name')}
+              />
+            </Group>
             <TextInput
               withAsterisk
-              label={t('authForm.firstName')}
-              name="first_name"
-              placeholder="John"
-              key={form.key('first_name')}
-              {...form.getInputProps('first_name')}
+              label={t('authForm.email')}
+              name="email"
+              placeholder="jhon@email.com"
+              key={form.key('email')}
+              {...form.getInputProps('email')}
             />
 
-            <TextInput
-              label={t('authForm.lastName')}
-              name="last_name"
-              placeholder="Doe"
-              key={form.key('last_name')}
-              {...form.getInputProps('last_name')}
+            <PasswordComponent form={form} />
+
+            <Checkbox
+              name="terms"
+              label={t('authForm.terms')}
+              key={form.key('terms')}
+              {...form.getInputProps('terms', { type: 'checkbox' })}
             />
-          </Group>
-          <TextInput
-            withAsterisk
-            label={t('authForm.email')}
-            name="email"
-            placeholder="jhon@email.com"
-            key={form.key('email')}
-            {...form.getInputProps('email')}
-          />
 
-          <PasswordComponent form={form} />
+            <Group justify="space-between">
+              <Anchor
+                component={Link}
+                to={buildLocalizedLink({
+                  currentLanguage,
+                  paths: ['login']
+                })}
+              >
+                {t('register.accountLogin')}
+              </Anchor>
+              <Button type="submit" loading={state !== 'idle'}>
+                {' '}
+                {t('register.register')}
+              </Button>
+            </Group>
+          </Stack>
+        </Form>
 
-          <Checkbox
-            name="terms"
-            label={t('authForm.terms')}
-            key={form.key('terms')}
-            {...form.getInputProps('terms', { type: 'checkbox' })}
-          />
+        {fetcher.data?.title && (
+          <Alert variant="light" color="red" title={t(fetcher.data?.title)}>
+            {t(fetcher.data?.description)}
+          </Alert>
+        )}
 
-          <Group justify="space-between">
-            <Anchor
-              component={Link}
-              to={buildLocalizedLink({
-                currentLanguage,
-                paths: ['login']
-              })}
-            >
-              {t('register.accountLogin')}
-            </Anchor>
-            <Button type="submit"> {t('register.register')}</Button>
-          </Group>
-        </Stack>
-      </Form>
+        {error === 'invalidProvider' && <InvalidProvider t={t} />}
 
-      {error && (
-        <Alert
-          variant="light"
-          color="red"
-          title={
-            error === 'invalidProvider'
-              ? t('invalidProvider.title')
-              : t('providerLoginFailed.title')
-          }
-        >
-          {error === 'invalidProvider' && t('invalidProvider.description')}
-          {error === 'providerLoginFailed' &&
-            t('providerLoginFailed.description')}
-        </Alert>
-      )}
-    </Paper>
+        {error === 'providerLoginFailed' && <ProviderLoginFailed t={t} />}
+      </Paper>
+    </Center>
   );
 };
 
