@@ -47,6 +47,7 @@ const LanguageSwitcher = () => {
       onChange={handleLanguageChange}
       rightSection={<IconSwitch color="white" size={18} />}
       classNames={selectClasses}
+      rightSectionPointerEvents="none"
     />
   );
 };
