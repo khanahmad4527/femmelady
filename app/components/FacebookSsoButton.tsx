@@ -26,7 +26,7 @@ const FacebookSsoButton = () => {
       withBorder
     >
       <Center inline>
-        <IconFacebook size={20} />
+        <IconFacebook size={30} />
 
         <Text ml={10} ff={'Helvetica Neue'} fw={500} c={'#ffffff'}>
           Continue with Facebook
