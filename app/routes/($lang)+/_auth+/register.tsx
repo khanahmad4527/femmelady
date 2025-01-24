@@ -18,10 +18,10 @@ import { ActionFunction, Link, redirect, useOutletContext } from 'react-router';
 import InvalidProvider from '~/components/error/InvalidProvider';
 import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
 import PasswordComponent from '~/components/PasswordComponent';
+import SocialLogin from '~/components/SocialLogin';
 import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
-import { IconFacebook, IconGoogle } from '~/icons';
 import { registerFormSchema } from '~/schema';
 import { directus } from '~/server/directus';
 import { validateTurnstile } from '~/server/turnstile';
@@ -102,20 +102,7 @@ const register = () => {
           {t('register.welcome')}
         </Text>
 
-        <Group grow>
-          <Button
-            radius={'xl'}
-            variant="light"
-            leftSection={<IconGoogle />}
-            component={'a'}
-            href={`${env?.DIRECTUS_URL}/auth/login/google?redirect=${env?.APP_URL}/${currentLanguage}/login-via-providers?from=register`}
-          >
-            {t('common.google')}
-          </Button>
-          <Button radius={'xl'} variant="light" leftSection={<IconFacebook />}>
-            {t('common.facebook')}
-          </Button>
-        </Group>
+        <SocialLogin />
 
         <Divider
           label={t('authForm.continueWithEmail')}

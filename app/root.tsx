@@ -106,6 +106,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
         <ColorSchemeScript />
+        <script src="https://accounts.google.com/gsi/client" async></script>
       </head>
       <body>
         <MantineProvider theme={theme}>{children}</MantineProvider>

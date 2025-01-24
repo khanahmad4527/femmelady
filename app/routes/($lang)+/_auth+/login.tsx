@@ -19,7 +19,6 @@ import { redisClient } from '~/entry.server';
 import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
-import { IconFacebook, IconGoogle } from '~/icons';
 import { loginFormSchema } from '~/schema';
 import { OutletContext } from '~/types';
 import {
@@ -33,6 +32,7 @@ import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
 import { handleError } from '~/utils/error';
 import { validateTurnstile } from '~/server/turnstile';
 import { Turnstile } from '@marsidev/react-turnstile';
+import SocialLogin from '~/components/SocialLogin';
 
 export const action = async ({ request, params }: Route.ActionArgs) => {
   const currentLanguage = getCurrentLanguage(params);
@@ -115,20 +115,7 @@ const Login = () => {
           {t('login.welcome')}
         </Text>
 
-        <Group grow>
-          <Button
-            radius={'xl'}
-            variant="light"
-            leftSection={<IconGoogle />}
-            component={'a'}
-            href={`${env?.DIRECTUS_URL}/auth/login/google?redirect=${env?.APP_URL}/${currentLanguage}/login-via-providers?from=login`}
-          >
-            {t('common.google')}
-          </Button>
-          <Button radius={'xl'} variant="light" leftSection={<IconFacebook />}>
-            {t('common.facebook')}
-          </Button>
-        </Group>
+        <SocialLogin />
 
         <Divider
           label={t('authForm.continueWithEmail')}

@@ -2,7 +2,7 @@ import { rem } from '@mantine/core';
 
 import { IconProps } from '~/types';
 
-export default function IconGoogle({
+export default function IconFacebook({
   size = 25,
   color = 'var(--mantine-primary-color-7)',
   stroke = '1.5',
@@ -11,23 +11,15 @@ export default function IconGoogle({
 }: IconProps) {
   return (
     <svg
-      preserveAspectRatio="xMidYMid"
-      viewBox="0 0 48 48"
-      fill={color}
-      stroke="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="#FFFFFF" /* White "f" logo */
+      viewBox="0 0 24 24"
       strokeLinecap="round"
       strokeLinejoin="round"
       style={{ width: rem(size), height: rem(size), ...style }}
       {...others}
     >
-      <path
-        d="M48 24C48 10.7438 37.2562 0 24 0C10.7438 0 0 10.7438 0 24C0 35.9813 8.775 45.9094 20.25 47.7094V30.9375H14.1562V24H20.25V18.7125C20.25 12.6984 23.8313 9.375 29.3156 9.375C31.9406 9.375 34.6875 9.84375 34.6875 9.84375V15.75H31.6594C28.6781 15.75 27.75 17.6016 27.75 19.5V24H34.4062L33.3422 30.9375H27.75V47.7094C39.225 45.9094 48 35.9813 48 24Z"
-        fill="#1877F2"
-      />
-      <path
-        d="M33.3422 30.9375L34.4062 24H27.75V19.5C27.75 17.6016 28.6781 15.75 31.6594 15.75H34.6875V9.84375C34.6875 9.84375 31.9406 9.375 29.3156 9.375C23.8313 9.375 20.25 12.6984 20.25 18.7125V24H14.1562V30.9375H20.25V47.7094C21.4734 47.9016 22.725 48 24 48C25.275 48 26.5266 47.9016 27.75 47.7094V30.9375H33.3422Z"
-        fill="white"
-      />
+      <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.326v21.348C0 23.4.6 24 1.326 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.657-4.788 1.324 0 2.463.1 2.794.143v3.241h-1.918c-1.504 0-1.796.714-1.796 1.76v2.308h3.587l-.467 3.622h-3.12V24h6.116c.727 0 1.326-.6 1.326-1.326V1.326C24 .6 23.4 0 22.675 0z" />
     </svg>
   );
 }
