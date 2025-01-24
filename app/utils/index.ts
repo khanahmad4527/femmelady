@@ -243,7 +243,7 @@ export const getLanguageCode = (params: { lang?: string }) => {
  * @param params.lang - The desired language code (e.g., "en", "fr"). Optional.
  * @returns The resolved language code (either the provided `lang` or the fallback language).
  */
-export const getLang = (params: { lang?: string }) => {
+export const getCurrentLanguage = (params: { lang?: string }) => {
   const lang = params.lang ?? FALL_BACK_LANG;
   return lang as TranslationKeys;
 };

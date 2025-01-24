@@ -93,6 +93,11 @@
     "title": "Registration failed",
     "description": "Registration failed. Please try again."
   },
+  "turnstile": {
+    "tokenRequired": "Security check token is required",
+    "errorTitle": "Validation failed",
+    "errorDescription": "Security check token validation failed. Please try again."
+  },
   "authForm": {
     "email": "Email",
     "firstName": "First Name",

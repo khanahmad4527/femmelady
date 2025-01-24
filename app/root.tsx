@@ -52,6 +52,7 @@ import { useEffect } from 'react';
 import { isAuthenticated } from './auth/auth.server';
 import { Notifications } from '@mantine/notifications';
 import { getMeta } from './meta';
+import { getEnv } from './server/env';
 
 export const meta: MetaFunction = ({ location }) => {
   return getMeta({ pathname: location.pathname });
@@ -83,10 +84,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   const exchangeRate = await getExchangeRate(currentLanguage);
 
-  const env = {
-    DIRECTUS_URL: process.env?.DIRECTUS_URL,
-    APP_URL: process.env?.APP_URL
-  };
+  const env = getEnv();
 
   return { isLoggedIn, user, locale, currentLanguage, env, exchangeRate };
 };

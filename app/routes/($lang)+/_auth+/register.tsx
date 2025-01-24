@@ -12,6 +12,7 @@ import {
   Text,
   TextInput
 } from '@mantine/core';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 import { ActionFunction, Link, redirect, useOutletContext } from 'react-router';
 import InvalidProvider from '~/components/error/InvalidProvider';
@@ -23,18 +24,33 @@ import useTranslation from '~/hooks/useTranslation';
 import { IconFacebook, IconGoogle } from '~/icons';
 import { registerFormSchema } from '~/schema';
 import { directus } from '~/server/directus';
+import { validateTurnstile } from '~/server/turnstile';
 import { OutletContext } from '~/types';
-import { buildLocalizedLink, getLang } from '~/utils';
+import { buildLocalizedLink, getCurrentLanguage } from '~/utils';
 import { handleError } from '~/utils/error';
 
 export const action: ActionFunction = async ({ request, params }) => {
-  const lang = getLang(params);
+  const currentLanguage = getCurrentLanguage(params);
   const formData = await request.formData();
 
   const data = Object.fromEntries(formData);
 
   try {
     const validatedData = registerFormSchema.parse(data);
+
+    const outcome = await validateTurnstile({
+      request,
+      token: validatedData['cf-turnstile-response']
+    });
+
+    console.log({ outcome });
+
+    if (!outcome.success) {
+      return {
+        title: 'turnstile.errorTitle',
+        description: 'turnstile.errorDescription'
+      };
+    }
 
     await directus.request(
       createUser({
@@ -44,7 +60,7 @@ export const action: ActionFunction = async ({ request, params }) => {
         password: validatedData.password
       })
     );
-    return redirect(`/${lang}/login`);
+    return redirect(buildLocalizedLink({ currentLanguage, paths: ['login'] }));
   } catch (error) {
     return handleError({ error, route: 'register' });
   }
@@ -161,6 +177,13 @@ const register = () => {
               </Button>
             </Group>
           </Stack>
+
+          <Turnstile
+            siteKey={env?.TURNSTILE_SITE_KEY!}
+            options={{
+              size: 'invisible'
+            }}
+          />
         </Form>
 
         {fetcher.data?.title && (

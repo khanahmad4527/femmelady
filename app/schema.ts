@@ -25,9 +25,14 @@ const passwordSchema = z
   })
   .transform(value => value.trim());
 
+const cfTurnstileResponseSchema = z
+  .string({ required_error: 'turnstile.tokenRequired' })
+  .min(1, { message: 'turnstile.tokenRequired' });
+
 export const loginFormSchema = z.object({
   email: emailSchema,
-  password: passwordSchema
+  password: passwordSchema,
+  'cf-turnstile-response': cfTurnstileResponseSchema
 });
 
 export const registerFormSchema = z
@@ -45,7 +50,8 @@ export const registerFormSchema = z
     confirm_password: z.string().transform(value => value.trim()),
     terms: z.string({
       required_error: 'authFormValidationError.termsRequired'
-    })
+    }),
+    'cf-turnstile-response': cfTurnstileResponseSchema
   })
   .refine(
     data => data.password.length > 0 && data.confirm_password.length > 0,

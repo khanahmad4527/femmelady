@@ -22,20 +22,43 @@ import useTranslation from '~/hooks/useTranslation';
 import { IconFacebook, IconGoogle } from '~/icons';
 import { loginFormSchema } from '~/schema';
 import { OutletContext } from '~/types';
-import { buildLocalizedLink, generateUuidv4, getLang } from '~/utils';
+import {
+  buildLocalizedLink,
+  generateUuidv4,
+  getCurrentLanguage
+} from '~/utils';
 import { Route } from './+types/login';
 import InvalidProvider from '~/components/error/InvalidProvider';
 import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
 import { handleError } from '~/utils/error';
+import { validateTurnstile } from '~/server/turnstile';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 export const action = async ({ request, params }: Route.ActionArgs) => {
-  const lang = getLang(params);
+  const currentLanguage = getCurrentLanguage(params);
   const formData = await request.formData();
+  const data = Object.fromEntries(formData);
 
   try {
-    const { email, password } = loginFormSchema.parse(
-      Object.fromEntries(formData)
-    );
+    const {
+      email,
+      password,
+      'cf-turnstile-response': cfTurnstileResponseToken
+    } = loginFormSchema.parse(data);
+
+    const outcome = await validateTurnstile({
+      request,
+      token: cfTurnstileResponseToken
+    });
+
+    console.log({ outcome });
+
+    if (!outcome.success) {
+      return {
+        title: 'turnstile.errorTitle',
+        description: 'turnstile.errorDescription'
+      };
+    }
 
     const authResults = await login({ email, password });
     const { access_token, refresh_token } = authResults;
@@ -51,7 +74,10 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       request,
       userSessionId: sessionId,
       remember: true,
-      redirectTo: `/${lang}/?force-validate=global`
+      redirectTo: buildLocalizedLink({
+        currentLanguage,
+        paths: ['?force-validate=global']
+      })
     });
   } catch (error) {
     return handleError({ error, route: 'login' });
@@ -65,7 +91,7 @@ const Login = () => {
 
   const error = searchParams.get('error');
 
-  const { Form, form, state, fetcher } = useForm<{
+  const { Form, form, state, fetcher, errors } = useForm<{
     title: string;
     description: string;
   }>({
@@ -141,10 +167,18 @@ const Login = () => {
               >
                 {t('login.accountRegister')}
               </Anchor>
+
               <Button type="submit" loading={state === 'submitting'}>
                 {t('login.login')}
               </Button>
             </Group>
+
+            <Turnstile
+              siteKey={env?.TURNSTILE_SITE_KEY!}
+              options={{
+                size: 'invisible'
+              }}
+            />
           </Form>
         </Stack>
 
@@ -152,6 +186,12 @@ const Login = () => {
           <Alert variant="light" color="red" title={t(fetcher.data?.title)}>
             {t(fetcher.data?.description)}
           </Alert>
+        )}
+
+        {errors?.['cf-turnstile-response'] && (
+          <Text fz={11} c={'red'}>
+            {t('turnstile.tokenRequired')}
+          </Text>
         )}
 
         {error === 'invalidProvider' && <InvalidProvider t={t} />}

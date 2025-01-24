@@ -7,11 +7,14 @@ import { Route } from './+types/logout';
 import { redisClient } from '~/entry.server';
 import { redirect } from 'react-router';
 import { logout } from '~/auth/auth.server';
-import { getLang } from '~/utils';
+import { buildLocalizedLink, getCurrentLanguage } from '~/utils';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
-  const lang = getLang(params);
-  const redirectTo = `/${lang}?force-validate=global`;
+  const currentLanguage = getCurrentLanguage(params);
+  const redirectTo = buildLocalizedLink({
+    currentLanguage,
+    paths: ['?force-validate=global']
+  });
   try {
     const cookie = request.headers.get('Cookie');
     const session = await getSession(cookie);

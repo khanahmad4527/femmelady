@@ -1,7 +1,11 @@
 import { SetURLSearchParams } from 'react-router';
 import { components } from './collections';
 
-export type Env = { DIRECTUS_URL?: string; APP_URL?: string };
+export type Env = {
+  DIRECTUS_URL?: string;
+  APP_URL?: string;
+  TURNSTILE_SITE_KEY?: string;
+};
 export interface OutletContext {
   isLoggedIn: boolean;
   currentLanguage: TranslationKeys;
@@ -99,4 +103,7 @@ export type Cart = components['schemas']['ItemsCart'];
 
 export type ProductCart = components['schemas']['ItemsProductCart'];
 
-export type Translation = (key: string, replacements?: Record<string, React.ReactNode>) => string
+export type Translation = (
+  key: string,
+  replacements?: Record<string, React.ReactNode>
+) => string;

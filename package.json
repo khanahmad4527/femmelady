@@ -21,6 +21,7 @@
     "@mantine/hooks": "^7.15.1",
     "@mantine/notifications": "^7.15.2",
     "@mantine/nprogress": "^7.15.2",
+    "@marsidev/react-turnstile": "^1.1.0",
     "@react-router/node": "^7.0.2",
     "@react-router/serve": "^7.0.2",
     "embla-carousel-auto-scroll": "^8.5.1",

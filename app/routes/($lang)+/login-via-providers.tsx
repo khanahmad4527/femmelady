@@ -1,6 +1,11 @@
 import { Route } from './+types/login-via-providers';
 import { redirect } from 'react-router';
-import { generateUuidv4, getCookie, getLang } from '~/utils';
+import {
+  buildLocalizedLink,
+  generateUuidv4,
+  getCookie,
+  getCurrentLanguage
+} from '~/utils';
 import { directus } from '~/server/directus';
 import { refresh } from '@directus/sdk';
 import { redisClient } from '~/entry.server';
@@ -8,11 +13,19 @@ import { createUserSession } from '~/auth/session.server';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const url = new URL(request.url);
-  const lang = getLang(params);
+  const currentLanguage = getCurrentLanguage(params);
   const failureReason = url.searchParams.get('reason'); // This comes from Directus
   const fromPage = url.searchParams.get('from'); // We send from login and register page, to redirect user to same page they come from
   const redirectTo =
-    fromPage === 'login' ? `/${lang}/login` : `/${lang}/register`;
+    fromPage === 'login'
+      ? buildLocalizedLink({
+          currentLanguage,
+          paths: ['login']
+        })
+      : buildLocalizedLink({
+          currentLanguage,
+          paths: ['register']
+        });
   try {
     if (failureReason && failureReason.includes('INVALID_CREDENTIALS')) {
       return redirect(`${redirectTo}?error=providerLoginFailed`);
@@ -38,7 +51,10 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
       request,
       userSessionId: sessionId,
       remember: true,
-      redirectTo: `/${lang}/?force-validate=global`
+      redirectTo: buildLocalizedLink({
+        currentLanguage,
+        paths: ['?force-validate=global']
+      })
     });
   } catch (error) {
     console.log(error);

@@ -93,6 +93,11 @@
     "title": "登録に失敗しました",
     "description": "登録に失敗しました。もう一度お試しください。"
   },
+  "turnstile": {
+    "tokenRequired": "セキュリティチェックのトークンが必要です",
+    "errorTitle": "検証に失敗しました",
+    "errorDescription": "セキュリティチェックのトークンの検証に失敗しました。もう一度お試しください。"
+  },
   "authForm": {
     "email": "メールアドレス",
     "firstName": "名",
