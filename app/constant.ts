@@ -82,7 +82,7 @@ export const LANGUAGE_TO_LOCALE_LANGUAGE: Record<string, string> = {
   bh: 'bh-IN', // Bihari (India)
   qu: 'qu-PE', // Quechua (Peru)
   dz: 'dz-BT' // Dzongkha (Bhutan)
-};
+} as const;
 
 export const LOCALE_TO_LANGUAGE: Record<string, string> = {
   'en-US': 'en', // English (United States)
@@ -159,7 +159,7 @@ export const LOCALE_TO_LANGUAGE: Record<string, string> = {
   'as-IN': 'as', // Assamese (India)
   'bh-IN': 'bh', // Bihari (India)
   'qu-PE': 'qu' // Quechua (Peru)
-};
+} as const;
 
 export const LOCALE_TO_CURRENCY: Record<string, string> = {
   'en-US': 'USD',
@@ -170,7 +170,7 @@ export const LOCALE_TO_CURRENCY: Record<string, string> = {
   'it-IT': 'EUR',
   'pt-BR': 'BRL',
   'ru-RU': 'RUB'
-};
+} as const;
 
 export const DEFAULT_PRODUCT_LIMIT = 10;
 
@@ -187,7 +187,7 @@ export const CATEGORIES_WITH_ID_MAP = {
   bags: 'cfe393ba-b6a7-46f7-8b93-88d58b42fd2c',
   perfumes: 'ee5d7591-983a-4d7a-87aa-e6030f78ae43',
   watches: '66c302b5-f2da-40b5-83e9-3189ecf2fb18'
-};
+} as const;
 
 export const BRAND_WITH_ID_MAP = {
   'vera-luxe': 'af07751e-3f73-449b-8250-0a520d40bac8',
@@ -214,7 +214,7 @@ export const BRAND_WITH_ID_MAP = {
   'timeless-lady': 'fb3693bc-68ef-4cb8-93ff-87f0ffc962e7',
   'crystal-orb': '319157bf-5d3d-45d5-8516-fef388434435',
   'radiant-moments': '07c12562-4200-4421-bb64-8f6392155106'
-};
+} as const;
 
 export const PARAM_KEYS = {
   PRODUCT_ID: 'product-id',
@@ -231,14 +231,14 @@ export const PARAM_KEYS = {
   BRANDS: 'brands',
   SIZE: 'size',
   FORCE_REVALIDATE: 'force-validate'
-};
+} as const;
 
 // Use to force validate, means the loader will get trigger
 export const FORCE_REVALIDATE_MAP = {
   GLOBAL: 'global',
   SINGLE_PRODUCT: 'single-product',
   PRODUCT_REVIEW: 'product-review'
-};
+} as const;
 
 // This is use to compute the previous params so that we can
 // Decide wether the current params changes from the previous
@@ -258,7 +258,7 @@ export const PRE_PARAM_KEYS = {
   CATEGORIES: 'pre-categories',
   BRANDS: 'pre-brands',
   SIZE: 'pre-size'
-};
+} as const;
 
 // Endpoints or Routes
 export const PATHS = {
@@ -279,4 +279,4 @@ export const PATHS = {
 export const PARAMS = {
   forceValidateGlobal: 'force-validate=global',
   categories: 'categories'
-};
+} as const;
