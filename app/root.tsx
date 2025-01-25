@@ -205,7 +205,8 @@ const ErrorBoundaryComponent = () => {
   );
 };
 
+// ErrorBoundary in development
 // export const ErrorBoundary = ErrorBoundaryComponent;
 
-// // ErrorBoundary only in production
-// export const ErrorBoundary = isProduction && ErrorBoundaryComponent;
+// ErrorBoundary only in production
+export const ErrorBoundary = isProduction && ErrorBoundaryComponent;
