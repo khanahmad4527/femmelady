@@ -178,42 +178,125 @@ export const DEFAULT_PRODUCT_PAGE = 1;
 
 export const DEFAULT_PRODUCT_SORT = '-viewed_count';
 
+// For SEO purpose we are appending category name instead of ids
+// So to map the name to the ids we need this map
 export const CATEGORIES_WITH_ID_MAP = {
-  'wedding-dresses': '418ae741-d5cf-4442-8b6a-70b397bd2cec',
-  shoes: '1816621b-dfa4-4e50-a983-1fe126773fce',
-  candles: 'e76acfbc-a0f6-4a59-a962-a4bc4df54926',
-  dresses: '2d94f3a4-c004-4e74-b928-248a0bb8210f',
-  jewelry: '68a0f6f7-120c-4758-9ca8-9863a5885a90',
-  bags: 'cfe393ba-b6a7-46f7-8b93-88d58b42fd2c',
-  perfumes: 'ee5d7591-983a-4d7a-87aa-e6030f78ae43',
-  watches: '66c302b5-f2da-40b5-83e9-3189ecf2fb18'
+  'beauty-and-wellness': {
+    key: 'beauty-and-wellness',
+    id: 'd638efcc-98cc-4be8-9e04-ed66a5a9c679'
+  },
+  'wedding-dresses': {
+    key: 'wedding-dresses',
+    id: '418ae741-d5cf-4442-8b6a-70b397bd2cec'
+  },
+  shoes: { key: 'shoes', id: '1816621b-dfa4-4e50-a983-1fe126773fce' },
+  candles: { key: 'candles', id: 'e76acfbc-a0f6-4a59-a962-a4bc4df54926' },
+  dresses: { key: 'dresses', id: '2d94f3a4-c004-4e74-b928-248a0bb8210f' },
+  jewelry: { key: 'jewelry', id: '68a0f6f7-120c-4758-9ca8-9863a5885a90' },
+  bags: { key: 'bags', id: 'cfe393ba-b6a7-46f7-8b93-88d58b42fd2c' },
+  perfumes: { key: 'perfumes', id: 'ee5d7591-983a-4d7a-87aa-e6030f78ae43' },
+  watches: { key: 'watches', id: '66c302b5-f2da-40b5-83e9-3189ecf2fb18' }
 } as const;
 
-export const BRAND_WITH_ID_MAP = {
-  'vera-luxe': 'af07751e-3f73-449b-8250-0a520d40bac8',
-  'monique-couture': '1d082713-e61f-4751-a9cf-b09db7383db8',
-  'pristine-vows': '51c8c3ba-a329-4e22-b910-049fe60e1ac9',
-  'crimson-soles': '87008205-17a0-48a1-9fd9-62fc4107d537',
-  'jewel-heels': '91bb45d8-8565-4f98-9109-8da297c85d6e',
-  'sophia-grace': '2c910946-4f12-4e9c-a152-50ce8d0988cf',
-  'aroma-luxe': '828b6dbb-ea00-4ae0-b74b-c35c6ed088d0',
-  'glow-essence': 'cbe6a6f2-f7bd-453c-97a7-495d83c9c7f5',
-  'luminous-bliss': 'f63019ae-c533-4b67-854d-17e7dda460f8',
-  chantelle: 'f3943e9a-f1db-4957-9872-3bfe4c339278',
-  'divine-elegance': '0153c7bf-1668-4968-a520-37357c888346',
-  'olivia-de-luxe': 'b2c6bb7a-59a5-4e4f-b8e0-0806d4ee4ad9',
-  'luxe-co': '5e3cd8be-8f8f-4527-b5ce-5536cd0a4e63',
-  caratierre: '96397eac-bd89-49bd-bee9-6facb8438672',
-  'velvet-charms': '43de420d-5c46-489e-824c-429104cec006',
-  'elyse-bags': '5c5f15e8-454f-4ee6-97e1-1d1891b8c091',
-  'cherie-luxe': 'a0b14769-29d0-444b-9b9b-23a02e426ec4',
-  'gilded-grace': '0b3d97b4-0d80-41f4-b7e4-6e7f26a12b49',
-  'scent-noire': '172b5143-0395-4db8-a4c6-39df37f24663',
-  'dame-fleur': 'ec4f7824-2af1-4c15-8081-10f54098def7',
-  'la-belle': '1ae713ba-12a1-4984-9611-c13e244d87b4',
-  'timeless-lady': 'fb3693bc-68ef-4cb8-93ff-87f0ffc962e7',
-  'crystal-orb': '319157bf-5d3d-45d5-8516-fef388434435',
-  'radiant-moments': '07c12562-4200-4421-bb64-8f6392155106'
+// For SEO purpose we are appending brand name instead of ids
+// So to map the name to the ids we need this map
+export const BRANDS_WITH_ID_MAP = {
+  'vera-luxe': {
+    key: 'vera-luxe',
+    id: 'af07751e-3f73-449b-8250-0a520d40bac8'
+  },
+  'monique-couture': {
+    key: 'monique-couture',
+    id: '1d082713-e61f-4751-a9cf-b09db7383db8'
+  },
+  'pristine-vows': {
+    key: 'pristine-vows',
+    id: '51c8c3ba-a329-4e22-b910-049fe60e1ac9'
+  },
+  'crimson-soles': {
+    key: 'crimson-soles',
+    id: '87008205-17a0-48a1-9fd9-62fc4107d537'
+  },
+  'jewel-heels': {
+    key: 'jewel-heels',
+    id: '91bb45d8-8565-4f98-9109-8da297c85d6e'
+  },
+  'sophia-grace': {
+    key: 'sophia-grace',
+    id: '2c910946-4f12-4e9c-a152-50ce8d0988cf'
+  },
+  'aroma-luxe': {
+    key: 'aroma-luxe',
+    id: '828b6dbb-ea00-4ae0-b74b-c35c6ed088d0'
+  },
+  'glow-essence': {
+    key: 'glow-essence',
+    id: 'cbe6a6f2-f7bd-453c-97a7-495d83c9c7f5'
+  },
+  'luminous-bliss': {
+    key: 'luminous-bliss',
+    id: 'f63019ae-c533-4b67-854d-17e7dda460f8'
+  },
+  chantelle: {
+    key: 'chantelle',
+    id: 'f3943e9a-f1db-4957-9872-3bfe4c339278'
+  },
+  'divine-elegance': {
+    key: 'divine-elegance',
+    id: '0153c7bf-1668-4968-a520-37357c888346'
+  },
+  'olivia-de-luxe': {
+    key: 'olivia-de-luxe',
+    id: 'b2c6bb7a-59a5-4e4f-b8e0-0806d4ee4ad9'
+  },
+  'luxe-co': {
+    key: 'luxe-co',
+    id: '5e3cd8be-8f8f-4527-b5ce-5536cd0a4e63'
+  },
+  caratierre: {
+    key: 'caratierre',
+    id: '96397eac-bd89-49bd-bee9-6facb8438672'
+  },
+  'velvet-charms': {
+    key: 'velvet-charms',
+    id: '43de420d-5c46-489e-824c-429104cec006'
+  },
+  'elyse-bags': {
+    key: 'elyse-bags',
+    id: '5c5f15e8-454f-4ee6-97e1-1d1891b8c091'
+  },
+  'cherie-luxe': {
+    key: 'cherie-luxe',
+    id: 'a0b14769-29d0-444b-9b9b-23a02e426ec4'
+  },
+  'gilded-grace': {
+    key: 'gilded-grace',
+    id: '0b3d97b4-0d80-41f4-b7e4-6e7f26a12b49'
+  },
+  'scent-noire': {
+    key: 'scent-noire',
+    id: '172b5143-0395-4db8-a4c6-39df37f24663'
+  },
+  'dame-fleur': {
+    key: 'dame-fleur',
+    id: 'ec4f7824-2af1-4c15-8081-10f54098def7'
+  },
+  'la-belle': {
+    key: 'la-belle',
+    id: '1ae713ba-12a1-4984-9611-c13e244d87b4'
+  },
+  'timeless-lady': {
+    key: 'timeless-lady',
+    id: 'fb3693bc-68ef-4cb8-93ff-87f0ffc962e7'
+  },
+  'crystal-orb': {
+    key: 'crystal-orb',
+    id: '319157bf-5d3d-45d5-8516-fef388434435'
+  },
+  'radiant-moments': {
+    key: 'radiant-moments',
+    id: '07c12562-4200-4421-bb64-8f6392155106'
+  }
 } as const;
 
 export const PARAM_KEYS = {

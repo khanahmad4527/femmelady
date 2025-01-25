@@ -14,6 +14,8 @@ import { useDebouncedCallback } from '@mantine/hooks';
 import { Fragment, useState } from 'react';
 import { useOutletContext } from 'react-router';
 import {
+  BRANDS_WITH_ID_MAP,
+  CATEGORIES_WITH_ID_MAP,
   DEFAULT_PRODUCT_PAGE,
   FORCE_REVALIDATE_MAP,
   PARAM_KEYS,
@@ -140,30 +142,87 @@ const BrandFilter = () => {
   const t = useTranslation();
 
   const brandNamesWithSlugs = [
-    { label: t('brands.veraLuxe'), value: 'vera-luxe' },
-    { label: t('brands.moniqueCouture'), value: 'monique-couture' },
-    { label: t('brands.pristineVows'), value: 'pristine-vows' },
-    { label: t('brands.crimsonSoles'), value: 'crimson-soles' },
-    { label: t('brands.jewelHeels'), value: 'jewel-heels' },
-    { label: t('brands.sophiaGrace'), value: 'sophia-grace' },
-    { label: t('brands.aromaLuxe'), value: 'aroma-luxe' },
-    { label: t('brands.glowEssence'), value: 'glow-essence' },
-    { label: t('brands.luminousBliss'), value: 'luminous-bliss' },
-    { label: t('brands.chantelle'), value: 'chantelle' },
-    { label: t('brands.divineElegance'), value: 'divine-elegance' },
-    { label: t('brands.oliviaDeLuxe'), value: 'olivia-de-luxe' },
-    { label: t('brands.luxeCo'), value: 'luxe-co' },
-    { label: t('brands.caratierre'), value: 'caratierre' },
-    { label: t('brands.velvetCharms'), value: 'velvet-charms' },
-    { label: t('brands.elyseBags'), value: 'elyse-bags' },
-    { label: t('brands.cherieLuxe'), value: 'cherie-luxe' },
-    { label: t('brands.gildedGrace'), value: 'gilded-grace' },
-    { label: t('brands.scentNoire'), value: 'scent-noire' },
-    { label: t('brands.dameFleur'), value: 'dame-fleur' },
-    { label: t('brands.laBelle'), value: 'la-belle' },
-    { label: t('brands.timelessLady'), value: 'timeless-lady' },
-    { label: t('brands.crystalOrb'), value: 'crystal-orb' },
-    { label: t('brands.radiantMoments'), value: 'radiant-moments' }
+    { label: t('brands.veraLuxe'), value: BRANDS_WITH_ID_MAP['vera-luxe'].key },
+    {
+      label: t('brands.moniqueCouture'),
+      value: BRANDS_WITH_ID_MAP['monique-couture'].key
+    },
+    {
+      label: t('brands.pristineVows'),
+      value: BRANDS_WITH_ID_MAP['pristine-vows'].key
+    },
+    {
+      label: t('brands.crimsonSoles'),
+      value: BRANDS_WITH_ID_MAP['crimson-soles'].key
+    },
+    {
+      label: t('brands.jewelHeels'),
+      value: BRANDS_WITH_ID_MAP['jewel-heels'].key
+    },
+    {
+      label: t('brands.sophiaGrace'),
+      value: BRANDS_WITH_ID_MAP['sophia-grace'].key
+    },
+    {
+      label: t('brands.aromaLuxe'),
+      value: BRANDS_WITH_ID_MAP['aroma-luxe'].key
+    },
+    {
+      label: t('brands.glowEssence'),
+      value: BRANDS_WITH_ID_MAP['glow-essence'].key
+    },
+    {
+      label: t('brands.luminousBliss'),
+      value: BRANDS_WITH_ID_MAP['luminous-bliss'].key
+    },
+    { label: t('brands.chantelle'), value: BRANDS_WITH_ID_MAP.chantelle.key },
+    {
+      label: t('brands.divineElegance'),
+      value: BRANDS_WITH_ID_MAP['divine-elegance'].key
+    },
+    {
+      label: t('brands.oliviaDeLuxe'),
+      value: BRANDS_WITH_ID_MAP['olivia-de-luxe'].key
+    },
+    { label: t('brands.luxeCo'), value: BRANDS_WITH_ID_MAP['luxe-co'].key },
+    { label: t('brands.caratierre'), value: BRANDS_WITH_ID_MAP.caratierre.key },
+    {
+      label: t('brands.velvetCharms'),
+      value: BRANDS_WITH_ID_MAP['velvet-charms'].key
+    },
+    {
+      label: t('brands.elyseBags'),
+      value: BRANDS_WITH_ID_MAP['elyse-bags'].key
+    },
+    {
+      label: t('brands.cherieLuxe'),
+      value: BRANDS_WITH_ID_MAP['cherie-luxe'].key
+    },
+    {
+      label: t('brands.gildedGrace'),
+      value: BRANDS_WITH_ID_MAP['gilded-grace'].key
+    },
+    {
+      label: t('brands.scentNoire'),
+      value: BRANDS_WITH_ID_MAP['scent-noire'].key
+    },
+    {
+      label: t('brands.dameFleur'),
+      value: BRANDS_WITH_ID_MAP['dame-fleur'].key
+    },
+    { label: t('brands.laBelle'), value: BRANDS_WITH_ID_MAP['la-belle'].key },
+    {
+      label: t('brands.timelessLady'),
+      value: BRANDS_WITH_ID_MAP['timeless-lady'].key
+    },
+    {
+      label: t('brands.crystalOrb'),
+      value: BRANDS_WITH_ID_MAP['crystal-orb'].key
+    },
+    {
+      label: t('brands.radiantMoments'),
+      value: BRANDS_WITH_ID_MAP['radiant-moments'].key
+    }
   ];
 
   const handleBrandSearch = (value: string) => {
@@ -214,43 +273,39 @@ const CategoryFilter = () => {
   const categoriesWithSlugs = [
     {
       label: t('products.filter.weddingDresses'),
-      value: 'wedding-dresses',
-      id: '418ae741-d5cf-4442-8b6a-70b397bd2cec'
+      value: CATEGORIES_WITH_ID_MAP['wedding-dresses'].key
     },
     {
       label: t('products.filter.shoes'),
-      value: 'shoes',
-      id: '1816621b-dfa4-4e50-a983-1fe126773fce'
+      value: CATEGORIES_WITH_ID_MAP.shoes.key
     },
     {
       label: t('products.filter.candles'),
-      value: 'candles',
-      id: 'e76acfbc-a0f6-4a59-a962-a4bc4df54926'
+      value: CATEGORIES_WITH_ID_MAP.candles.key
     },
     {
       label: t('products.filter.dresses'),
-      value: 'dresses',
-      id: '2d94f3a4-c004-4e74-b928-248a0bb8210f'
+      value: CATEGORIES_WITH_ID_MAP.dresses.key
     },
     {
       label: t('products.filter.jewelry'),
-      value: 'jewelry',
-      id: '68a0f6f7-120c-4758-9ca8-9863a5885a90'
+      value: CATEGORIES_WITH_ID_MAP.jewelry.key
     },
     {
       label: t('products.filter.bags'),
-      value: 'bags',
-      id: 'cfe393ba-b6a7-46f7-8b93-88d58b42fd2c'
+      value: CATEGORIES_WITH_ID_MAP.bags.key
     },
     {
       label: t('products.filter.perfumes'),
-      value: 'perfumes',
-      id: 'ee5d7591-983a-4d7a-87aa-e6030f78ae43'
+      value: CATEGORIES_WITH_ID_MAP.perfumes.key
     },
     {
       label: t('products.filter.watches'),
-      value: 'watches',
-      id: '66c302b5-f2da-40b5-83e9-3189ecf2fb18'
+      value: CATEGORIES_WITH_ID_MAP.watches.key
+    },
+    {
+      label: t('products.filter.beautyWellness'),
+      value: CATEGORIES_WITH_ID_MAP['beauty-and-wellness'].key
     }
   ];
 
@@ -281,7 +336,7 @@ const CategoryFilter = () => {
 
           return (
             <Button
-              key={n.id}
+              key={n.value}
               variant={isSelected ? 'filled' : 'light'}
               color="primary"
               onClick={() => handleCategorySearch(n.value)}

@@ -42,7 +42,7 @@ import {
 } from '~/utils';
 import { OutletContext } from '~/types';
 import { FORCE_REVALIDATE_MAP, PARAM_KEYS, PARAMS, PATHS } from '~/constant';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import NoData from '~/components/NoData';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 

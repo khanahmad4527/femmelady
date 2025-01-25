@@ -9,7 +9,7 @@ import {
   TranslationKeys
 } from '../types';
 import {
-  BRAND_WITH_ID_MAP,
+  BRANDS_WITH_ID_MAP,
   CATEGORIES_WITH_ID_MAP,
   DEFAULT_PRODUCT_LIMIT,
   DEFAULT_PRODUCT_PAGE,
@@ -366,11 +366,11 @@ export const getSort = ({ request, searchParams }: GetParam) => {
   return sort;
 };
 
-type IdMap = Record<string, string>;
+type IdMap = Record<string, { id: string; key: string }>;
 type Key = string;
 
 const mapToIds = <T extends Key>(keys: T[], idMap: IdMap): string[] => {
-  return keys.map(key => idMap[key]).filter(Boolean);
+  return keys.map(key => idMap[key].id).filter(Boolean);
 };
 
 const getIdsFromParams = ({
@@ -413,7 +413,7 @@ export const getBrandsId = (params: GetParam) => {
   return getIdsFromParams({
     ...params,
     paramKey: PARAM_KEYS.BRANDS,
-    idMap: BRAND_WITH_ID_MAP
+    idMap: BRANDS_WITH_ID_MAP
   });
 };
 
