@@ -1,5 +1,4 @@
 import { Container, Stack } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
 import { useLocation } from 'react-router';
 
 import { ROUTES_WITHOUT_HEADER_AND_FOOTER } from '~/constant';

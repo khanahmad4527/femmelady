@@ -1,9 +1,10 @@
-import '~/styles/fonts.css';
-import '~/styles/style.css';
+import './styles/style.css';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/nprogress/styles.css';
 import '@mantine/notifications/styles.css';
+
+import './styles/fonts.css';
 
 import {
   Affix,
@@ -91,9 +92,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 };
 
 export const links: LinksFunction = () => {
-  return [
-    { rel: 'icon', href: '/favicon.svg' } // Point to your favicon
-  ];
+  return [{ rel: 'icon', href: '/favicon.svg' }];
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -107,7 +106,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
         <ColorSchemeScript />
-        <script src="https://accounts.google.com/gsi/client" async></script>
       </head>
       <body>
         <MantineProvider theme={theme}>{children}</MantineProvider>
