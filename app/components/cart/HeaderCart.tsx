@@ -6,6 +6,7 @@ import { IconDatabaseExclamation } from '~/icons';
 import { Link } from 'react-router';
 import { buildLocalizedLink } from '~/utils';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import { PARAMS, PATHS } from '~/constant';
 
 const HeaderCart = ({
   opened,
@@ -45,7 +46,7 @@ const HeaderCart = ({
             component={Link}
             to={buildLocalizedLink({
               currentLanguage,
-              paths: ['products?force-validate=global']
+              paths: [PATHS.products, '?', PARAMS.forceValidateGlobal]
             })}
             onClick={close}
           >

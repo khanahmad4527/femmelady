@@ -18,7 +18,7 @@ import {
   FORCE_REVALIDATE_MAP,
   LANGUAGE_TO_LOCALE_LANGUAGE,
   LOCALE_TO_CURRENCY,
-  PARAMS
+  PARAM_KEYS
 } from '../constant';
 import useHeaderFooterContext from '../hooks/useHeaderFooterContext';
 import getFirstObjectDto from '../dto/getFirstObjectDto';
@@ -185,7 +185,7 @@ export const buildLocalizedLink = ({
   currentLanguage: TranslationKeys;
   paths?: string[]; // Accepts an array of paths
 }) => {
-  const validPaths = paths.filter(path => path); // Filter out undefined or empty paths
+  const validPaths = PATHS.filter(path => path); // Filter out undefined or empty paths
   return `/${[currentLanguage, ...validPaths].join('/')}`;
 };
 
@@ -256,9 +256,9 @@ export const getPriceRange = ({ request, searchParams }: GetParam) => {
 
   if (request) {
     const url = new URL(request.url);
-    priceParam = url.searchParams.get(PARAMS.PRICE);
+    priceParam = url.searchParams.get(PARAM_KEYS.PRICE);
   } else if (searchParams) {
-    priceParam = searchParams.get(PARAMS.PRICE);
+    priceParam = searchParams.get(PARAM_KEYS.PRICE);
   }
 
   // If the price parameter is missing, return undefined
@@ -281,9 +281,9 @@ export const getRating = ({ request, searchParams }: GetParam) => {
 
   if (request) {
     const url = new URL(request.url);
-    rating = url.searchParams.get(PARAMS.RATING);
+    rating = url.searchParams.get(PARAM_KEYS.RATING);
   } else if (searchParams) {
-    rating = searchParams.get(PARAMS.RATING);
+    rating = searchParams.get(PARAM_KEYS.RATING);
   }
 
   // If the price parameter is missing, return undefined
@@ -315,9 +315,10 @@ export const getLimit = ({ request, searchParams }: GetParam) => {
 
   if (request) {
     const url = new URL(request.url);
-    limit = Number(url.searchParams.get(PARAMS.LIMIT)) ?? DEFAULT_PRODUCT_LIMIT;
+    limit =
+      Number(url.searchParams.get(PARAM_KEYS.LIMIT)) ?? DEFAULT_PRODUCT_LIMIT;
   } else if (searchParams) {
-    limit = Number(searchParams.get(PARAMS.LIMIT)) ?? DEFAULT_PRODUCT_LIMIT;
+    limit = Number(searchParams.get(PARAM_KEYS.LIMIT)) ?? DEFAULT_PRODUCT_LIMIT;
   }
 
   // If the limit parameter is missing, return DEFAULT_PRODUCT_LIMIT
@@ -334,9 +335,10 @@ export const getPage = ({ request, searchParams }: GetParam) => {
 
   if (request) {
     const url = new URL(request.url);
-    page = Number(url.searchParams.get(PARAMS.PAGE)) ?? DEFAULT_PRODUCT_PAGE;
+    page =
+      Number(url.searchParams.get(PARAM_KEYS.PAGE)) ?? DEFAULT_PRODUCT_PAGE;
   } else if (searchParams) {
-    page = Number(searchParams.get(PARAMS.PAGE)) ?? DEFAULT_PRODUCT_PAGE;
+    page = Number(searchParams.get(PARAM_KEYS.PAGE)) ?? DEFAULT_PRODUCT_PAGE;
   }
 
   // If the page parameter is missing, return DEFAULT_PRODUCT_PAGE
@@ -353,9 +355,9 @@ export const getSort = ({ request, searchParams }: GetParam) => {
 
   if (request) {
     const url = new URL(request.url);
-    sort = url.searchParams.get(PARAMS.SORT) ?? DEFAULT_PRODUCT_SORT;
+    sort = url.searchParams.get(PARAM_KEYS.SORT) ?? DEFAULT_PRODUCT_SORT;
   } else if (searchParams) {
-    sort = searchParams.get(PARAMS.SORT) ?? DEFAULT_PRODUCT_SORT;
+    sort = searchParams.get(PARAM_KEYS.SORT) ?? DEFAULT_PRODUCT_SORT;
   }
 
   // If the sort parameter is missing, return DEFAULT_PRODUCT_SORT
@@ -402,7 +404,7 @@ const getIdsFromParams = ({
 export const getCategoriesId = (params: GetParam) => {
   return getIdsFromParams({
     ...params,
-    paramKey: PARAMS.CATEGORIES,
+    paramKey: PARAM_KEYS.CATEGORIES,
     idMap: CATEGORIES_WITH_ID_MAP
   });
 };
@@ -410,7 +412,7 @@ export const getCategoriesId = (params: GetParam) => {
 export const getBrandsId = (params: GetParam) => {
   return getIdsFromParams({
     ...params,
-    paramKey: PARAMS.BRANDS,
+    paramKey: PARAM_KEYS.BRANDS,
     idMap: BRAND_WITH_ID_MAP
   });
 };
@@ -438,7 +440,7 @@ export function shouldRevalidateLogic(nextUrl: URL, currentUrl: URL): boolean {
     return false;
   }
 
-  const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
+  const forceValidate = nextUrl.searchParams.get(PARAM_KEYS.FORCE_REVALIDATE);
 
   if (forceValidate === FORCE_REVALIDATE_MAP.GLOBAL) {
     return true;

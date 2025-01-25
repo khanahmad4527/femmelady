@@ -28,6 +28,7 @@ import { z } from 'zod';
 import { ProductCart } from '~/types';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import NoCart from '~/components/cart/NoCart';
+import { PATHS } from '~/constant';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -157,7 +158,10 @@ const Checkout = () => {
               color={'black'}
               disabled={!totalPrice}
               component={Link}
-              to={buildLocalizedLink({ currentLanguage, paths: ['payment'] })}
+              to={buildLocalizedLink({
+                currentLanguage,
+                paths: [PATHS.payment]
+              })}
             >
               {t('checkout.pay')}
             </Button>

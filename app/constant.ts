@@ -5,6 +5,9 @@ export const ROUTES_WITHOUT_HEADER_AND_FOOTER = new Set(['/some']); // 'login',
 
 export const FALL_BACK_LANG = 'en';
 
+// These are the languages that web app supports
+export const AVAILABLE_LANGUAGES = ['en', 'ja'];
+
 export const LANGUAGE_TO_LOCALE_LANGUAGE: Record<string, string> = {
   en: 'en-US', // English (United States)
   ja: 'ja-JP', // Japanese (Japan)
@@ -213,7 +216,7 @@ export const BRAND_WITH_ID_MAP = {
   'radiant-moments': '07c12562-4200-4421-bb64-8f6392155106'
 };
 
-export const PARAMS = {
+export const PARAM_KEYS = {
   PRODUCT_ID: 'product-id',
   IMAGE_SET: 'image-set',
   IMAGE_ID: 'image-id',
@@ -230,13 +233,18 @@ export const PARAMS = {
   FORCE_REVALIDATE: 'force-validate'
 };
 
+// Use to force validate, means the loader will get trigger
 export const FORCE_REVALIDATE_MAP = {
   GLOBAL: 'global',
   SINGLE_PRODUCT: 'single-product',
   PRODUCT_REVIEW: 'product-review'
 };
 
-export const PRE_PARAMS = {
+// This is use to compute the previous params so that we can
+// Decide wether the current params changes from the previous
+// If changes are not detected then no need tp make any new request
+// Thus save api calls
+export const PRE_PARAM_KEYS = {
   PRODUCT_ID: 'pre-product-id',
   IMAGE_SET: 'pre-image-set',
   IMAGE_ID: 'pre-image-id',
@@ -250,4 +258,25 @@ export const PRE_PARAMS = {
   CATEGORIES: 'pre-categories',
   BRANDS: 'pre-brands',
   SIZE: 'pre-size'
+};
+
+// Endpoints or Routes
+export const PATHS = {
+  aboutUs: 'about-us',
+  contactUs: 'contact-us',
+  privacyPolicy: 'privacy-policy',
+  termsOfService: 'terms-of-service',
+  blog: 'blog',
+  faq: 'faq',
+  login: 'login',
+  register: 'register',
+  products: 'products',
+  checkout: 'checkout',
+  reviews: 'reviews',
+  payment: 'payment'
+} as const;
+
+export const PARAMS = {
+  forceValidateGlobal: 'force-validate=global',
+  categories: 'categories'
 };

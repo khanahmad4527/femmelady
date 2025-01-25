@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PARAMS } from '~/constant';
+import { PARAM_KEYS } from '~/constant';
 import { Product, ProductSize } from '~/types';
 
 const useCurrentActiveSize = ({
@@ -9,7 +9,7 @@ const useCurrentActiveSize = ({
   product: Product;
   searchParams: URLSearchParams;
 }) => {
-  const productSizeParam = searchParams.get(PARAMS.SIZE);
+  const productSizeParam = searchParams.get(PARAM_KEYS.SIZE);
   // Safely initialize the active size state
   const [activeSize, setActiveSize] = useState<ProductSize>(() => {
     // Ensure `product.sizes` is defined and is an array

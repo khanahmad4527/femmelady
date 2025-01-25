@@ -55,6 +55,7 @@ import { isAuthenticated } from './auth/auth.server';
 import { Notifications } from '@mantine/notifications';
 import { getMeta } from './meta';
 import { getEnv } from './server/env';
+import { AVAILABLE_LANGUAGES, FALL_BACK_LANG } from './constant';
 
 export const meta: MetaFunction = ({ location }) => {
   return getMeta({ pathname: location.pathname });
@@ -77,9 +78,10 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const { isLoggedIn, user } = await isAuthenticated(request);
 
+  // If not the valid language then redirect to the valid language
   const currentLanguage = params?.lang as TranslationKeys;
-  if (!currentLanguage) {
-    return redirect('/en');
+  if (!AVAILABLE_LANGUAGES.includes(currentLanguage) || !currentLanguage) {
+    return redirect(buildLocalizedLink({ currentLanguage: FALL_BACK_LANG })); // this redirect to /en
   }
 
   const locale = getUserLocale(currentLanguage);
@@ -196,7 +198,7 @@ const ErrorBoundaryComponent = () => {
         <Button
           mt={'md'}
           component={Link}
-          to={buildLocalizedLink({ currentLanguage, paths: [''] })}
+          to={buildLocalizedLink({ currentLanguage })}
         >
           {t('common.goToHome')}
         </Button>

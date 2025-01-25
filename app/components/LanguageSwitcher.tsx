@@ -1,6 +1,6 @@
 import { ComboboxItem, Select } from '@mantine/core';
 import { useLocation, useNavigate } from 'react-router';
-import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
+import { FORCE_REVALIDATE_MAP, PARAM_KEYS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { IconSwitch } from '~/icons';
 import selectClasses from '~/styles/Select.module.scss';
@@ -23,7 +23,10 @@ const LanguageSwitcher = () => {
 
       // Clone and modify the search parameters
       const searchParams = new URLSearchParams(location.search);
-      searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL); // Add your extra parameter
+      searchParams.set(
+        PARAM_KEYS.FORCE_REVALIDATE,
+        FORCE_REVALIDATE_MAP.GLOBAL
+      ); // Add your extra parameter
 
       // Navigate to the new path with updated search parameters
       navigate({

@@ -41,7 +41,7 @@ import {
   shouldRevalidateLogic
 } from '~/utils';
 import { OutletContext } from '~/types';
-import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
+import { FORCE_REVALIDATE_MAP, PARAM_KEYS, PARAMS, PATHS } from '~/constant';
 import { useEffect, useState } from 'react';
 import NoData from '~/components/NoData';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -130,9 +130,12 @@ const Products = () => {
   const totalPaginationButtons = Math.ceil(totalProductCount / productPerPage);
 
   const handlePagination = (value: number) => {
-    searchParams.set(PARAMS.PAGE, String(value));
+    searchParams.set(PARAM_KEYS.PAGE, String(value));
     if (value !== currentPage) {
-      searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+      searchParams.set(
+        PARAM_KEYS.FORCE_REVALIDATE,
+        FORCE_REVALIDATE_MAP.GLOBAL
+      );
     }
     setSearchParams(searchParams);
   };
@@ -178,7 +181,7 @@ const Products = () => {
                   component={Link}
                   to={buildLocalizedLink({
                     currentLanguage,
-                    paths: ['products?force-validate=global']
+                    paths: [PATHS.products, '?', PARAMS.forceValidateGlobal]
                   })}
                 >
                   {t('common.cartEmptyMessage')}

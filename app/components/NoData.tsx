@@ -28,7 +28,7 @@ const NoData = ({ button }: { button?: ReactNode }) => {
         <Button
           mt={'md'}
           component={Link}
-          to={buildLocalizedLink({ currentLanguage, paths: [''] })}
+          to={buildLocalizedLink({ currentLanguage })}
         >
           {t('common.goToHome')}
         </Button>

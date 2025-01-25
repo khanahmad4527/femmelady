@@ -19,6 +19,7 @@ import InvalidProvider from '~/components/error/InvalidProvider';
 import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
 import PasswordComponent from '~/components/PasswordComponent';
 import SocialLogin from '~/components/SocialLogin';
+import { PATHS } from '~/constant';
 import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
@@ -60,7 +61,9 @@ export const action: ActionFunction = async ({ request, params }) => {
         password: validatedData.password
       })
     );
-    return redirect(buildLocalizedLink({ currentLanguage, paths: ['login'] }));
+    return redirect(
+      buildLocalizedLink({ currentLanguage, paths: [PATHS.login] })
+    );
   } catch (error) {
     return handleError({ error, route: 'register' });
   }
@@ -153,7 +156,7 @@ const register = () => {
                 component={Link}
                 to={buildLocalizedLink({
                   currentLanguage,
-                  paths: ['login']
+                  paths: [PATHS.login]
                 })}
               >
                 {t('register.accountLogin')}

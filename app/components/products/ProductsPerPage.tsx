@@ -4,7 +4,7 @@ import {
   DEFAULT_PRODUCT_LIMIT,
   DEFAULT_PRODUCT_PAGE,
   FORCE_REVALIDATE_MAP,
-  PARAMS
+  PARAM_KEYS
 } from '~/constant';
 import selectClasses from '~/styles/Select.module.scss';
 
@@ -32,9 +32,15 @@ const ProductsPerPage = () => {
 
   const handleFilterChange = (value: string | null) => {
     if (value !== limitValue) {
-      searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
-      searchParams.set(PARAMS.LIMIT, value ?? String(DEFAULT_PRODUCT_LIMIT));
-      searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+      searchParams.set(PARAM_KEYS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
+      searchParams.set(
+        PARAM_KEYS.LIMIT,
+        value ?? String(DEFAULT_PRODUCT_LIMIT)
+      );
+      searchParams.set(
+        PARAM_KEYS.FORCE_REVALIDATE,
+        FORCE_REVALIDATE_MAP.GLOBAL
+      );
       setSearchParams(searchParams, { preventScrollReset: true });
     }
   };

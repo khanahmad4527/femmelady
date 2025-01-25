@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router';
-import { PARAMS } from '~/constant';
+import { PARAM_KEYS } from '~/constant';
 import { Product } from '~/types';
 
 const useScrollToProduct = ({ products }: { products: Product[] }) => {
   const [searchParams] = useSearchParams();
-  const paramsProductId = searchParams.get(PARAMS.PRODUCT_ID);
+  const paramsProductId = searchParams.get(PARAM_KEYS.PRODUCT_ID);
   const productCardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {

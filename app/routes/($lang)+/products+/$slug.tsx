@@ -49,7 +49,7 @@ import { Route } from './+types/$slug';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
-import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
+import { FORCE_REVALIDATE_MAP, PARAM_KEYS } from '~/constant';
 import useCurrentActiveSize from '~/hooks/useCurrentActiveSize';
 import { directus } from '~/server/directus';
 import { createItem, withToken } from '@directus/sdk';
@@ -81,7 +81,8 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
     return true; // If shared logic already decided to revalidate, no need to check further
   }
 
-  const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE) ?? '';
+  const forceValidate =
+    nextUrl.searchParams.get(PARAM_KEYS.FORCE_REVALIDATE) ?? '';
 
   if (forceValidate === FORCE_REVALIDATE_MAP.SINGLE_PRODUCT) {
     return true;
@@ -194,7 +195,7 @@ const SingleProduct = () => {
     if (id && id !== activeImage) {
       setActiveImage(id);
 
-      searchParams.set(PARAMS.IMAGE_ID, id);
+      searchParams.set(PARAM_KEYS.IMAGE_ID, id);
       setSearchParams(searchParams, { preventScrollReset: true });
     }
   };

@@ -10,6 +10,7 @@ import { directus } from '~/server/directus';
 import { refresh } from '@directus/sdk';
 import { redisClient } from '~/entry.server';
 import { createUserSession } from '~/auth/session.server';
+import { PARAMS, PATHS } from '~/constant';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const url = new URL(request.url);
@@ -20,11 +21,11 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     fromPage === 'login'
       ? buildLocalizedLink({
           currentLanguage,
-          paths: ['login']
+          paths: [PATHS.login]
         })
       : buildLocalizedLink({
           currentLanguage,
-          paths: ['register']
+          paths: [PATHS.register]
         });
   try {
     if (failureReason && failureReason.includes('INVALID_CREDENTIALS')) {
@@ -53,7 +54,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
       remember: true,
       redirectTo: buildLocalizedLink({
         currentLanguage,
-        paths: ['?force-validate=global']
+        paths: ['?', PARAMS.forceValidateGlobal]
       })
     });
   } catch (error) {

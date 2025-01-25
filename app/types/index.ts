@@ -32,7 +32,14 @@ export type ValueLabel = {
   label: string;
 };
 
-export type Page = 'home' | 'products';
+export type Page =
+  | 'home'
+  | 'products'
+  | 'about-us'
+  | 'contact-us'
+  | 'privacy-policy'
+  | 'terms-of-service'
+  | 'blog'  | 'faq';
 
 export type GetParam = {
   request?: Request;

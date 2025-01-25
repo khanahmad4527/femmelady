@@ -1,5 +1,6 @@
 import { Box, Button, Stack, Text } from '@mantine/core';
 import { Link } from 'react-router';
+import { PATHS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconDatabaseExclamation } from '~/icons';
@@ -23,7 +24,7 @@ const NoCart = () => {
       <Button
         mt={'md'}
         component={Link}
-        to={buildLocalizedLink({ currentLanguage, paths: ['products'] })}
+        to={buildLocalizedLink({ currentLanguage, paths: [PATHS.products] })}
       >
         {t('common.cartEmptyMessage')}
       </Button>

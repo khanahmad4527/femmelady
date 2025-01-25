@@ -4,6 +4,7 @@ import { useHover, useInViewport } from '@mantine/hooks';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router';
+import { PATHS } from '~/constant';
 import getStringDto from '~/dto/getStringDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
@@ -80,7 +81,11 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                   component={Link}
                   to={buildLocalizedLink({
                     currentLanguage,
-                    paths: ['products', translation?.slug ?? p?.id, 'reviews']
+                    paths: [
+                      PATHS.products,
+                      translation?.slug ?? p?.id,
+                      PATHS.reviews
+                    ]
                   })}
                 >
                   <Image

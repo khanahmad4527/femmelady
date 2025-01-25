@@ -27,6 +27,7 @@ import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
 import { buildLocalizedLink, getLanguageCode } from '~/utils';
 import { Route } from './+types/_index';
+import { PATHS } from '~/constant';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -96,7 +97,7 @@ export default function Index() {
       <Box
         bg="red"
         component={Link}
-        to={buildLocalizedLink({ currentLanguage, paths: ['products'] })}
+        to={buildLocalizedLink({ currentLanguage, paths: [PATHS.products] })}
         pos={'relative'}
       >
         <Image src={heroSection1} h={'100%'} fit="contain" loading={'lazy'} />
@@ -124,7 +125,7 @@ export default function Index() {
               component={Link}
               to={buildLocalizedLink({
                 currentLanguage,
-                paths: ['products']
+                paths: [PATHS.products]
               })}
               pos={'relative'}
             >

@@ -8,6 +8,7 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { Cart, Product, ProductColor, ProductColorTranslation } from '~/types';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import { PATHS } from '~/constant';
 
 type ItemsResponse = { carts: Cart[]; page: number };
 
@@ -91,7 +92,7 @@ const InfiniteCartLoader = ({ close }: { close: () => void }) => {
       {carts.length > 0 && (
         <Button
           component={Link}
-          to={buildLocalizedLink({ currentLanguage, paths: ['checkout'] })}
+          to={buildLocalizedLink({ currentLanguage, paths: [PATHS.checkout] })}
           color="black"
           fullWidth
           onClick={close}

@@ -8,7 +8,7 @@ import { OutletContext, Review } from '~/types';
 import {
   DEFAULT_PRODUCT_LIMIT,
   FORCE_REVALIDATE_MAP,
-  PARAMS
+  PARAM_KEYS
 } from '~/constant';
 
 const ProductReview = ({
@@ -29,9 +29,9 @@ const ProductReview = ({
   const totalPaginationButtons = Math.ceil(totalReviewsCount / reviewsPerPage);
 
   const handlePagination = (value: number) => {
-    searchParams.set(PARAMS.PAGE, String(value));
+    searchParams.set(PARAM_KEYS.PAGE, String(value));
     searchParams.set(
-      PARAMS.FORCE_REVALIDATE,
+      PARAM_KEYS.FORCE_REVALIDATE,
       FORCE_REVALIDATE_MAP.PRODUCT_REVIEW
     );
     setSearchParams(searchParams, { preventScrollReset: true });

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { PARAMS } from '~/constant';
+import { PARAM_KEYS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import getStringDto from '~/dto/getStringDto';
 import {
@@ -19,9 +19,10 @@ const useCurrentActiveImage = ({
   activeColor: ProductColor;
   searchParams: URLSearchParams;
 }) => {
-  const paramsImageId = searchParams.get(PARAMS.IMAGE_ID);
+  const paramsImageId = searchParams.get(PARAM_KEYS.IMAGE_ID);
   const paramsImageSet =
-    searchParams.get(PARAMS.IMAGE_SET) ?? getStringDto(activeColor?.image_set);
+    searchParams.get(PARAM_KEYS.IMAGE_SET) ??
+    getStringDto(activeColor?.image_set);
 
   const images = product?.images as ProductProductImage[];
 

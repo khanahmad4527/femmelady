@@ -30,6 +30,7 @@ import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 
 import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
 import { memo } from 'react';
+import { PATHS } from '~/constant';
 
 const ProductCard = (product: Product) => {
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
@@ -82,7 +83,7 @@ const ProductCard = (product: Product) => {
         component={Link}
         to={buildLocalizedLink({
           currentLanguage,
-          paths: ['products', translation?.slug ?? id, 'reviews']
+          paths: [PATHS.products, translation?.slug ?? id, PATHS.reviews]
         })}
       >
         <Image

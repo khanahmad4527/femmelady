@@ -33,6 +33,7 @@ import { handleError } from '~/utils/error';
 import { validateTurnstile } from '~/server/turnstile';
 import { Turnstile } from '@marsidev/react-turnstile';
 import SocialLogin from '~/components/SocialLogin';
+import { PARAMS, PATHS } from '~/constant';
 
 export const action = async ({ request, params }: Route.ActionArgs) => {
   const currentLanguage = getCurrentLanguage(params);
@@ -76,7 +77,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       remember: true,
       redirectTo: buildLocalizedLink({
         currentLanguage,
-        paths: ['?force-validate=global']
+        paths: ['?', PARAMS.forceValidateGlobal]
       })
     });
   } catch (error) {
@@ -149,7 +150,7 @@ const Login = () => {
                 component={Link}
                 to={buildLocalizedLink({
                   currentLanguage,
-                  paths: ['register']
+                  paths: [PATHS.register]
                 })}
               >
                 {t('login.accountRegister')}

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { PARAMS } from '~/constant';
+import { PARAM_KEYS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import { Product, ProductColor, ProductProductColor } from '~/types';
 import useDefaultColor from './useDefaultColor';
@@ -15,8 +15,8 @@ const useCurrentActiveColor = ({
   const defaultActiveColor = useMemo(() => {
     let defaultColor = useDefaultColor({ product });
 
-    const paramsProductId = searchParams.get(PARAMS.PRODUCT_ID);
-    const paramsImageSet = searchParams.get(PARAMS.IMAGE_SET);
+    const paramsProductId = searchParams.get(PARAM_KEYS.PRODUCT_ID);
+    const paramsImageSet = searchParams.get(PARAM_KEYS.IMAGE_SET);
 
     if (
       paramsProductId === product?.id &&

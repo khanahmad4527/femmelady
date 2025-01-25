@@ -13,7 +13,7 @@ import {
 } from 'react-router';
 import { getReviews } from '~/server/api';
 import { OutletContext } from '~/types';
-import { FORCE_REVALIDATE_MAP, PARAMS } from '~/constant';
+import { FORCE_REVALIDATE_MAP, PARAM_KEYS } from '~/constant';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,
@@ -26,7 +26,7 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
     return true; // If shared logic already decided to revalidate, no need to check further
   }
 
-  const forceValidate = nextUrl.searchParams.get(PARAMS.FORCE_REVALIDATE);
+  const forceValidate = nextUrl.searchParams.get(PARAM_KEYS.FORCE_REVALIDATE);
 
   if (forceValidate === FORCE_REVALIDATE_MAP.PRODUCT_REVIEW) {
     return true;

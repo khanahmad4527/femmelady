@@ -16,8 +16,8 @@ import { useOutletContext } from 'react-router';
 import {
   DEFAULT_PRODUCT_PAGE,
   FORCE_REVALIDATE_MAP,
-  PARAMS,
-  PRE_PARAMS
+  PARAM_KEYS,
+  PRE_PARAM_KEYS
 } from '~/constant';
 
 import useTranslation from '~/hooks/useTranslation';
@@ -35,7 +35,10 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
       const newSearchParams = new URLSearchParams();
       // Set the desired parameter
 
-      newSearchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+      newSearchParams.set(
+        PARAM_KEYS.FORCE_REVALIDATE,
+        FORCE_REVALIDATE_MAP.GLOBAL
+      );
       // Update the URL with the new parameters
       setSearchParams(newSearchParams, { preventScrollReset: true });
     }
@@ -43,22 +46,22 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
 
   const productsFilterByAccordionData = [
     {
-      value: PARAMS.CATEGORIES,
+      value: PARAM_KEYS.CATEGORIES,
       label: t('products.category'),
       component: <CategoryFilter />
     },
     {
-      value: PARAMS.PRICE,
+      value: PARAM_KEYS.PRICE,
       label: t('products.price'),
       component: <PriceFilter />
     },
     {
-      value: PARAMS.BRANDS,
+      value: PARAM_KEYS.BRANDS,
       label: t('products.brand'),
       component: <BrandFilter />
     },
     {
-      value: PARAMS.RATING,
+      value: PARAM_KEYS.RATING,
       label: t('products.rating'),
       component: <RatingFilter />
     }
@@ -109,9 +112,12 @@ const RatingFilter = () => {
 
   const handleSearch = (v: number) => {
     if (value !== v) {
-      searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
-      searchParams.set(PARAMS.RATING, String(v));
-      searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+      searchParams.set(PARAM_KEYS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
+      searchParams.set(PARAM_KEYS.RATING, String(v));
+      searchParams.set(
+        PARAM_KEYS.FORCE_REVALIDATE,
+        FORCE_REVALIDATE_MAP.GLOBAL
+      );
       setSearchParams(searchParams, { preventScrollReset: true });
     }
   };
@@ -161,17 +167,19 @@ const BrandFilter = () => {
   ];
 
   const handleBrandSearch = (value: string) => {
-    const currentBrands = searchParams.getAll(PARAMS.BRANDS);
+    const currentBrands = searchParams.getAll(PARAM_KEYS.BRANDS);
     const updatedBrands = currentBrands.includes(value)
       ? currentBrands.filter(brand => brand !== value) // Remove if already selected
       : [...currentBrands, value]; // Add new brand
 
-    searchParams.delete(PARAMS.BRANDS); // Clear existing values
+    searchParams.delete(PARAM_KEYS.BRANDS); // Clear existing values
 
     // Append updated categories back
-    updatedBrands.forEach(brand => searchParams.append(PARAMS.BRANDS, brand));
-    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
-    searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+    updatedBrands.forEach(brand =>
+      searchParams.append(PARAM_KEYS.BRANDS, brand)
+    );
+    searchParams.set(PARAM_KEYS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
+    searchParams.set(PARAM_KEYS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
@@ -180,7 +188,7 @@ const BrandFilter = () => {
       <Stack gap={'sm'}>
         {brandNamesWithSlugs.map(n => {
           const isSelected = searchParams
-            .getAll(PARAMS.BRANDS)
+            .getAll(PARAM_KEYS.BRANDS)
             .includes(n.value);
 
           return (
@@ -247,19 +255,19 @@ const CategoryFilter = () => {
   ];
 
   const handleCategorySearch = (value: string) => {
-    const currentCategories = searchParams.getAll(PARAMS.CATEGORIES);
+    const currentCategories = searchParams.getAll(PARAM_KEYS.CATEGORIES);
     const updatedCategories = currentCategories.includes(value)
       ? currentCategories.filter(category => category !== value) // Remove if already selected
       : [...currentCategories, value]; // Add new category
 
-    searchParams.delete(PARAMS.CATEGORIES); // Clear existing values
+    searchParams.delete(PARAM_KEYS.CATEGORIES); // Clear existing values
 
     // Append updated categories back
     updatedCategories.forEach(category =>
-      searchParams.append(PARAMS.CATEGORIES, category)
+      searchParams.append(PARAM_KEYS.CATEGORIES, category)
     );
-    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
-    searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+    searchParams.set(PARAM_KEYS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
+    searchParams.set(PARAM_KEYS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
@@ -268,7 +276,7 @@ const CategoryFilter = () => {
       <Stack gap={'sm'}>
         {categoriesWithSlugs.map(n => {
           const isSelected = searchParams
-            .getAll(PARAMS.CATEGORIES)
+            .getAll(PARAM_KEYS.CATEGORIES)
             .includes(n.value);
 
           return (
@@ -294,10 +302,13 @@ const PriceFilter = () => {
   );
 
   const handleSearch = useDebouncedCallback((v: [number, number]) => {
-    searchParams.set(PARAMS.PRICE, String(v));
-    searchParams.set(PRE_PARAMS.PRICE, String(getPriceRange({ searchParams })));
-    searchParams.set(PARAMS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
-    searchParams.set(PARAMS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+    searchParams.set(PARAM_KEYS.PRICE, String(v));
+    searchParams.set(
+      PRE_PARAM_KEYS.PRICE,
+      String(getPriceRange({ searchParams }))
+    );
+    searchParams.set(PARAM_KEYS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
+    searchParams.set(PARAM_KEYS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   }, 1000);
 
