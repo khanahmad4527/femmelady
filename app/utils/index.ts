@@ -185,7 +185,7 @@ export const buildLocalizedLink = ({
   currentLanguage: TranslationKeys;
   paths?: string[]; // Accepts an array of paths
 }) => {
-  const validPaths = PATHS.filter(path => path); // Filter out undefined or empty paths
+  const validPaths = paths.filter(path => path); // Filter out undefined or empty paths
   return `/${[currentLanguage, ...validPaths].join('/')}`;
 };
 
