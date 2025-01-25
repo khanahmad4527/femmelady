@@ -68,7 +68,7 @@ const Header = () => {
       id: 'c9d1e5d6-7d3a-4f7c-aafa-089fc58a3d62',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: [PATHS.products, '?', PARAMS.forceValidateGlobal]
+        paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
       }),
       label: t('header.new')
     },
@@ -76,7 +76,7 @@ const Header = () => {
       id: 'a8e2f3b4-c2c9-48d6-a1e7-b05c4a89d816',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: [PATHS.products, '?', PARAMS.forceValidateGlobal]
+        paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
       }),
       label: t('header.topRated')
     },
@@ -85,9 +85,7 @@ const Header = () => {
       link: buildLocalizedLink({
         currentLanguage,
         paths: [
-          PATHS.products,
-          '?categories=dresses&',
-          PARAMS.forceValidateGlobal
+          `${PATHS.products}?categories=dresses&${PARAMS.forceValidateGlobal}`
         ]
       }),
       label: t('header.dresses')
@@ -97,9 +95,7 @@ const Header = () => {
       link: buildLocalizedLink({
         currentLanguage,
         paths: [
-          PATHS.products,
-          '?categories=dresses&',
-          PARAMS.forceValidateGlobal
+          `${PATHS.products}?categories=dresses&${PARAMS.forceValidateGlobal}`
         ]
       }),
       label: t('header.clothing')
@@ -109,9 +105,7 @@ const Header = () => {
       link: buildLocalizedLink({
         currentLanguage,
         paths: [
-          PATHS.products,
-          '?categories=shoes&',
-          PARAMS.forceValidateGlobal
+          `${PATHS.products}?categories=shoes&${PARAMS.forceValidateGlobal}`
         ]
       }),
       label: t('header.shoes')
@@ -121,9 +115,7 @@ const Header = () => {
       link: buildLocalizedLink({
         currentLanguage,
         paths: [
-          PATHS.products,
-          '?categories=jewelry&',
-          PARAMS.forceValidateGlobal
+          `${PATHS.products}?categories=jewelry&${PARAMS.forceValidateGlobal}`
         ]
       }),
       label: t('header.accessories')
@@ -133,9 +125,7 @@ const Header = () => {
       link: buildLocalizedLink({
         currentLanguage,
         paths: [
-          PATHS.products,
-          '?categories=wedding-dresses&',
-          PARAMS.forceValidateGlobal
+          `${PATHS.products}?categories=wedding-dresses&${PARAMS.forceValidateGlobal}`
         ]
       }),
       label: t('header.weddings')
@@ -144,7 +134,7 @@ const Header = () => {
       id: 'c2e1f7b4-d2c3-437f-a8e9-f19b4a27d816',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: [PATHS.products, '?', PARAMS.forceValidateGlobal]
+        paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
       }),
       label: t('header.homeFurniture')
     },
@@ -152,7 +142,7 @@ const Header = () => {
       id: 'b5d2c8f1-c7a3-4f92-b8a7-e1b5a7f49c38',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: [PATHS.products, '?', PARAMS.forceValidateGlobal]
+        paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
       }),
       label: t('header.beautyWellness')
     },
@@ -161,9 +151,7 @@ const Header = () => {
       link: buildLocalizedLink({
         currentLanguage,
         paths: [
-          PATHS.products,
-          '?categories=candles&',
-          PARAMS.forceValidateGlobal
+          `${PATHS.products}?categories=candles&${PARAMS.forceValidateGlobal}`
         ]
       }),
       label: t('header.giftsCandles')
@@ -172,7 +160,7 @@ const Header = () => {
       id: 'e1d3f6a4-a4b9-4297-a5b7-f18c4e31d9a5',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: [PATHS.products, '?', PARAMS.forceValidateGlobal]
+        paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
       }),
       label: t('header.sale')
     }

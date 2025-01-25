@@ -11,6 +11,7 @@ import {
 import { useHover } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
 import { Link, useFetcher } from 'react-router';
+import { PATHS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
@@ -119,9 +120,9 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
         to={buildLocalizedLink({
           currentLanguage,
           paths: [
-            'products',
+            PATHS.products,
             productTranslation?.slug ?? product?.id,
-            'reviews'
+            PATHS.reviews
           ]
         })}
       >

@@ -46,7 +46,7 @@ const HeaderCart = ({
             component={Link}
             to={buildLocalizedLink({
               currentLanguage,
-              paths: [PATHS.products, '?', PARAMS.forceValidateGlobal]
+              paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
             })}
             onClick={close}
           >

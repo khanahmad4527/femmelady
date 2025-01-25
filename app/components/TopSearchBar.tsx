@@ -16,6 +16,7 @@ import {
 } from '@mantine/hooks';
 import React, { memo, useEffect, useState } from 'react';
 import { Link, useFetcher } from 'react-router';
+import { PARAMS, PATHS } from '~/constant';
 import getStringDto from '~/dto/getStringDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
@@ -135,10 +136,9 @@ const Card = (p: Product) => {
       to={buildLocalizedLink({
         currentLanguage,
         paths: [
-          'products',
+          PATHS.products,
           translation?.slug ?? p?.id,
-          'reviews',
-          '?force-validate=global'
+          `${PATHS.reviews}?${PARAMS.forceValidateGlobal}`
         ]
       })}
       style={{ textDecoration: 'none' }}

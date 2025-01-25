@@ -54,7 +54,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
       remember: true,
       redirectTo: buildLocalizedLink({
         currentLanguage,
-        paths: ['?', PARAMS.forceValidateGlobal]
+        paths: [`?${PARAMS.forceValidateGlobal}`]
       })
     });
   } catch (error) {

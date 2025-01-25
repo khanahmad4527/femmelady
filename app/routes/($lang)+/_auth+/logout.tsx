@@ -14,7 +14,7 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const currentLanguage = getCurrentLanguage(params);
   const redirectTo = buildLocalizedLink({
     currentLanguage,
-    paths: ['?', PARAMS.forceValidateGlobal]
+    paths: [`?${PARAMS.forceValidateGlobal}`]
   });
   try {
     const cookie = request.headers.get('Cookie');

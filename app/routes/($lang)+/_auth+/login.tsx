@@ -77,7 +77,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       remember: true,
       redirectTo: buildLocalizedLink({
         currentLanguage,
-        paths: ['?', PARAMS.forceValidateGlobal]
+        paths: [`?${PARAMS.forceValidateGlobal}`]
       })
     });
   } catch (error) {
