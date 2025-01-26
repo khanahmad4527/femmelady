@@ -189,6 +189,10 @@ export const CATEGORIES_WITH_ID_MAP = {
     key: 'wedding-dresses',
     id: '418ae741-d5cf-4442-8b6a-70b397bd2cec'
   },
+  'home-and-furniture': {
+    key: 'home-and-furniture',
+    id: 'd756e31f-dd83-45e3-91d4-6cf8208d44e2'
+  },
   shoes: { key: 'shoes', id: '1816621b-dfa4-4e50-a983-1fe126773fce' },
   candles: { key: 'candles', id: 'e76acfbc-a0f6-4a59-a962-a4bc4df54926' },
   dresses: { key: 'dresses', id: '2d94f3a4-c004-4e74-b928-248a0bb8210f' },

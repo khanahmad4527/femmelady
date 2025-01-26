@@ -134,7 +134,9 @@ const Header = () => {
       id: 'c2e1f7b4-d2c3-437f-a8e9-f19b4a27d816',
       link: buildLocalizedLink({
         currentLanguage,
-        paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
+        paths: [
+          `${PATHS.products}?${PARAMS.categories}=${CATEGORIES_WITH_ID_MAP['home-and-furniture'].key}&${PARAMS.forceValidateGlobal}`
+        ]
       }),
       label: t('header.homeFurniture')
     },

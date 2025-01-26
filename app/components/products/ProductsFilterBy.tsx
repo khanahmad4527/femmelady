@@ -306,6 +306,10 @@ const CategoryFilter = () => {
     {
       label: t('products.filter.beautyWellness'),
       value: CATEGORIES_WITH_ID_MAP['beauty-and-wellness'].key
+    },
+    {
+      label: t('products.filter.homeFurniture'),
+      value: CATEGORIES_WITH_ID_MAP['home-and-furniture'].key
     }
   ];
 
