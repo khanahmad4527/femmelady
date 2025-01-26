@@ -12,10 +12,12 @@ import {
   Title
 } from '@mantine/core';
 import {
+  Link,
   Outlet,
   ShouldRevalidateFunction,
   useFetcher,
   useLoaderData,
+  useLocation,
   useOutletContext
 } from 'react-router';
 import ProductCartQuantity from '~/components/products/ProductCartQuantity';
@@ -37,6 +39,7 @@ import {
   ProductTranslation
 } from '~/types';
 import {
+  buildLocalizedLink,
   formatCurrency,
   formatNumber,
   generateUuidv4,
@@ -49,7 +52,7 @@ import { Route } from './+types/$slug';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
-import { FORCE_REVALIDATE_MAP, PARAM_KEYS } from '~/constant';
+import { FORCE_REVALIDATE_MAP, PARAM_KEYS, PARAMS, PATHS } from '~/constant';
 import useCurrentActiveSize from '~/hooks/useCurrentActiveSize';
 import { directus } from '~/server/directus';
 import { createItem, withToken } from '@directus/sdk';
@@ -154,6 +157,8 @@ const SingleProduct = () => {
   const outletContext = useOutletContext<OutletContext>();
 
   const { searchParams, setSearchParams, isLoggedIn, user } = outletContext;
+
+  const location = useLocation();
 
   const { setCartCount, setCarts, carts } = useHeaderFooterContext();
   const [quantity, setQuantity] = useState<string | null>('1');
@@ -356,11 +361,13 @@ const SingleProduct = () => {
           />
           <fetcher.Form method="POST">
             <Stack>
-              <ProductCartQuantity
-                disabled={disabledAddToBag}
-                quantity={quantity}
-                setQuantity={setQuantity}
-              />
+              {isLoggedIn && (
+                <ProductCartQuantity
+                  disabled={disabledAddToBag}
+                  quantity={quantity}
+                  setQuantity={setQuantity}
+                />
+              )}
 
               <input hidden name={'cartId'} defaultValue={cartId} />
               <input hidden name={'productId'} defaultValue={productId} />
@@ -377,42 +384,59 @@ const SingleProduct = () => {
                 defaultValue={featureImage2Id}
               />
 
-              <Button
-                type={'submit'}
-                color="black"
-                size="md"
-                disabled={disabledAddToBag}
-                loading={fetcher.state !== 'idle'}
-                onClick={() => {
-                  const data = {
-                    date_created: new Date().toISOString(),
-                    id: cartId,
-                    quantity,
-                    sort: null,
-                    user: user?.id,
-                    feature_image_1: featureImage1Id,
-                    feature_image_2: featureImage2Id,
-                    products: [
-                      {
-                        product_id: {
-                          id: productId,
-                          price: product?.price,
-                          translations: product?.translations
+              {/* If use is not logged in then redirect them to login page */}
+              {isLoggedIn ? (
+                <Button
+                  type={'submit'}
+                  color="black"
+                  size="md"
+                  disabled={disabledAddToBag}
+                  loading={fetcher.state !== 'idle'}
+                  onClick={() => {
+                    const data = {
+                      date_created: new Date().toISOString(),
+                      id: cartId,
+                      quantity,
+                      sort: null,
+                      user: user?.id,
+                      feature_image_1: featureImage1Id,
+                      feature_image_2: featureImage2Id,
+                      products: [
+                        {
+                          product_id: {
+                            id: productId,
+                            price: product?.price,
+                            translations: product?.translations
+                          }
                         }
-                      }
-                    ],
+                      ],
 
-                    color: {
-                      translations: activeColor?.translations
-                    },
-                    size: activeSize
-                  } as Cart;
-                  setCarts(prev => [data, ...prev]);
-                }}
-                fullWidth
-              >
-                {t('products.addToBag')}
-              </Button>
+                      color: {
+                        translations: activeColor?.translations
+                      },
+                      size: activeSize
+                    } as Cart;
+                    setCarts(prev => [data, ...prev]);
+                  }}
+                  fullWidth
+                >
+                  {t('products.addToBag')}
+                </Button>
+              ) : (
+                <Button
+                  color="black"
+                  size="md"
+                  component={Link}
+                  to={buildLocalizedLink({
+                    currentLanguage,
+                    paths: [
+                      `${PATHS.login}?${PARAMS.redirectTo}=${location.pathname}${location.search}`
+                    ]
+                  })}
+                >
+                  {t('login.login')}
+                </Button>
+              )}
             </Stack>
           </fetcher.Form>
           {fetcher.data?.errors && <AddToCartError fetcher={fetcher} />}

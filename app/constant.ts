@@ -361,5 +361,6 @@ export const PATHS = {
 
 export const PARAMS = {
   forceValidateGlobal: 'force-validate=global',
-  categories: 'categories'
+  categories: 'categories',
+  redirectTo: 'redirect-to'
 } as const;
