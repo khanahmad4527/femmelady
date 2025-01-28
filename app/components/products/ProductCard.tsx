@@ -33,7 +33,8 @@ import { memo } from 'react';
 import { PATHS } from '~/constant';
 
 const ProductCard = (product: Product) => {
-  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
+  const { searchParams, setSearchParams, env } =
+    useOutletContext<OutletContext>();
 
   const { hovered, ref } = useHover();
 
@@ -82,6 +83,7 @@ const ProductCard = (product: Product) => {
         h={300}
         component={Link}
         to={buildLocalizedLink({
+          baseUrl: env?.APP_URL!,
           currentLanguage,
           paths: [PATHS.products, translation?.slug ?? id, PATHS.reviews]
         })}

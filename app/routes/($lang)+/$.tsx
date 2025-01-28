@@ -1,12 +1,14 @@
 import { Box, Button, Stack, Text } from '@mantine/core';
-import { Link } from 'react-router';
+import { Link, useOutletContext } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import useUserLocale from '~/hooks/useUserLocale';
 import { IconMoodSad } from '~/icons';
+import { OutletContext } from '~/types';
 import { buildLocalizedLink, formatNumber } from '~/utils';
 
 const $ = () => {
+  const { env } = useOutletContext<OutletContext>();
   const { currentLanguage } = useCurrentLanguage();
   const userLocale = useUserLocale(currentLanguage);
   const t = useTranslation();
@@ -25,7 +27,7 @@ const $ = () => {
       <Button
         mt={'md'}
         component={Link}
-        to={buildLocalizedLink({ currentLanguage })}
+        to={buildLocalizedLink({ baseUrl: env?.APP_URL!, currentLanguage })}
       >
         {t('common.goToHome')}
       </Button>

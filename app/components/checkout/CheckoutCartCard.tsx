@@ -35,7 +35,7 @@ import {
 const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
-  const { setCarts, setCartCount } = useHeaderFooterContext();
+  const { setCarts, setCartCount, env } = useHeaderFooterContext();
   const [quantity, setQuantity] = useState(cart?.quantity ?? 1);
   const fetcher = useFetcher();
   const { hovered, ref } = useHover();
@@ -118,6 +118,7 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
         ref={ref as any}
         component={Link}
         to={buildLocalizedLink({
+          baseUrl: env?.APP_URL!,
           currentLanguage,
           paths: [
             PATHS.products,

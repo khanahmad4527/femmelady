@@ -19,7 +19,7 @@ const InfiniteCartLoader = ({ close }: { close: () => void }) => {
   const { currentLanguage } = useCurrentLanguage();
 
   const fetcher = useFetcher<ItemsResponse>();
-  const { carts, setCarts } = useHeaderFooterContext();
+  const { carts, setCarts, env } = useHeaderFooterContext();
   const [noLoadMore, setNoLoadMore] = useState(false);
 
   useEffect(() => {
@@ -92,7 +92,11 @@ const InfiniteCartLoader = ({ close }: { close: () => void }) => {
       {carts.length > 0 && (
         <Button
           component={Link}
-          to={buildLocalizedLink({ currentLanguage, paths: [PATHS.checkout] })}
+          to={buildLocalizedLink({
+            baseUrl: env?.APP_URL!,
+            currentLanguage,
+            paths: [PATHS.checkout]
+          })}
           color="black"
           fullWidth
           onClick={close}

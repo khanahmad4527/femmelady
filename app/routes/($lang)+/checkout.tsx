@@ -20,12 +20,12 @@ import {
 import { Route } from './+types/checkout';
 import { isAuthenticated } from '~/auth/auth.server';
 import { getCarts } from '~/server/api';
-import { Link, useLoaderData } from 'react-router';
+import { Link, useLoaderData, useOutletContext } from 'react-router';
 import { mutateCartSchema } from '~/schema';
 import { directus } from '~/server/directus';
 import { deleteItem, updateItem, withToken } from '@directus/sdk';
 import { z } from 'zod';
-import { ProductCart } from '~/types';
+import { OutletContext, ProductCart } from '~/types';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import NoCart from '~/components/cart/NoCart';
 import { PATHS } from '~/constant';
@@ -92,6 +92,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
 };
 
 const Checkout = () => {
+  const { env } = useOutletContext<OutletContext>();
   const { carts } = useLoaderData<typeof loader>();
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
@@ -159,6 +160,7 @@ const Checkout = () => {
               disabled={!totalPrice}
               component={Link}
               to={buildLocalizedLink({
+                baseUrl: env?.APP_URL!,
                 currentLanguage,
                 paths: [PATHS.payment]
               })}

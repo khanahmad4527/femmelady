@@ -156,7 +156,8 @@ const SingleProduct = () => {
 
   const outletContext = useOutletContext<OutletContext>();
 
-  const { searchParams, setSearchParams, isLoggedIn, user } = outletContext;
+  const { searchParams, setSearchParams, isLoggedIn, user, env, utmSource } =
+    outletContext;
 
   const location = useLocation();
 
@@ -225,12 +226,18 @@ const SingleProduct = () => {
     }
   }, [fetcher.data]);
 
+  // These are getting used in the add to bag, form
   const cartId = generateUuidv4();
   const productId = product.id;
   const colorId = activeColor.id;
   const sizeId = activeSize.id;
   const featureImage1Id = getStringDto(currentImageSet?.[0]?.directus_files_id);
   const featureImage2Id = getStringDto(currentImageSet?.[1]?.directus_files_id);
+
+  const redirectPath = utmSource && !isLoggedIn ? PATHS.login : PATHS.register;
+
+  const redirectText =
+    utmSource && !isLoggedIn ? t('login.login') : t('register.register');
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
@@ -384,12 +391,12 @@ const SingleProduct = () => {
                 defaultValue={featureImage2Id}
               />
 
-              {/* If use is not logged in then redirect them to login page */}
+              {/* If user is not logged in then redirect them to login/register page */}
               {isLoggedIn ? (
                 <Button
                   type={'submit'}
-                  color="black"
-                  size="md"
+                  color={'black'}
+                  size={'md'}
                   disabled={disabledAddToBag}
                   loading={fetcher.state !== 'idle'}
                   onClick={() => {
@@ -424,17 +431,20 @@ const SingleProduct = () => {
                 </Button>
               ) : (
                 <Button
-                  color="black"
-                  size="md"
+                  color={'black'}
+                  size={'md'}
                   component={Link}
                   to={buildLocalizedLink({
+                    baseUrl: env?.APP_URL!,
                     currentLanguage,
-                    paths: [
-                      `${PATHS.login}?${PARAMS.redirectTo}=${location.pathname}${location.search}`
-                    ]
+                    paths: [redirectPath],
+                    queryParams: {
+                      'redirect-to': `${location.pathname}${location.search}`,
+                      utm_source: utmSource!
+                    }
                   })}
                 >
-                  {t('login.login')}
+                  {redirectText}
                 </Button>
               )}
             </Stack>

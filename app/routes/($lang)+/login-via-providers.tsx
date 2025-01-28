@@ -20,10 +20,12 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const redirectTo =
     fromPage === 'login'
       ? buildLocalizedLink({
+          baseUrl: process.env?.APP_URL!,
           currentLanguage,
           paths: [PATHS.login]
         })
       : buildLocalizedLink({
+          baseUrl: process.env?.APP_URL!,
           currentLanguage,
           paths: [PATHS.register]
         });
@@ -53,8 +55,11 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
       userSessionId: sessionId,
       remember: true,
       redirectTo: buildLocalizedLink({
+        baseUrl: process.env?.APP_URL!,
         currentLanguage,
-        paths: [`?${PARAMS.forceValidateGlobal}`]
+        queryParams: {
+          'force-validate': 'global'
+        }
       })
     });
   } catch (error) {

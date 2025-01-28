@@ -1,19 +1,9 @@
-import {
-  ActionIcon,
-  Anchor,
-  Box,
-  Burger,
-  Flex,
-  Group,
-  Text,
-  TextInput,
-  Tooltip
-} from '@mantine/core';
+import { ActionIcon, Anchor, Box, Burger, Flex, Group } from '@mantine/core';
 import { Link } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
-import { IconLogout, IconShoppingCart } from '~/icons';
+import { IconShoppingCart } from '~/icons';
 
 import Logo from './Logo';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
@@ -42,17 +32,25 @@ const Header = () => {
   const { currentLanguage } = useCurrentLanguage();
   const headerFooterContext = useHeaderFooterContext();
 
-  const { isLoggedIn, cartCount, locale } = headerFooterContext;
+  const { isLoggedIn, cartCount, locale, env } = headerFooterContext;
 
   const authLinks = [
     {
       id: 'a3f5c2e8-9d4b-46f1-8b47-c1d9a7f83412',
-      link: buildLocalizedLink({ currentLanguage, paths: [PATHS.login] }),
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.login]
+      }),
       label: t('login.login')
     },
     {
       id: 'b7e3f6a2-d8c1-44e9-b519-e7c5a4b39127',
-      link: buildLocalizedLink({ currentLanguage, paths: [PATHS.register] }),
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.register]
+      }),
       label: t('register.register')
     }
   ];
@@ -67,104 +65,140 @@ const Header = () => {
     {
       id: 'c9d1e5d6-7d3a-4f7c-aafa-089fc58a3d62',
       link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
+        paths: [PATHS.products],
+        queryParams: {
+          'force-validate': 'global'
+        }
       }),
       label: t('header.new')
     },
     {
       id: 'a8e2f3b4-c2c9-48d6-a1e7-b05c4a89d816',
       link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
+        paths: [PATHS.products],
+        queryParams: {
+          'force-validate': 'global'
+        }
       }),
       label: t('header.topRated')
     },
     {
       id: 'b7f4e6d3-f1c8-439d-91a7-c57b1a98d319',
       link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [
-          `${PATHS.products}?${PARAMS.categories}=${CATEGORIES_WITH_ID_MAP.dresses.key}&${PARAMS.forceValidateGlobal}`
-        ]
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.dresses.key,
+          'force-validate': 'global'
+        }
       }),
       label: t('header.dresses')
     },
     {
       id: 'd6e3c7b2-e1d7-472c-b519-d91e2b43f2a7',
       link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [
-          `${PATHS.products}?${PARAMS.categories}=${CATEGORIES_WITH_ID_MAP.dresses.key}&${PARAMS.forceValidateGlobal}`
-        ]
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.dresses.key,
+          'force-validate': 'global'
+        }
       }),
       label: t('header.clothing')
     },
     {
       id: 'e5f7c4a9-a9b2-4d38-b716-d84f9a1b5e13',
       link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [
-          `${PATHS.products}?${PARAMS.categories}=${CATEGORIES_WITH_ID_MAP.shoes.key}&${PARAMS.forceValidateGlobal}`
-        ]
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.shoes.key,
+          'force-validate': 'global'
+        }
       }),
       label: t('header.shoes')
     },
     {
       id: 'f3c8e6d2-d3c9-4a15-81f9-c16b2a43d719',
       link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [
-          `${PATHS.products}?${PARAMS.categories}=${CATEGORIES_WITH_ID_MAP.jewelry.key}&${PARAMS.forceValidateGlobal}`
-        ]
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.jewelry.key,
+          'force-validate': 'global'
+        }
       }),
       label: t('header.accessories')
     },
     {
       id: 'a1b3d2f4-f7c2-4e39-b816-c47e9b31a517',
       link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [
-          `${PATHS.products}?${PARAMS.categories}=${CATEGORIES_WITH_ID_MAP['wedding-dresses'].key}&${PARAMS.forceValidateGlobal}`
-        ]
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP['wedding-dresses'].key,
+          'force-validate': 'global'
+        }
       }),
       label: t('header.weddings')
     },
     {
       id: 'c2e1f7b4-d2c3-437f-a8e9-f19b4a27d816',
       link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [
-          `${PATHS.products}?${PARAMS.categories}=${CATEGORIES_WITH_ID_MAP['home-and-furniture'].key}&${PARAMS.forceValidateGlobal}`
-        ]
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP['home-and-furniture'].key,
+          'force-validate': 'global'
+        }
       }),
       label: t('header.homeFurniture')
     },
     {
       id: 'b5d2c8f1-c7a3-4f92-b8a7-e1b5a7f49c38',
       link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [
-          `${PATHS.products}?${PARAMS.categories}=${CATEGORIES_WITH_ID_MAP['beauty-and-wellness'].key}&${PARAMS.forceValidateGlobal}`
-        ]
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP['beauty-and-wellness'].key,
+          'force-validate': 'global'
+        }
       }),
       label: t('header.beautyWellness')
     },
     {
       id: 'f7b3c9e2-d6c8-471a-b4e7-a91b8e36d412',
       link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [
-          `${PATHS.products}?${PARAMS.categories}=${CATEGORIES_WITH_ID_MAP.candles.key}&${PARAMS.forceValidateGlobal}`
-        ]
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.candles.key,
+          'force-validate': 'global'
+        }
       }),
       label: t('header.giftsCandles')
     },
     {
       id: 'e1d3f6a4-a4b9-4297-a5b7-f18c4e31d9a5',
       link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
+        paths: [PATHS.products],
+        queryParams: {
+          'force-validate': 'global'
+        }
       }),
       label: t('header.sale')
     }

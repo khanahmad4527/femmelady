@@ -1,12 +1,14 @@
 import { Box, Button, Stack, Text } from '@mantine/core';
-import { Link } from 'react-router';
+import { Link, useOutletContext } from 'react-router';
 import { PATHS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconDatabaseExclamation } from '~/icons';
+import { OutletContext } from '~/types';
 import { buildLocalizedLink } from '~/utils';
 
 const NoCart = () => {
+  const { env } = useOutletContext<OutletContext>();
   const { currentLanguage } = useCurrentLanguage();
   const t = useTranslation();
 
@@ -24,7 +26,11 @@ const NoCart = () => {
       <Button
         mt={'md'}
         component={Link}
-        to={buildLocalizedLink({ currentLanguage, paths: [PATHS.products] })}
+        to={buildLocalizedLink({
+          baseUrl: env?.APP_URL!,
+          currentLanguage,
+          paths: [PATHS.products]
+        })}
       >
         {t('common.cartEmptyMessage')}
       </Button>

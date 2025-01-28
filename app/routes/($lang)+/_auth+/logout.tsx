@@ -13,8 +13,11 @@ import { PARAMS } from '~/constant';
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const currentLanguage = getCurrentLanguage(params);
   const redirectTo = buildLocalizedLink({
+    baseUrl: process.env?.APP_URL!,
     currentLanguage,
-    paths: [`?${PARAMS.forceValidateGlobal}`]
+    queryParams: {
+      'force-validate': 'global'
+    }
   });
   try {
     const cookie = request.headers.get('Cookie');

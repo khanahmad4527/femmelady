@@ -35,7 +35,7 @@ import {
 
 const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
   const { hovered, ref } = useHover();
-  const { setCarts, setCartCount } = useHeaderFooterContext();
+  const { setCarts, setCartCount, env } = useHeaderFooterContext();
   const { currentLanguage } = useCurrentLanguage();
   const [quantity, setQuantity] = useState(cart?.quantity ?? 1);
   const fetcher = useFetcher<{ success: boolean }>();
@@ -115,12 +115,16 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
           <Box
             component={Link}
             to={buildLocalizedLink({
+              baseUrl: env?.APP_URL!,
               currentLanguage,
               paths: [
                 PATHS.products,
                 productTranslation?.slug ?? product?.id,
-                `${PATHS.reviews}?${PARAMS.forceValidateGlobal}`
-              ]
+                PATHS.reviews
+              ],
+              queryParams: {
+                'force-validate': 'global'
+              }
             })}
             onClick={close}
             ref={ref as any}

@@ -118,7 +118,8 @@ const Products = () => {
   const { products, totalProductCount, filter } =
     useLoaderData<typeof loader>();
 
-  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
+  const { searchParams, setSearchParams, env } =
+    useOutletContext<OutletContext>();
   const { currentLanguage } = useCurrentLanguage();
   const productCardRefs = useScrollToProduct({ products });
 
@@ -180,8 +181,12 @@ const Products = () => {
                   mt={'md'}
                   component={Link}
                   to={buildLocalizedLink({
+                    baseUrl: env?.APP_URL!,
                     currentLanguage,
-                    paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
+                    paths: [PATHS.products],
+                    queryParams: {
+                      'force-validate': 'global'
+                    }
                   })}
                 >
                   {t('common.cartEmptyMessage')}

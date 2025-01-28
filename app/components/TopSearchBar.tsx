@@ -126,6 +126,7 @@ export default memo(TopSearchBar);
 const Card = (p: Product) => {
   const { hovered, ref } = useHover();
   const { currentLanguage } = useCurrentLanguage();
+  const { env } = useHeaderFooterContext();
 
   const translation = getSingleTranslation(
     p.translations
@@ -134,12 +135,12 @@ const Card = (p: Product) => {
   return (
     <Link
       to={buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [
-          PATHS.products,
-          translation?.slug ?? p?.id,
-          `${PATHS.reviews}?${PARAMS.forceValidateGlobal}`
-        ]
+        paths: [PATHS.products, translation?.slug ?? p?.id, PATHS.reviews],
+        queryParams: {
+          'force-validate': 'global'
+        }
       })}
       style={{ textDecoration: 'none' }}
     >

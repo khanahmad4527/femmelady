@@ -76,8 +76,11 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       userSessionId: sessionId,
       remember: true,
       redirectTo: buildLocalizedLink({
+        baseUrl: process.env?.APP_URL!,
         currentLanguage,
-        paths: [`?${PARAMS.forceValidateGlobal}`]
+        queryParams: {
+          'force-validate': 'global'
+        }
       })
     });
   } catch (error) {
@@ -90,7 +93,7 @@ const Login = () => {
   const { currentLanguage, env, searchParams } =
     useOutletContext<OutletContext>();
 
-  const error = searchParams.get('error');
+  const error = searchParams.get(PARAMS.error);
 
   const { Form, form, state, fetcher, errors } = useForm<{
     title: string;
@@ -116,7 +119,7 @@ const Login = () => {
           {t('login.welcome')}
         </Text>
 
-        <SocialLogin />
+        <SocialLogin from={'login'} />
 
         <Divider
           label={t('authForm.continueWithEmail')}
@@ -149,6 +152,7 @@ const Login = () => {
               <Anchor
                 component={Link}
                 to={buildLocalizedLink({
+                  baseUrl: env?.APP_URL!,
                   currentLanguage,
                   paths: [PATHS.register]
                 })}

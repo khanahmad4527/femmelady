@@ -55,7 +55,7 @@ import { isAuthenticated } from './auth/auth.server';
 import { Notifications } from '@mantine/notifications';
 import { getMeta } from './meta';
 import { getEnv } from './server/env';
-import { AVAILABLE_LANGUAGES, FALL_BACK_LANG } from './constant';
+import { AVAILABLE_LANGUAGES, FALL_BACK_LANG, PARAMS } from './constant';
 
 export const meta: MetaFunction = ({ location }) => {
   return getMeta({ pathname: location.pathname });
@@ -81,7 +81,12 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   // If not the valid language then redirect to the valid language
   const currentLanguage = params?.lang as TranslationKeys;
   if (!AVAILABLE_LANGUAGES.includes(currentLanguage) || !currentLanguage) {
-    return redirect(buildLocalizedLink({ currentLanguage: FALL_BACK_LANG })); // this redirect to /en
+    return redirect(
+      buildLocalizedLink({
+        baseUrl: process.env.APP_URL!,
+        currentLanguage: FALL_BACK_LANG
+      })
+    ); // this redirect to /en
   }
 
   const locale = getUserLocale(currentLanguage);
@@ -89,8 +94,18 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const exchangeRate = await getExchangeRate(currentLanguage);
 
   const env = getEnv();
+  const url = new URL(request.url);
+  const utmSource = url.searchParams.get(PARAMS.utmSource);
 
-  return { isLoggedIn, user, locale, currentLanguage, env, exchangeRate };
+  return {
+    isLoggedIn,
+    user,
+    locale,
+    currentLanguage,
+    env,
+    exchangeRate,
+    utmSource
+  };
 };
 
 export const links: LinksFunction = () => {
@@ -168,23 +183,16 @@ export default function App() {
 const isProduction = process.env.NODE_ENV === 'production';
 
 const ErrorBoundaryComponent = () => {
+  const loaderData = useLoaderData<OutletContext>();
   const { currentLanguage } = useCurrentLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   const t = useTranslation();
 
   const locale = getUserLocale(currentLanguage);
 
-  const ctx: OutletContext = {
-    currentLanguage,
-    env: {},
-    isLoggedIn: false,
-    searchParams,
-    setSearchParams,
-    exchangeRate: 1,
-    locale
-  };
+  const { env } = loaderData;
   return (
-    <Document {...ctx}>
+    <Document {...loaderData}>
       <Stack align={'center'} gap={0}>
         <Box ta={'center'} w={{ base: 100, md: 200 }}>
           <IconInfoTriangle size={'100%'} />
@@ -198,7 +206,7 @@ const ErrorBoundaryComponent = () => {
         <Button
           mt={'md'}
           component={Link}
-          to={buildLocalizedLink({ currentLanguage })}
+          to={buildLocalizedLink({ baseUrl: env?.APP_URL!, currentLanguage })}
         >
           {t('common.goToHome')}
         </Button>

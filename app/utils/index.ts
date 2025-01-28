@@ -179,14 +179,34 @@ export const formatNumber = ({
 }) => new Intl.NumberFormat(userLocale, { useGrouping: false }).format(value);
 
 export const buildLocalizedLink = ({
+  baseUrl,
   currentLanguage,
-  paths = []
+  paths = [],
+  queryParams = {} // Object containing query parameters
 }: {
+  baseUrl: string;
   currentLanguage: TranslationKeys;
   paths?: string[]; // Accepts an array of paths
+  queryParams?: Record<string, string>; // Key-value pairs of query parameters
 }) => {
-  const validPaths = paths.filter(path => path); // Filter out undefined or empty paths
-  return `/${[currentLanguage, ...validPaths].join('/')}`;
+  // Filter out undefined or empty paths
+  const validPaths = paths.filter(path => path);
+
+  // Create a URL object based on the base URL
+  const url = new URL(
+    `/${[currentLanguage, ...validPaths].join('/')}`,
+    baseUrl
+  );
+
+  // Append query parameters if provided
+  Object.entries(queryParams).forEach(([key, value]) => {
+    if (value) {
+      url.searchParams.set(key, value);
+    }
+  });
+
+  // Return the full URL as a string
+  return url.toString();
 };
 
 export const getSingleTranslation = (translations: any) => {

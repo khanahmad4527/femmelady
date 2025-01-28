@@ -16,6 +16,7 @@ export interface OutletContext {
   locale: string;
   token?: string;
   user?: User;
+  utmSource?: string;
 }
 
 export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {
@@ -39,7 +40,8 @@ export type Page =
   | 'contact-us'
   | 'privacy-policy'
   | 'terms-of-service'
-  | 'blog'  | 'faq';
+  | 'blog'
+  | 'faq';
 
 export type GetParam = {
   request?: Request;

@@ -18,7 +18,7 @@ import {
   Title
 } from '@mantine/core';
 
-import { Link, useLoaderData } from 'react-router';
+import { Link, useLoaderData, useOutletContext } from 'react-router';
 
 import HomeProductCarousel from '~/components/products/HomeProductCarousel';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -28,6 +28,7 @@ import commonClasses from '~/styles/Common.module.scss';
 import { buildLocalizedLink, getLanguageCode } from '~/utils';
 import { Route } from './+types/_index';
 import { PATHS } from '~/constant';
+import { OutletContext } from '~/types';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -38,6 +39,7 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
 };
 
 export default function Index() {
+  const { env } = useOutletContext<OutletContext>();
   const { products } = useLoaderData<typeof loader>();
 
   const t = useTranslation();
@@ -97,7 +99,11 @@ export default function Index() {
       <Box
         bg="red"
         component={Link}
-        to={buildLocalizedLink({ currentLanguage, paths: [PATHS.products] })}
+        to={buildLocalizedLink({
+          baseUrl: env?.APP_URL!,
+          currentLanguage,
+          paths: [PATHS.products]
+        })}
         pos={'relative'}
       >
         <Image src={heroSection1} h={'100%'} fit="contain" loading={'lazy'} />
@@ -124,6 +130,7 @@ export default function Index() {
               key={h.id}
               component={Link}
               to={buildLocalizedLink({
+                baseUrl: env?.APP_URL!,
                 currentLanguage,
                 paths: [PATHS.products]
               })}

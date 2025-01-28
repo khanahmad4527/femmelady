@@ -62,7 +62,11 @@ export const action: ActionFunction = async ({ request, params }) => {
       })
     );
     return redirect(
-      buildLocalizedLink({ currentLanguage, paths: [PATHS.login] })
+      buildLocalizedLink({
+        baseUrl: process.env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.login]
+      })
     );
   } catch (error) {
     return handleError({ error, route: 'register' });
@@ -105,7 +109,7 @@ const register = () => {
           {t('register.welcome')}
         </Text>
 
-        <SocialLogin />
+        <SocialLogin from={'register'} />
 
         <Divider
           label={t('authForm.continueWithEmail')}
@@ -155,6 +159,7 @@ const register = () => {
               <Anchor
                 component={Link}
                 to={buildLocalizedLink({
+                  baseUrl: env?.APP_URL!,
                   currentLanguage,
                   paths: [PATHS.login]
                 })}

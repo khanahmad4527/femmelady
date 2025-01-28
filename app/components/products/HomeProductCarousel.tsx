@@ -3,14 +3,14 @@ import { Box, Card, Image, Stack, Text, Title } from '@mantine/core';
 import { useHover, useInViewport } from '@mantine/hooks';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router';
+import { Link, useOutletContext } from 'react-router';
 import { PATHS } from '~/constant';
 import getStringDto from '~/dto/getStringDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
-import { Product, ProductTranslation } from '~/types';
+import { OutletContext, Product, ProductTranslation } from '~/types';
 import {
   buildLocalizedLink,
   formatCurrency,
@@ -25,6 +25,7 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
 
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
+  const { env } = useOutletContext<OutletContext>();
 
   const { ref, inViewport } = useInViewport();
   const autoScroll = useRef(AutoScroll({ speed: 0.5, playOnInit: false }));
@@ -80,6 +81,7 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                   h={300}
                   component={Link}
                   to={buildLocalizedLink({
+                    baseUrl: env?.APP_URL!,
                     currentLanguage,
                     paths: [
                       PATHS.products,

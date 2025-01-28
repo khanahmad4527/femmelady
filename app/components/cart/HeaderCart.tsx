@@ -16,7 +16,7 @@ const HeaderCart = ({
   close: () => void;
 }) => {
   const t = useTranslation();
-  const { cartCount } = useHeaderFooterContext();
+  const { cartCount, env } = useHeaderFooterContext();
   const { currentLanguage } = useCurrentLanguage();
 
   return (
@@ -45,8 +45,12 @@ const HeaderCart = ({
             mt={'md'}
             component={Link}
             to={buildLocalizedLink({
+              baseUrl: env?.APP_URL!,
               currentLanguage,
-              paths: [`${PATHS.products}?${PARAMS.forceValidateGlobal}`]
+              paths: [PATHS.products],
+              queryParams: {
+                'force-validate': 'global'
+              }
             })}
             onClick={close}
           >

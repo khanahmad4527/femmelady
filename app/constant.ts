@@ -360,11 +360,15 @@ export const PATHS = {
   products: 'products',
   checkout: 'checkout',
   reviews: 'reviews',
-  payment: 'payment'
+  payment: 'payment',
+   loginViaProviders: 'login-via-providers'
 } as const;
 
 export const PARAMS = {
   forceValidateGlobal: 'force-validate=global',
   categories: 'categories',
-  redirectTo: 'redirect-to'
+  redirectTo: 'redirect-to',
+  error: 'error',
+  utmSource: 'utm_source',
+  loginViaProviders: 'login-via-providers'
 } as const;
