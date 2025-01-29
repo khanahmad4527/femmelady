@@ -65,6 +65,7 @@ import { notifications } from '@mantine/notifications';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useUserLocale from '~/hooks/useUserLocale';
 import { getSingleProductPageMeta } from '~/meta';
+import ZoomImage from '~/components/products/ZoomImage';
 
 export const meta = ({ data, location }: Route.MetaArgs) => {
   const product = data?.product;
@@ -281,15 +282,11 @@ const SingleProduct = () => {
           </ScrollArea>
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 6 }}>
-          <Box>
-            <Image
-              h={'100%'}
-              fit={'contain'}
-              src={getImageUrl({ id: activeImage, h: 800, w: 800 })}
-              alt={productTranslation?.title!}
-              loading={'lazy'}
-            />
-          </Box>
+          <ZoomImage
+            activeImage={activeImage}
+            alt={productTranslation?.title!}
+          />
+
           <Carousel
             display={{ base: 'block', md: 'none' }}
             mt={'md'}
@@ -439,7 +436,7 @@ const SingleProduct = () => {
                     currentLanguage,
                     paths: [redirectPath],
                     queryParams: {
-                      'redirect-to': `${location.pathname}${location.search}`,
+                      'redirect-to': location.pathname + location.search,
                       utm_source: utmSource!
                     }
                   })}
@@ -453,6 +450,7 @@ const SingleProduct = () => {
         </Grid.Col>
       </Grid>
 
+      {/* This renders average rating */}
       <Box py={{ base: 'md', md: 'xl' }}>
         <Group>
           <Text fz={20} fw={500} span>
@@ -482,6 +480,8 @@ const SingleProduct = () => {
           })}
         </Text>
       </Box>
+
+      {/* // This is to render the reviews */}
       <Outlet
         context={{
           ...outletContext,
