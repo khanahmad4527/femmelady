@@ -365,13 +365,11 @@ const SingleProduct = () => {
           />
           <fetcher.Form method="POST">
             <Stack>
-              {isLoggedIn && (
-                <ProductCartQuantity
-                  disabled={disabledAddToBag}
-                  quantity={quantity}
-                  setQuantity={setQuantity}
-                />
-              )}
+              <ProductCartQuantity
+                disabled={disabledAddToBag}
+                quantity={quantity}
+                setQuantity={setQuantity}
+              />
 
               <input hidden name={'cartId'} defaultValue={cartId} />
               <input hidden name={'productId'} defaultValue={productId} />
