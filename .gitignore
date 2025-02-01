@@ -4,6 +4,7 @@ node_modules
 /build
 .env
 .react-router/
-test.cjs
+product.cjs
 review.cjs
+rating.cjs
 TODO.md
