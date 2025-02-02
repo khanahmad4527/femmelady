@@ -6,9 +6,10 @@ import fr from './fr.json';
 import ko from './ko.json';
 import zh from './zh.json';
 
-import { Product, ProductTranslation } from '~/types';
+import { Env, OutletContext, Product, ProductTranslation } from '~/types';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import { getImageUrl } from '~/utils';
+import { useOutletContext } from 'react-router';
 
 const base = [
   { title: 'Unthaa - Built on Quality, Not Numbers' },
@@ -128,10 +129,12 @@ export const getMeta = ({ pathname }: { pathname: string }) => {
 
 export const getSingleProductPageMeta = ({
   pathname,
-  product
+  product,
+  env
 }: {
   pathname: string;
   product: Product;
+  env: Partial<Env>;
 }) => {
   const normalizedPathname = pathname.replace(/\/+$/, '');
 
@@ -150,7 +153,8 @@ export const getSingleProductPageMeta = ({
       { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
-          id: product?.feature_image_1 as string
+          id: product?.feature_image_1 as string,
+          DIRECTUS_URL: env?.DIRECTUS_URL
         })
       }
     ],
@@ -164,7 +168,8 @@ export const getSingleProductPageMeta = ({
       { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
-          id: product?.feature_image_1 as string
+          id: product?.feature_image_1 as string,
+          DIRECTUS_URL: env?.DIRECTUS_URL
         })
       }
     ],
@@ -178,7 +183,8 @@ export const getSingleProductPageMeta = ({
       { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
-          id: product?.feature_image_1 as string
+          id: product?.feature_image_1 as string,
+          DIRECTUS_URL: env?.DIRECTUS_URL
         })
       }
     ],
@@ -192,7 +198,8 @@ export const getSingleProductPageMeta = ({
       { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
-          id: product?.feature_image_1 as string
+          id: product?.feature_image_1 as string,
+          DIRECTUS_URL: env?.DIRECTUS_URL
         })
       }
     ],
@@ -206,7 +213,8 @@ export const getSingleProductPageMeta = ({
       { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
-          id: product?.feature_image_1 as string
+          id: product?.feature_image_1 as string,
+          DIRECTUS_URL: env?.DIRECTUS_URL
         })
       }
     ],
@@ -220,7 +228,8 @@ export const getSingleProductPageMeta = ({
       { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
-          id: product?.feature_image_1 as string
+          id: product?.feature_image_1 as string,
+          DIRECTUS_URL: env?.DIRECTUS_URL
         })
       }
     ],
@@ -234,7 +243,8 @@ export const getSingleProductPageMeta = ({
       { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
-          id: product?.feature_image_1 as string
+          id: product?.feature_image_1 as string,
+          DIRECTUS_URL: env?.DIRECTUS_URL
         })
       }
     ]

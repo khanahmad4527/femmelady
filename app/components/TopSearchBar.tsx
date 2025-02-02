@@ -158,7 +158,8 @@ const Card = (p: Product) => {
             src={getImageUrl({
               id: hovered
                 ? getStringDto(p?.feature_image_2)
-                : getStringDto(p?.feature_image_1)
+                : getStringDto(p?.feature_image_1),
+              DIRECTUS_URL: env?.DIRECTUS_URL
             })}
             alt={translation.title!}
             loading={'lazy'}

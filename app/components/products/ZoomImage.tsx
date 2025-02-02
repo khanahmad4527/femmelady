@@ -4,6 +4,8 @@ import { Box, Image } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import InnerImageZoom from 'react-inner-image-zoom';
 import { getImageUrl } from '~/utils';
+import { useOutletContext } from 'react-router';
+import { OutletContext } from '~/types';
 
 // InnerImageZoom doesn't support SSR, so we render it only on the client side.
 
@@ -22,6 +24,7 @@ const ZoomImage = ({
   zoomSrcH?: number;
   zoomSrcW?: number;
 }) => {
+  const { env } = useOutletContext<OutletContext>();
   const [isCLient, setIsCLient] = useState(false);
 
   useEffect(() => {
@@ -34,14 +37,33 @@ const ZoomImage = ({
         <Image
           h={'100%'}
           fit={'contain'}
-          src={getImageUrl({ id: activeImage, h: srcH, w: srcW })}
+          src={getImageUrl({
+            id: activeImage,
+            h: srcH,
+            w: srcW,
+            DIRECTUS_URL: env?.DIRECTUS_URL
+          })}
           alt={alt}
           loading={'lazy'}
         />
       ) : (
         <InnerImageZoom
-          src={getImageUrl({ id: activeImage, h: srcH, w: srcW })}
-          zoomSrc={getImageUrl({ id: activeImage, h: zoomSrcH, w: zoomSrcW })}
+          src={
+            getImageUrl({
+              id: activeImage,
+              h: srcH,
+              w: srcW,
+              DIRECTUS_URL: env?.DIRECTUS_URL
+            })!
+          }
+          zoomSrc={
+            getImageUrl({
+              id: activeImage,
+              h: zoomSrcH,
+              w: zoomSrcW,
+              DIRECTUS_URL: env?.DIRECTUS_URL
+            })!
+          }
           imgAttributes={{ alt: '', loading: 'lazy' }}
         />
       )}

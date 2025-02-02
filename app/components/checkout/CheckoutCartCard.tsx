@@ -133,7 +133,8 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
           src={getImageUrl({
             id: (hovered
               ? cart.feature_image_2
-              : cart?.feature_image_1) as string
+              : cart?.feature_image_1) as string,
+            DIRECTUS_URL: env?.DIRECTUS_URL
           })}
           alt={productTranslation?.title!}
           loading={'lazy'}

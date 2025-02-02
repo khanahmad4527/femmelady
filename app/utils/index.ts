@@ -217,6 +217,12 @@ export const getSingleTranslation = (translations: any) => {
   return translations[0];
 };
 
+let getDirectusUrl: () => string | undefined = () => undefined;
+
+export const setDirectusUrlGetter = (getter: () => string | undefined) => {
+  getDirectusUrl = getter;
+};
+
 export const getImageUrl = ({
   id,
   h = 300,
@@ -228,14 +234,11 @@ export const getImageUrl = ({
   w?: number;
   DIRECTUS_URL?: string;
 }) => {
-  const outletContext = useOutletContext<OutletContext>();
-  const headerFooterContext = useHeaderFooterContext();
-  const directusUrl =
-    outletContext?.env?.DIRECTUS_URL ??
-    headerFooterContext?.env?.DIRECTUS_URL ??
-    DIRECTUS_URL;
+  if (!DIRECTUS_URL) {
+    return null;
+  }
 
-  return `${directusUrl}/assets/${id}?height=${h}&width=${w}`;
+  return `${DIRECTUS_URL}/assets/${id}?height=${h}&width=${w}`;
 };
 
 export const validateUUID = (uuid: string) => {

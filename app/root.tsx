@@ -11,6 +11,7 @@ import {
   Box,
   Button,
   ColorSchemeScript,
+  mantineHtmlProps,
   MantineProvider,
   Stack,
   Text,
@@ -116,7 +117,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const { currentLanguage } = useCurrentLanguage();
 
   return (
-    <html lang={currentLanguage}>
+    <html lang={currentLanguage} {...mantineHtmlProps}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -185,10 +186,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const ErrorBoundaryComponent = () => {
   const loaderData = useLoaderData<OutletContext>();
   const { currentLanguage } = useCurrentLanguage();
-  const [searchParams, setSearchParams] = useSearchParams();
   const t = useTranslation();
-
-  const locale = getUserLocale(currentLanguage);
 
   const { env } = loaderData;
   return (

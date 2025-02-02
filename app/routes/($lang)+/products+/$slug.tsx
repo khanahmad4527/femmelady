@@ -66,11 +66,17 @@ import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useUserLocale from '~/hooks/useUserLocale';
 import { getSingleProductPageMeta } from '~/meta';
 import ZoomImage from '~/components/products/ZoomImage';
+import { getEnv } from '~/server/env';
 
 export const meta = ({ data, location }: Route.MetaArgs) => {
   const product = data?.product;
+  const env = data?.env;
 
-  return getSingleProductPageMeta({ pathname: location.pathname, product });
+  return getSingleProductPageMeta({
+    pathname: location.pathname,
+    product,
+    env
+  });
 };
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
@@ -110,7 +116,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     token
   });
 
-  return { product };
+  return { product, env: getEnv() };
 };
 
 export const action = async ({ request }: Route.ActionArgs) => {
@@ -249,9 +255,9 @@ const SingleProduct = () => {
         >
           <ScrollArea h={500}>
             <Stack gap={0} pb={2}>
-              {currentImageSet?.map(i => (
+              {currentImageSet?.map((i, idx) => (
                 <Box
-                  key={getStringDto(i.directus_files_id)}
+                  key={getStringDto(i.directus_files_id) + '-' + idx}
                   p={2}
                   style={{
                     cursor: 'pointer',
@@ -271,7 +277,8 @@ const SingleProduct = () => {
                     src={getImageUrl({
                       id: getStringDto(i.directus_files_id),
                       h: 100,
-                      w: 100
+                      w: 100,
+                      DIRECTUS_URL: env?.DIRECTUS_URL
                     })}
                     alt={productTranslation?.title!}
                     loading={'lazy'}
@@ -299,9 +306,9 @@ const SingleProduct = () => {
             initialSlide={initialSlide}
             loop
           >
-            {currentImageSet?.map(i => (
+            {currentImageSet?.map((i, idx) => (
               <Carousel.Slide
-                key={getStringDto(i.directus_files_id)}
+                key={getStringDto(i.directus_files_id) + '-' + idx}
                 style={{
                   cursor: 'pointer',
                   border:
@@ -320,7 +327,8 @@ const SingleProduct = () => {
                   src={getImageUrl({
                     id: getStringDto(i.directus_files_id),
                     h: 200,
-                    w: 200
+                    w: 200,
+                    DIRECTUS_URL: env?.DIRECTUS_URL
                   })}
                   alt={productTranslation?.title!}
                   loading={'lazy'}
@@ -468,7 +476,7 @@ const SingleProduct = () => {
         <Text>
           {t('products.reviews', {
             number: (
-              <Text span>
+              <Text key={'products.reviews'} span>
                 {formatNumber({
                   userLocale,
                   value: product?.review_count!

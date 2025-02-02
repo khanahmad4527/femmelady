@@ -92,7 +92,8 @@ const ProductCard = (product: Product) => {
           h={'100%'}
           fit={'contain'}
           src={getImageUrl({
-            id: hovered ? featureImage2 : featureImage1
+            id: hovered ? featureImage2 : featureImage1,
+            DIRECTUS_URL: env?.DIRECTUS_URL
           })}
           alt={translation?.title!}
           loading={'lazy'}

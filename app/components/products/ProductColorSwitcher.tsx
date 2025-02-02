@@ -1,6 +1,6 @@
 import { ActionIcon, Group, Image, Paper, Stack, Text } from '@mantine/core';
 import { memo } from 'react';
-import { SetURLSearchParams } from 'react-router';
+import { SetURLSearchParams, useOutletContext } from 'react-router';
 import { PARAM_KEYS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import getStringDto from '~/dto/getStringDto';
@@ -11,7 +11,8 @@ import {
   ProductProductColor,
   ProductProductImage,
   ProductImage,
-  ProductImageFile
+  ProductImageFile,
+  OutletContext
 } from '~/types';
 import { getImageUrl, getSingleTranslation } from '~/utils';
 
@@ -32,6 +33,7 @@ const ProductColorSwitcher = ({
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
 }) => {
+  const { env } = useOutletContext<OutletContext>();
   const paramsProductId = searchParams.get(PARAM_KEYS.PRODUCT_ID);
   const paramsImageSet = searchParams.get(PARAM_KEYS.IMAGE_SET);
 
@@ -134,7 +136,8 @@ const ProductColorSwitcher = ({
                     src={getImageUrl({
                       id: getStringDto(c?.texture),
                       h: 50,
-                      w: 50
+                      w: 50,
+                      DIRECTUS_URL: env?.DIRECTUS_URL
                     })}
                     radius="xl"
                   />
