@@ -154,17 +154,6 @@ export default function Index() {
         })}
       </SimpleGrid>
 
-      <Paper p={{ base: 'md', md: '2xl' }} bg={'primary.1'}>
-        <Stack align={'center'}>
-          <Title ta={'center'} order={3}>
-            {t('home.text1')}
-          </Title>
-          <Text ta={'center'} w={{ base: '90%', md: '60%' }}>
-            {t('home.text2')}
-          </Text>
-        </Stack>
-      </Paper>
-
       <HomeProductCarousel products={products} />
     </Stack>
   );
