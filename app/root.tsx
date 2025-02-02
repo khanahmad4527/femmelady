@@ -56,7 +56,12 @@ import { isAuthenticated } from './auth/auth.server';
 import { Notifications } from '@mantine/notifications';
 import { getMeta } from './meta';
 import { getEnv } from './server/env';
-import { AVAILABLE_LANGUAGES, FALL_BACK_LANG, PARAMS } from './constant';
+import {
+  AVAILABLE_LANGUAGES,
+  FALL_BACK_LANG,
+  LOCALE_TO_LANGUAGE,
+  PARAMS
+} from './constant';
 
 export const meta: MetaFunction = ({ location }) => {
   return getMeta({ pathname: location.pathname });
@@ -79,8 +84,12 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const { isLoggedIn, user } = await isAuthenticated(request);
 
+  const lang = (params?.lang || FALL_BACK_LANG) as TranslationKeys;
+
+  const currentLanguage = (LOCALE_TO_LANGUAGE[user?.language!] ||
+    lang) as TranslationKeys;
+
   // If not the valid language then redirect to the valid language
-  const currentLanguage = params?.lang as TranslationKeys;
   if (!AVAILABLE_LANGUAGES.includes(currentLanguage) || !currentLanguage) {
     return redirect(
       buildLocalizedLink({
@@ -114,10 +123,10 @@ export const links: LinksFunction = () => {
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { currentLanguage } = useCurrentLanguage();
+  const { currentLanguage, dir } = useCurrentLanguage();
 
   return (
-    <html lang={currentLanguage} {...mantineHtmlProps}>
+    <html lang={currentLanguage} dir={dir} {...mantineHtmlProps}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

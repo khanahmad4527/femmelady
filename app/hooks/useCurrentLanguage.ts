@@ -1,4 +1,5 @@
 import { useParams } from 'react-router';
+import { LANGUAGE_DIRECTION } from '~/constant';
 
 import { TranslationKeys } from '~/types';
 import { getLanguageCode } from '~/utils';
@@ -10,7 +11,11 @@ const useCurrentLanguage = () => {
 
   const currentLanguageCode = getLanguageCode(params);
 
-  return { currentLanguage, currentLanguageCode };
+  return {
+    currentLanguage,
+    currentLanguageCode,
+    dir: LANGUAGE_DIRECTION[currentLanguage]
+  };
 };
 
 export default useCurrentLanguage;

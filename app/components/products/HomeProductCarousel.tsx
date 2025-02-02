@@ -57,8 +57,9 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
         slideGap={'md'}
         slideSize={{ base: '100%', xs: '50%', md: '25%' }}
         loop={canLoop}
-        dragFree
+        align={'start'}
         style={{ cursor: 'grab' }}
+        dragFree
       >
         {products?.map(p => {
           const { hovered, ref } = useHover();

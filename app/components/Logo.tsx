@@ -18,7 +18,7 @@ const Logo = () => {
       to={buildLocalizedLink({ baseUrl: env?.APP_URL!, currentLanguage })}
       style={{ textDecoration: 'none' }}
     >
-      <Title c="white" ta={TEXT_ALIGN}>
+      <Title w={'fit-content'} c="white" ta={TEXT_ALIGN}>
         UNTHAA
       </Title>
       <Text c="white" ta={TEXT_ALIGN}>

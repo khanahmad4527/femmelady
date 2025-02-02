@@ -107,9 +107,9 @@ const ProductCard = (product: Product) => {
         </Text>
       </Box>
 
-      <Card.Section bg="primary.1" inheritPadding pb={4}>
-        <Group align={'flex-end'}>
-          <Box mr={'auto'}>
+      <Card.Section bg={'primary.1'} inheritPadding pb={4}>
+        <Group align={'flex-end'} justify={"space-between"}>
+          <Box>
             <ProductColorSwitcher
               activeColor={activeColor}
               setActiveColor={setActiveColor}
@@ -118,7 +118,7 @@ const ProductCard = (product: Product) => {
               setSearchParams={setSearchParams}
             />
           </Box>
-          <Box ml={'auto'}>
+          <Box>
             <ActionIcon
               variant="light"
               size="lg"

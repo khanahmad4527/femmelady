@@ -135,6 +135,10 @@ export default function Index() {
                 paths: [PATHS.products]
               })}
               pos={'relative'}
+              style={{
+                textDecoration: 'none',
+                color: 'inherit'
+              }}
             >
               <Image alt={'product'} src={h.image} h={500} />
               <Paper

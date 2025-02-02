@@ -170,12 +170,28 @@ export const LOCALE_TO_CURRENCY: Record<string, string> = {
   'it-IT': 'EUR',
   'pt-BR': 'BRL',
   'ru-RU': 'RUB',
-  'ar-SA': 'SAR',  
-  'zh-CN': 'CNY',  
-  'ko-KR': 'KRW',  
-  'nl-NL': 'EUR',   
+  'ar-SA': 'SAR',
+  'zh-CN': 'CNY',
+  'ko-KR': 'KRW',
+  'nl-NL': 'EUR'
 } as const;
 
+export const LANGUAGE_DIRECTION: Record<string, 'ltr' | 'rtl'> = {
+  en: 'ltr', // English
+  fr: 'ltr', // French
+  de: 'ltr', // German
+  es: 'ltr', // Spanish
+  it: 'ltr', // Italian
+  nl: 'ltr', // Dutch
+  ru: 'ltr', // Russian
+  zh: 'ltr', // Chinese
+  ja: 'ltr', // Japanese
+  ko: 'ltr', // Korean
+  ar: 'rtl', // Arabic
+  he: 'rtl', // Hebrew
+  fa: 'rtl', // Persian (Farsi)
+  ur: 'rtl' // Urdu
+} as const;
 
 export const DEFAULT_PRODUCT_LIMIT = 10;
 
@@ -366,7 +382,7 @@ export const PATHS = {
   checkout: 'checkout',
   reviews: 'reviews',
   payment: 'payment',
-   loginViaProviders: 'login-via-providers'
+  loginViaProviders: 'login-via-providers'
 } as const;
 
 export const PARAMS = {
