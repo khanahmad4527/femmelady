@@ -1,0 +1,237 @@
+{
+  "header": {
+    "search": "بحث",
+    "new": "جديد!",
+    "topRated": "الأعلى تقييمًا",
+    "dresses": "فساتين",
+    "clothing": "ملابس",
+    "shoes": "أحذية",
+    "accessories": "إكسسوارات",
+    "weddings": "حفلات الزفاف",
+    "homeFurniture": "المنزل والأثاث",
+    "beautyWellness": "الجمال والعافية",
+    "giftsCandles": "هدايا و شموع",
+    "sale": "تخفيضات",
+    "slogan": "مبني على الجودة، وليس الأرقام"
+  },
+  "home": {
+    "weddings": "حفلات الزفاف",
+    "candles": "شموع",
+    "jewelry": "مجوهرات",
+    "dresses": "فساتين",
+    "bags": "حقائب",
+    "perfumes": "عطور",
+    "watches": "ساعات",
+    "shoes": "أحذية",
+    "heroSecText1": "ارفع من أسلوبك",
+    "heroSecText2": "موضة خالدة، خيارات مستدامة",
+    "shopNow": "تسوق الآن"
+  },
+  "footer": {
+    "links": {
+      "blog": "مدونة",
+      "faq": "الأسئلة الشائعة",
+      "aboutUs": "من نحن",
+      "contactUs": "اتصل بنا",
+      "privacyPolicy": "سياسة الخصوصية",
+      "termsOfService": "شروط الخدمة"
+    },
+    "copyright": "© 2024 Unthaa. جميع الحقوق محفوظة.",
+    "signUpAgreement": "بتسجيلك، أنت توافق على {privacyPolicy} و {termsOfService}.",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsOfService": "شروط الخدمة",
+    "subscribeButton": "اشتراك",
+    "getLatestNews": "احصل على آخر الأخبار منا"
+  },
+  "common": {
+    "logout": "تسجيل الخروج",
+    "categories": "الفئات",
+    "scrollToTop": "التمرير إلى الأعلى",
+    "errors": "أخطاء",
+    "loadMore": "تحميل المزيد",
+    "pageNotFound": "الصفحة غير موجودة",
+    "goToHome": "الذهاب إلى الصفحة الرئيسية",
+    "somethingWentWrong": "حدث خطأ ما",
+    "encounteredError": "واجهنا خطأ غير متوقع. يرجى المحاولة مرة أخرى",
+    "noDataFoundTitle": "لم يتم العثور على بيانات",
+    "noDataFoundMessage": "لم نتمكن من العثور على أي بيانات تطابق طلبك.",
+    "cartEmptyMessage": "تصفح المنتجات",
+    "google": "جوجل",
+    "facebook": "فيسبوك"
+  },
+  "login": {
+    "welcome": "مرحبًا بك في Unthaa، سجل الدخول باستخدام",
+    "accountRegister": "ليس لديك حساب؟ سجل الآن",
+    "login": "تسجيل الدخول"
+  },
+  "register": {
+    "welcome": "مرحبًا بك في Unthaa، سجل باستخدام",
+    "accountLogin": "هل لديك حساب بالفعل؟ سجل الدخول",
+    "register": "تسجيل",
+    "includesNumber": "يتضمن رقم",
+    "includesLowercaseLetter": "يتضمن حرفًا صغيرًا",
+    "includesUppercaseLetter": "يتضمن حرفًا كبيرًا",
+    "includesSpecialSymbol": "يتضمن رمزًا خاصًا",
+    "noSpacesAllowed": "لا يُسمح بالمسافات",
+    "includes8Char": "يتضمن 8 أحرف على الأقل"
+  },
+  "providerLoginFailed": {
+    "title": "فشل التوثيق مع الموفر",
+    "description": "حدث خطأ أثناء التوثيق مع الموفر. قد تكون بيانات الاعتماد غير صالحة، أو فشل طلب التوثيق. يرجى المحاولة مرة أخرى."
+  },
+  "invalidProvider": {
+    "title": "موفر التوثيق غير صالح",
+    "description": "الموفر المحدد غير مدعوم. يرجى اختيار موفر آخر للمتابعة."
+  },
+  "loginError": {
+    "title": "بيانات اعتماد غير صالحة",
+    "description": "يرجى التحقق من بيانات اعتمادك والمحاولة مرة أخرى."
+  },
+  "registerError": {
+    "title": "فشل التسجيل",
+    "description": "فشل التسجيل. يرجى المحاولة مرة أخرى."
+  },
+  "turnstile": {
+    "tokenRequired": "رمز التحقق الأمني مطلوب",
+    "errorTitle": "فشل التحقق",
+    "errorDescription": "فشل تحقق رمز التحقق الأمني. يرجى المحاولة مرة أخرى."
+  },
+  "authForm": {
+    "email": "البريد الإلكتروني",
+    "firstName": "الاسم الأول",
+    "lastName": "الاسم الأخير",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "terms": "أوافق على الشروط والأحكام",
+    "continueWithEmail": "أو الاستمرار بالبريد الإلكتروني"
+  },
+  "authFormValidationError": {
+    "invalidEmail": "البريد الإلكتروني غير صالح",
+    "firstNameMin": "يجب أن يحتوي الاسم الأول على حرفين على الأقل",
+    "lastNameMin": "يجب أن يحتوي الاسم الأخير على حرفين على الأقل",
+    "invalidEmailAddress": "عنوان البريد الإلكتروني غير صالح",
+    "passwordMin": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل",
+    "passwordUppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+    "passwordLowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
+    "passwordNumber": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+    "passwordSpecial": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل",
+    "passwordNoSpaces": "يجب ألا تحتوي كلمة المرور على مسافات",
+    "confirmPasswordRequired": "كلمة المرور وتأكيد كلمة المرور مطلوبة",
+    "passwordMismatch": "كلمات المرور لا تتطابق",
+    "termsRequired": "يجب قبول الشروط للمتابعة."
+  },
+  "products": {
+    "filterBy": "فلترة حسب",
+    "clearFilter": "إزالة الفلتر",
+    "category": "الفئة",
+    "price": "السعر",
+    "discount": "الخصم",
+    "brand": "العلامة التجارية",
+    "rating": "التقييم",
+    "sortBy": "ترتيب حسب",
+    "popularity": "الشعبية",
+    "priceLowToHigh": "السعر: من الأقل إلى الأعلى",
+    "priceHighToLow": "السعر: من الأعلى إلى الأقل",
+    "alphabeticAtoZ": "ترتيب أبجدي: من A إلى Z",
+    "alphabeticZtoA": "ترتيب أبجدي: من Z إلى A",
+    "productsPerPage": "المنتجات لكل صفحة",
+    "resultsCount": "{count} نتائج",
+    "addToBag": "إضافة إلى السلة",
+    "productColor": "اللون:",
+    "productSize": "الحجم:",
+    "reviews": "استنادًا إلى {number} تقييمات",
+    "cartQuantity": "الكمية:",
+    "filter": {
+      "weddingDresses": "فساتين زفاف",
+      "shoes": "أحذية",
+      "candles": "شموع",
+      "dresses": "فساتين",
+      "jewelry": "مجوهرات",
+      "bags": "حقائب",
+      "perfumes": "عطور",
+      "watches": "ساعات",
+      "beautyWellness": "جمال وعافية",
+      "homeFurniture": "منزل وأثاث"
+    }
+  },
+  "brands": {
+    "veraLuxe": "فيرا لوكس",
+    "moniqueCouture": "مونيك كوتور",
+    "pristineVows": "براستين فووز",
+    "crimsonSoles": "كريمسون سولز",
+    "jewelHeels": "جويل هيلز",
+    "sophiaGrace": "صوفيا جريس",
+    "aromaLuxe": "أرومه لوكس",
+    "glowEssence": "غلو إيسينس",
+    "luminousBliss": "لومينوس بليس",
+    "chantelle": "شانتيلي",
+    "divineElegance": "ديڤاين إيلغانس",
+    "oliviaDeLuxe": "أوليفيا دي لوكس",
+    "luxeCo": "لوكس آند كو",
+    "caratierre": "كاراتيير",
+    "velvetCharms": "فيلفيت تشارمز",
+    "elyseBags": "إليز باجز",
+    "cherieLuxe": "شيري لوكس",
+    "gildedGrace": "غيلديد غريس",
+    "scentNoire": "سينت نوار",
+    "dameFleur": "دام فلور",
+    "laBelle": "لا بيل",
+    "timelessLady": "تيمليس ليدي",
+    "crystalOrb": "كريستال أورب",
+    "radiantMoments": "لحظات مشعة"
+  },
+  "checkout": {
+    "shoppingBag": "حقيبة التسوق",
+    "goToCheckout": "انتقل إلى الدفع",
+    "summary": "ملخص الطلب",
+    "subTotal": "المجموع الفرعي",
+    "total": "الإجمالي",
+    "pay": "دفع"
+  },
+  "payment": {
+    "payAmount": "دفع {amount}",
+    "errors": {
+      "cardNumberInvalid": "يجب أن يتكون رقم البطاقة من 13 إلى 19 رقمًا",
+      "cardNumberRequired": "رقم البطاقة مطلوب",
+      "cvvInvalid": "يجب أن يتكون CVV من 3 أو 4 أرقام",
+      "cvvRequired": "CVV مطلوب",
+      "expiryMonthInvalid": "شهر انتهاء الصلاحية غير صالح",
+      "expiryMonthRequired": "شهر انتهاء الصلاحية مطلوب",
+      "expiryYearInvalidFormat": "يجب أن يتكون سنة الانتهاء من 4 أرقام",
+      "expiryYearInPast": "يجب ألا تكون سنة الانتهاء في الماضي",
+      "expiryYearRequired": "سنة الانتهاء مطلوبة"
+    },
+    "cardNumber": "رقم البطاقة",
+    "cvv": "CVV",
+    "expiryMonth": "شهر انتهاء الصلاحية",
+    "expiryYear": "سنة انتهاء الصلاحية",
+    "cardHolderName": "اسم حامل البطاقة",
+    "orderPlaced": "تم تقديم الطلب",
+    "orderPlacedSuccess": "تم تقديم الطلب بنجاح"
+  },
+  "cart": {
+    "errors": {
+      "productIdInvalid": "يجب أن يكون معرف المنتج UUID صالحًا",
+      "productIdRequired": "معرف المنتج مطلوب",
+      "sizeIdInvalid": "يجب أن يكون معرف الحجم UUID صالحًا",
+      "sizeIdRequired": "معرف الحجم مطلوب",
+      "colorIdInvalid": "يجب أن يكون معرف اللون UUID صالحًا",
+      "colorIdRequired": "معرف اللون مطلوب",
+      "quantityRequired": "الكمية مطلوبة",
+      "quantityInvalidNumber": "يجب أن تكون الكمية رقمًا صالحًا",
+      "quantityNotInteger": "يجب أن تكون الكمية عددًا صحيحًا",
+      "quantityOutOfRange": "يجب أن تكون الكمية بين 1 و 10",
+      "featureImage1IdInvalid": "يجب أن يكون معرف الصورة الرئيسية 1 UUID صالحًا",
+      "featureImage1IdRequired": "الصورة الرئيسية 1 مطلوبة",
+      "featureImage2IdInvalid": "يجب أن يكون معرف الصورة الرئيسية 2 UUID صالحًا",
+      "featureImage2IdRequired": "الصورة الرئيسية 2 مطلوبة",
+      "cartIdRequired": "معرف السلة مطلوب",
+      "cartIdInvalid": "يجب أن يكون معرف السلة UUID صالحًا",
+      "intentRequired": "النية مطلوبة"
+    },
+    "notificationTitle": "تم إضافة العنصر إلى السلة!",
+    "notificationMessage": "تم إضافة العنصر إلى سلتك بنجاح. تسوق سعيد!",
+    "emptyCartTitle": "سلتك فارغة",
+    "emptyCartMessage": "ابدأ بتصفح منتجاتنا وأضف بعض العناصر إلى سلتك!"
+  }
+}

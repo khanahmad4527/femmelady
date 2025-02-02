@@ -6,7 +6,7 @@ export const ROUTES_WITHOUT_HEADER_AND_FOOTER = new Set(['/some']); // 'login',
 export const FALL_BACK_LANG = 'en';
 
 // These are the languages that web app supports
-export const AVAILABLE_LANGUAGES = ['en', 'ja'];
+export const AVAILABLE_LANGUAGES = ['en', 'ja', 'ko', 'ar', 'nl', 'fr', 'zh'];
 
 export const LANGUAGE_TO_LOCALE_LANGUAGE: Record<string, string> = {
   en: 'en-US', // English (United States)
@@ -169,8 +169,13 @@ export const LOCALE_TO_CURRENCY: Record<string, string> = {
   'es-ES': 'EUR',
   'it-IT': 'EUR',
   'pt-BR': 'BRL',
-  'ru-RU': 'RUB'
+  'ru-RU': 'RUB',
+  'ar-SA': 'SAR',  
+  'zh-CN': 'CNY',  
+  'ko-KR': 'KRW',  
+  'nl-NL': 'EUR',   
 } as const;
+
 
 export const DEFAULT_PRODUCT_LIMIT = 10;
 

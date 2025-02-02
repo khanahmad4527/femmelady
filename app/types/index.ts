@@ -25,7 +25,7 @@ export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {
   stroke?: string;
 }
 
-export type TranslationKeys = 'en' | 'ja';
+export type TranslationKeys = 'en' | 'ja' | 'ar' | 'nl' | 'fr' | 'ko' | 'zh';
 
 export type ValueLabel = {
   id: string;

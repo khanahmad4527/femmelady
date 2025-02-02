@@ -38,7 +38,12 @@ const LanguageSwitcher = () => {
 
   const languageOptions = [
     { value: 'en', label: 'English' },
-    { value: 'ja', label: '日本語' }
+    { value: 'nl', label: 'Nederlands' },
+    { value: 'fr', label: 'Français' },
+    { value: 'ar', label: 'العربية' },
+    { value: 'ja', label: '日本語' },
+    { value: 'zh', label: '中文' },
+    { value: 'ko', label: '한국어' }
   ];
 
   return (

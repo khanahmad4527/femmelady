@@ -1,0 +1,237 @@
+{
+  "header": {
+    "search": "Rechercher",
+    "new": "Nouveau !",
+    "topRated": "Les mieux notés",
+    "dresses": "Robe",
+    "clothing": "Vêtements",
+    "shoes": "Chaussures",
+    "accessories": "Accessoires",
+    "weddings": "Mariages",
+    "homeFurniture": "Maison & Meubles",
+    "beautyWellness": "Beauté & Bien-être",
+    "giftsCandles": "Cadeaux & Bougies",
+    "sale": "Vente",
+    "slogan": "Construit sur la qualité, pas sur les chiffres"
+  },
+  "home": {
+    "weddings": "Mariages",
+    "candles": "Bougies",
+    "jewelry": "Bijoux",
+    "dresses": "Robe",
+    "bags": "Sacs",
+    "perfumes": "Parfums",
+    "watches": "Montres",
+    "shoes": "Chaussures",
+    "heroSecText1": "Élevez votre style",
+    "heroSecText2": "Mode intemporelle, choix durables",
+    "shopNow": "Achetez maintenant"
+  },
+  "footer": {
+    "links": {
+      "blog": "Blog",
+      "faq": "FAQ",
+      "aboutUs": "À propos de nous",
+      "contactUs": "Contactez-nous",
+      "privacyPolicy": "Politique de confidentialité",
+      "termsOfService": "Conditions d'utilisation"
+    },
+    "copyright": "© 2024 Unthaa. Tous droits réservés.",
+    "signUpAgreement": "En vous inscrivant, vous acceptez notre {privacyPolicy} et {termsOfService}.",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsOfService": "Conditions d'utilisation",
+    "subscribeButton": "Abonnez-vous",
+    "getLatestNews": "Recevez les dernières nouvelles de notre part"
+  },
+  "common": {
+    "logout": "Se déconnecter",
+    "categories": "Catégories",
+    "scrollToTop": "Faire défiler vers le haut",
+    "errors": "Erreurs",
+    "loadMore": "Charger plus",
+    "pageNotFound": "Page non trouvée",
+    "goToHome": "Aller à l'accueil",
+    "somethingWentWrong": "Quelque chose a mal tourné",
+    "encounteredError": "Une erreur inattendue est survenue. Veuillez réessayer.",
+    "noDataFoundTitle": "Aucune donnée trouvée",
+    "noDataFoundMessage": "Nous n'avons trouvé aucune donnée correspondant à votre demande.",
+    "cartEmptyMessage": "Parcourir les produits",
+    "google": "Google",
+    "facebook": "Facebook"
+  },
+  "login": {
+    "welcome": "Bienvenue sur Unthaa, connectez-vous avec",
+    "accountRegister": "Vous n'avez pas de compte ? Inscrivez-vous",
+    "login": "Se connecter"
+  },
+  "register": {
+    "welcome": "Bienvenue sur Unthaa, inscrivez-vous avec",
+    "accountLogin": "Vous avez déjà un compte ? Connectez-vous",
+    "register": "S'inscrire",
+    "includesNumber": "Inclut un chiffre",
+    "includesLowercaseLetter": "Inclut une lettre minuscule",
+    "includesUppercaseLetter": "Inclut une lettre majuscule",
+    "includesSpecialSymbol": "Inclut un symbole spécial",
+    "noSpacesAllowed": "Pas d'espaces autorisés",
+    "includes8Char": "Inclut au moins 8 caractères"
+  },
+  "providerLoginFailed": {
+    "title": "Échec de l'authentification du fournisseur",
+    "description": "Une erreur est survenue lors de l'authentification avec le fournisseur. Les identifiants peuvent être invalides ou la demande d'authentification a échoué. Veuillez réessayer."
+  },
+  "invalidProvider": {
+    "title": "Fournisseur d'authentification invalide",
+    "description": "Le fournisseur d'authentification sélectionné n'est pas pris en charge. Veuillez choisir un autre fournisseur pour continuer."
+  },
+  "loginError": {
+    "title": "Identifiants invalides",
+    "description": "Veuillez vérifier vos identifiants et réessayer."
+  },
+  "registerError": {
+    "title": "Échec de l'inscription",
+    "description": "L'inscription a échoué. Veuillez réessayer."
+  },
+  "turnstile": {
+    "tokenRequired": "Un jeton de vérification de sécurité est requis",
+    "errorTitle": "Échec de la validation",
+    "errorDescription": "La validation du jeton de vérification de sécurité a échoué. Veuillez réessayer."
+  },
+  "authForm": {
+    "email": "Email",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "terms": "J'accepte les termes et conditions",
+    "continueWithEmail": "Ou continuez avec l'email"
+  },
+  "authFormValidationError": {
+    "invalidEmail": "Email invalide",
+    "firstNameMin": "Le prénom doit comporter au moins 2 lettres",
+    "lastNameMin": "Le nom de famille doit comporter au moins 2 lettres",
+    "invalidEmailAddress": "Adresse email invalide",
+    "passwordMin": "Le mot de passe doit comporter au moins 8 caractères",
+    "passwordUppercase": "Le mot de passe doit contenir au moins une lettre majuscule",
+    "passwordLowercase": "Le mot de passe doit contenir au moins une lettre minuscule",
+    "passwordNumber": "Le mot de passe doit contenir au moins un chiffre",
+    "passwordSpecial": "Le mot de passe doit contenir au moins un caractère spécial",
+    "passwordNoSpaces": "Le mot de passe ne doit pas contenir d'espaces",
+    "confirmPasswordRequired": "Le mot de passe et la confirmation du mot de passe sont requis",
+    "passwordMismatch": "Les mots de passe ne correspondent pas",
+    "termsRequired": "Vous devez accepter les termes pour continuer."
+  },
+  "products": {
+    "filterBy": "Filtrer par",
+    "clearFilter": "Effacer le filtre",
+    "category": "Catégorie",
+    "price": "Prix",
+    "discount": "Réduction",
+    "brand": "Marque",
+    "rating": "Évaluation",
+    "sortBy": "Trier par",
+    "popularity": "Popularité",
+    "priceLowToHigh": "Prix : bas à élevé",
+    "priceHighToLow": "Prix : élevé à bas",
+    "alphabeticAtoZ": "Alphabétiquement : A à Z",
+    "alphabeticZtoA": "Alphabétiquement : Z à A",
+    "productsPerPage": "Produits par page",
+    "resultsCount": "{count} résultats",
+    "addToBag": "Ajouter au panier",
+    "productColor": "Couleur :",
+    "productSize": "Taille :",
+    "reviews": "Basé sur {number} avis",
+    "cartQuantity": "Quantité :",
+    "filter": {
+      "weddingDresses": "Robes de mariée",
+      "shoes": "Chaussures",
+      "candles": "Bougies",
+      "dresses": "Robe",
+      "jewelry": "Bijoux",
+      "bags": "Sacs",
+      "perfumes": "Parfums",
+      "watches": "Montres",
+      "beautyWellness": "Beauté & Bien-être",
+      "homeFurniture": "Maison & Meubles"
+    }
+  },
+  "brands": {
+    "veraLuxe": "Vera Luxe",
+    "moniqueCouture": "Monique Couture",
+    "pristineVows": "Pristine Vows",
+    "crimsonSoles": "Crimson Soles",
+    "jewelHeels": "Jewel Heels",
+    "sophiaGrace": "Sophia Grace",
+    "aromaLuxe": "Aroma Luxe",
+    "glowEssence": "Glow Essence",
+    "luminousBliss": "Luminous Bliss",
+    "chantelle": "Chantelle",
+    "divineElegance": "Divine Elegance",
+    "oliviaDeLuxe": "Olivia de Luxe",
+    "luxeCo": "Luxe & Co.",
+    "caratierre": "Caratierre",
+    "velvetCharms": "Velvet Charms",
+    "elyseBags": "Elyse Bags",
+    "cherieLuxe": "Chérie Luxe",
+    "gildedGrace": "Gilded Grace",
+    "scentNoire": "Scent Noire",
+    "dameFleur": "Dame Fleur",
+    "laBelle": "La Belle",
+    "timelessLady": "Timeless Lady",
+    "crystalOrb": "Crystal Orb",
+    "radiantMoments": "Radiant Moments"
+  },
+  "checkout": {
+    "shoppingBag": "Panier",
+    "goToCheckout": "Passer à la caisse",
+    "summary": "Résumé de la commande",
+    "subTotal": "Sous-total",
+    "total": "Total",
+    "pay": "Payer"
+  },
+  "payment": {
+    "payAmount": "Payer {amount}",
+    "errors": {
+      "cardNumberInvalid": "Le numéro de carte doit comporter entre 13 et 19 chiffres",
+      "cardNumberRequired": "Le numéro de carte est requis",
+      "cvvInvalid": "Le CVV doit comporter 3 ou 4 chiffres",
+      "cvvRequired": "Le CVV est requis",
+      "expiryMonthInvalid": "Mois d'expiration invalide",
+      "expiryMonthRequired": "Le mois d'expiration est requis",
+      "expiryYearInvalidFormat": "L'année d'expiration doit être un nombre à 4 chiffres",
+      "expiryYearInPast": "L'année d'expiration ne doit pas être dans le passé",
+      "expiryYearRequired": "L'année d'expiration est requise"
+    },
+    "cardNumber": "Numéro de carte",
+    "cvv": "CVV",
+    "expiryMonth": "Mois d'expiration",
+    "expiryYear": "Année d'expiration",
+    "cardHolderName": "Nom du titulaire de la carte",
+    "orderPlaced": "Commande passée",
+    "orderPlacedSuccess": "Commande passée avec succès"
+  },
+  "cart": {
+    "errors": {
+      "productIdInvalid": "L'ID du produit doit être un UUID valide",
+      "productIdRequired": "L'ID du produit est requis",
+      "sizeIdInvalid": "L'ID de la taille doit être un UUID valide",
+      "sizeIdRequired": "L'ID de la taille est requis",
+      "colorIdInvalid": "L'ID de la couleur doit être un UUID valide",
+      "colorIdRequired": "L'ID de la couleur est requis",
+      "quantityRequired": "La quantité est requise",
+      "quantityInvalidNumber": "La quantité doit être un nombre valide",
+      "quantityNotInteger": "La quantité doit être un entier",
+      "quantityOutOfRange": "La quantité doit être comprise entre 1 et 10",
+      "featureImage1IdInvalid": "L'ID de l'image de présentation 1 doit être un UUID valide",
+      "featureImage1IdRequired": "L'image de présentation 1 est requise",
+      "featureImage2IdInvalid": "L'ID de l'image de présentation 2 doit être un UUID valide",
+      "featureImage2IdRequired": "L'image de présentation 2 est requise",
+      "cartIdRequired": "L'ID du panier est requis",
+      "cartIdInvalid": "L'ID du panier doit être un UUID valide",
+      "intentRequired": "L'intention est requise"
+    },
+    "notificationTitle": "Article ajouté au panier !",
+    "notificationMessage": "Votre article a été ajouté au panier avec succès. Bon shopping !",
+    "emptyCartTitle": "Votre panier semble vide",
+    "emptyCartMessage": "Commencez à parcourir nos produits et ajoutez-en au panier !"
+  }
+}

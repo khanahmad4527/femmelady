@@ -3,6 +3,9 @@ import ar from './ar.json';
 import ja from './ja.json';
 import nl from './nl.json';
 import fr from './fr.json';
+import ko from './ko.json';
+import zh from './zh.json';
+
 import { Product, ProductTranslation } from '~/types';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import { getImageUrl } from '~/utils';
@@ -45,6 +48,14 @@ const notFound = {
   nl: [
     { title: 'Unthaa - Pagina niet gevonden' },
     { description: 'De pagina die u zoekt, bestaat niet.' }
+  ],
+  ko: [
+    { title: 'Unthaa - 페이지를 찾을 수 없습니다' },
+    { description: '찾고 있는 페이지는 존재하지 않습니다.' }
+  ],
+  zh: [
+    { title: 'Unthaa - 页面未找到' },
+    { description: '您正在查找的页面不存在。' }
   ]
 };
 
@@ -56,7 +67,9 @@ export const getMeta = ({ pathname }: { pathname: string }) => {
     ja: ja,
     ar: ar,
     fr: fr,
-    nl: nl
+    nl: nl,
+    zh: zh,
+    ko: ko
   } as Record<string, typeof en>;
 
   const language = (normalizedPathname.split('/')[1] ||
@@ -88,6 +101,14 @@ export const getMeta = ({ pathname }: { pathname: string }) => {
 
       case 'nl':
         notFoundData = notFound.nl;
+        break;
+
+      case 'ko':
+        notFoundData = notFound.ko;
+        break;
+
+      case 'zh':
+        notFoundData = notFound.zh;
         break;
 
       default:
@@ -122,11 +143,11 @@ export const getSingleProductPageMeta = ({
     en: [
       { title: `${productTranslation?.title} - Buy Now on Unthaa` },
       {
-        description: `Get ${productTranslation?.title} for just $${product.price}. High-quality and trusted by thousands. Available now on Unthaa.`
+        description: `Get ${productTranslation?.title} for just $${product?.price}. High-quality and trusted by thousands. Available now on Unthaa.`
       },
       { 'og:title': `${productTranslation?.title} - Unthaa` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product.id}` },
+      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string
@@ -136,11 +157,11 @@ export const getSingleProductPageMeta = ({
     nl: [
       { title: `${productTranslation?.title} - Nu kopen op Unthaa` },
       {
-        description: `Koop ${productTranslation?.title} voor slechts $${product.price}. Hoogwaardige kwaliteit, vertrouwd door duizenden. Nu beschikbaar op Unthaa.`
+        description: `Koop ${productTranslation?.title} voor slechts $${product?.price}. Hoogwaardige kwaliteit, vertrouwd door duizenden. Nu beschikbaar op Unthaa.`
       },
       { 'og:title': `${productTranslation?.title} - Unthaa` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product.id}` },
+      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string
@@ -150,11 +171,11 @@ export const getSingleProductPageMeta = ({
     fr: [
       { title: `${productTranslation?.title} - Achetez maintenant sur Unthaa` },
       {
-        description: `Obtenez ${productTranslation?.title} pour seulement $${product.price}. Haute qualité et approuvé par des milliers. Disponible maintenant sur Unthaa.`
+        description: `Obtenez ${productTranslation?.title} pour seulement $${product?.price}. Haute qualité et approuvé par des milliers. Disponible maintenant sur Unthaa.`
       },
       { 'og:title': `${productTranslation?.title} - Unthaa` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product.id}` },
+      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string
@@ -164,11 +185,11 @@ export const getSingleProductPageMeta = ({
     ja: [
       { title: `${productTranslation?.title} - Unthaaで今すぐ購入` },
       {
-        description: `${productTranslation?.title}をたったの$${product.price}で手に入れよう。高品質で多くの人々に信頼されています。今すぐUnthaaで購入可能です。`
+        description: `${productTranslation?.title}をたったの$${product?.price}で手に入れよう。高品質で多くの人々に信頼されています。今すぐUnthaaで購入可能です。`
       },
       { 'og:title': `${productTranslation?.title} - Unthaa` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product.id}` },
+      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string
@@ -178,11 +199,39 @@ export const getSingleProductPageMeta = ({
     ar: [
       { title: `${productTranslation?.title} - اشترِ الآن من Unthaa` },
       {
-        description: `احصل على ${productTranslation?.title} مقابل فقط $${product.price}. جودة عالية وموثوق به من قبل الآلاف. متوفر الآن على Unthaa.`
+        description: `احصل على ${productTranslation?.title} مقابل فقط $${product?.price}. جودة عالية وموثوق به من قبل الآلاف. متوفر الآن على Unthaa.`
       },
       { 'og:title': `${productTranslation?.title} - Unthaa` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product.id}` },
+      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
+      {
+        'og:image': getImageUrl({
+          id: product?.feature_image_1 as string
+        })
+      }
+    ],
+    ko: [
+      { title: `${productTranslation?.title} - Unthaa에서 지금 구매` },
+      {
+        description: `${productTranslation?.title}를 단 $${product?.price}에 구매하세요. 고품질이며 수천 명이 신뢰하는 제품입니다. 지금 Unthaa에서 구매 가능합니다.`
+      },
+      { 'og:title': `${productTranslation?.title} - Unthaa` },
+      { 'og:description': productTranslation?.description },
+      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
+      {
+        'og:image': getImageUrl({
+          id: product?.feature_image_1 as string
+        })
+      }
+    ],
+    zh: [
+      { title: `${productTranslation?.title} - 立即在Unthaa购买` },
+      {
+        description: `仅需$${product?.price}即可获得${productTranslation?.title}。高质量且受到数千人信任。现在即可在Unthaa购买。`
+      },
+      { 'og:title': `${productTranslation?.title} - Unthaa` },
+      { 'og:description': productTranslation?.description },
+      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string
@@ -218,6 +267,14 @@ export const getSingleProductPageMeta = ({
 
       case 'nl':
         notFoundData = notFound.nl;
+        break;
+
+      case 'ko':
+        notFoundData = notFound.ko;
+        break;
+
+      case 'zh':
+        notFoundData = notFound.zh;
         break;
 
       default:

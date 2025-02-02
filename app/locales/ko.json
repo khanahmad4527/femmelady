@@ -1,0 +1,237 @@
+{
+  "header": {
+    "search": "검색",
+    "new": "새로운!",
+    "topRated": "최고 평점",
+    "dresses": "드레스",
+    "clothing": "의류",
+    "shoes": "신발",
+    "accessories": "액세서리",
+    "weddings": "웨딩",
+    "homeFurniture": "홈 & 가구",
+    "beautyWellness": "뷰티 & 웰니스",
+    "giftsCandles": "선물 & 캔들",
+    "sale": "세일",
+    "slogan": "숫자가 아닌 품질로 만들어짐"
+  },
+  "home": {
+    "weddings": "웨딩",
+    "candles": "캔들",
+    "jewelry": "보석",
+    "dresses": "드레스",
+    "bags": "가방",
+    "perfumes": "향수",
+    "watches": "시계",
+    "shoes": "신발",
+    "heroSecText1": "스타일을 향상시키세요",
+    "heroSecText2": "시간을 초월한 패션, 지속 가능한 선택",
+    "shopNow": "지금 쇼핑"
+  },
+  "footer": {
+    "links": {
+      "blog": "블로그",
+      "faq": "자주 묻는 질문",
+      "aboutUs": "회사 소개",
+      "contactUs": "문의하기",
+      "privacyPolicy": "개인정보 보호정책",
+      "termsOfService": "서비스 약관"
+    },
+    "copyright": "© 2024 Unthaa. 모든 권리 보유.",
+    "signUpAgreement": "회원 가입을 하시면 {privacyPolicy}와 {termsOfService}에 동의하는 것으로 간주됩니다.",
+    "privacyPolicy": "개인정보 보호정책",
+    "termsOfService": "서비스 약관",
+    "subscribeButton": "구독",
+    "getLatestNews": "최신 소식을 받아보세요"
+  },
+  "common": {
+    "logout": "로그아웃",
+    "categories": "카테고리",
+    "scrollToTop": "위로 스크롤",
+    "errors": "오류",
+    "loadMore": "더 보기",
+    "pageNotFound": "페이지를 찾을 수 없음",
+    "goToHome": "홈으로 가기",
+    "somethingWentWrong": "문제가 발생했습니다",
+    "encounteredError": "예기치 않은 오류가 발생했습니다. 다시 시도해 주세요.",
+    "noDataFoundTitle": "데이터 없음",
+    "noDataFoundMessage": "요청하신 데이터가 없습니다.",
+    "cartEmptyMessage": "제품을 찾아보세요",
+    "google": "구글",
+    "facebook": "페이스북"
+  },
+  "login": {
+    "welcome": "Unthaa에 오신 것을 환영합니다, 로그인",
+    "accountRegister": "계정이 없으신가요? 등록하기",
+    "login": "로그인"
+  },
+  "register": {
+    "welcome": "Unthaa에 오신 것을 환영합니다, 등록하기",
+    "accountLogin": "계정이 이미 있으신가요? 로그인",
+    "register": "등록하기",
+    "includesNumber": "숫자 포함",
+    "includesLowercaseLetter": "소문자 포함",
+    "includesUppercaseLetter": "대문자 포함",
+    "includesSpecialSymbol": "특수 문자 포함",
+    "noSpacesAllowed": "공백 불가",
+    "includes8Char": "8자 이상 포함"
+  },
+  "providerLoginFailed": {
+    "title": "인증 제공자 인증 실패",
+    "description": "인증 제공자와의 인증 중 오류가 발생했습니다. 자격 증명이 유효하지 않거나 인증 요청에 실패했을 수 있습니다. 다시 시도해 주세요."
+  },
+  "invalidProvider": {
+    "title": "유효하지 않은 인증 제공자",
+    "description": "선택한 인증 제공자가 지원되지 않습니다. 다른 인증 제공자를 선택하여 진행해 주세요."
+  },
+  "loginError": {
+    "title": "잘못된 자격 증명",
+    "description": "자격 증명을 확인하고 다시 시도해 주세요."
+  },
+  "registerError": {
+    "title": "등록 실패",
+    "description": "등록이 실패했습니다. 다시 시도해 주세요."
+  },
+  "turnstile": {
+    "tokenRequired": "보안 검사 토큰이 필요합니다",
+    "errorTitle": "검증 실패",
+    "errorDescription": "보안 검사 토큰 검증에 실패했습니다. 다시 시도해 주세요."
+  },
+  "authForm": {
+    "email": "이메일",
+    "firstName": "이름",
+    "lastName": "성",
+    "password": "비밀번호",
+    "confirmPassword": "비밀번호 확인",
+    "terms": "약관에 동의합니다",
+    "continueWithEmail": "이메일로 계속하기"
+  },
+  "authFormValidationError": {
+    "invalidEmail": "유효하지 않은 이메일",
+    "firstNameMin": "이름은 최소 2자 이상이어야 합니다",
+    "lastNameMin": "성은 최소 2자 이상이어야 합니다",
+    "invalidEmailAddress": "유효하지 않은 이메일 주소",
+    "passwordMin": "비밀번호는 최소 8자 이상이어야 합니다",
+    "passwordUppercase": "비밀번호에는 최소한 하나의 대문자가 포함되어야 합니다",
+    "passwordLowercase": "비밀번호에는 최소한 하나의 소문자가 포함되어야 합니다",
+    "passwordNumber": "비밀번호에는 최소한 하나의 숫자가 포함되어야 합니다",
+    "passwordSpecial": "비밀번호에는 최소한 하나의 특수 문자가 포함되어야 합니다",
+    "passwordNoSpaces": "비밀번호에는 공백이 포함되지 않아야 합니다",
+    "confirmPasswordRequired": "비밀번호와 비밀번호 확인이 모두 필요합니다",
+    "passwordMismatch": "비밀번호가 일치하지 않습니다",
+    "termsRequired": "진행하려면 약관에 동의해야 합니다."
+  },
+  "products": {
+    "filterBy": "필터 기준",
+    "clearFilter": "필터 지우기",
+    "category": "카테고리",
+    "price": "가격",
+    "discount": "할인",
+    "brand": "브랜드",
+    "rating": "평점",
+    "sortBy": "정렬 기준",
+    "popularity": "인기순",
+    "priceLowToHigh": "가격: 낮은 순",
+    "priceHighToLow": "가격: 높은 순",
+    "alphabeticAtoZ": "알파벳순: A to Z",
+    "alphabeticZtoA": "알파벳순: Z to A",
+    "productsPerPage": "페이지당 제품 수",
+    "resultsCount": "{count} 개의 결과",
+    "addToBag": "가방에 추가",
+    "productColor": "색상:",
+    "productSize": "사이즈:",
+    "reviews": "{number}개의 리뷰를 기반으로",
+    "cartQuantity": "수량:",
+    "filter": {
+      "weddingDresses": "웨딩 드레스",
+      "shoes": "신발",
+      "candles": "캔들",
+      "dresses": "드레스",
+      "jewelry": "보석",
+      "bags": "가방",
+      "perfumes": "향수",
+      "watches": "시계",
+      "beautyWellness": "뷰티 & 웰니스",
+      "homeFurniture": "홈 & 가구"
+    }
+  },
+  "brands": {
+    "veraLuxe": "베라 룩스",
+    "moniqueCouture": "모니크 꾸뛰르",
+    "pristineVows": "프리스틴 보우스",
+    "crimsonSoles": "크림슨 솔",
+    "jewelHeels": "주얼 힐",
+    "sophiaGrace": "소피아 그레이스",
+    "aromaLuxe": "아로마 룩스",
+    "glowEssence": "글로우 에센스",
+    "luminousBliss": "루미너스 블리스",
+    "chantelle": "샹텔",
+    "divineElegance": "디바인 엘레강스",
+    "oliviaDeLuxe": "올리비아 드 룩스",
+    "luxeCo": "룩스 & Co.",
+    "caratierre": "카라티에르",
+    "velvetCharms": "벨벳 참스",
+    "elyseBags": "엘리스 백",
+    "cherieLuxe": "셰리 룩스",
+    "gildedGrace": "길디드 그레이스",
+    "scentNoire": "센트 느와르",
+    "dameFleur": "담 플뢰르",
+    "laBelle": "라 벨",
+    "timelessLady": "타임리스 레이디",
+    "crystalOrb": "크리스탈 오브",
+    "radiantMoments": "래디언트 모먼트"
+  },
+  "checkout": {
+    "shoppingBag": "쇼핑백",
+    "goToCheckout": "결제하기",
+    "summary": "주문 요약",
+    "subTotal": "소계",
+    "total": "총액",
+    "pay": "결제"
+  },
+  "payment": {
+    "payAmount": "{amount} 결제",
+    "errors": {
+      "cardNumberInvalid": "카드 번호는 13~19자리여야 합니다",
+      "cardNumberRequired": "카드 번호는 필수입니다",
+      "cvvInvalid": "CVV는 3자리 또는 4자리여야 합니다",
+      "cvvRequired": "CVV는 필수입니다",
+      "expiryMonthInvalid": "유효한 만료 월이 아닙니다",
+      "expiryMonthRequired": "만료 월은 필수입니다",
+      "expiryYearInvalidFormat": "만료 연도는 4자리 숫자여야 합니다",
+      "expiryYearInPast": "만료 연도는 과거일 수 없습니다",
+      "expiryYearRequired": "만료 연도는 필수입니다"
+    },
+    "cardNumber": "카드 번호",
+    "cvv": "CVV",
+    "expiryMonth": "만료 월",
+    "expiryYear": "만료 연도",
+    "cardHolderName": "카드 소지자 이름",
+    "orderPlaced": "주문이 완료되었습니다",
+    "orderPlacedSuccess": "주문이 성공적으로 완료되었습니다"
+  },
+  "cart": {
+    "errors": {
+      "productIdInvalid": "상품 ID는 유효한 UUID여야 합니다",
+      "productIdRequired": "상품 ID는 필수입니다",
+      "sizeIdInvalid": "사이즈 ID는 유효한 UUID여야 합니다",
+      "sizeIdRequired": "사이즈 ID는 필수입니다",
+      "colorIdInvalid": "색상 ID는 유효한 UUID여야 합니다",
+      "colorIdRequired": "색상 ID는 필수입니다",
+      "quantityRequired": "수량은 필수입니다",
+      "quantityInvalidNumber": "수량은 유효한 숫자여야 합니다",
+      "quantityNotInteger": "수량은 정수여야 합니다",
+      "quantityOutOfRange": "수량은 1에서 10 사이여야 합니다",
+      "featureImage1IdInvalid": "주요 이미지 1 ID는 유효한 UUID여야 합니다",
+      "featureImage1IdRequired": "주요 이미지 1은 필수입니다",
+      "featureImage2IdInvalid": "주요 이미지 2 ID는 유효한 UUID여야 합니다",
+      "featureImage2IdRequired": "주요 이미지 2는 필수입니다",
+      "cartIdRequired": "장바구니 ID는 필수입니다",
+      "cartIdInvalid": "장바구니 ID는 유효한 UUID여야 합니다",
+      "intentRequired": "의도는 필수입니다"
+    },
+    "notificationTitle": "장바구니에 항목이 추가되었습니다!",
+    "notificationMessage": "항목이 성공적으로 장바구니에 추가되었습니다. 즐거운 쇼핑 되세요!",
+    "emptyCartTitle": "장바구니가 비어 있습니다",
+    "emptyCartMessage": "상품을 둘러보고 장바구니에 추가해 보세요!"
+  }
+}

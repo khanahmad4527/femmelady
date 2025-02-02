@@ -1,0 +1,237 @@
+{
+  "header": {
+    "search": "搜索",
+    "new": "新品！",
+    "topRated": "最高评分",
+    "dresses": "连衣裙",
+    "clothing": "服装",
+    "shoes": "鞋子",
+    "accessories": "配饰",
+    "weddings": "婚礼",
+    "homeFurniture": "家居与家具",
+    "beautyWellness": "美容与健康",
+    "giftsCandles": "礼物与蜡烛",
+    "sale": "促销",
+    "slogan": "建立在质量上，而非数字"
+  },
+  "home": {
+    "weddings": "婚礼",
+    "candles": "蜡烛",
+    "jewelry": "珠宝",
+    "dresses": "连衣裙",
+    "bags": "包包",
+    "perfumes": "香水",
+    "watches": "手表",
+    "shoes": "鞋子",
+    "heroSecText1": "提升您的风格",
+    "heroSecText2": "永恒的时尚， 可持续的选择",
+    "shopNow": "立即购买"
+  },
+  "footer": {
+    "links": {
+      "blog": "博客",
+      "faq": "常见问题",
+      "aboutUs": "关于我们",
+      "contactUs": "联系我们",
+      "privacyPolicy": "隐私政策",
+      "termsOfService": "服务条款"
+    },
+    "copyright": "© 2024 Unthaa. 保留所有权利。",
+    "signUpAgreement": "通过注册，您同意我们的{privacyPolicy}和{termsOfService}。",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款",
+    "subscribeButton": "订阅",
+    "getLatestNews": "获取我们的最新消息"
+  },
+  "common": {
+    "logout": "退出",
+    "categories": "分类",
+    "scrollToTop": "回到顶部",
+    "errors": "错误",
+    "loadMore": "加载更多",
+    "pageNotFound": "页面未找到",
+    "goToHome": "返回首页",
+    "somethingWentWrong": "出错了",
+    "encounteredError": "我们遇到了一个意外错误，请重试。",
+    "noDataFoundTitle": "未找到数据",
+    "noDataFoundMessage": "我们没有找到与您请求的数据匹配的内容。",
+    "cartEmptyMessage": "浏览商品",
+    "google": "Google",
+    "facebook": "Facebook"
+  },
+  "login": {
+    "welcome": "欢迎来到Unthaa，请使用以下方式登录",
+    "accountRegister": "没有账号？注册",
+    "login": "登录"
+  },
+  "register": {
+    "welcome": "欢迎来到Unthaa，请注册",
+    "accountLogin": "已有账号？登录",
+    "register": "注册",
+    "includesNumber": "包含数字",
+    "includesLowercaseLetter": "包含小写字母",
+    "includesUppercaseLetter": "包含大写字母",
+    "includesSpecialSymbol": "包含特殊符号",
+    "noSpacesAllowed": "不允许空格",
+    "includes8Char": "至少包含8个字符"
+  },
+  "providerLoginFailed": {
+    "title": "提供商认证失败",
+    "description": "认证过程中发生错误。凭证可能无效，或者认证请求失败。请重试。"
+  },
+  "invalidProvider": {
+    "title": "无效的认证提供商",
+    "description": "选择的认证提供商不受支持。请选择一个不同的提供商继续。"
+  },
+  "loginError": {
+    "title": "无效凭证",
+    "description": "请检查您的凭证并重试。"
+  },
+  "registerError": {
+    "title": "注册失败",
+    "description": "注册失败，请重试。"
+  },
+  "turnstile": {
+    "tokenRequired": "需要安全检查令牌",
+    "errorTitle": "验证失败",
+    "errorDescription": "安全检查令牌验证失败，请重试。"
+  },
+  "authForm": {
+    "email": "电子邮件",
+    "firstName": "名字",
+    "lastName": "姓氏",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "terms": "我接受条款和条件",
+    "continueWithEmail": "或使用电子邮件继续"
+  },
+  "authFormValidationError": {
+    "invalidEmail": "无效的电子邮件",
+    "firstNameMin": "名字至少需要2个字母",
+    "lastNameMin": "姓氏至少需要2个字母",
+    "invalidEmailAddress": "无效的电子邮件地址",
+    "passwordMin": "密码必须至少8个字符长",
+    "passwordUppercase": "密码必须包含至少一个大写字母",
+    "passwordLowercase": "密码必须包含至少一个小写字母",
+    "passwordNumber": "密码必须包含至少一个数字",
+    "passwordSpecial": "密码必须包含至少一个特殊字符",
+    "passwordNoSpaces": "密码不能包含空格",
+    "confirmPasswordRequired": "密码和确认密码均为必填项",
+    "passwordMismatch": "密码不匹配",
+    "termsRequired": "您必须接受条款才能继续。"
+  },
+  "products": {
+    "filterBy": "筛选",
+    "clearFilter": "清除筛选",
+    "category": "分类",
+    "price": "价格",
+    "discount": "折扣",
+    "brand": "品牌",
+    "rating": "评分",
+    "sortBy": "排序",
+    "popularity": "人气",
+    "priceLowToHigh": "价格：低到高",
+    "priceHighToLow": "价格：高到低",
+    "alphabeticAtoZ": "字母排序：A到Z",
+    "alphabeticZtoA": "字母排序：Z到A",
+    "productsPerPage": "每页产品",
+    "resultsCount": "{count}个结果",
+    "addToBag": "加入购物袋",
+    "productColor": "颜色：",
+    "productSize": "尺寸：",
+    "reviews": "基于{number}条评论",
+    "cartQuantity": "数量：",
+    "filter": {
+      "weddingDresses": "婚纱",
+      "shoes": "鞋子",
+      "candles": "蜡烛",
+      "dresses": "连衣裙",
+      "jewelry": "珠宝",
+      "bags": "包包",
+      "perfumes": "香水",
+      "watches": "手表",
+      "beautyWellness": "美容与健康",
+      "homeFurniture": "家居与家具"
+    }
+  },
+  "brands": {
+    "veraLuxe": "Vera Luxe",
+    "moniqueCouture": "Monique Couture",
+    "pristineVows": "Pristine Vows",
+    "crimsonSoles": "Crimson Soles",
+    "jewelHeels": "Jewel Heels",
+    "sophiaGrace": "Sophia Grace",
+    "aromaLuxe": "Aroma Luxe",
+    "glowEssence": "Glow Essence",
+    "luminousBliss": "Luminous Bliss",
+    "chantelle": "Chantelle",
+    "divineElegance": "Divine Elegance",
+    "oliviaDeLuxe": "Olivia de Luxe",
+    "luxeCo": "Luxe & Co.",
+    "caratierre": "Caratierre",
+    "velvetCharms": "Velvet Charms",
+    "elyseBags": "Elyse Bags",
+    "cherieLuxe": "Chérie Luxe",
+    "gildedGrace": "Gilded Grace",
+    "scentNoire": "Scent Noire",
+    "dameFleur": "Dame Fleur",
+    "laBelle": "La Belle",
+    "timelessLady": "Timeless Lady",
+    "crystalOrb": "Crystal Orb",
+    "radiantMoments": "Radiant Moments"
+  },
+  "checkout": {
+    "shoppingBag": "购物袋",
+    "goToCheckout": "去结算",
+    "summary": "订单摘要",
+    "subTotal": "小计",
+    "total": "总计",
+    "pay": "支付"
+  },
+  "payment": {
+    "payAmount": "支付 {amount}",
+    "errors": {
+      "cardNumberInvalid": "卡号必须为13至19位数字",
+      "cardNumberRequired": "卡号是必需的",
+      "cvvInvalid": "CVV必须为3或4位数字",
+      "cvvRequired": "CVV是必需的",
+      "expiryMonthInvalid": "无效的到期月份",
+      "expiryMonthRequired": "到期月份是必需的",
+      "expiryYearInvalidFormat": "到期年份必须为4位数字",
+      "expiryYearInPast": "到期年份不能是过去的年份",
+      "expiryYearRequired": "到期年份是必需的"
+    },
+    "cardNumber": "卡号",
+    "cvv": "CVV",
+    "expiryMonth": "到期月份",
+    "expiryYear": "到期年份",
+    "cardHolderName": "卡持有人姓名",
+    "orderPlaced": "订单已提交",
+    "orderPlacedSuccess": "订单提交成功"
+  },
+  "cart": {
+    "errors": {
+      "productIdInvalid": "产品ID必须是有效的UUID",
+      "productIdRequired": "产品ID是必需的",
+      "sizeIdInvalid": "尺寸ID必须是有效的UUID",
+      "sizeIdRequired": "尺寸ID是必需的",
+      "colorIdInvalid": "颜色ID必须是有效的UUID",
+      "colorIdRequired": "颜色ID是必需的",
+      "quantityRequired": "数量是必需的",
+      "quantityInvalidNumber": "数量必须是有效的数字",
+      "quantityNotInteger": "数量必须是整数",
+      "quantityOutOfRange": "数量必须在1和10之间",
+      "featureImage1IdInvalid": "特征图片1 ID必须是有效的UUID",
+      "featureImage1IdRequired": "特征图片1是必需的",
+      "featureImage2IdInvalid": "特征图片2 ID必须是有效的UUID",
+      "featureImage2IdRequired": "特征图片2是必需的",
+      "cartIdRequired": "购物车ID是必需的",
+      "cartIdInvalid": "购物车ID必须是有效的UUID",
+      "intentRequired": "意图是必需的"
+    },
+    "notificationTitle": "商品已添加到购物车！",
+    "notificationMessage": "您的商品已成功添加到购物车，祝您购物愉快！",
+    "emptyCartTitle": "您的购物车为空",
+    "emptyCartMessage": "开始浏览我们的商品并添加到您的购物车吧！"
+  }
+}
