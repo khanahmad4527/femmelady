@@ -97,7 +97,6 @@ export default function Index() {
       {/* <Image src={banner.image} alt={'banner'} mah={200} fit={'contain'} /> */}
 
       <Box
-        bg="red"
         component={Link}
         to={buildLocalizedLink({
           baseUrl: env?.APP_URL!,
@@ -110,9 +109,10 @@ export default function Index() {
         <Box
           display={{ base: 'none', xs: 'block' }}
           pos={'absolute'}
-          w={{ base: '90%', md: '50%' }}
           c="white"
+          w={'inherit'}
           left={'10%'}
+          right={'10%'}
           bottom={'10%'}
         >
           <Title>{t('home.heroSecText1')}</Title>
