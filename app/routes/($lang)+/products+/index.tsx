@@ -3,7 +3,6 @@ import {
   Button,
   Grid,
   Group,
-  Pagination,
   SimpleGrid,
   Stack,
   Text
@@ -41,10 +40,11 @@ import {
   shouldRevalidateLogic
 } from '~/utils';
 import { OutletContext } from '~/types';
-import { FORCE_REVALIDATE_MAP, PARAM_KEYS, PARAMS, PATHS } from '~/constant';
+import { FORCE_REVALIDATE_MAP, PARAM_KEYS, PATHS } from '~/constant';
 import { useEffect } from 'react';
 import NoData from '~/components/NoData';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import LocalizedPagination from '~/components/LocalizedPagination';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   currentUrl,
@@ -211,12 +211,11 @@ const Products = () => {
           )}
         </Grid.Col>
       </Grid>
-      <Pagination
-        value={currentPage}
-        total={totalPaginationButtons}
-        onChange={handlePagination}
-        m={'auto'}
-        color={'black'}
+
+      <LocalizedPagination
+        currentPage={currentPage}
+        totalPaginationButtons={totalPaginationButtons}
+        handlePagination={handlePagination}
       />
     </Stack>
   );

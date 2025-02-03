@@ -36,7 +36,7 @@
       "privacyPolicy": "プライバシーポリシー",
       "termsOfService": "利用規約"
     },
-    "copyright": "© Unthaa. すべての権利を保有します。",
+    "copyright": "© {copyrightYear}. すべての権利を保有します。",
     "signUpAgreement": "サインアップすることで、{privacyPolicy} と {termsOfService} に同意することになります。",
     "privacyPolicy": "プライバシーポリシー",
     "termsOfService": "利用規約",

@@ -36,7 +36,7 @@
       "privacyPolicy": "개인정보 보호정책",
       "termsOfService": "서비스 약관"
     },
-    "copyright": "© 2024 Unthaa. 모든 권리 보유.",
+    "copyright": "© {copyrightYear} Unthaa. 모든 권리 보유.",
     "signUpAgreement": "회원 가입을 하시면 {privacyPolicy}와 {termsOfService}에 동의하는 것으로 간주됩니다.",
     "privacyPolicy": "개인정보 보호정책",
     "termsOfService": "서비스 약관",

@@ -182,7 +182,11 @@ const Footer = () => {
         </Stack>
       </Flex>
 
-      <Text c={'white'}>{t('footer.copyright')}</Text>
+      <Text c={'white'}>
+        {t('footer.copyright', {
+          copyrightYear: <Text span>{new Date().getFullYear()}</Text>
+        })}
+      </Text>
     </Stack>
   );
 };

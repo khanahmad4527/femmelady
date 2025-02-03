@@ -22,3 +22,6 @@ export { default as IconMoodSad } from './IconMoodSad';
 export { default as IconInfoTriangle } from './IconInfoTriangle';
 export { default as IconDatabaseExclamation } from './IconDatabaseExclamation';
 export { default as IconFacebook } from './IconFacebook';
+export { default as IconChevronLeft } from './IconChevronLeft';
+export { default as IconChevronRight } from './IconChevronRight';
+export { default as IconDots } from './IconDots';

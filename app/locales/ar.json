@@ -36,7 +36,7 @@
       "privacyPolicy": "سياسة الخصوصية",
       "termsOfService": "شروط الخدمة"
     },
-    "copyright": "© 2024 Unthaa. جميع الحقوق محفوظة.",
+    "copyright": "© {copyrightYear} Unthaa. جميع الحقوق محفوظة.",
     "signUpAgreement": "بتسجيلك، أنت توافق على {privacyPolicy} و {termsOfService}.",
     "privacyPolicy": "سياسة الخصوصية",
     "termsOfService": "شروط الخدمة",

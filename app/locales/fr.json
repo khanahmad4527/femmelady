@@ -36,7 +36,7 @@
       "privacyPolicy": "Politique de confidentialité",
       "termsOfService": "Conditions d'utilisation"
     },
-    "copyright": "© 2024 Unthaa. Tous droits réservés.",
+    "copyright": "© {copyrightYear} Unthaa. Tous droits réservés.",
     "signUpAgreement": "En vous inscrivant, vous acceptez notre {privacyPolicy} et {termsOfService}.",
     "privacyPolicy": "Politique de confidentialité",
     "termsOfService": "Conditions d'utilisation",
