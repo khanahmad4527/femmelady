@@ -10,7 +10,7 @@ const Logo = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const { env } = useHeaderFooterContext();
-  const TEXT_ALIGN = { base: 'center', md: 'left' } as any;
+  const TEXT_ALIGN = { base: 'auto', md: 'inherit' } as any;
 
   return (
     <Box
@@ -18,7 +18,7 @@ const Logo = () => {
       to={buildLocalizedLink({ baseUrl: env?.APP_URL!, currentLanguage })}
       style={{ textDecoration: 'none' }}
     >
-      <Title w={'fit-content'} c="white" ta={TEXT_ALIGN}>
+      <Title w={'fit-content'} c="white" m={TEXT_ALIGN}>
         UNTHAA
       </Title>
       <Text c="white" ta={TEXT_ALIGN}>

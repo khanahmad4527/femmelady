@@ -40,9 +40,10 @@ const LocalizedPagination = ({
         const isDots = isNaN(r as number);
 
         return isDots ? (
-          <IconDots />
+          <IconDots key={r} />
         ) : (
           <ActionIcon
+            key={r}
             bg={r === pagination.active ? 'black' : 'white'}
             c={r === pagination.active ? 'white' : 'black'}
             style={{

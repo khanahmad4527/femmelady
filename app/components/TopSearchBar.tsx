@@ -15,7 +15,7 @@ import {
   useHover
 } from '@mantine/hooks';
 import React, { memo, useEffect, useState } from 'react';
-import { Link, useFetcher } from 'react-router';
+import { Link, useFetcher, useNavigate } from 'react-router';
 import { PARAMS, PATHS } from '~/constant';
 import getStringDto from '~/dto/getStringDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -73,58 +73,51 @@ const TopSearchBar = () => {
   );
 
   return (
-    <Box w={'100%'} ref={ref}>
-      <Menu
-        opened={canShowDropDown}
-        shadow="md"
-        width={300}
-        styles={{ dropdown: { padding: 0, borderRadius: 0 } }}
-      >
-        <Menu.Target>
-          <TextInput
-            w={'100%'}
-            placeholder={t('header.search')}
-            value={searchValue}
-            onClick={() => setOpened(true)}
-            onChange={handleChange}
-            rightSection={
-              fetcher.state === 'loading' ? (
-                <Loader size={20} />
-              ) : (
-                <IconSearch />
-              )
-            }
-          />
-        </Menu.Target>
-        {searchResults.length > 0 && (
-          <Menu.Dropdown>
-            <Stack
-              mah={250}
-              style={{
-                overflowY: 'auto' // Enables scrolling if content exceeds 250px
-              }}
-              gap={0}
-              onClick={() => {
-                setSearchValue('');
-                setPreviousSearchValue('');
-                setSearchResults([]);
-              }}
-            >
-              {searchResults.map(p => {
-                return <Card key={p.id} {...p} />;
-              })}
-            </Stack>
-          </Menu.Dropdown>
-        )}
-      </Menu>
-    </Box>
+    <Menu
+      opened={canShowDropDown}
+      onChange={setOpened}
+      shadow="md"
+      styles={{ dropdown: { padding: 0, borderRadius: 0 } }}
+      width={300}
+    >
+      <Menu.Target>
+        <TextInput
+          w={'100%'}
+          placeholder={t('header.search')}
+          value={searchValue}
+          onClick={() => setOpened(true)}
+          onChange={handleChange}
+          rightSection={
+            fetcher.state === 'loading' ? <Loader size={20} /> : <IconSearch />
+          }
+        />
+      </Menu.Target>
+
+      {searchResults.length > 0 && (
+        <Menu.Dropdown
+          mah={250}
+          style={{
+            overflowY: 'auto' // Enables scrolling if content exceeds 250px
+          }}
+          onClick={() => {
+            setSearchValue('');
+            setPreviousSearchValue('');
+            setSearchResults([]);
+          }}
+        >
+          {searchResults.map(p => {
+            return <Card key={p.id} {...p} />;
+          })}
+        </Menu.Dropdown>
+      )}
+    </Menu>
   );
 };
 
 export default memo(TopSearchBar);
 
 const Card = (p: Product) => {
-  const { hovered, ref } = useHover();
+  const { hovered, ref: hoveredRef } = useHover();
   const { currentLanguage } = useCurrentLanguage();
   const { env } = useHeaderFooterContext();
 
@@ -147,7 +140,7 @@ const Card = (p: Product) => {
       <Group
         p={'xs'}
         bg={hovered ? 'primary.5' : 'white'}
-        ref={ref as any}
+        ref={hoveredRef as any}
         wrap={'nowrap'}
         align={'flex-start'}
       >
