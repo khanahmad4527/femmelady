@@ -1,6 +1,10 @@
 import { ComboboxItem, Select } from '@mantine/core';
 import { useLocation, useNavigate } from 'react-router';
-import { FORCE_REVALIDATE_MAP, PARAM_KEYS } from '~/constant';
+import {
+  DEFAULT_PRODUCT_PAGE,
+  FORCE_REVALIDATE_MAP,
+  PARAM_KEYS
+} from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { IconSwitch } from '~/icons';
 import selectClasses from '~/styles/Select.module.scss';
@@ -27,6 +31,12 @@ const LanguageSwitcher = () => {
         PARAM_KEYS.FORCE_REVALIDATE,
         FORCE_REVALIDATE_MAP.GLOBAL
       ); // Add your extra parameter
+
+      if (searchParams.has(PARAM_KEYS.PAGE)) {
+        // If the user was on page 79 and changes the language, but page 79 may not exist in the new language,
+        // reset the page number to 1.
+        searchParams.set(PARAM_KEYS.PAGE, String(DEFAULT_PRODUCT_PAGE));
+      }
 
       // Navigate to the new path with updated search parameters
       navigate({

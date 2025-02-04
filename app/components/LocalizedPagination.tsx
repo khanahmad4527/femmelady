@@ -7,18 +7,21 @@ import { formatNumber } from '~/utils';
 const LocalizedPagination = ({
   totalPaginationButtons,
   currentPage,
-  handlePagination
+  handlePagination,
+  siblings
 }: {
   totalPaginationButtons: number;
   currentPage: number;
   handlePagination: (value: number) => void;
+  siblings?: number;
 }) => {
   const { userLocale, dir } = useCurrentLanguage();
 
   const pagination = usePagination({
     total: totalPaginationButtons,
     initialPage: currentPage,
-    onChange: handlePagination
+    onChange: handlePagination,
+    siblings
   });
 
   // This is to render correct arrow direction based on language direction

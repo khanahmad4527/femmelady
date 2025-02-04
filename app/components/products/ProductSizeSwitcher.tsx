@@ -1,8 +1,10 @@
 import { Button, Group, Stack, Text } from '@mantine/core';
 import { SetURLSearchParams } from 'react-router';
 import { PARAM_KEYS } from '~/constant';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { ProductSize } from '~/types';
+import { formatNumber } from '~/utils';
 
 const switchSize = 40;
 
@@ -20,6 +22,7 @@ const ProductSizeSwitcher = ({
   setSearchParams: SetURLSearchParams;
 }) => {
   const t = useTranslation();
+  const { userLocale } = useCurrentLanguage();
 
   const handleActiveSize = (size: ProductSize) => {
     setActiveSize(size);
@@ -33,9 +36,13 @@ const ProductSizeSwitcher = ({
       <Text span>
         {t('products.productSize')}
 
-        <Text ml={4} span>
-          {activeSize.size?.toLocaleUpperCase()}
-        </Text>
+        {activeSize.size && (
+          <Text ml={4} span>
+            {isNaN(+activeSize.size)
+              ? activeSize.size?.toLocaleUpperCase()
+              : formatNumber({ userLocale, value: +activeSize.size })}
+          </Text>
+        )}
       </Text>
       <Group>
         {sizes.map(s => {
@@ -56,7 +63,9 @@ const ProductSizeSwitcher = ({
               onClick={() => handleActiveSize(s)}
               disabled={isStockLeft}
             >
-              {s?.size?.toLocaleUpperCase()}
+              {isNaN(+s.size!)
+                ? s.size?.toLocaleUpperCase()
+                : formatNumber({ userLocale, value: +s.size! })}
             </Button>
           );
         })}

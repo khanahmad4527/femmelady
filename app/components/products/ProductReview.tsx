@@ -1,4 +1,4 @@
-import { Pagination, Stack } from '@mantine/core';
+import { Stack } from '@mantine/core';
 import ProductReviewCard from './ProductReviewCard';
 import { getPage } from '~/utils';
 import { useMediaQuery } from '@mantine/hooks';
@@ -10,6 +10,7 @@ import {
   FORCE_REVALIDATE_MAP,
   PARAM_KEYS
 } from '~/constant';
+import LocalizedPagination from '../LocalizedPagination';
 
 const ProductReview = ({
   reviews,
@@ -42,13 +43,11 @@ const ProductReview = ({
       {reviews?.map(r => (
         <ProductReviewCard key={r.id} review={r} />
       ))}
-      <Pagination
-        value={currentPage}
-        total={totalPaginationButtons}
-        onChange={handlePagination}
+      <LocalizedPagination
+        currentPage={currentPage}
+        totalPaginationButtons={totalPaginationButtons}
+        handlePagination={handlePagination}
         siblings={isMobile ? 0 : 1}
-        m={'auto'}
-        color="black"
       />
     </Stack>
   );

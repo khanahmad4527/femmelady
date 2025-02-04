@@ -24,7 +24,7 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
   }
 
   const t = useTranslation();
-  const { currentLanguage } = useCurrentLanguage();
+  const { currentLanguage, dir } = useCurrentLanguage();
   const { env } = useOutletContext<OutletContext>();
 
   const { ref, inViewport } = useInViewport();
@@ -58,7 +58,7 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
         slideSize={{ base: '100%', xs: '50%', md: '25%' }}
         loop={canLoop}
         align={'start'}
-        style={{ cursor: 'grab' }}
+        style={{ cursor: 'grab', direction: 'ltr' }} // There was a problem with rtl so we set it to ltr to avid any problem
         dragFree
       >
         {products?.map(p => {
@@ -104,7 +104,10 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                     loading={'lazy'}
                   />
                 </Box>
-                <Box>
+
+                {/* There was a problem with carousel not working when dir is set to rtl so we are 
+                manually setting it here */}
+                <Box style={{ direction: dir }}>
                   <Text tt={'capitalize'}>{translation?.title}</Text>
                   <Text>
                     {formatCurrency({

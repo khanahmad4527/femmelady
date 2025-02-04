@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { PARAM_KEYS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import getStringDto from '~/dto/getStringDto';
@@ -55,6 +55,22 @@ const useCurrentActiveImage = ({
 
   const newActiveImage = (getFirstObjectDto(currentImageSet)
     ?.directus_files_id ?? defaultImage) as string;
+
+  // Runs when the slug changes to update the main highlighted image.
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    // If a user pastes a URL with an image ID, render the product with that image ID
+    // instead of defaulting to newActiveImage.
+    if (isFirstRender.current) {
+      isFirstRender.current = false; // Mark as mounted
+      return;
+    }
+
+    if (newActiveImage !== activeImage) {
+      setActiveImage(newActiveImage);
+    }
+  }, [newActiveImage]);
 
   return { activeImage, setActiveImage, newActiveImage, currentImageSet };
 };

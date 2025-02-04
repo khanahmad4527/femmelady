@@ -47,7 +47,8 @@ const FacebookSsoButton = ({ redirect }: { redirect: string }) => {
         root: {
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          direction: 'ltr'
         }
       }}
       bg={'#1877f2'}
@@ -79,7 +80,8 @@ const GoogleSsoButton = ({ redirect }: { redirect: string }) => {
         root: {
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          direction: 'ltr'
         }
       }}
       aria-label="Continue with Google"
