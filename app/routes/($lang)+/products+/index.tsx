@@ -28,6 +28,7 @@ import { Route } from '../+types/_index';
 import {
   buildAndCompareFilter,
   buildLocalizedLink,
+  formatNumber,
   getAverageRatingRange,
   getBrandsId,
   getCategoriesId,
@@ -120,7 +121,7 @@ const Products = () => {
 
   const { searchParams, setSearchParams, env } =
     useOutletContext<OutletContext>();
-  const { currentLanguage } = useCurrentLanguage();
+  const { currentLanguage, userLocale } = useCurrentLanguage();
   const productCardRefs = useScrollToProduct({ products });
 
   const t = useTranslation();
@@ -154,7 +155,7 @@ const Products = () => {
           {t('products.resultsCount', {
             count: (
               <Text key={'products.resultsCount'} span>
-                {totalProductCount}
+                {formatNumber({ userLocale, value: totalProductCount })}
               </Text>
             )
           })}
@@ -212,11 +213,13 @@ const Products = () => {
         </Grid.Col>
       </Grid>
 
-      <LocalizedPagination
-        currentPage={currentPage}
-        totalPaginationButtons={totalPaginationButtons}
-        handlePagination={handlePagination}
-      />
+      {totalPaginationButtons > 1 && (
+        <LocalizedPagination
+          currentPage={currentPage}
+          totalPaginationButtons={totalPaginationButtons}
+          handlePagination={handlePagination}
+        />
+      )}
     </Stack>
   );
 };

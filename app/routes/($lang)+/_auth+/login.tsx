@@ -12,8 +12,8 @@ import {
   TextInput
 } from '@mantine/core';
 
-import { Link, useOutletContext } from 'react-router';
-import { login } from '~/auth/auth.server';
+import { Link, redirect, useOutletContext } from 'react-router';
+import { isAuthenticated, login } from '~/auth/auth.server';
 import { createUserSession } from '~/auth/session.server';
 import { redisClient } from '~/entry.server';
 import { useForm } from '~/hooks/useForm';
@@ -24,7 +24,7 @@ import { OutletContext } from '~/types';
 import {
   buildLocalizedLink,
   generateUuidv4,
-  getCurrentLanguage
+  getValidLanguageOrRedirect
 } from '~/utils';
 import { Route } from './+types/login';
 import InvalidProvider from '~/components/error/InvalidProvider';
@@ -35,8 +35,40 @@ import { Turnstile } from '@marsidev/react-turnstile';
 import SocialLogin from '~/components/SocialLogin';
 import { PARAMS, PATHS } from '~/constant';
 
+export const loader = async ({ params, request }: Route.LoaderArgs) => {
+  const result = getValidLanguageOrRedirect({ params, request });
+
+  if (result instanceof Response) {
+    return result;
+  }
+
+  const currentLanguage = result;
+
+  // redirect to home page if already loggedIn
+  const { isLoggedIn } = await isAuthenticated(request);
+
+  if (isLoggedIn) {
+    const redirectTo = buildLocalizedLink({
+      baseUrl: process.env?.APP_URL!,
+      currentLanguage,
+      queryParams: {
+        'force-validate': 'global'
+      }
+    });
+
+    return redirect(redirectTo);
+  }
+};
+
 export const action = async ({ request, params }: Route.ActionArgs) => {
-  const currentLanguage = getCurrentLanguage(params);
+  const result = getValidLanguageOrRedirect({ params, request });
+
+  if (result instanceof Response) {
+    return result;
+  }
+
+  const currentLanguage = result;
+
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 

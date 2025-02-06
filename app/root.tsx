@@ -27,7 +27,6 @@ import {
   Links,
   Meta,
   Outlet,
-  redirect,
   Scripts,
   ScrollRestoration,
   useLoaderData,
@@ -38,12 +37,13 @@ import {
 import Document from './components/Document';
 import useCurrentLanguage from './hooks/useCurrentLanguage';
 import { theme } from './theme';
-import { OutletContext, TranslationKeys } from './types';
+import { OutletContext } from './types';
 import { Route } from './+types/root';
 import { getExchangeRate } from './server/api';
 import {
   buildLocalizedLink,
   getUserLocale,
+  getValidLanguageOrRedirect,
   shouldRevalidateLogic
 } from './utils';
 import useSyncForceRevalidate from './hooks/useSyncForceRevalidate';
@@ -56,12 +56,7 @@ import { isAuthenticated } from './auth/auth.server';
 import { Notifications } from '@mantine/notifications';
 import { getMeta } from './meta';
 import { getEnv } from './server/env';
-import {
-  AVAILABLE_LANGUAGES,
-  FALL_BACK_LANG,
-  LOCALE_TO_LANGUAGE,
-  PARAMS
-} from './constant';
+import { PARAMS } from './constant';
 
 export const meta: MetaFunction = ({ location }) => {
   return getMeta({ pathname: location.pathname });
@@ -84,20 +79,13 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const { isLoggedIn, user } = await isAuthenticated(request);
 
-  const lang = (params?.lang || FALL_BACK_LANG) as TranslationKeys;
+  const result = getValidLanguageOrRedirect({ params, request, user });
 
-  const currentLanguage = (LOCALE_TO_LANGUAGE[user?.language!] ||
-    lang) as TranslationKeys;
-
-  // If not the valid language then redirect to the valid language
-  if (!AVAILABLE_LANGUAGES.includes(currentLanguage) || !currentLanguage) {
-    return redirect(
-      buildLocalizedLink({
-        baseUrl: process.env.APP_URL!,
-        currentLanguage: FALL_BACK_LANG
-      })
-    ); // this redirect to /en
+  if (result instanceof Response) {
+    return result;
   }
+
+  const currentLanguage = result;
 
   const locale = getUserLocale(currentLanguage);
 

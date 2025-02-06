@@ -27,11 +27,18 @@ import { registerFormSchema } from '~/schema';
 import { directus } from '~/server/directus';
 import { validateTurnstile } from '~/server/turnstile';
 import { OutletContext } from '~/types';
-import { buildLocalizedLink, getCurrentLanguage } from '~/utils';
+import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
 import { handleError } from '~/utils/error';
 
 export const action: ActionFunction = async ({ request, params }) => {
-  const currentLanguage = getCurrentLanguage(params);
+  const result = getValidLanguageOrRedirect({ params, request });
+
+  if (result instanceof Response) {
+    return result;
+  }
+
+  const currentLanguage = result;
+
   const formData = await request.formData();
 
   const data = Object.fromEntries(formData);

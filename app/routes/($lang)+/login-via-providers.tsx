@@ -4,17 +4,24 @@ import {
   buildLocalizedLink,
   generateUuidv4,
   getCookie,
-  getCurrentLanguage
+  getValidLanguageOrRedirect
 } from '~/utils';
 import { directus } from '~/server/directus';
 import { refresh } from '@directus/sdk';
 import { redisClient } from '~/entry.server';
 import { createUserSession } from '~/auth/session.server';
-import { PARAMS, PATHS } from '~/constant';
+import { PATHS } from '~/constant';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const url = new URL(request.url);
-  const currentLanguage = getCurrentLanguage(params);
+  const result = getValidLanguageOrRedirect({ params, request });
+
+  if (result instanceof Response) {
+    return result;
+  }
+
+  const currentLanguage = result;
+
   const failureReason = url.searchParams.get('reason'); // This comes from Directus
   const fromPage = url.searchParams.get('from'); // We send from login and register page, to redirect user to same page they come from
   const redirectTo =

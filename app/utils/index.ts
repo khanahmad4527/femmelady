@@ -1,14 +1,16 @@
 import { useForm } from '@mantine/form';
-import { useFetcher, useOutletContext } from 'react-router';
+import { redirect, useFetcher, useOutletContext } from 'react-router';
 import { z } from 'zod';
 import {
   Cart,
   GetParam,
   OutletContext,
   ProductCart,
-  TranslationKeys
+  TranslationKeys,
+  User
 } from '../types';
 import {
+  AVAILABLE_LANGUAGES,
   BRANDS_WITH_ID_MAP,
   CATEGORIES_WITH_ID_MAP,
   DEFAULT_PRODUCT_LIMIT,
@@ -18,6 +20,7 @@ import {
   FORCE_REVALIDATE_MAP,
   LANGUAGE_TO_LOCALE_LANGUAGE,
   LOCALE_TO_CURRENCY,
+  LOCALE_TO_LANGUAGE,
   PARAM_KEYS
 } from '../constant';
 import useHeaderFooterContext from '../hooks/useHeaderFooterContext';
@@ -217,12 +220,6 @@ export const getSingleTranslation = (translations: any) => {
   return translations[0];
 };
 
-let getDirectusUrl: () => string | undefined = () => undefined;
-
-export const setDirectusUrlGetter = (getter: () => string | undefined) => {
-  getDirectusUrl = getter;
-};
-
 export const getImageUrl = ({
   id,
   h = 300,
@@ -257,18 +254,6 @@ export const getLanguageCode = (params: { lang?: string }) => {
     LANGUAGE_TO_LOCALE_LANGUAGE[params?.lang ?? FALL_BACK_LANG];
 
   return languageCode as string;
-};
-
-/**
- * Retrieves the current language, defaulting to the fallback language if none is provided.
- *
- * @param params - An object containing an optional `lang` property.
- * @param params.lang - The desired language code (e.g., "en", "fr"). Optional.
- * @returns The resolved language code (either the provided `lang` or the fallback language).
- */
-export const getCurrentLanguage = (params: { lang?: string }) => {
-  const lang = params.lang ?? FALL_BACK_LANG;
-  return lang as TranslationKeys;
 };
 
 export const getPriceRange = ({ request, searchParams }: GetParam) => {
@@ -650,3 +635,33 @@ export function getCookie(
 
   return undefined; // Return undefined if the cookie is not found
 }
+
+/**
+ * If the lang param is not a valid language then it redirect to /en
+ * @param params - The incoming params object
+ * @param user - The user object
+ * @returns The currentLanguage or redirect response to the valid language
+ */
+export const getValidLanguageOrRedirect = ({
+  params,
+  request,
+  user
+}: {
+  params: { [key: string]: string | undefined };
+  request: Request;
+  user?: User;
+}) => {
+  const lang = params?.lang as TranslationKeys;
+
+  const currentLanguage = (LOCALE_TO_LANGUAGE[user?.language!] ||
+    lang) as TranslationKeys;
+
+  // If the language is invalid, replace it in the URL and redirect
+  if (!AVAILABLE_LANGUAGES.includes(currentLanguage) || !currentLanguage) {
+    const url = new URL(request.url);
+    url.pathname = url.pathname.replace(/\/[^/]+/, `/${FALL_BACK_LANG}`); // Replace the incorrect lang param
+    return redirect(url.toString());
+  }
+
+  return currentLanguage;
+};

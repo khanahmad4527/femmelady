@@ -1,4 +1,7 @@
-// This function only export env variables which can are going to be use on client side
+/**
+ * This function only export env variables that are going to be use on client side
+ * @returns an object
+ */
 export const getEnv = () => {
   const { DIRECTUS_URL, APP_URL, NODE_ENV } = process.env;
 
