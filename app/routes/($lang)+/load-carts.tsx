@@ -1,11 +1,11 @@
-import { getLanguageCode, getPage, parseZodError } from '~/utils';
+import { getLanguageCode, getPage } from '~/utils';
 import { getCarts } from '~/server/api';
 import { Route } from './+types/load-carts';
 import { isAuthenticated } from '~/auth/auth.server';
-import { z } from 'zod';
 import { mutateCartSchema } from '~/schema';
 import { directus } from '~/server/directus';
 import { deleteItem, updateItem, withToken } from '@directus/sdk';
+import { handleError } from '~/utils/error';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -19,11 +19,11 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
 };
 
 export const action = async ({ request }: Route.ActionArgs) => {
-  const { token } = await isAuthenticated(request);
-
-  const formData = await request.formData();
-
   try {
+    const { token } = await isAuthenticated(request);
+
+    const formData = await request.formData();
+
     const { cartId, intent, quantity } = mutateCartSchema.parse(
       Object.fromEntries(formData)
     );
@@ -56,10 +56,6 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
     return { success: true };
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return parseZodError(error);
-    }
-    console.error('Something went wrong', error);
-    throw error;
+    return handleError({ error });
   }
 };

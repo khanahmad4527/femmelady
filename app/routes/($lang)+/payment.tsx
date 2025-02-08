@@ -3,13 +3,11 @@ import { useForm } from '~/hooks/useForm';
 import { paymentFormSchema } from '~/schema';
 import classes from '~/styles/Payment.module.scss';
 import { Route } from './+types/payment';
-import { z } from 'zod';
 import {
   calculateTotalPrice,
   formatCurrency,
   formatNumber,
-  getLocalizedMonth,
-  parseZodError
+  getLocalizedMonth
 } from '~/utils';
 import { getCartsPrice } from '~/server/api';
 import { isAuthenticated } from '~/auth/auth.server';
@@ -24,6 +22,8 @@ import useUserLocale from '~/hooks/useUserLocale';
 import { useEffect } from 'react';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import NoCart from '~/components/cart/NoCart';
+import { handleError } from '~/utils/error';
+import FetcherError from '~/components/FetcherError';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const { token } = await isAuthenticated(request);
@@ -40,11 +40,11 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 };
 
 export const action = async ({ request }: Route.ActionArgs) => {
-  const { token } = await isAuthenticated(request);
-
-  const formData = await request.formData();
-
   try {
+    const { token } = await isAuthenticated(request);
+
+    const formData = await request.formData();
+
     paymentFormSchema.parse(Object.fromEntries(formData));
 
     const carts = (await getCartsPrice({
@@ -77,10 +77,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
     return { success: true };
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return parseZodError(error);
-    }
-    throw error;
+    return handleError({ error });
   }
 };
 
@@ -97,7 +94,7 @@ const Payment = () => {
       cvv: '999',
       cardHolderName: '',
       expiryMonth: 'march',
-      expiryYear: '2027'
+      expiryYear: '2030'
     }
   });
 
@@ -211,7 +208,7 @@ const Payment = () => {
 
           <TextInput
             label={t('payment.cardHolderName')}
-            placeholder="John Doe"
+            placeholder={'John Doe'}
             name={'cardHolderName'}
             key={form.key('cardHolderName')}
             {...form.getInputProps('cardHolderName')}
@@ -224,6 +221,8 @@ const Payment = () => {
           </Button>
         </Stack>
       </Form>
+
+      <FetcherError fetcher={fetcher} />
     </Stack>
   );
 };

@@ -1,6 +1,5 @@
 import { createUser } from '@directus/sdk';
 import {
-  Alert,
   Anchor,
   Button,
   Center,
@@ -31,6 +30,7 @@ import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
 import { handleError } from '~/utils/error';
 import { Route } from './+types/register';
 import { isAuthenticated } from '~/auth/auth.server';
+import FetcherError from '~/components/FetcherError';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -58,19 +58,19 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 };
 
 export const action: ActionFunction = async ({ request, params }) => {
-  const result = getValidLanguageOrRedirect({ params, request });
-
-  if (result instanceof Response) {
-    return result;
-  }
-
-  const currentLanguage = result;
-
-  const formData = await request.formData();
-
-  const data = Object.fromEntries(formData);
-
   try {
+    const result = getValidLanguageOrRedirect({ params, request });
+
+    if (result instanceof Response) {
+      return result;
+    }
+
+    const currentLanguage = result;
+
+    const formData = await request.formData();
+
+    const data = Object.fromEntries(formData);
+
     const validatedData = registerFormSchema.parse(data);
 
     const outcome = await validateTurnstile({
@@ -95,6 +95,7 @@ export const action: ActionFunction = async ({ request, params }) => {
         password: validatedData.password
       })
     );
+
     return redirect(
       buildLocalizedLink({
         baseUrl: process.env?.APP_URL!,
@@ -215,11 +216,7 @@ const register = () => {
           />
         </Form>
 
-        {fetcher.data?.title && (
-          <Alert variant="light" color="red" title={t(fetcher.data?.title)}>
-            {t(fetcher.data?.description)}
-          </Alert>
-        )}
+        <FetcherError fetcher={fetcher} />
 
         {error === 'invalidProvider' && <InvalidProvider t={t} />}
 

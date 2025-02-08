@@ -60,7 +60,9 @@
     "noDataFoundMessage": "我们没有找到与您请求的数据匹配的内容。",
     "cartEmptyMessage": "浏览商品",
     "google": "Google",
-    "facebook": "Facebook"
+    "facebook": "Facebook",
+    "notAllowedTitle": "操作不允许",
+    "notAllowedDescription": "您没有权限删除此项目，或者它可能已不存在。"
   },
   "login": {
     "welcome": "欢迎来到Unthaa，请使用以下方式登录",

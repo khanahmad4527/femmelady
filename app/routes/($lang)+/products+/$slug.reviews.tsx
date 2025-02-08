@@ -1,4 +1,3 @@
-import ProductReview from '~/components/products/ProductReview';
 import { Route } from './+types/$slug.reviews';
 import {
   getLanguageCode,
@@ -13,7 +12,15 @@ import {
 } from 'react-router';
 import { getReviews } from '~/server/api';
 import { OutletContext } from '~/types';
-import { FORCE_REVALIDATE_MAP, PARAM_KEYS } from '~/constant';
+import {
+  DEFAULT_PRODUCT_LIMIT,
+  FORCE_REVALIDATE_MAP,
+  PARAM_KEYS
+} from '~/constant';
+import ProductReviewCard from '~/components/products/ProductReviewCard';
+import LocalizedPagination from '~/components/LocalizedPagination';
+import { useMediaQuery } from '@mantine/hooks';
+import { Stack } from '@mantine/core';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,
@@ -59,10 +66,37 @@ const Reviews = () => {
   >();
   const { reviews } = useLoaderData<typeof loader>();
 
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
+
+  const isMobile = useMediaQuery('(max-width: 30em)');
+
+  const currentPage = getPage({ searchParams });
+
+  const reviewsPerPage = DEFAULT_PRODUCT_LIMIT;
+
+  const totalPaginationButtons = Math.ceil(totalReviewsCount / reviewsPerPage);
+
+  const handlePagination = (value: number) => {
+    searchParams.set(PARAM_KEYS.PAGE, String(value));
+    searchParams.set(
+      PARAM_KEYS.FORCE_REVALIDATE,
+      FORCE_REVALIDATE_MAP.PRODUCT_REVIEW
+    );
+    setSearchParams(searchParams, { preventScrollReset: true });
+  };
+
   return (
-    <div>
-      <ProductReview reviews={reviews} totalReviewsCount={totalReviewsCount} />
-    </div>
+    <Stack>
+      {reviews?.map(r => (
+        <ProductReviewCard key={r.id} review={r} />
+      ))}
+      <LocalizedPagination
+        currentPage={currentPage}
+        totalPaginationButtons={totalPaginationButtons}
+        handlePagination={handlePagination}
+        siblings={isMobile ? 0 : 1}
+      />
+    </Stack>
   );
 };
 

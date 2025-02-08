@@ -25,7 +25,7 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
       'force-validate': 'global'
     }
   });
-
+  
   try {
     const cookie = request.headers.get('Cookie');
     const session = await getSession(cookie);

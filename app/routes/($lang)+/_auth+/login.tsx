@@ -1,5 +1,4 @@
 import {
-  Alert,
   Anchor,
   Button,
   Center,
@@ -12,7 +11,7 @@ import {
   TextInput
 } from '@mantine/core';
 
-import { Link, redirect, useOutletContext } from 'react-router';
+import { Link, redirect, useLoaderData, useOutletContext } from 'react-router';
 import { isAuthenticated, login } from '~/auth/auth.server';
 import { createUserSession } from '~/auth/session.server';
 import { redisClient } from '~/entry.server';
@@ -34,6 +33,7 @@ import { validateTurnstile } from '~/server/turnstile';
 import { Turnstile } from '@marsidev/react-turnstile';
 import SocialLogin from '~/components/SocialLogin';
 import { PARAMS, PATHS } from '~/constant';
+import FetcherError from '~/components/FetcherError';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -61,18 +61,18 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 };
 
 export const action = async ({ request, params }: Route.ActionArgs) => {
-  const result = getValidLanguageOrRedirect({ params, request });
-
-  if (result instanceof Response) {
-    return result;
-  }
-
-  const currentLanguage = result;
-
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-
   try {
+    const result = getValidLanguageOrRedirect({ params, request });
+
+    if (result instanceof Response) {
+      return result;
+    }
+
+    const currentLanguage = result;
+
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+
     const {
       email,
       password,
@@ -124,6 +124,8 @@ const Login = () => {
   const t = useTranslation();
   const { currentLanguage, env, searchParams } =
     useOutletContext<OutletContext>();
+
+  const x = useLoaderData<typeof loader>();
 
   const error = searchParams.get(PARAMS.error);
 
@@ -206,11 +208,7 @@ const Login = () => {
           </Form>
         </Stack>
 
-        {fetcher.data?.title && (
-          <Alert variant="light" color="red" title={t(fetcher.data?.title)}>
-            {t(fetcher.data?.description)}
-          </Alert>
-        )}
+        <FetcherError fetcher={fetcher} />
 
         {errors?.['cf-turnstile-response'] && (
           <Text fz={11} c={'red'}>

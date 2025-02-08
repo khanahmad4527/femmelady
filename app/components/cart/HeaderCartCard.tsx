@@ -10,9 +10,8 @@ import {
   ThemeIcon
 } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
-import { useEffect, useState } from 'react';
-import { Link, useFetcher } from 'react-router';
-import { PARAMS, PATHS } from '~/constant';
+import { Link } from 'react-router';
+import { PATHS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
@@ -32,13 +31,24 @@ import {
   getImageUrl,
   getSingleTranslation
 } from '~/utils';
+import FetcherError from '../FetcherError';
+import useCartCardManager from '~/hooks/useCartCardManager';
 
 const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
   const { hovered, ref } = useHover();
-  const { setCarts, setCartCount, env } = useHeaderFooterContext();
+  const { env } = useHeaderFooterContext();
   const { currentLanguage } = useCurrentLanguage();
-  const [quantity, setQuantity] = useState(cart?.quantity ?? 1);
-  const fetcher = useFetcher<{ success: boolean }>();
+
+  const {
+    fetcher,
+    handleQuantityDec,
+    handleQuantityInc,
+    quantity,
+    disabledIncButton,
+    disabledDecButton,
+    disabledCancelButton
+  } = useCartCardManager({ cart });
+
   const product = (getFirstObjectDto(cart?.products) as ProductCart)
     .product_id as Product;
 
@@ -51,62 +61,6 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
   const colorTranslation = getSingleTranslation(
     color.translations
   ) as ProductColorTranslation;
-
-  const fetcherQuantitySubmit = ({
-    intent,
-    quantity = 0
-  }: {
-    intent: 'dec' | 'inc';
-    quantity?: number;
-  }) => {
-    fetcher.submit(
-      { quantity, cartId: cart.id, intent },
-      { method: 'POST', action: `/${currentLanguage}/load-carts` }
-    );
-  };
-
-  const handleQuantityDec = () => {
-    const newQuantity = quantity - 1;
-    fetcherQuantitySubmit({ intent: 'dec', quantity: newQuantity });
-    setQuantity(newQuantity);
-  };
-
-  const handleQuantityInc = () => {
-    const newQuantity = quantity + 1;
-    fetcherQuantitySubmit({ intent: 'inc', quantity: newQuantity });
-    setQuantity(newQuantity);
-  };
-
-  let disabledIncButton = false;
-  let disabledDecButton = false;
-  let disabledCancelButton = false;
-
-  if (fetcher?.formData) {
-    const intent = fetcher?.formData.get('intent');
-
-    if (intent === 'inc') {
-      disabledIncButton = true;
-    }
-
-    if (intent === 'dec') {
-      disabledDecButton = true;
-    }
-
-    if (intent === 'cancel') {
-      disabledCancelButton = true;
-    }
-  }
-
-  const isCanceling = Boolean(
-    fetcher.data?.success && fetcher?.formData?.get('intent') === 'cancel'
-  );
-
-  useEffect(() => {
-    if (isCanceling) {
-      setCarts(prev => prev.filter(p => p.id !== cart.id));
-      setCartCount(prev => prev - 1);
-    }
-  }, [isCanceling]);
 
   return (
     <>
@@ -181,7 +135,7 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
         </Grid.Col>
         <Grid.Col span={2}>
           <ActionIcon
-            color="black"
+            color={'black'}
             loading={disabledCancelButton}
             onClick={() => {
               fetcher.submit(
@@ -190,10 +144,12 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
               );
             }}
           >
-            <IconX color="black" />
+            <IconX color="white" />
           </ActionIcon>
         </Grid.Col>
       </Grid>
+
+      <FetcherError fetcher={fetcher} />
 
       <Divider size="sm" my="md" color="black" />
     </>

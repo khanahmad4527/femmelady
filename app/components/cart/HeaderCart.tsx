@@ -6,7 +6,7 @@ import { IconDatabaseExclamation } from '~/icons';
 import { Link } from 'react-router';
 import { buildLocalizedLink } from '~/utils';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import { PARAMS, PATHS } from '~/constant';
+import { PATHS } from '~/constant';
 
 const HeaderCart = ({
   opened,

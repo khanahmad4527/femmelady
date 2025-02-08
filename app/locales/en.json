@@ -60,7 +60,9 @@
     "noDataFoundMessage": "We couldn't find any data matching your request.",
     "cartEmptyMessage": "Browse products",
     "google": "Google",
-    "facebook": "Facebook"
+    "facebook": "Facebook",
+    "notAllowedTitle": "Action Not Allowed",
+    "notAllowedDescription": "You do not have permission to delete this item or it may no longer exist."
   },
   "login": {
     "welcome": "Welcome to Unthaa, login with",

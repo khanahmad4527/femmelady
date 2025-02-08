@@ -5,9 +5,8 @@ import HeaderCartCard from './HeaderCartCard';
 import { buildLocalizedLink } from '~/utils';
 import useTranslation from '~/hooks/useTranslation';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import { Cart, Product, ProductColor, ProductColorTranslation } from '~/types';
+import { Cart } from '~/types';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
-import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import { PATHS } from '~/constant';
 
 type ItemsResponse = { carts: Cart[]; page: number };
@@ -20,7 +19,7 @@ const InfiniteCartLoader = ({ close }: { close: () => void }) => {
 
   const fetcher = useFetcher<ItemsResponse>();
   const { carts, setCarts, env } = useHeaderFooterContext();
-  const [noLoadMore, setNoLoadMore] = useState(false);
+  const [noLoadMore, setNoLoadMore] = useState(false); // Useful to save query, if no data return from the query then we cn consider there is no more data to load
 
   useEffect(() => {
     if (!fetcher.data || fetcher.state === 'loading') {
@@ -50,12 +49,12 @@ const InfiniteCartLoader = ({ close }: { close: () => void }) => {
   }, [fetcher.data]);
 
   useEffect(() => {
-    if (!carts.length) {
+    if (!noLoadMore) {
       const query = `/${currentLanguage}/load-carts?index&page=1`;
 
       fetcher.load(query);
     }
-  }, [currentLanguage]);
+  }, []);
 
   return (
     <Stack>

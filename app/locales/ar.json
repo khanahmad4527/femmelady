@@ -60,7 +60,9 @@
     "noDataFoundMessage": "لم نتمكن من العثور على أي بيانات تطابق طلبك.",
     "cartEmptyMessage": "تصفح المنتجات",
     "google": "جوجل",
-    "facebook": "فيسبوك"
+    "facebook": "فيسبوك",
+    "notAllowedTitle": "الإجراء غير مسموح به",
+    "notAllowedDescription": "ليس لديك إذن لحذف هذا العنصر أو قد لا يكون موجودًا بعد الآن."
   },
   "login": {
     "welcome": "مرحبًا بك في Unthaa، سجل الدخول باستخدام",

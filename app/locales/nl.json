@@ -60,7 +60,9 @@
     "noDataFoundMessage": "We konden geen gegevens vinden die overeenkomen met je verzoek.",
     "cartEmptyMessage": "Blader door producten",
     "google": "Google",
-    "facebook": "Facebook"
+    "facebook": "Facebook",
+    "notAllowedTitle": "Actie niet toegestaan",
+    "notAllowedDescription": "Je hebt geen toestemming om dit item te verwijderen of het bestaat mogelijk niet meer."
   },
   "login": {
     "welcome": "Welkom bij Unthaa, log in met",

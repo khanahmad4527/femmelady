@@ -11,20 +11,12 @@ import CheckoutCartCard from '~/components/checkout/CheckoutCartCard';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
-import {
-  buildLocalizedLink,
-  formatCurrency,
-  getLanguageCode,
-  parseZodError
-} from '~/utils';
+import { buildLocalizedLink, formatCurrency, getLanguageCode } from '~/utils';
 import { Route } from './+types/checkout';
 import { isAuthenticated } from '~/auth/auth.server';
 import { getCarts } from '~/server/api';
 import { Link, useLoaderData, useOutletContext } from 'react-router';
-import { mutateCartSchema } from '~/schema';
-import { directus } from '~/server/directus';
-import { deleteItem, updateItem, withToken } from '@directus/sdk';
-import { z } from 'zod';
+
 import { OutletContext, ProductCart } from '~/types';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import NoCart from '~/components/cart/NoCart';
@@ -43,52 +35,6 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
   });
 
   return { carts };
-};
-
-export const action = async ({ request, params }: Route.ActionArgs) => {
-  const { token } = await isAuthenticated(request);
-
-  const formData = await request.formData();
-
-  try {
-    const { cartId, intent, quantity } = mutateCartSchema.parse(
-      Object.fromEntries(formData)
-    );
-
-    if (intent === 'inc') {
-      await directus.request(
-        withToken(
-          token!,
-          updateItem('cart', cartId, {
-            quantity
-          })
-        )
-      );
-    }
-
-    if (intent === 'dec') {
-      await directus.request(
-        withToken(
-          token!,
-          updateItem('cart', cartId, {
-            quantity
-          })
-        )
-      );
-    }
-
-    if (intent === 'cancel') {
-      await directus.request(withToken(token!, deleteItem('cart', cartId)));
-    }
-
-    return { success: true };
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return parseZodError(error);
-    }
-    console.error('Something went wrong', error);
-    throw error;
-  }
 };
 
 const Checkout = () => {

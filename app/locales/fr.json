@@ -60,7 +60,9 @@
     "noDataFoundMessage": "Nous n'avons trouvé aucune donnée correspondant à votre demande.",
     "cartEmptyMessage": "Parcourir les produits",
     "google": "Google",
-    "facebook": "Facebook"
+    "facebook": "Facebook",
+    "notAllowedTitle": "Action non autorisée",
+    "notAllowedDescription": "Vous n'avez pas la permission de supprimer cet élément ou il n'existe peut-être plus."
   },
   "login": {
     "welcome": "Bienvenue sur Unthaa, connectez-vous avec",

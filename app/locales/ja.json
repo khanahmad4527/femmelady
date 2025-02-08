@@ -60,7 +60,9 @@
     "noDataFoundMessage": "リクエストに一致するデータが見つかりませんでした",
     "cartEmptyMessage": "商品を見てみる",
     "google": "グーグル",
-    "facebook": "フェイスブック"
+    "facebook": "フェイスブック",
+    "notAllowedTitle": "操作は許可されていません",
+    "notAllowedDescription": "このアイテムを削除する権限がないか、すでに存在しない可能性があります。"
   },
   "login": {
     "welcome": "Unthaaへようこそ、ログインするには",

@@ -45,21 +45,19 @@ import {
   generateUuidv4,
   getImageUrl,
   getLanguageCode,
-  parseZodError,
   shouldRevalidateLogic
 } from '~/utils';
 import { Route } from './+types/$slug';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
 import getStringDto from '~/dto/getStringDto';
-import { FORCE_REVALIDATE_MAP, PARAM_KEYS, PARAMS, PATHS } from '~/constant';
+import { FORCE_REVALIDATE_MAP, PARAM_KEYS, PATHS } from '~/constant';
 import useCurrentActiveSize from '~/hooks/useCurrentActiveSize';
 import { directus } from '~/server/directus';
 import { createItem, withToken } from '@directus/sdk';
 import { isAuthenticated } from '~/auth/auth.server';
 import { addToCartSchema } from '~/schema';
 import AddToCartError from '~/components/cart/AddToCartError';
-import { z } from 'zod';
 import { useEffect, useState } from 'react';
 import { notifications } from '@mantine/notifications';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
@@ -67,6 +65,7 @@ import useUserLocale from '~/hooks/useUserLocale';
 import { getSingleProductPageMeta } from '~/meta';
 import ZoomImage from '~/components/products/ZoomImage';
 import { getEnv } from '~/server/env';
+import { handleError } from '~/utils/error';
 
 export const meta = ({ data, location }: Route.MetaArgs) => {
   const product = data?.product;
@@ -120,10 +119,10 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 };
 
 export const action = async ({ request }: Route.ActionArgs) => {
-  const { token } = await isAuthenticated(request);
-  const formData = await request.formData();
-
   try {
+    const { token } = await isAuthenticated(request);
+    const formData = await request.formData();
+
     const {
       cartId,
       colorId,
@@ -149,10 +148,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
       )
     );
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return parseZodError(error);
-    }
-    throw error;
+    return handleError({ error });
   }
 
   return { success: true };
@@ -168,7 +164,7 @@ const SingleProduct = () => {
 
   const location = useLocation();
 
-  const { setCartCount, setCarts, carts } = useHeaderFooterContext();
+  const { setCartCount, setCarts } = useHeaderFooterContext();
   const [quantity, setQuantity] = useState<string | null>('1');
   const { activeSize, setActiveSize } = useCurrentActiveSize({
     product,
@@ -213,6 +209,8 @@ const SingleProduct = () => {
     }
   };
 
+  // this return the cart object if the product is already in user's cart
+  // Helps to make the add to cart button disable
   const inCart = (getFirstObjectDto(product?.carts) as ProductCart)
     ?.cart_id as Cart;
 
@@ -234,7 +232,8 @@ const SingleProduct = () => {
   }, [fetcher.data]);
 
   // These are getting used in the add to bag, form
-  const cartId = generateUuidv4();
+  // To show the item in the cart drawer, we need these values
+  const [cartId] = useState(generateUuidv4()); // To maintain a single value
   const productId = product.id;
   const colorId = activeColor.id;
   const sizeId = activeSize.id;
@@ -406,7 +405,7 @@ const SingleProduct = () => {
                     const data = {
                       date_created: new Date().toISOString(),
                       id: cartId,
-                      quantity,
+                      quantity: Number(quantity),
                       sort: null,
                       user: user?.id,
                       feature_image_1: featureImage1Id,
