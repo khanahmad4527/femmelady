@@ -12,7 +12,10 @@
     "beautyWellness": "Beauté & Bien-être",
     "giftsCandles": "Cadeaux & Bougies",
     "sale": "Vente",
-    "slogan": "Construit sur la qualité, pas sur les chiffres"
+    "slogan": "Construit sur la qualité, pas sur les chiffres",
+    "profile": "Profil",
+    "orders": "Commandes",
+    "logout": "Déconnexion"
   },
   "home": {
     "weddings": "Mariages",

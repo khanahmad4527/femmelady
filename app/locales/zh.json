@@ -12,7 +12,10 @@
     "beautyWellness": "美容与健康",
     "giftsCandles": "礼物与蜡烛",
     "sale": "促销",
-    "slogan": "建立在质量上，而非数字"
+    "slogan": "建立在质量上，而非数字",
+    "profile": "个人资料",
+    "orders": "订单",
+    "logout": "退出"
   },
   "home": {
     "weddings": "婚礼",

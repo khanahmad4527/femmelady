@@ -12,7 +12,10 @@
     "beautyWellness": "Beauty & Wellness",
     "giftsCandles": "Gifts & Candles",
     "sale": "Sale",
-    "slogan": "Built on Quality, Not Numbers"
+    "slogan": "Built on Quality, Not Numbers",
+    "profile": "Profile",
+    "orders": "Orders",
+    "logout": "Logout"
   },
   "home": {
     "weddings": "Weddings",

@@ -377,6 +377,7 @@ export const PATHS = {
   blog: 'blog',
   faq: 'faq',
   login: 'login',
+  logout: 'logout',
   register: 'register',
   products: 'products',
   checkout: 'checkout',

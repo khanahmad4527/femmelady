@@ -86,7 +86,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   };
 
   // Aim of this function is to save the query made to the get the count of total product
-  //Iif the filter is same
+  //If the filter is same
   const { isSame, productCount } = buildAndCompareFilter(args, request.url);
 
   const { products, totalProductCount } = await getProducts({

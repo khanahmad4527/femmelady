@@ -12,7 +12,10 @@
     "beautyWellness": "뷰티 & 웰니스",
     "giftsCandles": "선물 & 캔들",
     "sale": "세일",
-    "slogan": "숫자가 아닌 품질로 만들어짐"
+    "slogan": "숫자가 아닌 품질로 만들어짐",
+    "profile": "프로필",
+    "orders": "주문",
+    "logout": "로그아웃"
   },
   "home": {
     "weddings": "웨딩",

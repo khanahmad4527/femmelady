@@ -12,7 +12,10 @@
     "beautyWellness": "Schoonheid & Wellness",
     "giftsCandles": "Cadeaus & Kaarsen",
     "sale": "Uitverkoop",
-    "slogan": "Gebouwd op Kwaliteit, Niet op Aantal"
+    "slogan": "Gebouwd op Kwaliteit, Niet op Aantal",
+    "profile": "Profiel",
+    "orders": "Bestellingen",
+    "logout": "Uitloggen"
   },
   "home": {
     "weddings": "Bruiloften",

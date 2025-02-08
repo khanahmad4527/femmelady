@@ -637,10 +637,13 @@ export function getCookie(
 }
 
 /**
- * If the lang param is not a valid language then it redirect to /en
- * @param params - The incoming params object
- * @param user - The user object
- * @returns The currentLanguage or redirect response to the valid language
+ * Determines the valid language for the user based on the URL path, user preferences,
+ * and available languages. If no valid language is found, it redirects to the fallback language.
+ *
+ * @param params - URL parameters (unused in this function but passed for consistency)
+ * @param request - The incoming request object containing the URL
+ * @param user - Optional user object containing the user's preferred language
+ * @returns A valid language key or a redirect response to the fallback language
  */
 export const getValidLanguageOrRedirect = ({
   params,
@@ -651,17 +654,38 @@ export const getValidLanguageOrRedirect = ({
   request: Request;
   user?: User;
 }) => {
-  const lang = params?.lang as TranslationKeys;
+  const lang = params.lang;
 
-  const currentLanguage = (LOCALE_TO_LANGUAGE[user?.language!] ||
-    lang) as TranslationKeys;
+  const userLang = user?.language
+    ? LOCALE_TO_LANGUAGE[user.language]
+    : undefined;
 
-  // If the language is invalid, replace it in the URL and redirect
-  if (!AVAILABLE_LANGUAGES.includes(currentLanguage) || !currentLanguage) {
-    const url = new URL(request.url);
-    url.pathname = url.pathname.replace(/\/[^/]+/, `/${FALL_BACK_LANG}`); // Replace the incorrect lang param
+  const validLang =
+    lang && AVAILABLE_LANGUAGES.includes(lang) ? lang : undefined;
+
+  const currentLanguage = userLang || validLang;
+
+  const url = new URL(request.url);
+
+  if (userLang && userLang !== validLang) {
+    // User has a preferred language different from URL, redirect them
+    url.pathname = `/${userLang}${url.pathname.replace(
+      /^\/[^/]+/,
+      ''
+    )}`.replace(/\/+$/, '');
+
     return redirect(url.toString());
   }
 
-  return currentLanguage;
+  if (!currentLanguage) {
+    url.pathname = `/${FALL_BACK_LANG}${url.pathname.replace(
+      /^\/[^/]+/,
+      ''
+    )}`.replace(/\/+$/, '');
+
+    return redirect(url.toString());
+  }
+
+  // Return the valid language key
+  return currentLanguage as TranslationKeys;
 };

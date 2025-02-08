@@ -4,20 +4,35 @@ const {
 } = require('./app/locales/localesHandler.cjs');
 
 // Add or update multiple keys at once
-// addOrUpdateKeysBatch({
-//   'cart.errors.cartIdRequired': {
-//     en: 'Cart ID is required',
-//     ja: 'カートIDは必須です'
-//   },
-//   'cart.errors.cartIdInvalid': {
-//     en: 'Cart ID must be a valid UUID',
-//     ja: 'カートIDは有効なUUIDである必要があります'
-//   },
-//   'cart.errors.intentRequired': {
-//     en: 'Intent is required',
-//     ja: 'インテントは必須です'
-//   }
-// });
+addOrUpdateKeysBatch({
+  'header.profile': {
+    en: 'Profile',
+    ja: 'プロフィール',
+    ko: '프로필',
+    ar: 'الملف الشخصي',
+    nl: 'Profiel',
+    fr: 'Profil',
+    zh: '个人资料'
+  },
+  'header.orders': {
+    en: 'Orders',
+    ja: '注文',
+    ko: '주문',
+    ar: 'الطلبات',
+    nl: 'Bestellingen',
+    fr: 'Commandes',
+    zh: '订单'
+  },
+  'header.logout': {
+    en: 'Logout',
+    ja: 'ログアウト',
+    ko: '로그아웃',
+    ar: 'تسجيل الخروج',
+    nl: 'Uitloggen',
+    fr: 'Déconnexion',
+    zh: '退出'
+  }
+});
 
 // Delete multiple keys at once
 // deleteKeysBatch(['order.subTotal', 'order.pay'], ['en', 'ja']);

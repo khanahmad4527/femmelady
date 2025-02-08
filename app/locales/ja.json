@@ -12,7 +12,10 @@
     "beautyWellness": "美容＆健康",
     "giftsCandles": "ギフト＆キャンドル",
     "sale": "セール",
-    "slogan": "数値ではなく品質を重視"
+    "slogan": "数値ではなく品質を重視",
+    "profile": "プロフィール",
+    "orders": "注文",
+    "logout": "ログアウト"
   },
   "home": {
     "weddings": "結婚式",
