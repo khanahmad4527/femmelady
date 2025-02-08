@@ -31,7 +31,7 @@ import {
   getImageUrl,
   getSingleTranslation
 } from '~/utils';
-import FetcherError from '../FetcherError';
+import FetcherError from '../error/FetcherError';
 import useCartCardManager from '~/hooks/useCartCardManager';
 
 const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {

@@ -1,11 +1,15 @@
 import { Button, Drawer, Stack } from '@mantine/core';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
 import { ValueLabel } from '~/types';
 import LanguageSwitcher from './LanguageSwitcher';
 import { IconShoppingCart } from '~/icons';
 import CartCount from './cart/CartCount';
+import { buildLocalizedLink } from '~/utils';
+import { PATHS } from '~/constant';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import { useEffect } from 'react';
 
 const MobileDrawer = ({
   opened,
@@ -22,9 +26,17 @@ const MobileDrawer = ({
   categoryLinks: ValueLabel[];
   headerCartDrawerOpen: () => void;
 }) => {
+  const { pathname } = useLocation();
   const t = useTranslation();
+  const { currentLanguage } = useCurrentLanguage();
   const context = useHeaderFooterContext();
-  const { isLoggedIn, cartCount, locale } = context;
+  const { isLoggedIn, cartCount, locale, env } = context;
+
+  useEffect(() => {
+    close();
+    burgerClose();
+  }, [pathname]);
+
   return (
     <Drawer
       position={'right'}
@@ -45,15 +57,30 @@ const MobileDrawer = ({
           ))}
         {isLoggedIn && (
           <>
-            <Button component={Link} to={'/logout'} color={'black'}>
+            <Button
+              component={Link}
+              to={buildLocalizedLink({
+                baseUrl: env?.APP_URL!,
+                currentLanguage,
+                paths: [PATHS.logout]
+              })}
+              color={'black'}
+            >
               {t('common.logout')}
             </Button>
             <Button
               component={Link}
-              to={'/logout'}
+              to={buildLocalizedLink({
+                baseUrl: env?.APP_URL!,
+                currentLanguage,
+                paths: [PATHS.payment],
+                queryParams: {
+                  'force-validate': 'global'
+                }
+              })}
               color={'black'}
               leftSection={<IconShoppingCart color={'white'} />}
-              onClick={headerCartDrawerOpen}
+              // onClick={headerCartDrawerOpen}
             >
               <CartCount cartCount={cartCount} locale={locale} />
             </Button>

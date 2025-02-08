@@ -30,7 +30,7 @@ import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
 import { handleError } from '~/utils/error';
 import { Route } from './+types/register';
 import { isAuthenticated } from '~/auth/auth.server';
-import FetcherError from '~/components/FetcherError';
+import FetcherError from '~/components/error/FetcherError';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });

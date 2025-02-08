@@ -15,7 +15,7 @@ import { buildLocalizedLink } from '~/utils';
 import TopSearchBar from './TopSearchBar';
 import CartCount from './cart/CartCount';
 import BurgerMenu from './BurgerMenu';
-import { PATHS, PARAMS, CATEGORIES_WITH_ID_MAP } from '~/constant';
+import { PATHS, CATEGORIES_WITH_ID_MAP } from '~/constant';
 
 const Header = () => {
   const [
@@ -248,17 +248,22 @@ const Header = () => {
 
           {isLoggedIn && (
             <Flex>
-              <Group
-                gap={0}
-                wrap={'nowrap'}
-                onClick={headerCartDrawerOpen}
-                style={{ cursor: 'pointer' }}
+              <Anchor
+                component={Link}
+                to={buildLocalizedLink({
+                  baseUrl: env?.APP_URL!,
+                  currentLanguage,
+                  paths: [PATHS.checkout]
+                })}
               >
-                <ActionIcon variant="transparent" size={'xl'}>
-                  <IconShoppingCart size={30} color={'white'} />
-                </ActionIcon>
-                <CartCount cartCount={cartCount} locale={locale} />
-              </Group>
+                <Group gap={0} wrap={'nowrap'} style={{ cursor: 'pointer' }}>
+                  <ActionIcon variant="transparent" size="xl">
+                    <IconShoppingCart size={30} color="white" />
+                  </ActionIcon>
+                  <CartCount cartCount={cartCount} locale={locale} />
+                </Group>
+              </Anchor>
+
               <BurgerMenu />
             </Flex>
           )}

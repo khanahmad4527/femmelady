@@ -29,7 +29,7 @@ import {
   getImageUrl,
   getSingleTranslation
 } from '~/utils';
-import FetcherError from '../FetcherError';
+import FetcherError from '../error/FetcherError';
 import useCartCardManager from '~/hooks/useCartCardManager';
 
 const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
@@ -132,7 +132,7 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
         onClick={() => {
           fetcher.submit(
             { cartId: cart.id, intent: 'cancel' },
-            { method: 'POST' }
+            { method: 'POST', action: `/${currentLanguage}/load-carts` }
           );
         }}
       >

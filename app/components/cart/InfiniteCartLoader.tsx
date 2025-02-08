@@ -73,6 +73,7 @@ const InfiniteCartLoader = ({ close }: { close: () => void }) => {
             </Stack>
           </Group>
         ))}
+
       {carts.length > 0 && !noLoadMore && (
         <Button
           variant={'light'}

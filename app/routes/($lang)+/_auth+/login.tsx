@@ -33,7 +33,7 @@ import { validateTurnstile } from '~/server/turnstile';
 import { Turnstile } from '@marsidev/react-turnstile';
 import SocialLogin from '~/components/SocialLogin';
 import { PARAMS, PATHS } from '~/constant';
-import FetcherError from '~/components/FetcherError';
+import FetcherError from '~/components/error/FetcherError';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });

@@ -4,6 +4,7 @@ import { paymentFormSchema } from '~/schema';
 import classes from '~/styles/Payment.module.scss';
 import { Route } from './+types/payment';
 import {
+  buildLocalizedLink,
   calculateTotalPrice,
   formatCurrency,
   formatNumber,
@@ -15,15 +16,15 @@ import { Cart } from '~/types';
 import { directus } from '~/server/directus';
 import { createItem, deleteItems, withToken } from '@directus/sdk';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
-import useUserLocale from '~/hooks/useUserLocale';
 import { useEffect } from 'react';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import NoCart from '~/components/cart/NoCart';
 import { handleError } from '~/utils/error';
-import FetcherError from '~/components/FetcherError';
+import FetcherError from '~/components/error/FetcherError';
+import { PATHS } from '~/constant';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const { token } = await isAuthenticated(request);
@@ -83,10 +84,9 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
 const Payment = () => {
   const { totalPrice, carts } = useLoaderData<typeof loader>();
-  const { currentLanguage } = useCurrentLanguage();
+  const { currentLanguage, userLocale } = useCurrentLanguage();
   const t = useTranslation();
-  const userLocale = useUserLocale(currentLanguage);
-  const { setCarts, setCartCount } = useHeaderFooterContext();
+  const { setCarts, setCartCount, env } = useHeaderFooterContext();
   const { Form, form, state, fetcher } = useForm({
     schema: paymentFormSchema,
     initialValues: {
@@ -127,14 +127,29 @@ const Payment = () => {
 
   if (fetcher.data?.success) {
     return (
-      <Alert
-        variant="filled"
-        color="green"
-        radius={0}
-        title={t('payment.orderPlaced')}
-      >
-        {t('payment.orderPlacedSuccess')}
-      </Alert>
+      <Stack maw={500}>
+        <Alert
+          variant="filled"
+          color="green"
+          radius={0}
+          title={t('payment.orderPlaced')}
+        >
+          {t('payment.orderPlacedSuccess')}
+        </Alert>
+        <Button
+          component={Link}
+          to={buildLocalizedLink({
+            baseUrl: env?.APP_URL!,
+            currentLanguage,
+            paths: [PATHS.products],
+            queryParams: {
+              'force-validate': 'global'
+            }
+          })}
+        >
+          {t('common.cartEmptyMessage')}
+        </Button>
+      </Stack>
     );
   }
 
