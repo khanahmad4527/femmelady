@@ -1,9 +1,12 @@
-import { string } from 'zod';
-
-import { TranslationKeys } from '~/types/types';
+import { TranslationKeys } from '~/types';
 
 import en from '../locales/en.json';
 import ja from '../locales/ja.json';
+import ar from '../locales/ar.json';
+import nl from '../locales/nl.json';
+import fr from '../locales/fr.json';
+import ko from '../locales/ko.json';
+import zh from '../locales/zh.json';
 import useCurrentLanguage from './useCurrentLanguage';
 
 type Translations = {
@@ -12,14 +15,22 @@ type Translations = {
 
 const translations: Translations = {
   en,
-  ja
+  ja,
+  ar,
+  nl,
+  fr,
+  ko,
+  zh
 };
 
 const useTranslation = () => {
   const { currentLanguage } = useCurrentLanguage();
 
   const t = (key: string, replacements?: Record<string, React.ReactNode>) => {
-    const keys = key.split('.');
+    const keys = key?.split('.') ?? [];
+    if (!keys || !keys.length) {
+      return '';
+    }
     let translation: any = translations[currentLanguage];
 
     for (let i = 0; i < keys.length; i++) {

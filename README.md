@@ -1,40 +1,66 @@
-# Welcome to Remix!
+# Project Overview
 
-- 📖 [Remix docs](https://remix.run/docs)
+**Work in Progress**
 
-## Development
+## Current Features
 
-Run the dev server:
+1. **Home Page**
+   - Optimized search functionality.
 
-```shellscript
-npm run dev
-```
+2. **Authentication**
+   - User login and registration features.
 
-## Deployment
+3. **Product Page**
+   - Comprehensive filtering options:
+     - Sort by name, price, etc.
+     - Limit products per page.
+     - Filter by category, brand, price, and rating.
 
-First, build your app for production:
+4. **Individual Product View**
+   - Display reviews and average ratings.
+   - Options for selecting size and color.
 
-```sh
-npm run build
-```
+5. **URL Parameters**
+   - Pages use URL search parameters, allowing users to share links.  
+     (Shared pages include all public data visible to the sender.)
 
-Then run the app in production mode:
+6. **Cart Functionality**
+   - Add products to the cart.
 
-```sh
-npm start
-```
+7. **Dummy Payment**
+   - Simulate card payments for testing purposes.
 
-Now you'll need to pick a host to deploy it to.
+8. **Order Management**
+   - View orders directly in the app.
 
-### DIY
+9. **Admin Dashboard**
+   - Manage content and data via the Directus admin interface.
 
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+---
 
-Make sure to deploy the output of `npm run build`
+## Upcoming Features
 
-- `build/server`
-- `build/client`
+1. **Order PDF Downloads**
+   - Users will be able to download order summaries as PDFs.
 
-## Styling
+2. **CDN Integration**
+   - Faster image fetching via a Content Delivery Network.
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+3. **Google Login**
+   - Streamlined authentication using Google accounts.
+
+4. **Customer Relationship Management (CRM)**
+   - A CRM module for enhanced user management.
+
+5. **SEO Blogs**
+   - Blogs to improve search engine optimization.
+
+6. **Email Features**
+   - Account verification and password reset emails.
+   - Reminder emails for out-of-stock products.
+
+7. **Admin Insights**
+   - Advanced analytics and insights for the admin dashboard.
+
+## Bugs
+1. Reload the carts when language change only for Drawer

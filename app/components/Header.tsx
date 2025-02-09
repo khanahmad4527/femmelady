@@ -1,19 +1,9 @@
-import {
-  ActionIcon,
-  Anchor,
-  Box,
-  Burger,
-  Flex,
-  Group,
-  Text,
-  TextInput,
-  Tooltip
-} from '@mantine/core';
+import { ActionIcon, Anchor, Box, Burger, Flex, Group } from '@mantine/core';
 import { Link } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
-import { IconLogout, IconSearch, IconShoppingCart } from '~/icons';
+import { IconShoppingCart } from '~/icons';
 
 import Logo from './Logo';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
@@ -22,6 +12,10 @@ import HeaderCart from './cart/HeaderCart';
 import MobileDrawer from './MobileDrawer';
 import LanguageSwitcher from './LanguageSwitcher';
 import { buildLocalizedLink } from '~/utils';
+import TopSearchBar from './TopSearchBar';
+import CartCount from './cart/CartCount';
+import BurgerMenu from './BurgerMenu';
+import { PATHS, CATEGORIES_WITH_ID_MAP } from '~/constant';
 
 const Header = () => {
   const [
@@ -38,51 +32,181 @@ const Header = () => {
   const { currentLanguage } = useCurrentLanguage();
   const headerFooterContext = useHeaderFooterContext();
 
-  const { isLoggedIn } = headerFooterContext;
+  const { isLoggedIn, cartCount, locale, env } = headerFooterContext;
 
   const authLinks = [
     {
-      link: buildLocalizedLink({ currentLanguage, primaryPath: 'login' }),
+      id: 'a3f5c2e8-9d4b-46f1-8b47-c1d9a7f83412',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.login]
+      }),
       label: t('login.login')
     },
     {
-      link: buildLocalizedLink({ currentLanguage, primaryPath: 'register' }),
+      id: 'b7e3f6a2-d8c1-44e9-b519-e7c5a4b39127',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.register]
+      }),
       label: t('register.register')
     }
   ];
 
-  const authItems = authLinks.map((link, i) => (
-    <Anchor component={Link} c="primary.1" key={i} to={link.link} lh={1}>
-      {link.label}
+  const authItems = authLinks.map(a => (
+    <Anchor key={a.id} component={Link} c="primary.1" to={a.link} lh={1}>
+      {a.label}
     </Anchor>
   ));
 
   const categoryLinks = [
-    { link: `/${currentLanguage}/products`, label: t('header.new') },
-    { link: `/${currentLanguage}/products`, label: t('header.topRated') },
-    { link: `/${currentLanguage}/products`, label: t('header.dresses') },
-    { link: `/${currentLanguage}/products`, label: t('header.clothing') },
-    { link: `/${currentLanguage}/products`, label: t('header.shoes') },
-    { link: `/${currentLanguage}/products`, label: t('header.accessories') },
-    { link: `/${currentLanguage}/products`, label: t('header.weddings') },
     {
-      link: `/${currentLanguage}/products`,
+      id: 'c9d1e5d6-7d3a-4f7c-aafa-089fc58a3d62',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          'force-validate': 'global'
+        }
+      }),
+      label: t('header.new')
+    },
+    {
+      id: 'a8e2f3b4-c2c9-48d6-a1e7-b05c4a89d816',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          'force-validate': 'global'
+        }
+      }),
+      label: t('header.topRated')
+    },
+    {
+      id: 'b7f4e6d3-f1c8-439d-91a7-c57b1a98d319',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.dresses.key,
+          'force-validate': 'global'
+        }
+      }),
+      label: t('header.dresses')
+    },
+    {
+      id: 'd6e3c7b2-e1d7-472c-b519-d91e2b43f2a7',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.dresses.key,
+          'force-validate': 'global'
+        }
+      }),
+      label: t('header.clothing')
+    },
+    {
+      id: 'e5f7c4a9-a9b2-4d38-b716-d84f9a1b5e13',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.shoes.key,
+          'force-validate': 'global'
+        }
+      }),
+      label: t('header.shoes')
+    },
+    {
+      id: 'f3c8e6d2-d3c9-4a15-81f9-c16b2a43d719',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.jewelry.key,
+          'force-validate': 'global'
+        }
+      }),
+      label: t('header.accessories')
+    },
+    {
+      id: 'a1b3d2f4-f7c2-4e39-b816-c47e9b31a517',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP['wedding-dresses'].key,
+          'force-validate': 'global'
+        }
+      }),
+      label: t('header.weddings')
+    },
+    {
+      id: 'c2e1f7b4-d2c3-437f-a8e9-f19b4a27d816',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP['home-and-furniture'].key,
+          'force-validate': 'global'
+        }
+      }),
       label: t('header.homeFurniture')
     },
     {
-      link: `/${currentLanguage}/products`,
+      id: 'b5d2c8f1-c7a3-4f92-b8a7-e1b5a7f49c38',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP['beauty-and-wellness'].key,
+          'force-validate': 'global'
+        }
+      }),
       label: t('header.beautyWellness')
     },
     {
-      link: `/${currentLanguage}/products`,
+      id: 'f7b3c9e2-d6c8-471a-b4e7-a91b8e36d412',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.candles.key,
+          'force-validate': 'global'
+        }
+      }),
       label: t('header.giftsCandles')
     },
-    { link: `/${currentLanguage}/products`, label: t('header.sale') }
+    {
+      id: 'e1d3f6a4-a4b9-4297-a5b7-f18c4e31d9a5',
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          'force-validate': 'global'
+        }
+      }),
+      label: t('header.sale')
+    }
   ];
 
-  const categoryItems = categoryLinks.map((link, i) => (
-    <Anchor component={Link} c="primary.7" key={i} to={link.link} lh={1}>
-      {link.label}
+  const categoryItems = categoryLinks.map(c => (
+    <Anchor key={c.id} component={Link} c="primary.7" to={c.link} lh={1}>
+      {c.label}
     </Anchor>
   ));
 
@@ -103,11 +227,7 @@ const Header = () => {
           wrap={'nowrap'}
           w={{ base: '100%', md: '40%' }}
         >
-          <TextInput
-            w={'100%'}
-            rightSection={<IconSearch />}
-            placeholder={t('header.search')}
-          />
+          <TopSearchBar />
           <Burger
             display={{ base: 'block', md: 'none' }}
             color={'white'}
@@ -128,43 +248,30 @@ const Header = () => {
 
           {isLoggedIn && (
             <Flex>
-              <Group
-                gap={0}
-                wrap={'nowrap'}
-                onClick={headerCartDrawerOpen}
-                style={{ cursor: 'pointer' }}
+              <Anchor
+                component={Link}
+                to={buildLocalizedLink({
+                  baseUrl: env?.APP_URL!,
+                  currentLanguage,
+                  paths: [PATHS.checkout]
+                })}
               >
-                <ActionIcon variant="transparent" size={'xl'}>
-                  <IconShoppingCart size={30} color={'white'} />
-                </ActionIcon>
-                <Text fw={500} fz={'md'} c={'white'}>
-                  {'9+'}
-                </Text>
-              </Group>
-              <Tooltip label={t('common.logout')}>
-                <ActionIcon
-                  variant="transparent"
-                  size={'xl'}
-                  component={Link}
-                  to={'/logout'}
-                >
-                  <IconLogout color={'white'} />
-                </ActionIcon>
-              </Tooltip>
+                <Group gap={0} wrap={'nowrap'} style={{ cursor: 'pointer' }}>
+                  <ActionIcon variant="transparent" size="xl">
+                    <IconShoppingCart size={30} color="white" />
+                  </ActionIcon>
+                  <CartCount cartCount={cartCount} locale={locale} />
+                </Group>
+              </Anchor>
+
+              <BurgerMenu />
             </Flex>
           )}
 
           {!isLoggedIn && <Group> {authItems}</Group>}
         </Group>
       </Flex>
-      <Group
-        display={{ base: 'none', md: 'flex' }}
-        p={'md'}
-        bg={'primary.1'}
-        // pos={'sticky'}
-        // top={0}
-        // style={{ zIndex: 100 }}
-      >
+      <Group display={{ base: 'none', md: 'flex' }} p={'md'} bg={'primary.1'}>
         {categoryItems}
       </Group>
 

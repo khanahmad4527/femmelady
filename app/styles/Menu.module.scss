@@ -1,0 +1,15 @@
+.dropdown {
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.item {
+  border-radius: 0;
+
+  &:hover {
+    background-color: var(--mantine-color-primary-3) !important;
+    color: var(--mantine-color-white);
+  }
+}

@@ -8,33 +8,67 @@ import {
   Text
 } from '@mantine/core';
 
-import { Link } from 'react-router';
+import { Link, useOutletContext } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import { IconHeart, IconPlus } from '~/icons';
-import { IProductCard } from '~/types/types';
-import { buildLocalizedLink, formatCurrency } from '~/utils';
+import {
+  OutletContext,
+  Product,
+  ProductProductColor,
+  ProductTranslation
+} from '~/types';
+import {
+  buildLocalizedLink,
+  formatCurrency,
+  getImageUrl,
+  getSingleTranslation
+} from '~/utils';
 import ProductColorSwitcher from './ProductColorSwitcher';
+import { useHover } from '@mantine/hooks';
+import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 
-const ProductCard = (props: IProductCard) => {
-  const { name, colors, image } = props;
+import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
+import { memo } from 'react';
+import { PATHS } from '~/constant';
+
+const ProductCard = (product: Product) => {
+  const { searchParams, setSearchParams, env } =
+    useOutletContext<OutletContext>();
+
+  const { hovered, ref } = useHover();
+
+  // Manage the current active color
+  const { activeColor, setActiveColor } = useCurrentActiveColor({
+    product,
+    searchParams
+  });
+
+  // Manage the featureImages based on the active color
+  const { featureImage1, featureImage2 } = useCurrentFeaturedImage({
+    product,
+    activeColor
+  });
+
+  const { colors, translations, price, id } = product;
+
+  const translation = getSingleTranslation(translations) as ProductTranslation;
 
   const { currentLanguage } = useCurrentLanguage();
-
-  const topRightSpacing = 5;
 
   return (
     <Card
       pos={'relative'}
       component={Stack}
-      shadow="sm"
+      shadow={'sm'}
       padding={'md'}
       withBorder
     >
-      <ActionIcon
+      {/* <ActionIcon
         pos={'absolute'}
-        top={topRightSpacing}
-        right={topRightSpacing}
+        m={'md'}
+        right={0}
+        top={0}
         size={'xl'}
         aria-label="mark as favorite"
         variant="light"
@@ -42,32 +76,49 @@ const ProductCard = (props: IProductCard) => {
         radius="xl"
       >
         <IconHeart />
-      </ActionIcon>
+      </ActionIcon> */}
 
       <Box
+        ref={ref as any}
         h={300}
         component={Link}
         to={buildLocalizedLink({
+          baseUrl: env?.APP_URL!,
           currentLanguage,
-          primaryPath: 'products',
-          secondaryPath: '123'
+          paths: [PATHS.products, translation?.slug ?? id, PATHS.reviews]
         })}
       >
         <Image
           h={'100%'}
           fit={'contain'}
-          src={image}
-          alt={name}
+          src={getImageUrl({
+            id: hovered ? featureImage2 : featureImage1,
+            DIRECTUS_URL: env?.DIRECTUS_URL
+          })}
+          alt={translation?.title!}
           loading={'lazy'}
         />
       </Box>
 
-      <Card.Section bg="primary.1" inheritPadding py={'md'}>
-        <Group align={'flex-end'}>
-          <Box mr={'auto'}>
-            <ProductColorSwitcher colors={colors} />
+      <Box>
+        <Text tt={'capitalize'}>{translation?.title}</Text>
+        <Text>
+          {formatCurrency({ currentLanguage, value: price as number })}
+        </Text>
+      </Box>
+
+      <Card.Section bg={'primary.1'} inheritPadding pb={4}>
+        <Group align={'flex-end'} justify={'space-between'}>
+          <Box>
+            <ProductColorSwitcher
+              activeColor={activeColor}
+              setActiveColor={setActiveColor}
+              productColors={colors as ProductProductColor[]}
+              searchParams={searchParams}
+              setSearchParams={setSearchParams}
+            />
           </Box>
-          <Box ml={'auto'}>
+          {/* <Box>
             <ActionIcon
               variant="light"
               size="lg"
@@ -76,16 +127,11 @@ const ProductCard = (props: IProductCard) => {
             >
               <IconPlus />
             </ActionIcon>
-          </Box>
+          </Box> */}
         </Group>
       </Card.Section>
-
-      <Box>
-        <Text>{name}</Text>
-        <Text>{formatCurrency({ currentLanguage, value: 1234.56 })}</Text>
-      </Box>
     </Card>
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);

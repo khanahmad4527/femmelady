@@ -12,7 +12,10 @@
     "beautyWellness": "美容＆健康",
     "giftsCandles": "ギフト＆キャンドル",
     "sale": "セール",
-    "slogan": "数値ではなく品質を重視"
+    "slogan": "数値ではなく品質を重視",
+    "profile": "プロフィール",
+    "orders": "注文",
+    "logout": "ログアウト"
   },
   "home": {
     "weddings": "結婚式",
@@ -25,26 +28,44 @@
     "shoes": "靴",
     "heroSecText1": "あなたのスタイルを高める",
     "heroSecText2": "時代を超えたファッション、持続可能な選択",
-    "shopNow": "日本語: 今すぐ購入",
-    "text1": "より少ない、より良い選択の芸術",
-    "text2": "量より質を選ぶことは、時代を超えた耐久性のある責任ある生産品を選ぶことを意味します。このアプローチは私たちの生活をシンプルにし、周囲への深い感謝を育みます。長寿と責任ある生産を強調することは、より持続可能で意識的なライフスタイルと共鳴します。"
+    "shopNow": "日本語: 今すぐ購入"
   },
   "footer": {
     "links": {
-      "contact": "お問い合わせ",
-      "privacy": "プライバシー",
       "blog": "ブログ",
-      "store": "ストア",
-      "careers": "採用情報"
+      "faq": "よくある質問",
+      "aboutUs": "私たちについて",
+      "contactUs": "お問い合わせ",
+      "privacyPolicy": "プライバシーポリシー",
+      "termsOfService": "利用規約"
     },
-    "copyright": "© Unthaa. すべての権利を保有します。",
+    "copyright": "© {copyrightYear}. すべての権利を保有します。",
     "signUpAgreement": "サインアップすることで、{privacyPolicy} と {termsOfService} に同意することになります。",
     "privacyPolicy": "プライバシーポリシー",
     "termsOfService": "利用規約",
     "subscribeButton": "購読して",
     "getLatestNews": "最新のニュースを受け取りましょう"
   },
-  "common": { "logout": "ログアウト" },
+  "common": {
+    "logout": "ログアウト",
+    "categories": "カテゴリー",
+    "scrollToTop": "上にスクロール",
+    "errors": "エラー",
+    "loadMore": "さらに読み込む",
+    "pageNotFound": "ページが見つかりません",
+    "goToHome": "ホームに戻る",
+    "somethingWentWrong": "問題が発生しました",
+    "encounteredError": "予期しないエラーが発生しました。もう一度お試しください",
+    "noDataFoundTitle": "データが見つかりません",
+    "noDataFoundMessage": "リクエストに一致するデータが見つかりませんでした",
+    "cartEmptyMessage": "商品を見てみる",
+    "google": "グーグル",
+    "facebook": "フェイスブック",
+    "notAllowedTitle": "操作は許可されていません",
+    "notAllowedDescription": "このアイテムを削除する権限がないか、すでに存在しない可能性があります。",
+    "loginRequireTitle": "操作にはログインが必要です",
+    "loginRequireDescription": "続行するにはサインインしてください。"
+  },
   "login": {
     "welcome": "Unthaaへようこそ、ログインするには",
     "accountRegister": "アカウントをお持ちでないですか？登録する",
@@ -60,6 +81,27 @@
     "includesSpecialSymbol": "特殊記号を含む",
     "noSpacesAllowed": "スペースは使用できません",
     "includes8Char": "8文字以上を含む"
+  },
+  "providerLoginFailed": {
+    "title": "プロバイダー認証に失敗しました",
+    "description": "プロバイダーとの認証中にエラーが発生しました。資格情報が無効であるか、認証リクエストが失敗した可能性があります。もう一度お試しください。"
+  },
+  "invalidProvider": {
+    "title": "無効な認証プロバイダー",
+    "description": "選択した認証プロバイダーはサポートされていません。別のプロバイダーを選択して続行してください。"
+  },
+  "loginError": {
+    "title": "無効な認証情報",
+    "description": "認証情報を確認して、再度お試しください。"
+  },
+  "registerError": {
+    "title": "登録に失敗しました",
+    "description": "登録に失敗しました。もう一度お試しください。"
+  },
+  "turnstile": {
+    "tokenRequired": "セキュリティチェックのトークンが必要です",
+    "errorTitle": "検証に失敗しました",
+    "errorDescription": "セキュリティチェックのトークンの検証に失敗しました。もう一度お試しください。"
   },
   "authForm": {
     "email": "メールアドレス",
@@ -102,13 +144,101 @@
     "productsPerPage": "ページあたりの商品数",
     "resultsCount": "{count} 結果",
     "addToBag": "バッグに追加",
-    "productColor": "商品の色:",
-    "productSize": "商品のサイズ:",
+    "productColor": "色:",
+    "productSize": "サイズ:",
     "reviews": "{number} 件のレビューに基づく",
-    "cartQuantity": "数量:"
+    "cartQuantity": "数量:",
+    "filter": {
+      "weddingDresses": "ウェディングドレス",
+      "shoes": "靴",
+      "candles": "キャンドル",
+      "dresses": "ドレス",
+      "jewelry": "ジュエリー",
+      "bags": "バッグ",
+      "perfumes": "香水",
+      "watches": "時計",
+      "beautyWellness": "美容＆健康",
+      "homeFurniture": "ホーム＆家具"
+    }
+  },
+  "brands": {
+    "veraLuxe": "ヴェラリュクス",
+    "moniqueCouture": "モニーククチュール",
+    "pristineVows": "プリスティーンヴァウズ",
+    "crimsonSoles": "クリムゾンソールズ",
+    "jewelHeels": "ジュエルヒールズ",
+    "sophiaGrace": "ソフィアグレース",
+    "aromaLuxe": "アロマリュクス",
+    "glowEssence": "グローエッセンス",
+    "luminousBliss": "ルミナスブリス",
+    "chantelle": "シャンテル",
+    "divineElegance": "ディバインエレガンス",
+    "oliviaDeLuxe": "オリビアデリュクス",
+    "luxeCo": "リュクス＆コー",
+    "caratierre": "カラティエール",
+    "velvetCharms": "ベルベットチャームズ",
+    "elyseBags": "エリーズバッグス",
+    "cherieLuxe": "シェリーリュクス",
+    "gildedGrace": "ギルデッドグレース",
+    "scentNoire": "セントノワール",
+    "dameFleur": "ダムフルール",
+    "laBelle": "ラベル",
+    "timelessLady": "タイムレスレディ",
+    "crystalOrb": "クリスタルオーブ",
+    "radiantMoments": "ラディアントモーメンツ"
+  },
+  "checkout": {
+    "shoppingBag": "ショッピングバッグ",
+    "goToCheckout": "レジに進む",
+    "summary": "注文概要",
+    "subTotal": "小計",
+    "total": "合計",
+    "pay": "支払う"
+  },
+  "payment": {
+    "payAmount": "{{amount}} を支払う",
+    "errors": {
+      "cardNumberInvalid": "カード番号は13～19桁で入力してください",
+      "cardNumberRequired": "カード番号は必須です",
+      "cvvInvalid": "CVVは3桁または4桁で入力してください",
+      "cvvRequired": "CVVは必須です",
+      "expiryMonthInvalid": "有効期限の月が無効です",
+      "expiryMonthRequired": "有効期限の月は必須です",
+      "expiryYearInvalidFormat": "有効期限の年は4桁の数字である必要があります",
+      "expiryYearInPast": "有効期限の年は過去であってはなりません",
+      "expiryYearRequired": "有効期限の年は必須です"
+    },
+    "cardNumber": "カード番号",
+    "cvv": "CVV",
+    "expiryMonth": "有効期限の月",
+    "expiryYear": "有効期限の年",
+    "cardHolderName": "カード名義人",
+    "orderPlaced": "注文が完了しました",
+    "orderPlacedSuccess": "注文が正常に完了しました"
   },
   "cart": {
-    "shoppingBag": "ショッピングバッグ",
-    "goToCheckout": "レジに進む"
+    "errors": {
+      "productIdInvalid": "製品IDは有効なUUIDでなければなりません",
+      "productIdRequired": "製品IDは必須です",
+      "sizeIdInvalid": "サイズIDは有効なUUIDでなければなりません",
+      "sizeIdRequired": "サイズIDは必須です",
+      "colorIdInvalid": "カラーIDは有効なUUIDでなければなりません",
+      "colorIdRequired": "カラーIDは必須です",
+      "quantityRequired": "数量は必須です",
+      "quantityInvalidNumber": "数量は有効な数値でなければなりません",
+      "quantityNotInteger": "数量は整数でなければなりません",
+      "quantityOutOfRange": "数量は1から10の間でなければなりません",
+      "featureImage1IdInvalid": "フィーチャー画像1のIDは有効なUUIDである必要があります",
+      "featureImage1IdRequired": "フィーチャー画像1は必須です",
+      "featureImage2IdInvalid": "フィーチャー画像2のIDは有効なUUIDである必要があります",
+      "featureImage2IdRequired": "フィーチャー画像2は必須です",
+      "cartIdRequired": "カートIDは必須です",
+      "cartIdInvalid": "カートIDは有効なUUIDである必要があります",
+      "intentRequired": "インテントは必須です"
+    },
+    "notificationTitle": "アイテムがカートに追加されました！",
+    "notificationMessage": "アイテムは正常にカートに追加されました。楽しいショッピングを！",
+    "emptyCartTitle": "カートは空です",
+    "emptyCartMessage": "商品を見て、お気に入りをカートに追加しましょう！"
   }
 }

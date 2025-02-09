@@ -1,0 +1,134 @@
+{
+  "/": [
+    { "title": "Unthaa - Gebouwd op Kwaliteit, Niet op Kwantiteit" },
+    {
+      "description": "Ontdek Unthaa voor de beste producten tegen geweldige prijzen. Jouw online winkel voor al jouw behoeften."
+    },
+    { "og:title": "Unthaa - Gebouwd op Kwaliteit, Niet op Kwantiteit" },
+    {
+      "og:description": "Ontdek de nieuwste en beste producten bij Unthaa. Winkel met vertrouwen!"
+    },
+    { "og:url": "https://unthaa.teicneo.com" },
+    { "og:image": "https://unthaa.teicneo.com/assets/home-og-image.jpg" },
+    { "twitter:card": "summary_large_image" }
+  ],
+  "/products": [
+    { "title": "Bekijk Producten - Unthaa" },
+    {
+      "description": "Bekijk ons brede assortiment aan producten in verschillende categorieën. Vind alles wat je nodig hebt bij Unthaa."
+    },
+    { "og:title": "Bekijk Producten - Unthaa" },
+    {
+      "og:description": "Ontdek een brede selectie producten tegen onverslaanbare prijzen bij Unthaa."
+    },
+    { "og:url": "https://unthaa.teicneo.com/nl/products" },
+    { "og:image": "https://unthaa.teicneo.com/assets/products-og-image.jpg" }
+  ],
+  "/checkout": [
+    { "title": "Afrekenen - Veilige Betaling | Unthaa" },
+    {
+      "description": "Reken je favoriete producten veilig af bij Unthaa. Gemakkelijke, snelle en veilige betaalopties."
+    },
+    { "og:title": "Afrekenen - Unthaa" },
+    {
+      "og:description": "Rond je aankoop veilig af bij Unthaa met een snelle en betrouwbare afrekenoptie."
+    },
+    { "og:url": "https://unthaa.teicneo.com/nl/checkout" }
+  ],
+  "/payment": [
+    { "title": "Betaling - Rond Je Bestelling Af | Unthaa" },
+    {
+      "description": "Rond je betaling veilig af bij Unthaa. Vertrouwde betaalopties voor veilige transacties."
+    },
+    { "og:title": "Betaling - Unthaa" },
+    {
+      "og:description": "Betaal met vertrouwen bij Unthaa. Een veilig, snel en eenvoudig betalingsproces."
+    },
+    { "og:url": "https://unthaa.teicneo.com/nl/payment" }
+  ],
+  "/login": [
+    { "title": "Inloggen op Je Account - Unthaa" },
+    {
+      "description": "Log in op je Unthaa-account om toegang te krijgen tot je bestellingen, verlanglijstje en persoonlijke aanbevelingen."
+    },
+    { "og:title": "Inloggen - Unthaa" },
+    {
+      "og:description": "Log veilig in op je Unthaa-account en winkel eenvoudig verder."
+    },
+    { "og:url": "https://unthaa.teicneo.com/nl/login" }
+  ],
+  "/register": [
+    { "title": "Maak een Account Aan - Word Lid van Unthaa" },
+    {
+      "description": "Meld je gratis aan voor een Unthaa-account en geniet van een gepersonaliseerde winkelervaring."
+    },
+    { "og:title": "Registreren - Unthaa" },
+    {
+      "og:description": "Maak een account aan bij Unthaa om toegang te krijgen tot exclusieve aanbiedingen en een unieke winkelervaring."
+    },
+    { "og:url": "https://unthaa.teicneo.com/nl/register" }
+  ],
+  "/about-us": [
+    { "title": "Over Ons - Leer Unthaa Kennen" },
+    {
+      "description": "Kom meer te weten over Unthaa, onze waarden, missie en onze toewijding aan het leveren van kwaliteitsproducten en -diensten."
+    },
+    { "og:title": "Over Ons - Leer Unthaa Kennen" },
+    {
+      "og:description": "Ontdek het verhaal van Unthaa en onze toewijding aan het bieden van de beste winkelervaring."
+    },
+    { "og:url": "https://unthaa.teicneo.com/nl/about-us" },
+    { "og:image": "https://unthaa.teicneo.com/assets/about-us-og-image.jpg" }
+  ],
+  "/contact-us": [
+    { "title": "Neem Contact Op - Wij Zijn Hier Om Te Helpen | Unthaa" },
+    {
+      "description": "Hulp nodig? Neem contact op met het klantenserviceteam van Unthaa voor vragen of zorgen."
+    },
+    { "og:title": "Neem Contact Op - Unthaa" },
+    {
+      "og:description": "Neem contact op met Unthaa voor ondersteuning, vragen of feedback. We staan klaar om je te helpen."
+    },
+    { "og:url": "https://unthaa.teicneo.com/nl/contact-us" },
+    { "og:image": "https://unthaa.teicneo.com/assets/contact-us-og-image.jpg" }
+  ],
+  "/privacy-policy": [
+    { "title": "Privacybeleid - Jouw Gegevens Zijn Veilig Bij Ons | Unthaa" },
+    {
+      "description": "Lees het privacybeleid van Unthaa om te begrijpen hoe wij jouw persoonlijke gegevens beheren en beschermen."
+    },
+    { "og:title": "Privacybeleid - Unthaa" },
+    {
+      "og:description": "Bij Unthaa geven we prioriteit aan jouw privacy en beschermen we jouw gegevens met branchestandaard praktijken."
+    },
+    { "og:url": "https://unthaa.teicneo.com/nl/privacy-policy" },
+    {
+      "og:image": "https://unthaa.teicneo.com/assets/privacy-policy-og-image.jpg"
+    }
+  ],
+  "/terms-of-service": [
+    { "title": "Servicevoorwaarden - Jouw Overeenkomst Met Unthaa" },
+    {
+      "description": "Lees onze servicevoorwaarden om meer te weten te komen over het beleid en de regels die jouw gebruik van Unthaa regelen."
+    },
+    { "og:title": "Servicevoorwaarden - Unthaa" },
+    {
+      "og:description": "Begrijp de voorwaarden die jouw rechten en verantwoordelijkheden bij Unthaa beschrijven."
+    },
+    { "og:url": "https://unthaa.teicneo.com/nl/terms-of-service" },
+    {
+      "og:image": "https://unthaa.teicneo.com/assets/terms-of-service-og-image.jpg"
+    }
+  ],
+  "/faq": [
+    { "title": "Veelgestelde Vragen - Unthaa" },
+    {
+      "description": "Vind antwoorden op de meest gestelde vragen over winkelen bij Unthaa. Hulp is slechts één klik verwijderd."
+    },
+    { "og:title": "Veelgestelde Vragen - Unthaa" },
+    {
+      "og:description": "Vind snelle oplossingen voor veelvoorkomende vragen over bestellingen, betalingen, levering en meer bij Unthaa."
+    },
+    { "og:url": "https://unthaa.teicneo.com/nl/faq" }
+  ]
+}

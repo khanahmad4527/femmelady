@@ -1,0 +1,137 @@
+{
+  "/": [
+    { "title": "Unthaa - Fondé sur la qualité, pas sur la quantité" },
+    {
+      "description": "Découvrez Unthaa pour les meilleurs produits à des prix incroyables. Votre boutique en ligne unique pour tous vos besoins."
+    },
+    { "og:title": "Unthaa - Fondé sur la qualité, pas sur la quantité" },
+    {
+      "og:description": "Découvrez les derniers et meilleurs produits chez Unthaa. Achetez en toute confiance !"
+    },
+    { "og:url": "https://unthaa.teicneo.com" },
+    { "og:image": "https://unthaa.teicneo.com/assets/home-og-image.jpg" },
+    { "twitter:card": "summary_large_image" }
+  ],
+  "/products": [
+    { "title": "Parcourir les produits - Unthaa" },
+    {
+      "description": "Découvrez notre large gamme de produits dans différentes catégories. Trouvez tout ce dont vous avez besoin chez Unthaa."
+    },
+    { "og:title": "Parcourir les produits - Unthaa" },
+    {
+      "og:description": "Découvrez une large sélection de produits à des prix imbattables sur Unthaa."
+    },
+    { "og:url": "https://unthaa.teicneo.com/fr/products" },
+    { "og:image": "https://unthaa.teicneo.com/assets/products-og-image.jpg" }
+  ],
+  "/checkout": [
+    { "title": "Paiement - Paiement sécurisé | Unthaa" },
+    {
+      "description": "Payez vos produits préférés en toute sécurité sur Unthaa. Options de paiement simples, rapides et sûres."
+    },
+    { "og:title": "Paiement - Unthaa" },
+    {
+      "og:description": "Finalisez votre achat en toute sécurité sur Unthaa avec un processus de paiement rapide et fiable."
+    },
+    { "og:url": "https://unthaa.teicneo.com/fr/checkout" }
+  ],
+  "/payment": [
+    { "title": "Paiement - Complétez votre commande | Unthaa" },
+    {
+      "description": "Finalisez votre paiement en toute sécurité avec Unthaa. Des options fiables pour garantir la sécurité de vos transactions."
+    },
+    { "og:title": "Paiement - Unthaa" },
+    {
+      "og:description": "Payez en toute confiance sur Unthaa. Un processus de paiement sûr, rapide et facile."
+    },
+    { "og:url": "https://unthaa.teicneo.com/fr/payment" }
+  ],
+  "/login": [
+    { "title": "Connexion à votre compte - Unthaa" },
+    {
+      "description": "Connectez-vous à votre compte Unthaa pour accéder à vos commandes, vos listes de souhaits et vos recommandations personnalisées."
+    },
+    { "og:title": "Connexion - Unthaa" },
+    {
+      "og:description": "Connectez-vous en toute sécurité à votre compte Unthaa et continuez vos achats facilement."
+    },
+    { "og:url": "https://unthaa.teicneo.com/fr/login" }
+  ],
+  "/register": [
+    { "title": "Créer un compte - Rejoignez Unthaa" },
+    {
+      "description": "Inscrivez-vous pour un compte gratuit sur Unthaa et profitez d'une expérience d'achat personnalisée."
+    },
+    { "og:title": "Créer un compte - Unthaa" },
+    {
+      "og:description": "Créez un compte sur Unthaa pour accéder à des offres exclusives et vivre une expérience d'achat unique."
+    },
+    { "og:url": "https://unthaa.teicneo.com/fr/register" }
+  ],
+  "/about-us": [
+    { "title": "À propos de nous - Découvrez Unthaa" },
+    {
+      "description": "Apprenez-en plus sur Unthaa, nos valeurs, notre mission et notre engagement à fournir des produits et services de qualité."
+    },
+    { "og:title": "À propos de nous - Découvrez Unthaa" },
+    {
+      "og:description": "Découvrez l'histoire d'Unthaa et notre dévouement à offrir la meilleure expérience d'achat."
+    },
+    { "og:url": "https://unthaa.teicneo.com/fr/about-us" },
+    { "og:image": "https://unthaa.teicneo.com/assets/about-us-og-image.jpg" }
+  ],
+  "/contact-us": [
+    { "title": "Contactez-nous - Nous sommes là pour vous aider | Unthaa" },
+    {
+      "description": "Besoin d'aide ? Contactez l'équipe du service client d'Unthaa pour toute question ou préoccupation."
+    },
+    { "og:title": "Contactez-nous - Unthaa" },
+    {
+      "og:description": "Contactez Unthaa pour un support, des questions ou des retours. Nous sommes là pour vous aider."
+    },
+    { "og:url": "https://unthaa.teicneo.com/fr/contact-us" },
+    { "og:image": "https://unthaa.teicneo.com/assets/contact-us-og-image.jpg" }
+  ],
+  "/privacy-policy": [
+    {
+      "title": "Politique de confidentialité - Vos données sont en sécurité avec nous | Unthaa"
+    },
+    {
+      "description": "Lisez la politique de confidentialité d'Unthaa pour comprendre comment nous gérons et protégeons vos données personnelles."
+    },
+    { "og:title": "Politique de confidentialité - Unthaa" },
+    {
+      "og:description": "Chez Unthaa, nous donnons la priorité à votre confidentialité et protégeons vos informations avec des pratiques conformes aux normes de l'industrie."
+    },
+    { "og:url": "https://unthaa.teicneo.com/fr/privacy-policy" },
+    {
+      "og:image": "https://unthaa.teicneo.com/assets/privacy-policy-og-image.jpg"
+    }
+  ],
+  "/terms-of-service": [
+    { "title": "Conditions générales - Votre accord avec Unthaa" },
+    {
+      "description": "Lisez nos conditions générales pour en savoir plus sur les politiques et règles qui régissent votre utilisation d'Unthaa."
+    },
+    { "og:title": "Conditions générales - Unthaa" },
+    {
+      "og:description": "Comprenez les termes et conditions qui définissent vos droits et responsabilités sur Unthaa."
+    },
+    { "og:url": "https://unthaa.teicneo.com/fr/terms-of-service" },
+    {
+      "og:image": "https://unthaa.teicneo.com/assets/terms-of-service-og-image.jpg"
+    }
+  ],
+  "/faq": [
+    { "title": "Foire aux questions - Unthaa" },
+    {
+      "description": "Trouvez des réponses aux questions les plus courantes sur les achats chez Unthaa. L'aide est à portée de clic."
+    },
+    { "og:title": "FAQ - Unthaa" },
+    {
+      "og:description": "Obtenez des solutions rapides aux questions courantes sur les commandes, les paiements, la livraison et plus encore sur Unthaa."
+    },
+    { "og:url": "https://unthaa.teicneo.com/fr/faq" },
+    { "og:image": "https://unthaa.teicneo.com/assets/faq-og-image.jpg" }
+  ]
+}

@@ -1,0 +1,7 @@
+logs/
+.git
+*.md
+.cache
+docker-compose.yml
+test*
+node_modules/

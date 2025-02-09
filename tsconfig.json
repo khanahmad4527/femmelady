@@ -6,7 +6,8 @@
     "**/.server/**/*.tsx",
     "**/.client/**/*.ts",
     "**/.client/**/*.tsx",
-    ".react-router/types/**/*"
+    ".react-router/types/**/*",
+    "localeManager.cjs"
   ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
@@ -28,6 +29,7 @@
       "~/*": ["./app/*"],
       "@assets/*": ["./assets/*"]
     },
+    "typeRoots": ["./node_modules/@types", "./types"],
 
     // Vite takes care of building everything, not tsc.
     "noEmit": true

@@ -1,9 +1,12 @@
-export const ROUTES_WITHOUT_HEADER_AND_FOOTER = new Set([
-  'login',
-  'register',
-  'change-password',
-  'reset-password'
-]);
+export const ROUTES_WITHOUT_HEADER_AND_FOOTER = new Set(['/some']); // 'login',
+// 'register',
+// 'change-password',
+// 'reset-password'
+
+export const FALL_BACK_LANG = 'en';
+
+// These are the languages that web app supports
+export const AVAILABLE_LANGUAGES = ['en', 'ja', 'ko', 'ar', 'nl', 'fr', 'zh'];
 
 export const LANGUAGE_TO_LOCALE_LANGUAGE: Record<string, string> = {
   en: 'en-US', // English (United States)
@@ -79,7 +82,7 @@ export const LANGUAGE_TO_LOCALE_LANGUAGE: Record<string, string> = {
   bh: 'bh-IN', // Bihari (India)
   qu: 'qu-PE', // Quechua (Peru)
   dz: 'dz-BT' // Dzongkha (Bhutan)
-};
+} as const;
 
 export const LOCALE_TO_LANGUAGE: Record<string, string> = {
   'en-US': 'en', // English (United States)
@@ -156,459 +159,7 @@ export const LOCALE_TO_LANGUAGE: Record<string, string> = {
   'as-IN': 'as', // Assamese (India)
   'bh-IN': 'bh', // Bihari (India)
   'qu-PE': 'qu' // Quechua (Peru)
-};
-
-export const PRODUCTS = [
-  {
-    name: 'Bag 1',
-    image:
-      'https://www.shoppingeventvip.com/cdn/shop/files/b89dc4f14bb34b4dbfccb2649b1ca6ab_5000x.webp?v=1717680673',
-    colors: [
-      {
-        name: 'Black',
-        value: 'black',
-        hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
-        id: 'e6e9a520-6456-4fcc-a1a9-c00bffb48f1e'
-      },
-      {
-        name: 'Red',
-        value: 'red',
-        hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
-        id: '066f4f0f-9376-42a6-a2f2-4c2d0d19a042'
-      },
-      {
-        name: 'Blue',
-        hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
-        id: '78eb1c3e-6077-458e-b229-5f442635e89a'
-      },
-      {
-        name: 'Pattern',
-        value: 'pattern',
-        hex: null,
-        isPattern: true,
-        pattern_img:
-          'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
-        id: '33721c22-73e7-471d-80a5-8a208b0f2d6d'
-      }
-    ],
-    id: 'a9d54441-9db1-4a6f-b487-a21b61a35107'
-  },
-  {
-    name: 'Bag 2',
-    image:
-      'https://www.shoppingeventvip.com/cdn/shop/files/KPKI3782U39_9_5000x.jpg?v=1717676606',
-    colors: [
-      {
-        name: 'Black',
-        value: 'black',
-        hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
-        id: '4a2ec589-d583-4ed5-bbd9-0e02568ee857'
-      },
-      {
-        name: 'Red',
-        value: 'red',
-        hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
-        id: '6799331d-6ae3-40a3-aefc-2ae217191b8a'
-      },
-      {
-        name: 'Blue',
-        hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
-        id: '48ed9214-8d9a-491e-bf6f-22c1ce4cca18'
-      },
-      {
-        name: 'Pattern',
-        value: 'pattern',
-        hex: null,
-        isPattern: true,
-        pattern_img:
-          'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
-        id: '726c4489-c0ff-47c3-9878-85e53248000b'
-      }
-    ],
-    id: '71c3000e-9ec8-4361-a96a-c1b679673df6'
-  },
-  {
-    name: 'Bag 3',
-    image:
-      'https://www.shoppingeventvip.com/cdn/shop/files/KPKI5812P98_9_5000x.jpg?v=1719845444',
-    colors: [
-      {
-        name: 'Black',
-        value: 'black',
-        hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
-        id: 'b866231f-54e3-4961-8fe3-a6c9f3dca0f0'
-      },
-      {
-        name: 'Red',
-        value: 'red',
-        hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
-        id: '77328e84-de2d-440d-aedc-64ae57a09731'
-      },
-      {
-        name: 'Blue',
-        value: 'blue',
-        hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
-        id: '8a7b67d0-8411-48af-8af0-a61bead6d415'
-      },
-      {
-        name: 'Pattern',
-        value: 'pattern',
-        hex: null,
-        isPattern: true,
-        pattern_img:
-          'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
-        id: '2af77ba4-2ed9-4abe-9000-f78afc05c2aa'
-      }
-    ],
-    id: 'd8ee23c8-71fc-431d-80e7-643f32a1effe'
-  },
-  {
-    name: 'Bag 4',
-    image:
-      'https://www.shoppingeventvip.com/cdn/shop/files/KPK0214472I_9_5000x.jpg?v=1720540910',
-    colors: [
-      {
-        name: 'Black',
-        value: 'black',
-        hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
-        id: 'b0990ace-4767-4e78-878d-aa264d72ac51'
-      },
-      {
-        name: 'Red',
-        value: 'red',
-        hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
-        id: '3b5b03dd-3eec-4b96-8430-be94940bf98b'
-      },
-      {
-        name: 'Blue',
-        value: 'blue',
-        hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
-        id: 'ef56626d-c6f6-4af3-b219-c331e67b7dd6'
-      },
-      {
-        name: 'Pattern',
-        value: 'pattern',
-        hex: null,
-        isPattern: true,
-        pattern_img:
-          'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
-        id: '013994c8-da0a-40cb-ad3e-12f3907cd2f8'
-      }
-    ],
-    id: '3e3897b4-4757-44dd-b0e5-cf8712eea1f6'
-  },
-  {
-    name: 'Bag 5',
-    image:
-      'https://www.shoppingeventvip.com/cdn/shop/files/KPKI79813QA_9_1_5000x.jpg?v=1717677142',
-    colors: [
-      {
-        name: 'Black',
-        value: 'black',
-        hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
-        id: '92f7563a-ba09-42e7-97c7-63dc5302d8ab'
-      },
-      {
-        name: 'Red',
-        value: 'red',
-        hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
-        id: '7a35d66c-76bb-46a7-8332-e25f293ceb03'
-      },
-      {
-        name: 'Blue',
-        value: 'blue',
-        hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
-        id: '3036e216-3a46-43b3-96df-6bc27054a172'
-      },
-      {
-        name: 'Pattern',
-        value: 'pattern',
-        hex: null,
-        isPattern: true,
-        pattern_img:
-          'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
-        id: 'ef3ec3fd-fdd4-4d84-b823-bb126de69082'
-      }
-    ],
-    id: '5ab8365a-8af6-417f-8857-b2831e604067'
-  },
-  {
-    name: 'Bag 6',
-    image:
-      'https://www.shoppingeventvip.com/cdn/shop/files/KPK13367R2C_9_5000x.jpg?v=1723217530',
-    colors: [
-      {
-        name: 'Black',
-        value: 'black',
-        hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
-        id: 'd29b5412-2af3-49a2-b08e-1995bd31d67d'
-      },
-      {
-        name: 'Red',
-        value: 'red',
-        hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
-        id: '6cb824e7-ac68-4ee9-84d6-5e2c9b0f1f40'
-      },
-      {
-        name: 'Blue',
-        value: 'blue',
-        hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
-        id: '9f591012-72c0-4179-866f-1858cd68802b'
-      },
-      {
-        name: 'Pattern',
-        value: 'pattern',
-        hex: null,
-        isPattern: true,
-        pattern_img:
-          'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
-        id: '9dec6ad0-a79f-454f-b395-ca3fea7c6f23'
-      }
-    ],
-    id: 'ae745251-9473-4cb4-a079-cb3bfd535e22'
-  },
-  {
-    name: 'Bag 7',
-    image:
-      'https://www.shoppingeventvip.com/cdn/shop/files/KPKI6543Z41_9_5000x.jpg?v=1719845296',
-    colors: [
-      {
-        name: 'Black',
-        value: 'black',
-        hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
-        id: '6c0ef15f-c754-4e44-b64f-d5937a0e1697'
-      },
-      {
-        name: 'Red',
-        value: 'red',
-        hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
-        id: '117cf2fa-6482-455b-b2b7-e2d15181d50a'
-      },
-      {
-        name: 'Blue',
-        value: 'blue',
-        hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
-        id: '5247635c-0843-4a0e-8bd4-16ee71caa5e4'
-      },
-      {
-        name: 'Pattern',
-        value: 'pattern',
-        hex: null,
-        isPattern: true,
-        pattern_img:
-          'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
-        id: 'be95b276-5ec0-4d06-bc3e-2bcec773355c'
-      }
-    ],
-    id: '34f172a8-9861-47cf-8df8-875908827cc1'
-  },
-  {
-    name: 'Bag 8',
-    image:
-      'https://www.shoppingeventvip.com/cdn/shop/files/KPKI4860Y55_9_5000x.jpg?v=1719845522',
-    colors: [
-      {
-        name: 'Black',
-        value: 'black',
-        hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
-        id: '458c6e92-51c0-48ad-ae85-71aa21ee1138'
-      },
-      {
-        name: 'Red',
-        value: 'red',
-        hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
-        id: '1f94bf93-f840-435b-9bf6-b446ab87e355'
-      },
-      {
-        name: 'Blue',
-        value: 'blue',
-        hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
-        id: '13d86268-18f3-4f99-a98b-9b238ee66bd1'
-      },
-      {
-        name: 'Pattern',
-        value: 'pattern',
-        hex: null,
-        isPattern: true,
-        pattern_img:
-          'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
-        id: 'ae7e130a-f853-45d4-b82f-927d8925b54f'
-      }
-    ],
-    id: 'debb702f-d628-4bd1-80be-d086bed72494'
-  },
-  {
-    name: 'Bag 6',
-    image:
-      'https://www.shoppingeventvip.com/cdn/shop/files/KPK13367R2C_9_5000x.jpg?v=1723217530',
-    colors: [
-      {
-        name: 'Black',
-        value: 'black',
-        hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
-        id: '45d073f8-6f05-42df-8c19-09d7df2f57b7'
-      },
-      {
-        name: 'Red',
-        value: 'red',
-        hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
-        id: '4d54b2db-225f-41ef-bf0e-09e1b289a8a4'
-      },
-      {
-        name: 'Blue',
-        value: 'blue',
-        hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
-        id: '3213ee52-cd68-4658-b03a-1009306c0370'
-      },
-      {
-        name: 'Pattern',
-        value: 'pattern',
-        hex: null,
-        isPattern: true,
-        pattern_img:
-          'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
-        id: '7d141d5a-2843-4796-a7ed-cbf215104617'
-      }
-    ],
-    id: '2a0b40bc-9b1d-4fff-b701-3f90c2e20c49'
-  },
-  {
-    name: 'Bag 5',
-    image:
-      'https://www.shoppingeventvip.com/cdn/shop/files/KPKI79813QA_9_1_5000x.jpg?v=1717677142',
-    colors: [
-      {
-        name: 'Black',
-        value: 'black',
-        hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
-        id: '8dd518f7-8426-4711-bc9c-2a0e8e8a9440'
-      },
-      {
-        name: 'Red',
-        value: 'red',
-        hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
-        id: '4e25ad3d-4695-4da5-82b1-5e7c472c25e9'
-      },
-      {
-        name: 'Blue',
-        value: 'blue',
-        hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
-        id: 'dabacb98-039f-42fd-a3a0-2c8ebc2a34a5'
-      },
-      {
-        name: 'Pattern',
-        value: 'pattern',
-        hex: null,
-        isPattern: true,
-        pattern_img:
-          'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
-        id: '634c9b5b-7e08-4ab7-b982-656aad9378cf'
-      }
-    ],
-    id: 'ca82e88f-3e8c-458c-bc44-2bd9a59d0792'
-  },
-  {
-    name: 'Bag 6',
-    image:
-      'https://www.shoppingeventvip.com/cdn/shop/files/KPK13367R2C_9_5000x.jpg?v=1723217530',
-    colors: [
-      {
-        name: 'Black',
-        value: 'black',
-        hex: '#000000',
-        isPattern: false,
-        pattern_img: null,
-        id: 'aa4158b1-c5e8-40e2-9582-e3e87e256663'
-      },
-      {
-        name: 'Red',
-        value: 'red',
-        hex: '#FF0000',
-        isPattern: false,
-        pattern_img: null,
-        id: 'de21bd2c-3776-41e6-9d7c-f4e40f2b8ad8'
-      },
-      {
-        name: 'Blue',
-        value: 'blue',
-        hex: '#0000FF',
-        isPattern: false,
-        pattern_img: null,
-        id: 'e70d98ab-064d-4f34-b8f2-aadc696126c5'
-      },
-      {
-        name: 'Pattern',
-        value: 'pattern',
-        hex: null,
-        isPattern: true,
-        pattern_img:
-          'https://unsplash.com/photos/HN9sV5JnzoM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Z3J1bmdlJTIwdGV4dHVyZXxlbnwwfHx8fDE3MzQwNTM1MzN8MA&force=true&w=10',
-        id: 'a7453220-bfe9-4e00-afc4-5828691718fd'
-      }
-    ],
-    id: 'b33f046c-c1e8-4e27-bbd7-193247143c93'
-  }
-];
+} as const;
 
 export const LOCALE_TO_CURRENCY: Record<string, string> = {
   'en-US': 'USD',
@@ -618,5 +169,235 @@ export const LOCALE_TO_CURRENCY: Record<string, string> = {
   'es-ES': 'EUR',
   'it-IT': 'EUR',
   'pt-BR': 'BRL',
-  'ru-RU': 'RUB'
-};
+  'ru-RU': 'RUB',
+  'ar-SA': 'SAR',
+  'zh-CN': 'CNY',
+  'ko-KR': 'KRW',
+  'nl-NL': 'EUR'
+} as const;
+
+export const LANGUAGE_DIRECTION: Record<string, 'ltr' | 'rtl'> = {
+  en: 'ltr', // English
+  fr: 'ltr', // French
+  de: 'ltr', // German
+  es: 'ltr', // Spanish
+  it: 'ltr', // Italian
+  nl: 'ltr', // Dutch
+  ru: 'ltr', // Russian
+  zh: 'ltr', // Chinese
+  ja: 'ltr', // Japanese
+  ko: 'ltr', // Korean
+  ar: 'rtl', // Arabic
+  he: 'rtl', // Hebrew
+  fa: 'rtl', // Persian (Farsi)
+  ur: 'rtl' // Urdu
+} as const;
+
+export const DEFAULT_PRODUCT_LIMIT = 10;
+
+export const DEFAULT_PRODUCT_PAGE = 1;
+
+export const DEFAULT_PRODUCT_SORT = '-viewed_count';
+
+// For SEO purpose we are appending category name instead of ids
+// So to map the name to the ids we need this map
+export const CATEGORIES_WITH_ID_MAP = {
+  'beauty-and-wellness': {
+    key: 'beauty-and-wellness',
+    id: 'd638efcc-98cc-4be8-9e04-ed66a5a9c679'
+  },
+  'wedding-dresses': {
+    key: 'wedding-dresses',
+    id: '418ae741-d5cf-4442-8b6a-70b397bd2cec'
+  },
+  'home-and-furniture': {
+    key: 'home-and-furniture',
+    id: 'd756e31f-dd83-45e3-91d4-6cf8208d44e2'
+  },
+  shoes: { key: 'shoes', id: '1816621b-dfa4-4e50-a983-1fe126773fce' },
+  candles: { key: 'candles', id: 'e76acfbc-a0f6-4a59-a962-a4bc4df54926' },
+  dresses: { key: 'dresses', id: '2d94f3a4-c004-4e74-b928-248a0bb8210f' },
+  jewelry: { key: 'jewelry', id: '68a0f6f7-120c-4758-9ca8-9863a5885a90' },
+  bags: { key: 'bags', id: 'cfe393ba-b6a7-46f7-8b93-88d58b42fd2c' },
+  perfumes: { key: 'perfumes', id: 'ee5d7591-983a-4d7a-87aa-e6030f78ae43' },
+  watches: { key: 'watches', id: '66c302b5-f2da-40b5-83e9-3189ecf2fb18' }
+} as const;
+
+// For SEO purpose we are appending brand name instead of ids
+// So to map the name to the ids we need this map
+export const BRANDS_WITH_ID_MAP = {
+  'vera-luxe': {
+    key: 'vera-luxe',
+    id: 'af07751e-3f73-449b-8250-0a520d40bac8'
+  },
+  'monique-couture': {
+    key: 'monique-couture',
+    id: '1d082713-e61f-4751-a9cf-b09db7383db8'
+  },
+  'pristine-vows': {
+    key: 'pristine-vows',
+    id: '51c8c3ba-a329-4e22-b910-049fe60e1ac9'
+  },
+  'crimson-soles': {
+    key: 'crimson-soles',
+    id: '87008205-17a0-48a1-9fd9-62fc4107d537'
+  },
+  'jewel-heels': {
+    key: 'jewel-heels',
+    id: '91bb45d8-8565-4f98-9109-8da297c85d6e'
+  },
+  'sophia-grace': {
+    key: 'sophia-grace',
+    id: '2c910946-4f12-4e9c-a152-50ce8d0988cf'
+  },
+  'aroma-luxe': {
+    key: 'aroma-luxe',
+    id: '828b6dbb-ea00-4ae0-b74b-c35c6ed088d0'
+  },
+  'glow-essence': {
+    key: 'glow-essence',
+    id: 'cbe6a6f2-f7bd-453c-97a7-495d83c9c7f5'
+  },
+  'luminous-bliss': {
+    key: 'luminous-bliss',
+    id: 'f63019ae-c533-4b67-854d-17e7dda460f8'
+  },
+  chantelle: {
+    key: 'chantelle',
+    id: 'f3943e9a-f1db-4957-9872-3bfe4c339278'
+  },
+  'divine-elegance': {
+    key: 'divine-elegance',
+    id: '0153c7bf-1668-4968-a520-37357c888346'
+  },
+  'olivia-de-luxe': {
+    key: 'olivia-de-luxe',
+    id: 'b2c6bb7a-59a5-4e4f-b8e0-0806d4ee4ad9'
+  },
+  'luxe-co': {
+    key: 'luxe-co',
+    id: '5e3cd8be-8f8f-4527-b5ce-5536cd0a4e63'
+  },
+  caratierre: {
+    key: 'caratierre',
+    id: '96397eac-bd89-49bd-bee9-6facb8438672'
+  },
+  'velvet-charms': {
+    key: 'velvet-charms',
+    id: '43de420d-5c46-489e-824c-429104cec006'
+  },
+  'elyse-bags': {
+    key: 'elyse-bags',
+    id: '5c5f15e8-454f-4ee6-97e1-1d1891b8c091'
+  },
+  'cherie-luxe': {
+    key: 'cherie-luxe',
+    id: 'a0b14769-29d0-444b-9b9b-23a02e426ec4'
+  },
+  'gilded-grace': {
+    key: 'gilded-grace',
+    id: '0b3d97b4-0d80-41f4-b7e4-6e7f26a12b49'
+  },
+  'scent-noire': {
+    key: 'scent-noire',
+    id: '172b5143-0395-4db8-a4c6-39df37f24663'
+  },
+  'dame-fleur': {
+    key: 'dame-fleur',
+    id: 'ec4f7824-2af1-4c15-8081-10f54098def7'
+  },
+  'la-belle': {
+    key: 'la-belle',
+    id: '1ae713ba-12a1-4984-9611-c13e244d87b4'
+  },
+  'timeless-lady': {
+    key: 'timeless-lady',
+    id: 'fb3693bc-68ef-4cb8-93ff-87f0ffc962e7'
+  },
+  'crystal-orb': {
+    key: 'crystal-orb',
+    id: '319157bf-5d3d-45d5-8516-fef388434435'
+  },
+  'radiant-moments': {
+    key: 'radiant-moments',
+    id: '07c12562-4200-4421-bb64-8f6392155106'
+  }
+} as const;
+
+export const PARAM_KEYS = {
+  PRODUCT_ID: 'product-id',
+  IMAGE_SET: 'image-set',
+  IMAGE_ID: 'image-id',
+  PRICE: 'price',
+  RATING: 'rating',
+  CATEGORY: 'category',
+  BRAND: 'brand',
+  LIMIT: 'limit',
+  PAGE: 'page',
+  SORT: 'sort',
+  CATEGORIES: 'categories',
+  BRANDS: 'brands',
+  SIZE: 'size',
+  FORCE_REVALIDATE: 'force-validate',
+  COUNT: 'count',
+  FILTER: 'filter',
+  Q: 'q'
+} as const;
+
+// Use to force validate, means the loader will get trigger
+export const FORCE_REVALIDATE_MAP = {
+  GLOBAL: 'global',
+  SINGLE_PRODUCT: 'single-product',
+  PRODUCT_REVIEW: 'product-review'
+} as const;
+
+// This is use to compute the previous params so that we can
+// Decide wether the current params changes from the previous
+// If changes are not detected then no need tp make any new request
+// Thus save api calls
+export const PRE_PARAM_KEYS = {
+  PRODUCT_ID: 'pre-product-id',
+  IMAGE_SET: 'pre-image-set',
+  IMAGE_ID: 'pre-image-id',
+  PRICE: 'pre-price',
+  RATING: 'pre-rating',
+  CATEGORY: 'pre-category',
+  BRAND: 'pre-brand',
+  LIMIT: 'pre-limit',
+  PAGE: 'pre-page',
+  SORT: 'pre-sort',
+  CATEGORIES: 'pre-categories',
+  BRANDS: 'pre-brands',
+  SIZE: 'pre-size'
+} as const;
+
+// Endpoints or Routes
+export const PATHS = {
+  aboutUs: 'about-us',
+  contactUs: 'contact-us',
+  privacyPolicy: 'privacy-policy',
+  termsOfService: 'terms-of-service',
+  blog: 'blog',
+  faq: 'faq',
+  login: 'login',
+  logout: 'logout',
+  register: 'register',
+  products: 'products',
+  checkout: 'checkout',
+  reviews: 'reviews',
+  payment: 'payment',
+  loginViaProviders: 'login-via-providers'
+} as const;
+
+export const PARAMS = {
+  forceValidateGlobal: 'force-validate=global',
+  categories: 'categories',
+  redirectTo: 'redirect-to',
+  error: 'error',
+  utmSource: 'utm_source',
+  loginViaProviders: 'login-via-providers',
+  faq: 'faq',
+  reason: 'reason',
+  from: 'from',
+  redirect: 'redirect'
+} as const;

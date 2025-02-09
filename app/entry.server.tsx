@@ -11,6 +11,9 @@ import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import type { AppLoadContext, EntryContext } from "react-router";
 import { ServerRouter } from "react-router";
+import RedisClient from "./auth/redis.server";
+
+export const redisClient = new RedisClient()
 
 const ABORT_DELAY = 5_000;
 

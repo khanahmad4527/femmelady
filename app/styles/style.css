@@ -1,0 +1,68 @@
+.boxShadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* For rendering html content */
+
+.dangerouslySetInnerHTML {
+  padding: 0;
+  margin: 0;
+}
+
+.dangerouslySetInnerHTML p {
+  padding: 0;
+  margin: 0;
+}
+
+.dangerouslySetInnerHTML a {
+  color: var(--mantine-color-black);
+}
+
+.dangerouslySetInnerHTML p {
+  padding: 0;
+  margin: 0;
+}
+
+/* For glow effect when scrolling to a particular product */
+@keyframes glow-animation {
+  0% {
+    box-shadow: 0 0 10px 5px var(--mantine-color-primary-5);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px var(--mantine-color-primary-5);
+  }
+  100% {
+    box-shadow: 0 0 10px 5px var(--mantine-color-primary-5);
+  }
+}
+
+/* Glow effect class */
+.productCardGlow {
+  animation: glow-animation 2s ease-in-out;
+}
+
+/* Thin scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+  width: 6px; /* Thin width */
+  height: 6px; /* Optional for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #aaa; /* Thumb color */
+  border-radius: 3px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #888; /* Thumb hover color */
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Track background color */
+  border-radius: 3px; /* Optional for rounded edges */
+}
+
+/* Thin scrollbar for Firefox */
+* {
+  scrollbar-width: thin; /* Makes scrollbar thin */
+  scrollbar-color: #aaa #f0f0f0; /* Thumb and track colors */
+}

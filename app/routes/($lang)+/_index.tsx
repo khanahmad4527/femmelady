@@ -17,63 +17,76 @@ import {
   Text,
   Title
 } from '@mantine/core';
-import type { MetaFunction } from 'react-router';
-import { Link } from 'react-router';
+
+import { Link, useLoaderData, useOutletContext } from 'react-router';
 
 import HomeProductCarousel from '~/components/products/HomeProductCarousel';
-import { PRODUCTS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
+import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
-import { IProductCard } from '~/types/types';
-import { buildLocalizedLink } from '~/utils';
+import { buildLocalizedLink, getLanguageCode } from '~/utils';
+import { Route } from './+types/_index';
+import { PATHS } from '~/constant';
+import { OutletContext } from '~/types';
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: 'New Remix App' },
-    { name: 'description', content: 'Welcome to Remix!' }
-  ];
+export const loader = async ({ params }: Route.LoaderArgs) => {
+  const languageCode = getLanguageCode(params);
+
+  const { products } = await getProducts({ languageCode, route: 'home' });
+
+  return { products };
 };
 
 export default function Index() {
+  const { env } = useOutletContext<OutletContext>();
+  const { products } = useLoaderData<typeof loader>();
+
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
 
   const banner = {
-    image:
-      'https://images.ctfassets.net/5de70he6op10/6xJLuqOrwqZVNW4759T9UO/5f34c105c942c8dd336a80ed704cf0bd/686903480-120424_giftingpromo_secondaryhpgbanner_ls_et.jpg?w=2882&q=80&fm=webp'
+    image: ''
   };
 
   const heroImages = [
     {
+      id: 'e8b1f3d7-6f8c-4b7d-89a3-c25f75d1a462',
       title: t('home.weddings'),
       image: wedding
     },
     {
+      id: 'c7a5e4f1-b2d8-4d7f-a6b1-89f3d42c7e75',
       title: t('home.candles'),
       image: candle
     },
     {
+      id: 'a2c4d7b9-85f3-41d6-b7e2-f47c8a1b925d',
       title: t('home.dresses'),
       image: dress
     },
     {
+      id: 'fbd8e7a1-0193-488b-bbc8-f5f23a5e34fc',
       title: t('home.jewelry'),
       image: jewelry
     },
     {
+      id: '3be2c5d7-9677-470f-b3ec-24d6eaa08f1a',
       title: t('home.bags'),
       image: bag
     },
     {
+      id: '9263c8ad-f0bc-423f-b2e7-cd74a6a31534',
       title: t('home.perfumes'),
       image: perfume
     },
     {
+      id: 'a59376ba-d431-4e6d-a06f-0bce86ab31db',
       title: t('home.watches'),
       image: watch
     },
     {
+      id: '75a254d3-f31b-4785-9b36-8d676df6fca5',
       title: t('home.shoes'),
       image: shoe
     }
@@ -81,21 +94,25 @@ export default function Index() {
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
-      <Image src={banner.image} alt={'banner'} mah={200} fit={'contain'} />
+      {/* <Image src={banner.image} alt={'banner'} mah={200} fit={'contain'} /> */}
 
       <Box
-        bg="red"
         component={Link}
-        to={buildLocalizedLink({ currentLanguage, primaryPath: 'products' })}
+        to={buildLocalizedLink({
+          baseUrl: env?.APP_URL!,
+          currentLanguage,
+          paths: [PATHS.products]
+        })}
         pos={'relative'}
       >
         <Image src={heroSection1} h={'100%'} fit="contain" loading={'lazy'} />
         <Box
           display={{ base: 'none', xs: 'block' }}
           pos={'absolute'}
-          w={{ base: '90%', md: '50%' }}
           c="white"
+          w={'inherit'}
           left={'10%'}
+          right={'10%'}
           bottom={'10%'}
         >
           <Title>{t('home.heroSecText1')}</Title>
@@ -107,16 +124,21 @@ export default function Index() {
       </Box>
 
       <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }}>
-        {heroImages.map((h, i) => {
+        {heroImages.map(h => {
           return (
             <Box
-              key={i}
+              key={h.id}
               component={Link}
               to={buildLocalizedLink({
+                baseUrl: env?.APP_URL!,
                 currentLanguage,
-                primaryPath: 'products'
+                paths: [PATHS.products]
               })}
               pos={'relative'}
+              style={{
+                textDecoration: 'none',
+                color: 'inherit'
+              }}
             >
               <Image alt={'product'} src={h.image} h={500} />
               <Paper
@@ -136,18 +158,7 @@ export default function Index() {
         })}
       </SimpleGrid>
 
-      <Paper p={{ base: 'md', md: '2xl' }} bg={'primary.1'}>
-        <Stack align={'center'}>
-          <Title ta={'center'} order={3}>
-            {t('home.text1')}
-          </Title>
-          <Text ta={'center'} w={{ base: '90%', md: '60%' }}>
-            {t('home.text2')}
-          </Text>
-        </Stack>
-      </Paper>
-
-      <HomeProductCarousel products={PRODUCTS as IProductCard[]} />
+      <HomeProductCarousel products={products} />
     </Stack>
   );
 }

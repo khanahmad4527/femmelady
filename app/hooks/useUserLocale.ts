@@ -1,5 +1,4 @@
-import { LANGUAGE_TO_LOCALE_LANGUAGE } from '~/constant';
-import { TranslationKeys } from '~/types/types';
+import { TranslationKeys } from '~/types';
 import { getUserLocale } from '~/utils';
 
 const useUserLocale = (currentLanguage: TranslationKeys = 'en') => {

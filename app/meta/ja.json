@@ -1,0 +1,135 @@
+{
+  "/": [
+    { "title": "Unthaa - 数ではなく品質で築かれる" },
+    {
+      "description": "Unthaaで最高の製品をお得な価格で探しましょう。あらゆるニーズに応えるワンストップオンラインショップ。"
+    },
+    { "og:title": "Unthaa - 数ではなく品質で築かれる" },
+    {
+      "og:description": "Unthaaで最新かつ最高の製品を発見してください。安心してショッピングをお楽しみください！"
+    },
+    { "og:url": "https://unthaa.teicneo.com" },
+    { "og:image": "https://unthaa.teicneo.com/assets/home-og-image.jpg" },
+    { "twitter:card": "summary_large_image" }
+  ],
+  "/products": [
+    { "title": "製品を探す - Unthaa" },
+    {
+      "description": "カテゴリを超えた幅広い製品をご覧ください。Unthaaで必要なものがすべて見つかります。"
+    },
+    { "og:title": "製品を探す - Unthaa" },
+    {
+      "og:description": "Unthaaで他にない価格で幅広い製品を見つけましょう。"
+    },
+    { "og:url": "https://unthaa.teicneo.com/ja/products" },
+    { "og:image": "https://unthaa.teicneo.com/assets/products-og-image.jpg" }
+  ],
+  "/checkout": [
+    { "title": "チェックアウト - 安全な支払い | Unthaa" },
+    {
+      "description": "Unthaaでお気に入りの製品を安全にチェックアウト。簡単、迅速、安全な支払いオプション。"
+    },
+    { "og:title": "チェックアウト - Unthaa" },
+    {
+      "og:description": "Unthaaで迅速で信頼できるチェックアウトで安全に購入を完了しましょう。"
+    },
+    { "og:url": "https://unthaa.teicneo.com/ja/checkout" }
+  ],
+  "/payment": [
+    { "title": "支払い - 注文を完了 | Unthaa" },
+    {
+      "description": "Unthaaで安全に支払いを完了してください。信頼できる支払いオプションで取引を保護します。"
+    },
+    { "og:title": "支払い - Unthaa" },
+    {
+      "og:description": "Unthaaで安心して支払いを完了。安全、迅速、簡単な支払いプロセス。"
+    },
+    { "og:url": "https://unthaa.teicneo.com/ja/payment" }
+  ],
+  "/login": [
+    { "title": "アカウントにログイン - Unthaa" },
+    {
+      "description": "Unthaaアカウントにログインして注文、ウィッシュリスト、パーソナライズされたおすすめを確認してください。"
+    },
+    { "og:title": "ログイン - Unthaa" },
+    {
+      "og:description": "Unthaaアカウントに安全にログインして、快適にショッピングを続けましょう。"
+    },
+    { "og:url": "https://unthaa.teicneo.com/ja/login" }
+  ],
+  "/register": [
+    { "title": "アカウントを作成 - Unthaaに参加" },
+    {
+      "description": "無料のUnthaaアカウントに登録して、パーソナライズされたショッピング体験をお楽しみください。"
+    },
+    { "og:title": "登録 - Unthaa" },
+    {
+      "og:description": "Unthaaでアカウントを作成して、特別なオファーやパーソナライズされたショッピングをお楽しみください。"
+    },
+    { "og:url": "https://unthaa.teicneo.com/ja/register" }
+  ],
+  "/about-us": [
+    { "title": "私たちについて - Unthaaを知る" },
+    {
+      "description": "Unthaaについて、価値観、使命、品質の高い製品とサービスを提供する取り組みを学びましょう。"
+    },
+    { "og:title": "私たちについて - Unthaaを知る" },
+    {
+      "og:description": "Unthaaのストーリーと最高のショッピング体験を提供するための取り組みを発見してください。"
+    },
+    { "og:url": "https://unthaa.teicneo.com/ja/about-us" },
+    { "og:image": "https://unthaa.teicneo.com/assets/about-us-og-image.jpg" }
+  ],
+  "/contact-us": [
+    { "title": "お問い合わせ - サポートしています | Unthaa" },
+    {
+      "description": "お困りですか？質問や懸念事項について、Unthaaのカスタマーサポートチームにご連絡ください。"
+    },
+    { "og:title": "お問い合わせ - Unthaa" },
+    {
+      "og:description": "サポート、問い合わせ、またはフィードバックについてUnthaaにお問い合わせください。お手伝いします。"
+    },
+    { "og:url": "https://unthaa.teicneo.com/ja/contact-us" },
+    { "og:image": "https://unthaa.teicneo.com/assets/contact-us-og-image.jpg" }
+  ],
+  "/privacy-policy": [
+    { "title": "プライバシーポリシー - データは安全です | Unthaa" },
+    {
+      "description": "Unthaaのプライバシーポリシーを読み、個人データの取り扱いと保護について理解してください。"
+    },
+    { "og:title": "プライバシーポリシー - Unthaa" },
+    {
+      "og:description": "Unthaaでは、プライバシーを優先し、業界標準の慣行で情報を保護します。"
+    },
+    { "og:url": "https://unthaa.teicneo.com/ja/privacy-policy" },
+    {
+      "og:image": "https://unthaa.teicneo.com/assets/privacy-policy-og-image.jpg"
+    }
+  ],
+  "/terms-of-service": [
+    { "title": "利用規約 - Unthaaとの契約" },
+    {
+      "description": "Unthaaのご利用を規定するポリシーやルールについて学ぶために、利用規約をご覧ください。"
+    },
+    { "og:title": "利用規約 - Unthaa" },
+    {
+      "og:description": "Unthaaでの権利と責任を概説する利用規約をご理解ください。"
+    },
+    { "og:url": "https://unthaa.teicneo.com/ja/terms-of-service" },
+    {
+      "og:image": "https://unthaa.teicneo.com/assets/terms-of-service-og-image.jpg"
+    }
+  ],
+  "/faq": [
+    { "title": "よくある質問 - Unthaa" },
+    {
+      "description": "Unthaaでのお買い物に関する最も一般的な質問への回答を見つけてください。助けはすぐそこです。"
+    },
+    { "og:title": "よくある質問 - Unthaa" },
+    {
+      "og:description": "Unthaaでの注文、支払い、配送などに関する一般的な質問への迅速な解決策を見つけてください。"
+    },
+    { "og:url": "https://unthaa.teicneo.com/ja/faq" },
+    { "og:image": "https://unthaa.teicneo.com/assets/faq-og-image.jpg" }
+  ]
+}

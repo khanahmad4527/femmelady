@@ -12,7 +12,10 @@
     "beautyWellness": "Beauty & Wellness",
     "giftsCandles": "Gifts & Candles",
     "sale": "Sale",
-    "slogan": "Built on Quality, Not Numbers"
+    "slogan": "Built on Quality, Not Numbers",
+    "profile": "Profile",
+    "orders": "Orders",
+    "logout": "Logout"
   },
   "home": {
     "weddings": "Weddings",
@@ -25,19 +28,18 @@
     "shoes": "Shoes",
     "heroSecText1": "Elevate Your Style",
     "heroSecText2": "Timeless Fashion, Sustainable Choices",
-    "shopNow": "Shop Now",
-    "text1": "The Art of Fewer, Better Choices",
-    "text2": "Opting for quality over quantity means selecting timeless, durable, and responsibly made items. This approach simplifies our lives and fosters a deeper appreciation for our surroundings. Emphasizing longevity and responsible production resonates with a more sustainable and mindful lifestyle."
+    "shopNow": "Shop Now"
   },
   "footer": {
     "links": {
-      "contact": "Contact",
-      "privacy": "Privacy",
       "blog": "Blog",
-      "store": "Store",
-      "careers": "Careers"
+      "faq": "FAQ",
+      "aboutUs": "About Us",
+      "contactUs": "Contact Us",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service"
     },
-    "copyright": "© 2024 Unthaa. All rights reserved.",
+    "copyright": "© {copyrightYear} Unthaa. All rights reserved.",
     "signUpAgreement": "By signing up, you agree to our {privacyPolicy} and {termsOfService}.",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
@@ -45,7 +47,24 @@
     "getLatestNews": "Get the latest news from us"
   },
   "common": {
-    "logout": "Logout"
+    "logout": "Logout",
+    "categories": "Categories",
+    "scrollToTop": "Scroll to top",
+    "errors": "Errors",
+    "loadMore": "Load More",
+    "pageNotFound": "Page Not Found",
+    "goToHome": "Go to Home",
+    "somethingWentWrong": "Something went wrong",
+    "encounteredError": "We encountered an unexpected error. Please try again",
+    "noDataFoundTitle": "No data found",
+    "noDataFoundMessage": "We couldn't find any data matching your request.",
+    "cartEmptyMessage": "Browse products",
+    "google": "Google",
+    "facebook": "Facebook",
+    "notAllowedTitle": "Action Not Allowed",
+    "notAllowedDescription": "You do not have permission to delete this item or it may no longer exist.",
+    "loginRequireTitle": "Action Requires Login",
+    "loginRequireDescription": "Please sign in to continue."
   },
   "login": {
     "welcome": "Welcome to Unthaa, login with",
@@ -62,6 +81,27 @@
     "includesSpecialSymbol": "Includes special symbol",
     "noSpacesAllowed": "No spaces allowed",
     "includes8Char": "Includes at least 8 characters"
+  },
+  "providerLoginFailed": {
+    "title": "Provider Authentication Failed",
+    "description": "An error occurred while authenticating with the provider. The credentials may be invalid, or the authentication request failed. Please try again."
+  },
+  "invalidProvider": {
+    "title": "Invalid Authentication Provider",
+    "description": "The selected authentication provider is not supported. Please choose a different provider to proceed."
+  },
+  "loginError": {
+    "title": "Invalid credentials",
+    "description": "Please check your credentials and try again."
+  },
+  "registerError": {
+    "title": "Registration failed",
+    "description": "Registration failed. Please try again."
+  },
+  "turnstile": {
+    "tokenRequired": "Security check token is required",
+    "errorTitle": "Validation failed",
+    "errorDescription": "Security check token validation failed. Please try again."
   },
   "authForm": {
     "email": "Email",
@@ -104,13 +144,101 @@
     "productsPerPage": "Products Per Page",
     "resultsCount": "{count} results",
     "addToBag": "Add to Bag",
-    "productColor": "Product Color:",
-    "productSize": "Product Size:",
+    "productColor": "Color:",
+    "productSize": "Size:",
     "reviews": "Based on {number} reviews",
-    "cartQuantity": "Quantity:"
+    "cartQuantity": "Quantity:",
+    "filter": {
+      "weddingDresses": "Wedding Dresses",
+      "shoes": "Shoes",
+      "candles": "Candles",
+      "dresses": "Dresses",
+      "jewelry": "Jewelry",
+      "bags": "Bags",
+      "perfumes": "Perfumes",
+      "watches": "Watches",
+      "beautyWellness": "Beauty & Wellness",
+      "homeFurniture": "Home & Furniture"
+    }
+  },
+  "brands": {
+    "veraLuxe": "Vera Luxe",
+    "moniqueCouture": "Monique Couture",
+    "pristineVows": "Pristine Vows",
+    "crimsonSoles": "Crimson Soles",
+    "jewelHeels": "Jewel Heels",
+    "sophiaGrace": "Sophia Grace",
+    "aromaLuxe": "Aroma Luxe",
+    "glowEssence": "Glow Essence",
+    "luminousBliss": "Luminous Bliss",
+    "chantelle": "Chantelle",
+    "divineElegance": "Divine Elegance",
+    "oliviaDeLuxe": "Olivia de Luxe",
+    "luxeCo": "Luxe & Co.",
+    "caratierre": "Caratierre",
+    "velvetCharms": "Velvet Charms",
+    "elyseBags": "Elyse Bags",
+    "cherieLuxe": "Chérie Luxe",
+    "gildedGrace": "Gilded Grace",
+    "scentNoire": "Scent Noire",
+    "dameFleur": "Dame Fleur",
+    "laBelle": "La Belle",
+    "timelessLady": "Timeless Lady",
+    "crystalOrb": "Crystal Orb",
+    "radiantMoments": "Radiant Moments"
+  },
+  "checkout": {
+    "shoppingBag": "Shopping Bag",
+    "goToCheckout": "Go to checkout",
+    "summary": "Order Summary",
+    "subTotal": "SubTotal",
+    "total": "Total",
+    "pay": "Pay"
+  },
+  "payment": {
+    "payAmount": "Pay {amount}",
+    "errors": {
+      "cardNumberInvalid": "Card number must be 13 to 19 digits",
+      "cardNumberRequired": "Card number is required",
+      "cvvInvalid": "CVV must be 3 or 4 digits",
+      "cvvRequired": "CVV is required",
+      "expiryMonthInvalid": "Invalid expiry month",
+      "expiryMonthRequired": "Expiry month is required",
+      "expiryYearInvalidFormat": "Expiry year must be a 4-digit number",
+      "expiryYearInPast": "Expiry year must not be in the past",
+      "expiryYearRequired": "Expiry year is required"
+    },
+    "cardNumber": "Card Number",
+    "cvv": "CVV",
+    "expiryMonth": "Expiry Month",
+    "expiryYear": "Expiry Year",
+    "cardHolderName": "Card Holder Name",
+    "orderPlaced": "Order placed",
+    "orderPlacedSuccess": "Order placed successfully"
   },
   "cart": {
-    "shoppingBag": "Shopping Bag",
-    "goToCheckout": "Go to checkout"
+    "errors": {
+      "productIdInvalid": "Product ID must be a valid UUID",
+      "productIdRequired": "Product ID is required",
+      "sizeIdInvalid": "Size ID must be a valid UUID",
+      "sizeIdRequired": "Size ID is required",
+      "colorIdInvalid": "Color ID must be a valid UUID",
+      "colorIdRequired": "Color ID is required",
+      "quantityRequired": "Quantity is required",
+      "quantityInvalidNumber": "Quantity must be a valid number",
+      "quantityNotInteger": "Quantity must be an integer",
+      "quantityOutOfRange": "Quantity must be between 1 and 10",
+      "featureImage1IdInvalid": "Feature image 1 ID must be a valid UUID",
+      "featureImage1IdRequired": "Feature image 1 is required",
+      "featureImage2IdInvalid": "Feature image 2 ID must be a valid UUID",
+      "featureImage2IdRequired": "Feature image 2 is required",
+      "cartIdRequired": "Cart ID is required",
+      "cartIdInvalid": "Cart ID must be a valid UUID",
+      "intentRequired": "Intent is required"
+    },
+    "notificationTitle": "Item Added to Cart!",
+    "notificationMessage": "Your item has been successfully added to the cart. Happy shopping!",
+    "emptyCartTitle": "Your cart looks empty",
+    "emptyCartMessage": "Start browsing our products and add some to your cart!"
   }
 }

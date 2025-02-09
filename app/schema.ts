@@ -1,75 +1,153 @@
 import { z } from 'zod';
 
-type Tt = (
-  key: string,
-  replacements?: Record<string, React.ReactNode>
-) => string;
+const emailSchema = z
+  .string()
+  .email({ message: 'authFormValidationError.invalidEmail' })
+  .transform(value => value.trim().toLowerCase());
 
-const emailSchema = (t: Tt) =>
-  z
-    .string()
-    .email({ message: t('authFormValidationError.invalidEmail') })
-    .transform(value => value.trim().toLowerCase());
+const passwordSchema = z
+  .string()
+  .min(8, { message: 'authFormValidationError.passwordMin' })
+  .regex(/[A-Z]/, {
+    message: 'authFormValidationError.passwordUppercase'
+  })
+  .regex(/[a-z]/, {
+    message: 'authFormValidationError.passwordLowercase'
+  })
+  .regex(/[0-9]/, {
+    message: 'authFormValidationError.passwordNumber'
+  })
+  .regex(/[@$!%*?&#]/, {
+    message: 'authFormValidationError.passwordSpecial'
+  })
+  .regex(/^\S*$/, {
+    message: 'authFormValidationError.passwordNoSpaces'
+  })
+  .transform(value => value.trim());
 
-const passwordSchema = (t: Tt) =>
-  z
-    .string()
-    .min(8, { message: t('authFormValidationError.passwordMin') })
-    .regex(/[A-Z]/, {
-      message: t('authFormValidationError.passwordUppercase')
-    })
-    .regex(/[a-z]/, {
-      message: t('authFormValidationError.passwordLowercase')
-    })
-    .regex(/[0-9]/, {
-      message: t('authFormValidationError.passwordNumber')
-    })
-    .regex(/[@$!%*?&#]/, {
-      message: t('authFormValidationError.passwordSpecial')
-    })
-    .regex(/^\S*$/, {
-      message: t('authFormValidationError.passwordNoSpaces')
-    })
-    .transform(value => value.trim());
+const cfTurnstileResponseSchema = z
+  .string({ required_error: 'turnstile.tokenRequired' })
+  .min(1, { message: 'turnstile.tokenRequired' });
 
-export const loginFormSchema = (t: Tt) =>
-  z.object({
-    email: emailSchema(t),
-    password: passwordSchema(t)
+export const loginFormSchema = z.object({
+  email: emailSchema,
+  password: passwordSchema,
+  'cf-turnstile-response': cfTurnstileResponseSchema
+});
+
+export const registerFormSchema = z
+  .object({
+    first_name: z
+      .string()
+      .min(2, { message: 'authFormValidationError.firstNameMin' })
+      .transform(value => value.trim()),
+    last_name: z
+      .string()
+      .optional()
+      .transform(value => (value ? value.trim() : value)),
+    email: emailSchema,
+    password: passwordSchema,
+    confirm_password: z.string().transform(value => value.trim()),
+    terms: z.string({
+      required_error: 'authFormValidationError.termsRequired'
+    }),
+    'cf-turnstile-response': cfTurnstileResponseSchema
+  })
+  .refine(
+    data => data.password.length > 0 && data.confirm_password.length > 0,
+    {
+      path: ['confirm_password'],
+      message: 'authFormValidationError.confirmPasswordRequired'
+    }
+  )
+  .refine(data => data.password === data.confirm_password, {
+    path: ['confirm_password'],
+    message: 'authFormValidationError.passwordMismatch'
   });
 
-export type TLoginFormSchema = z.infer<ReturnType<typeof loginFormSchema>>;
-
-export const registerFormSchema = (t: Tt) =>
-  z
-    .object({
-      first_name: z
-        .string()
-        .min(2, { message: t('authFormValidationError.firstNameMin') })
-        .transform(value => value.trim()),
-      last_name: z
-        .string()
-        .min(2, { message: t('authFormValidationError.lastNameMin') })
-        .transform(value => value.trim()),
-      email: emailSchema(t),
-      password: passwordSchema(t),
-      confirm_password: z.string().transform(value => value.trim()),
-      terms: z.string({
-        required_error: t('authFormValidationError.termsRequired')
-      })
-    })
+export const addToCartSchema = z.object({
+  cartId: z
+    .string({ required_error: 'cart.errors.cartIdRequired' })
+    .uuid('cart.errors.cartIdInvalid'),
+  productId: z
+    .string({ required_error: 'cart.errors.productIdRequired' })
+    .uuid('cart.errors.productIdInvalid'),
+  sizeId: z
+    .string({ required_error: 'cart.errors.sizeIdRequired' })
+    .uuid('cart.errors.sizeIdInvalid'),
+  colorId: z
+    .string({ required_error: 'cart.errors.colorIdRequired' })
+    .uuid('cart.errors.colorIdInvalid'),
+  featureImage1Id: z
+    .string({ required_error: 'cart.errors.featureImage1IdRequired' })
+    .uuid('cart.errors.featureImage1IdInvalid'),
+  featureImage2Id: z
+    .string({ required_error: 'cart.errors.featureImage2IdRequired' })
+    .uuid('cart.errors.featureImage2IdInvalid'),
+  quantity: z
+    .string({ required_error: 'cart.errors.quantityRequired' })
+    .refine(value => !isNaN(Number(value)), 'cart.errors.quantityInvalidNumber')
+    .transform(value => Number(value))
+    .refine(value => Number.isInteger(value), 'cart.errors.quantityNotInteger')
     .refine(
-      data => data.password.length > 0 && data.confirm_password.length > 0,
-      {
-        path: ['confirm_password'],
-        message: t('authFormValidationError.confirmPasswordRequired')
-      }
+      value => value >= 1 && value <= 10,
+      'cart.errors.quantityOutOfRange'
     )
-    .refine(data => data.password === data.confirm_password, {
-      path: ['confirm_password'],
-      message: t('authFormValidationError.passwordMismatch')
-    });
+});
 
-export type TRegisterFormSchema = z.infer<
-  ReturnType<typeof registerFormSchema>
->;
+export const mutateCartSchema = z.object({
+  cartId: z
+    .string({ required_error: 'cart.errors.cartIdRequired' })
+    .uuid('cart.errors.cartIdInvalid'),
+  quantity: z
+    .string()
+    .optional()
+    .refine(
+      value => value === undefined || !isNaN(Number(value)),
+      'cart.errors.quantityInvalidNumber'
+    )
+    .transform(value => (value === undefined ? undefined : Number(value)))
+    .refine(
+      value => value === undefined || Number.isInteger(value),
+      'cart.errors.quantityNotInteger'
+    )
+    .refine(
+      value => value === undefined || (value >= 1 && value <= 10),
+      'cart.errors.quantityOutOfRange'
+    ),
+  intent: z.enum(['inc', 'dec', 'cancel'], {
+    required_error: 'cart.errors.intentRequired'
+  })
+});
+
+const months = Array.from({ length: 12 }, (_, index) => {
+  const date = new Date(0, index); // Month 0 = January
+  return date.toLocaleString('default', { month: 'long' }).toLowerCase();
+});
+
+export const paymentFormSchema = z.object({
+  cardNumber: z
+    .string({ required_error: 'payment.errors.cardNumberRequired' })
+    .regex(/^[0-9]{13,19}$/, 'payment.errors.cardNumberInvalid'),
+
+  cvv: z
+    .string({ required_error: 'payment.errors.cvvRequired' })
+    .regex(/^[0-9]{3,4}$/, 'payment.errors.cvvInvalid'),
+
+  cardHolderName: z.string(),
+
+  expiryMonth: z
+    .string({ required_error: 'payment.errors.expiryMonthRequired' })
+    .refine(
+      value => months.includes(value),
+      'payment.errors.expiryMonthInvalid'
+    ),
+
+  expiryYear: z
+    .string({ required_error: 'payment.errors.expiryYearRequired' })
+    .regex(/^\d{4}$/, 'payment.errors.expiryYearInvalidFormat')
+    .refine(
+      year => parseInt(year) >= new Date().getFullYear(),
+      'payment.errors.expiryYearInPast'
+    )
+});

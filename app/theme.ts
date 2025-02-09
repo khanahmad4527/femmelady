@@ -5,7 +5,9 @@ import {
   rem
 } from '@mantine/core';
 
-import selectClasses from './styles/Select.module.scss';
+import accordionClasses from './styles/Accordion.module.scss';
+import buttonClasses from './styles/Button.module.scss';
+import actionIconClasses from './styles/ActionIcon.module.scss';
 
 export const theme: MantineThemeOverride = createTheme({
   colors: {
@@ -29,11 +31,24 @@ export const theme: MantineThemeOverride = createTheme({
   },
   primaryShade: 7,
   primaryColor: 'primary',
+  fontFamily: 'Fuzzy Bubbles, sans-serif',
   components: {
     Container: {
       defaultProps: { size: 1280 }
     },
     Button: {
+      classNames: buttonClasses,
+      defaultProps: {
+        radius: 0
+      }
+    },
+    ActionIcon: {
+      classNames: actionIconClasses,
+      defaultProps: {
+        radius: 0
+      }
+    },
+    ThemeIcon: {
       defaultProps: {
         radius: 0
       }
@@ -48,8 +63,12 @@ export const theme: MantineThemeOverride = createTheme({
         radius: 0
       }
     },
+    Paper: {
+      defaultProps: {
+        radius: 0
+      }
+    },
     Select: {
-      classNames: selectClasses,
       defaultProps: {
         withScrollArea: false,
         withCheckIcon: false,
@@ -57,6 +76,7 @@ export const theme: MantineThemeOverride = createTheme({
       }
     },
     Accordion: Accordion.extend({
+      classNames: accordionClasses,
       styles: {
         content: {
           padding: 0
@@ -65,6 +85,11 @@ export const theme: MantineThemeOverride = createTheme({
           paddingLeft: 0
         }
       }
-    })
+    }),
+    Image: {
+      defaultProps: {
+        loading: 'lazy'
+      }
+    }
   }
 });
