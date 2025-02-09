@@ -5,6 +5,7 @@ import { Faqs, OutletContext } from '~/types';
 import { Route } from './+types/faq';
 import { getLanguageCode } from '~/utils';
 import { getFaqs } from '~/server/api';
+import { PARAMS } from '~/constant';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -20,7 +21,7 @@ const Faq = () => {
   const t = useTranslation();
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
-  const currentIndex = Number(searchParams.get('faq') ?? 1) - 1;
+  const currentIndex = Number(searchParams.get(PARAMS.faq) ?? 1) - 1;
 
   const currentFaq = faqs.at(currentIndex) || faqs[0];
 
@@ -47,7 +48,7 @@ const Faq = () => {
             <Button
               color={currentIndex === i ? 'black' : ''}
               onClick={() => {
-                searchParams.set('faq', String(++i));
+                searchParams.set(PARAMS.faq, String(++i));
                 setSearchParams(searchParams, {
                   preventScrollReset: true
                 });

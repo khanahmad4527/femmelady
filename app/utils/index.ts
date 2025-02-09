@@ -192,23 +192,27 @@ export const buildLocalizedLink = ({
   paths?: string[]; // Accepts an array of paths
   queryParams?: Record<string, string>; // Key-value pairs of query parameters
 }) => {
-  // Filter out undefined or empty paths
+  if (!baseUrl) {
+    throw new Error('Base URL is required');
+  }
+
+  // Filter out undefined or empty paths and normalize trailing slashes
   const validPaths = paths.filter(path => path);
+  let pathString = `/${[currentLanguage, ...validPaths].join('/')}`.replace(
+    /\/+$/,
+    ''
+  );
 
   // Create a URL object based on the base URL
-  const url = new URL(
-    `/${[currentLanguage, ...validPaths].join('/')}`,
-    baseUrl
-  );
+  const url = new URL(pathString, baseUrl);
 
   // Append query parameters if provided
   Object.entries(queryParams).forEach(([key, value]) => {
-    if (value) {
-      url.searchParams.set(key, value);
+    if (value !== undefined && value !== null) {
+      url.searchParams.set(key, String(value)); // Convert numbers/booleans to string safely
     }
   });
 
-  // Return the full URL as a string
   return url.toString();
 };
 
@@ -251,7 +255,8 @@ export const validateUUID = (uuid: string) => {
  */
 export const getLanguageCode = (params: { lang?: string }) => {
   const languageCode =
-    LANGUAGE_TO_LOCALE_LANGUAGE[params?.lang ?? FALL_BACK_LANG];
+    LANGUAGE_TO_LOCALE_LANGUAGE[params?.lang!] ??
+    LANGUAGE_TO_LOCALE_LANGUAGE[FALL_BACK_LANG];
 
   return languageCode as string;
 };
@@ -433,9 +438,9 @@ export const getSearchQuery = ({ request, searchParams }: GetParam) => {
 
   if (request) {
     const url = new URL(request.url);
-    searchQuery = url.searchParams.get('q') ?? undefined;
+    searchQuery = url.searchParams.get(PARAM_KEYS.Q) ?? undefined;
   } else if (searchParams) {
-    searchQuery = searchParams.get('q') ?? undefined;
+    searchQuery = searchParams.get(PARAM_KEYS.Q) ?? undefined;
   }
 
   if (!searchQuery) return undefined;
@@ -489,8 +494,8 @@ export const buildAndCompareFilter = (
   // Step 2: Extract filter from the URL
   const url = new URL(requestUrl);
 
-  const urlFilter = JSON.parse(url.searchParams.get('filter') ?? '{}');
-  const count = url.searchParams.get('count');
+  const urlFilter = JSON.parse(url.searchParams.get(PARAM_KEYS.FILTER) ?? '{}');
+  const count = url.searchParams.get(PARAM_KEYS.COUNT);
 
   let parsedUrlFilter: Record<string, any> | null = null;
   try {

@@ -36,10 +36,13 @@ export default SocialLogin;
 const FacebookSsoButton = ({ redirect }: { redirect: string }) => {
   const { env } = useOutletContext<OutletContext>();
 
+  const url = new URL(`${env?.DIRECTUS_URL}/auth/login/google`);
+  url.searchParams.set(PARAMS.redirect, redirect);
+
   return (
     <Paper
       component={'a'}
-      href={`${env?.DIRECTUS_URL}/auth/login/google?redirect=${redirect}`}
+      href={url.toString()}
       style={{ textDecoration: 'none', color: 'inherit' }}
       px={12}
       h={40}
@@ -69,10 +72,13 @@ const FacebookSsoButton = ({ redirect }: { redirect: string }) => {
 const GoogleSsoButton = ({ redirect }: { redirect: string }) => {
   const { env } = useOutletContext<OutletContext>();
 
+  const url = new URL(`${env?.DIRECTUS_URL}/auth/login/google`);
+  url.searchParams.set(PARAMS.redirect, redirect);
+
   return (
     <Paper
       component={'a'}
-      href={`${env?.DIRECTUS_URL}/auth/login/google?redirect=${redirect}`}
+      href={url.toString()}
       style={{ textDecoration: 'none', color: 'inherit' }}
       px={12}
       h={40}

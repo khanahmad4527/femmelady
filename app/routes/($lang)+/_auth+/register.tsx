@@ -18,7 +18,7 @@ import InvalidProvider from '~/components/error/InvalidProvider';
 import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
 import PasswordComponent from '~/components/PasswordComponent';
 import SocialLogin from '~/components/SocialLogin';
-import { PATHS } from '~/constant';
+import { PARAMS, PATHS } from '~/constant';
 import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
@@ -114,7 +114,7 @@ const register = () => {
 
   const t = useTranslation();
 
-  const error = searchParams.get('error');
+  const error = searchParams.get(PARAMS.error);
 
   const { Form, form, state, fetcher } = useForm<{
     title: string;

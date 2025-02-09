@@ -338,7 +338,10 @@ export const PARAM_KEYS = {
   CATEGORIES: 'categories',
   BRANDS: 'brands',
   SIZE: 'size',
-  FORCE_REVALIDATE: 'force-validate'
+  FORCE_REVALIDATE: 'force-validate',
+  COUNT: 'count',
+  FILTER: 'filter',
+  Q: 'q'
 } as const;
 
 // Use to force validate, means the loader will get trigger
@@ -392,5 +395,9 @@ export const PARAMS = {
   redirectTo: 'redirect-to',
   error: 'error',
   utmSource: 'utm_source',
-  loginViaProviders: 'login-via-providers'
+  loginViaProviders: 'login-via-providers',
+  faq: 'faq',
+  reason: 'reason',
+  from: 'from',
+  redirect: 'redirect'
 } as const;

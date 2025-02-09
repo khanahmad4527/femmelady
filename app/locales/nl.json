@@ -62,7 +62,9 @@
     "google": "Google",
     "facebook": "Facebook",
     "notAllowedTitle": "Actie niet toegestaan",
-    "notAllowedDescription": "Je hebt geen toestemming om dit item te verwijderen of het bestaat mogelijk niet meer."
+    "notAllowedDescription": "Je hebt geen toestemming om dit item te verwijderen of het bestaat mogelijk niet meer.",
+    "loginRequireTitle": "Actie vereist inloggen",
+    "loginRequireDescription": "Meld u aan om door te gaan."
   },
   "login": {
     "welcome": "Welkom bij Unthaa, log in met",

@@ -62,7 +62,9 @@
     "google": "Google",
     "facebook": "Facebook",
     "notAllowedTitle": "Action Not Allowed",
-    "notAllowedDescription": "You do not have permission to delete this item or it may no longer exist."
+    "notAllowedDescription": "You do not have permission to delete this item or it may no longer exist.",
+    "loginRequireTitle": "Action Requires Login",
+    "loginRequireDescription": "Please sign in to continue."
   },
   "login": {
     "welcome": "Welcome to Unthaa, login with",

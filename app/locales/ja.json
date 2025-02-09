@@ -62,7 +62,9 @@
     "google": "グーグル",
     "facebook": "フェイスブック",
     "notAllowedTitle": "操作は許可されていません",
-    "notAllowedDescription": "このアイテムを削除する権限がないか、すでに存在しない可能性があります。"
+    "notAllowedDescription": "このアイテムを削除する権限がないか、すでに存在しない可能性があります。",
+    "loginRequireTitle": "操作にはログインが必要です",
+    "loginRequireDescription": "続行するにはサインインしてください。"
   },
   "login": {
     "welcome": "Unthaaへようこそ、ログインするには",

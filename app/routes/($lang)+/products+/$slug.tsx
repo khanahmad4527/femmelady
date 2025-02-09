@@ -12,6 +12,7 @@ import {
   Title
 } from '@mantine/core';
 import {
+  FetcherWithComponents,
   Link,
   Outlet,
   ShouldRevalidateFunction,
@@ -65,7 +66,12 @@ import useUserLocale from '~/hooks/useUserLocale';
 import { getSingleProductPageMeta } from '~/meta';
 import ZoomImage from '~/components/products/ZoomImage';
 import { getEnv } from '~/server/env';
-import { handleError } from '~/utils/error';
+import {
+  handleError,
+  TFetcherError,
+  throwLoginRequiredError
+} from '~/utils/error';
+import FetcherError from '~/components/error/FetcherError';
 
 export const meta = ({ data, location }: Route.MetaArgs) => {
   const product = data?.product;
@@ -120,7 +126,12 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
 export const action = async ({ request }: Route.ActionArgs) => {
   try {
-    const { token } = await isAuthenticated(request);
+    const { token, isLoggedIn } = await isAuthenticated(request);
+
+    if (!isLoggedIn) {
+      return throwLoginRequiredError();
+    }
+
     const formData = await request.formData();
 
     const {
@@ -452,6 +463,9 @@ const SingleProduct = () => {
             </Stack>
           </fetcher.Form>
           {fetcher.data?.errors && <AddToCartError fetcher={fetcher} />}
+          <FetcherError
+            fetcher={fetcher as FetcherWithComponents<TFetcherError>}
+          />
         </Grid.Col>
       </Grid>
 

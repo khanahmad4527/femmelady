@@ -4,25 +4,24 @@ const {
 } = require('./app/locales/localesHandler.cjs');
 
 // Add or update multiple keys at once
-// Add or update multiple keys at once
 addOrUpdateKeysBatch({
-  'common.notAllowedTitle': {
-    en: 'Action Not Allowed',
-    ja: '操作は許可されていません',
-    ko: '허용되지 않은 작업',
-    ar: 'الإجراء غير مسموح به',
-    nl: 'Actie niet toegestaan',
-    fr: 'Action non autorisée',
-    zh: '操作不允许'
+  'common.loginRequireTitle': {
+    en: 'Action Requires Login',
+    ja: '操作にはログインが必要です',
+    ko: '작업을 수행하려면 로그인해야 합니다',
+    ar: 'الإجراء يتطلب تسجيل الدخول',
+    nl: 'Actie vereist inloggen',
+    fr: "L'action nécessite une connexion",
+    zh: '操作需要登录'
   },
-  'common.notAllowedDescription': {
-    en: 'You do not have permission to delete this item or it may no longer exist.',
-    ja: 'このアイテムを削除する権限がないか、すでに存在しない可能性があります。',
-    ko: '이 항목을 삭제할 권한이 없거나 더 이상 존재하지 않을 수 있습니다.',
-    ar: 'ليس لديك إذن لحذف هذا العنصر أو قد لا يكون موجودًا بعد الآن.',
-    nl: 'Je hebt geen toestemming om dit item te verwijderen of het bestaat mogelijk niet meer.',
-    fr: "Vous n'avez pas la permission de supprimer cet élément ou il n'existe peut-être plus.",
-    zh: '您没有权限删除此项目，或者它可能已不存在。'
+  'common.loginRequireDescription': {
+    en: 'Please sign in to continue.',
+    ja: '続行するにはサインインしてください。',
+    ko: '계속하려면 로그인하세요.',
+    ar: 'يرجى تسجيل الدخول للمتابعة.',
+    nl: 'Meld u aan om door te gaan.',
+    fr: 'Veuillez vous connecter pour continuer.',
+    zh: '请登录以继续。'
   }
 });
 

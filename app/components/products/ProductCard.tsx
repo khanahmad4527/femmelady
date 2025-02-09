@@ -64,7 +64,7 @@ const ProductCard = (product: Product) => {
       padding={'md'}
       withBorder
     >
-      <ActionIcon
+      {/* <ActionIcon
         pos={'absolute'}
         m={'md'}
         right={0}
@@ -76,7 +76,7 @@ const ProductCard = (product: Product) => {
         radius="xl"
       >
         <IconHeart />
-      </ActionIcon>
+      </ActionIcon> */}
 
       <Box
         ref={ref as any}
@@ -108,7 +108,7 @@ const ProductCard = (product: Product) => {
       </Box>
 
       <Card.Section bg={'primary.1'} inheritPadding pb={4}>
-        <Group align={'flex-end'} justify={"space-between"}>
+        <Group align={'flex-end'} justify={'space-between'}>
           <Box>
             <ProductColorSwitcher
               activeColor={activeColor}
@@ -118,7 +118,7 @@ const ProductCard = (product: Product) => {
               setSearchParams={setSearchParams}
             />
           </Box>
-          <Box>
+          {/* <Box>
             <ActionIcon
               variant="light"
               size="lg"
@@ -127,7 +127,7 @@ const ProductCard = (product: Product) => {
             >
               <IconPlus />
             </ActionIcon>
-          </Box>
+          </Box> */}
         </Group>
       </Card.Section>
     </Card>

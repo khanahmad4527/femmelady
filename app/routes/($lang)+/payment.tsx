@@ -22,7 +22,7 @@ import useTranslation from '~/hooks/useTranslation';
 import { useEffect } from 'react';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import NoCart from '~/components/cart/NoCart';
-import { handleError } from '~/utils/error';
+import { handleError, throwLoginRequiredError } from '~/utils/error';
 import FetcherError from '~/components/error/FetcherError';
 import { PATHS } from '~/constant';
 
@@ -42,7 +42,11 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 
 export const action = async ({ request }: Route.ActionArgs) => {
   try {
-    const { token } = await isAuthenticated(request);
+    const { token, isLoggedIn } = await isAuthenticated(request);
+
+    if (!isLoggedIn) {
+      return throwLoginRequiredError();
+    }
 
     const formData = await request.formData();
 

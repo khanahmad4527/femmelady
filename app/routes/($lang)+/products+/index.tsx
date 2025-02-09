@@ -143,8 +143,8 @@ const Products = () => {
   };
 
   useEffect(() => {
-    searchParams.set('filter', JSON.stringify(filter));
-    searchParams.set('count', String(totalProductCount));
+    searchParams.set(PARAM_KEYS.FILTER, JSON.stringify(filter));
+    searchParams.set(PARAM_KEYS.COUNT, String(totalProductCount));
     setSearchParams(searchParams, { preventScrollReset: true });
   }, [products]);
 

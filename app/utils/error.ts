@@ -7,6 +7,14 @@ export type TFetcherError = {
   error?: boolean;
 };
 
+const ERROR_MAP = {
+  LOGIN_REQUIRED: 'LOGIN_REQUIRED'
+};
+
+export const throwLoginRequiredError = () => {
+  throw new Error(ERROR_MAP.LOGIN_REQUIRED);
+};
+
 export const handleError = ({
   error,
   route
@@ -15,6 +23,15 @@ export const handleError = ({
   route?: 'register' | 'login';
 }) => {
   console.log(error);
+
+  if (error instanceof Error && error.message === ERROR_MAP.LOGIN_REQUIRED) {
+    return {
+      title: 'common.loginRequireTitle',
+      description: 'common.loginRequireDescription',
+      error: true
+    };
+  }
+
   // Handle Zod validation errors
   if (error instanceof z.ZodError) {
     return parseZodError(error);

@@ -62,7 +62,9 @@
     "google": "جوجل",
     "facebook": "فيسبوك",
     "notAllowedTitle": "الإجراء غير مسموح به",
-    "notAllowedDescription": "ليس لديك إذن لحذف هذا العنصر أو قد لا يكون موجودًا بعد الآن."
+    "notAllowedDescription": "ليس لديك إذن لحذف هذا العنصر أو قد لا يكون موجودًا بعد الآن.",
+    "loginRequireTitle": "الإجراء يتطلب تسجيل الدخول",
+    "loginRequireDescription": "يرجى تسجيل الدخول للمتابعة."
   },
   "login": {
     "welcome": "مرحبًا بك في Unthaa، سجل الدخول باستخدام",

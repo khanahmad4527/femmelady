@@ -62,7 +62,9 @@
     "google": "구글",
     "facebook": "페이스북",
     "notAllowedTitle": "허용되지 않은 작업",
-    "notAllowedDescription": "이 항목을 삭제할 권한이 없거나 더 이상 존재하지 않을 수 있습니다."
+    "notAllowedDescription": "이 항목을 삭제할 권한이 없거나 더 이상 존재하지 않을 수 있습니다.",
+    "loginRequireTitle": "작업을 수행하려면 로그인해야 합니다",
+    "loginRequireDescription": "계속하려면 로그인하세요."
   },
   "login": {
     "welcome": "Unthaa에 오신 것을 환영합니다, 로그인",
