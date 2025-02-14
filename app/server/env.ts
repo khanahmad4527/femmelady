@@ -3,7 +3,7 @@
  * @returns an object
  */
 export const getEnv = () => {
-  const { DIRECTUS_URL, APP_URL, NODE_ENV } = process.env;
+  const { DIRECTUS_URL, APP_URL, NODE_ENV, CDN_URL } = process.env;
 
   // In development mode we use test key provided by cloudflare,
   // to avoid turnstile failure
@@ -15,6 +15,7 @@ export const getEnv = () => {
   return {
     DIRECTUS_URL,
     APP_URL,
-    TURNSTILE_SITE_KEY
+    TURNSTILE_SITE_KEY,
+    CDN_URL
   };
 };
