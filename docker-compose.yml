@@ -8,22 +8,6 @@ services:
       - '3000:3000'
     environment:
       NODE_ENV: production
-      REDIS_URL: redis://web-app-redis:6379 # URL format to use with Redis client
+
     env_file:
       - .env
-    depends_on:
-      - web-app-redis
-
-  web-app-redis:
-    image: redis:6.2
-    volumes:
-      - web-app-redis:/data  # Mount volume for persistent Redis data
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
-
-volumes:
-  web-app-redis: # Persistent Redis data volume
