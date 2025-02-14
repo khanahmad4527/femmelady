@@ -288,7 +288,7 @@ const SingleProduct = () => {
                       id: getStringDto(i.directus_files_id),
                       h: 100,
                       w: 100,
-                      DIRECTUS_URL: env?.DIRECTUS_URL
+                      DIRECTUS_URL: env?.CDN_URL
                     })}
                     alt={productTranslation?.title!}
                     loading={'lazy'}
@@ -338,7 +338,7 @@ const SingleProduct = () => {
                     id: getStringDto(i.directus_files_id),
                     h: 200,
                     w: 200,
-                    DIRECTUS_URL: env?.DIRECTUS_URL
+                    DIRECTUS_URL: env?.CDN_URL
                   })}
                   alt={productTranslation?.title!}
                   loading={'lazy'}

@@ -41,7 +41,7 @@ const ZoomImage = ({
             id: activeImage,
             h: srcH,
             w: srcW,
-            DIRECTUS_URL: env?.DIRECTUS_URL
+            DIRECTUS_URL: env?.CDN_URL
           })}
           alt={alt}
           loading={'lazy'}
@@ -53,7 +53,7 @@ const ZoomImage = ({
               id: activeImage,
               h: srcH,
               w: srcW,
-              DIRECTUS_URL: env?.DIRECTUS_URL
+              DIRECTUS_URL: env?.CDN_URL
             })!
           }
           zoomSrc={
@@ -61,7 +61,7 @@ const ZoomImage = ({
               id: activeImage,
               h: zoomSrcH,
               w: zoomSrcW,
-              DIRECTUS_URL: env?.DIRECTUS_URL
+              DIRECTUS_URL: env?.CDN_URL
             })!
           }
           imgAttributes={{ alt: '', loading: 'lazy' }}

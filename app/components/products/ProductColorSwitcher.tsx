@@ -137,7 +137,7 @@ const ProductColorSwitcher = ({
                       id: getStringDto(c?.texture),
                       h: 50,
                       w: 50,
-                      DIRECTUS_URL: env?.DIRECTUS_URL
+                      DIRECTUS_URL: env?.CDN_URL
                     })}
                     radius="xl"
                   />

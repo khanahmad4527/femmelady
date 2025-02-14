@@ -98,7 +98,7 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                       id: hovered
                         ? getStringDto(p?.feature_image_2)
                         : getStringDto(p?.feature_image_1),
-                      DIRECTUS_URL: env?.DIRECTUS_URL
+                      DIRECTUS_URL: env?.CDN_URL
                     })}
                     alt={translation.title!}
                     loading={'lazy'}
