@@ -56,6 +56,13 @@ const ProductCard = (product: Product) => {
 
   const { currentLanguage } = useCurrentLanguage();
 
+  console.log(
+    getImageUrl({
+      id: hovered ? featureImage2 : featureImage1,
+      url: env?.CDN_URL
+    })
+  );
+
   return (
     <Card
       pos={'relative'}
@@ -93,7 +100,7 @@ const ProductCard = (product: Product) => {
           fit={'contain'}
           src={getImageUrl({
             id: hovered ? featureImage2 : featureImage1,
-            DIRECTUS_URL: env?.CDN_URL
+            url: env?.CDN_URL
           })}
           alt={translation?.title!}
           loading={'lazy'}
