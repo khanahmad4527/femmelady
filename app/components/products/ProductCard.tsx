@@ -56,13 +56,6 @@ const ProductCard = (product: Product) => {
 
   const { currentLanguage } = useCurrentLanguage();
 
-  console.log(
-    getImageUrl({
-      id: hovered ? featureImage2 : featureImage1,
-      url: env?.CDN_URL
-    })
-  );
-
   return (
     <Card
       pos={'relative'}
