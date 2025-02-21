@@ -77,6 +77,8 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
 };
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
+  console.log('env', JSON.stringify(process.env, null, 2));
+
   const { isLoggedIn, user } = await isAuthenticated(request);
 
   const result = getValidLanguageOrRedirect({ params, request, user });
