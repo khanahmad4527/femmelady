@@ -1,0 +1,75 @@
+steps:
+  # 1️⃣ Build Docker image using BuildKit for optimization
+  - name: gcr.io/cloud-builders/docker
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        export DOCKER_BUILDKIT=1
+        docker build -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA -f Dockerfile .
+    secretEnv:
+      [
+        'DIRECTUS_URL',
+        'APP_URL',
+        'EXCHANGE_RATE_API_URL',
+        'APP_DOMAIN',
+        'DIRECTUS_DOMAIN',
+        'SESSION_SECRET',
+        'REDIS_URL',
+        'TURNSTILE_SECRET_KEY',
+        'TURNSTILE_SITE_KEY',
+        'CDN_URL'
+      ]
+
+  # 2️⃣ Push the image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA'
+      ]
+
+  # 3️⃣ Deploy the new version to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: [
+        'run',
+        'deploy',
+        '${_SERVICE_NAME}',
+        '--image',
+        '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA',
+        '--region',
+        '${_REGION}',
+        '--platform',
+        'managed',
+        '--allow-unauthenticated',
+        '${_MIN_INSTANCES}', # 🔄 Keeps at least 1 instance running (prevents cold starts)
+        '${_MAX_INSTANCES}' # 🚀 Auto-scales up to 3 instances if needed
+      ]
+
+options:
+  logging: CLOUD_LOGGING_ONLY # 📜 Log to Cloud Logging only (no local logs)
+
+serviceAccount: '${_SERVICE_ACCOUNT}' # 🛠️ IAM Service Account for deployment
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_DIRECTUS_URL/versions/latest
+      env: 'DIRECTUS_URL'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_APP_URL/versions/latest
+      env: 'APP_URL'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_EXCHANGE_RATE_API_URL/versions/latest
+      env: 'EXCHANGE_RATE_API_URL'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_APP_DOMAIN/versions/latest
+      env: 'APP_DOMAIN'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_DIRECTUS_DOMAIN/versions/latest
+      env: 'DIRECTUS_DOMAIN'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_SESSION_SECRET/versions/latest
+      env: 'SESSION_SECRET'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_REDIS_URL/versions/latest
+      env: 'REDIS_URL'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_TURNSTILE_SECRET_KEY/versions/latest
+      env: 'TURNSTILE_SECRET_KEY'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_TURNSTILE_SITE_KEY/versions/latest
+      env: 'TURNSTILE_SITE_KEY'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_CDN_URL/versions/latest
+      env: 'CDN_URL'
