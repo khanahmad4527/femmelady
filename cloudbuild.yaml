@@ -41,6 +41,7 @@ steps:
         '${_REGION}',
         '--platform',
         'managed',
+        '--port=3000', # <-- Tell Cloud Run to use port 3000
         '--allow-unauthenticated',
         '${_MIN_INSTANCES}', # 🔄 Keeps at least 1 instance running (prevents cold starts)
         '${_MAX_INSTANCES}' # 🚀 Auto-scales up to 3 instances if needed
