@@ -89,7 +89,7 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
             id: (hovered
               ? cart.feature_image_2
               : cart?.feature_image_1) as string,
-            DIRECTUS_URL: env?.CDN_URL
+            url: env?.CDN_URL
           })}
           alt={productTranslation?.title!}
           loading={'lazy'}

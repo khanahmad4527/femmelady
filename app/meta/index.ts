@@ -154,7 +154,7 @@ export const getSingleProductPageMeta = ({
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
-          DIRECTUS_URL: env?.CDN_URL
+          url: env?.CDN_URL
         })
       }
     ],
@@ -169,7 +169,7 @@ export const getSingleProductPageMeta = ({
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
-          DIRECTUS_URL: env?.CDN_URL
+          url: env?.CDN_URL
         })
       }
     ],
@@ -184,7 +184,7 @@ export const getSingleProductPageMeta = ({
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
-          DIRECTUS_URL: env?.CDN_URL
+          url: env?.CDN_URL
         })
       }
     ],
@@ -199,7 +199,7 @@ export const getSingleProductPageMeta = ({
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
-          DIRECTUS_URL: env?.CDN_URL
+          url: env?.CDN_URL
         })
       }
     ],
@@ -214,7 +214,7 @@ export const getSingleProductPageMeta = ({
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
-          DIRECTUS_URL: env?.CDN_URL
+          url: env?.CDN_URL
         })
       }
     ],
@@ -229,7 +229,7 @@ export const getSingleProductPageMeta = ({
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
-          DIRECTUS_URL: env?.CDN_URL
+          url: env?.CDN_URL
         })
       }
     ],
@@ -244,7 +244,7 @@ export const getSingleProductPageMeta = ({
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
-          DIRECTUS_URL: env?.CDN_URL
+          url: env?.CDN_URL
         })
       }
     ]

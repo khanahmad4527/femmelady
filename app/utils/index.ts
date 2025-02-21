@@ -228,18 +228,18 @@ export const getImageUrl = ({
   id,
   h = 300,
   w = 300,
-  DIRECTUS_URL
+  url
 }: {
   id?: string;
   h?: number;
   w?: number;
-  DIRECTUS_URL?: string;
+  url?: string;
 }) => {
-  if (!DIRECTUS_URL) {
+  if (!url) {
     return null;
   }
 
-  return `${DIRECTUS_URL}/assets/${id}?height=${h}&width=${w}`;
+  return `${url}/assets/${id}?height=${h}&width=${w}`;
 };
 
 export const validateUUID = (uuid: string) => {
