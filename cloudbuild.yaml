@@ -7,19 +7,6 @@ steps:
       - |
         export DOCKER_BUILDKIT=1
         docker build -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA -f Dockerfile .
-    secretEnv:
-      [
-        'DIRECTUS_URL',
-        'APP_URL',
-        'EXCHANGE_RATE_API_URL',
-        'APP_DOMAIN',
-        'DIRECTUS_DOMAIN',
-        'SESSION_SECRET',
-        'REDIS_URL',
-        'TURNSTILE_SECRET_KEY',
-        'TURNSTILE_SITE_KEY',
-        'CDN_URL'
-      ]
 
   # 2️⃣ Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -43,6 +30,7 @@ steps:
         'managed',
         '--port=3000', # <-- Tell Cloud Run to use port 3000
         '--allow-unauthenticated',
+        '--set-env-vars=DIRECTUS_URL=$DIRECTUS_URL,APP_URL=$APP_URL,EXCHANGE_RATE_API_URL=$EXCHANGE_RATE_API_URL,APP_DOMAIN=$APP_DOMAIN,DIRECTUS_DOMAIN=$DIRECTUS_DOMAIN,SESSION_SECRET=$SESSION_SECRET,REDIS_URL=$REDIS_URL,TURNSTILE_SECRET_KEY=$TURNSTILE_SECRET_KEY,TURNSTILE_SITE_KEY=$TURNSTILE_SITE_KEY,CDN_URL=$CDN_URL',
         '${_MIN_INSTANCES}', # 🔄 Keeps at least 1 instance running (prevents cold starts)
         '${_MAX_INSTANCES}' # 🚀 Auto-scales up to 3 instances if needed
       ]
