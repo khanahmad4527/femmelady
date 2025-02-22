@@ -33,7 +33,7 @@ const Document = (
     <HeaderFooterContext.Provider value={ctx}>
       <Stack className={commonClasses.consistentSpacing}>
         {!isExcludedRoute && <Header />}
-        <Container fluid>{children}</Container>
+        <Container>{children}</Container>
         {!isExcludedRoute && <Footer />}
       </Stack>
     </HeaderFooterContext.Provider>
