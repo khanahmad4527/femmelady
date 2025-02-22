@@ -331,6 +331,7 @@ const SingleProduct = () => {
             slideSize={slideSize}
             align={'start'}
             initialSlide={initialSlide}
+            style={{ cursor: 'grab', direction: 'ltr' }} // There was a problem with rtl so we set it to ltr to avid any problem
             dragFree
             draggable
             loop
