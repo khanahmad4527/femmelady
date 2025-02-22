@@ -1,7 +1,8 @@
-import { Carousel } from '@mantine/carousel';
+import { Carousel, Embla } from '@mantine/carousel';
 import {
   Box,
   Button,
+  Center,
   Grid,
   Group,
   Image,
@@ -74,7 +75,7 @@ import {
 import FetcherError from '~/components/error/FetcherError';
 
 export const meta = ({ data, location }: Route.MetaArgs) => {
-  const product = data?.product;
+  const product = data?.product as Product;
   const env = data?.env;
 
   return getSingleProductPageMeta({
@@ -195,8 +196,10 @@ const SingleProduct = () => {
       searchParams
     });
 
-  const initialSlide = currentImageSet.findIndex(
-    i => i.directus_files_id === activeImage
+  // This value should not changes after first render
+  // To avoid the shift of highlighted image on smaller view
+  const [initialSlide] = useState(
+    currentImageSet.findIndex(i => i.directus_files_id === activeImage)
   );
 
   const t = useTranslation();
@@ -256,17 +259,18 @@ const SingleProduct = () => {
   const redirectText =
     utmSource && !isLoggedIn ? t('login.login') : t('register.register');
 
+  const slideSize = currentImageSet?.length > 3 ? '30%' : '33.33%';
+
   return (
     <Stack className={commonClasses.consistentSpacing}>
       <Grid>
-        <Grid.Col
-          display={{ base: 'none', md: 'grid' }}
-          span={{ base: 12, md: 1 }}
-        >
-          <ScrollArea h={500}>
+        {/* This render product images in larger view */}
+        <Grid.Col visibleFrom="lg" span={{ base: 12, lg: 1 }}>
+          <ScrollArea h={500} w={100}>
             <Stack gap={0} pb={2}>
               {currentImageSet?.map((i, idx) => (
                 <Box
+                  h={100}
                   key={getStringDto(i.directus_files_id) + '-' + idx}
                   p={2}
                   style={{
@@ -283,7 +287,8 @@ const SingleProduct = () => {
                 >
                   <Image
                     w={'100%'}
-                    fit={'contain'}
+                    h={'100%'}
+                    fit={'cover'}
                     src={getImageUrl({
                       id: getStringDto(i.directus_files_id),
                       h: 100,
@@ -298,57 +303,84 @@ const SingleProduct = () => {
             </Stack>
           </ScrollArea>
         </Grid.Col>
-        <Grid.Col span={{ base: 12, md: 6 }}>
-          <ZoomImage
-            activeImage={activeImage}
-            alt={productTranslation?.title!}
-          />
+
+        <Grid.Col span={{ base: 12, lg: 6 }}>
+          {/* This render product images in smaller view */}
+          <Center hiddenFrom="lg" h={{ base: 288, xxs: 460, sm: 800, lg: 650 }}>
+            <Image
+              w={'100%'}
+              h={'100%'}
+              fit={'cover'}
+              src={getImageUrl({
+                id: activeImage,
+                h: 800,
+                w: 800,
+                url: env?.CDN_URL
+              })}
+              alt={productTranslation?.title!}
+              loading={'eager'}
+            />
+          </Center>
 
           <Carousel
-            display={{ base: 'block', md: 'none' }}
+            hiddenFrom="lg"
             mt={'md'}
-            withIndicators
-            height={200}
-            slideGap={'md'}
-            slideSize={'33.3333%'}
-            dragFree={false}
+            withIndicators={false}
+            withControls={false}
+            slideGap={'xs'}
+            slideSize={slideSize}
             align={'start'}
             initialSlide={initialSlide}
+            style={{ cursor: 'grab', direction: 'ltr' }} // There was a problem with rtl so we set it to ltr to avid any problem
+            dragFree
+            draggable
             loop
           >
             {currentImageSet?.map((i, idx) => (
               <Carousel.Slide
                 key={getStringDto(i.directus_files_id) + '-' + idx}
-                style={{
-                  cursor: 'pointer',
-                  border:
-                    i.directus_files_id === activeImage
-                      ? '2px solid black'
-                      : '2px solid transparent',
-                  width: '100%'
-                }}
                 onClick={() => {
                   handleActiveImage(getStringDto(i.directus_files_id));
                 }}
               >
-                <Image
-                  h={'100%'}
-                  fit={'contain'}
-                  src={getImageUrl({
-                    id: getStringDto(i.directus_files_id),
-                    h: 200,
-                    w: 200,
-                    url: env?.CDN_URL
-                  })}
-                  alt={productTranslation?.title!}
-                  loading={'lazy'}
-                />
+                <Box
+                  h={{ base: 100, xxs: 150, xs: 200, sm: 250, md: 300 }}
+                  w={'100%'}
+                  style={{
+                    cursor: 'pointer',
+                    border:
+                      i.directus_files_id === activeImage
+                        ? '2px solid black'
+                        : '2px solid transparent'
+                  }}
+                >
+                  <Image
+                    w={'100%'}
+                    h={'100%'}
+                    fit={'cover'}
+                    src={getImageUrl({
+                      id: getStringDto(i.directus_files_id),
+                      h: 200,
+                      w: 200,
+                      url: env?.CDN_URL
+                    })}
+                    alt={productTranslation?.title!}
+                    loading={'lazy'}
+                  />
+                </Box>
               </Carousel.Slide>
             ))}
           </Carousel>
+
+          {/* This render product images in larger view */}
+          <ZoomImage
+            activeImage={activeImage}
+            alt={productTranslation?.title!}
+          />
         </Grid.Col>
 
-        <Grid.Col component={Stack} span={{ base: 12, md: 5 }}>
+        {/* This render product title and description */}
+        <Grid.Col component={Stack} span={{ base: 12, lg: 5 }}>
           <Title tt={'capitalize'} aria-label="Product name">
             {productTranslation?.title}
           </Title>
@@ -365,6 +397,7 @@ const SingleProduct = () => {
               />
             </Box>
           )}
+
           <ProductColorSwitcher
             activeColor={activeColor}
             setActiveColor={setActiveColor}
@@ -374,6 +407,7 @@ const SingleProduct = () => {
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />
+
           <ProductSizeSwitcher
             sizes={product.sizes as ProductSize[]}
             activeSize={activeSize}
@@ -381,6 +415,7 @@ const SingleProduct = () => {
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />
+
           <fetcher.Form method="POST">
             <Stack>
               <ProductCartQuantity
@@ -462,7 +497,9 @@ const SingleProduct = () => {
               )}
             </Stack>
           </fetcher.Form>
+
           {fetcher.data?.errors && <AddToCartError fetcher={fetcher} />}
+
           <FetcherError
             fetcher={fetcher as FetcherWithComponents<TFetcherError>}
           />

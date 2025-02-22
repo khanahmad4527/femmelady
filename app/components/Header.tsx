@@ -1,4 +1,12 @@
-import { ActionIcon, Anchor, Box, Burger, Flex, Group } from '@mantine/core';
+import {
+  ActionIcon,
+  Anchor,
+  Box,
+  Burger,
+  Container,
+  Flex,
+  Group
+} from '@mantine/core';
 import { Link } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -211,82 +219,84 @@ const Header = () => {
   ));
 
   return (
-    <Box>
-      <Flex
-        justify={{ base: 'center', md: 'space-between' }}
-        align="center"
-        direction={{ base: 'column', md: 'row' }}
-        gap={'md'}
-        p="md"
-        bg="primary"
-      >
-        <Logo />
-
-        <Group
-          justify={'center'}
-          wrap={'nowrap'}
-          w={{ base: '100%', md: '40%' }}
+    <Box bg="primary">
+      <Container>
+        <Flex
+          justify={{ base: 'center', md: 'space-between' }}
+          align="center"
+          direction={{ base: 'column', md: 'row' }}
+          gap={'md'}
+          py="md"
         >
-          <TopSearchBar />
-          <Burger
-            display={{ base: 'block', md: 'none' }}
-            color={'white'}
-            opened={burgerOpened}
-            onClick={() => {
-              mobileDrawerOpen();
-              burgerToggle();
-            }}
-          />
+          <Logo />
+
+          <Group
+            justify={'center'}
+            wrap={'nowrap'}
+            w={{ base: '100%', md: '40%' }}
+          >
+            <TopSearchBar />
+            <Burger
+              display={{ base: 'block', md: 'none' }}
+              color={'white'}
+              opened={burgerOpened}
+              onClick={() => {
+                mobileDrawerOpen();
+                burgerToggle();
+              }}
+            />
+          </Group>
+
+          <Group
+            display={{ base: 'none', md: 'flex' }}
+            justify="space-between"
+            p="sm"
+          >
+            <LanguageSwitcher />
+
+            {isLoggedIn && (
+              <Flex>
+                <Anchor
+                  component={Link}
+                  to={buildLocalizedLink({
+                    baseUrl: env?.APP_URL!,
+                    currentLanguage,
+                    paths: [PATHS.checkout]
+                  })}
+                >
+                  <Group gap={0} wrap={'nowrap'} style={{ cursor: 'pointer' }}>
+                    <ActionIcon variant="transparent" size="xl">
+                      <IconShoppingCart size={30} color="white" />
+                    </ActionIcon>
+                    <CartCount cartCount={cartCount} locale={locale} />
+                  </Group>
+                </Anchor>
+
+                <BurgerMenu />
+              </Flex>
+            )}
+
+            {!isLoggedIn && <Group> {authItems}</Group>}
+          </Group>
+        </Flex>
+
+        <Group display={{ base: 'none', md: 'flex' }} p={'md'} bg={'primary.1'}>
+          {categoryItems}
         </Group>
 
-        <Group
-          display={{ base: 'none', md: 'flex' }}
-          justify="space-between"
-          p="sm"
-        >
-          <LanguageSwitcher />
-
-          {isLoggedIn && (
-            <Flex>
-              <Anchor
-                component={Link}
-                to={buildLocalizedLink({
-                  baseUrl: env?.APP_URL!,
-                  currentLanguage,
-                  paths: [PATHS.checkout]
-                })}
-              >
-                <Group gap={0} wrap={'nowrap'} style={{ cursor: 'pointer' }}>
-                  <ActionIcon variant="transparent" size="xl">
-                    <IconShoppingCart size={30} color="white" />
-                  </ActionIcon>
-                  <CartCount cartCount={cartCount} locale={locale} />
-                </Group>
-              </Anchor>
-
-              <BurgerMenu />
-            </Flex>
-          )}
-
-          {!isLoggedIn && <Group> {authItems}</Group>}
-        </Group>
-      </Flex>
-      <Group display={{ base: 'none', md: 'flex' }} p={'md'} bg={'primary.1'}>
-        {categoryItems}
-      </Group>
-
-      <MobileDrawer
-        authLinks={authLinks}
-        categoryLinks={categoryLinks}
-        close={mobileDrawerClose}
-        burgerClose={burgerClose}
-        opened={mobileDrawerOpened}
-        headerCartDrawerOpen={headerCartDrawerOpen}
-      />
-      <HeaderCart
-        close={headerCartDrawerClose}
-        opened={headerCartDrawerOpened}
-      />
+        <MobileDrawer
+          authLinks={authLinks}
+          categoryLinks={categoryLinks}
+          close={mobileDrawerClose}
+          burgerClose={burgerClose}
+          opened={mobileDrawerOpened}
+          headerCartDrawerOpen={headerCartDrawerOpen}
+        />
+        <HeaderCart
+          close={headerCartDrawerClose}
+          opened={headerCartDrawerOpened}
+        />
+      </Container>
     </Box>
   );
 };

@@ -31,11 +31,11 @@ const Document = (
 
   return (
     <HeaderFooterContext.Provider value={ctx}>
-      <Container component={Stack} className={commonClasses.consistentSpacing}>
+      <Stack className={commonClasses.consistentSpacing}>
         {!isExcludedRoute && <Header />}
-        {children}
+        <Container w={'100%'}>{children}</Container>
         {!isExcludedRoute && <Footer />}
-      </Container>
+      </Stack>
     </HeaderFooterContext.Provider>
   );
 };

@@ -1,5 +1,6 @@
 import {
   Anchor,
+  Box,
   Button,
   Center,
   Divider,
@@ -125,8 +126,6 @@ const Login = () => {
   const { currentLanguage, env, searchParams } =
     useOutletContext<OutletContext>();
 
-  const x = useLoaderData<typeof loader>();
-
   const error = searchParams.get(PARAMS.error);
 
   const { Form, form, state, fetcher, errors } = useForm<{
@@ -141,86 +140,85 @@ const Login = () => {
   });
 
   return (
-    <Center>
-      <Paper
-        component={Stack}
-        radius={0}
-        p={{ base: 'md', md: 'xl' }}
-        w={{ base: '90%', md: '50%' }}
-        withBorder
-      >
-        <Text size="lg" fw={500}>
-          {t('login.welcome')}
+    <Paper
+      component={Stack}
+      radius={0}
+      p={{ base: 'md', md: 'xl' }}
+      w={{ base: '100%', md: '50%' }}
+      m={'auto'}
+      withBorder
+    >
+      <Text size="lg" fw={500}>
+        {t('login.welcome')}
+      </Text>
+
+      <SocialLogin from={'login'} />
+
+      <Divider
+        label={t('authForm.continueWithEmail')}
+        labelPosition="center"
+        my="lg"
+      />
+
+      <Stack>
+        <Form method="POST">
+          <TextInput
+            withAsterisk
+            name={'email'}
+            label={t('authForm.email')}
+            placeholder={'john@gmail.com'}
+            key={form.key('email')}
+            {...form.getInputProps('email')}
+          />
+
+          <PasswordInput
+            withAsterisk
+            radius={0}
+            label={t('authForm.password')}
+            name={'password'}
+            placeholder="********"
+            key={form.key('password')}
+            {...form.getInputProps('password')}
+          />
+
+          <Group mt={'md'} justify="space-between">
+            <Anchor
+              component={Link}
+              to={buildLocalizedLink({
+                baseUrl: env?.APP_URL!,
+                currentLanguage,
+                paths: [PATHS.register]
+              })}
+            >
+              {t('login.accountRegister')}
+            </Anchor>
+
+            <Button type="submit" loading={state === 'submitting'}>
+              {t('login.login')}
+            </Button>
+          </Group>
+
+          <Turnstile
+            siteKey={env?.TURNSTILE_SITE_KEY!}
+            options={{
+              size: 'invisible'
+            }}
+          />
+        </Form>
+      </Stack>
+
+      <FetcherError fetcher={fetcher} />
+
+      {errors?.['cf-turnstile-response'] && (
+        <Text fz={11} c={'red'}>
+          {t('turnstile.tokenRequired')}
         </Text>
+      )}
 
-        <SocialLogin from={'login'} />
+      {error === 'invalidProvider' && <InvalidProvider t={t} />}
 
-        <Divider
-          label={t('authForm.continueWithEmail')}
-          labelPosition="center"
-          my="lg"
-        />
-
-        <Stack>
-          <Form method="POST">
-            <TextInput
-              withAsterisk
-              name={'email'}
-              label={t('authForm.email')}
-              placeholder={'john@gmail.com'}
-              key={form.key('email')}
-              {...form.getInputProps('email')}
-            />
-
-            <PasswordInput
-              withAsterisk
-              radius={0}
-              label={t('authForm.password')}
-              name={'password'}
-              placeholder="********"
-              key={form.key('password')}
-              {...form.getInputProps('password')}
-            />
-
-            <Group mt={'md'} justify="space-between">
-              <Anchor
-                component={Link}
-                to={buildLocalizedLink({
-                  baseUrl: env?.APP_URL!,
-                  currentLanguage,
-                  paths: [PATHS.register]
-                })}
-              >
-                {t('login.accountRegister')}
-              </Anchor>
-
-              <Button type="submit" loading={state === 'submitting'}>
-                {t('login.login')}
-              </Button>
-            </Group>
-
-            <Turnstile
-              siteKey={env?.TURNSTILE_SITE_KEY!}
-              options={{
-                size: 'invisible'
-              }}
-            />
-          </Form>
-        </Stack>
-
-        <FetcherError fetcher={fetcher} />
-
-        {errors?.['cf-turnstile-response'] && (
-          <Text fz={11} c={'red'}>
-            {t('turnstile.tokenRequired')}
-          </Text>
-        )}
-
-        {error === 'invalidProvider' && <InvalidProvider t={t} />}
-
-        {error === 'providerLoginFailed' && <ProviderLoginFailed t={t} />}
-      </Paper>
-    </Center>
+      {error === 'providerLoginFailed' && <ProviderLoginFailed t={t} />}
+    </Paper>
   );
 };
 

@@ -58,6 +58,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 };
 
 export const action: ActionFunction = async ({ request, params }) => {
+  return {};
   try {
     const result = getValidLanguageOrRedirect({ params, request });
 
@@ -132,97 +133,97 @@ const register = () => {
   });
 
   return (
-    <Center>
-      <Paper
-        component={Stack}
-        radius={0}
-        p={{ base: 'md', md: 'xl' }}
-        w={{ base: '90%', md: '50%' }}
-        withBorder
-      >
-        <Text size="lg" fw={500}>
-          {t('register.welcome')}
-        </Text>
+    <Paper
+      component={Stack}
+      radius={0}
+      p={{ base: 'md', md: 'xl' }}
+      w={{ base: '100%', md: '50%' }}
+      m={'auto'}
+      withBorder
+    >
+      <Text size="lg" fw={500}>
+        {t('register.welcome')}
+      </Text>
 
-        <SocialLogin from={'register'} />
+      <SocialLogin from={'register'} />
 
-        <Divider
-          label={t('authForm.continueWithEmail')}
-          labelPosition="center"
-          my="lg"
-        />
+      <Divider
+        label={t('authForm.continueWithEmail')}
+        labelPosition="center"
+        my="lg"
+      />
 
-        <Form method="POST">
-          <Stack>
-            <Group align={'start'} grow>
-              <TextInput
-                withAsterisk
-                label={t('authForm.firstName')}
-                name="first_name"
-                placeholder="John"
-                key={form.key('first_name')}
-                {...form.getInputProps('first_name')}
-              />
-
-              <TextInput
-                label={t('authForm.lastName')}
-                name="last_name"
-                placeholder="Doe"
-                key={form.key('last_name')}
-                {...form.getInputProps('last_name')}
-              />
-            </Group>
+      <Form method="POST">
+        <Stack>
+          <Group align={'start'} grow>
             <TextInput
               withAsterisk
-              label={t('authForm.email')}
-              name="email"
-              placeholder="jhon@email.com"
-              key={form.key('email')}
-              {...form.getInputProps('email')}
+              label={t('authForm.firstName')}
+              name="first_name"
+              placeholder="John"
+              key={form.key('first_name')}
+              {...form.getInputProps('first_name')}
             />
 
-            <PasswordComponent form={form} />
-
-            <Checkbox
-              name="terms"
-              label={t('authForm.terms')}
-              key={form.key('terms')}
-              {...form.getInputProps('terms', { type: 'checkbox' })}
+            <TextInput
+              label={t('authForm.lastName')}
+              name="last_name"
+              placeholder="Doe"
+              key={form.key('last_name')}
+              {...form.getInputProps('last_name')}
             />
-
-            <Group justify="space-between">
-              <Anchor
-                component={Link}
-                to={buildLocalizedLink({
-                  baseUrl: env?.APP_URL!,
-                  currentLanguage,
-                  paths: [PATHS.login]
-                })}
-              >
-                {t('register.accountLogin')}
-              </Anchor>
-              <Button type="submit" loading={state !== 'idle'}>
-                {' '}
-                {t('register.register')}
-              </Button>
-            </Group>
-          </Stack>
-
-          <Turnstile
-            siteKey={env?.TURNSTILE_SITE_KEY!}
-            options={{
-              size: 'invisible'
-            }}
+          </Group>
+          <TextInput
+            withAsterisk
+            label={t('authForm.email')}
+            name="email"
+            placeholder="jhon@email.com"
+            key={form.key('email')}
+            {...form.getInputProps('email')}
+            disabled //TODO: remove later, when email verification is implemented
           />
-        </Form>
 
-        <FetcherError fetcher={fetcher} />
+          <PasswordComponent form={form} />
 
-        {error === 'invalidProvider' && <InvalidProvider t={t} />}
+          <Checkbox
+            name="terms"
+            label={t('authForm.terms')}
+            key={form.key('terms')}
+            {...form.getInputProps('terms', { type: 'checkbox' })}
+          />
 
-        {error === 'providerLoginFailed' && <ProviderLoginFailed t={t} />}
-      </Paper>
-    </Center>
+          <Group justify="space-between">
+            <Anchor
+              component={Link}
+              to={buildLocalizedLink({
+                baseUrl: env?.APP_URL!,
+                currentLanguage,
+                paths: [PATHS.login]
+              })}
+            >
+              {t('register.accountLogin')}
+            </Anchor>
+            <Button type="submit" loading={state !== 'idle'}>
+              {' '}
+              {t('register.register')}
+            </Button>
+          </Group>
+        </Stack>
+
+        <Turnstile
+          siteKey={env?.TURNSTILE_SITE_KEY!}
+          options={{
+            size: 'invisible'
+          }}
+        />
+      </Form>
+
+      <FetcherError fetcher={fetcher} />
+
+      {error === 'invalidProvider' && <InvalidProvider t={t} />}
+
+      {error === 'providerLoginFailed' && <ProviderLoginFailed t={t} />}
+    </Paper>
   );
 };
 
