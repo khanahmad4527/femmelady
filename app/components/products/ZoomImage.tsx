@@ -32,10 +32,9 @@ const ZoomImage = ({
   }, []);
 
   return (
-    <Box>
+    <Box visibleFrom="lg">
       {!isCLient ? (
         <Image
-          h={'100%'}
           fit={'contain'}
           src={getImageUrl({
             id: activeImage,
@@ -44,7 +43,7 @@ const ZoomImage = ({
             url: env?.CDN_URL
           })}
           alt={alt}
-          loading={'lazy'}
+          loading={'eager'}
         />
       ) : (
         <InnerImageZoom
@@ -64,7 +63,7 @@ const ZoomImage = ({
               url: env?.CDN_URL
             })!
           }
-          imgAttributes={{ alt: '', loading: 'lazy' }}
+          imgAttributes={{ alt: '', loading: 'eager' }}
         />
       )}
     </Box>

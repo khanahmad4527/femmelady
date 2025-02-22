@@ -133,7 +133,14 @@ const register = () => {
   });
 
   return (
-    <Paper component={Stack} radius={0} p={{ base: 'md', md: 'xl' }} withBorder>
+    <Paper
+      component={Stack}
+      radius={0}
+      p={{ base: 'md', md: 'xl' }}
+      w={{ base: '100%', md: '50%' }}
+      m={'auto'}
+      withBorder
+    >
       <Text size="lg" fw={500}>
         {t('register.welcome')}
       </Text>

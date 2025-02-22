@@ -29,6 +29,9 @@ export const theme: MantineThemeOverride = createTheme({
   spacing: {
     '2xl': rem(64)
   },
+  breakpoints: {
+    xxs: '21em'
+  },
   primaryShade: 7,
   primaryColor: 'primary',
   fontFamily: 'Fuzzy Bubbles, sans-serif',

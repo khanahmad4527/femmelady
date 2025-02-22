@@ -27,8 +27,8 @@ import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
 import { buildLocalizedLink, getLanguageCode } from '~/utils';
 import { Route } from './+types/_index';
-import { PATHS } from '~/constant';
-import { OutletContext } from '~/types';
+import { CATEGORIES_WITH_ID_MAP, PATHS } from '~/constant';
+import { OutletContext, Product } from '~/types';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -53,42 +53,114 @@ export default function Index() {
     {
       id: 'e8b1f3d7-6f8c-4b7d-89a3-c25f75d1a462',
       title: t('home.weddings'),
-      image: wedding
+      image: wedding,
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP['wedding-dresses'].key,
+          'force-validate': 'global'
+        }
+      })
     },
     {
       id: 'c7a5e4f1-b2d8-4d7f-a6b1-89f3d42c7e75',
       title: t('home.candles'),
-      image: candle
+      image: candle,
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.candles.key,
+          'force-validate': 'global'
+        }
+      })
     },
     {
       id: 'a2c4d7b9-85f3-41d6-b7e2-f47c8a1b925d',
       title: t('home.dresses'),
-      image: dress
+      image: dress,
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.dresses.key,
+          'force-validate': 'global'
+        }
+      })
     },
     {
       id: 'fbd8e7a1-0193-488b-bbc8-f5f23a5e34fc',
       title: t('home.jewelry'),
-      image: jewelry
+      image: jewelry,
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.jewelry.key,
+          'force-validate': 'global'
+        }
+      })
     },
     {
       id: '3be2c5d7-9677-470f-b3ec-24d6eaa08f1a',
       title: t('home.bags'),
-      image: bag
+      image: bag,
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.bags.key,
+          'force-validate': 'global'
+        }
+      })
     },
     {
       id: '9263c8ad-f0bc-423f-b2e7-cd74a6a31534',
       title: t('home.perfumes'),
-      image: perfume
+      image: perfume,
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.perfumes.key,
+          'force-validate': 'global'
+        }
+      })
     },
     {
       id: 'a59376ba-d431-4e6d-a06f-0bce86ab31db',
       title: t('home.watches'),
-      image: watch
+      image: watch,
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.watches.key,
+          'force-validate': 'global'
+        }
+      })
     },
     {
       id: '75a254d3-f31b-4785-9b36-8d676df6fca5',
       title: t('home.shoes'),
-      image: shoe
+      image: shoe,
+      link: buildLocalizedLink({
+        baseUrl: env?.APP_URL!,
+        currentLanguage,
+        paths: [PATHS.products],
+        queryParams: {
+          categories: CATEGORIES_WITH_ID_MAP.shoes.key,
+          'force-validate': 'global'
+        }
+      })
     }
   ];
 
@@ -104,8 +176,15 @@ export default function Index() {
           paths: [PATHS.products]
         })}
         pos={'relative'}
+        h={{ base: 180, xs: 600 }}
       >
-        <Image src={heroSection1} h={'100%'} fit="contain" loading={'lazy'} />
+        <Image
+          src={heroSection1}
+          w={'100%'}
+          h={'100%'}
+          fit="cover"
+          loading={'lazy'}
+        />
         <Box
           display={{ base: 'none', xs: 'block' }}
           pos={'absolute'}
@@ -129,11 +208,7 @@ export default function Index() {
             <Box
               key={h.id}
               component={Link}
-              to={buildLocalizedLink({
-                baseUrl: env?.APP_URL!,
-                currentLanguage,
-                paths: [PATHS.products]
-              })}
+              to={h.link}
               pos={'relative'}
               style={{
                 textDecoration: 'none',
@@ -158,7 +233,7 @@ export default function Index() {
         })}
       </SimpleGrid>
 
-      <HomeProductCarousel products={products} />
+      <HomeProductCarousel products={products as Product[]} />
     </Stack>
   );
 }

@@ -144,8 +144,9 @@ const Login = () => {
       component={Stack}
       radius={0}
       p={{ base: 'md', md: 'xl' }}
+      w={{ base: '100%', md: '50%' }}
+      m={'auto'}
       withBorder
-      style={{ width: '100%' }}
     >
       <Text size="lg" fw={500}>
         {t('login.welcome')}
