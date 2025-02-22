@@ -74,7 +74,7 @@ import {
 import FetcherError from '~/components/error/FetcherError';
 
 export const meta = ({ data, location }: Route.MetaArgs) => {
-  const product = data?.product;
+  const product = data?.product as Product;
   const env = data?.env;
 
   return getSingleProductPageMeta({
@@ -263,10 +263,11 @@ const SingleProduct = () => {
           display={{ base: 'none', md: 'grid' }}
           span={{ base: 12, md: 1 }}
         >
-          <ScrollArea h={500}>
+          <ScrollArea h={500} w={100}>
             <Stack gap={0} pb={2}>
               {currentImageSet?.map((i, idx) => (
                 <Box
+                  h={100}
                   key={getStringDto(i.directus_files_id) + '-' + idx}
                   p={2}
                   style={{
@@ -283,7 +284,8 @@ const SingleProduct = () => {
                 >
                   <Image
                     w={'100%'}
-                    fit={'contain'}
+                    h={'100%'}
+                    fit={'cover'}
                     src={getImageUrl({
                       id: getStringDto(i.directus_files_id),
                       h: 100,

@@ -6,10 +6,9 @@ import fr from './fr.json';
 import ko from './ko.json';
 import zh from './zh.json';
 
-import { Env, OutletContext, Product, ProductTranslation } from '~/types';
+import { Env, Product, ProductTranslation } from '~/types';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import { getImageUrl } from '~/utils';
-import { useOutletContext } from 'react-router';
 
 const base = [
   { title: 'Unthaa - Built on Quality, Not Numbers' },

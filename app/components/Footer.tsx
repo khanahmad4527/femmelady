@@ -3,6 +3,7 @@ import {
   Anchor,
   Box,
   Button,
+  Container,
   Flex,
   Group,
   Stack,
@@ -119,79 +120,81 @@ const Footer = () => {
   ));
 
   return (
-    <Stack bg="primary" p="md" pb={{ base: 'md', md: 'xl' }}>
-      <Flex
-        direction={{ base: 'column', sm: 'row' }}
-        justify={'space-between'}
-        align={{ base: 'center', sm: 'flex-end' }}
-        gap={'md'}
-      >
-        <Stack>
-          <Group>{items}</Group>
-          <Flex
-            gap="xs"
-            justify={{ base: 'center', sm: 'flex-start' }}
-            wrap="nowrap"
-          >
-            {socialItems}
-          </Flex>
-        </Stack>
+    <Box bg="primary">
+      <Stack component={Container} p="md" pb={{ base: 'md', md: 'xl' }}>
+        <Flex
+          direction={{ base: 'column', sm: 'row' }}
+          justify={'space-between'}
+          align={{ base: 'center', sm: 'flex-end' }}
+          gap={'md'}
+        >
+          <Stack>
+            <Group>{items}</Group>
+            <Flex
+              gap="xs"
+              justify={{ base: 'center', sm: 'flex-start' }}
+              wrap="nowrap"
+            >
+              {socialItems}
+            </Flex>
+          </Stack>
 
-        <Stack>
-          <Text c={'white'}> {t('footer.getLatestNews')}</Text>
-          <Box>
-            <TextInput placeholder="ahmad@unthaa.com" />
-            <Text c={'white'} mt={5} fz={'xs'}>
-              {t('footer.signUpAgreement', {
-                privacyPolicy: (
-                  <Anchor
-                    key={'4f471f99-87e5-4df3-8ef4-9c2ddc7857b0'}
-                    c={'white'}
-                    fz="xs"
-                    component={Link}
-                    to={buildLocalizedLink({
-                      baseUrl: env?.APP_URL!,
-                      currentLanguage,
-                      paths: [PATHS.privacyPolicy]
-                    })}
-                    underline="always"
-                  >
-                    {t('footer.privacyPolicy')}
-                  </Anchor>
-                ),
-                termsOfService: (
-                  <Anchor
-                    key={'5f38c819-c8d7-4512-b1e9-8ff2237ef3f2'}
-                    c={'white'}
-                    fz="xs"
-                    component={Link}
-                    to={buildLocalizedLink({
-                      baseUrl: env?.APP_URL!,
-                      currentLanguage,
-                      paths: [PATHS.termsOfService]
-                    })}
-                    underline="always"
-                  >
-                    {t('footer.termsOfService')}
-                  </Anchor>
-                )
-              })}
-            </Text>
-          </Box>
-          <Button color="black">{t('footer.subscribeButton')}</Button>
-        </Stack>
-      </Flex>
+          <Stack>
+            <Text c={'white'}> {t('footer.getLatestNews')}</Text>
+            <Box>
+              <TextInput placeholder="ahmad@unthaa.com" />
+              <Text c={'white'} mt={5} fz={'xs'}>
+                {t('footer.signUpAgreement', {
+                  privacyPolicy: (
+                    <Anchor
+                      key={'4f471f99-87e5-4df3-8ef4-9c2ddc7857b0'}
+                      c={'white'}
+                      fz="xs"
+                      component={Link}
+                      to={buildLocalizedLink({
+                        baseUrl: env?.APP_URL!,
+                        currentLanguage,
+                        paths: [PATHS.privacyPolicy]
+                      })}
+                      underline="always"
+                    >
+                      {t('footer.privacyPolicy')}
+                    </Anchor>
+                  ),
+                  termsOfService: (
+                    <Anchor
+                      key={'5f38c819-c8d7-4512-b1e9-8ff2237ef3f2'}
+                      c={'white'}
+                      fz="xs"
+                      component={Link}
+                      to={buildLocalizedLink({
+                        baseUrl: env?.APP_URL!,
+                        currentLanguage,
+                        paths: [PATHS.termsOfService]
+                      })}
+                      underline="always"
+                    >
+                      {t('footer.termsOfService')}
+                    </Anchor>
+                  )
+                })}
+              </Text>
+            </Box>
+            <Button color="black">{t('footer.subscribeButton')}</Button>
+          </Stack>
+        </Flex>
 
-      <Text c={'white'}>
-        {t('footer.copyright', {
-          copyrightYear: (
-            <Text key={'footer.copyright'} span>
-              {new Date().getFullYear()}
-            </Text>
-          )
-        })}
-      </Text>
-    </Stack>
+        <Text c={'white'}>
+          {t('footer.copyright', {
+            copyrightYear: (
+              <Text key={'footer.copyright'} span>
+                {new Date().getFullYear()}
+              </Text>
+            )
+          })}
+        </Text>
+      </Stack>
+    </Box>
   );
 };
 

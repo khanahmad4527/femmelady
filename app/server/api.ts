@@ -138,12 +138,14 @@ export const getProducts = async ({
   };
 
   // Common fields and deep options based on the route
-  const routeConfig: Record<
-    Page,
-    {
-      fields: Query<Schema, Product>['fields'];
-      deep: Query<Schema, Product>['deep'];
-    }
+  const routeConfig: Partial<
+    Record<
+      Page,
+      {
+        fields: Query<Schema, Product>['fields'];
+        deep: Query<Schema, Product>['deep'];
+      }
+    >
   > = {
     home: {
       fields: [
@@ -184,7 +186,10 @@ export const getProducts = async ({
     }
   };
 
-  const { fields, deep } = routeConfig[route];
+  const { fields, deep } = routeConfig[route] || {
+    fields: [] as Query<Schema, Product>['fields'],
+    deep: {} as Query<Schema, Product>['deep']
+  };
 
   // Build the query dynamically
   const baseQuery: Query<Schema, Product> = {
@@ -242,7 +247,7 @@ export const getSingleProduct = async ({
   slug: string;
   languageCode: string;
   token?: string;
-}) => {
+}): Promise<Product> => {
   const isUUID = validateUUID(slug);
   const fields = [
     '*',
@@ -631,4 +636,3 @@ export const getCartsPrice = async ({
     )
   );
 };
-

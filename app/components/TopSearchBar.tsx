@@ -1,4 +1,13 @@
-import { Grid, Image, Loader, Menu, Text, TextInput } from '@mantine/core';
+import {
+  Box,
+  Grid,
+  Image,
+  Loader,
+  Menu,
+  Text,
+  TextInput,
+  useMatches
+} from '@mantine/core';
 import { useDebouncedCallback, useHover } from '@mantine/hooks';
 import React, { memo, useEffect, useState } from 'react';
 import { Link, useFetcher } from 'react-router';
@@ -63,7 +72,7 @@ const TopSearchBar = () => {
       onChange={setOpened}
       shadow="md"
       styles={{ dropdown: { padding: 0, borderRadius: 0 } }}
-      width={300}
+      width={useMatches({ base: 300, sm: 500 })}
     >
       <Menu.Target>
         <TextInput
@@ -129,11 +138,11 @@ const Card = (p: Product) => {
         ref={hoveredRef as any}
         align="center"
       >
-        <Grid.Col span={5} h={100} w={150}>
+        <Grid.Col span={3} h={100} w={150}>
           <Image
             h={'100%'}
             w={'100%'}
-            fit={'cover'}
+            fit={'contain'}
             src={getImageUrl({
               id: hovered
                 ? getStringDto(p?.feature_image_2)
@@ -144,7 +153,7 @@ const Card = (p: Product) => {
             loading={'lazy'}
           />
         </Grid.Col>
-        <Grid.Col span={7}>
+        <Grid.Col span={9}>
           <Text tt={'capitalize'} c={hovered ? 'white' : 'black'}>
             {translation?.title}
           </Text>
