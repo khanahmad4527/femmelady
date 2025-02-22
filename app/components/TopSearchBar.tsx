@@ -1,28 +1,14 @@
-import {
-  Box,
-  Group,
-  Image,
-  Loader,
-  Menu,
-  ScrollArea,
-  Stack,
-  Text,
-  TextInput
-} from '@mantine/core';
-import {
-  useClickOutside,
-  useDebouncedCallback,
-  useHover
-} from '@mantine/hooks';
+import { Grid, Image, Loader, Menu, Text, TextInput } from '@mantine/core';
+import { useDebouncedCallback, useHover } from '@mantine/hooks';
 import React, { memo, useEffect, useState } from 'react';
-import { Link, useFetcher, useNavigate } from 'react-router';
-import { PARAMS, PATHS } from '~/constant';
+import { Link, useFetcher } from 'react-router';
+import { PATHS } from '~/constant';
 import getStringDto from '~/dto/getStringDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
 import { IconSearch } from '~/icons';
-import { Env, Product, ProductTranslation } from '~/types';
+import { Product, ProductTranslation } from '~/types';
 import {
   buildLocalizedLink,
   formatCurrency,
@@ -37,7 +23,6 @@ const TopSearchBar = () => {
   const [searchValue, setSearchValue] = useState('');
   const [previousSearchValue, setPreviousSearchValue] = useState('');
   const [opened, setOpened] = useState(true);
-  const ref = useClickOutside(() => setOpened(false));
 
   const fetcher = useFetcher<{ products: Product[]; searchQuery: string }>();
 
@@ -137,17 +122,18 @@ const Card = (p: Product) => {
       })}
       style={{ textDecoration: 'none' }}
     >
-      <Group
+      <Grid
+        gutter={20}
         p={'xs'}
         bg={hovered ? 'primary.5' : 'white'}
         ref={hoveredRef as any}
-        wrap={'nowrap'}
-        align={'flex-start'}
+        align="center"
       >
-        <Box h={50}>
+        <Grid.Col span={5} h={100} w={150}>
           <Image
             h={'100%'}
-            fit={'contain'}
+            w={'100%'}
+            fit={'cover'}
             src={getImageUrl({
               id: hovered
                 ? getStringDto(p?.feature_image_2)
@@ -157,9 +143,8 @@ const Card = (p: Product) => {
             alt={translation.title!}
             loading={'lazy'}
           />
-        </Box>
-
-        <Box>
+        </Grid.Col>
+        <Grid.Col span={7}>
           <Text tt={'capitalize'} c={hovered ? 'white' : 'black'}>
             {translation?.title}
           </Text>
@@ -169,8 +154,8 @@ const Card = (p: Product) => {
               value: p?.price as number
             })}
           </Text>
-        </Box>
-      </Group>
+        </Grid.Col>
+      </Grid>
     </Link>
   );
 };

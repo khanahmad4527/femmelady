@@ -20,5 +20,11 @@ export default defineConfig({
       }
     }
   },
-  server: { open: true, port: 3000 }
+  server: {
+    open: true,
+    port: 3000,
+    allowedHosts: process.env?.__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
+      ? [process.env.__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS]
+      : ['localhost']
+  }
 });
