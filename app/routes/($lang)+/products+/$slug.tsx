@@ -1,4 +1,4 @@
-import { Carousel, Embla } from '@mantine/carousel';
+import { Carousel } from '@mantine/carousel';
 import {
   Box,
   Button,

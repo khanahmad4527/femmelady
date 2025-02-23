@@ -22,9 +22,10 @@ export const useForm = <T = Record<string, string>>({
   const form = useFormMantine({
     initialValues,
     validate: (values): any => {
+      console.log({ values });
       try {
         schema.parse(values);
-        return {};
+        return {}; // No errors
       } catch (error) {
         if (error instanceof z.ZodError) {
           const rawErrors = parseZodError(error).errors;
@@ -37,9 +38,8 @@ export const useForm = <T = Record<string, string>>({
   useEffect(() => {
     if (fetcher.data?.errors) {
       form.setErrors(translateErrors(fetcher.data.errors, t));
-      console.log('first');
     }
-  }, [fetcher.data]);
+  }, [fetcher]);
 
   return {
     Form: fetcher.Form,
