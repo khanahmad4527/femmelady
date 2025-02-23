@@ -73,6 +73,7 @@ import {
   throwLoginRequiredError
 } from '~/utils/error';
 import FetcherError from '~/components/error/FetcherError';
+import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
 
 export const meta = ({ data, location }: Route.MetaArgs) => {
   const product = data?.product as Product;
@@ -201,6 +202,43 @@ const SingleProduct = () => {
   const [initialSlide] = useState(
     currentImageSet.findIndex(i => i.directus_files_id === activeImage)
   );
+
+  useResponsivePreloadImages({
+    base: currentImageSet?.map(i =>
+      getImageUrl({
+        id: getStringDto(i.directus_files_id),
+        h: 800,
+        w: 800,
+        url: env?.CDN_URL
+      })
+    ) as string[],
+    above1200: [
+      ...currentImageSet?.map(i =>
+        getImageUrl({
+          id: getStringDto(i.directus_files_id),
+          h: 100,
+          w: 100,
+          url: env?.CDN_URL
+        })
+      ),
+      ...currentImageSet?.map(i =>
+        getImageUrl({
+          id: getStringDto(i.directus_files_id),
+          h: 3000,
+          w: 3000,
+          url: env?.CDN_URL
+        })
+      )
+    ] as string[],
+    below1200: currentImageSet?.map(i =>
+      getImageUrl({
+        id: getStringDto(i.directus_files_id),
+        h: 200,
+        w: 200,
+        url: env?.CDN_URL
+      })
+    ) as string[]
+  });
 
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
@@ -482,6 +520,7 @@ const SingleProduct = () => {
                   color={'black'}
                   size={'md'}
                   component={Link}
+                  prefetch="intent"
                   to={buildLocalizedLink({
                     baseUrl: env?.APP_URL!,
                     currentLanguage,

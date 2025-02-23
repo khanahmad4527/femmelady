@@ -64,7 +64,14 @@ const Header = () => {
   ];
 
   const authItems = authLinks.map(a => (
-    <Anchor key={a.id} component={Link} c="primary.1" to={a.link} lh={1}>
+    <Anchor
+      key={a.id}
+      component={Link}
+      prefetch="intent"
+      c="primary.1"
+      to={a.link}
+      lh={1}
+    >
       {a.label}
     </Anchor>
   ));
@@ -213,7 +220,14 @@ const Header = () => {
   ];
 
   const categoryItems = categoryLinks.map(c => (
-    <Anchor key={c.id} component={Link} c="primary.7" to={c.link} lh={1}>
+    <Anchor
+      key={c.id}
+      component={Link}
+      prefetch="intent"
+      c="primary.7"
+      to={c.link}
+      lh={1}
+    >
       {c.label}
     </Anchor>
   ));
@@ -258,6 +272,7 @@ const Header = () => {
               <Flex>
                 <Anchor
                   component={Link}
+                  prefetch="intent"
                   to={buildLocalizedLink({
                     baseUrl: env?.APP_URL!,
                     currentLanguage,

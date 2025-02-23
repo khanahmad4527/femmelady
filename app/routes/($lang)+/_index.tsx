@@ -30,6 +30,26 @@ import { Route } from './+types/_index';
 import { CATEGORIES_WITH_ID_MAP, PATHS } from '~/constant';
 import { OutletContext, Product } from '~/types';
 
+export function links() {
+  const heroImages = [
+    heroSection1,
+    wedding,
+    candle,
+    dress,
+    jewelry,
+    bag,
+    perfume,
+    watch,
+    shoe
+  ];
+
+  return heroImages.map(i => ({
+    rel: 'preload',
+    href: i,
+    as: 'image'
+  }));
+}
+
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
 
@@ -170,6 +190,7 @@ export default function Index() {
 
       <Box
         component={Link}
+        prefetch="intent"
         to={buildLocalizedLink({
           baseUrl: env?.APP_URL!,
           currentLanguage,
@@ -208,6 +229,7 @@ export default function Index() {
             <Box
               key={h.id}
               component={Link}
+              prefetch="intent"
               to={h.link}
               pos={'relative'}
               style={{

@@ -82,7 +82,15 @@ const Footer = () => {
   ];
 
   const items = links.map(l => (
-    <Anchor key={l.id} component={Link} c="white" to={l.link} lh={1} size="sm">
+    <Anchor
+      key={l.id}
+      component={Link}
+      prefetch="intent"
+      c="white"
+      to={l.link}
+      lh={1}
+      size="sm"
+    >
       {l.label}
     </Anchor>
   ));
@@ -151,6 +159,7 @@ const Footer = () => {
                       c={'white'}
                       fz="xs"
                       component={Link}
+                      prefetch="intent"
                       to={buildLocalizedLink({
                         baseUrl: env?.APP_URL!,
                         currentLanguage,
@@ -167,6 +176,7 @@ const Footer = () => {
                       c={'white'}
                       fz="xs"
                       component={Link}
+                      prefetch="intent"
                       to={buildLocalizedLink({
                         baseUrl: env?.APP_URL!,
                         currentLanguage,

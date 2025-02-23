@@ -17,7 +17,7 @@ import { isAuthenticated } from '~/auth/auth.server';
 import { getCarts } from '~/server/api';
 import { Link, useLoaderData, useOutletContext } from 'react-router';
 
-import { OutletContext, ProductCart } from '~/types';
+import { Cart, OutletContext, ProductCart } from '~/types';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import NoCart from '~/components/cart/NoCart';
 import { PATHS } from '~/constant';
@@ -39,7 +39,7 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
 
 const Checkout = () => {
   const { env } = useOutletContext<OutletContext>();
-  const { carts } = useLoaderData<typeof loader>();
+  const { carts } = useLoaderData<{ carts: Cart[] }>();
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
 
@@ -105,6 +105,7 @@ const Checkout = () => {
               color={'black'}
               disabled={!totalPrice}
               component={Link}
+              prefetch="intent"
               to={buildLocalizedLink({
                 baseUrl: env?.APP_URL!,
                 currentLanguage,

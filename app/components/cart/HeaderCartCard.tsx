@@ -68,6 +68,7 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
         <Grid.Col span={4}>
           <Box
             component={Link}
+            prefetch="intent"
             to={buildLocalizedLink({
               baseUrl: env?.APP_URL!,
               currentLanguage,

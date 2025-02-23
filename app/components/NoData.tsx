@@ -29,6 +29,7 @@ const NoData = ({ button }: { button?: ReactNode }) => {
         <Button
           mt={'md'}
           component={Link}
+          prefetch="intent"
           to={buildLocalizedLink({ baseUrl: env?.APP_URL!, currentLanguage })}
         >
           {t('common.goToHome')}

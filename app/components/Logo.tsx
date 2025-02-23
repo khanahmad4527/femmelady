@@ -16,6 +16,7 @@ const Logo = () => {
     <Box
       component={Link}
       to={buildLocalizedLink({ baseUrl: env?.APP_URL!, currentLanguage })}
+      prefetch="intent"
       style={{ textDecoration: 'none' }}
     >
       <Title w={'fit-content'} c="white" m={TEXT_ALIGN}>

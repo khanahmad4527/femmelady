@@ -1,4 +1,4 @@
-import { useForm as useFormMantine } from '@mantine/form';
+import { useForm as useFormMantine, UseFormReturnType } from '@mantine/form';
 import { FetcherWithComponents, useFetcher } from 'react-router';
 import { useEffect } from 'react';
 import { z } from 'zod';
@@ -22,7 +22,6 @@ export const useForm = <T = Record<string, string>>({
   const form = useFormMantine({
     initialValues,
     validate: (values): any => {
-      console.log({ values });
       try {
         schema.parse(values);
         return {}; // No errors
@@ -33,6 +32,15 @@ export const useForm = <T = Record<string, string>>({
         }
       }
     }
+  });
+
+  // Automatic submission handler using form.onSubmit
+  const handleSubmit = form.onSubmit(values => {
+    const formData = new FormData();
+    Object.entries(values).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    fetcher.submit(formData, { method: 'POST' });
   });
 
   useEffect(() => {
@@ -46,6 +54,7 @@ export const useForm = <T = Record<string, string>>({
     form, // expose form methods and properties if needed
     errors: form.errors, // expose errors if needed,
     state,
-    fetcher: fetcher as FetcherWithComponents<T>
+    fetcher: fetcher as FetcherWithComponents<T>,
+    handleSubmit
   };
 };
