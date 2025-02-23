@@ -14,7 +14,6 @@ import { Link, redirect, useOutletContext } from 'react-router';
 import { isAuthenticated, login } from '~/auth/auth.server';
 import { createUserSession } from '~/auth/session.server';
 import { redisClient } from '~/entry.server';
-import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
 import { loginFormSchema } from '~/schema';
@@ -34,6 +33,7 @@ import SocialLogin from '~/components/SocialLogin';
 import { PARAMS, PATHS } from '~/constant';
 import FetcherError from '~/components/error/FetcherError';
 import { useMediaQuery } from '@mantine/hooks';
+import { useForm } from '~/hooks/useForm';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -61,7 +61,6 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 };
 
 export const action = async ({ request, params }: Route.ActionArgs) => {
-  // await new Promise(res => setTimeout(() => res('what'), 30000));
   try {
     const result = getValidLanguageOrRedirect({ params, request });
 
@@ -84,8 +83,6 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       request,
       token: cfTurnstileResponseToken
     });
-
-    console.log({ outcome });
 
     if (!outcome.success) {
       return {
@@ -130,14 +127,15 @@ const Login = () => {
 
   const error = searchParams.get(PARAMS.error);
 
-  const { Form, form, state, fetcher, errors } = useForm<{
+  const { Form, form, state, fetcher, errors, handleSubmit } = useForm<{
     title: string;
     description: string;
   }>({
     schema: loginFormSchema,
     initialValues: {
       email: '',
-      password: ''
+      password: '',
+      'cf-turnstile-response': 'XXXXX-XXXXX-XXXXX-XXXXX' // To by pass the form validation
     }
   });
 
@@ -163,7 +161,7 @@ const Login = () => {
       />
 
       <Stack>
-        <Form method="POST">
+        <Form method="POST" onSubmit={handleSubmit}>
           <TextInput
             withAsterisk
             name={'email'}

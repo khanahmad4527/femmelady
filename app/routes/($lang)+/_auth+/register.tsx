@@ -19,7 +19,6 @@ import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
 import PasswordComponent from '~/components/PasswordComponent';
 import SocialLogin from '~/components/SocialLogin';
 import { PARAMS, PATHS } from '~/constant';
-import { useForm } from '~/hooks/useForm';
 
 import useTranslation from '~/hooks/useTranslation';
 import { registerFormSchema } from '~/schema';
@@ -31,6 +30,7 @@ import { handleError } from '~/utils/error';
 import { Route } from './+types/register';
 import { isAuthenticated } from '~/auth/auth.server';
 import FetcherError from '~/components/error/FetcherError';
+import { useForm } from '~/hooks/useForm';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -79,8 +79,6 @@ export const action: ActionFunction = async ({ request, params }) => {
       token: validatedData['cf-turnstile-response']
     });
 
-    console.log({ outcome });
-
     if (!outcome.success) {
       return {
         title: 'turnstile.errorTitle',
@@ -117,7 +115,7 @@ const register = () => {
 
   const error = searchParams.get(PARAMS.error);
 
-  const { Form, form, state, fetcher } = useForm<{
+  const { Form, form, state, fetcher, handleSubmit } = useForm<{
     title: string;
     description: string;
   }>({
@@ -128,7 +126,8 @@ const register = () => {
       last_name: '',
       password: '',
       confirm_password: '',
-      terms: 'on'
+      terms: 'on',
+      'cf-turnstile-response': 'XXXXX-XXXXX-XXXXX-XXXXX' // To by pass the form validation
     }
   });
 
@@ -153,7 +152,7 @@ const register = () => {
         my="lg"
       />
 
-      <Form method="POST">
+      <Form method="POST" onSubmit={handleSubmit}>
         <Stack>
           <Group align={'start'} grow>
             <TextInput
