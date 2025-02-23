@@ -40,7 +40,7 @@ import {
   getSort,
   shouldRevalidateLogic
 } from '~/utils';
-import { OutletContext } from '~/types';
+import { OutletContext, Product } from '~/types';
 import { FORCE_REVALIDATE_MAP, PARAM_KEYS, PATHS } from '~/constant';
 import { useEffect } from 'react';
 import NoData from '~/components/NoData';
@@ -116,8 +116,16 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 };
 
 const Products = () => {
-  const { products, totalProductCount, filter } =
-    useLoaderData<typeof loader>();
+  const { products, totalProductCount, filter } = useLoaderData<{
+    products: Product[];
+    totalProductCount: number;
+    filter: {
+      price: [number, number] | undefined;
+      rating: [number, number] | undefined;
+      category: string[] | undefined;
+      brand: string[] | undefined;
+    };
+  }>();
 
   const { searchParams, setSearchParams, env } =
     useOutletContext<OutletContext>();
@@ -181,6 +189,7 @@ const Products = () => {
                 <Button
                   mt={'md'}
                   component={Link}
+                  prefetch="intent"
                   to={buildLocalizedLink({
                     baseUrl: env?.APP_URL!,
                     currentLanguage,

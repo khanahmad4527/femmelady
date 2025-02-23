@@ -31,6 +31,7 @@ const BurgerMenu = () => {
         <Menu.Item
           leftSection={<IconLogout />}
           component={Link}
+          prefetch="intent"
           to={buildLocalizedLink({
             baseUrl: env?.APP_URL!,
             currentLanguage,

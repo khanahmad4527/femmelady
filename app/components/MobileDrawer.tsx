@@ -51,7 +51,13 @@ const MobileDrawer = ({
         <LanguageSwitcher />
         {!isLoggedIn &&
           authLinks.map(l => (
-            <Button key={l.id} component={Link} to={l.link} color={'black'}>
+            <Button
+              key={l.id}
+              component={Link}
+              prefetch="intent"
+              to={l.link}
+              color={'black'}
+            >
               {l.label}
             </Button>
           ))}
@@ -59,6 +65,7 @@ const MobileDrawer = ({
           <>
             <Button
               component={Link}
+              prefetch="intent"
               to={buildLocalizedLink({
                 baseUrl: env?.APP_URL!,
                 currentLanguage,
@@ -70,6 +77,7 @@ const MobileDrawer = ({
             </Button>
             <Button
               component={Link}
+              prefetch="intent"
               to={buildLocalizedLink({
                 baseUrl: env?.APP_URL!,
                 currentLanguage,
@@ -87,7 +95,13 @@ const MobileDrawer = ({
           </>
         )}
         {categoryLinks.map(l => (
-          <Button key={l.id} component={Link} to={l.link} color={'black'}>
+          <Button
+            key={l.id}
+            component={Link}
+            prefetch="intent"
+            to={l.link}
+            color={'black'}
+          >
             {l.label}
           </Button>
         ))}

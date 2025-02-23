@@ -183,9 +183,10 @@ const Login = () => {
             {...form.getInputProps('password')}
           />
 
-          <Group mt={'md'} justify="space-between">
+          <Group my={'md'} justify="space-between">
             <Anchor
               component={Link}
+              prefetch="intent"
               to={buildLocalizedLink({
                 baseUrl: env?.APP_URL!,
                 currentLanguage,

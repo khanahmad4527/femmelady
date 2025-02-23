@@ -72,6 +72,7 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
       <Box
         ref={ref as any}
         component={Link}
+        prefetch="intent"
         to={buildLocalizedLink({
           baseUrl: env?.APP_URL!,
           currentLanguage,

@@ -92,6 +92,7 @@ const InfiniteCartLoader = ({ close }: { close: () => void }) => {
       {carts.length > 0 && (
         <Button
           component={Link}
+          prefetch="intent"
           to={buildLocalizedLink({
             baseUrl: env?.APP_URL!,
             currentLanguage,

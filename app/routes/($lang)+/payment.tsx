@@ -142,6 +142,7 @@ const Payment = () => {
         </Alert>
         <Button
           component={Link}
+          prefetch="intent"
           to={buildLocalizedLink({
             baseUrl: env?.APP_URL!,
             currentLanguage,
