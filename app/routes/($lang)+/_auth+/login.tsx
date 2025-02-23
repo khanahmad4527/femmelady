@@ -1,8 +1,6 @@
 import {
   Anchor,
-  Box,
   Button,
-  Center,
   Divider,
   Group,
   Paper,
@@ -12,7 +10,7 @@ import {
   TextInput
 } from '@mantine/core';
 
-import { Link, redirect, useLoaderData, useOutletContext } from 'react-router';
+import { Link, redirect, useOutletContext } from 'react-router';
 import { isAuthenticated, login } from '~/auth/auth.server';
 import { createUserSession } from '~/auth/session.server';
 import { redisClient } from '~/entry.server';
@@ -35,6 +33,7 @@ import { Turnstile } from '@marsidev/react-turnstile';
 import SocialLogin from '~/components/SocialLogin';
 import { PARAMS, PATHS } from '~/constant';
 import FetcherError from '~/components/error/FetcherError';
+import { useMediaQuery } from '@mantine/hooks';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -62,6 +61,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 };
 
 export const action = async ({ request, params }: Route.ActionArgs) => {
+  // await new Promise(res => setTimeout(() => res('what'), 30000));
   try {
     const result = getValidLanguageOrRedirect({ params, request });
 
@@ -125,6 +125,8 @@ const Login = () => {
   const t = useTranslation();
   const { currentLanguage, env, searchParams } =
     useOutletContext<OutletContext>();
+  const isCompact = useMediaQuery('(max-width: 22em)');
+  const turnstileSize = isCompact ? 'compact' : 'normal';
 
   const error = searchParams.get(PARAMS.error);
 
@@ -201,7 +203,7 @@ const Login = () => {
           <Turnstile
             siteKey={env?.TURNSTILE_SITE_KEY!}
             options={{
-              size: 'invisible'
+              size: turnstileSize
             }}
           />
         </Form>

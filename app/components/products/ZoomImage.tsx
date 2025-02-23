@@ -32,7 +32,7 @@ const ZoomImage = ({
   }, []);
 
   return (
-    <Box visibleFrom="lg">
+    <Box key={activeImage} visibleFrom="lg">
       {!isCLient ? (
         <Image
           fit={'contain'}

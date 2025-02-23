@@ -30,7 +30,7 @@ export const theme: MantineThemeOverride = createTheme({
     '2xl': rem(64)
   },
   breakpoints: {
-    xxs: '21em'
+    xxs: '22em'
   },
   primaryShade: 7,
   primaryColor: 'primary',

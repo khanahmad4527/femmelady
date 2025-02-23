@@ -23,10 +23,10 @@ const SocialLogin = ({ from }: { from: 'login' | 'register' }) => {
   });
 
   return (
-    <Group align={'center'} justify={'center'}>
+    <Group justify="center">
       <GoogleSsoButton redirect={redirect} />
 
-      <FacebookSsoButton redirect={redirect} />
+      {/* <FacebookSsoButton redirect={redirect} /> */}
     </Group>
   );
 };
