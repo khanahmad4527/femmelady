@@ -64,7 +64,8 @@
     "notAllowedTitle": "操作は許可されていません",
     "notAllowedDescription": "このアイテムを削除する権限がないか、すでに存在しない可能性があります。",
     "loginRequireTitle": "操作にはログインが必要です",
-    "loginRequireDescription": "続行するにはサインインしてください。"
+    "loginRequireDescription": "続行するにはサインインしてください。",
+    "continueWithGoogle": "Googleで続行してください"
   },
   "login": {
     "welcome": "Unthaaへようこそ、ログインするには",

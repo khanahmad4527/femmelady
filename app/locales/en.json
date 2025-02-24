@@ -64,7 +64,8 @@
     "notAllowedTitle": "Action Not Allowed",
     "notAllowedDescription": "You do not have permission to delete this item or it may no longer exist.",
     "loginRequireTitle": "Action Requires Login",
-    "loginRequireDescription": "Please sign in to continue."
+    "loginRequireDescription": "Please sign in to continue.",
+    "continueWithGoogle": "Please continue with Google"
   },
   "login": {
     "welcome": "Welcome to Unthaa, login with",

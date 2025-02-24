@@ -64,7 +64,8 @@
     "notAllowedTitle": "Actie niet toegestaan",
     "notAllowedDescription": "Je hebt geen toestemming om dit item te verwijderen of het bestaat mogelijk niet meer.",
     "loginRequireTitle": "Actie vereist inloggen",
-    "loginRequireDescription": "Meld u aan om door te gaan."
+    "loginRequireDescription": "Meld u aan om door te gaan.",
+    "continueWithGoogle": "Ga door met Google"
   },
   "login": {
     "welcome": "Welkom bij Unthaa, log in met",

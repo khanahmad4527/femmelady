@@ -64,7 +64,8 @@
     "notAllowedTitle": "操作不允许",
     "notAllowedDescription": "您没有权限删除此项目，或者它可能已不存在。",
     "loginRequireTitle": "操作需要登录",
-    "loginRequireDescription": "请登录以继续。"
+    "loginRequireDescription": "请登录以继续。",
+    "continueWithGoogle": "请使用Google继续"
   },
   "login": {
     "welcome": "欢迎来到Unthaa，请使用以下方式登录",
