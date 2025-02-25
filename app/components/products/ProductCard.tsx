@@ -31,6 +31,7 @@ import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
 import { memo } from 'react';
 import { PATHS } from '~/constant';
+import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
 
 const ProductCard = (product: Product) => {
   const { searchParams, setSearchParams, env } =
@@ -55,6 +56,19 @@ const ProductCard = (product: Product) => {
   const translation = getSingleTranslation(translations) as ProductTranslation;
 
   const { currentLanguage } = useCurrentLanguage();
+
+  useResponsivePreloadImages({
+    base: [
+      getImageUrl({
+        id: featureImage1!,
+        url: env?.CDN_URL
+      }),
+      getImageUrl({
+        id: featureImage2!,
+        url: env?.CDN_URL
+      })
+    ] as string[]
+  });
 
   return (
     <Card

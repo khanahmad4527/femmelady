@@ -7,6 +7,7 @@ import { Link, useOutletContext } from 'react-router';
 import { PATHS } from '~/constant';
 import getStringDto from '~/dto/getStringDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
 
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
@@ -63,6 +64,19 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
       >
         {products?.map(p => {
           const { hovered, ref } = useHover();
+
+          useResponsivePreloadImages({
+            base: [
+              getImageUrl({
+                id: p?.feature_image_2 as string,
+                url: env?.CDN_URL
+              }),
+              getImageUrl({
+                id: p?.feature_image_1 as string,
+                url: env?.CDN_URL
+              })
+            ] as string[]
+          });
 
           const translation = getSingleTranslation(
             p.translations
