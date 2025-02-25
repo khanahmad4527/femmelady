@@ -1,4 +1,5 @@
 import {
+  Alert,
   Anchor,
   Button,
   Divider,
@@ -34,6 +35,7 @@ import { PARAMS, PATHS } from '~/constant';
 import FetcherError from '~/components/error/FetcherError';
 import { useMediaQuery } from '@mantine/hooks';
 import { useForm } from '~/hooks/useForm';
+import Marquee from '~/components/Marquee';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -161,6 +163,12 @@ const Login = () => {
       />
 
       <Stack>
+        <Marquee>
+          <Text size="xl" c="yellow">
+            {t('common.continueWithGoogle')}
+          </Text>
+        </Marquee>
+
         <Form method="POST" onSubmit={handleSubmit}>
           <TextInput
             withAsterisk

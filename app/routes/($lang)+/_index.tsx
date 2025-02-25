@@ -30,6 +30,7 @@ import { Route } from './+types/_index';
 import { CATEGORIES_WITH_ID_MAP, PATHS } from '~/constant';
 import { OutletContext, Product } from '~/types';
 
+// Preload the hero images
 export function links() {
   const heroImages = [
     heroSection1,

@@ -1,5 +1,6 @@
 import { createUser } from '@directus/sdk';
 import {
+  Alert,
   Anchor,
   Button,
   Center,
@@ -31,6 +32,7 @@ import { Route } from './+types/register';
 import { isAuthenticated } from '~/auth/auth.server';
 import FetcherError from '~/components/error/FetcherError';
 import { useForm } from '~/hooks/useForm';
+import Marquee from '~/components/Marquee';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -154,6 +156,12 @@ const register = () => {
 
       <Form method="POST" onSubmit={handleSubmit}>
         <Stack>
+          <Marquee>
+            <Text size="xl" c="yellow">
+              {t('common.continueWithGoogle')}
+            </Text>
+          </Marquee>
+
           <Group align={'start'} grow>
             <TextInput
               withAsterisk

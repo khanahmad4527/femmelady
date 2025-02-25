@@ -32,6 +32,7 @@ import {
   getAverageRatingRange,
   getBrandsId,
   getCategoriesId,
+  getImageUrl,
   getLanguageCode,
   getLimit,
   getPage,
@@ -46,6 +47,7 @@ import { useEffect } from 'react';
 import NoData from '~/components/NoData';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import LocalizedPagination from '~/components/LocalizedPagination';
+import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   currentUrl,
@@ -138,6 +140,23 @@ const Products = () => {
   const currentPage = getPage({ searchParams });
 
   const totalPaginationButtons = Math.ceil(totalProductCount / productPerPage);
+
+  useResponsivePreloadImages({
+    base: [
+      ...products?.map(p =>
+        getImageUrl({
+          id: p.feature_image_1 as string,
+          url: env?.CDN_URL
+        })
+      ),
+      ...products?.map(p =>
+        getImageUrl({
+          id: p.feature_image_2 as string,
+          url: env?.CDN_URL
+        })
+      )
+    ] as string[]
+  });
 
   const handlePagination = (value: number) => {
     searchParams.set(PARAM_KEYS.PAGE, String(value));

@@ -66,3 +66,23 @@
   scrollbar-width: thin; /* Makes scrollbar thin */
   scrollbar-color: #aaa #f0f0f0; /* Thumb and track colors */
 }
+
+/* Marquee */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  animation: marquee linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

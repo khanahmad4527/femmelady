@@ -26,7 +26,7 @@ const MobileDrawer = ({
   categoryLinks: ValueLabel[];
   headerCartDrawerOpen: () => void;
 }) => {
-  const { pathname } = useLocation();
+  const location = useLocation();
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const context = useHeaderFooterContext();
@@ -35,7 +35,7 @@ const MobileDrawer = ({
   useEffect(() => {
     close();
     burgerClose();
-  }, [pathname]);
+  }, [location]);
 
   return (
     <Drawer
@@ -57,6 +57,7 @@ const MobileDrawer = ({
               prefetch="intent"
               to={l.link}
               color={'black'}
+              onClick={close}
             >
               {l.label}
             </Button>

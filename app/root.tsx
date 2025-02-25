@@ -11,6 +11,7 @@ import {
   Box,
   Button,
   ColorSchemeScript,
+  DirectionProvider,
   mantineHtmlProps,
   MantineProvider,
   Stack,
@@ -125,7 +126,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <DirectionProvider initialDirection={dir}>
+          <MantineProvider theme={theme}>{children}</MantineProvider>
+        </DirectionProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

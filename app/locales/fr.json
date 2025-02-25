@@ -64,7 +64,8 @@
     "notAllowedTitle": "Action non autorisée",
     "notAllowedDescription": "Vous n'avez pas la permission de supprimer cet élément ou il n'existe peut-être plus.",
     "loginRequireTitle": "L'action nécessite une connexion",
-    "loginRequireDescription": "Veuillez vous connecter pour continuer."
+    "loginRequireDescription": "Veuillez vous connecter pour continuer.",
+    "continueWithGoogle": "Veuillez continuer avec Google"
   },
   "login": {
     "welcome": "Bienvenue sur Unthaa, connectez-vous avec",
