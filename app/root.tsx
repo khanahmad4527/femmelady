@@ -100,6 +100,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const utmSource = url.searchParams.get(PARAMS.utmSource);
   const dir = LANGUAGE_DIRECTION[currentLanguage];
 
+
   return {
     isLoggedIn,
     user,
@@ -108,7 +109,8 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     env,
     exchangeRate,
     utmSource,
-    dir
+    dir,
+
   };
 };
 

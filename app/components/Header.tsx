@@ -23,7 +23,8 @@ import { buildLocalizedLink } from '~/utils';
 import TopSearchBar from './TopSearchBar';
 import CartCount from './cart/CartCount';
 import BurgerMenu from './BurgerMenu';
-import { PATHS, CATEGORIES_WITH_ID_MAP } from '~/constant';
+import { PATHS, CATEGORIES_WITH_ID_MAP, PARAM_KEYS } from '~/constant';
+import useCurrentUrl from '~/hooks/useCurrentUrl';
 
 const Header = () => {
   const [
@@ -39,6 +40,7 @@ const Header = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const headerFooterContext = useHeaderFooterContext();
+  const { currentUrl } = useCurrentUrl();
 
   const { isLoggedIn, cartCount, locale, env } = headerFooterContext;
 
@@ -48,7 +50,10 @@ const Header = () => {
       link: buildLocalizedLink({
         baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [PATHS.login]
+        paths: [PATHS.login],
+        queryParams: {
+          'redirect-to': currentUrl!
+        }
       }),
       label: t('login.login')
     },
@@ -57,7 +62,10 @@ const Header = () => {
       link: buildLocalizedLink({
         baseUrl: env?.APP_URL!,
         currentLanguage,
-        paths: [PATHS.register]
+        paths: [PATHS.register],
+        queryParams: {
+          'redirect-to': currentUrl!
+        }
       }),
       label: t('register.register')
     }
