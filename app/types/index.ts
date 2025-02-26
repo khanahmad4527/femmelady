@@ -18,6 +18,7 @@ export interface OutletContext {
   token?: string;
   user?: User;
   utmSource?: string;
+  dir?: 'rtl' | 'ltr';
 }
 
 export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {

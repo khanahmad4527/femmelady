@@ -1,4 +1,5 @@
-import { ComboboxItem, Select } from '@mantine/core';
+import { ComboboxItem, Select, useDirection } from '@mantine/core';
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import {
   DEFAULT_PRODUCT_PAGE,
@@ -10,9 +11,10 @@ import { IconSwitch } from '~/icons';
 import selectClasses from '~/styles/Select.module.scss';
 
 const LanguageSwitcher = () => {
-  const { currentLanguage } = useCurrentLanguage();
+  const { currentLanguage, dir } = useCurrentLanguage();
   const navigate = useNavigate();
   const location = useLocation();
+  const { setDirection } = useDirection();
 
   const handleLanguageChange = (
     _value: string | null,
@@ -55,6 +57,12 @@ const LanguageSwitcher = () => {
     { value: 'zh', label: '中文' },
     { value: 'ko', label: '한국어' }
   ];
+
+  // This was done because when switching language some components like rating and slider still
+  // have the previous direction, to solve solve we are explicitly setting the direction
+  useEffect(() => {
+    setDirection(dir);
+  }, [dir]);
 
   return (
     <Select
