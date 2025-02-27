@@ -1,4 +1,4 @@
-import { Divider, Stack, Text } from '@mantine/core';
+import { Divider, Stack, Text, TypographyStylesProvider } from '@mantine/core';
 import { Fragment } from 'react/jsx-runtime';
 import { getContactUs } from '~/server/api';
 import { getLanguageCode } from '~/utils';
@@ -21,12 +21,9 @@ const ContactUs = () => {
       {contactUs.map((c, i) => (
         <Fragment key={i}>
           <Text fw={500}>{c.title}</Text>
-          <Text>
-            <div
-              className="dangerouslySetInnerHTML"
-              dangerouslySetInnerHTML={{ __html: c.content }}
-            />
-          </Text>
+          <TypographyStylesProvider>
+            <div dangerouslySetInnerHTML={{ __html: c.content }} />
+          </TypographyStylesProvider>
           <Divider size="sm" my="md" />
         </Fragment>
       ))}

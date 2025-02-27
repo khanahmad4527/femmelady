@@ -2,6 +2,7 @@ import { ActionIcon, Menu } from '@mantine/core';
 import { Link } from 'react-router';
 import { PATHS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useCurrentUrl from '~/hooks/useCurrentUrl';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
 import { IconBurger, IconLogout, IconTruckDelivery, IconUser } from '~/icons';
@@ -12,6 +13,7 @@ const BurgerMenu = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const { env } = useHeaderFooterContext();
+  const { currentUrl } = useCurrentUrl();
 
   return (
     <Menu trigger={'click-hover'} radius={0} classNames={menuClasses}>
@@ -35,7 +37,10 @@ const BurgerMenu = () => {
           to={buildLocalizedLink({
             baseUrl: env?.APP_URL!,
             currentLanguage,
-            paths: [PATHS.logout]
+            paths: [PATHS.logout],
+            queryParams: {
+              'redirect-to': currentUrl!
+            }
           })}
         >
           {t('header.logout')}

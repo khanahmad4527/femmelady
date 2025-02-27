@@ -10,7 +10,8 @@ import {
   ScrollArea,
   Stack,
   Text,
-  Title
+  Title,
+  TypographyStylesProvider
 } from '@mantine/core';
 import {
   FetcherWithComponents,
@@ -74,6 +75,7 @@ import {
 } from '~/utils/error';
 import FetcherError from '~/components/error/FetcherError';
 import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
+import useCurrentUrl from '~/hooks/useCurrentUrl';
 
 export const meta = ({ data, location }: Route.MetaArgs) => {
   const product = data?.product as Product;
@@ -175,7 +177,7 @@ const SingleProduct = () => {
   const { searchParams, setSearchParams, isLoggedIn, user, env, utmSource } =
     outletContext;
 
-  const location = useLocation();
+  const { currentUrl } = useCurrentUrl();
 
   const { setCartCount, setCarts } = useHeaderFooterContext();
   const [quantity, setQuantity] = useState<string | null>('1');
@@ -426,14 +428,13 @@ const SingleProduct = () => {
             {formatCurrency({ currentLanguage, value: Number(product.price) })}
           </Title>
           {productTranslation?.description && (
-            <Box>
+            <TypographyStylesProvider>
               <div
-                className="dangerouslySetInnerHTML"
                 dangerouslySetInnerHTML={{
                   __html: productTranslation.description
                 }}
               />
-            </Box>
+            </TypographyStylesProvider>
           )}
 
           <ProductColorSwitcher
@@ -526,7 +527,7 @@ const SingleProduct = () => {
                     currentLanguage,
                     paths: [redirectPath],
                     queryParams: {
-                      'redirect-to': location.pathname + location.search,
+                      'redirect-to': currentUrl!,
                       utm_source: utmSource!
                     }
                   })}

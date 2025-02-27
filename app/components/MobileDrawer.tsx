@@ -82,7 +82,7 @@ const MobileDrawer = ({
               to={buildLocalizedLink({
                 baseUrl: env?.APP_URL!,
                 currentLanguage,
-                paths: [PATHS.payment],
+                paths: [PATHS.checkout],
                 queryParams: {
                   'force-validate': 'global'
                 }

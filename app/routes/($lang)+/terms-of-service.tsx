@@ -1,4 +1,4 @@
-import { Divider, Stack, Text } from '@mantine/core';
+import { Divider, Stack, Text, TypographyStylesProvider } from '@mantine/core';
 import { Fragment } from 'react/jsx-runtime';
 import { getLanguageCode } from '~/utils';
 import { Route } from './+types/terms-of-service';
@@ -21,12 +21,9 @@ const TermsOfService = () => {
       {termsOfServices.map((ts, i) => (
         <Fragment key={i}>
           <Text fw={500}>{ts.title}</Text>
-          <Text>
-            <div
-              className="dangerouslySetInnerHTML"
-              dangerouslySetInnerHTML={{ __html: ts.content }}
-            />
-          </Text>
+          <TypographyStylesProvider>
+            <div dangerouslySetInnerHTML={{ __html: ts.content }} />
+          </TypographyStylesProvider>
           <Divider size="sm" my="md" />
         </Fragment>
       ))}

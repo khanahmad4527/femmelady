@@ -103,17 +103,21 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       refreshToken: refresh_token!
     });
 
+    const url = new URL(request.url);
+
     return createUserSession({
       request,
       userSessionId: sessionId,
       remember: true,
-      redirectTo: buildLocalizedLink({
-        baseUrl: process.env?.APP_URL!,
-        currentLanguage,
-        queryParams: {
-          'force-validate': 'global'
-        }
-      })
+      redirectTo:
+        url.searchParams.get(PARAMS.redirectTo) ??
+        buildLocalizedLink({
+          baseUrl: process.env?.APP_URL!,
+          currentLanguage,
+          queryParams: {
+            'force-validate': 'global'
+          }
+        })
     });
   } catch (error) {
     return handleError({ error, route: 'login' });

@@ -27,10 +27,7 @@ const ProductReviewCard = ({ review }: { review: Review }) => {
           </Text>
 
           {/* For desktop display */}
-          <Stack
-            w={{ base: '100%', md: '60%' }}
-            display={{ base: 'none', md: 'flex' }}
-          >
+          <Stack w={{ base: '100%', md: '60%' }} visibleFrom="md">
             <Group gap={10}>
               <Rating value={review?.rating!} color="black" readOnly />
               <Text fw={500}>{translation?.title}</Text>
@@ -44,7 +41,7 @@ const ProductReviewCard = ({ review }: { review: Review }) => {
         </Group>
 
         {/* For mobile display */}
-        <Stack display={{ base: 'flex', md: 'none' }}>
+        <Stack hiddenFrom="md">
           <Group gap={10}>
             <Rating value={review?.rating!} color="black" readOnly />
             <Text fw={500}>{translation?.title}</Text>

@@ -84,17 +84,19 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
   ));
 
   return render === 'mobile' ? (
-    <Box display={{ base: 'block', md: 'none' }}>
-      <Menu shadow="md" width={200}>
+    <Group hiddenFrom="md">
+      <Menu shadow="md" width={300}>
         <Menu.Target>
-          <Button fullWidth>{t('products.filterBy')}</Button>
+          <Button>{t('products.filterBy')}</Button>
         </Menu.Target>
 
         <Menu.Dropdown>{menuItems}</Menu.Dropdown>
       </Menu>
-    </Box>
+
+      <Button onClick={clearSearchParams}>{t('products.clearFilter')}</Button>
+    </Group>
   ) : (
-    <Box display={{ base: 'none', md: 'block' }}>
+    <Box visibleFrom="md">
       <Group>
         <Text>{t('products.filterBy')}</Text>
         <Button onClick={clearSearchParams}>{t('products.clearFilter')}</Button>
@@ -109,7 +111,8 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
 export default ProductsFilterBy;
 
 const RatingFilter = () => {
-  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
+  const { searchParams, setSearchParams, dir } =
+    useOutletContext<OutletContext>();
   const [value, setValue] = useState(getRating({ searchParams }) ?? 3);
 
   const handleSearch = (v: number) => {

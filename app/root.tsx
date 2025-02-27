@@ -1,10 +1,10 @@
-import './styles/style.css';
+import globalStyle from './styles/style.css?url';
+import fontStyleSheetUrl from './styles/fonts.css?url';
+
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/nprogress/styles.css';
 import '@mantine/notifications/styles.css';
-
-import './styles/fonts.css';
 
 import {
   Affix,
@@ -18,11 +18,7 @@ import {
   Text,
   Transition
 } from '@mantine/core';
-import type {
-  LinksFunction,
-  MetaFunction,
-  ShouldRevalidateFunction
-} from 'react-router';
+import type { MetaFunction, ShouldRevalidateFunction } from 'react-router';
 import {
   Link,
   Links,
@@ -57,7 +53,14 @@ import { isAuthenticated } from './auth/auth.server';
 import { Notifications } from '@mantine/notifications';
 import { getMeta } from './meta';
 import { getEnv } from './server/env';
-import { PARAMS } from './constant';
+import { LANGUAGE_DIRECTION, PARAMS } from './constant';
+
+export const links = () => [
+  { rel: 'icon', href: '/favicon.svg' },
+  { rel: 'preload', href: fontStyleSheetUrl, as: 'style' }, // Keep this for font stylesheet
+  { rel: 'stylesheet', href: fontStyleSheetUrl }, // Ensure fonts are loaded
+  { rel: 'stylesheet', href: globalStyle } // Global styles
+];
 
 export const meta: MetaFunction = ({ location }) => {
   return getMeta({ pathname: location.pathname });
@@ -95,6 +98,8 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const env = getEnv();
   const url = new URL(request.url);
   const utmSource = url.searchParams.get(PARAMS.utmSource);
+  const dir = LANGUAGE_DIRECTION[currentLanguage];
+
 
   return {
     isLoggedIn,
@@ -103,12 +108,10 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     currentLanguage,
     env,
     exchangeRate,
-    utmSource
-  };
-};
+    utmSource,
+    dir,
 
-export const links: LinksFunction = () => {
-  return [{ rel: 'icon', href: '/favicon.svg' }];
+  };
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -126,7 +129,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ColorSchemeScript />
       </head>
       <body>
-        <DirectionProvider initialDirection={dir}>
+        <DirectionProvider>
           <MantineProvider theme={theme}>{children}</MantineProvider>
         </DirectionProvider>
         <ScrollRestoration />
