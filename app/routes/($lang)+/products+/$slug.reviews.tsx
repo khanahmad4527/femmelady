@@ -11,7 +11,7 @@ import {
   useOutletContext
 } from 'react-router';
 import { getReviews } from '~/server/api';
-import { OutletContext } from '~/types';
+import { OutletContext, Review } from '~/types';
 import {
   DEFAULT_PRODUCT_LIMIT,
   FORCE_REVALIDATE_MAP,
@@ -64,7 +64,7 @@ const Reviews = () => {
   const { totalReviewsCount } = useOutletContext<
     OutletContext & { totalReviewsCount: number }
   >();
-  const { reviews } = useLoaderData<typeof loader>();
+  const { reviews } = useLoaderData<{ reviews: Review[] }>();
 
   const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
 
@@ -90,12 +90,14 @@ const Reviews = () => {
       {reviews?.map(r => (
         <ProductReviewCard key={r.id} review={r} />
       ))}
-      <LocalizedPagination
-        currentPage={currentPage}
-        totalPaginationButtons={totalPaginationButtons}
-        handlePagination={handlePagination}
-        siblings={isMobile ? 0 : 1}
-      />
+      {totalPaginationButtons > 1 && (
+        <LocalizedPagination
+          currentPage={currentPage}
+          totalPaginationButtons={totalPaginationButtons}
+          handlePagination={handlePagination}
+          siblings={isMobile ? 0 : 1}
+        />
+      )}
     </Stack>
   );
 };
