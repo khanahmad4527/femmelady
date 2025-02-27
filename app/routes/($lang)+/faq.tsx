@@ -1,4 +1,11 @@
-import { Accordion, Button, Grid, Stack, Text } from '@mantine/core';
+import {
+  Accordion,
+  Button,
+  Grid,
+  Stack,
+  Text,
+  TypographyStylesProvider
+} from '@mantine/core';
 import { useLoaderData, useOutletContext } from 'react-router';
 import useTranslation from '~/hooks/useTranslation';
 import { Faqs, OutletContext } from '~/types';
@@ -32,7 +39,9 @@ const Faq = () => {
     <Accordion.Item key={item.question} value={item.question}>
       <Accordion.Control pl={'md'}>{item.question}</Accordion.Control>
       <Accordion.Panel pl={'md'}>
-        <div dangerouslySetInnerHTML={{ __html: item.answer }} />
+        <TypographyStylesProvider>
+          <div dangerouslySetInnerHTML={{ __html: item.answer }} />
+        </TypographyStylesProvider>
       </Accordion.Panel>
     </Accordion.Item>
   ));

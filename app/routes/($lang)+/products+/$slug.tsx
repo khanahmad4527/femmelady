@@ -10,7 +10,8 @@ import {
   ScrollArea,
   Stack,
   Text,
-  Title
+  Title,
+  TypographyStylesProvider
 } from '@mantine/core';
 import {
   FetcherWithComponents,
@@ -427,14 +428,13 @@ const SingleProduct = () => {
             {formatCurrency({ currentLanguage, value: Number(product.price) })}
           </Title>
           {productTranslation?.description && (
-            <Box>
+            <TypographyStylesProvider>
               <div
-                className="dangerouslySetInnerHTML"
                 dangerouslySetInnerHTML={{
                   __html: productTranslation.description
                 }}
               />
-            </Box>
+            </TypographyStylesProvider>
           )}
 
           <ProductColorSwitcher

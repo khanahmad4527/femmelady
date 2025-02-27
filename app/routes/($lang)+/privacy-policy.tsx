@@ -1,4 +1,4 @@
-import { Divider, Stack, Text } from '@mantine/core';
+import { Divider, Stack, Text, TypographyStylesProvider } from '@mantine/core';
 import { Fragment } from 'react/jsx-runtime';
 import { getLanguageCode } from '~/utils';
 import { Route } from './+types/privacy-policy';
@@ -21,12 +21,9 @@ const PrivacyPolicy = () => {
       {privacyPolicies.map((pp, i) => (
         <Fragment key={i}>
           <Text fw={500}>{pp.title}</Text>
-          <Text>
-            <div
-              className="dangerouslySetInnerHTML"
-              dangerouslySetInnerHTML={{ __html: pp.content }}
-            />
-          </Text>
+          <TypographyStylesProvider>
+            <div dangerouslySetInnerHTML={{ __html: pp.content }} />
+          </TypographyStylesProvider>
           <Divider size="sm" my="md" />
         </Fragment>
       ))}
