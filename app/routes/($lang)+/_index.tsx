@@ -208,7 +208,7 @@ export default function Index() {
           loading={'lazy'}
         />
         <Box
-          display={{ base: 'none', xs: 'block' }}
+          visibleFrom="xs"
           pos={'absolute'}
           c="white"
           w={'inherit'}

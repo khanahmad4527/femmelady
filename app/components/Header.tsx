@@ -259,7 +259,7 @@ const Header = () => {
           >
             <TopSearchBar />
             <Burger
-              display={{ base: 'block', md: 'none' }}
+              hiddenFrom="md"
               color={'white'}
               opened={burgerOpened}
               onClick={() => {
@@ -269,11 +269,7 @@ const Header = () => {
             />
           </Group>
 
-          <Group
-            display={{ base: 'none', md: 'flex' }}
-            justify="space-between"
-            p="sm"
-          >
+          <Group visibleFrom="md" justify="space-between" p="sm">
             <LanguageSwitcher />
 
             {isLoggedIn && (
@@ -303,7 +299,7 @@ const Header = () => {
           </Group>
         </Flex>
 
-        <Group display={{ base: 'none', md: 'flex' }} p={'md'} bg={'primary.1'}>
+        <Group visibleFrom="md" p={'md'} bg={'primary.1'}>
           {categoryItems}
         </Group>
 
