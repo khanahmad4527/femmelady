@@ -6,8 +6,9 @@ const useCurrentUrl = () => {
   const [currentUrl, setCurrentUrl] = useState<string | undefined>();
 
   useEffect(() => {
-    const fullUrl = `${window.location.origin}${location.pathname}${location.search}`;
-    setCurrentUrl(fullUrl);
+    const url = new URL(window.location.href);
+    url.searchParams.set('force-validate', 'global');
+    setCurrentUrl(url.toString());
   }, [location]);
 
   return { currentUrl, setCurrentUrl };
