@@ -84,15 +84,17 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
   ));
 
   return render === 'mobile' ? (
-    <Box hiddenFrom="md">
+    <Group hiddenFrom="md">
       <Menu shadow="md" width={200}>
         <Menu.Target>
-          <Button fullWidth>{t('products.filterBy')}</Button>
+          <Button>{t('products.filterBy')}</Button>
         </Menu.Target>
 
         <Menu.Dropdown>{menuItems}</Menu.Dropdown>
       </Menu>
-    </Box>
+
+      <Button onClick={clearSearchParams}>{t('products.clearFilter')}</Button>
+    </Group>
   ) : (
     <Box visibleFrom="md">
       <Group>
