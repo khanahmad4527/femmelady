@@ -7,6 +7,7 @@ import {
   PARAM_KEYS
 } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import { IconSwitch } from '~/icons';
 import selectClasses from '~/styles/Select.module.scss';
 
@@ -15,12 +16,17 @@ const LanguageSwitcher = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { setDirection } = useDirection();
+  const { isLoggedIn } = useHeaderFooterContext();
 
-  const handleLanguageChange = (
+  const handleLanguageChange = async (
     _value: string | null,
     option: ComboboxItem
   ) => {
     if (currentLanguage !== option.value) {
+      if (isLoggedIn) {
+        await fetch(`/${option.value}/change-language`, { method: 'POST' });
+      }
+
       // Update the pathname
       const newPath = location.pathname.replace(
         `/${currentLanguage}`,
