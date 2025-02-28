@@ -4,7 +4,7 @@ import { AVAILABLE_LANGUAGES, STATIC_PAGES } from './app/constant';
 export default {
   // Config options...
   // Server-side render by default, to enable SPA mode set this to `false`
-  ssr: true,
+  ssr: false,
 
   // return a list of URLs to prerender at build time
   async prerender() {
