@@ -38,7 +38,6 @@ steps:
         'managed',
         '--port=3000',
         '--allow-unauthenticated',
-        '--set-env-vars=DIRECTUS_URL=$$DIRECTUS_URL,REDIS_URL=$$REDIS_URL',
         '${_MIN_INSTANCES}',
         '${_MAX_INSTANCES}'
       ]
