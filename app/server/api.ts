@@ -27,24 +27,20 @@ import {
   DEFAULT_PRODUCT_SORT,
   LOCALE_TO_CURRENCY
 } from '~/constant';
-import NodeCache from 'node-cache';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
-
-const cache = new NodeCache();
+import { redisClient } from '.';
 
 // Utility function to fetch exchange rates
 export const getExchangeRate = async (
   currentLanguage: TranslationKeys
 ): Promise<number> => {
   const locale = getUserLocale(currentLanguage);
-
   const currency = LOCALE_TO_CURRENCY[locale] || 'USD';
+  const cacheKey = `exchange-rate-${currency}`;
 
-  // Check if the exchange rate is already cached
-  const cachedRate = cache.get<number>(`exchange-rate-${currency}`);
-  if (cachedRate) {
-    return cachedRate;
-  }
+  // Check if the exchange rate is already cached in Redis
+  const cachedRate = await redisClient.getCache<number>(cacheKey);
+  if (cachedRate) return cachedRate;
 
   try {
     const response = await fetch(process.env?.EXCHANGE_RATE_API_URL ?? '');
@@ -55,8 +51,8 @@ export const getExchangeRate = async (
     const data = await response.json();
     const rate = data?.rates?.[currency] || 1; // Default to 1 if no rate is found
 
-    // Cache the exchange rate
-    cache.set(`exchange-rate-${currency}`, rate, 3600);
+    // Cache the exchange rate in Redis for 1 hour (3600 seconds)
+    await redisClient.setCache<number>(cacheKey, rate, 3600);
 
     return rate;
   } catch (error) {
@@ -353,19 +349,27 @@ export const getReviews = async ({
 };
 
 export const getAboutUs = async ({
-  languageCode
+  languageCode,
+  useCache = false
 }: {
   languageCode: string;
+  useCache?: boolean;
 }) => {
   const cacheKey = `about_us_${languageCode}`;
 
-  // Check if data is in the cache
-  const cachedData = cache.get(cacheKey);
-  if (cachedData) {
-    return cachedData as GenericContent[];
+  if (useCache) {
+    try {
+      // Fetch cached data as GenericContent[]
+      const cachedData = await redisClient.getCache<GenericContent[]>(cacheKey);
+      if (cachedData) {
+        return cachedData; // Now correctly typed
+      }
+    } catch (error) {
+      console.error('Redis cache error:', error);
+    }
   }
 
-  // If not cached, fetch from Directus
+  // Fetch fresh data from Directus
   const data = (await directus.request(
     readSingleton('about_us' as never, {
       fields: ['*', { translations: ['*'] }] as never,
@@ -388,37 +392,37 @@ export const getAboutUs = async ({
     a => a.is_featured
   );
 
-  // Store fetched data in cache for 24 hours
-  cache.set(cacheKey, aboutUs, 86400);
+  if (useCache) {
+    try {
+      // Store the fetched data in Redis with correct typing
+      await redisClient.setCache<GenericContent[]>(cacheKey, aboutUs, 86400);
+    } catch (error) {
+      console.error('Redis cache saving error:', error);
+    }
+  }
 
-  return aboutUs as GenericContent[];
+  return aboutUs;
 };
 
 export const getContactUs = async ({
-  languageCode
+  languageCode,
+  useCache = false
 }: {
   languageCode: string;
+  useCache?: boolean;
 }) => {
   const cacheKey = `contact_us_${languageCode}`;
 
-  // Check if data is in the cache
-  const cachedData = cache.get(cacheKey);
-  if (cachedData) {
-    return cachedData as GenericContent[];
+  if (useCache) {
+    const cachedData = await redisClient.getCache<GenericContent[]>(cacheKey);
+    if (cachedData) return cachedData;
   }
 
-  // If not cached, fetch from Directus
   const data = (await directus.request(
     readSingleton('contact_us' as never, {
       fields: ['*', { translations: ['*'] }] as never,
       deep: {
-        translations: {
-          _filter: {
-            languages_code: {
-              _eq: languageCode
-            }
-          }
-        }
+        translations: { _filter: { languages_code: { _eq: languageCode } } }
       } as any
     })
   )) as GenericSingleton;
@@ -430,37 +434,31 @@ export const getContactUs = async ({
     a => a.is_featured
   );
 
-  // Store fetched data in cache for 24 hours
-  cache.set(cacheKey, contactUs, 86400);
+  if (useCache)
+    await redisClient.setCache<GenericContent[]>(cacheKey, contactUs, 86400);
 
-  return contactUs as GenericContent[];
+  return contactUs;
 };
 
 export const getPrivacyPolicy = async ({
-  languageCode
+  languageCode,
+  useCache = false
 }: {
   languageCode: string;
+  useCache?: boolean;
 }) => {
   const cacheKey = `privacy_policy_${languageCode}`;
 
-  // Check if data is in the cache
-  const cachedData = cache.get(cacheKey);
-  if (cachedData) {
-    return cachedData as GenericContent[];
+  if (useCache) {
+    const cachedData = await redisClient.getCache<GenericContent[]>(cacheKey);
+    if (cachedData) return cachedData;
   }
 
-  // If not cached, fetch from Directus
   const data = (await directus.request(
     readSingleton('privacy_policy' as never, {
       fields: ['*', { translations: ['*'] }] as never,
       deep: {
-        translations: {
-          _filter: {
-            languages_code: {
-              _eq: languageCode
-            }
-          }
-        }
+        translations: { _filter: { languages_code: { _eq: languageCode } } }
       } as any
     })
   )) as GenericSingleton;
@@ -472,37 +470,35 @@ export const getPrivacyPolicy = async ({
     a => a.is_featured
   );
 
-  // Store fetched data in cache for 24 hours
-  cache.set(cacheKey, privacyPolicy, 86400);
+  if (useCache)
+    await redisClient.setCache<GenericContent[]>(
+      cacheKey,
+      privacyPolicy,
+      86400
+    );
 
-  return privacyPolicy as GenericContent[];
+  return privacyPolicy;
 };
 
 export const getTermsOfServices = async ({
-  languageCode
+  languageCode,
+  useCache = false
 }: {
   languageCode: string;
+  useCache?: boolean;
 }) => {
   const cacheKey = `terms_of_services_${languageCode}`;
 
-  // Check if data is in the cache
-  const cachedData = cache.get(cacheKey);
-  if (cachedData) {
-    return cachedData as GenericContent[];
+  if (useCache) {
+    const cachedData = await redisClient.getCache<GenericContent[]>(cacheKey);
+    if (cachedData) return cachedData;
   }
 
-  // If not cached, fetch from Directus
   const data = (await directus.request(
     readSingleton('terms_of_services' as never, {
       fields: ['*', { translations: ['*'] }] as never,
       deep: {
-        translations: {
-          _filter: {
-            languages_code: {
-              _eq: languageCode
-            }
-          }
-        }
+        translations: { _filter: { languages_code: { _eq: languageCode } } }
       } as any
     })
   )) as GenericSingleton;
@@ -514,22 +510,32 @@ export const getTermsOfServices = async ({
     a => a.is_featured
   );
 
-  // Store fetched data in cache for 24 hours
-  cache.set(cacheKey, termsOfServices, 86400);
+  if (useCache)
+    await redisClient.setCache<GenericContent[]>(
+      cacheKey,
+      termsOfServices,
+      86400
+    );
 
-  return termsOfServices as GenericContent[];
+  return termsOfServices;
 };
 
-export const getFaqs = async ({ languageCode }: { languageCode: string }) => {
+export const getFaqs = async ({
+  languageCode,
+  useCache = false
+}: {
+  languageCode: string;
+  useCache?: boolean;
+}) => {
   const cacheKey = `faq_${languageCode}`;
 
-  // Check if data is in the cache
-  const cachedData = cache.get(cacheKey);
-  if (cachedData) {
-    return cachedData as Faqs[];
+  if (useCache) {
+    // Check if data is in Redis cache
+    const cachedData = await redisClient.getCache<Faqs[]>(cacheKey);
+    if (cachedData) return cachedData;
   }
 
-  // If not cached, fetch from Directus
+  // Fetch from Directus if not cached
   const data = (await directus.request(
     readSingleton('faq' as never, {
       fields: ['*', { translations: ['*'] }] as never,
@@ -545,20 +551,21 @@ export const getFaqs = async ({ languageCode }: { languageCode: string }) => {
     })
   )) as FAQ;
 
-  const extendedExtendedFAQTranslation: ExtendedFAQTranslation =
-    getFirstObjectDto(data?.translations);
+  const extendedFAQTranslation: ExtendedFAQTranslation = getFirstObjectDto(
+    data?.translations
+  );
 
-  const faqs = extendedExtendedFAQTranslation.faqs.map(f => {
-    return {
-      ...f,
-      faqs: f.faqs.filter(a => a.is_featured)
-    };
-  });
+  const faqs = extendedFAQTranslation.faqs.map(f => ({
+    ...f,
+    faqs: f.faqs.filter(a => a.is_featured)
+  }));
 
-  // Store fetched data in cache for 24 hours
-  cache.set(cacheKey, faqs, 86400);
+  if (useCache) {
+    // Store fetched data in Redis for 24 hours
+    await redisClient.setCache<Faqs[]>(cacheKey, faqs, 86400);
+  }
 
-  return faqs as Faqs[];
+  return faqs;
 };
 
 export const getCarts = async ({

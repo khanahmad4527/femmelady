@@ -79,6 +79,34 @@ class RedisClient {
       throw new Error('Failed to delete token');
     }
   }
+
+  // Using redis instead of node cache to store data of pages like about-us, contact-us etc
+  // Cache Methods
+  async setCache<T>(key: string, value: T, ttl: number = 3600) {
+    try {
+      await this.redisClient.set(key, JSON.stringify(value), { EX: ttl });
+    } catch (error) {
+      console.error('Failed to set cache:', error);
+    }
+  }
+
+  async getCache<T>(key: string): Promise<T | null> {
+    try {
+      const value = await this.redisClient.get(key);
+      return value ? (JSON.parse(value) as T) : null; // Ensure correct type
+    } catch (error) {
+      console.error('Failed to get cache:', error);
+      return null;
+    }
+  }
+
+  async deleteCache(key: string) {
+    try {
+      await this.redisClient.del(key);
+    } catch (error) {
+      console.error('Failed to delete cache:', error);
+    }
+  }
 }
 
 export default RedisClient;
