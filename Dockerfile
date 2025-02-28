@@ -19,14 +19,6 @@ FROM node:20-alpine AS build-env
 WORKDIR /app
 RUN npm install -g pnpm
 
-# Declare build arguments
-ARG DIRECTUS_URL
-ARG REDIS_URL
-
-# Make sure the build process is aware of these arguments
-ENV DIRECTUS_URL=$DIRECTUS_URL
-ENV REDIS_URL=$REDIS_URL
-
 # Copy all application files
 COPY . .
 # Reuse development dependencies to build the app
