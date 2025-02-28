@@ -7,7 +7,7 @@ steps:
       - |
         export DOCKER_BUILDKIT=1
         docker build -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA -f Dockerfile .
-    secretEnv: ['USERNAME', 'PASSWORD']
+    secretEnv: ['DIRECTUS_URL', 'REDIS_URL']
 
   # 2️⃣ Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
