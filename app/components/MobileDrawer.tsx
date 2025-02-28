@@ -1,5 +1,5 @@
 import { Button, Drawer, Stack } from '@mantine/core';
-import { Link, useLocation } from 'react-router';
+import { href, Link, useLocation } from 'react-router';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
 import { ValueLabel } from '~/types';
@@ -67,11 +67,7 @@ const MobileDrawer = ({
             <Button
               component={Link}
               prefetch="intent"
-              to={buildLocalizedLink({
-                baseUrl: env?.APP_URL!,
-                currentLanguage,
-                paths: [PATHS.logout]
-              })}
+              to={href('/:lang?/logout', { lang: currentLanguage })}
               color={'black'}
             >
               {t('common.logout')}

@@ -9,9 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 import { directus } from '~/server/directus';
 import { User } from '~/types';
 import { getUserSessionKey } from './session.server';
-import RedisClient from './redis.server';
-
-const redisClient = new RedisClient();
+import { redisClient } from '~/server';
 
 export const customReadMe = async (token: string) => {
   try {

@@ -10,6 +10,7 @@ import {
   Text,
   TextInput
 } from '@mantine/core';
+import { href } from 'react-router';
 import { Link } from 'react-router';
 import { PATHS } from '~/constant';
 
@@ -27,38 +28,22 @@ const Footer = () => {
   const links = [
     {
       id: '7d4a5c83-9b2f-49e7-a5b4-2f1c3a8d6b47',
-      link: buildLocalizedLink({
-        baseUrl: env?.APP_URL!,
-        currentLanguage,
-        paths: [PATHS.aboutUs]
-      }),
+      link: href('/:lang?/about-us', { lang: currentLanguage }),
       label: t('footer.links.aboutUs')
     },
     {
       id: '4b5f25a7-3d2e-4f79-a1b7-43767c88d1f3',
-      link: buildLocalizedLink({
-        baseUrl: env?.APP_URL!,
-        currentLanguage,
-        paths: [PATHS.contactUs]
-      }),
+      link: href('/:lang?/contact-us', { lang: currentLanguage }),
       label: t('footer.links.contactUs')
     },
     {
       id: 'd1c7f8a6-9b8e-4a27-a9f1-0c5f784e12c6',
-      link: buildLocalizedLink({
-        baseUrl: env?.APP_URL!,
-        currentLanguage,
-        paths: [PATHS.privacyPolicy]
-      }),
+      link: href('/:lang?/privacy-policy', { lang: currentLanguage }),
       label: t('footer.links.privacyPolicy')
     },
     {
       id: 'c8967158-00be-4683-bb82-dfc55c8bc0e8',
-      link: buildLocalizedLink({
-        baseUrl: env?.APP_URL!,
-        currentLanguage,
-        paths: [PATHS.termsOfService]
-      }),
+      link: href('/:lang?/terms-of-service', { lang: currentLanguage }),
       label: t('footer.links.termsOfService')
     },
     {
@@ -72,11 +57,7 @@ const Footer = () => {
     },
     {
       id: 'cf72d496-5b84-42e9-a8e1-84f3c67b8a29',
-      link: buildLocalizedLink({
-        baseUrl: env?.APP_URL!,
-        currentLanguage,
-        paths: [PATHS.faq]
-      }),
+      link: href('/:lang?/faq', { lang: currentLanguage }),
       label: t('footer.links.faq')
     }
   ];
@@ -160,10 +141,8 @@ const Footer = () => {
                       fz="xs"
                       component={Link}
                       prefetch="intent"
-                      to={buildLocalizedLink({
-                        baseUrl: env?.APP_URL!,
-                        currentLanguage,
-                        paths: [PATHS.privacyPolicy]
+                      to={href('/:lang?/privacy-policy', {
+                        lang: currentLanguage
                       })}
                       underline="always"
                     >
@@ -177,10 +156,8 @@ const Footer = () => {
                       fz="xs"
                       component={Link}
                       prefetch="intent"
-                      to={buildLocalizedLink({
-                        baseUrl: env?.APP_URL!,
-                        currentLanguage,
-                        paths: [PATHS.termsOfService]
+                      to={href('/:lang?/terms-of-service', {
+                        lang: currentLanguage
                       })}
                       underline="always"
                     >

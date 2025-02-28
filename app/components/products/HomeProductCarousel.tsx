@@ -3,8 +3,8 @@ import { Box, Card, Image, Stack, Text, Title } from '@mantine/core';
 import { useHover, useInViewport } from '@mantine/hooks';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { useEffect, useRef } from 'react';
+import { href } from 'react-router';
 import { Link, useOutletContext } from 'react-router';
-import { PATHS } from '~/constant';
 import getStringDto from '~/dto/getStringDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
@@ -12,12 +12,7 @@ import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
 import { OutletContext, Product, ProductTranslation } from '~/types';
-import {
-  buildLocalizedLink,
-  formatCurrency,
-  getImageUrl,
-  getSingleTranslation
-} from '~/utils';
+import { formatCurrency, getImageUrl, getSingleTranslation } from '~/utils';
 
 const HomeProductCarousel = ({ products }: { products: Product[] }) => {
   if (!products || !products?.length) {
@@ -59,7 +54,6 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
         slideSize={{ base: '100%', xs: '50%', md: '25%' }}
         loop={canLoop}
         align={'start'}
-        style={{ cursor: 'grab', direction: 'ltr' }} // There was a problem with rtl so we set it to ltr to avid any problem
         dragFree
       >
         {products?.map(p => {
@@ -96,14 +90,9 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                   h={300}
                   component={Link}
                   prefetch="intent"
-                  to={buildLocalizedLink({
-                    baseUrl: env?.APP_URL!,
-                    currentLanguage,
-                    paths: [
-                      PATHS.products,
-                      translation?.slug ?? p?.id,
-                      PATHS.reviews
-                    ]
+                  to={href('/:lang?/products/:slug/reviews', {
+                    lang: currentLanguage,
+                    slug: translation?.slug ?? p?.id
                   })}
                 >
                   <Image
@@ -120,7 +109,7 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                   />
                 </Box>
 
-                {/* There was a problem with carousel not working when dir is set to rtl so we are 
+                {/* There was a problem with carousel not working when dir is set to rtl so we are
                 manually setting it here */}
                 <Box style={{ direction: dir }}>
                   <Text tt={'capitalize'}>{translation?.title}</Text>

@@ -8,6 +8,15 @@ export const FALL_BACK_LANG = 'en';
 // These are the languages that web app supports
 export const AVAILABLE_LANGUAGES = ['en', 'ja', 'ko', 'ar', 'nl', 'fr', 'zh'];
 
+// Pages that can be static
+export const STATIC_PAGES = [
+  'about-us',
+  'contact-us',
+  'privacy-policy',
+  'terms-of-service',
+  'faq'
+] as const;
+
 export const LANGUAGE_TO_LOCALE_LANGUAGE: Record<string, string> = {
   en: 'en-US', // English (United States)
   ja: 'ja-JP', // Japanese (Japan)

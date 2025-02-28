@@ -7,7 +7,7 @@ import {
   Flex,
   Group
 } from '@mantine/core';
-import { Link } from 'react-router';
+import { href, Link } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
@@ -277,11 +277,7 @@ const Header = () => {
                 <Anchor
                   component={Link}
                   prefetch="intent"
-                  to={buildLocalizedLink({
-                    baseUrl: env?.APP_URL!,
-                    currentLanguage,
-                    paths: [PATHS.checkout]
-                  })}
+                  to={href('/:lang?/checkout', { lang: currentLanguage })}
                 >
                   <Group gap={0} wrap={'nowrap'} style={{ cursor: 'pointer' }}>
                     <ActionIcon variant="transparent" size="xl">

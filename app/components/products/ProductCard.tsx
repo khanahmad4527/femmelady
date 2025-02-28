@@ -8,7 +8,7 @@ import {
   Text
 } from '@mantine/core';
 
-import { Link, useOutletContext } from 'react-router';
+import { href, Link, useOutletContext } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
 import { IconHeart, IconPlus } from '~/icons';
@@ -18,24 +18,20 @@ import {
   ProductProductColor,
   ProductTranslation
 } from '~/types';
-import {
-  buildLocalizedLink,
-  formatCurrency,
-  getImageUrl,
-  getSingleTranslation
-} from '~/utils';
+import { formatCurrency, getImageUrl, getSingleTranslation } from '~/utils';
 import ProductColorSwitcher from './ProductColorSwitcher';
 import { useHover } from '@mantine/hooks';
 import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 
 import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
 import { memo } from 'react';
-import { PATHS } from '~/constant';
 import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
 
 const ProductCard = (product: Product) => {
   const { searchParams, setSearchParams, env } =
     useOutletContext<OutletContext>();
+
+  const { currentLanguage } = useCurrentLanguage();
 
   const { hovered, ref } = useHover();
 
@@ -54,8 +50,6 @@ const ProductCard = (product: Product) => {
   const { colors, translations, price, id } = product;
 
   const translation = getSingleTranslation(translations) as ProductTranslation;
-
-  const { currentLanguage } = useCurrentLanguage();
 
   useResponsivePreloadImages({
     base: [
@@ -97,10 +91,9 @@ const ProductCard = (product: Product) => {
         h={300}
         component={Link}
         prefetch="intent"
-        to={buildLocalizedLink({
-          baseUrl: env?.APP_URL!,
-          currentLanguage,
-          paths: [PATHS.products, translation?.slug ?? id, PATHS.reviews]
+        to={href('/:lang?/products/:slug/reviews', {
+          lang: currentLanguage,
+          slug: translation?.slug ?? id
         })}
       >
         <Image

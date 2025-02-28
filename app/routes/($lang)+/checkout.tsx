@@ -15,7 +15,7 @@ import { buildLocalizedLink, formatCurrency, getLanguageCode } from '~/utils';
 import { Route } from './+types/checkout';
 import { isAuthenticated } from '~/auth/auth.server';
 import { getCarts } from '~/server/api';
-import { Link, useLoaderData, useOutletContext } from 'react-router';
+import { href, Link, useLoaderData, useOutletContext } from 'react-router';
 
 import { Cart, OutletContext, ProductCart } from '~/types';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
@@ -106,11 +106,7 @@ const Checkout = () => {
               disabled={!totalPrice}
               component={Link}
               prefetch="intent"
-              to={buildLocalizedLink({
-                baseUrl: env?.APP_URL!,
-                currentLanguage,
-                paths: [PATHS.payment]
-              })}
+              to={href('/:lang?/payment', { lang: currentLanguage })}
             >
               {t('checkout.pay')}
             </Button>
