@@ -7,6 +7,7 @@ steps:
       - |
         export DOCKER_BUILDKIT=1
         docker build -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA -f Dockerfile .
+    secretEnv: ['DIRECTUS_URL', 'REDIS_URL']
 
   # 2️⃣ Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -38,3 +39,10 @@ options:
   logging: CLOUD_LOGGING_ONLY # 📜 Log to Cloud Logging only (no local logs)
 
 serviceAccount: '${_SERVICE_ACCOUNT}' # 🛠️ IAM Service Account for deployment
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_DIRECTUS_URL/versions/latest
+      env: 'DIRECTUS_URL'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_REDIS_URL/versions/latest
+      env: 'REDIS_URL'
