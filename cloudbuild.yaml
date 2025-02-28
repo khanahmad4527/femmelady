@@ -23,7 +23,8 @@ steps:
 
   # 3️⃣ Deploy the new version to Cloud Run with environment variables
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [
+    args:
+      [
         'run',
         'deploy',
         '${_SERVICE_NAME}',
