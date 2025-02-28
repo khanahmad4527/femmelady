@@ -6,7 +6,11 @@ steps:
       - '-c'
       - |
         export DOCKER_BUILDKIT=1
-        docker build -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA -f Dockerfile .
+        docker build \
+          --build-arg DIRECTUS_URL=$$DIRECTUS_URL \
+          --build-arg REDIS_URL=$$REDIS_URL \
+          -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA \
+          -f Dockerfile .
     secretEnv: ['DIRECTUS_URL', 'REDIS_URL']
 
   # 2️⃣ Push the image to Artifact Registry
@@ -17,7 +21,7 @@ steps:
         '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA'
       ]
 
-  # 3️⃣ Deploy the new version to Cloud Run
+  # 3️⃣ Deploy the new version to Cloud Run with environment variables
   - name: 'gcr.io/cloud-builders/gcloud'
     args: [
         'run',
@@ -29,16 +33,17 @@ steps:
         '${_REGION}',
         '--platform',
         'managed',
-        '--port=3000', # <-- Tell Cloud Run to use port 3000
+        '--port=3000',
         '--allow-unauthenticated',
-        '${_MIN_INSTANCES}', # 🔄 Keeps at least 1 instance running (prevents cold starts)
-        '${_MAX_INSTANCES}' # 🚀 Auto-scales up to 3 instances if needed
+        '--set-env-vars=DIRECTUS_URL=$$DIRECTUS_URL,REDIS_URL=$$REDIS_URL',
+        '${_MIN_INSTANCES}',
+        '${_MAX_INSTANCES}'
       ]
 
 options:
-  logging: CLOUD_LOGGING_ONLY # 📜 Log to Cloud Logging only (no local logs)
+  logging: CLOUD_LOGGING_ONLY
 
-serviceAccount: '${_SERVICE_ACCOUNT}' # 🛠️ IAM Service Account for deployment
+serviceAccount: '${_SERVICE_ACCOUNT}'
 
 availableSecrets:
   secretManager:
