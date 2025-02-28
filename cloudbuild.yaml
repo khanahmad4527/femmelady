@@ -5,6 +5,8 @@ steps:
     args:
       - '-c'
       - |
+        echo "DIRECTUS_URL is: '$$DIRECTUS_URL'"
+        echo "REDIS_URL is: '$$REDIS_URL'"
         export DOCKER_BUILDKIT=1
         docker build \
           --build-arg DIRECTUS_URL=$$DIRECTUS_URL \
