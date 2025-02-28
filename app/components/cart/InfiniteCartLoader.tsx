@@ -1,6 +1,6 @@
 import { Button, Group, Skeleton, Stack } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { Link, useFetcher } from 'react-router';
+import { href, Link, useFetcher } from 'react-router';
 import HeaderCartCard from './HeaderCartCard';
 import { buildLocalizedLink } from '~/utils';
 import useTranslation from '~/hooks/useTranslation';
@@ -93,11 +93,7 @@ const InfiniteCartLoader = ({ close }: { close: () => void }) => {
         <Button
           component={Link}
           prefetch="intent"
-          to={buildLocalizedLink({
-            baseUrl: env?.APP_URL!,
-            currentLanguage,
-            paths: [PATHS.checkout]
-          })}
+          to={href('/:lang?/checkout', { lang: currentLanguage })}
           color="black"
           fullWidth
           onClick={close}

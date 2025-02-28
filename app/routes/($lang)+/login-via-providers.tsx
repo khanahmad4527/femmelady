@@ -8,9 +8,9 @@ import {
 } from '~/utils';
 import { directus } from '~/server/directus';
 import { refresh } from '@directus/sdk';
-import { redisClient } from '~/entry.server';
 import { createUserSession } from '~/auth/session.server';
 import { PARAMS, PATHS } from '~/constant';
+import { redisClient } from '~/server';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const url = new URL(request.url);

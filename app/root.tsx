@@ -20,6 +20,7 @@ import {
 } from '@mantine/core';
 import type { MetaFunction, ShouldRevalidateFunction } from 'react-router';
 import {
+  href,
   Link,
   Links,
   Meta,
@@ -100,7 +101,6 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const utmSource = url.searchParams.get(PARAMS.utmSource);
   const dir = LANGUAGE_DIRECTION[currentLanguage];
 
-
   return {
     isLoggedIn,
     user,
@@ -109,8 +109,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     env,
     exchangeRate,
     utmSource,
-    dir,
-
+    dir
   };
 };
 
@@ -210,7 +209,9 @@ const ErrorBoundaryComponent = () => {
           mt={'md'}
           component={Link}
           prefetch="intent"
-          to={buildLocalizedLink({ baseUrl: env?.APP_URL!, currentLanguage })}
+          to={href('/:lang?', {
+            lang: currentLanguage
+          })}
         >
           {t('common.goToHome')}
         </Button>

@@ -14,7 +14,6 @@ import {
 import { Link, redirect, useOutletContext } from 'react-router';
 import { isAuthenticated, login } from '~/auth/auth.server';
 import { createUserSession } from '~/auth/session.server';
-import { redisClient } from '~/entry.server';
 
 import useTranslation from '~/hooks/useTranslation';
 import { loginFormSchema } from '~/schema';
@@ -36,6 +35,8 @@ import FetcherError from '~/components/error/FetcherError';
 import { useMediaQuery } from '@mantine/hooks';
 import { useForm } from '~/hooks/useForm';
 import Marquee from '~/components/Marquee';
+import { redisClient } from '~/server';
+import { href } from 'react-router';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -197,11 +198,7 @@ const Login = () => {
             <Anchor
               component={Link}
               prefetch="intent"
-              to={buildLocalizedLink({
-                baseUrl: env?.APP_URL!,
-                currentLanguage,
-                paths: [PATHS.register]
-              })}
+              to={href('/:lang?/register', { lang: currentLanguage })}
             >
               {t('login.accountRegister')}
             </Anchor>

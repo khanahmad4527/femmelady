@@ -31,6 +31,7 @@ import {
 } from '~/utils';
 import FetcherError from '../error/FetcherError';
 import useCartCardManager from '~/hooks/useCartCardManager';
+import { href } from 'react-router';
 
 const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
   const { currentLanguage } = useCurrentLanguage();
@@ -73,14 +74,9 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
         ref={ref as any}
         component={Link}
         prefetch="intent"
-        to={buildLocalizedLink({
-          baseUrl: env?.APP_URL!,
-          currentLanguage,
-          paths: [
-            PATHS.products,
-            productTranslation?.slug ?? product?.id,
-            PATHS.reviews
-          ]
+        to={href('/:lang?/products/:slug/reviews', {
+          lang: currentLanguage,
+          slug: productTranslation?.slug ?? product?.id
         })}
       >
         <Image

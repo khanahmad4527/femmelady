@@ -1,5 +1,5 @@
 import { Box, Button, Stack, Text } from '@mantine/core';
-import { Link, useOutletContext } from 'react-router';
+import { href, Link, useOutletContext } from 'react-router';
 import { PATHS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
@@ -27,11 +27,7 @@ const NoCart = () => {
         mt={'md'}
         component={Link}
         prefetch="intent"
-        to={buildLocalizedLink({
-          baseUrl: env?.APP_URL!,
-          currentLanguage,
-          paths: [PATHS.products]
-        })}
+        to={href('/:lang?', { lang: currentLanguage })}
       >
         {t('common.cartEmptyMessage')}
       </Button>

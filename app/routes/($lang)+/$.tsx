@@ -1,4 +1,5 @@
 import { Box, Button, Stack, Text } from '@mantine/core';
+import { href } from 'react-router';
 import { Link, useOutletContext } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
@@ -28,7 +29,7 @@ const $ = () => {
         mt={'md'}
         component={Link}
         prefetch="intent"
-        to={buildLocalizedLink({ baseUrl: env?.APP_URL!, currentLanguage })}
+        to={href('/:lang?', { lang: currentLanguage })}
       >
         {t('common.goToHome')}
       </Button>

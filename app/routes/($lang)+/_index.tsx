@@ -18,7 +18,7 @@ import {
   Title
 } from '@mantine/core';
 
-import { Link, useLoaderData, useOutletContext } from 'react-router';
+import { href, Link, useLoaderData, useOutletContext } from 'react-router';
 
 import HomeProductCarousel from '~/components/products/HomeProductCarousel';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -192,11 +192,7 @@ export default function Index() {
       <Box
         component={Link}
         prefetch="intent"
-        to={buildLocalizedLink({
-          baseUrl: env?.APP_URL!,
-          currentLanguage,
-          paths: [PATHS.products]
-        })}
+        to={href('/:lang?/products', { lang: currentLanguage })}
         pos={'relative'}
         h={{ base: 180, xs: 600 }}
       >

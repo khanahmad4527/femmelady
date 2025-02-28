@@ -4,11 +4,11 @@ import {
   USER_SESSION_KEY
 } from '~/auth/session.server';
 import { Route } from './+types/logout';
-import { redisClient } from '~/entry.server';
 import { redirect } from 'react-router';
 import { logout } from '~/auth/auth.server';
 import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
 import { PARAMS } from '~/constant';
+import { redisClient } from '~/server';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });

@@ -1,14 +1,12 @@
 import { Box, Button, Stack, Text } from '@mantine/core';
 import { ReactNode } from 'react';
-import { Link, useOutletContext } from 'react-router';
+import { href } from 'react-router';
+import { Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconDatabaseExclamation } from '~/icons';
-import { OutletContext } from '~/types';
-import { buildLocalizedLink } from '~/utils';
 
 const NoData = ({ button }: { button?: ReactNode }) => {
-  const { env } = useOutletContext<OutletContext>();
   const { currentLanguage } = useCurrentLanguage();
   const t = useTranslation();
 
@@ -30,7 +28,7 @@ const NoData = ({ button }: { button?: ReactNode }) => {
           mt={'md'}
           component={Link}
           prefetch="intent"
-          to={buildLocalizedLink({ baseUrl: env?.APP_URL!, currentLanguage })}
+          to={href('/:lang?', { lang: currentLanguage })}
         >
           {t('common.goToHome')}
         </Button>

@@ -1,21 +1,19 @@
 import { Box, Text, Title } from '@mantine/core';
+import { href } from 'react-router';
 import { Link } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
-import { buildLocalizedLink } from '~/utils';
 
 const Logo = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
-  const { env } = useHeaderFooterContext();
   const TEXT_ALIGN = { base: 'auto', md: 'inherit' } as any;
 
   return (
     <Box
       component={Link}
-      to={buildLocalizedLink({ baseUrl: env?.APP_URL!, currentLanguage })}
+      to={href('/:lang?', { lang: currentLanguage })}
       prefetch="intent"
       style={{ textDecoration: 'none' }}
     >

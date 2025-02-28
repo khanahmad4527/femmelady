@@ -33,6 +33,7 @@ import { isAuthenticated } from '~/auth/auth.server';
 import FetcherError from '~/components/error/FetcherError';
 import { useForm } from '~/hooks/useForm';
 import Marquee from '~/components/Marquee';
+import { href } from 'react-router';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -203,11 +204,7 @@ const register = () => {
             <Anchor
               component={Link}
               prefetch="intent"
-              to={buildLocalizedLink({
-                baseUrl: env?.APP_URL!,
-                currentLanguage,
-                paths: [PATHS.login]
-              })}
+              to={href('/:lang?/login', { lang: currentLanguage })}
             >
               {t('register.accountLogin')}
             </Anchor>
