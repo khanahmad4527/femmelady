@@ -11,11 +11,11 @@ export default {
     return AVAILABLE_LANGUAGES.flatMap(p =>
       STATIC_PAGES.map(s => `/${p}/${s}`)
     );
-  },
-
-  future: {
-    unstable_optimizeDeps: true,
-    unstable_splitRouteModules: true,
-    unstable_viteEnvironmentApi: true
   }
+
+  // future: {
+  //   unstable_optimizeDeps: true,
+  //   unstable_splitRouteModules: true,
+  //   unstable_viteEnvironmentApi: true
+  // }
 } satisfies Config;
