@@ -13,8 +13,7 @@ export const STATIC_PAGES = [
   'about-us',
   'contact-us',
   'privacy-policy',
-  'terms-of-service',
-  'faq'
+  'terms-of-service'
 ] as const;
 
 export const LANGUAGE_TO_LOCALE_LANGUAGE: Record<string, string> = {
