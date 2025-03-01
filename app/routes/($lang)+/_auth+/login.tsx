@@ -53,8 +53,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   if (isLoggedIn) {
     const redirectTo = buildLocalizedLink({
-      baseUrl: getEnv(process.env).APP_URL,
-      currentLanguage,
+      baseUrl: href('/:lang?', { lang: currentLanguage }),
       queryParams: {
         'force-validate': 'global'
       }
@@ -114,8 +113,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       redirectTo:
         url.searchParams.get(PARAMS.redirectTo) ??
         buildLocalizedLink({
-          baseUrl: getEnv(process.env).APP_URL,
-          currentLanguage,
+          baseUrl: href('/:lang?', { lang: currentLanguage }),
           queryParams: {
             'force-validate': 'global'
           }

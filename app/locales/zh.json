@@ -100,9 +100,9 @@
     "description": "注册失败，请重试。"
   },
   "turnstile": {
-    "tokenRequired": "需要安全检查令牌",
-    "errorTitle": "验证失败",
-    "errorDescription": "安全检查令牌验证失败，请重试。"
+    "tokenRequired": "需要验证码令牌。",
+    "errorTitle": "验证码失败",
+    "errorDescription": "验证码失败。请再试一次。"
   },
   "authForm": {
     "email": "电子邮件",

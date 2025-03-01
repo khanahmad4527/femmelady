@@ -184,9 +184,7 @@ export default function App() {
   );
 }
 
-const { NODE_ENV } = getEnv(process.env);
-
-const isProduction = NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 
 const ErrorBoundaryComponent = () => {
   const loaderData = useLoaderData<OutletContext>();

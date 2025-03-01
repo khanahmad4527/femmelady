@@ -25,6 +25,7 @@ import NoCart from '~/components/cart/NoCart';
 import { handleError, throwLoginRequiredError } from '~/utils/error';
 import FetcherError from '~/components/error/FetcherError';
 import { PATHS } from '~/constant';
+import { href } from 'react-router';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const { token } = await isAuthenticated(request);
@@ -144,9 +145,7 @@ const Payment = () => {
           component={Link}
           prefetch="intent"
           to={buildLocalizedLink({
-            baseUrl: env?.APP_URL!,
-            currentLanguage,
-            paths: [PATHS.products],
+            baseUrl: href('/:lang?/products', { lang: currentLanguage }),
             queryParams: {
               'force-validate': 'global'
             }

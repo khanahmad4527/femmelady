@@ -10,8 +10,7 @@ import {
   ThemeIcon
 } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
-import { Link } from 'react-router';
-import { PATHS } from '~/constant';
+import { href, Link } from 'react-router';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
@@ -70,13 +69,10 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
             component={Link}
             prefetch="intent"
             to={buildLocalizedLink({
-              baseUrl: env?.APP_URL!,
-              currentLanguage,
-              paths: [
-                PATHS.products,
-                productTranslation?.slug ?? product?.id,
-                PATHS.reviews
-              ],
+              baseUrl: href('/:lang?/products/:slug/reviews', {
+                lang: currentLanguage,
+                slug: productTranslation?.slug ?? product?.id
+              }),
               queryParams: {
                 'force-validate': 'global'
               }

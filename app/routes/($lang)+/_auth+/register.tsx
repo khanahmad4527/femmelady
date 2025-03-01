@@ -34,7 +34,6 @@ import FetcherError from '~/components/error/FetcherError';
 import { useForm } from '~/hooks/useForm';
 import Marquee from '~/components/Marquee';
 import { href } from 'react-router';
-import { getEnv } from '~/server/env';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -50,8 +49,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   if (isLoggedIn) {
     const redirectTo = buildLocalizedLink({
-      baseUrl: getEnv(process.env).APP_URL,
-      currentLanguage,
+      baseUrl: href('/:lang?', { lang: currentLanguage }),
       queryParams: {
         'force-validate': 'global'
       }
@@ -63,52 +61,51 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
 export const action: ActionFunction = async ({ request, params }) => {
   return {};
-  try {
-    const result = getValidLanguageOrRedirect({ params, request });
+  // try {
+  //   const result = getValidLanguageOrRedirect({ params, request });
 
-    if (result instanceof Response) {
-      return result;
-    }
+  //   if (result instanceof Response) {
+  //     return result;
+  //   }
 
-    const currentLanguage = result;
+  //   const currentLanguage = result;
 
-    const formData = await request.formData();
+  //   const formData = await request.formData();
 
-    const data = Object.fromEntries(formData);
+  //   const data = Object.fromEntries(formData);
 
-    const validatedData = registerFormSchema.parse(data);
+  //   const validatedData = registerFormSchema.parse(data);
 
-    const outcome = await validateTurnstile({
-      request,
-      token: validatedData['cf-turnstile-response']
-    });
+  //   const outcome = await validateTurnstile({
+  //     request,
+  //     token: validatedData['cf-turnstile-response']
+  //   });
 
-    if (!outcome.success) {
-      return {
-        title: 'turnstile.errorTitle',
-        description: 'turnstile.errorDescription'
-      };
-    }
+  //   if (!outcome.success) {
+  //     return {
+  //       title: 'turnstile.errorTitle',
+  //       description: 'turnstile.errorDescription'
+  //     };
+  //   }
 
-    await directus.request(
-      createUser({
-        email: validatedData.email,
-        first_name: validatedData.first_name,
-        last_name: validatedData?.last_name,
-        password: validatedData.password
-      })
-    );
+  //   await directus.request(
+  //     createUser({
+  //       email: validatedData.email,
+  //       first_name: validatedData.first_name,
+  //       last_name: validatedData?.last_name,
+  //       password: validatedData.password
+  //     })
+  //   );
 
-    return redirect(
-      buildLocalizedLink({
-        baseUrl: getEnv(process.env).APP_URL,
-        currentLanguage,
-        paths: [PATHS.login]
-      })
-    );
-  } catch (error) {
-    return handleError({ error, route: 'register' });
-  }
+  //   return redirect(
+  //     buildLocalizedLink({
+  //       baseUrl: href('/:lang?', { lang: currentLanguage }),
+  //       paths: [PATHS.login]
+  //     })
+  //   );
+  // } catch (error) {
+  //   return handleError({ error, route: 'register' });
+  // }
 };
 
 const register = () => {

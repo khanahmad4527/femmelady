@@ -26,8 +26,8 @@ const passwordSchema = z
   .transform(value => value.trim());
 
 const cfTurnstileResponseSchema = z
-  .string({ required_error: 'turnstile.tokenRequired' })
-  .min(1, { message: 'turnstile.tokenRequired' });
+  .string({ required_error: 'turnstile.errorDescription' })
+  .min(1, { message: 'turnstile.errorDescription' });
 
 export const loginFormSchema = z.object({
   email: emailSchema,

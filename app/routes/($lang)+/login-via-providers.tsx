@@ -1,5 +1,5 @@
 import { Route } from './+types/login-via-providers';
-import { redirect } from 'react-router';
+import { href, redirect } from 'react-router';
 import {
   buildLocalizedLink,
   generateUuidv4,
@@ -9,7 +9,7 @@ import {
 import { directus } from '~/server/directus';
 import { refresh } from '@directus/sdk';
 import { createUserSession } from '~/auth/session.server';
-import { PARAMS, PATHS } from '~/constant';
+import { PARAMS } from '~/constant';
 import { redisClient } from '~/server';
 import { getEnv } from '~/server/env';
 
@@ -27,14 +27,11 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const failureReason = url.searchParams.get(PARAMS.reason);
   const fromPage = url.searchParams.get(PARAMS.from);
 
-  const baseUrl = getEnv(process.env).APP_URL;
-
   // Determine correct redirect path
-  const redirectTo = buildLocalizedLink({
-    baseUrl,
-    currentLanguage,
-    paths: [fromPage === 'login' ? PATHS.login : PATHS.register]
-  });
+  const redirectTo =
+    fromPage === 'login'
+      ? href('/:lang?/login', { lang: currentLanguage })
+      : href('/:lang?/register', { lang: currentLanguage });
 
   try {
     if (failureReason) {
@@ -67,8 +64,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
       redirectTo:
         url.searchParams.get(PARAMS.redirectTo) ??
         buildLocalizedLink({
-          baseUrl,
-          currentLanguage,
+          baseUrl: href('/:lang?', { lang: currentLanguage }),
           queryParams: {
             'force-validate': 'global'
           }

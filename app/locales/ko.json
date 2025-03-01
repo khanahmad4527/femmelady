@@ -100,9 +100,9 @@
     "description": "등록이 실패했습니다. 다시 시도해 주세요."
   },
   "turnstile": {
-    "tokenRequired": "보안 검사 토큰이 필요합니다",
-    "errorTitle": "검증 실패",
-    "errorDescription": "보안 검사 토큰 검증에 실패했습니다. 다시 시도해 주세요."
+    "tokenRequired": "캡차 토큰이 필요합니다.",
+    "errorTitle": "캡차 실패",
+    "errorDescription": "캡차 실패. 다시 시도해 주세요."
   },
   "authForm": {
     "email": "이메일",

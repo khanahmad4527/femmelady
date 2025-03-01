@@ -12,18 +12,14 @@ import {
 } from '@mantine/core';
 import { href } from 'react-router';
 import { Link } from 'react-router';
-import { PATHS } from '~/constant';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
 import { IconBrandInstagram, IconBrandX, IconBrandYoutube } from '~/icons';
-import { buildLocalizedLink } from '~/utils';
 
 const Footer = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
-  const { env } = useHeaderFooterContext();
 
   const links = [
     {
@@ -48,11 +44,7 @@ const Footer = () => {
     },
     {
       id: 'a34c8e57-6a41-4b39-9384-d4b7a1f27b89',
-      link: buildLocalizedLink({
-        baseUrl: env?.APP_URL!,
-        currentLanguage,
-        paths: [PATHS.blog]
-      }),
+      link: href('/:lang?', { lang: currentLanguage }),
       label: t('footer.links.blog')
     },
     {

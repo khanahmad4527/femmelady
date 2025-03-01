@@ -4,7 +4,7 @@ import {
   USER_SESSION_KEY
 } from '~/auth/session.server';
 import { Route } from './+types/logout';
-import { redirect } from 'react-router';
+import { href, redirect } from 'react-router';
 import { logout } from '~/auth/auth.server';
 import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
 import { PARAMS } from '~/constant';
@@ -25,8 +25,7 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const redirectTo =
     url.searchParams.get(PARAMS.redirectTo) ??
     buildLocalizedLink({
-      baseUrl: getEnv(process.env).APP_URL,
-      currentLanguage,
+      baseUrl: href('/:lang?', { lang: currentLanguage }),
       queryParams: {
         'force-validate': 'global'
       }

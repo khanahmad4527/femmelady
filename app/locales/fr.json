@@ -100,9 +100,9 @@
     "description": "L'inscription a échoué. Veuillez réessayer."
   },
   "turnstile": {
-    "tokenRequired": "Un jeton de vérification de sécurité est requis",
-    "errorTitle": "Échec de la validation",
-    "errorDescription": "La validation du jeton de vérification de sécurité a échoué. Veuillez réessayer."
+    "tokenRequired": "Le jeton captcha est requis.",
+    "errorTitle": "Échec du captcha",
+    "errorDescription": "Échec du captcha. Veuillez réessayer."
   },
   "authForm": {
     "email": "Email",
