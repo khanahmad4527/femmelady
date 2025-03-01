@@ -36,6 +36,15 @@ COPY package.json pnpm-lock.yaml ./
 COPY --from=production-dependencies-env /app/node_modules ./node_modules
 # Copy the built assets; Remix outputs to the "build" directory by default
 COPY --from=build-env /app/build ./build
+
+# Set environment variables for runtime
+ARG DIRECTUS_URL
+ARG APP_URL
+ARG APP_DOMAIN
+ARG DIRECTUS_DOMAIN
+ARG REDIS_URL
+ARG CDN_URL
+
 # Expose the port for the cloud run
 EXPOSE 3000
 # Start the production server (ensure your package.json "start" script is set to run "remix-serve build")

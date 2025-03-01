@@ -151,3 +151,22 @@ export const paymentFormSchema = z.object({
       'payment.errors.expiryYearInPast'
     )
 });
+
+// Define the schema for required environment variables
+export const envSchema = z.object({
+  DIRECTUS_URL: z.string().url('DIRECTUS_URL must be a valid URL.'),
+  APP_URL: z.string().url('APP_URL must be a valid URL.'),
+  EXCHANGE_RATE_API_URL: z
+    .string()
+    .url('EXCHANGE_RATE_API_URL must be a valid URL.'),
+  APP_DOMAIN: z.string().min(1, 'APP_DOMAIN is required.'),
+  DIRECTUS_DOMAIN: z.string().min(1, 'DIRECTUS_DOMAIN is required.'),
+  SESSION_SECRET: z
+    .string()
+    .min(32, 'SESSION_SECRET must be at least 32 characters long.'),
+  REDIS_URL: z.string().url('REDIS_URL must be a valid URL.'),
+  TURNSTILE_SECRET_KEY: z.string().min(1, 'TURNSTILE_SECRET_KEY is required.'),
+  TURNSTILE_SITE_KEY: z.string().min(1, 'TURNSTILE_SITE_KEY is required.'),
+  CDN_URL: z.string().url('CDN_URL must be a valid URL.'),
+  NODE_ENV: z.enum(['development', 'production', 'test'])
+});
