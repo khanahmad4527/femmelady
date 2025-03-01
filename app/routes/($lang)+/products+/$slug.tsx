@@ -67,7 +67,7 @@ import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useUserLocale from '~/hooks/useUserLocale';
 import { getSingleProductPageMeta } from '~/meta';
 import ZoomImage from '~/components/products/ZoomImage';
-import { getEnv } from '~/server/env';
+import { getPublicEnv } from '~/server/env';
 import {
   handleError,
   TFetcherError,
@@ -125,7 +125,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     token
   });
 
-  return { product, env: getEnv() };
+  return { product, env: getPublicEnv() };
 };
 
 export const action = async ({ request }: Route.ActionArgs) => {

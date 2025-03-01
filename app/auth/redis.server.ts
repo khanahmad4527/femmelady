@@ -1,12 +1,15 @@
 import { createClient, RedisClientType } from 'redis';
 import createLock from 'redis-lock';
+import { getEnv } from '~/server/env';
+
+const { REDIS_URL } = getEnv(process.env);
 
 class RedisClient {
   redisClient: RedisClientType;
   lock: ReturnType<typeof createLock>;
 
   constructor() {
-    this.redisClient = createClient({ url: process.env?.REDIS_URL });
+    this.redisClient = createClient({ url: REDIS_URL });
 
     // Attach error listener
     this.redisClient.on('error', (err: any) =>

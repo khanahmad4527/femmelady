@@ -29,6 +29,7 @@ import {
 } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import { redisClient } from '.';
+import { getEnv } from './env';
 
 // Utility function to fetch exchange rates
 export const getExchangeRate = async (
@@ -43,7 +44,7 @@ export const getExchangeRate = async (
   if (cachedRate) return cachedRate;
 
   try {
-    const response = await fetch(process.env?.EXCHANGE_RATE_API_URL ?? '');
+    const response = await fetch(getEnv(process.env).EXCHANGE_RATE_API_URL);
     if (!response.ok) {
       throw new Error(`Failed to fetch exchange rates: ${response.statusText}`);
     }

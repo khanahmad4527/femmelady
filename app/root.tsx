@@ -39,7 +39,6 @@ import { OutletContext } from './types';
 import { Route } from './+types/root';
 import { getExchangeRate } from './server/api';
 import {
-  buildLocalizedLink,
   getUserLocale,
   getValidLanguageOrRedirect,
   shouldRevalidateLogic
@@ -53,7 +52,7 @@ import { useEffect } from 'react';
 import { isAuthenticated } from './auth/auth.server';
 import { Notifications } from '@mantine/notifications';
 import { getMeta } from './meta';
-import { getEnv } from './server/env';
+import { getEnv, getPublicEnv } from './server/env';
 import { LANGUAGE_DIRECTION, PARAMS } from './constant';
 
 export const links = () => [
@@ -96,7 +95,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   const exchangeRate = await getExchangeRate(currentLanguage);
 
-  const env = getEnv();
+  const env = getPublicEnv();
   const url = new URL(request.url);
   const utmSource = url.searchParams.get(PARAMS.utmSource);
   const dir = LANGUAGE_DIRECTION[currentLanguage];
@@ -185,14 +184,15 @@ export default function App() {
   );
 }
 
-const isProduction = process.env.NODE_ENV === 'production';
+const { NODE_ENV } = getEnv(process.env);
+
+const isProduction = NODE_ENV === 'production';
 
 const ErrorBoundaryComponent = () => {
   const loaderData = useLoaderData<OutletContext>();
   const { currentLanguage } = useCurrentLanguage();
   const t = useTranslation();
 
-  const { env } = loaderData;
   return (
     <Document {...loaderData}>
       <Stack align={'center'} gap={0}>

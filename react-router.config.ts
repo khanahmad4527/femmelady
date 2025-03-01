@@ -7,15 +7,15 @@ export default {
   ssr: true,
 
   // return a list of URLs to prerender at build time
-  // async prerender() {
-//    return AVAILABLE_LANGUAGES.flatMap(p =>
-  //    STATIC_PAGES.map(s => `/${p}/${s}`)
- //   );
- // }
+  async prerender() {
+    return AVAILABLE_LANGUAGES.flatMap(p =>
+      STATIC_PAGES.map(s => `/${p}/${s}`)
+    );
+  },
 
-  // future: {
-  //   unstable_optimizeDeps: true,
-  //   unstable_splitRouteModules: true,
-  //   unstable_viteEnvironmentApi: true
-  // }
+  future: {
+    unstable_optimizeDeps: true,
+    unstable_splitRouteModules: true,
+    unstable_viteEnvironmentApi: true
+  }
 } satisfies Config;

@@ -5,15 +5,25 @@ steps:
     args:
       - '-c'
       - |
-        echo "DIRECTUS_URL is: '$$DIRECTUS_URL'"
-        echo "REDIS_URL is: '$$REDIS_URL'"
         export DOCKER_BUILDKIT=1
         docker build \
           --build-arg DIRECTUS_URL=$$DIRECTUS_URL \
+          --build-arg APP_URL=$$APP_URL \
+          --build-arg APP_DOMAIN=$$APP_DOMAIN \
+          --build-arg DIRECTUS_DOMAIN=$$DIRECTUS_DOMAIN \
           --build-arg REDIS_URL=$$REDIS_URL \
+          --build-arg CDN_URL=$$CDN_URL \
           -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA \
           -f Dockerfile .
-    secretEnv: ['DIRECTUS_URL', 'REDIS_URL']
+    secretEnv:
+      [
+        'DIRECTUS_URL',
+        'APP_URL',
+        'APP_DOMAIN',
+        'DIRECTUS_DOMAIN',
+        'REDIS_URL',
+        'CDN_URL'
+      ]
 
   # 2️⃣ Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -47,9 +57,18 @@ options:
 
 serviceAccount: '${_SERVICE_ACCOUNT}'
 
+# These are need during build time
 availableSecrets:
   secretManager:
     - versionName: projects/$PROJECT_ID/secrets/UNTHAA_DIRECTUS_URL/versions/latest
       env: 'DIRECTUS_URL'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_APP_URL/versions/latest
+      env: 'APP_URL'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_APP_DOMAIN/versions/latest
+      env: 'APP_DOMAIN'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_DIRECTUS_DOMAIN/versions/latest
+      env: 'DIRECTUS_DOMAIN'
     - versionName: projects/$PROJECT_ID/secrets/UNTHAA_REDIS_URL/versions/latest
       env: 'REDIS_URL'
+    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_CDN_URL/versions/latest
+      env: 'CDN_URL'

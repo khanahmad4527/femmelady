@@ -690,4 +690,3 @@ export const getValidLanguageOrRedirect = ({
   // Return the valid language key
   return currentLanguage as TranslationKeys;
 };
-

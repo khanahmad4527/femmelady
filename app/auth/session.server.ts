@@ -1,6 +1,7 @@
 import { createCookieSessionStorage, redirect } from 'react-router';
+import { getEnv } from '~/server/env';
 
-const { SESSION_SECRET, NODE_ENV, APP_DOMAIN, APP_URL } = process.env;
+const { SESSION_SECRET, NODE_ENV, APP_DOMAIN, APP_URL } = getEnv(process.env);
 
 const isSecureConnection = new URL(APP_URL!).protocol === 'https:';
 
@@ -14,7 +15,7 @@ export const sessionStorage = createCookieSessionStorage({
     sameSite: 'lax',
     secrets: [SESSION_SECRET!],
     secure: NODE_ENV === 'production' && isSecureConnection,
-    domain: process.env.NODE_ENV === 'production' ? APP_DOMAIN : 'localhost'
+    domain: NODE_ENV === 'production' ? APP_DOMAIN : 'localhost'
   }
 });
 

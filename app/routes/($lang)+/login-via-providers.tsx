@@ -11,6 +11,7 @@ import { refresh } from '@directus/sdk';
 import { createUserSession } from '~/auth/session.server';
 import { PARAMS, PATHS } from '~/constant';
 import { redisClient } from '~/server';
+import { getEnv } from '~/server/env';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const url = new URL(request.url);
@@ -26,10 +27,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const failureReason = url.searchParams.get(PARAMS.reason);
   const fromPage = url.searchParams.get(PARAMS.from);
 
-  const baseUrl = process.env.APP_URL;
-  if (!baseUrl) {
-    throw new Error('APP_URL is not defined in environment variables.');
-  }
+  const baseUrl = getEnv(process.env).APP_URL;
 
   // Determine correct redirect path
   const redirectTo = buildLocalizedLink({

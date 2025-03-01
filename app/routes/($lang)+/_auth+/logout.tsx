@@ -9,6 +9,7 @@ import { logout } from '~/auth/auth.server';
 import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
 import { PARAMS } from '~/constant';
 import { redisClient } from '~/server';
+import { getEnv } from '~/server/env';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -24,7 +25,7 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const redirectTo =
     url.searchParams.get(PARAMS.redirectTo) ??
     buildLocalizedLink({
-      baseUrl: process.env?.APP_URL!,
+      baseUrl: getEnv(process.env).APP_URL,
       currentLanguage,
       queryParams: {
         'force-validate': 'global'
