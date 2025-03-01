@@ -2,9 +2,19 @@ import { reactRouter } from '@react-router/dev/vite';
 import path from 'path';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { cloudflareDevProxy } from '@react-router/dev/vite/cloudflare';
 
 export default defineConfig({
-  plugins: [reactRouter(), tsconfigPaths()],
+  plugins: [
+    cloudflareDevProxy({
+      getLoadContext({ context }) {
+        return { cloudflare: context.cloudflare };
+      }
+    }),
+    ,
+    reactRouter(),
+    tsconfigPaths()
+  ],
   resolve: {
     alias: {
       '@assets': path.resolve(__dirname, 'assets')

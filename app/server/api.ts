@@ -32,9 +32,13 @@ import { redisClient } from '.';
 import { getEnv } from './env';
 
 // Utility function to fetch exchange rates
-export const getExchangeRate = async (
-  currentLanguage: TranslationKeys
-): Promise<number> => {
+export const getExchangeRate = async ({
+  currentLanguage,
+  EXCHANGE_RATE_API_URL
+}: {
+  currentLanguage: TranslationKeys;
+  EXCHANGE_RATE_API_URL: string;
+}): Promise<number> => {
   const locale = getUserLocale(currentLanguage);
   const currency = LOCALE_TO_CURRENCY[locale] || 'USD';
   const cacheKey = `exchange-rate-${currency}`;
@@ -44,7 +48,7 @@ export const getExchangeRate = async (
   if (cachedRate) return cachedRate;
 
   try {
-    const response = await fetch(getEnv(process.env).EXCHANGE_RATE_API_URL);
+    const response = await fetch(EXCHANGE_RATE_API_URL);
     if (!response.ok) {
       throw new Error(`Failed to fetch exchange rates: ${response.statusText}`);
     }

@@ -6,12 +6,19 @@ import {
   customEndpoint
 } from '@directus/sdk';
 import { jwtDecode } from 'jwt-decode';
-import { directus } from '~/server/directus';
+import { initializeDirectus } from '~/server/directus';
 import { User } from '~/types';
 import { getUserSessionKey } from './session.server';
 import { redisClient } from '~/server';
 
-export const customReadMe = async (token: string) => {
+export const customReadMe = async ({
+  directusUrl,
+  token
+}: {
+  token: string;
+  directusUrl: string;
+}) => {
+  const directus = initializeDirectus(directusUrl);
   try {
     const user = (await directus.request(
       withToken(
@@ -33,11 +40,14 @@ export const customReadMe = async (token: string) => {
 
 export const login = async ({
   email,
-  password
+  password,
+  directusUrl
 }: {
   email: string;
   password: string;
+  directusUrl: string;
 }) => {
+  const directus = initializeDirectus(directusUrl);
   const user = await directus.request(
     sdkLogin(email, password, { mode: 'json' })
   );
@@ -45,6 +55,7 @@ export const login = async ({
 };
 
 export const logout = async (refresh_token?: string) => {
+  const directus = initializeDirectus(directusUrl);
   await directus.request(sdkLogout(refresh_token, 'json'));
 };
 

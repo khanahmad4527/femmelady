@@ -3,6 +3,7 @@ node_modules
 /.cache
 /build
 .env
+.dev.vars
 .react-router/
 product.cjs
 review.cjs
@@ -11,3 +12,4 @@ translate.cjs
 en-data.json
 data.json
 TODO.md
+.wrangler/

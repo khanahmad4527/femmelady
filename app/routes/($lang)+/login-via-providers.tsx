@@ -13,7 +13,11 @@ import { PARAMS, PATHS } from '~/constant';
 import { redisClient } from '~/server';
 import { getEnv } from '~/server/env';
 
-export const loader = async ({ params, request }: Route.LoaderArgs) => {
+export const loader = async ({
+  params,
+  request,
+  context
+}: Route.LoaderArgs) => {
   const url = new URL(request.url);
 
   const result = getValidLanguageOrRedirect({ params, request });
@@ -27,7 +31,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const failureReason = url.searchParams.get(PARAMS.reason);
   const fromPage = url.searchParams.get(PARAMS.from);
 
-  const baseUrl = getEnv(process.env).APP_URL;
+  const baseUrl = getEnv((context.cloudflare as any)?.env).APP_URL;
 
   // Determine correct redirect path
   const redirectTo = buildLocalizedLink({

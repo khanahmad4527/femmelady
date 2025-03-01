@@ -1,4 +1,5 @@
-import { getEnv } from './env';
+
+
 
 // Error codes as a union type
 type TurnstileErrorCode =
@@ -37,9 +38,7 @@ type TurnstileValidationResponse =
   | TurnstileValidationSuccess
   | TurnstileValidationFailure;
 
-const { NODE_ENV, TURNSTILE_SECRET_KEY: _TURNSTILE_SECRET_KEY } = getEnv(
-  process.env
-);
+const { NODE_ENV, TURNSTILE_SECRET_KEY: _TURNSTILE_SECRET_KEY } =
 
 const TURNSTILE_SECRET_KEY =
   NODE_ENV === 'development'

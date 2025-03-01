@@ -11,7 +11,11 @@ import { PARAMS } from '~/constant';
 import { redisClient } from '~/server';
 import { getEnv } from '~/server/env';
 
-export const loader = async ({ request, params }: Route.LoaderArgs) => {
+export const loader = async ({
+  request,
+  params,
+  context
+}: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
 
   if (result instanceof Response) {
@@ -25,7 +29,7 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const redirectTo =
     url.searchParams.get(PARAMS.redirectTo) ??
     buildLocalizedLink({
-      baseUrl: getEnv(process.env).APP_URL,
+      baseUrl: getEnv((context.cloudflare as any)?.env).APP_URL,
       currentLanguage,
       queryParams: {
         'force-validate': 'global'

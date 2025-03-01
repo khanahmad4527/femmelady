@@ -39,7 +39,11 @@ import { redisClient } from '~/server';
 import { href } from 'react-router';
 import { getEnv } from '~/server/env';
 
-export const loader = async ({ params, request }: Route.LoaderArgs) => {
+export const loader = async ({
+  params,
+  request,
+  context
+}: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
 
   if (result instanceof Response) {
@@ -53,7 +57,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   if (isLoggedIn) {
     const redirectTo = buildLocalizedLink({
-      baseUrl: getEnv(process.env).APP_URL,
+      baseUrl: getEnv((context.cloudflare as any)?.env).APP_URL,
       currentLanguage,
       queryParams: {
         'force-validate': 'global'
@@ -64,7 +68,11 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   }
 };
 
-export const action = async ({ request, params }: Route.ActionArgs) => {
+export const action = async ({
+  request,
+  params,
+  context
+}: Route.ActionArgs) => {
   try {
     const result = getValidLanguageOrRedirect({ params, request });
 
@@ -114,7 +122,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       redirectTo:
         url.searchParams.get(PARAMS.redirectTo) ??
         buildLocalizedLink({
-          baseUrl: getEnv(process.env).APP_URL,
+          baseUrl: getEnv((context.cloudflare as any)?.env).APP_URL,
           currentLanguage,
           queryParams: {
             'force-validate': 'global'

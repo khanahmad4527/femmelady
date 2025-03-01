@@ -114,7 +114,11 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
   return false;
 };
 
-export const loader = async ({ params, request }: Route.LoaderArgs) => {
+export const loader = async ({
+  params,
+  request,
+  context
+}: Route.LoaderArgs) => {
   const { token } = await isAuthenticated(request);
   const languageCode = getLanguageCode(params);
 
@@ -125,7 +129,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     token
   });
 
-  return { product, env: getPublicEnv() };
+  return { product, env: getPublicEnv((context.cloudflare as any)?.env) };
 };
 
 export const action = async ({ request }: Route.ActionArgs) => {

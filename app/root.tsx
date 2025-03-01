@@ -80,7 +80,11 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
   return false;
 };
 
-export const loader = async ({ params, request }: Route.LoaderArgs) => {
+export const loader = async ({
+  params,
+  request,
+  context
+}: Route.LoaderArgs) => {
   const { isLoggedIn, user } = await isAuthenticated(request);
 
   const result = getValidLanguageOrRedirect({ params, request, user });
@@ -95,7 +99,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   const exchangeRate = await getExchangeRate(currentLanguage);
 
-  const env = getPublicEnv();
+  const env = getPublicEnv((context.cloudflare as any)?.env);
   const url = new URL(request.url);
   const utmSource = url.searchParams.get(PARAMS.utmSource);
   const dir = LANGUAGE_DIRECTION[currentLanguage];
@@ -184,10 +188,6 @@ export default function App() {
   );
 }
 
-const { NODE_ENV } = getEnv(process.env);
-
-const isProduction = NODE_ENV === 'production';
-
 const ErrorBoundaryComponent = () => {
   const loaderData = useLoaderData<OutletContext>();
   const { currentLanguage } = useCurrentLanguage();
@@ -220,8 +220,4 @@ const ErrorBoundaryComponent = () => {
   );
 };
 
-// ErrorBoundary in development
-// export const ErrorBoundary = ErrorBoundaryComponent;
-
-// ErrorBoundary only in production
-export const ErrorBoundary = isProduction && ErrorBoundaryComponent;
+export const ErrorBoundary = ErrorBoundaryComponent;
