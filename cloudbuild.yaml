@@ -1,12 +1,13 @@
 steps:
-  # 1️⃣ Build Docker image using BuildKit for optimization
+  # 1️⃣ Build Docker image without cache
   - name: gcr.io/cloud-builders/docker
     entrypoint: 'bash'
     args:
       - '-c'
       - |
         export DOCKER_BUILDKIT=1
-        docker build \
+        # ⬇️ Force a fresh build by disabling cache
+        docker build --no-cache \
           --build-arg DIRECTUS_URL=$$DIRECTUS_URL \
           --build-arg APP_URL=$$APP_URL \
           --build-arg APP_DOMAIN=$$APP_DOMAIN \
@@ -16,48 +17,43 @@ steps:
           -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA \
           -f Dockerfile .
     secretEnv:
-      [
-        'DIRECTUS_URL',
-        'APP_URL',
-        'APP_DOMAIN',
-        'DIRECTUS_DOMAIN',
-        'REDIS_URL',
-        'CDN_URL'
-      ]
+      - 'DIRECTUS_URL'
+      - 'APP_URL'
+      - 'APP_DOMAIN'
+      - 'DIRECTUS_DOMAIN'
+      - 'REDIS_URL'
+      - 'CDN_URL'
 
   # 2️⃣ Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      [
-        'push',
-        '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA'
-      ]
+      - 'push'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA'
 
-  # 3️⃣ Deploy the new version to Cloud Run with environment variables
+  # 3️⃣ Deploy the new version to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
-      [
-        'run',
-        'deploy',
-        '${_SERVICE_NAME}',
-        '--image',
-        '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA',
-        '--region',
-        '${_REGION}',
-        '--platform',
-        'managed',
-        '--port=3000',
-        '--allow-unauthenticated',
-        '${_MIN_INSTANCES}',
-        '${_MAX_INSTANCES}'
-      ]
+      - 'run'
+      - 'deploy'
+      - '${_SERVICE_NAME}'
+      - '--image'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA'
+      - '--region'
+      - '${_REGION}'
+      - '--platform'
+      - 'managed'
+      - '--port=3000'
+      - '--allow-unauthenticated'
+      - '--clear-env-vars'  # ⬅️ Clears all previously set environment variables
+      - '--min-instances=${_MIN_INSTANCES}'
+      - '--max-instances=${_MAX_INSTANCES}'
 
 options:
   logging: CLOUD_LOGGING_ONLY
 
 serviceAccount: '${_SERVICE_ACCOUNT}'
 
-# These are need during build time
+# 4️⃣ Provide secrets for build-time environment variables
 availableSecrets:
   secretManager:
     - versionName: projects/$PROJECT_ID/secrets/UNTHAA_DIRECTUS_URL/versions/latest
