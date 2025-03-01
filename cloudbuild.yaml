@@ -6,14 +6,13 @@ steps:
       - '-c'
       - |
         export DOCKER_BUILDKIT=1
-        # ⬇️ Force a fresh build by disabling cache
         docker build --no-cache \
-          --build-arg DIRECTUS_URL=$$DIRECTUS_URL \
-          --build-arg APP_URL=$$APP_URL \
-          --build-arg APP_DOMAIN=$$APP_DOMAIN \
-          --build-arg DIRECTUS_DOMAIN=$$DIRECTUS_DOMAIN \
-          --build-arg REDIS_URL=$$REDIS_URL \
-          --build-arg CDN_URL=$$CDN_URL \
+          --secret id=DIRECTUS_URL,env=DIRECTUS_URL \
+          --secret id=APP_URL,env=APP_URL \
+          --secret id=APP_DOMAIN,env=APP_DOMAIN \
+          --secret id=DIRECTUS_DOMAIN,env=DIRECTUS_DOMAIN \
+          --secret id=REDIS_URL,env=REDIS_URL \
+          --secret id=CDN_URL,env=CDN_URL \
           -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA \
           -f Dockerfile .
     secretEnv:
@@ -44,7 +43,7 @@ steps:
       - 'managed'
       - '--port=3000'
       - '--allow-unauthenticated'
-      - '--clear-env-vars'  # ⬅️ Clears all previously set environment variables
+      - '--clear-env-vars'
       - '--min-instances=${_MIN_INSTANCES}'
       - '--max-instances=${_MAX_INSTANCES}'
 
