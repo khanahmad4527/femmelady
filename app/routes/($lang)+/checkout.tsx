@@ -11,21 +11,41 @@ import CheckoutCartCard from '~/components/checkout/CheckoutCartCard';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
-import { buildLocalizedLink, formatCurrency, getLanguageCode } from '~/utils';
+import {
+  formatCurrency,
+  getLanguageCode,
+  getValidLanguageOrRedirect
+} from '~/utils';
 import { Route } from './+types/checkout';
 import { isAuthenticated } from '~/auth/auth.server';
 import { getCarts } from '~/server/api';
-import { href, Link, useLoaderData, useOutletContext } from 'react-router';
-
+import {
+  href,
+  Link,
+  redirect,
+  useLoaderData,
+  useOutletContext
+} from 'react-router';
 import { Cart, OutletContext, ProductCart } from '~/types';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import NoCart from '~/components/cart/NoCart';
-import { PATHS } from '~/constant';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
 
-  const { token } = await isAuthenticated(request);
+  const { token, isLoggedIn, user } = await isAuthenticated(request);
+
+  const result = getValidLanguageOrRedirect({ params, request, user });
+
+  if (result instanceof Response) {
+    return result;
+  }
+
+  const currentLanguage = result;
+
+  if (!isLoggedIn) {
+    return redirect(href('/:lang?', { lang: currentLanguage }));
+  }
 
   const carts = await getCarts({
     languageCode,
@@ -38,7 +58,6 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
 };
 
 const Checkout = () => {
-  const { env } = useOutletContext<OutletContext>();
   const { carts } = useLoaderData<{ carts: Cart[] }>();
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();

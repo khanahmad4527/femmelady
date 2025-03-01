@@ -5,14 +5,14 @@ const {
 
 // Add or update multiple keys at once
 addOrUpdateKeysBatch({
-  'common.continueWithGoogle': {
-    en: 'Please continue with Google',
-    ja: 'Googleで続行してください',
-    ko: 'Google로 계속하십시오',
-    ar: 'يرجى المتابعة باستخدام جوجل',
-    nl: 'Ga door met Google',
-    fr: 'Veuillez continuer avec Google',
-    zh: '请使用Google继续'
+  'turnstile.errorDescription': {
+    en: 'Captcha failed. Please try again.',
+    ja: 'キャプチャに失敗しました。もう一度お試しください。',
+    ko: '캡차 실패. 다시 시도해 주세요.',
+    ar: 'فشل الكابتشا. يرجى المحاولة مرة أخرى.',
+    nl: 'Captcha mislukt. Probeer het opnieuw.',
+    fr: 'Échec du captcha. Veuillez réessayer.',
+    zh: '验证码失败。请再试一次。'
   }
 });
 
@@ -20,4 +20,4 @@ addOrUpdateKeysBatch({
 // deleteKeysBatch(['order.subTotal', 'order.pay'], ['en', 'ja']);
 
 // Delete keys across all languages
-// deleteKeysBatch(['home.text1', 'home.text2']);
+// deleteKeysBatch(['turnstile.errorDescription', 'home.text2']);

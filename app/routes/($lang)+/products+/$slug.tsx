@@ -76,6 +76,7 @@ import {
 import FetcherError from '~/components/error/FetcherError';
 import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
 import useCurrentUrl from '~/hooks/useCurrentUrl';
+import { href } from 'react-router';
 
 export const meta = ({ data, location }: Route.MetaArgs) => {
   const product = data?.product as Product;
@@ -294,7 +295,10 @@ const SingleProduct = () => {
   const featureImage1Id = getStringDto(currentImageSet?.[0]?.directus_files_id);
   const featureImage2Id = getStringDto(currentImageSet?.[1]?.directus_files_id);
 
-  const redirectPath = utmSource && !isLoggedIn ? PATHS.login : PATHS.register;
+  const baseUrl =
+    utmSource && !isLoggedIn
+      ? href('/:lang?/login', { lang: currentLanguage })
+      : href('/:lang?/register', { lang: currentLanguage });
 
   const redirectText =
     utmSource && !isLoggedIn ? t('login.login') : t('register.register');
@@ -523,9 +527,7 @@ const SingleProduct = () => {
                   component={Link}
                   prefetch="intent"
                   to={buildLocalizedLink({
-                    baseUrl: env?.APP_URL!,
-                    currentLanguage,
-                    paths: [redirectPath],
+                    baseUrl,
                     queryParams: {
                       'redirect-to': currentUrl!,
                       utm_source: utmSource!

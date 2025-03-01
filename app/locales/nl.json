@@ -100,9 +100,9 @@
     "description": "Registratie mislukt. Probeer het opnieuw."
   },
   "turnstile": {
-    "tokenRequired": "Beveiligingscontrole-token is vereist",
-    "errorTitle": "Validatie mislukt",
-    "errorDescription": "De validatie van het beveiligingscontrole-token is mislukt. Probeer het opnieuw."
+    "tokenRequired": "Captcha-token is vereist.",
+    "errorTitle": "Captcha mislukt",
+    "errorDescription": "Captcha mislukt. Probeer het opnieuw."
   },
   "authForm": {
     "email": "E-mail",

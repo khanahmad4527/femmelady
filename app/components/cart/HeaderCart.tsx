@@ -3,7 +3,7 @@ import useTranslation from '~/hooks/useTranslation';
 import InfiniteCartLoader from './InfiniteCartLoader';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import { IconDatabaseExclamation } from '~/icons';
-import { Link } from 'react-router';
+import { href, Link } from 'react-router';
 import { buildLocalizedLink } from '~/utils';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { PATHS } from '~/constant';
@@ -46,9 +46,7 @@ const HeaderCart = ({
             component={Link}
             prefetch="intent"
             to={buildLocalizedLink({
-              baseUrl: env?.APP_URL!,
-              currentLanguage,
-              paths: [PATHS.products],
+              baseUrl: href('/:lang?/products', { lang: currentLanguage }),
               queryParams: {
                 'force-validate': 'global'
               }

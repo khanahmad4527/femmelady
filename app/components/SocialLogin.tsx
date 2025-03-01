@@ -1,6 +1,7 @@
 import { Center, Paper, Text, Group } from '@mantine/core';
+import { href } from 'react-router';
 import { useOutletContext } from 'react-router';
-import { PARAMS, PATHS } from '~/constant';
+import { PARAMS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { IconFacebook, IconGoogle } from '~/icons';
 import { OutletContext } from '~/types';
@@ -8,14 +9,12 @@ import { buildLocalizedLink } from '~/utils';
 
 const SocialLogin = ({ from }: { from: 'login' | 'register' }) => {
   const { currentLanguage } = useCurrentLanguage();
-  const { env, searchParams } = useOutletContext<OutletContext>();
+  const { searchParams } = useOutletContext<OutletContext>();
 
   const redirectTo = searchParams.get(PARAMS.redirectTo);
 
   const redirect = buildLocalizedLink({
-    baseUrl: env?.APP_URL!,
-    currentLanguage,
-    paths: [PATHS.loginViaProviders],
+    baseUrl: href('/:lang?/login-via-providers', { lang: currentLanguage }),
     queryParams: {
       from,
       'redirect-to': redirectTo!

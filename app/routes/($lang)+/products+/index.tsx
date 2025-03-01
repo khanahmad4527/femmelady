@@ -48,6 +48,7 @@ import NoData from '~/components/NoData';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import LocalizedPagination from '~/components/LocalizedPagination';
 import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
+import { href } from 'react-router';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   currentUrl,
@@ -210,9 +211,9 @@ const Products = () => {
                   component={Link}
                   prefetch="intent"
                   to={buildLocalizedLink({
-                    baseUrl: env?.APP_URL!,
-                    currentLanguage,
-                    paths: [PATHS.products],
+                    baseUrl: href('/:lang?/products', {
+                      lang: currentLanguage
+                    }),
                     queryParams: {
                       'force-validate': 'global'
                     }

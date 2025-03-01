@@ -183,37 +183,25 @@ export const formatNumber = ({
 
 export const buildLocalizedLink = ({
   baseUrl,
-  currentLanguage,
-  paths = [],
   queryParams = {} // Object containing query parameters
 }: {
   baseUrl: string;
-  currentLanguage: TranslationKeys;
-  paths?: string[]; // Accepts an array of paths
-  queryParams?: Record<string, string>; // Key-value pairs of query parameters
+  queryParams: Record<string, string>; // Key-value pairs of query parameters
 }) => {
   if (!baseUrl) {
     throw new Error('Base URL is required');
   }
 
-  // Filter out undefined or empty paths and normalize trailing slashes
-  const validPaths = paths.filter(path => path);
-  let pathString = `/${[currentLanguage, ...validPaths].join('/')}`.replace(
-    /\/+$/,
-    ''
-  );
-
-  // Create a URL object based on the base URL
-  const url = new URL(pathString, baseUrl);
+  // Start with the baseUrl as the path
+  let url = baseUrl;
 
   // Append query parameters if provided
-  Object.entries(queryParams).forEach(([key, value]) => {
-    if (value !== undefined && value !== null) {
-      url.searchParams.set(key, String(value)); // Convert numbers/booleans to string safely
-    }
-  });
+  const queryString = new URLSearchParams(queryParams).toString();
+  if (queryString) {
+    url += `?${queryString}`; // Add the query string to the baseUrl
+  }
 
-  return url.toString();
+  return url;
 };
 
 export const getSingleTranslation = (translations: any) => {

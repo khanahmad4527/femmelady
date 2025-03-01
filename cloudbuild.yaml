@@ -6,22 +6,7 @@ steps:
       - '-c'
       - |
         export DOCKER_BUILDKIT=1
-        docker build --no-cache \
-          --secret id=DIRECTUS_URL,env=DIRECTUS_URL \
-          --secret id=APP_URL,env=APP_URL \
-          --secret id=APP_DOMAIN,env=APP_DOMAIN \
-          --secret id=DIRECTUS_DOMAIN,env=DIRECTUS_DOMAIN \
-          --secret id=REDIS_URL,env=REDIS_URL \
-          --secret id=CDN_URL,env=CDN_URL \
-          -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA \
-          -f Dockerfile .
-    secretEnv:
-      - 'DIRECTUS_URL'
-      - 'APP_URL'
-      - 'APP_DOMAIN'
-      - 'DIRECTUS_DOMAIN'
-      - 'REDIS_URL'
-      - 'CDN_URL'
+        docker build -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY_REPO}/${_SERVICE_NAME}:$SHORT_SHA -f Dockerfile .
 
   # 2️⃣ Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -43,7 +28,6 @@ steps:
       - 'managed'
       - '--port=3000'
       - '--allow-unauthenticated'
-      - '--clear-env-vars'
       - '--min-instances=${_MIN_INSTANCES}'
       - '--max-instances=${_MAX_INSTANCES}'
 
@@ -51,19 +35,3 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 serviceAccount: '${_SERVICE_ACCOUNT}'
-
-# 4️⃣ Provide secrets for build-time environment variables
-availableSecrets:
-  secretManager:
-    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_DIRECTUS_URL/versions/latest
-      env: 'DIRECTUS_URL'
-    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_APP_URL/versions/latest
-      env: 'APP_URL'
-    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_APP_DOMAIN/versions/latest
-      env: 'APP_DOMAIN'
-    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_DIRECTUS_DOMAIN/versions/latest
-      env: 'DIRECTUS_DOMAIN'
-    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_REDIS_URL/versions/latest
-      env: 'REDIS_URL'
-    - versionName: projects/$PROJECT_ID/secrets/UNTHAA_CDN_URL/versions/latest
-      env: 'CDN_URL'

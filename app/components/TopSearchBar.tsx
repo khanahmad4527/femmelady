@@ -10,7 +10,7 @@ import {
 } from '@mantine/core';
 import { useDebouncedCallback, useHover } from '@mantine/hooks';
 import React, { memo, useEffect, useState } from 'react';
-import { Link, useFetcher } from 'react-router';
+import { href, Link, useFetcher } from 'react-router';
 import { PATHS } from '~/constant';
 import getStringDto from '~/dto/getStringDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -123,9 +123,10 @@ const Card = (p: Product) => {
     <Link
       prefetch="intent"
       to={buildLocalizedLink({
-        baseUrl: env?.APP_URL!,
-        currentLanguage,
-        paths: [PATHS.products, translation?.slug ?? p?.id, PATHS.reviews],
+        baseUrl: href('/:lang?/products/:slug/reviews', {
+          lang: currentLanguage,
+          slug: translation?.slug ?? p?.id
+        }),
         queryParams: {
           'force-validate': 'global'
         }

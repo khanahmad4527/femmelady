@@ -1,6 +1,5 @@
 import { ActionIcon, Menu } from '@mantine/core';
-import { Link } from 'react-router';
-import { PATHS } from '~/constant';
+import { href, Link } from 'react-router';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useCurrentUrl from '~/hooks/useCurrentUrl';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
@@ -35,9 +34,7 @@ const BurgerMenu = () => {
           component={Link}
           prefetch="intent"
           to={buildLocalizedLink({
-            baseUrl: env?.APP_URL!,
-            currentLanguage,
-            paths: [PATHS.logout],
+            baseUrl: href('/:lang?/logout', { lang: currentLanguage }),
             queryParams: {
               'redirect-to': currentUrl!
             }
