@@ -11,7 +11,7 @@ import {
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { Turnstile } from '@marsidev/react-turnstile';
-import { href,Link, redirect, useOutletContext  } from 'react-router';
+import { href, Link, redirect, useOutletContext } from 'react-router';
 
 import { isAuthenticated, login } from '~/auth/auth.server';
 import { createUserSession } from '~/auth/session.server';
@@ -79,10 +79,15 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       'cf-turnstile-response': cfTurnstileResponseToken
     } = loginFormSchema.parse(data);
 
+    console.log('formData', formData);
+    console.log('cfTurnstileResponseToken', cfTurnstileResponseToken);
+
     const outcome = await validateTurnstile({
       request,
       token: cfTurnstileResponseToken
     });
+
+    console.log('outcome', outcome);
 
     if (!outcome.success) {
       return {
@@ -117,6 +122,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
         })
     });
   } catch (error) {
+    console.log('error', error);
     return handleError({ error, route: 'login' });
   }
 };
