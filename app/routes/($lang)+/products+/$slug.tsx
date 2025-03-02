@@ -17,13 +17,14 @@ import { notifications } from '@mantine/notifications';
 import { useEffect, useState } from 'react';
 import {
   FetcherWithComponents,
-href,  Link,
+  href,
+  Link,
   Outlet,
   ShouldRevalidateFunction,
   useFetcher,
   useLoaderData,
   useOutletContext
- } from 'react-router';
+} from 'react-router';
 
 import { isAuthenticated } from '~/auth/auth.server';
 import AddToCartError from '~/components/cart/AddToCartError';
@@ -77,6 +78,7 @@ import {
 } from '~/utils/error';
 
 import { Route } from './+types/$slug';
+import CurrencyFormatter from '~/components/CurrencyFormatter';
 
 export const meta = ({ data, location }: Route.MetaArgs) => {
   const product = data?.product as Product;
@@ -419,9 +421,11 @@ const SingleProduct = () => {
           <Title tt={'capitalize'} aria-label="Product name">
             {productTranslation?.title}
           </Title>
+
           <Title order={4} aria-label="Product price">
-            {formatCurrency({ currentLanguage, value: Number(product.price) })}
+            <CurrencyFormatter value={Number(product.price)} />
           </Title>
+
           {productTranslation?.description && (
             <TypographyStylesProvider>
               <div

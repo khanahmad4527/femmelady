@@ -24,14 +24,11 @@ import {
   ProductSize,
   ProductTranslation
 } from '~/types';
-import {
-  buildLocalizedLink,
-  formatCurrency,
-  getSingleTranslation
-} from '~/utils';
+import { buildLocalizedLink, getSingleTranslation } from '~/utils';
 
 import FetcherError from '../error/FetcherError';
 import ManagedImage from '../ManagedImage';
+import CurrencyFormatter from '../CurrencyFormatter';
 
 const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
   const { hovered, ref } = useHover();
@@ -101,12 +98,7 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
               </Text>
             </Text>
             <Text tt={'capitalize'}>{colorTranslation?.name}</Text>
-            <Text>
-              {formatCurrency({
-                currentLanguage,
-                value: product?.price!
-              })}
-            </Text>
+            <CurrencyFormatter value={product?.price!} />
             <Group>
               <ActionIcon
                 color="black"

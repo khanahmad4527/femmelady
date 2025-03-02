@@ -91,7 +91,7 @@ const Payment = () => {
   const { totalPrice, carts } = useLoaderData<typeof loader>();
   const { currentLanguage, userLocale } = useCurrentLanguage();
   const t = useTranslation();
-  const { setCarts, setCartCount } = useHeaderFooterContext();
+  const { setCarts, setCartCount, exchangeRate } = useHeaderFooterContext();
   const { Form, form, state, fetcher } = useForm({
     schema: paymentFormSchema,
     initialValues: {
@@ -105,7 +105,8 @@ const Payment = () => {
 
   const amount = formatCurrency({
     currentLanguage,
-    value: totalPrice
+    value: totalPrice,
+    exchangeRate
   });
 
   const currentYear = new Date().getFullYear();

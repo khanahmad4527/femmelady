@@ -1,5 +1,5 @@
 import { useForm } from '@mantine/form';
-import { redirect, useFetcher, useOutletContext } from 'react-router';
+import { redirect, useFetcher } from 'react-router';
 import { z } from 'zod';
 
 import {
@@ -17,15 +17,7 @@ import {
   PARAM_KEYS
 } from '../constant';
 import getFirstObjectDto from '../dto/getFirstObjectDto';
-import useHeaderFooterContext from '../hooks/useHeaderFooterContext';
-import {
-  Cart,
-  GetParam,
-  OutletContext,
-  ProductCart,
-  TranslationKeys,
-  User
-} from '../types';
+import { Cart, GetParam, ProductCart, TranslationKeys, User } from '../types';
 
 export const submitForm = <T extends Record<string, any>>(
   fetcher: ReturnType<typeof useFetcher>,
@@ -88,23 +80,20 @@ export const getUserLocale = (currentLanguage: TranslationKeys = 'en') => {
  *
  * @param currentLanguage - The current language (e.g., "en-US", "fr-FR").
  * @param value - The number to format.
+ * @param exchangeRate - The exchangeRate.
  * @returns The formatted currency string.
  */
 export const formatCurrency = ({
   currentLanguage,
-  value
+  value,
+  exchangeRate
 }: {
   currentLanguage: TranslationKeys;
   value: number;
+  exchangeRate: number;
 }) => {
-  const outletContext = useOutletContext<OutletContext>();
-  const headerFooterContext = useHeaderFooterContext();
-
   const locale = getUserLocale(currentLanguage);
   const currency = LOCALE_TO_CURRENCY[locale] || 'USD';
-
-  const exchangeRate =
-    outletContext?.exchangeRate ?? headerFooterContext?.exchangeRate;
 
   // If the currency is USD, no need to convert
   if (currency === 'USD') {

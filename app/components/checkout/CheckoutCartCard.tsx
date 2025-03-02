@@ -22,10 +22,11 @@ import {
   ProductColorTranslation,
   ProductTranslation
 } from '~/types';
-import { formatCurrency, getSingleTranslation } from '~/utils';
+import { getSingleTranslation } from '~/utils';
 
 import FetcherError from '../error/FetcherError';
 import ManagedImage from '../ManagedImage';
+import CurrencyFormatter from '../CurrencyFormatter';
 
 const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
   const { currentLanguage } = useCurrentLanguage();
@@ -86,9 +87,7 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
       <Stack>
         <Text fw={500}>{productTranslation?.title}</Text>
         <Text>{colorTranslation?.name}</Text>
-        <Text>
-          {formatCurrency({ currentLanguage, value: product?.price! })}
-        </Text>
+        <CurrencyFormatter value={product?.price!} />
         <Group>
           <ActionIcon
             color="black"

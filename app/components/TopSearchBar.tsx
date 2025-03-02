@@ -8,13 +8,10 @@ import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconSearch } from '~/icons';
 import { Product, ProductTranslation } from '~/types';
-import {
-  buildLocalizedLink,
-  formatCurrency,
-  getSingleTranslation
-} from '~/utils';
+import { buildLocalizedLink, getSingleTranslation } from '~/utils';
 
 import ManagedImage from './ManagedImage';
+import CurrencyFormatter from './CurrencyFormatter';
 
 const TopSearchBar = () => {
   const t = useTranslation();
@@ -148,12 +145,10 @@ const Card = (p: Product) => {
           <Text tt={'capitalize'} c={hovered ? 'white' : 'black'}>
             {translation?.title}
           </Text>
-          <Text c={hovered ? 'white' : 'black'}>
-            {formatCurrency({
-              currentLanguage,
-              value: p?.price as number
-            })}
-          </Text>
+          <CurrencyFormatter
+            c={hovered ? 'white' : 'black'}
+            value={p?.price!}
+          />
         </Grid.Col>
       </Grid>
     </Link>

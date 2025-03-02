@@ -11,9 +11,10 @@ import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
 import { OutletContext, Product, ProductTranslation } from '~/types';
-import { formatCurrency, getImageUrl, getSingleTranslation } from '~/utils';
+import { getImageUrl, getSingleTranslation } from '~/utils';
 
 import ManagedImage from '../ManagedImage';
+import CurrencyFormatter from '../CurrencyFormatter';
 
 const HomeProductCarousel = ({ products }: { products: Product[] }) => {
   const t = useTranslation();
@@ -113,12 +114,7 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                 manually setting it here */}
                 <Box style={{ direction: dir }}>
                   <Text tt={'capitalize'}>{translation?.title}</Text>
-                  <Text>
-                    {formatCurrency({
-                      currentLanguage,
-                      value: p?.price as number
-                    })}
-                  </Text>
+                  <CurrencyFormatter value={p?.price!} />
                 </Box>
               </Card>
             </Carousel.Slide>

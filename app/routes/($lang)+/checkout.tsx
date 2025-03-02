@@ -7,12 +7,7 @@ import {
   Table,
   Title
 } from '@mantine/core';
-import {
-  href,
-  Link,
-  redirect,
-  useLoaderData
-} from 'react-router';
+import { href, Link, redirect, useLoaderData } from 'react-router';
 
 import { isAuthenticated } from '~/auth/auth.server';
 import NoCart from '~/components/cart/NoCart';
@@ -30,6 +25,7 @@ import {
 } from '~/utils';
 
 import { Route } from './+types/checkout';
+import CurrencyFormatter from '~/components/CurrencyFormatter';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -107,16 +103,12 @@ const Checkout = () => {
               <Table.Tbody>
                 <Table.Tr>
                   <Table.Th w={160}>{t('checkout.subTotal')}</Table.Th>
-                  <Table.Td>
-                    {formatCurrency({ currentLanguage, value: totalPrice })}
-                  </Table.Td>
+                  <CurrencyFormatter component={Table.Td} value={totalPrice} />
                 </Table.Tr>
 
                 <Table.Tr>
                   <Table.Th>{t('checkout.total')}</Table.Th>
-                  <Table.Td>
-                    {formatCurrency({ currentLanguage, value: totalPrice })}
-                  </Table.Td>
+                  <CurrencyFormatter component={Table.Td} value={totalPrice} />
                 </Table.Tr>
               </Table.Tbody>
             </Table>

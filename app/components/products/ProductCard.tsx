@@ -13,10 +13,11 @@ import {
   ProductProductColor,
   ProductTranslation
 } from '~/types';
-import { formatCurrency, getImageUrl, getSingleTranslation } from '~/utils';
+import { getImageUrl, getSingleTranslation } from '~/utils';
 
 import ManagedImage from '../ManagedImage';
 import ProductColorSwitcher from './ProductColorSwitcher';
+import CurrencyFormatter from '../CurrencyFormatter';
 
 const ProductCard = (product: Product) => {
   const { searchParams, setSearchParams, env } =
@@ -98,9 +99,7 @@ const ProductCard = (product: Product) => {
 
       <Box>
         <Text tt={'capitalize'}>{translation?.title}</Text>
-        <Text>
-          {formatCurrency({ currentLanguage, value: price as number })}
-        </Text>
+        <CurrencyFormatter value={price!} />
       </Box>
 
       <Card.Section bg={'primary.1'} inheritPadding pb={4}>
