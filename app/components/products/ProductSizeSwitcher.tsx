@@ -1,5 +1,6 @@
 import { Button, Group, Stack, Text } from '@mantine/core';
 import { SetURLSearchParams } from 'react-router';
+
 import { PARAM_KEYS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
@@ -46,7 +47,7 @@ const ProductSizeSwitcher = ({
       </Text>
       <Group>
         {sizes.map(s => {
-          const isStockLeft = !Boolean(s.stock);
+          const isStockLeft = !s.stock;
           return (
             <Button
               key={s.id}

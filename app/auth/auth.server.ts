@@ -1,15 +1,16 @@
 import {
-  refresh,
-  logout as sdkLogout,
+  customEndpoint,
   login as sdkLogin,
-  withToken,
-  customEndpoint
-} from '@directus/sdk';
+  logout as sdkLogout,
+  refresh,
+  withToken} from '@directus/sdk';
 import { jwtDecode } from 'jwt-decode';
+
+import { redisClient } from '~/server';
 import { directus } from '~/server/directus';
 import { User } from '~/types';
+
 import { getUserSessionKey } from './session.server';
-import { redisClient } from '~/server';
 
 export const customReadMe = async (token: string) => {
   try {

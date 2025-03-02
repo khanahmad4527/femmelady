@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router';
+
 import { PARAM_KEYS } from '~/constant';
 import { Product } from '~/types';
 

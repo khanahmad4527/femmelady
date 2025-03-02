@@ -1,5 +1,6 @@
 import { ActionIcon, Group } from '@mantine/core';
 import { usePagination } from '@mantine/hooks';
+
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { IconChevronLeft, IconChevronRight, IconDots } from '~/icons';
 import { formatNumber } from '~/utils';

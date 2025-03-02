@@ -1,14 +1,7 @@
 import { useForm } from '@mantine/form';
 import { redirect, useFetcher, useOutletContext } from 'react-router';
 import { z } from 'zod';
-import {
-  Cart,
-  GetParam,
-  OutletContext,
-  ProductCart,
-  TranslationKeys,
-  User
-} from '../types';
+
 import {
   AVAILABLE_LANGUAGES,
   BRANDS_WITH_ID_MAP,
@@ -23,8 +16,16 @@ import {
   LOCALE_TO_LANGUAGE,
   PARAM_KEYS
 } from '../constant';
-import useHeaderFooterContext from '../hooks/useHeaderFooterContext';
 import getFirstObjectDto from '../dto/getFirstObjectDto';
+import useHeaderFooterContext from '../hooks/useHeaderFooterContext';
+import {
+  Cart,
+  GetParam,
+  OutletContext,
+  ProductCart,
+  TranslationKeys,
+  User
+} from '../types';
 
 export const submitForm = <T extends Record<string, any>>(
   fetcher: ReturnType<typeof useFetcher>,

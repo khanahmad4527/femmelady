@@ -4,16 +4,16 @@ import {
   Divider,
   Grid,
   Group,
-  Image,
   Stack,
   Text,
   ThemeIcon
 } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
 import { href, Link } from 'react-router';
+
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import useCartCardManager from '~/hooks/useCartCardManager';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import { IconMinus, IconPlus, IconX } from '~/icons';
 import {
   Cart,
@@ -27,15 +27,14 @@ import {
 import {
   buildLocalizedLink,
   formatCurrency,
-  getImageUrl,
   getSingleTranslation
 } from '~/utils';
+
 import FetcherError from '../error/FetcherError';
-import useCartCardManager from '~/hooks/useCartCardManager';
+import ManagedImage from '../ManagedImage';
 
 const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
   const { hovered, ref } = useHover();
-  const { env } = useHeaderFooterContext();
   const { currentLanguage } = useCurrentLanguage();
 
   const {
@@ -80,15 +79,14 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
             onClick={close}
             ref={ref as any}
           >
-            <Image
+            <ManagedImage
               h={'100%'}
               fit={'contain'}
-              src={getImageUrl({
-                id: (hovered
+              id={
+                (hovered
                   ? cart.feature_image_2
-                  : cart.feature_image_1) as string,
-                url: env?.CDN_URL
-              })}
+                  : cart.feature_image_1) as string
+              }
               alt={productTranslation?.title!}
               loading={'lazy'}
             />

@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react';
+
 import { Cart, OutletContext } from '~/types';
 
 type HeaderFooterContextType = OutletContext & {

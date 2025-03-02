@@ -1,5 +1,4 @@
 import {
-  Alert,
   Anchor,
   Button,
   Divider,
@@ -10,34 +9,32 @@ import {
   Text,
   TextInput
 } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
+import { Turnstile } from '@marsidev/react-turnstile';
+import { href,Link, redirect, useOutletContext  } from 'react-router';
 
-import { Link, redirect, useOutletContext } from 'react-router';
 import { isAuthenticated, login } from '~/auth/auth.server';
 import { createUserSession } from '~/auth/session.server';
-
+import FetcherError from '~/components/error/FetcherError';
+import InvalidProvider from '~/components/error/InvalidProvider';
+import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
+import Marquee from '~/components/Marquee';
+import SocialLogin from '~/components/SocialLogin';
+import { PARAMS } from '~/constant';
+import { useForm } from '~/hooks/useForm';
 import useTranslation from '~/hooks/useTranslation';
 import { loginFormSchema } from '~/schema';
+import { redisClient } from '~/server';
+import { validateTurnstile } from '~/server/turnstile';
 import { OutletContext } from '~/types';
 import {
   buildLocalizedLink,
   generateUuidv4,
   getValidLanguageOrRedirect
 } from '~/utils';
-import { Route } from './+types/login';
-import InvalidProvider from '~/components/error/InvalidProvider';
-import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
 import { handleError } from '~/utils/error';
-import { validateTurnstile } from '~/server/turnstile';
-import { Turnstile } from '@marsidev/react-turnstile';
-import SocialLogin from '~/components/SocialLogin';
-import { PARAMS, PATHS } from '~/constant';
-import FetcherError from '~/components/error/FetcherError';
-import { useMediaQuery } from '@mantine/hooks';
-import { useForm } from '~/hooks/useForm';
-import Marquee from '~/components/Marquee';
-import { redisClient } from '~/server';
-import { href } from 'react-router';
-import { getEnv } from '~/server/env';
+
+import { Route } from './+types/login';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });

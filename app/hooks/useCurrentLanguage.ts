@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
-import { LANGUAGE_DIRECTION } from '~/constant';
 
+import { LANGUAGE_DIRECTION } from '~/constant';
 import { TranslationKeys } from '~/types';
 import { getLanguageCode, getUserLocale } from '~/utils';
 

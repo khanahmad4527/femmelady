@@ -1,13 +1,13 @@
 import { Button, Group, Skeleton, Stack } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { href, Link, useFetcher } from 'react-router';
-import HeaderCartCard from './HeaderCartCard';
-import { buildLocalizedLink } from '~/utils';
-import useTranslation from '~/hooks/useTranslation';
+
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import { Cart } from '~/types';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
-import { PATHS } from '~/constant';
+import useTranslation from '~/hooks/useTranslation';
+import { Cart } from '~/types';
+
+import HeaderCartCard from './HeaderCartCard';
 
 type ItemsResponse = { carts: Cart[]; page: number };
 
@@ -18,7 +18,7 @@ const InfiniteCartLoader = ({ close }: { close: () => void }) => {
   const { currentLanguage } = useCurrentLanguage();
 
   const fetcher = useFetcher<ItemsResponse>();
-  const { carts, setCarts, env } = useHeaderFooterContext();
+  const { carts, setCarts } = useHeaderFooterContext();
   const [noLoadMore, setNoLoadMore] = useState(false); // Useful to save query, if no data return from the query then we cn consider there is no more data to load
 
   useEffect(() => {

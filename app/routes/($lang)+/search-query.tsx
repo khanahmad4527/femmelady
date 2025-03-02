@@ -1,6 +1,7 @@
-import { getLanguageCode, getSearchQuery } from '~/utils';
-import { Route } from './+types/search-query';
 import { getProducts } from '~/server/api';
+import { getLanguageCode, getSearchQuery } from '~/utils';
+
+import { Route } from './+types/search-query';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);

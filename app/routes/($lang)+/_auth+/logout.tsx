@@ -1,15 +1,16 @@
+import { href, redirect } from 'react-router';
+
+import { logout } from '~/auth/auth.server';
 import {
   destroySession,
   getSession,
   USER_SESSION_KEY
 } from '~/auth/session.server';
-import { Route } from './+types/logout';
-import { href, redirect } from 'react-router';
-import { logout } from '~/auth/auth.server';
-import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
 import { PARAMS } from '~/constant';
 import { redisClient } from '~/server';
-import { getEnv } from '~/server/env';
+import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
+
+import { Route } from './+types/logout';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });

@@ -6,8 +6,8 @@ import {
 } from '@mantine/core';
 
 import accordionClasses from './styles/Accordion.module.scss';
-import buttonClasses from './styles/Button.module.scss';
 import actionIconClasses from './styles/ActionIcon.module.scss';
+import buttonClasses from './styles/Button.module.scss';
 
 export const theme: MantineThemeOverride = createTheme({
   colors: {

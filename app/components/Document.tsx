@@ -1,13 +1,14 @@
 import { Container, Stack } from '@mantine/core';
+import { useState } from 'react';
 import { useLocation } from 'react-router';
 
 import { ROUTES_WITHOUT_HEADER_AND_FOOTER } from '~/constant';
-import { Cart, OutletContext } from '~/types';
+import { HeaderFooterContext } from '~/hooks/useHeaderFooterContext';
 import commonClasses from '~/styles/Common.module.scss';
+import { Cart, OutletContext } from '~/types';
+
 import Footer from './Footer';
 import Header from './Header';
-import { HeaderFooterContext } from '~/hooks/useHeaderFooterContext';
-import { useState } from 'react';
 
 const Document = (
   props: OutletContext & {

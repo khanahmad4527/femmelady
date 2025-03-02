@@ -1,26 +1,28 @@
-import { Route } from './+types/$slug.reviews';
+import { Stack } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
+import {
+  ShouldRevalidateFunction,
+  useLoaderData,
+  useOutletContext
+} from 'react-router';
+
+import LocalizedPagination from '~/components/LocalizedPagination';
+import ProductReviewCard from '~/components/products/ProductReviewCard';
+import {
+  DEFAULT_PRODUCT_LIMIT,
+  FORCE_REVALIDATE_MAP,
+  PARAM_KEYS
+} from '~/constant';
+import { getReviews } from '~/server/api';
+import { OutletContext, Review } from '~/types';
 import {
   getLanguageCode,
   getLimit,
   getPage,
   shouldRevalidateLogic
 } from '~/utils';
-import {
-  ShouldRevalidateFunction,
-  useLoaderData,
-  useOutletContext
-} from 'react-router';
-import { getReviews } from '~/server/api';
-import { OutletContext, Review } from '~/types';
-import {
-  DEFAULT_PRODUCT_LIMIT,
-  FORCE_REVALIDATE_MAP,
-  PARAM_KEYS
-} from '~/constant';
-import ProductReviewCard from '~/components/products/ProductReviewCard';
-import LocalizedPagination from '~/components/LocalizedPagination';
-import { useMediaQuery } from '@mantine/hooks';
-import { Stack } from '@mantine/core';
+
+import { Route } from './+types/$slug.reviews';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   nextUrl,

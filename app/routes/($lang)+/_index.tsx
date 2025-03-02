@@ -17,18 +17,18 @@ import {
   Text,
   Title
 } from '@mantine/core';
-
-import { href, Link, useLoaderData, useOutletContext } from 'react-router';
+import { href, Link, useLoaderData } from 'react-router';
 
 import HomeProductCarousel from '~/components/products/HomeProductCarousel';
+import { CATEGORIES_WITH_ID_MAP } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
+import { Product } from '~/types';
 import { buildLocalizedLink, getLanguageCode } from '~/utils';
+
 import { Route } from './+types/_index';
-import { CATEGORIES_WITH_ID_MAP, PATHS } from '~/constant';
-import { OutletContext, Product } from '~/types';
 
 // Preload the hero images
 export function links() {
@@ -60,7 +60,6 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
 };
 
 export default function Index() {
-  const { env } = useOutletContext<OutletContext>();
   const { products } = useLoaderData<typeof loader>();
 
   const t = useTranslation();

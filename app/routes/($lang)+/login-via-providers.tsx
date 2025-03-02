@@ -1,16 +1,18 @@
-import { Route } from './+types/login-via-providers';
+import { refresh } from '@directus/sdk';
 import { href, redirect } from 'react-router';
+
+import { createUserSession } from '~/auth/session.server';
+import { PARAMS } from '~/constant';
+import { redisClient } from '~/server';
+import { directus } from '~/server/directus';
 import {
   buildLocalizedLink,
   generateUuidv4,
   getCookie,
   getValidLanguageOrRedirect
 } from '~/utils';
-import { directus } from '~/server/directus';
-import { refresh } from '@directus/sdk';
-import { createUserSession } from '~/auth/session.server';
-import { PARAMS } from '~/constant';
-import { redisClient } from '~/server';
+
+import { Route } from './+types/login-via-providers';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const url = new URL(request.url);

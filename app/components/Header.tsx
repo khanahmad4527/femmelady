@@ -7,24 +7,24 @@ import {
   Flex,
   Group
 } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { href, Link } from 'react-router';
 
+import { CATEGORIES_WITH_ID_MAP } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useCurrentUrl from '~/hooks/useCurrentUrl';
+import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
 import { IconShoppingCart } from '~/icons';
-
-import Logo from './Logo';
-import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
-import { useDisclosure } from '@mantine/hooks';
-import HeaderCart from './cart/HeaderCart';
-import MobileDrawer from './MobileDrawer';
-import LanguageSwitcher from './LanguageSwitcher';
 import { buildLocalizedLink } from '~/utils';
-import TopSearchBar from './TopSearchBar';
-import CartCount from './cart/CartCount';
+
 import BurgerMenu from './BurgerMenu';
-import { CATEGORIES_WITH_ID_MAP } from '~/constant';
-import useCurrentUrl from '~/hooks/useCurrentUrl';
+import CartCount from './cart/CartCount';
+import HeaderCart from './cart/HeaderCart';
+import LanguageSwitcher from './LanguageSwitcher';
+import Logo from './Logo';
+import MobileDrawer from './MobileDrawer';
+import TopSearchBar from './TopSearchBar';
 
 const Header = () => {
   const [
@@ -42,7 +42,7 @@ const Header = () => {
   const headerFooterContext = useHeaderFooterContext();
   const { currentUrl } = useCurrentUrl();
 
-  const { isLoggedIn, cartCount, locale, env } = headerFooterContext;
+  const { isLoggedIn, cartCount, locale } = headerFooterContext;
 
   const authLinks = [
     {

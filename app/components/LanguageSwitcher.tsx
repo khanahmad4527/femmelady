@@ -1,6 +1,7 @@
 import { ComboboxItem, Select, useDirection } from '@mantine/core';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+
 import {
   DEFAULT_PRODUCT_PAGE,
   FORCE_REVALIDATE_MAP,

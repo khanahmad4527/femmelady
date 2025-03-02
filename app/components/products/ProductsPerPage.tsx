@@ -1,16 +1,16 @@
 import { Select } from '@mantine/core';
 import { useOutletContext } from 'react-router';
+
 import {
   DEFAULT_PRODUCT_LIMIT,
   DEFAULT_PRODUCT_PAGE,
   FORCE_REVALIDATE_MAP,
   PARAM_KEYS
 } from '~/constant';
-import selectClasses from '~/styles/Select.module.scss';
-
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import useUserLocale from '~/hooks/useUserLocale';
+import selectClasses from '~/styles/Select.module.scss';
 import { OutletContext } from '~/types';
 import { formatNumber, getLimit } from '~/utils';
 

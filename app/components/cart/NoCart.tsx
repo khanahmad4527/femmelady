@@ -1,14 +1,11 @@
 import { Box, Button, Stack, Text } from '@mantine/core';
-import { href, Link, useOutletContext } from 'react-router';
-import { PATHS } from '~/constant';
+import { href, Link } from 'react-router';
+
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { IconDatabaseExclamation } from '~/icons';
-import { OutletContext } from '~/types';
-import { buildLocalizedLink } from '~/utils';
 
 const NoCart = () => {
-  const { env } = useOutletContext<OutletContext>();
   const { currentLanguage } = useCurrentLanguage();
   const t = useTranslation();
 

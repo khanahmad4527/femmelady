@@ -1,3 +1,4 @@
+import { createItem, withToken } from '@directus/sdk';
 import { Carousel } from '@mantine/carousel';
 import {
   Box,
@@ -5,7 +6,6 @@ import {
   Center,
   Grid,
   Group,
-  Image,
   Rating,
   ScrollArea,
   Stack,
@@ -13,23 +13,43 @@ import {
   Title,
   TypographyStylesProvider
 } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
+import { useEffect, useState } from 'react';
 import {
   FetcherWithComponents,
-  Link,
+href,  Link,
   Outlet,
   ShouldRevalidateFunction,
   useFetcher,
   useLoaderData,
-  useLocation,
   useOutletContext
-} from 'react-router';
+ } from 'react-router';
+
+import { isAuthenticated } from '~/auth/auth.server';
+import AddToCartError from '~/components/cart/AddToCartError';
+import FetcherError from '~/components/error/FetcherError';
+import ManagedImage from '~/components/ManagedImage';
 import ProductCartQuantity from '~/components/products/ProductCartQuantity';
 import ProductColorSwitcher from '~/components/products/ProductColorSwitcher';
 import ProductSizeSwitcher from '~/components/products/ProductSizeSwitcher';
+import ZoomImage from '~/components/products/ZoomImage';
+import { FORCE_REVALIDATE_MAP, PARAM_KEYS } from '~/constant';
+import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import getStringDto from '~/dto/getStringDto';
 import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
+import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
+import useCurrentActiveSize from '~/hooks/useCurrentActiveSize';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useCurrentUrl from '~/hooks/useCurrentUrl';
+import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
+import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
 import useTranslation from '~/hooks/useTranslation';
+import useUserLocale from '~/hooks/useUserLocale';
+import { getSingleProductPageMeta } from '~/meta';
+import { addToCartSchema } from '~/schema';
 import { getSingleProduct } from '~/server/api';
+import { directus } from '~/server/directus';
+import { getPublicEnv } from '~/server/env';
 import commonClasses from '~/styles/Common.module.scss';
 import {
   Cart,
@@ -50,33 +70,13 @@ import {
   getLanguageCode,
   shouldRevalidateLogic
 } from '~/utils';
-import { Route } from './+types/$slug';
-import getFirstObjectDto from '~/dto/getFirstObjectDto';
-import useCurrentActiveImage from '~/hooks/useCurrentActiveImage';
-import getStringDto from '~/dto/getStringDto';
-import { FORCE_REVALIDATE_MAP, PARAM_KEYS, PATHS } from '~/constant';
-import useCurrentActiveSize from '~/hooks/useCurrentActiveSize';
-import { directus } from '~/server/directus';
-import { createItem, withToken } from '@directus/sdk';
-import { isAuthenticated } from '~/auth/auth.server';
-import { addToCartSchema } from '~/schema';
-import AddToCartError from '~/components/cart/AddToCartError';
-import { useEffect, useState } from 'react';
-import { notifications } from '@mantine/notifications';
-import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
-import useUserLocale from '~/hooks/useUserLocale';
-import { getSingleProductPageMeta } from '~/meta';
-import ZoomImage from '~/components/products/ZoomImage';
-import { getPublicEnv } from '~/server/env';
 import {
   handleError,
   TFetcherError,
   throwLoginRequiredError
 } from '~/utils/error';
-import FetcherError from '~/components/error/FetcherError';
-import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
-import useCurrentUrl from '~/hooks/useCurrentUrl';
-import { href } from 'react-router';
+
+import { Route } from './+types/$slug';
 
 export const meta = ({ data, location }: Route.MetaArgs) => {
   const product = data?.product as Product;
@@ -329,16 +329,13 @@ const SingleProduct = () => {
                     handleActiveImage(getStringDto(i.directus_files_id));
                   }}
                 >
-                  <Image
+                  <ManagedImage
                     w={'100%'}
                     h={'100%'}
                     fit={'cover'}
-                    src={getImageUrl({
-                      id: getStringDto(i.directus_files_id),
-                      h: 100,
-                      w: 100,
-                      url: env?.CDN_URL
-                    })}
+                    id={getStringDto(i.directus_files_id)!}
+                    urlHeight={100}
+                    urlWidth={100}
                     alt={productTranslation?.title!}
                     loading={'lazy'}
                   />
@@ -351,16 +348,13 @@ const SingleProduct = () => {
         <Grid.Col span={{ base: 12, lg: 6 }}>
           {/* This render product images in smaller view */}
           <Center hiddenFrom="lg" h={{ base: 288, xxs: 460, sm: 800, lg: 650 }}>
-            <Image
+            <ManagedImage
               w={'100%'}
               h={'100%'}
               fit={'cover'}
-              src={getImageUrl({
-                id: activeImage,
-                h: 800,
-                w: 800,
-                url: env?.CDN_URL
-              })}
+              id={activeImage}
+              urlWidth={800}
+              urlHeight={800}
               alt={productTranslation?.title!}
               loading={'eager'}
             />
@@ -398,16 +392,13 @@ const SingleProduct = () => {
                         : '2px solid transparent'
                   }}
                 >
-                  <Image
+                  <ManagedImage
                     w={'100%'}
                     h={'100%'}
                     fit={'cover'}
-                    src={getImageUrl({
-                      id: getStringDto(i.directus_files_id),
-                      h: 200,
-                      w: 200,
-                      url: env?.CDN_URL
-                    })}
+                    id={getStringDto(i.directus_files_id)}
+                    urlHeight={200}
+                    urlWidth={200}
                     alt={productTranslation?.title!}
                     loading={'lazy'}
                   />

@@ -1,8 +1,8 @@
 import { ActionIcon, Menu } from '@mantine/core';
 import { href, Link } from 'react-router';
+
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useCurrentUrl from '~/hooks/useCurrentUrl';
-import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
 import { IconBurger, IconLogout, IconTruckDelivery, IconUser } from '~/icons';
 import menuClasses from '~/styles/Menu.module.scss';
@@ -11,7 +11,6 @@ import { buildLocalizedLink } from '~/utils';
 const BurgerMenu = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
-  const { env } = useHeaderFooterContext();
   const { currentUrl } = useCurrentUrl();
 
   return (

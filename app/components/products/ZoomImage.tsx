@@ -1,11 +1,14 @@
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 
-import { Box, Image } from '@mantine/core';
+import { Box } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import InnerImageZoom from 'react-inner-image-zoom';
-import { getImageUrl } from '~/utils';
 import { useOutletContext } from 'react-router';
+
 import { OutletContext } from '~/types';
+import { getImageUrl } from '~/utils';
+
+import ManagedImage from '../ManagedImage';
 
 // InnerImageZoom doesn't support SSR, so we render it only on the client side.
 
@@ -34,14 +37,11 @@ const ZoomImage = ({
   return (
     <Box key={activeImage} visibleFrom="lg">
       {!isCLient ? (
-        <Image
+        <ManagedImage
           fit={'contain'}
-          src={getImageUrl({
-            id: activeImage,
-            h: srcH,
-            w: srcW,
-            url: env?.CDN_URL
-          })}
+          id={activeImage}
+          urlHeight={srcH}
+          urlWidth={srcW}
           alt={alt}
           loading={'eager'}
         />

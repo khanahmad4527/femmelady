@@ -1,4 +1,5 @@
 import { Alert } from '@mantine/core';
+
 import { Translation } from '~/types';
 
 const ProviderLoginFailed = ({ t }: { t: Translation }) => {

@@ -1,11 +1,13 @@
-import { getLanguageCode, getPage } from '~/utils';
-import { getCarts } from '~/server/api';
-import { Route } from './+types/load-carts';
+import { deleteItem, updateItem, withToken } from '@directus/sdk';
+
 import { isAuthenticated } from '~/auth/auth.server';
 import { mutateCartSchema } from '~/schema';
+import { getCarts } from '~/server/api';
 import { directus } from '~/server/directus';
-import { deleteItem, updateItem, withToken } from '@directus/sdk';
+import { getLanguageCode, getPage } from '~/utils';
 import { handleError } from '~/utils/error';
+
+import { Route } from './+types/load-carts';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);

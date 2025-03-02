@@ -28,7 +28,7 @@ module.exports = {
     // React
     {
       files: ['**/*.{js,jsx,ts,tsx}'],
-      plugins: ['react', 'jsx-a11y'],
+      plugins: ['react', 'jsx-a11y', 'unused-imports'],
       extends: [
         'plugin:react/recommended',
         'plugin:react/jsx-runtime',
@@ -47,10 +47,24 @@ module.exports = {
         'import/resolver': {
           typescript: {}
         }
+      },
+      rules: {
+        // Remove unused imports automatically
+        'unused-imports/no-unused-imports': 'error',
+        // Remove unused variables, but allow ignored ones prefixed with _
+        'unused-imports/no-unused-vars': [
+          'warn',
+          {
+            vars: 'all',
+            varsIgnorePattern: '^_',
+            args: 'after-used',
+            argsIgnorePattern: '^_'
+          }
+        ]
       }
     },
 
-    // Typescript
+    // TypeScript
     {
       files: ['**/*.{ts,tsx}'],
       plugins: ['@typescript-eslint', 'import'],
@@ -70,7 +84,19 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:import/recommended',
         'plugin:import/typescript'
-      ]
+      ],
+      rules: {
+        // TypeScript-specific unused variable removal
+        '@typescript-eslint/no-unused-vars': [
+          'warn',
+          {
+            vars: 'all',
+            varsIgnorePattern: '^_',
+            args: 'after-used',
+            argsIgnorePattern: '^_'
+          }
+        ]
+      }
     },
 
     // Node

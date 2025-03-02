@@ -1,17 +1,12 @@
-import {
-  ActionIcon,
-  Box,
-  Card,
-  Group,
-  Image,
-  Stack,
-  Text
-} from '@mantine/core';
-
+import { Box, Card, Group, Stack, Text } from '@mantine/core';
+import { useHover } from '@mantine/hooks';
+import { memo } from 'react';
 import { href, Link, useOutletContext } from 'react-router';
-import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 
-import { IconHeart, IconPlus } from '~/icons';
+import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
+import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
 import {
   OutletContext,
   Product,
@@ -19,13 +14,9 @@ import {
   ProductTranslation
 } from '~/types';
 import { formatCurrency, getImageUrl, getSingleTranslation } from '~/utils';
-import ProductColorSwitcher from './ProductColorSwitcher';
-import { useHover } from '@mantine/hooks';
-import useCurrentFeaturedImage from '~/hooks/useCurrentFeaturedImage';
 
-import useCurrentActiveColor from '~/hooks/useCurrentActiveColor';
-import { memo } from 'react';
-import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
+import ManagedImage from '../ManagedImage';
+import ProductColorSwitcher from './ProductColorSwitcher';
 
 const ProductCard = (product: Product) => {
   const { searchParams, setSearchParams, env } =
@@ -96,13 +87,10 @@ const ProductCard = (product: Product) => {
           slug: translation?.slug ?? id
         })}
       >
-        <Image
-          h={'100%'}
+        <ManagedImage
+          h="100%"
           fit={'contain'}
-          src={getImageUrl({
-            id: hovered ? featureImage2 : featureImage1,
-            url: env?.CDN_URL
-          })}
+          id={hovered ? featureImage2 : featureImage1}
           alt={translation?.title!}
           loading={'lazy'}
         />

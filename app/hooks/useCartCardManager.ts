@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useFetcher } from 'react-router';
+
 import { Cart } from '~/types';
-import useHeaderFooterContext from './useHeaderFooterContext';
+
 import useCurrentLanguage from './useCurrentLanguage';
+import useHeaderFooterContext from './useHeaderFooterContext';
 
 const useCartCardManager = ({ cart }: { cart: Cart }) => {
   const [quantity, setQuantity] = useState(Number(cart?.quantity ?? 1));
