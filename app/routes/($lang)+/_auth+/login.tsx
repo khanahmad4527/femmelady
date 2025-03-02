@@ -35,6 +35,7 @@ import {
 import { handleError } from '~/utils/error';
 
 import { Route } from './+types/login';
+import { useState } from 'react';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -129,6 +130,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
 
 const Login = () => {
   const t = useTranslation();
+  const [turnstileToken, setTurnstileToken] = useState('');
   const { currentLanguage, env, searchParams } =
     useOutletContext<OutletContext>();
   const isCompact = useMediaQuery('(max-width: 22em)');
@@ -144,7 +146,7 @@ const Login = () => {
     initialValues: {
       email: '',
       password: '',
-      'cf-turnstile-response': 'XXXXX-XXXXX-XXXXX-XXXXX' // To by pass the form validation
+      'cf-turnstile-response': turnstileToken
     }
   });
 
@@ -214,6 +216,10 @@ const Login = () => {
             siteKey={env?.TURNSTILE_SITE_KEY!}
             options={{
               size: turnstileSize
+            }}
+            onSuccess={token => {
+              form.setFieldValue('cf-turnstile-response', token);
+              setTurnstileToken(token);
             }}
           />
         </Form>
