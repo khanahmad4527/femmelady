@@ -35,7 +35,6 @@ import {
 import { handleError } from '~/utils/error';
 
 import { Route } from './+types/login';
-import { useState } from 'react';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -80,15 +79,10 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       'cf-turnstile-response': cfTurnstileResponseToken
     } = loginFormSchema.parse(data);
 
-    console.log('formData', formData);
-    console.log('cfTurnstileResponseToken', cfTurnstileResponseToken);
-
     const outcome = await validateTurnstile({
       request,
       token: cfTurnstileResponseToken
     });
-
-    console.log('outcome', outcome);
 
     if (!outcome.success) {
       return {
@@ -130,7 +124,6 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
 
 const Login = () => {
   const t = useTranslation();
-  const [turnstileToken, setTurnstileToken] = useState('');
   const { currentLanguage, env, searchParams } =
     useOutletContext<OutletContext>();
   const isCompact = useMediaQuery('(max-width: 22em)');
@@ -146,7 +139,7 @@ const Login = () => {
     initialValues: {
       email: '',
       password: '',
-      'cf-turnstile-response': turnstileToken
+      'cf-turnstile-response': ''
     }
   });
 
@@ -219,7 +212,6 @@ const Login = () => {
             }}
             onSuccess={token => {
               form.setFieldValue('cf-turnstile-response', token);
-              setTurnstileToken(token);
             }}
           />
         </Form>
