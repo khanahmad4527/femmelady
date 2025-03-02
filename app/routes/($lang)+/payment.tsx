@@ -1,8 +1,21 @@
-import { Stack, Group, TextInput, Select, Button, Alert } from '@mantine/core';
+import { createItem, deleteItems, withToken } from '@directus/sdk';
+import { Alert, Button, Group, Select, Stack, TextInput } from '@mantine/core';
+import { useEffect } from 'react';
+import { href, Link, useLoaderData } from 'react-router';
+
+import { isAuthenticated } from '~/auth/auth.server';
+import NoCart from '~/components/cart/NoCart';
+import FetcherError from '~/components/error/FetcherError';
+import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { useForm } from '~/hooks/useForm';
+import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
+import useTranslation from '~/hooks/useTranslation';
 import { paymentFormSchema } from '~/schema';
+import { getCartsPrice } from '~/server/api';
+import { directus } from '~/server/directus';
 import classes from '~/styles/Payment.module.scss';
-import { Route } from './+types/payment';
+import { Cart } from '~/types';
 import {
   buildLocalizedLink,
   calculateTotalPrice,
@@ -10,22 +23,9 @@ import {
   formatNumber,
   getLocalizedMonth
 } from '~/utils';
-import { getCartsPrice } from '~/server/api';
-import { isAuthenticated } from '~/auth/auth.server';
-import { Cart } from '~/types';
-import { directus } from '~/server/directus';
-import { createItem, deleteItems, withToken } from '@directus/sdk';
-import getFirstObjectDto from '~/dto/getFirstObjectDto';
-import { Link, useLoaderData } from 'react-router';
-import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import useTranslation from '~/hooks/useTranslation';
-import { useEffect } from 'react';
-import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
-import NoCart from '~/components/cart/NoCart';
 import { handleError, throwLoginRequiredError } from '~/utils/error';
-import FetcherError from '~/components/error/FetcherError';
-import { PATHS } from '~/constant';
-import { href } from 'react-router';
+
+import { Route } from './+types/payment';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const { token } = await isAuthenticated(request);
@@ -91,7 +91,7 @@ const Payment = () => {
   const { totalPrice, carts } = useLoaderData<typeof loader>();
   const { currentLanguage, userLocale } = useCurrentLanguage();
   const t = useTranslation();
-  const { setCarts, setCartCount, env } = useHeaderFooterContext();
+  const { setCarts, setCartCount, exchangeRate } = useHeaderFooterContext();
   const { Form, form, state, fetcher } = useForm({
     schema: paymentFormSchema,
     initialValues: {
@@ -105,7 +105,8 @@ const Payment = () => {
 
   const amount = formatCurrency({
     currentLanguage,
-    value: totalPrice
+    value: totalPrice,
+    exchangeRate
   });
 
   const currentYear = new Date().getFullYear();
@@ -145,7 +146,7 @@ const Payment = () => {
           component={Link}
           prefetch="intent"
           to={buildLocalizedLink({
-            baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+            url: href('/:lang?/products', { lang: currentLanguage }),
             queryParams: {
               'force-validate': 'global'
             }

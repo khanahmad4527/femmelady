@@ -1,26 +1,12 @@
 import {
+  aggregate,
+  Query,
   readItem,
   readItems,
-  Query,
-  aggregate,
   readSingleton,
   withToken
 } from '@directus/sdk';
-import { directus } from './directus';
-import { Schema } from '~/types/collections';
-import {
-  GenericContent,
-  Page,
-  Product,
-  Review,
-  GenericSingleton,
-  ExtendedGenericTranslation,
-  FAQ,
-  ExtendedFAQTranslation,
-  Faqs,
-  TranslationKeys
-} from '~/types';
-import { getUserLocale, validateUUID } from '~/utils';
+
 import {
   DEFAULT_PRODUCT_LIMIT,
   DEFAULT_PRODUCT_PAGE,
@@ -28,7 +14,23 @@ import {
   LOCALE_TO_CURRENCY
 } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import {
+  ExtendedFAQTranslation,
+  ExtendedGenericTranslation,
+  FAQ,
+  Faqs,
+  GenericContent,
+  GenericSingleton,
+  Page,
+  Product,
+  Review,
+  TranslationKeys
+} from '~/types';
+import { Schema } from '~/types/collections';
+import { getUserLocale, validateUUID } from '~/utils';
+
 import { redisClient } from '.';
+import { directus } from './directus';
 import { getEnv } from './env';
 
 // Utility function to fetch exchange rates

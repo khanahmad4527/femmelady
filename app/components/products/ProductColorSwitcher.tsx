@@ -1,6 +1,7 @@
-import { ActionIcon, Group, Image, Paper, Stack, Text } from '@mantine/core';
+import { ActionIcon, Group, Paper, Stack, Text } from '@mantine/core';
 import { memo } from 'react';
-import { SetURLSearchParams, useOutletContext } from 'react-router';
+import { SetURLSearchParams } from 'react-router';
+
 import { PARAM_KEYS } from '~/constant';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import getStringDto from '~/dto/getStringDto';
@@ -8,13 +9,13 @@ import useTranslation from '~/hooks/useTranslation';
 import {
   ProductColor,
   ProductColorTranslation,
-  ProductProductColor,
-  ProductProductImage,
   ProductImage,
   ProductImageFile,
-  OutletContext
-} from '~/types';
-import { getImageUrl, getSingleTranslation } from '~/utils';
+  ProductProductColor,
+  ProductProductImage} from '~/types';
+import { getSingleTranslation } from '~/utils';
+
+import ManagedImage from '../ManagedImage';
 
 const ProductColorSwitcher = ({
   activeColor,
@@ -33,7 +34,6 @@ const ProductColorSwitcher = ({
   searchParams: URLSearchParams;
   setSearchParams: SetURLSearchParams;
 }) => {
-  const { env } = useOutletContext<OutletContext>();
   const paramsProductId = searchParams.get(PARAM_KEYS.PRODUCT_ID);
   const paramsImageSet = searchParams.get(PARAM_KEYS.IMAGE_SET);
 
@@ -132,13 +132,10 @@ const ProductColorSwitcher = ({
             >
               {c?.isTexture ? (
                 <ActionIcon size="sm" radius="xl" disabled={!c.stock}>
-                  <Image
-                    src={getImageUrl({
-                      id: getStringDto(c?.texture),
-                      h: 50,
-                      w: 50,
-                      url: env?.CDN_URL
-                    })}
+                  <ManagedImage
+                    id={getStringDto(c?.texture)}
+                    urlHeight={50}
+                    urlWidth={50}
                     radius="xl"
                   />
                 </ActionIcon>

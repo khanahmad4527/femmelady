@@ -1,15 +1,13 @@
 import { Box, Button, Stack, Text } from '@mantine/core';
-import { href } from 'react-router';
-import { Link, useOutletContext } from 'react-router';
+import { href, Link } from 'react-router';
+
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import useUserLocale from '~/hooks/useUserLocale';
 import { IconMoodSad } from '~/icons';
-import { OutletContext } from '~/types';
-import { buildLocalizedLink, formatNumber } from '~/utils';
+import { formatNumber } from '~/utils';
 
-const $ = () => {
-  const { env } = useOutletContext<OutletContext>();
+const PageNotFound = () => {
   const { currentLanguage } = useCurrentLanguage();
   const userLocale = useUserLocale(currentLanguage);
   const t = useTranslation();
@@ -37,4 +35,4 @@ const $ = () => {
   );
 };
 
-export default $;
+export default PageNotFound;

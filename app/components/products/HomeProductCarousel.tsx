@@ -1,36 +1,28 @@
 import { Carousel } from '@mantine/carousel';
-import { Box, Card, Image, Stack, Text, Title } from '@mantine/core';
+import { Box, Card, Stack, Text, Title } from '@mantine/core';
 import { useHover, useInViewport } from '@mantine/hooks';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { useEffect, useRef } from 'react';
-import { href } from 'react-router';
-import { Link, useOutletContext } from 'react-router';
+import { href, Link, useOutletContext } from 'react-router';
+
 import getStringDto from '~/dto/getStringDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
-
 import useTranslation from '~/hooks/useTranslation';
 import commonClasses from '~/styles/Common.module.scss';
 import { OutletContext, Product, ProductTranslation } from '~/types';
-import { formatCurrency, getImageUrl, getSingleTranslation } from '~/utils';
+import { getImageUrl, getSingleTranslation } from '~/utils';
+
+import ManagedImage from '../ManagedImage';
+import CurrencyFormatter from '../CurrencyFormatter';
 
 const HomeProductCarousel = ({ products }: { products: Product[] }) => {
-  if (!products || !products?.length) {
-    return null;
-  }
-
   const t = useTranslation();
   const { currentLanguage, dir } = useCurrentLanguage();
   const { env } = useOutletContext<OutletContext>();
 
   const { ref, inViewport } = useInViewport();
   const autoScroll = useRef(AutoScroll({ speed: 0.5, playOnInit: false }));
-
-  const handleAction = (action: 'stop' | 'play') => {
-    autoScroll.current[action]();
-  };
-
-  const canLoop = products.length > 3;
 
   useEffect(() => {
     if (inViewport) {
@@ -39,6 +31,16 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
       handleAction('stop');
     }
   }, [inViewport]);
+
+  if (!products || !products?.length) {
+    return null;
+  }
+
+  const handleAction = (action: 'stop' | 'play') => {
+    autoScroll.current[action]();
+  };
+
+  const canLoop = products.length > 3;
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
@@ -95,15 +97,14 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                     slug: translation?.slug ?? p?.id
                   })}
                 >
-                  <Image
+                  <ManagedImage
                     h={'100%'}
                     fit={'contain'}
-                    src={getImageUrl({
-                      id: hovered
+                    id={
+                      hovered
                         ? getStringDto(p?.feature_image_2)
-                        : getStringDto(p?.feature_image_1),
-                      url: env?.CDN_URL
-                    })}
+                        : getStringDto(p?.feature_image_1)
+                    }
                     alt={translation.title!}
                     loading={'lazy'}
                   />
@@ -113,12 +114,7 @@ const HomeProductCarousel = ({ products }: { products: Product[] }) => {
                 manually setting it here */}
                 <Box style={{ direction: dir }}>
                   <Text tt={'capitalize'}>{translation?.title}</Text>
-                  <Text>
-                    {formatCurrency({
-                      currentLanguage,
-                      value: p?.price as number
-                    })}
-                  </Text>
+                  <CurrencyFormatter value={p?.price!} />
                 </Box>
               </Card>
             </Carousel.Slide>

@@ -1,9 +1,10 @@
 import { Select, Stack, Title } from '@mantine/core';
+
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
-import { formatNumber } from '~/utils';
-import selectClasses from '~/styles/Select.module.scss';
 import useUserLocale from '~/hooks/useUserLocale';
+import selectClasses from '~/styles/Select.module.scss';
+import { formatNumber } from '~/utils';
 
 const ProductCartQuantity = ({
   disabled,

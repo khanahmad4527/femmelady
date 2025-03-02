@@ -7,28 +7,25 @@ import {
   Table,
   Title
 } from '@mantine/core';
+import { href, Link, redirect, useLoaderData } from 'react-router';
+
+import { isAuthenticated } from '~/auth/auth.server';
+import NoCart from '~/components/cart/NoCart';
 import CheckoutCartCard from '~/components/checkout/CheckoutCartCard';
+import getFirstObjectDto from '~/dto/getFirstObjectDto';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
+import { getCarts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
+import { Cart, ProductCart } from '~/types';
 import {
   formatCurrency,
   getLanguageCode,
   getValidLanguageOrRedirect
 } from '~/utils';
+
 import { Route } from './+types/checkout';
-import { isAuthenticated } from '~/auth/auth.server';
-import { getCarts } from '~/server/api';
-import {
-  href,
-  Link,
-  redirect,
-  useLoaderData,
-  useOutletContext
-} from 'react-router';
-import { Cart, OutletContext, ProductCart } from '~/types';
-import getFirstObjectDto from '~/dto/getFirstObjectDto';
-import NoCart from '~/components/cart/NoCart';
+import CurrencyFormatter from '~/components/CurrencyFormatter';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -88,7 +85,7 @@ const Checkout = () => {
       <Title m={'auto'}>{t('checkout.shoppingBag')}</Title>
       <Grid>
         <Grid.Col span={{ base: 12, md: 9 }}>
-          {!!!carts?.length && <NoCart />}
+          {!carts?.length && <NoCart />}
           {!!carts?.length && (
             <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
               {carts.map(c => (
@@ -106,16 +103,12 @@ const Checkout = () => {
               <Table.Tbody>
                 <Table.Tr>
                   <Table.Th w={160}>{t('checkout.subTotal')}</Table.Th>
-                  <Table.Td>
-                    {formatCurrency({ currentLanguage, value: totalPrice })}
-                  </Table.Td>
+                  <CurrencyFormatter component={Table.Td} value={totalPrice} />
                 </Table.Tr>
 
                 <Table.Tr>
                   <Table.Th>{t('checkout.total')}</Table.Th>
-                  <Table.Td>
-                    {formatCurrency({ currentLanguage, value: totalPrice })}
-                  </Table.Td>
+                  <CurrencyFormatter component={Table.Td} value={totalPrice} />
                 </Table.Tr>
               </Table.Tbody>
             </Table>

@@ -7,12 +7,14 @@ import {
   TypographyStylesProvider
 } from '@mantine/core';
 import { useLoaderData, useOutletContext } from 'react-router';
-import useTranslation from '~/hooks/useTranslation';
-import { Faqs, OutletContext } from '~/types';
-import { Route } from './+types/faq';
-import { getLanguageCode } from '~/utils';
-import { getFaqs } from '~/server/api';
+
 import { PARAMS } from '~/constant';
+import useTranslation from '~/hooks/useTranslation';
+import { getFaqs } from '~/server/api';
+import { Faqs, OutletContext } from '~/types';
+import { getLanguageCode } from '~/utils';
+
+import { Route } from './+types/faq';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
@@ -55,6 +57,7 @@ const Faq = () => {
         <Stack>
           {faqs.map((f, i) => (
             <Button
+              key={f.title}
               color={currentIndex === i ? 'black' : ''}
               onClick={() => {
                 searchParams.set(PARAMS.faq, String(++i));

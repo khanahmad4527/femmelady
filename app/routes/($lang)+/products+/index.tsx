@@ -7,24 +7,28 @@ import {
   Stack,
   Text
 } from '@mantine/core';
-
+import { useEffect } from 'react';
 import {
-  Link,
+href,  Link,
   ShouldRevalidateFunction,
   useLoaderData,
   useOutletContext
-} from 'react-router';
+ } from 'react-router';
 
+import LocalizedPagination from '~/components/LocalizedPagination';
+import NoData from '~/components/NoData';
 import ProductCard from '~/components/products/ProductCard';
 import ProductsFilterBy from '~/components/products/ProductsFilterBy';
 import ProductsPerPage from '~/components/products/ProductsPerPage';
 import ProductsSortBy from '~/components/products/ProductsSortBy';
-
+import { FORCE_REVALIDATE_MAP, PARAM_KEYS } from '~/constant';
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
+import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
 import useScrollToProduct from '~/hooks/useScrollToProduct';
 import useTranslation from '~/hooks/useTranslation';
 import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
-import { Route } from '../+types/_index';
+import { OutletContext, Product } from '~/types';
 import {
   buildAndCompareFilter,
   buildLocalizedLink,
@@ -41,14 +45,8 @@ import {
   getSort,
   shouldRevalidateLogic
 } from '~/utils';
-import { OutletContext, Product } from '~/types';
-import { FORCE_REVALIDATE_MAP, PARAM_KEYS, PATHS } from '~/constant';
-import { useEffect } from 'react';
-import NoData from '~/components/NoData';
-import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import LocalizedPagination from '~/components/LocalizedPagination';
-import useResponsivePreloadImages from '~/hooks/useResponsivePreloadImages';
-import { href } from 'react-router';
+
+import { Route } from '../+types/_index';
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   currentUrl,
@@ -203,7 +201,7 @@ const Products = () => {
           <ProductsFilterBy />
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 10 }}>
-          {!!!products?.length && (
+          {!products?.length && (
             <NoData
               button={
                 <Button
@@ -211,7 +209,7 @@ const Products = () => {
                   component={Link}
                   prefetch="intent"
                   to={buildLocalizedLink({
-                    baseUrl: href('/:lang?/products', {
+                    url: href('/:lang?/products', {
                       lang: currentLanguage
                     }),
                     queryParams: {

@@ -13,6 +13,7 @@ import {
 import { useDebouncedCallback } from '@mantine/hooks';
 import { Fragment, useState } from 'react';
 import { useOutletContext } from 'react-router';
+
 import {
   BRANDS_WITH_ID_MAP,
   CATEGORIES_WITH_ID_MAP,
@@ -21,7 +22,6 @@ import {
   PARAM_KEYS,
   PRE_PARAM_KEYS
 } from '~/constant';
-
 import useTranslation from '~/hooks/useTranslation';
 import { OutletContext } from '~/types';
 import { getPriceRange, getRating } from '~/utils';
@@ -111,8 +111,7 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
 export default ProductsFilterBy;
 
 const RatingFilter = () => {
-  const { searchParams, setSearchParams, dir } =
-    useOutletContext<OutletContext>();
+  const { searchParams, setSearchParams } = useOutletContext<OutletContext>();
   const [value, setValue] = useState(getRating({ searchParams }) ?? 3);
 
   const handleSearch = (v: number) => {

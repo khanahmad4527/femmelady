@@ -1,6 +1,7 @@
 import { Box, PasswordInput, Popover, Progress, Text } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
 import { useState } from 'react';
+
 import useTranslation from '~/hooks/useTranslation';
 import { IconCheck, IconX } from '~/icons';
 

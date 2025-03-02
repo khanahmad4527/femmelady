@@ -1,12 +1,13 @@
 import { Box, Button, Drawer, Stack, Text } from '@mantine/core';
-import useTranslation from '~/hooks/useTranslation';
-import InfiniteCartLoader from './InfiniteCartLoader';
-import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
-import { IconDatabaseExclamation } from '~/icons';
 import { href, Link } from 'react-router';
-import { buildLocalizedLink } from '~/utils';
+
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import { PATHS } from '~/constant';
+import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
+import useTranslation from '~/hooks/useTranslation';
+import { IconDatabaseExclamation } from '~/icons';
+import { buildLocalizedLink } from '~/utils';
+
+import InfiniteCartLoader from './InfiniteCartLoader';
 
 const HeaderCart = ({
   opened,
@@ -16,7 +17,7 @@ const HeaderCart = ({
   close: () => void;
 }) => {
   const t = useTranslation();
-  const { cartCount, env } = useHeaderFooterContext();
+  const { cartCount } = useHeaderFooterContext();
   const { currentLanguage } = useCurrentLanguage();
 
   return (
@@ -46,7 +47,7 @@ const HeaderCart = ({
             component={Link}
             prefetch="intent"
             to={buildLocalizedLink({
-              baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+              url: href('/:lang?/products', { lang: currentLanguage }),
               queryParams: {
                 'force-validate': 'global'
               }

@@ -1,9 +1,6 @@
-import { createUser } from '@directus/sdk';
 import {
-  Alert,
   Anchor,
   Button,
-  Center,
   Checkbox,
   Divider,
   Group,
@@ -13,27 +10,23 @@ import {
   TextInput
 } from '@mantine/core';
 import { Turnstile } from '@marsidev/react-turnstile';
+import { ActionFunction, href,Link, redirect, useOutletContext  } from 'react-router';
 
-import { ActionFunction, Link, redirect, useOutletContext } from 'react-router';
-import InvalidProvider from '~/components/error/InvalidProvider';
-import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
-import PasswordComponent from '~/components/PasswordComponent';
-import SocialLogin from '~/components/SocialLogin';
-import { PARAMS, PATHS } from '~/constant';
-
-import useTranslation from '~/hooks/useTranslation';
-import { registerFormSchema } from '~/schema';
-import { directus } from '~/server/directus';
-import { validateTurnstile } from '~/server/turnstile';
-import { OutletContext } from '~/types';
-import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
-import { handleError } from '~/utils/error';
-import { Route } from './+types/register';
 import { isAuthenticated } from '~/auth/auth.server';
 import FetcherError from '~/components/error/FetcherError';
-import { useForm } from '~/hooks/useForm';
+import InvalidProvider from '~/components/error/InvalidProvider';
+import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
 import Marquee from '~/components/Marquee';
-import { href } from 'react-router';
+import PasswordComponent from '~/components/PasswordComponent';
+import SocialLogin from '~/components/SocialLogin';
+import { PARAMS } from '~/constant';
+import { useForm } from '~/hooks/useForm';
+import useTranslation from '~/hooks/useTranslation';
+import { registerFormSchema } from '~/schema';
+import { OutletContext } from '~/types';
+import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
+
+import { Route } from './+types/register';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -49,7 +42,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
   if (isLoggedIn) {
     const redirectTo = buildLocalizedLink({
-      baseUrl: href('/:lang?', { lang: currentLanguage }),
+      url: href('/:lang?', { lang: currentLanguage }),
       queryParams: {
         'force-validate': 'global'
       }
@@ -99,7 +92,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 
   //   return redirect(
   //     buildLocalizedLink({
-  //       baseUrl: href('/:lang?', { lang: currentLanguage }),
+  //       url: href('/:lang?', { lang: currentLanguage }),
   //       paths: [PATHS.login]
   //     })
   //   );

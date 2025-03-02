@@ -1,15 +1,16 @@
 import { Button, Drawer, Stack } from '@mantine/core';
+import { useEffect } from 'react';
 import { href, Link, useLocation } from 'react-router';
+
+import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import useTranslation from '~/hooks/useTranslation';
-import { ValueLabel } from '~/types';
-import LanguageSwitcher from './LanguageSwitcher';
 import { IconShoppingCart } from '~/icons';
-import CartCount from './cart/CartCount';
+import { ValueLabel } from '~/types';
 import { buildLocalizedLink } from '~/utils';
-import { PATHS } from '~/constant';
-import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import { useEffect } from 'react';
+
+import CartCount from './cart/CartCount';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const MobileDrawer = ({
   opened,
@@ -30,7 +31,7 @@ const MobileDrawer = ({
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const context = useHeaderFooterContext();
-  const { isLoggedIn, cartCount, locale, env } = context;
+  const { isLoggedIn, cartCount, locale } = context;
 
   useEffect(() => {
     close();
@@ -76,7 +77,7 @@ const MobileDrawer = ({
               component={Link}
               prefetch="intent"
               to={buildLocalizedLink({
-                baseUrl: href('/:lang?/checkout', { lang: currentLanguage }),
+                url: href('/:lang?/checkout', { lang: currentLanguage }),
                 queryParams: {
                   'force-validate': 'global'
                 }

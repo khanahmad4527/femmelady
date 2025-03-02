@@ -1,9 +1,11 @@
 import { Divider, Stack, Text, TypographyStylesProvider } from '@mantine/core';
 import { Fragment } from 'react/jsx-runtime';
-import { getLanguageCode } from '~/utils';
-import { Route } from './+types/terms-of-service';
-import { getTermsOfServices } from '~/server/api';
 import { useLoaderData } from 'react-router';
+
+import { getTermsOfServices } from '~/server/api';
+import { getLanguageCode } from '~/utils';
+
+import { Route } from './+types/terms-of-service';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);

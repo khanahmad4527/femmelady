@@ -1,13 +1,14 @@
-import { isAuthenticated } from '~/auth/auth.server';
-import { Route } from './+types/change-language';
-import { directus } from '~/server/directus';
 import { updateMe, withToken } from '@directus/sdk';
 
+import { isAuthenticated } from '~/auth/auth.server';
 import {
   AVAILABLE_LANGUAGES,
   LANGUAGE_TO_LOCALE_LANGUAGE,
   LOCALE_TO_LANGUAGE
 } from '~/constant';
+import { directus } from '~/server/directus';
+
+import { Route } from './+types/change-language';
 
 export const action = async ({ params, request }: Route.ActionArgs) => {
   const { isLoggedIn, user, token } = await isAuthenticated(request);

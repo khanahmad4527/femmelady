@@ -1,6 +1,3 @@
-import globalStyle from './styles/style.css?url';
-import fontStyleSheetUrl from './styles/fonts.css?url';
-
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/nprogress/styles.css';
@@ -18,6 +15,10 @@ import {
   Text,
   Transition
 } from '@mantine/core';
+import { useWindowScroll } from '@mantine/hooks';
+import { Notifications } from '@mantine/notifications';
+import { NavigationProgress, nprogress } from '@mantine/nprogress';
+import { useEffect } from 'react';
 import type { MetaFunction, ShouldRevalidateFunction } from 'react-router';
 import {
   href,
@@ -32,28 +33,26 @@ import {
   useSearchParams
 } from 'react-router';
 
+import { Route } from './+types/root';
+import { isAuthenticated } from './auth/auth.server';
 import Document from './components/Document';
+import { LANGUAGE_DIRECTION, PARAMS } from './constant';
 import useCurrentLanguage from './hooks/useCurrentLanguage';
+import useSyncForceRevalidate from './hooks/useSyncForceRevalidate';
+import useTranslation from './hooks/useTranslation';
+import { IconArrowUp, IconInfoTriangle } from './icons';
+import { getMeta } from './meta';
+import { getExchangeRate } from './server/api';
+import { getPublicEnv } from './server/env';
+import fontStyleSheetUrl from './styles/fonts.css?url';
+import globalStyle from './styles/style.css?url';
 import { theme } from './theme';
 import { OutletContext } from './types';
-import { Route } from './+types/root';
-import { getExchangeRate } from './server/api';
 import {
   getUserLocale,
   getValidLanguageOrRedirect,
   shouldRevalidateLogic
 } from './utils';
-import useSyncForceRevalidate from './hooks/useSyncForceRevalidate';
-import { useWindowScroll } from '@mantine/hooks';
-import { IconArrowUp, IconInfoTriangle } from './icons';
-import useTranslation from './hooks/useTranslation';
-import { NavigationProgress, nprogress } from '@mantine/nprogress';
-import { useEffect } from 'react';
-import { isAuthenticated } from './auth/auth.server';
-import { Notifications } from '@mantine/notifications';
-import { getMeta } from './meta';
-import { getEnv, getPublicEnv } from './server/env';
-import { LANGUAGE_DIRECTION, PARAMS } from './constant';
 
 export const links = () => [
   { rel: 'icon', href: '/favicon.svg' },

@@ -3,39 +3,33 @@ import {
   Box,
   Card,
   Group,
-  Image,
   Stack,
   Text,
   ThemeIcon
 } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
-import { Link, useOutletContext } from 'react-router';
-import { PATHS } from '~/constant';
+import { href, Link } from 'react-router';
+
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import useCartCardManager from '~/hooks/useCartCardManager';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { IconMinus, IconPlus, IconX } from '~/icons';
 import {
   Cart,
-  OutletContext,
   Product,
   ProductCart,
   ProductColor,
   ProductColorTranslation,
   ProductTranslation
 } from '~/types';
-import {
-  buildLocalizedLink,
-  formatCurrency,
-  getImageUrl,
-  getSingleTranslation
-} from '~/utils';
+import { getSingleTranslation } from '~/utils';
+
 import FetcherError from '../error/FetcherError';
-import useCartCardManager from '~/hooks/useCartCardManager';
-import { href } from 'react-router';
+import ManagedImage from '../ManagedImage';
+import CurrencyFormatter from '../CurrencyFormatter';
 
 const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
   const { currentLanguage } = useCurrentLanguage();
-  const { env } = useOutletContext<OutletContext>();
 
   const {
     fetcher,
@@ -79,15 +73,12 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
           slug: productTranslation?.slug ?? product?.id
         })}
       >
-        <Image
+        <ManagedImage
           h={'100%'}
           fit={'contain'}
-          src={getImageUrl({
-            id: (hovered
-              ? cart.feature_image_2
-              : cart?.feature_image_1) as string,
-            url: env?.CDN_URL
-          })}
+          id={
+            (hovered ? cart.feature_image_2 : cart?.feature_image_1) as string
+          }
           alt={productTranslation?.title!}
           loading={'lazy'}
         />
@@ -96,9 +87,7 @@ const CheckoutCartCard = ({ cart }: { cart: Cart }) => {
       <Stack>
         <Text fw={500}>{productTranslation?.title}</Text>
         <Text>{colorTranslation?.name}</Text>
-        <Text>
-          {formatCurrency({ currentLanguage, value: product?.price! })}
-        </Text>
+        <CurrencyFormatter value={product?.price!} />
         <Group>
           <ActionIcon
             color="black"

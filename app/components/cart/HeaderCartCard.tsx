@@ -4,16 +4,16 @@ import {
   Divider,
   Grid,
   Group,
-  Image,
   Stack,
   Text,
   ThemeIcon
 } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
 import { href, Link } from 'react-router';
+
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import useCartCardManager from '~/hooks/useCartCardManager';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
-import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
 import { IconMinus, IconPlus, IconX } from '~/icons';
 import {
   Cart,
@@ -24,18 +24,14 @@ import {
   ProductSize,
   ProductTranslation
 } from '~/types';
-import {
-  buildLocalizedLink,
-  formatCurrency,
-  getImageUrl,
-  getSingleTranslation
-} from '~/utils';
+import { buildLocalizedLink, getSingleTranslation } from '~/utils';
+
 import FetcherError from '../error/FetcherError';
-import useCartCardManager from '~/hooks/useCartCardManager';
+import ManagedImage from '../ManagedImage';
+import CurrencyFormatter from '../CurrencyFormatter';
 
 const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
   const { hovered, ref } = useHover();
-  const { env } = useHeaderFooterContext();
   const { currentLanguage } = useCurrentLanguage();
 
   const {
@@ -69,7 +65,7 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
             component={Link}
             prefetch="intent"
             to={buildLocalizedLink({
-              baseUrl: href('/:lang?/products/:slug/reviews', {
+              url: href('/:lang?/products/:slug/reviews', {
                 lang: currentLanguage,
                 slug: productTranslation?.slug ?? product?.id
               }),
@@ -80,15 +76,14 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
             onClick={close}
             ref={ref as any}
           >
-            <Image
+            <ManagedImage
               h={'100%'}
               fit={'contain'}
-              src={getImageUrl({
-                id: (hovered
+              id={
+                (hovered
                   ? cart.feature_image_2
-                  : cart.feature_image_1) as string,
-                url: env?.CDN_URL
-              })}
+                  : cart.feature_image_1) as string
+              }
               alt={productTranslation?.title!}
               loading={'lazy'}
             />
@@ -103,12 +98,7 @@ const HeaderCartCard = ({ cart, close }: { cart: Cart; close: () => void }) => {
               </Text>
             </Text>
             <Text tt={'capitalize'}>{colorTranslation?.name}</Text>
-            <Text>
-              {formatCurrency({
-                currentLanguage,
-                value: product?.price!
-              })}
-            </Text>
+            <CurrencyFormatter value={product?.price!} />
             <Group>
               <ActionIcon
                 color="black"

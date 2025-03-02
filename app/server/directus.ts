@@ -1,6 +1,8 @@
 import { authentication, createDirectus, rest } from '@directus/sdk';
-import { Schema } from '~/types/collections';
 import fetchRetry from 'fetch-retry';
+
+import { Schema } from '~/types/collections';
+
 import { getEnv } from './env';
 
 const { DIRECTUS_URL } = getEnv(process.env);

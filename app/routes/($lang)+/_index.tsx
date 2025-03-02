@@ -17,18 +17,18 @@ import {
   Text,
   Title
 } from '@mantine/core';
-
-import { href, Link, useLoaderData, useOutletContext } from 'react-router';
+import { href, Link, useLoaderData } from 'react-router';
 
 import HomeProductCarousel from '~/components/products/HomeProductCarousel';
+import { CATEGORIES_WITH_ID_MAP } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
 import { getProducts } from '~/server/api';
 import commonClasses from '~/styles/Common.module.scss';
+import { Product } from '~/types';
 import { buildLocalizedLink, getLanguageCode } from '~/utils';
+
 import { Route } from './+types/_index';
-import { CATEGORIES_WITH_ID_MAP, PATHS } from '~/constant';
-import { OutletContext, Product } from '~/types';
 
 // Preload the hero images
 export function links() {
@@ -60,7 +60,6 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
 };
 
 export default function Index() {
-  const { env } = useOutletContext<OutletContext>();
   const { products } = useLoaderData<typeof loader>();
 
   const t = useTranslation();
@@ -76,7 +75,7 @@ export default function Index() {
       title: t('home.weddings'),
       image: wedding,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP['wedding-dresses'].key,
           'force-validate': 'global'
@@ -88,7 +87,7 @@ export default function Index() {
       title: t('home.candles'),
       image: candle,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.candles.key,
           'force-validate': 'global'
@@ -100,7 +99,7 @@ export default function Index() {
       title: t('home.dresses'),
       image: dress,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.dresses.key,
           'force-validate': 'global'
@@ -112,7 +111,7 @@ export default function Index() {
       title: t('home.jewelry'),
       image: jewelry,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.jewelry.key,
           'force-validate': 'global'
@@ -124,7 +123,7 @@ export default function Index() {
       title: t('home.bags'),
       image: bag,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.bags.key,
           'force-validate': 'global'
@@ -136,7 +135,7 @@ export default function Index() {
       title: t('home.perfumes'),
       image: perfume,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.perfumes.key,
           'force-validate': 'global'
@@ -148,7 +147,7 @@ export default function Index() {
       title: t('home.watches'),
       image: watch,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.watches.key,
           'force-validate': 'global'
@@ -160,7 +159,7 @@ export default function Index() {
       title: t('home.shoes'),
       image: shoe,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.shoes.key,
           'force-validate': 'global'

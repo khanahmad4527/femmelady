@@ -1,14 +1,7 @@
 import { useForm } from '@mantine/form';
-import { redirect, useFetcher, useOutletContext } from 'react-router';
+import { redirect, useFetcher } from 'react-router';
 import { z } from 'zod';
-import {
-  Cart,
-  GetParam,
-  OutletContext,
-  ProductCart,
-  TranslationKeys,
-  User
-} from '../types';
+
 import {
   AVAILABLE_LANGUAGES,
   BRANDS_WITH_ID_MAP,
@@ -23,8 +16,8 @@ import {
   LOCALE_TO_LANGUAGE,
   PARAM_KEYS
 } from '../constant';
-import useHeaderFooterContext from '../hooks/useHeaderFooterContext';
 import getFirstObjectDto from '../dto/getFirstObjectDto';
+import { Cart, GetParam, ProductCart, TranslationKeys, User } from '../types';
 
 export const submitForm = <T extends Record<string, any>>(
   fetcher: ReturnType<typeof useFetcher>,
@@ -87,23 +80,20 @@ export const getUserLocale = (currentLanguage: TranslationKeys = 'en') => {
  *
  * @param currentLanguage - The current language (e.g., "en-US", "fr-FR").
  * @param value - The number to format.
+ * @param exchangeRate - The exchangeRate.
  * @returns The formatted currency string.
  */
 export const formatCurrency = ({
   currentLanguage,
-  value
+  value,
+  exchangeRate
 }: {
   currentLanguage: TranslationKeys;
   value: number;
+  exchangeRate: number;
 }) => {
-  const outletContext = useOutletContext<OutletContext>();
-  const headerFooterContext = useHeaderFooterContext();
-
   const locale = getUserLocale(currentLanguage);
   const currency = LOCALE_TO_CURRENCY[locale] || 'USD';
-
-  const exchangeRate =
-    outletContext?.exchangeRate ?? headerFooterContext?.exchangeRate;
 
   // If the currency is USD, no need to convert
   if (currency === 'USD') {
@@ -182,26 +172,36 @@ export const formatNumber = ({
 }) => new Intl.NumberFormat(userLocale, { useGrouping: false }).format(value);
 
 export const buildLocalizedLink = ({
-  baseUrl,
-  queryParams = {} // Object containing query parameters
+  origin,
+  url,
+  queryParams = {}
 }: {
-  baseUrl: string;
-  queryParams: Record<string, string>; // Key-value pairs of query parameters
-}) => {
-  if (!baseUrl) {
-    throw new Error('Base URL is required');
+  origin?: string;
+  url: string;
+  queryParams?: Record<string, string>;
+}): string => {
+  if (!url) {
+    throw new Error('URL is required');
   }
 
-  // Start with the baseUrl as the path
-  let url = baseUrl;
+  let fullUrl: URL;
 
-  // Append query parameters if provided
-  const queryString = new URLSearchParams(queryParams).toString();
-  if (queryString) {
-    url += `?${queryString}`; // Add the query string to the baseUrl
+  try {
+    if (origin) {
+      fullUrl = new URL(url, origin); // If origin is present, use URL constructor
+    } else {
+      fullUrl = new URL(url, 'http://dummy'); // Temporary dummy base for parsing relative URLs
+    }
+  } catch {
+    throw new Error(`Invalid URL: origin=${origin}, url=${url}`);
   }
 
-  return url;
+  // Append query parameters
+  Object.entries(queryParams).forEach(([key, value]) => {
+    fullUrl.searchParams.append(key, value);
+  });
+
+  return origin ? fullUrl.toString() : fullUrl.pathname + fullUrl.search;
 };
 
 export const getSingleTranslation = (translations: any) => {

@@ -1,14 +1,14 @@
-import en from './en.json';
-import ar from './ar.json';
-import ja from './ja.json';
-import nl from './nl.json';
-import fr from './fr.json';
-import ko from './ko.json';
-import zh from './zh.json';
-
-import { Env, Product, ProductTranslation } from '~/types';
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
+import { Env, Product, ProductTranslation } from '~/types';
 import { getImageUrl } from '~/utils';
+
+import ar from './ar.json';
+import en from './en.json';
+import fr from './fr.json';
+import ja from './ja.json';
+import ko from './ko.json';
+import nl from './nl.json';
+import zh from './zh.json';
 
 const base = [
   { title: 'Unthaa - Built on Quality, Not Numbers' },
@@ -23,9 +23,9 @@ const base = [
   },
   { 'og:url': 'https://unthaa.teicneo.com' },
   {
-    'og:image': 'https://unthaa.teicneo.com/assets/home-og-image.jpg'
+    'og:image': 'https://unthaa-assets.teicneo.com/assets/unthaa-logo.png'
   },
-  { 'twitter:card': 'summary_large_image' }
+  { 'twitter:card': 'summary' }
 ];
 
 const notFound = {
