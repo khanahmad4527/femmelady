@@ -9,8 +9,8 @@
       "og:description": "在 Unthaa 发现最新和最棒的产品。放心购物！"
     },
     { "og:url": "https://unthaa.teicneo.com" },
-    { "og:image": "https://unthaa.teicneo.com/assets/home-og-image.jpg" },
-    { "twitter:card": "summary_large_image" }
+    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" },
+    { "twitter:card": "summary" }
   ],
   "/products": [
     { "title": "浏览产品 - Unthaa" },
@@ -22,7 +22,7 @@
       "og:description": "在 Unthaa 发现多种产品，享受无与伦比的价格。"
     },
     { "og:url": "https://unthaa.teicneo.com/en/products" },
-    { "og:image": "https://unthaa.teicneo.com/assets/products-og-image.jpg" }
+    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
   ],
   "/checkout": [
     { "title": "结账 - 安全支付 | Unthaa" },
@@ -78,7 +78,7 @@
       "og:description": "发现 Unthaa 的故事和我们为提供最佳购物体验的承诺。"
     },
     { "og:url": "https://unthaa.teicneo.com/en/about-us" },
-    { "og:image": "https://unthaa.teicneo.com/assets/about-us-og-image.jpg" }
+    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
   ],
   "/contact-us": [
     { "title": "联系我们 - 我们随时为您提供帮助 | Unthaa" },
@@ -90,7 +90,7 @@
       "og:description": "与 Unthaa 联系，获取支持、咨询或反馈。我们随时为您服务。"
     },
     { "og:url": "https://unthaa.teicneo.com/en/contact-us" },
-    { "og:image": "https://unthaa.teicneo.com/assets/contact-us-og-image.jpg" }
+    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
   ],
   "/privacy-policy": [
     { "title": "隐私政策 - 您的数据对我们来说是安全的 | Unthaa" },
@@ -103,7 +103,7 @@
     },
     { "og:url": "https://unthaa.teicneo.com/en/privacy-policy" },
     {
-      "og:image": "https://unthaa.teicneo.com/assets/privacy-policy-og-image.jpg"
+      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
     }
   ],
   "/terms-of-service": [
@@ -117,7 +117,7 @@
     },
     { "og:url": "https://unthaa.teicneo.com/en/terms-of-service" },
     {
-      "og:image": "https://unthaa.teicneo.com/assets/terms-of-service-og-image.jpg"
+      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
     }
   ],
   "/faq": [

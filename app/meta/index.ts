@@ -23,9 +23,9 @@ const base = [
   },
   { 'og:url': 'https://unthaa.teicneo.com' },
   {
-    'og:image': 'https://unthaa.teicneo.com/assets/home-og-image.jpg'
+    'og:image': 'https://unthaa-assets.teicneo.com/assets/unthaa-logo.png'
   },
-  { 'twitter:card': 'summary_large_image' }
+  { 'twitter:card': 'summary' }
 ];
 
 const notFound = {

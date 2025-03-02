@@ -9,8 +9,8 @@
       "og:description": "استكشف أحدث وأفضل المنتجات في Unthaa. تسوّق بثقة!"
     },
     { "og:url": "https://unthaa.teicneo.com" },
-    { "og:image": "https://unthaa.teicneo.com/assets/home-og-image.jpg" },
-    { "twitter:card": "summary_large_image" }
+    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" },
+    { "twitter:card": "summary" }
   ],
   "/products": [
     { "title": "تصفح المنتجات - Unthaa" },
@@ -22,7 +22,7 @@
       "og:description": "اكتشف مجموعة متنوعة من المنتجات بأسعار لا مثيل لها في Unthaa."
     },
     { "og:url": "https://unthaa.teicneo.com/ar/products" },
-    { "og:image": "https://unthaa.teicneo.com/assets/products-og-image.jpg" }
+    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
   ],
   "/checkout": [
     { "title": "الدفع - تسوق آمن | Unthaa" },
@@ -78,7 +78,7 @@
       "og:description": "اكتشف قصة Unthaa والتزامنا بتقديم أفضل تجربة تسوق."
     },
     { "og:url": "https://unthaa.teicneo.com/ar/about-us" },
-    { "og:image": "https://unthaa.teicneo.com/assets/about-us-og-image.jpg" }
+    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
   ],
   "/contact-us": [
     { "title": "اتصل بنا - نحن هنا لمساعدتك | Unthaa" },
@@ -90,7 +90,7 @@
       "og:description": "تواصل مع Unthaa للحصول على الدعم أو الاستفسارات أو التعليقات. نحن هنا لمساعدتك."
     },
     { "og:url": "https://unthaa.teicneo.com/ar/contact-us" },
-    { "og:image": "https://unthaa.teicneo.com/assets/contact-us-og-image.jpg" }
+    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
   ],
   "/privacy-policy": [
     { "title": "سياسة الخصوصية - بياناتك في أمان معنا | Unthaa" },
@@ -103,7 +103,7 @@
     },
     { "og:url": "https://unthaa.teicneo.com/ar/privacy-policy" },
     {
-      "og:image": "https://unthaa.teicneo.com/assets/privacy-policy-og-image.jpg"
+      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
     }
   ],
   "/terms-of-service": [
@@ -117,7 +117,7 @@
     },
     { "og:url": "https://unthaa.teicneo.com/ar/terms-of-service" },
     {
-      "og:image": "https://unthaa.teicneo.com/assets/terms-of-service-og-image.jpg"
+      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
     }
   ],
   "/faq": [
