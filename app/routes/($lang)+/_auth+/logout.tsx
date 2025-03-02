@@ -25,7 +25,7 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const redirectTo =
     url.searchParams.get(PARAMS.redirectTo) ??
     buildLocalizedLink({
-      baseUrl: href('/:lang?', { lang: currentLanguage }),
+      url: href('/:lang?', { lang: currentLanguage }),
       queryParams: {
         'force-validate': 'global'
       }

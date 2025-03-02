@@ -46,7 +46,7 @@ const HeaderCart = ({
             component={Link}
             prefetch="intent"
             to={buildLocalizedLink({
-              baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+              url: href('/:lang?/products', { lang: currentLanguage }),
               queryParams: {
                 'force-validate': 'global'
               }

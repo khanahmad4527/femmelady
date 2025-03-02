@@ -123,7 +123,7 @@ const Card = (p: Product) => {
     <Link
       prefetch="intent"
       to={buildLocalizedLink({
-        baseUrl: href('/:lang?/products/:slug/reviews', {
+        url: href('/:lang?/products/:slug/reviews', {
           lang: currentLanguage,
           slug: translation?.slug ?? p?.id
         }),

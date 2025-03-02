@@ -76,7 +76,7 @@ export default function Index() {
       title: t('home.weddings'),
       image: wedding,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP['wedding-dresses'].key,
           'force-validate': 'global'
@@ -88,7 +88,7 @@ export default function Index() {
       title: t('home.candles'),
       image: candle,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.candles.key,
           'force-validate': 'global'
@@ -100,7 +100,7 @@ export default function Index() {
       title: t('home.dresses'),
       image: dress,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.dresses.key,
           'force-validate': 'global'
@@ -112,7 +112,7 @@ export default function Index() {
       title: t('home.jewelry'),
       image: jewelry,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.jewelry.key,
           'force-validate': 'global'
@@ -124,7 +124,7 @@ export default function Index() {
       title: t('home.bags'),
       image: bag,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.bags.key,
           'force-validate': 'global'
@@ -136,7 +136,7 @@ export default function Index() {
       title: t('home.perfumes'),
       image: perfume,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.perfumes.key,
           'force-validate': 'global'
@@ -148,7 +148,7 @@ export default function Index() {
       title: t('home.watches'),
       image: watch,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.watches.key,
           'force-validate': 'global'
@@ -160,7 +160,7 @@ export default function Index() {
       title: t('home.shoes'),
       image: shoe,
       link: buildLocalizedLink({
-        baseUrl: href('/:lang?/products', { lang: currentLanguage }),
+        url: href('/:lang?/products', { lang: currentLanguage }),
         queryParams: {
           categories: CATEGORIES_WITH_ID_MAP.shoes.key,
           'force-validate': 'global'

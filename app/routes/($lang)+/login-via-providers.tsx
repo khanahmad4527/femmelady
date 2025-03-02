@@ -11,10 +11,10 @@ import { refresh } from '@directus/sdk';
 import { createUserSession } from '~/auth/session.server';
 import { PARAMS } from '~/constant';
 import { redisClient } from '~/server';
-import { getEnv } from '~/server/env';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const url = new URL(request.url);
+  const origin = url.origin;
 
   const result = getValidLanguageOrRedirect({ params, request });
 
@@ -30,8 +30,14 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   // Determine correct redirect path
   const redirectTo =
     fromPage === 'login'
-      ? href('/:lang?/login', { lang: currentLanguage })
-      : href('/:lang?/register', { lang: currentLanguage });
+      ? buildLocalizedLink({
+          origin,
+          url: href('/:lang?/login', { lang: currentLanguage })
+        })
+      : buildLocalizedLink({
+          origin,
+          url: href('/:lang?/register', { lang: currentLanguage })
+        });
 
   try {
     if (failureReason) {
@@ -64,7 +70,8 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
       redirectTo:
         url.searchParams.get(PARAMS.redirectTo) ??
         buildLocalizedLink({
-          baseUrl: href('/:lang?', { lang: currentLanguage }),
+          origin,
+          url: href('/:lang?', { lang: currentLanguage }),
           queryParams: {
             'force-validate': 'global'
           }

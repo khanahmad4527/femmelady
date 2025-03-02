@@ -76,7 +76,7 @@ const MobileDrawer = ({
               component={Link}
               prefetch="intent"
               to={buildLocalizedLink({
-                baseUrl: href('/:lang?/checkout', { lang: currentLanguage }),
+                url: href('/:lang?/checkout', { lang: currentLanguage }),
                 queryParams: {
                   'force-validate': 'global'
                 }

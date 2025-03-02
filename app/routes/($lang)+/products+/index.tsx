@@ -211,7 +211,7 @@ const Products = () => {
                   component={Link}
                   prefetch="intent"
                   to={buildLocalizedLink({
-                    baseUrl: href('/:lang?/products', {
+                    url: href('/:lang?/products', {
                       lang: currentLanguage
                     }),
                     queryParams: {

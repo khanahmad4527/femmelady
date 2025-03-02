@@ -182,26 +182,36 @@ export const formatNumber = ({
 }) => new Intl.NumberFormat(userLocale, { useGrouping: false }).format(value);
 
 export const buildLocalizedLink = ({
-  baseUrl,
-  queryParams = {} // Object containing query parameters
+  origin,
+  url,
+  queryParams = {}
 }: {
-  baseUrl: string;
-  queryParams: Record<string, string>; // Key-value pairs of query parameters
-}) => {
-  if (!baseUrl) {
-    throw new Error('Base URL is required');
+  origin?: string;
+  url: string;
+  queryParams?: Record<string, string>;
+}): string => {
+  if (!url) {
+    throw new Error('URL is required');
   }
 
-  // Start with the baseUrl as the path
-  let url = baseUrl;
+  let fullUrl: URL;
 
-  // Append query parameters if provided
-  const queryString = new URLSearchParams(queryParams).toString();
-  if (queryString) {
-    url += `?${queryString}`; // Add the query string to the baseUrl
+  try {
+    if (origin) {
+      fullUrl = new URL(url, origin); // If origin is present, use URL constructor
+    } else {
+      fullUrl = new URL(url, 'http://dummy'); // Temporary dummy base for parsing relative URLs
+    }
+  } catch {
+    throw new Error(`Invalid URL: origin=${origin}, url=${url}`);
   }
 
-  return url;
+  // Append query parameters
+  Object.entries(queryParams).forEach(([key, value]) => {
+    fullUrl.searchParams.append(key, value);
+  });
+
+  return origin ? fullUrl.toString() : fullUrl.pathname + fullUrl.search;
 };
 
 export const getSingleTranslation = (translations: any) => {

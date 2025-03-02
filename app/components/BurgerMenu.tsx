@@ -34,7 +34,7 @@ const BurgerMenu = () => {
           component={Link}
           prefetch="intent"
           to={buildLocalizedLink({
-            baseUrl: href('/:lang?/logout', { lang: currentLanguage }),
+            url: href('/:lang?/logout', { lang: currentLanguage }),
             queryParams: {
               'redirect-to': currentUrl!
             }
