@@ -80,10 +80,10 @@ const Reviews = () => {
 
   const handlePagination = (value: number) => {
     searchParams.set(PARAM_KEYS.PAGE, String(value));
-    searchParams.set(
-      PARAM_KEYS.FORCE_REVALIDATE,
-      FORCE_REVALIDATE_MAP.PRODUCT_REVIEW
-    );
+    // searchParams.set(
+    //   PARAM_KEYS.FORCE_REVALIDATE,
+    //   FORCE_REVALIDATE_MAP.PRODUCT_REVIEW
+    // );
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
@@ -94,6 +94,7 @@ const Reviews = () => {
       ))}
       {totalPaginationButtons > 1 && (
         <LocalizedPagination
+          key={currentPage}
           currentPage={currentPage}
           totalPaginationButtons={totalPaginationButtons}
           handlePagination={handlePagination}

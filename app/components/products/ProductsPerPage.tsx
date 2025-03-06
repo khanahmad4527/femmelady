@@ -37,10 +37,10 @@ const ProductsPerPage = () => {
         PARAM_KEYS.LIMIT,
         value ?? String(DEFAULT_PRODUCT_LIMIT)
       );
-      searchParams.set(
-        PARAM_KEYS.FORCE_REVALIDATE,
-        FORCE_REVALIDATE_MAP.GLOBAL
-      );
+      // searchParams.set(
+      //   PARAM_KEYS.FORCE_REVALIDATE,
+      //   FORCE_REVALIDATE_MAP.GLOBAL
+      // );
       setSearchParams(searchParams, { preventScrollReset: true });
     }
   };
