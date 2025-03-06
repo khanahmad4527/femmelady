@@ -19,7 +19,7 @@ const ProductsSortBy = () => {
   const handleFilterChange = (value: string | null) => {
     searchParams.set(PARAM_KEYS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
     searchParams.set(PARAM_KEYS.SORT, value ?? DEFAULT_PRODUCT_SORT);
-    searchParams.set(PARAM_KEYS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+    // searchParams.set(PARAM_KEYS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 

@@ -144,7 +144,7 @@ export default function App() {
   const [scroll, scrollTo] = useWindowScroll();
 
   // This is used to remove force revalidate param from the url
-  useSyncForceRevalidate({ searchParams, setSearchParams });
+  // useSyncForceRevalidate({ searchParams, setSearchParams });
 
   const ctx: OutletContext = { searchParams, setSearchParams, ...loaderData };
 

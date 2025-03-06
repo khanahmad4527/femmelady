@@ -88,7 +88,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
   };
 
   // Aim of this function is to save the query made to the get the count of total product
-  //If the filter is same
+  // If the filter is same
   const { isSame, productCount } = buildAndCompareFilter(args, request.url);
 
   const { products, totalProductCount } = await getProducts({
@@ -160,20 +160,21 @@ const Products = () => {
 
   const handlePagination = (value: number) => {
     searchParams.set(PARAM_KEYS.PAGE, String(value));
-    if (value !== currentPage) {
-      searchParams.set(
-        PARAM_KEYS.FORCE_REVALIDATE,
-        FORCE_REVALIDATE_MAP.GLOBAL
-      );
-    }
+    // if (value !== currentPage) {
+    //   searchParams.set(
+    //     PARAM_KEYS.FORCE_REVALIDATE,
+    //     FORCE_REVALIDATE_MAP.GLOBAL
+    //   );
+    // }
     setSearchParams(searchParams);
   };
 
-  useEffect(() => {
-    searchParams.set(PARAM_KEYS.FILTER, JSON.stringify(filter));
-    searchParams.set(PARAM_KEYS.COUNT, String(totalProductCount));
-    setSearchParams(searchParams, { preventScrollReset: true });
-  }, [products]);
+  // useEffect(() => {
+  //   console.log('Is this running');
+  //   searchParams.set(PARAM_KEYS.FILTER, JSON.stringify(filter));
+  //   searchParams.set(PARAM_KEYS.COUNT, String(totalProductCount));
+  //   setSearchParams(searchParams, { preventScrollReset: true });
+  // }, [products]);
 
   return (
     <Stack className={commonClasses.consistentSpacing}>
@@ -243,6 +244,7 @@ const Products = () => {
 
       {totalPaginationButtons > 1 && (
         <LocalizedPagination
+          key={currentPage}
           currentPage={currentPage}
           totalPaginationButtons={totalPaginationButtons}
           handlePagination={handlePagination}

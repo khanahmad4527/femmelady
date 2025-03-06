@@ -36,10 +36,10 @@ const LanguageSwitcher = () => {
 
       // Clone and modify the search parameters
       const searchParams = new URLSearchParams(location.search);
-      searchParams.set(
-        PARAM_KEYS.FORCE_REVALIDATE,
-        FORCE_REVALIDATE_MAP.GLOBAL
-      ); // Add your extra parameter
+      // searchParams.set(
+      //   PARAM_KEYS.FORCE_REVALIDATE,
+      //   FORCE_REVALIDATE_MAP.GLOBAL
+      // ); // Add your extra parameter
 
       if (searchParams.has(PARAM_KEYS.PAGE)) {
         // If the user was on page 79 and changes the language, but page 79 may not exist in the new language,

@@ -37,10 +37,10 @@ const ProductsFilterBy = ({ render }: { render?: 'mobile' | 'desktop' }) => {
       const newSearchParams = new URLSearchParams();
       // Set the desired parameter
 
-      newSearchParams.set(
-        PARAM_KEYS.FORCE_REVALIDATE,
-        FORCE_REVALIDATE_MAP.GLOBAL
-      );
+      // newSearchParams.set(
+      //   PARAM_KEYS.FORCE_REVALIDATE,
+      //   FORCE_REVALIDATE_MAP.GLOBAL
+      // );
       // Update the URL with the new parameters
       setSearchParams(newSearchParams, { preventScrollReset: true });
     }
@@ -118,10 +118,10 @@ const RatingFilter = () => {
     if (value !== v) {
       searchParams.set(PARAM_KEYS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
       searchParams.set(PARAM_KEYS.RATING, String(v));
-      searchParams.set(
-        PARAM_KEYS.FORCE_REVALIDATE,
-        FORCE_REVALIDATE_MAP.GLOBAL
-      );
+      // searchParams.set(
+      //   PARAM_KEYS.FORCE_REVALIDATE,
+      //   FORCE_REVALIDATE_MAP.GLOBAL
+      // );
       setSearchParams(searchParams, { preventScrollReset: true });
     }
   };
@@ -240,7 +240,7 @@ const BrandFilter = () => {
       searchParams.append(PARAM_KEYS.BRANDS, brand)
     );
     searchParams.set(PARAM_KEYS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
-    searchParams.set(PARAM_KEYS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+    // searchParams.set(PARAM_KEYS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
@@ -328,7 +328,7 @@ const CategoryFilter = () => {
       searchParams.append(PARAM_KEYS.CATEGORIES, category)
     );
     searchParams.set(PARAM_KEYS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
-    searchParams.set(PARAM_KEYS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+    // searchParams.set(PARAM_KEYS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   };
 
@@ -364,12 +364,12 @@ const PriceFilter = () => {
 
   const handleSearch = useDebouncedCallback((v: [number, number]) => {
     searchParams.set(PARAM_KEYS.PRICE, String(v));
-    searchParams.set(
-      PRE_PARAM_KEYS.PRICE,
-      String(getPriceRange({ searchParams }))
-    );
+    // searchParams.set(
+    //   PRE_PARAM_KEYS.PRICE,
+    //   String(getPriceRange({ searchParams }))
+    // );
     searchParams.set(PARAM_KEYS.PAGE, String(DEFAULT_PRODUCT_PAGE)); // To reset the page to 1
-    searchParams.set(PARAM_KEYS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
+    // searchParams.set(PARAM_KEYS.FORCE_REVALIDATE, FORCE_REVALIDATE_MAP.GLOBAL);
     setSearchParams(searchParams, { preventScrollReset: true });
   }, 1000);
 
