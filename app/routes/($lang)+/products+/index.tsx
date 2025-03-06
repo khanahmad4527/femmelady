@@ -9,11 +9,12 @@ import {
 } from '@mantine/core';
 import { useEffect } from 'react';
 import {
-href,  Link,
+  href,
+  Link,
   ShouldRevalidateFunction,
   useLoaderData,
   useOutletContext
- } from 'react-router';
+} from 'react-router';
 
 import LocalizedPagination from '~/components/LocalizedPagination';
 import NoData from '~/components/NoData';
@@ -48,19 +49,19 @@ import {
 
 import { Route } from '../+types/_index';
 
-export const shouldRevalidate: ShouldRevalidateFunction = ({
-  currentUrl,
-  nextUrl
-}) => {
-  // Use shared logic
-  const commonResult = shouldRevalidateLogic(nextUrl, currentUrl);
+// export const shouldRevalidate: ShouldRevalidateFunction = ({
+//   currentUrl,
+//   nextUrl
+// }) => {
+//   // Use shared logic
+//   const commonResult = shouldRevalidateLogic(nextUrl, currentUrl);
 
-  if (commonResult) {
-    return true; // If shared logic already decided to revalidate, no need to check further
-  }
+//   if (commonResult) {
+//     return true; // If shared logic already decided to revalidate, no need to check further
+//   }
 
-  return false;
-};
+//   return false;
+// };
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);

@@ -65,19 +65,19 @@ export const meta: MetaFunction = ({ location }) => {
   return getMeta({ pathname: location.pathname });
 };
 
-export const shouldRevalidate: ShouldRevalidateFunction = ({
-  nextUrl,
-  currentUrl
-}) => {
-  // Use shared logic
-  const commonResult = shouldRevalidateLogic(nextUrl, currentUrl);
+// export const shouldRevalidate: ShouldRevalidateFunction = ({
+//   nextUrl,
+//   currentUrl
+// }) => {
+//   // Use shared logic
+//   const commonResult = shouldRevalidateLogic(nextUrl, currentUrl);
 
-  if (commonResult) {
-    return true; // If shared logic already decided to revalidate, no need to check further
-  }
+//   if (commonResult) {
+//     return true; // If shared logic already decided to revalidate, no need to check further
+//   }
 
-  return false;
-};
+//   return false;
+// };
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const { isLoggedIn, user } = await isAuthenticated(request);
