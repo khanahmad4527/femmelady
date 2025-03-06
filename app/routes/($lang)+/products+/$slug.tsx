@@ -91,31 +91,31 @@ export const meta = ({ data, location }: Route.MetaArgs) => {
   });
 };
 
-export const shouldRevalidate: ShouldRevalidateFunction = ({
-  nextUrl,
-  currentUrl,
-  actionStatus
-}) => {
-  // Use shared logic
-  const commonResult = shouldRevalidateLogic(nextUrl, currentUrl);
+// export const shouldRevalidate: ShouldRevalidateFunction = ({
+//   nextUrl,
+//   currentUrl,
+//   actionStatus
+// }) => {
+//   // Use shared logic
+//   const commonResult = shouldRevalidateLogic(nextUrl, currentUrl);
 
-  if (commonResult) {
-    return true; // If shared logic already decided to revalidate, no need to check further
-  }
+//   if (commonResult) {
+//     return true; // If shared logic already decided to revalidate, no need to check further
+//   }
 
-  const forceValidate =
-    nextUrl.searchParams.get(PARAM_KEYS.FORCE_REVALIDATE) ?? '';
+//   const forceValidate =
+//     nextUrl.searchParams.get(PARAM_KEYS.FORCE_REVALIDATE) ?? '';
 
-  if (forceValidate === FORCE_REVALIDATE_MAP.SINGLE_PRODUCT) {
-    return true;
-  }
+//   if (forceValidate === FORCE_REVALIDATE_MAP.SINGLE_PRODUCT) {
+//     return true;
+//   }
 
-  if (actionStatus === 200) {
-    return true;
-  }
+//   if (actionStatus === 200) {
+//     return true;
+//   }
 
-  return false;
-};
+//   return false;
+// };
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const { token } = await isAuthenticated(request);
