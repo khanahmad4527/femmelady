@@ -16,7 +16,7 @@ export const throwLoginRequiredError = () => {
   throw new Error(ERROR_MAP.LOGIN_REQUIRED);
 };
 
-export const handleError = ({
+export const handleActionError = ({
   error,
   route
 }: {
@@ -77,4 +77,25 @@ export const handleError = ({
     description: 'common.encounteredError',
     error: true
   };
+};
+
+/************* Loader Error ********************/
+
+export const productNotFoundError = () => {
+  throw new Response('PRODUCT_NOT_FOUND', { status: 404 });
+};
+
+export const internalServerError = () => {
+  throw new Response('INTERNAL_SERVER_ERROR', { status: 500 });
+};
+
+export const handleLoaderError = (e: any) => {
+  const status = e?.status ?? e?.response?.status;
+  if (status === 403) {
+    return productNotFoundError();
+  }
+  if (status === 404) {
+    return productNotFoundError();
+  }
+  return internalServerError();
 };

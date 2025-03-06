@@ -246,7 +246,7 @@ export const getSingleProduct = async ({
   slug: string;
   languageCode: string;
   token?: string;
-}): Promise<Product> => {
+}): Promise<Product | undefined> => {
   const isUUID = validateUUID(slug);
   const fields = [
     '*',

@@ -5,7 +5,7 @@ import { mutateCartSchema } from '~/schema';
 import { getCarts } from '~/server/api';
 import { directus } from '~/server/directus';
 import { getLanguageCode, getPage } from '~/utils';
-import { handleError } from '~/utils/error';
+import { handleActionError } from '~/utils/error';
 
 import { Route } from './+types/load-carts';
 
@@ -58,6 +58,6 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
     return { success: true };
   } catch (error) {
-    return handleError({ error });
+    return handleActionError({ error });
   }
 };

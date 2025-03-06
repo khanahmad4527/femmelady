@@ -241,5 +241,15 @@
     "notificationMessage": "Je item is succesvol toegevoegd aan het winkelwagentje. Veel winkelplezier!",
     "emptyCartTitle": "Je winkelwagentje is leeg",
     "emptyCartMessage": "Begin met het bladeren door onze producten en voeg er een paar toe aan je winkelwagentje!"
+  },
+  "exceptionHandler": {
+    "productNotFound": {
+      "title": "Product niet gevonden",
+      "description": "Het aangevraagde product kon niet worden gevonden."
+    },
+    "internalServerError": {
+      "title": "Interne serverfout",
+      "description": "Er is iets misgegaan. Probeer het later opnieuw."
+    }
   }
 }

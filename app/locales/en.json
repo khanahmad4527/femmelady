@@ -241,5 +241,15 @@
     "notificationMessage": "Your item has been successfully added to the cart. Happy shopping!",
     "emptyCartTitle": "Your cart looks empty",
     "emptyCartMessage": "Start browsing our products and add some to your cart!"
+  },
+  "exceptionHandler": {
+    "productNotFound": {
+      "title": "Product Not Found",
+      "description": "The requested product could not be found."
+    },
+    "internalServerError": {
+      "title": "Internal Server Error",
+      "description": "Something went wrong. Please try again later."
+    }
   }
 }

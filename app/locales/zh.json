@@ -241,5 +241,15 @@
     "notificationMessage": "您的商品已成功添加到购物车，祝您购物愉快！",
     "emptyCartTitle": "您的购物车为空",
     "emptyCartMessage": "开始浏览我们的商品并添加到您的购物车吧！"
+  },
+  "exceptionHandler": {
+    "productNotFound": {
+      "title": "未找到产品",
+      "description": "找不到请求的产品。"
+    },
+    "internalServerError": {
+      "title": "内部服务器错误",
+      "description": "出现了问题。请稍后再试。"
+    }
   }
 }

@@ -53,6 +53,7 @@ import {
   getValidLanguageOrRedirect,
   shouldRevalidateLogic
 } from './utils';
+import { ExceptionHandler } from './components/ExceptionHandler';
 
 export const links = () => [
   { rel: 'icon', href: '/favicon.svg' },
@@ -125,7 +126,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
         <ColorSchemeScript />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <DirectionProvider>
           <MantineProvider theme={theme}>{children}</MantineProvider>
         </DirectionProvider>
@@ -185,40 +186,20 @@ export default function App() {
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const ErrorBoundaryComponent = () => {
+const ErrorBoundaryComponent = ({ error }: Route.ErrorBoundaryProps) => {
   const loaderData = useLoaderData<OutletContext>();
-  const { currentLanguage } = useCurrentLanguage();
-  const t = useTranslation();
+
+  const errorStatus = (error as any)?.status ?? 500;
 
   return (
     <Document {...loaderData}>
-      <Stack align={'center'} gap={0}>
-        <Box ta={'center'} w={{ base: 100, md: 200 }}>
-          <IconInfoTriangle size={'100%'} />
-        </Box>
-        <Text ta={'center'} fz={{ base: 25, md: 50 }} fw={500} c={'primary'}>
-          {t('common.somethingWentWrong')}
-        </Text>
-        <Text ta={'center'} fz={{ base: 12, md: 25 }} c={'primary'}>
-          {t('common.encounteredError')}
-        </Text>
-        <Button
-          mt={'md'}
-          component={Link}
-          prefetch="intent"
-          to={href('/:lang?', {
-            lang: currentLanguage
-          })}
-        >
-          {t('common.goToHome')}
-        </Button>
-      </Stack>
+      <ExceptionHandler status={errorStatus} />
     </Document>
   );
 };
 
 // ErrorBoundary in development
-// export const ErrorBoundary = ErrorBoundaryComponent;
+export const ErrorBoundary = ErrorBoundaryComponent;
 
 // ErrorBoundary only in production
-export const ErrorBoundary = isProduction && ErrorBoundaryComponent;
+// export const ErrorBoundary = isProduction && ErrorBoundaryComponent;

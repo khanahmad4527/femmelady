@@ -23,7 +23,7 @@ import {
   formatNumber,
   getLocalizedMonth
 } from '~/utils';
-import { handleError, throwLoginRequiredError } from '~/utils/error';
+import { handleActionError, throwLoginRequiredError } from '~/utils/error';
 
 import { Route } from './+types/payment';
 
@@ -83,7 +83,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
     return { success: true };
   } catch (error) {
-    return handleError({ error });
+    return handleActionError({ error });
   }
 };
 
