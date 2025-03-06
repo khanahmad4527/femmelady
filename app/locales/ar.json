@@ -241,5 +241,15 @@
     "notificationMessage": "تم إضافة العنصر إلى سلتك بنجاح. تسوق سعيد!",
     "emptyCartTitle": "سلتك فارغة",
     "emptyCartMessage": "ابدأ بتصفح منتجاتنا وأضف بعض العناصر إلى سلتك!"
+  },
+  "exceptionHandler": {
+    "productNotFound": {
+      "title": "لم يتم العثور على المنتج",
+      "description": "لم يتم العثور على المنتج المطلوب."
+    },
+    "internalServerError": {
+      "title": "خطأ في الخادم الداخلي",
+      "description": "حدث خطأ ما. يرجى المحاولة لاحقًا."
+    }
   }
 }

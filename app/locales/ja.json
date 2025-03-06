@@ -241,5 +241,15 @@
     "notificationMessage": "アイテムは正常にカートに追加されました。楽しいショッピングを！",
     "emptyCartTitle": "カートは空です",
     "emptyCartMessage": "商品を見て、お気に入りをカートに追加しましょう！"
+  },
+  "exceptionHandler": {
+    "productNotFound": {
+      "title": "商品が見つかりません",
+      "description": "リクエストされた商品が見つかりませんでした。"
+    },
+    "internalServerError": {
+      "title": "内部サーバーエラー",
+      "description": "問題が発生しました。後でもう一度お試しください。"
+    }
   }
 }

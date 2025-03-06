@@ -32,7 +32,7 @@ import {
   generateUuidv4,
   getValidLanguageOrRedirect
 } from '~/utils';
-import { handleError } from '~/utils/error';
+import { handleActionError } from '~/utils/error';
 
 import { Route } from './+types/login';
 
@@ -118,7 +118,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
     });
   } catch (error) {
     console.log('error', error);
-    return handleError({ error, route: 'login' });
+    return handleActionError({ error, route: 'login' });
   }
 };
 

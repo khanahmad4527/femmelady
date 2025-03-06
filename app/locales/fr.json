@@ -241,5 +241,15 @@
     "notificationMessage": "Votre article a été ajouté au panier avec succès. Bon shopping !",
     "emptyCartTitle": "Votre panier semble vide",
     "emptyCartMessage": "Commencez à parcourir nos produits et ajoutez-en au panier !"
+  },
+  "exceptionHandler": {
+    "productNotFound": {
+      "title": "Produit introuvable",
+      "description": "Le produit demandé est introuvable."
+    },
+    "internalServerError": {
+      "title": "Erreur interne du serveur",
+      "description": "Une erreur s'est produite. Veuillez réessayer plus tard."
+    }
   }
 }

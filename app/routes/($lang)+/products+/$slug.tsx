@@ -72,7 +72,9 @@ import {
   shouldRevalidateLogic
 } from '~/utils';
 import {
-  handleError,
+  handleActionError,
+  handleLoaderError,
+  productNotFoundError,
   TFetcherError,
   throwLoginRequiredError
 } from '~/utils/error';
@@ -118,17 +120,25 @@ export const meta = ({ data, location }: Route.MetaArgs) => {
 // };
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
-  const { token } = await isAuthenticated(request);
-  const languageCode = getLanguageCode(params);
+  try {
+    const { token } = await isAuthenticated(request);
+    const languageCode = getLanguageCode(params);
 
-  const productSlug = params?.slug;
-  const product = await getSingleProduct({
-    slug: productSlug,
-    languageCode,
-    token
-  });
+    const productSlug = params?.slug;
+    const product = await getSingleProduct({
+      slug: productSlug,
+      languageCode,
+      token
+    });
 
-  return { product, env: getPublicEnv() };
+    if (!product) {
+      return productNotFoundError();
+    }
+
+    return { product, env: getPublicEnv() };
+  } catch (e) {
+    return handleLoaderError(e);
+  }
 };
 
 export const action = async ({ request }: Route.ActionArgs) => {
@@ -166,7 +176,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
       )
     );
   } catch (error) {
-    return handleError({ error });
+    return handleActionError({ error });
   }
 
   return { success: true };

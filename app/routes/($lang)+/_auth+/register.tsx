@@ -10,7 +10,13 @@ import {
   TextInput
 } from '@mantine/core';
 import { Turnstile } from '@marsidev/react-turnstile';
-import { ActionFunction, href,Link, redirect, useOutletContext  } from 'react-router';
+import {
+  ActionFunction,
+  href,
+  Link,
+  redirect,
+  useOutletContext
+} from 'react-router';
 
 import { isAuthenticated } from '~/auth/auth.server';
 import FetcherError from '~/components/error/FetcherError';
@@ -97,7 +103,7 @@ export const action: ActionFunction = async ({ request, params }) => {
   //     })
   //   );
   // } catch (error) {
-  //   return handleError({ error, route: 'register' });
+  //   return handleActionError({ error, route: 'register' });
   // }
 };
 
