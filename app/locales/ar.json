@@ -39,7 +39,7 @@
       "privacyPolicy": "سياسة الخصوصية",
       "termsOfService": "شروط الخدمة"
     },
-    "copyright": "© {copyrightYear} Unthaa. جميع الحقوق محفوظة.",
+    "copyright": "© {copyrightYear} FemmeLady. جميع الحقوق محفوظة.",
     "signUpAgreement": "بتسجيلك، أنت توافق على {privacyPolicy} و {termsOfService}.",
     "privacyPolicy": "سياسة الخصوصية",
     "termsOfService": "شروط الخدمة",
@@ -68,12 +68,12 @@
     "continueWithGoogle": "يرجى المتابعة باستخدام جوجل"
   },
   "login": {
-    "welcome": "مرحبًا بك في Unthaa، سجل الدخول باستخدام",
+    "welcome": "مرحبًا بك في FemmeLady، سجل الدخول باستخدام",
     "accountRegister": "ليس لديك حساب؟ سجل الآن",
     "login": "تسجيل الدخول"
   },
   "register": {
-    "welcome": "مرحبًا بك في Unthaa، سجل باستخدام",
+    "welcome": "مرحبًا بك في FemmeLady، سجل باستخدام",
     "accountLogin": "هل لديك حساب بالفعل؟ سجل الدخول",
     "register": "تسجيل",
     "includesNumber": "يتضمن رقم",

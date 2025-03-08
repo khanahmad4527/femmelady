@@ -39,7 +39,7 @@
       "privacyPolicy": "Privacybeleid",
       "termsOfService": "Gebruiksvoorwaarden"
     },
-    "copyright": "© {copyrightYear} Unthaa. Alle rechten voorbehouden.",
+    "copyright": "© {copyrightYear} FemmeLady. Alle rechten voorbehouden.",
     "signUpAgreement": "Door je aan te melden, ga je akkoord met ons {privacyPolicy} en {termsOfService}.",
     "privacyPolicy": "Privacybeleid",
     "termsOfService": "Gebruiksvoorwaarden",
@@ -68,12 +68,12 @@
     "continueWithGoogle": "Ga door met Google"
   },
   "login": {
-    "welcome": "Welkom bij Unthaa, log in met",
+    "welcome": "Welkom bij FemmeLady, log in met",
     "accountRegister": "Heb je nog geen account? Registreer je",
     "login": "Inloggen"
   },
   "register": {
-    "welcome": "Welkom bij Unthaa, registreer met",
+    "welcome": "Welkom bij FemmeLady, registreer met",
     "accountLogin": "Heb je al een account? Log in",
     "register": "Registreren",
     "includesNumber": "Bevat een cijfer",

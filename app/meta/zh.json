@@ -1,135 +1,143 @@
 {
   "/": [
-    { "title": "Unthaa - 建立在质量上，而非数字上" },
+    { "title": "FemmeLady - 建立在质量上，而非数字上" },
     {
-      "description": "探索 Unthaa，享受惊人的价格和最好的产品。您的全方位在线商店，满足您的所有需求。"
+      "description": "探索 FemmeLady，享受惊人的价格和最好的产品。您的全方位在线商店，满足您的所有需求。"
     },
-    { "og:title": "Unthaa - 建立在质量上，而非数字上" },
+    { "og:title": "FemmeLady - 建立在质量上，而非数字上" },
     {
-      "og:description": "在 Unthaa 发现最新和最棒的产品。放心购物！"
+      "og:description": "在 FemmeLady 发现最新和最棒的产品。放心购物！"
     },
-    { "og:url": "https://unthaa.teicneo.com" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" },
+    { "og:url": "https://femmelady.store" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
     { "twitter:card": "summary" }
   ],
   "/products": [
-    { "title": "浏览产品 - Unthaa" },
+    { "title": "浏览产品 - FemmeLady" },
     {
-      "description": "浏览我们丰富的产品，涵盖多个类别。在 Unthaa，找到您需要的一切。"
+      "description": "浏览我们丰富的产品，涵盖多个类别。在 FemmeLady，找到您需要的一切。"
     },
-    { "og:title": "浏览产品 - Unthaa" },
+    { "og:title": "浏览产品 - FemmeLady" },
     {
-      "og:description": "在 Unthaa 发现多种产品，享受无与伦比的价格。"
+      "og:description": "在 FemmeLady 发现多种产品，享受无与伦比的价格。"
     },
-    { "og:url": "https://unthaa.teicneo.com/en/products" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/en/products" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/checkout": [
-    { "title": "结账 - 安全支付 | Unthaa" },
+    { "title": "结账 - 安全支付 | FemmeLady" },
     {
-      "description": "在 Unthaa 安全结账您喜爱的产品。轻松、快速、安全的支付选项。"
+      "description": "在 FemmeLady 安全结账您喜爱的产品。轻松、快速、安全的支付选项。"
     },
-    { "og:title": "结账 - Unthaa" },
+    { "og:title": "结账 - FemmeLady" },
     {
-      "og:description": "在 Unthaa 完成购买，享受快速可靠的结账过程。"
+      "og:description": "在 FemmeLady 完成购买，享受快速可靠的结账过程。"
     },
-    { "og:url": "https://unthaa.teicneo.com/en/checkout" }
+    { "og:url": "https://femmelady.store/en/checkout" }
   ],
   "/payment": [
-    { "title": "支付 - 完成您的订单 | Unthaa" },
+    { "title": "支付 - 完成您的订单 | FemmeLady" },
     {
-      "description": "通过 Unthaa 安全地完成您的支付。值得信赖的支付选项，确保您的交易安全。"
+      "description": "通过 FemmeLady 安全地完成您的支付。值得信赖的支付选项，确保您的交易安全。"
     },
-    { "og:title": "支付 - Unthaa" },
+    { "og:title": "支付 - FemmeLady" },
     {
-      "og:description": "在 Unthaa 自信地支付。安全、快速、轻松的支付流程。"
+      "og:description": "在 FemmeLady 自信地支付。安全、快速、轻松的支付流程。"
     },
-    { "og:url": "https://unthaa.teicneo.com/en/payment" }
+    { "og:url": "https://femmelady.store/en/payment" }
   ],
   "/login": [
-    { "title": "登录到您的账户 - Unthaa" },
+    { "title": "登录到您的账户 - FemmeLady" },
     {
-      "description": "登录您的 Unthaa 账户以访问您的订单、愿望单和个性化推荐。"
+      "description": "登录您的 FemmeLady 账户以访问您的订单、愿望单和个性化推荐。"
     },
-    { "og:title": "登录 - Unthaa" },
+    { "og:title": "登录 - FemmeLady" },
     {
-      "og:description": "安全地登录您的 Unthaa 账户，轻松继续购物。"
+      "og:description": "安全地登录您的 FemmeLady 账户，轻松继续购物。"
     },
-    { "og:url": "https://unthaa.teicneo.com/en/login" }
+    { "og:url": "https://femmelady.store/en/login" }
   ],
   "/register": [
-    { "title": "创建账户 - 加入 Unthaa" },
+    { "title": "创建账户 - 加入 FemmeLady" },
     {
-      "description": "注册一个免费的 Unthaa 账户，享受个性化的购物体验。"
+      "description": "注册一个免费的 FemmeLady 账户，享受个性化的购物体验。"
     },
-    { "og:title": "注册 - Unthaa" },
+    { "og:title": "注册 - FemmeLady" },
     {
-      "og:description": "在 Unthaa 创建一个账户，享受独家优惠和个性化的购物旅程。"
+      "og:description": "在 FemmeLady 创建一个账户，享受独家优惠和个性化的购物旅程。"
     },
-    { "og:url": "https://unthaa.teicneo.com/en/register" }
+    { "og:url": "https://femmelady.store/en/register" }
   ],
   "/about-us": [
-    { "title": "关于我们 - 了解 Unthaa" },
+    { "title": "关于我们 - 了解 FemmeLady" },
     {
-      "description": "了解更多关于 Unthaa 的信息，我们的价值观、使命以及我们对提供优质产品和服务的承诺。"
+      "description": "了解更多关于 FemmeLady 的信息，我们的价值观、使命以及我们对提供优质产品和服务的承诺。"
     },
-    { "og:title": "关于我们 - 了解 Unthaa" },
+    { "og:title": "关于我们 - 了解 FemmeLady" },
     {
-      "og:description": "发现 Unthaa 的故事和我们为提供最佳购物体验的承诺。"
+      "og:description": "发现 FemmeLady 的故事和我们为提供最佳购物体验的承诺。"
     },
-    { "og:url": "https://unthaa.teicneo.com/en/about-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/en/about-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/contact-us": [
-    { "title": "联系我们 - 我们随时为您提供帮助 | Unthaa" },
+    { "title": "联系我们 - 我们随时为您提供帮助 | FemmeLady" },
     {
       "description": "需要帮助吗？联系我们的客户支持团队，解答您的问题或疑虑。"
     },
-    { "og:title": "联系我们 - Unthaa" },
+    { "og:title": "联系我们 - FemmeLady" },
     {
-      "og:description": "与 Unthaa 联系，获取支持、咨询或反馈。我们随时为您服务。"
+      "og:description": "与 FemmeLady 联系，获取支持、咨询或反馈。我们随时为您服务。"
     },
-    { "og:url": "https://unthaa.teicneo.com/en/contact-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/en/contact-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/privacy-policy": [
-    { "title": "隐私政策 - 您的数据对我们来说是安全的 | Unthaa" },
+    { "title": "隐私政策 - 您的数据对我们来说是安全的 | FemmeLady" },
     {
-      "description": "阅读 Unthaa 的隐私政策，了解我们如何处理和保护您的个人数据。"
+      "description": "阅读 FemmeLady 的隐私政策，了解我们如何处理和保护您的个人数据。"
     },
-    { "og:title": "隐私政策 - Unthaa" },
+    { "og:title": "隐私政策 - FemmeLady" },
     {
-      "og:description": "在 Unthaa，我们优先保护您的隐私，并使用行业标准的做法保障您的信息安全。"
+      "og:description": "在 FemmeLady，我们优先保护您的隐私，并使用行业标准的做法保障您的信息安全。"
     },
-    { "og:url": "https://unthaa.teicneo.com/en/privacy-policy" },
+    { "og:url": "https://femmelady.store/en/privacy-policy" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/terms-of-service": [
-    { "title": "服务条款 - 您与 Unthaa 的协议" },
+    { "title": "服务条款 - 您与 FemmeLady 的协议" },
     {
-      "description": "阅读我们的服务条款，了解有关您使用 Unthaa 的政策和规则。"
+      "description": "阅读我们的服务条款，了解有关您使用 FemmeLady 的政策和规则。"
     },
-    { "og:title": "服务条款 - Unthaa" },
+    { "og:title": "服务条款 - FemmeLady" },
     {
-      "og:description": "了解 Unthaa 上的条款和条件，明确您的权利和责任。"
+      "og:description": "了解 FemmeLady 上的条款和条件，明确您的权利和责任。"
     },
-    { "og:url": "https://unthaa.teicneo.com/en/terms-of-service" },
+    { "og:url": "https://femmelady.store/en/terms-of-service" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/faq": [
-    { "title": "常见问题 - Unthaa" },
+    { "title": "常见问题 - FemmeLady" },
     {
-      "description": "找到有关在 Unthaa 购物的常见问题的答案。帮助就在点击之间。"
+      "description": "找到有关在 FemmeLady 购物的常见问题的答案。帮助就在点击之间。"
     },
-    { "og:title": "FAQ - Unthaa" },
+    { "og:title": "FAQ - FemmeLady" },
     {
       "og:description": "获得关于订单、支付、配送等方面的常见问题的快速解决方案。"
     },
-    { "og:url": "https://unthaa.teicneo.com/en/faq" },
-    { "og:image": "https://unthaa.teicneo.com/assets/faq-og-image.jpg" }
+    { "og:url": "https://femmelady.store/en/faq" },
+    { "og:image": "https://femmelady.store/assets/faq-og-image.jpg" }
   ]
 }

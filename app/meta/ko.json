@@ -1,135 +1,143 @@
 {
   "/": [
-    { "title": "Unthaa - 품질로 구축된, 숫자가 아닌" },
+    { "title": "FemmeLady - 품질로 구축된, 숫자가 아닌" },
     {
       "description": "Unthaa에서 놀라운 가격에 최고의 제품을 만나보세요. 모든 필요를 위한 원스톱 온라인 쇼핑몰입니다."
     },
-    { "og:title": "Unthaa - 품질로 구축된, 숫자가 아닌" },
+    { "og:title": "FemmeLady - 품질로 구축된, 숫자가 아닌" },
     {
       "og:description": "Unthaa에서 최신의 훌륭한 제품들을 만나보세요. 자신감을 가지고 쇼핑하세요!"
     },
-    { "og:url": "https://unthaa.teicneo.com" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" },
+    { "og:url": "https://femmelady.store" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
     { "twitter:card": "summary" }
   ],
   "/products": [
-    { "title": "제품 목록 - Unthaa" },
+    { "title": "제품 목록 - FemmeLady" },
     {
       "description": "다양한 카테고리의 제품을 둘러보세요. Unthaa에서 필요한 모든 것을 찾을 수 있습니다."
     },
-    { "og:title": "제품 목록 - Unthaa" },
+    { "og:title": "제품 목록 - FemmeLady" },
     {
       "og:description": "Unthaa에서 가장 경쟁력 있는 가격으로 다양한 제품을 만나보세요."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/products" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/en/products" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/checkout": [
-    { "title": "체크아웃 - 안전한 결제 | Unthaa" },
+    { "title": "체크아웃 - 안전한 결제 | FemmeLady" },
     {
       "description": "Unthaa에서 마음에 드는 제품을 안전하게 결제하세요. 간편하고 빠르며 안전한 결제 옵션을 제공합니다."
     },
-    { "og:title": "체크아웃 - Unthaa" },
+    { "og:title": "체크아웃 - FemmeLady" },
     {
       "og:description": "Unthaa에서 빠르고 신뢰할 수 있는 체크아웃으로 안전하게 결제를 완료하세요."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/checkout" }
+    { "og:url": "https://femmelady.store/en/checkout" }
   ],
   "/payment": [
-    { "title": "결제 - 주문 완료 | Unthaa" },
+    { "title": "결제 - 주문 완료 | FemmeLady" },
     {
       "description": "Unthaa에서 안전하게 결제를 완료하세요. 신뢰할 수 있는 결제 옵션으로 거래를 안전하게 보호합니다."
     },
-    { "og:title": "결제 - Unthaa" },
+    { "og:title": "결제 - FemmeLady" },
     {
       "og:description": "Unthaa에서 자신감을 가지고 결제하세요. 안전하고 빠르며 간편한 결제 프로세스입니다."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/payment" }
+    { "og:url": "https://femmelady.store/en/payment" }
   ],
   "/login": [
-    { "title": "로그인 - Unthaa" },
+    { "title": "로그인 - FemmeLady" },
     {
-      "description": "Unthaa 계정에 로그인하여 주문, 위시리스트 및 개인화된 추천을 확인하세요."
+      "description": "FemmeLady 계정에 로그인하여 주문, 위시리스트 및 개인화된 추천을 확인하세요."
     },
-    { "og:title": "로그인 - Unthaa" },
+    { "og:title": "로그인 - FemmeLady" },
     {
-      "og:description": "Unthaa 계정에 안전하게 로그인하고 손쉽게 쇼핑을 계속하세요."
+      "og:description": "FemmeLady 계정에 안전하게 로그인하고 손쉽게 쇼핑을 계속하세요."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/login" }
+    { "og:url": "https://femmelady.store/en/login" }
   ],
   "/register": [
     { "title": "회원 가입 - Unthaa에 참여하세요" },
     {
-      "description": "무료 Unthaa 계정을 등록하고 개인화된 쇼핑 경험을 즐기세요."
+      "description": "무료 FemmeLady 계정을 등록하고 개인화된 쇼핑 경험을 즐기세요."
     },
-    { "og:title": "회원 가입 - Unthaa" },
+    { "og:title": "회원 가입 - FemmeLady" },
     {
       "og:description": "Unthaa에서 계정을 만들고 독점적인 혜택과 개인화된 쇼핑 여행을 시작하세요."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/register" }
+    { "og:url": "https://femmelady.store/en/register" }
   ],
   "/about-us": [
     { "title": "About Us - Unthaa에 대해 알아보기" },
     {
-      "description": "Unthaa, 우리의 가치, 미션 및 품질 좋은 제품과 서비스를 제공하는 우리의 헌신에 대해 알아보세요."
+      "description": "FemmeLady, 우리의 가치, 미션 및 품질 좋은 제품과 서비스를 제공하는 우리의 헌신에 대해 알아보세요."
     },
     { "og:title": "About Us - Unthaa에 대해 알아보기" },
     {
       "og:description": "Unthaa의 이야기를 발견하고 최고의 쇼핑 경험을 제공하는 우리의 노력에 대해 알아보세요."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/about-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/en/about-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/contact-us": [
     { "title": "문의하기 - Unthaa에서 도움을 받으세요" },
     {
       "description": "도움이 필요하신가요? Unthaa의 고객 지원 팀에 문의하세요."
     },
-    { "og:title": "문의하기 - Unthaa" },
+    { "og:title": "문의하기 - FemmeLady" },
     {
       "og:description": "Unthaa에 연락하여 지원, 문의사항 또는 피드백을 보내주세요. 언제든지 도와드리겠습니다."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/contact-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/en/contact-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/privacy-policy": [
-    { "title": "개인정보 처리방침 - 귀하의 데이터는 안전합니다 | Unthaa" },
+    { "title": "개인정보 처리방침 - 귀하의 데이터는 안전합니다 | FemmeLady" },
     {
       "description": "Unthaa의 개인정보 처리방침을 읽고, 귀하의 개인 데이터를 어떻게 처리하고 보호하는지 이해하세요."
     },
-    { "og:title": "개인정보 처리방침 - Unthaa" },
+    { "og:title": "개인정보 처리방침 - FemmeLady" },
     {
       "og:description": "Unthaa에서는 귀하의 개인정보를 보호하고 산업 표준 관행을 따릅니다."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/privacy-policy" },
+    { "og:url": "https://femmelady.store/en/privacy-policy" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/terms-of-service": [
     { "title": "이용 약관 - Unthaa와의 계약" },
     {
-      "description": "Unthaa 이용 약관을 읽고, Unthaa 사용에 대한 정책과 규정을 이해하세요."
+      "description": "FemmeLady 이용 약관을 읽고, FemmeLady 사용에 대한 정책과 규정을 이해하세요."
     },
-    { "og:title": "이용 약관 - Unthaa" },
+    { "og:title": "이용 약관 - FemmeLady" },
     {
       "og:description": "Unthaa에서의 권리와 의무를 설명하는 약관을 이해하세요."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/terms-of-service" },
+    { "og:url": "https://femmelady.store/en/terms-of-service" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/faq": [
-    { "title": "자주 묻는 질문 - Unthaa" },
+    { "title": "자주 묻는 질문 - FemmeLady" },
     {
       "description": "Unthaa에서 쇼핑하면서 자주 묻는 질문에 대한 답을 찾아보세요. 도움이 필요하시면 언제든지 문의하세요."
     },
-    { "og:title": "자주 묻는 질문 - Unthaa" },
+    { "og:title": "자주 묻는 질문 - FemmeLady" },
     {
       "og:description": "주문, 결제, 배송 등 Unthaa에서 자주 묻는 질문에 대한 빠른 해결책을 찾아보세요."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/faq" },
-    { "og:image": "https://unthaa.teicneo.com/assets/faq-og-image.jpg" }
+    { "og:url": "https://femmelady.store/en/faq" },
+    { "og:image": "https://femmelady.store/assets/faq-og-image.jpg" }
   ]
 }

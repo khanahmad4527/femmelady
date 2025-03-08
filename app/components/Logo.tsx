@@ -1,5 +1,5 @@
 import { Box, Text, Title } from '@mantine/core';
-import { href , Link } from 'react-router';
+import { href, Link } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
@@ -17,7 +17,7 @@ const Logo = () => {
       style={{ textDecoration: 'none' }}
     >
       <Title w={'fit-content'} c="white" m={TEXT_ALIGN}>
-        UNTHAA
+        FemmeLady
       </Title>
       <Text c="white" ta={TEXT_ALIGN}>
         {t('header.slogan')}

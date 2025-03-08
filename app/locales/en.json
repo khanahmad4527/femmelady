@@ -39,7 +39,7 @@
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service"
     },
-    "copyright": "© {copyrightYear} Unthaa. All rights reserved.",
+    "copyright": "© {copyrightYear} FemmeLady. All rights reserved.",
     "signUpAgreement": "By signing up, you agree to our {privacyPolicy} and {termsOfService}.",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
@@ -68,12 +68,12 @@
     "continueWithGoogle": "Please continue with Google"
   },
   "login": {
-    "welcome": "Welcome to Unthaa, login with",
+    "welcome": "Welcome to FemmeLady, login with",
     "accountRegister": "Don't have an account? Register",
     "login": "Login"
   },
   "register": {
-    "welcome": "Welcome to Unthaa, register with",
+    "welcome": "Welcome to FemmeLady, register with",
     "accountLogin": " Already have an account? Login",
     "register": "Register",
     "includesNumber": "Includes number",

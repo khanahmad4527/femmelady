@@ -10,7 +10,7 @@ export const USER_SESSION_KEY = 'userSessionId';
 
 export const sessionStorage = createCookieSessionStorage({
   cookie: {
-    name: 'unthaa',
+    name: 'femmelady',
     httpOnly: true,
     path: '/',
     sameSite: 'lax',

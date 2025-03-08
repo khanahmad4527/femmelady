@@ -10,7 +10,7 @@ import {
   Text,
   TextInput
 } from '@mantine/core';
-import { href , Link } from 'react-router';
+import { href, Link } from 'react-router';
 
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useTranslation from '~/hooks/useTranslation';
@@ -122,7 +122,7 @@ const Footer = () => {
           <Stack>
             <Text c={'white'}> {t('footer.getLatestNews')}</Text>
             <Box>
-              <TextInput placeholder="ahmad@unthaa.com" />
+              <TextInput placeholder="ahmad@femmelady.com" />
               <Text c={'white'} mt={5} fz={'xs'}>
                 {t('footer.signUpAgreement', {
                   privacyPolicy: (

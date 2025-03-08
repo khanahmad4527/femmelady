@@ -39,7 +39,7 @@
       "privacyPolicy": "Politique de confidentialité",
       "termsOfService": "Conditions d'utilisation"
     },
-    "copyright": "© {copyrightYear} Unthaa. Tous droits réservés.",
+    "copyright": "© {copyrightYear} FemmeLady. Tous droits réservés.",
     "signUpAgreement": "En vous inscrivant, vous acceptez notre {privacyPolicy} et {termsOfService}.",
     "privacyPolicy": "Politique de confidentialité",
     "termsOfService": "Conditions d'utilisation",
@@ -68,12 +68,12 @@
     "continueWithGoogle": "Veuillez continuer avec Google"
   },
   "login": {
-    "welcome": "Bienvenue sur Unthaa, connectez-vous avec",
+    "welcome": "Bienvenue sur FemmeLady, connectez-vous avec",
     "accountRegister": "Vous n'avez pas de compte ? Inscrivez-vous",
     "login": "Se connecter"
   },
   "register": {
-    "welcome": "Bienvenue sur Unthaa, inscrivez-vous avec",
+    "welcome": "Bienvenue sur FemmeLady, inscrivez-vous avec",
     "accountLogin": "Vous avez déjà un compte ? Connectez-vous",
     "register": "S'inscrire",
     "includesNumber": "Inclut un chiffre",
