@@ -81,7 +81,15 @@
     "includesUppercaseLetter": "包含大写字母",
     "includesSpecialSymbol": "包含特殊符号",
     "noSpacesAllowed": "不允许空格",
-    "includes8Char": "至少包含8个字符"
+    "includes8Char": "至少包含8个字符",
+    "registrationSuccessfulTitle": "验证邮件已发送",
+    "registrationSuccessfulDescription": "我们已向您注册的电子邮件地址发送了验证邮件。请检查您的收件箱（和垃圾邮件文件夹），然后点击链接以验证您的账户。如果几分钟内未收到，您可以请求重新发送。",
+    "registrationRequestLimitTitle": "已达到验证请求限制。",
+    "registrationRequestLimitDescription": "您已请求过多的验证邮件。请稍等后再试。",
+    "verificationSuccessTitle": "验证成功！",
+    "verificationSuccessDescription": "您的电子邮件已成功验证。现在您可以登录并开始探索。欢迎加入！",
+    "invalidTokenTitle": "无效或已过期的验证令牌",
+    "invalidTokenDescription": "验证令牌无效或已过期。请请求新的验证邮件并重试。"
   },
   "providerLoginFailed": {
     "title": "提供商认证失败",
@@ -251,5 +259,18 @@
       "title": "内部服务器错误",
       "description": "出现了问题。请稍后再试。"
     }
+  },
+  "resetPassword": {
+    "forgotPassword": "忘记密码",
+    "resetPassword": "重置密码",
+    "forgotPasswordQuestion": "忘记密码了？",
+    "enterEmailForReset": "输入您的电子邮件以获取重置链接",
+    "backToLogin": "返回登录页面",
+    "resetPasswordLimitTitle": "已达到密码重置请求限制",
+    "resetPasswordLimitDescription": "您已请求过多的密码重置邮件。请稍等后再试。",
+    "resetPasswordEmailSentTitle": "密码重置邮件已发送",
+    "resetPasswordEmailSentDescription": "我们已向您发送了一封包含密码重置链接的电子邮件。请检查您的收件箱，并点击邮件中的按钮以继续。",
+    "resetPasswordSuccessTitle": "密码重置成功",
+    "resetPasswordSuccessDescription": "您的密码已成功更新。现在您可以使用新密码登录。"
   }
 }

@@ -81,7 +81,15 @@
     "includesUppercaseLetter": "대문자 포함",
     "includesSpecialSymbol": "특수 문자 포함",
     "noSpacesAllowed": "공백 불가",
-    "includes8Char": "8자 이상 포함"
+    "includes8Char": "8자 이상 포함",
+    "registrationSuccessfulTitle": "인증 이메일이 전송되었습니다",
+    "registrationSuccessfulDescription": "등록된 이메일 주소로 인증 이메일을 보냈습니다. 받은 편지함(및 스팸 폴더)을 확인하고 링크를 클릭하여 계정을 인증하세요. 몇 분 내에 받지 못하면 새 이메일을 요청할 수 있습니다.",
+    "registrationRequestLimitTitle": "인증 요청 한도에 도달했습니다.",
+    "registrationRequestLimitDescription": "인증 이메일을 너무 많이 요청했습니다. 잠시 기다린 후 다시 시도하세요.",
+    "verificationSuccessTitle": "인증 성공!",
+    "verificationSuccessDescription": "이메일이 성공적으로 인증되었습니다. 이제 로그인하여 탐색을 시작할 수 있습니다. 환영합니다!",
+    "invalidTokenTitle": "유효하지 않거나 만료된 인증 토큰",
+    "invalidTokenDescription": "인증 토큰이 유효하지 않거나 만료되었습니다. 새 인증 이메일을 요청한 후 다시 시도하세요."
   },
   "providerLoginFailed": {
     "title": "인증 제공자 인증 실패",
@@ -251,5 +259,18 @@
       "title": "내부 서버 오류",
       "description": "문제가 발생했습니다. 나중에 다시 시도해 주세요."
     }
+  },
+  "resetPassword": {
+    "forgotPassword": "비밀번호 찾기",
+    "resetPassword": "비밀번호 재설정",
+    "forgotPasswordQuestion": "비밀번호를 잊으셨나요?",
+    "enterEmailForReset": "비밀번호 재설정 링크를 받으려면 이메일을 입력하세요",
+    "backToLogin": "로그인 페이지로 돌아가기",
+    "resetPasswordLimitTitle": "비밀번호 재설정 요청 한도 도달",
+    "resetPasswordLimitDescription": "비밀번호 재설정 이메일을 너무 많이 요청했습니다. 다시 시도하기 전에 잠시 기다려 주세요.",
+    "resetPasswordEmailSentTitle": "비밀번호 재설정 이메일이 전송되었습니다",
+    "resetPasswordEmailSentDescription": "비밀번호를 재설정할 수 있는 링크가 포함된 이메일을 보냈습니다. 받은 편지함을 확인하고 이메일의 버튼을 클릭하여 진행하세요.",
+    "resetPasswordSuccessTitle": "비밀번호 재설정 성공",
+    "resetPasswordSuccessDescription": "비밀번호가 성공적으로 업데이트되었습니다. 이제 새 비밀번호로 로그인할 수 있습니다."
   }
 }

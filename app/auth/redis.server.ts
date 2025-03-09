@@ -111,6 +111,54 @@ class RedisClient {
       console.error('Failed to delete cache:', error);
     }
   }
+
+  // Generic function for rate limiting
+  async checkRateLimit(
+    type: 'email-verification' | 'reset-password',
+    email: string,
+    ip: string,
+    maxRequests = 2,
+    ttl = 86400
+  ) {
+    const emailKey = `${type}_email_limit:${email}`;
+    const ipKey = `${type}_ip_limit:${ip}`;
+
+    const [emailCount, ipCount] = await this.redisClient.mGet([
+      emailKey,
+      ipKey
+    ]);
+
+    if (
+      (emailCount && parseInt(emailCount) >= maxRequests) ||
+      (ipCount && parseInt(ipCount) >= maxRequests)
+    ) {
+      return { allowed: false, remaining: 0 }; // Limit reached
+    }
+
+    const multi = this.redisClient.multi();
+    multi.incr(emailKey).expire(emailKey, ttl);
+    multi.incr(ipKey).expire(ipKey, ttl);
+    await multi.exec();
+
+    return {
+      allowed: true,
+      remaining:
+        maxRequests -
+        Math.max(parseInt(emailCount || '0') + 1, parseInt(ipCount || '0') + 1)
+    };
+  }
+
+  // clear rate limit data
+  async clearAllRateLimitData() {
+    const stream = this.redisClient.scanIterator({
+      MATCH: '*_limit:*', // Match only rate limit keys
+      COUNT: 100
+    });
+
+    for await (const key of stream) {
+      await this.redisClient.del(key);
+    }
+  }
 }
 
 export default RedisClient;

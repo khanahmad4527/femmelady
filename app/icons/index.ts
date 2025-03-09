@@ -25,3 +25,4 @@ export { default as IconSwitch } from './IconSwitch';
 export { default as IconTruckDelivery } from './IconTruckDelivery';
 export { default as IconUser } from './IconUser';
 export { default as IconX } from './IconX';
+export { default as IconArrowLeft } from './IconArrowLeft';

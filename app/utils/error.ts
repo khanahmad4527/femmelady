@@ -9,11 +9,21 @@ export type TFetcherError = {
 };
 
 const ERROR_MAP = {
-  LOGIN_REQUIRED: 'LOGIN_REQUIRED'
+  LOGIN_REQUIRED: 'LOGIN_REQUIRED',
+  VERIFICATION_LIMIT_REACHED: 'VERIFICATION_LIMIT_REACHED',
+  RESET_PASSWORD_LIMIT_REACHED: 'RESET_PASSWORD_LIMIT_REACHED'
 };
 
 export const throwLoginRequiredError = () => {
   throw new Error(ERROR_MAP.LOGIN_REQUIRED);
+};
+
+export const throwVerificationLimitError = () => {
+  throw new Error(ERROR_MAP.VERIFICATION_LIMIT_REACHED);
+};
+
+export const throwResetPasswordLimitError = () => {
+  throw new Error(ERROR_MAP.RESET_PASSWORD_LIMIT_REACHED);
 };
 
 export const handleActionError = ({
@@ -29,6 +39,28 @@ export const handleActionError = ({
     return {
       title: 'common.loginRequireTitle',
       description: 'common.loginRequireDescription',
+      error: true
+    };
+  }
+
+  if (
+    error instanceof Error &&
+    error.message === ERROR_MAP.VERIFICATION_LIMIT_REACHED
+  ) {
+    return {
+      title: 'register.registrationRequestLimitTitle',
+      description: 'register.registrationRequestLimitDescription',
+      error: true
+    };
+  }
+
+  if (
+    error instanceof Error &&
+    error.message === ERROR_MAP.RESET_PASSWORD_LIMIT_REACHED
+  ) {
+    return {
+      title: 'resetPassword.resetPasswordLimitTitle',
+      description: 'resetPassword.resetPasswordLimitDescription',
       error: true
     };
   }
@@ -87,6 +119,10 @@ export const productNotFoundError = () => {
 
 export const internalServerError = () => {
   throw new Response('INTERNAL_SERVER_ERROR', { status: 500 });
+};
+
+export const invalidTokenError = () => {
+  throw new Response('INVALID_TOKEN', { status: 400 });
 };
 
 export const handleLoaderError = (e: any) => {

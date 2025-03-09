@@ -56,7 +56,7 @@ import {
 import { ExceptionHandler } from './components/ExceptionHandler';
 
 export const links = () => [
-  { rel: 'icon', href: '/favicon.svg' },
+  { rel: 'icon', href: '/favicon.jpeg' },
   { rel: 'preload', href: fontStyleSheetUrl, as: 'style' }, // Keep this for font stylesheet
   { rel: 'stylesheet', href: fontStyleSheetUrl }, // Ensure fonts are loaded
   { rel: 'stylesheet', href: globalStyle } // Global styles
@@ -199,7 +199,7 @@ const ErrorBoundaryComponent = ({ error }: Route.ErrorBoundaryProps) => {
 };
 
 // ErrorBoundary in development
-export const ErrorBoundary = ErrorBoundaryComponent;
+// export const ErrorBoundary = ErrorBoundaryComponent;
 
 // ErrorBoundary only in production
-// export const ErrorBoundary = isProduction && ErrorBoundaryComponent;
+export const ErrorBoundary = isProduction && ErrorBoundaryComponent;

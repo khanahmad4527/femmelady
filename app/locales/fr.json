@@ -81,7 +81,15 @@
     "includesUppercaseLetter": "Inclut une lettre majuscule",
     "includesSpecialSymbol": "Inclut un symbole spécial",
     "noSpacesAllowed": "Pas d'espaces autorisés",
-    "includes8Char": "Inclut au moins 8 caractères"
+    "includes8Char": "Inclut au moins 8 caractères",
+    "registrationSuccessfulTitle": "E-mail de vérification envoyée",
+    "registrationSuccessfulDescription": "Nous avons envoyé un e-mail de vérification à votre adresse e-mail enregistrée. Veuillez vérifier votre boîte de réception (et dossier spam) et cliquer sur le lien pour vérifier votre compte. Si vous ne le recevez pas dans quelques minutes, vous pouvez en demander un nouveau.",
+    "registrationRequestLimitTitle": "Limite de demandes de vérification atteinte.",
+    "registrationRequestLimitDescription": "Vous avez demandé trop d'e-mails de vérification. Veuillez patienter avant de réessayer.",
+    "verificationSuccessTitle": "Vérification réussie !",
+    "verificationSuccessDescription": "Votre e-mail a été vérifié avec succès. Vous pouvez maintenant vous connecter et commencer à explorer. Bienvenue à bord !",
+    "invalidTokenTitle": "Jeton de vérification invalide ou expiré",
+    "invalidTokenDescription": "Le jeton de vérification est invalide ou expiré. Veuillez demander un nouvel e-mail de vérification et réessayer."
   },
   "providerLoginFailed": {
     "title": "Échec de l'authentification du fournisseur",
@@ -251,5 +259,18 @@
       "title": "Erreur interne du serveur",
       "description": "Une erreur s'est produite. Veuillez réessayer plus tard."
     }
+  },
+  "resetPassword": {
+    "forgotPassword": "Mot de passe oublié",
+    "resetPassword": "Réinitialiser le mot de passe",
+    "forgotPasswordQuestion": "Vous avez oublié votre mot de passe ?",
+    "enterEmailForReset": "Entrez votre e-mail pour recevoir un lien de réinitialisation",
+    "backToLogin": "Retour à la page de connexion",
+    "resetPasswordLimitTitle": "Limite de demandes de réinitialisation du mot de passe atteinte",
+    "resetPasswordLimitDescription": "Vous avez demandé trop d'e-mails de réinitialisation du mot de passe. Veuillez patienter avant de réessayer.",
+    "resetPasswordEmailSentTitle": "E-mail de réinitialisation du mot de passe envoyée",
+    "resetPasswordEmailSentDescription": "Nous vous avons envoyé un e-mail contenant un lien pour réinitialiser votre mot de passe. Veuillez vérifier votre boîte de réception et cliquer sur le bouton dans l'e-mail pour continuer.",
+    "resetPasswordSuccessTitle": "Réinitialisation du mot de passe réussie",
+    "resetPasswordSuccessDescription": "Votre mot de passe a été mis à jour avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe."
   }
 }

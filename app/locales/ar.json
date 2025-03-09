@@ -81,7 +81,15 @@
     "includesUppercaseLetter": "يتضمن حرفًا كبيرًا",
     "includesSpecialSymbol": "يتضمن رمزًا خاصًا",
     "noSpacesAllowed": "لا يُسمح بالمسافات",
-    "includes8Char": "يتضمن 8 أحرف على الأقل"
+    "includes8Char": "يتضمن 8 أحرف على الأقل",
+    "registrationSuccessfulTitle": "تم إرسال بريد التحقق الإلكتروني",
+    "registrationSuccessfulDescription": "لقد أرسلنا بريد تحقق إلى عنوان بريدك الإلكتروني المسجل. يرجى التحقق من صندوق الوارد (والمجلد العشوائي) والنقر على الرابط للتحقق من حسابك. إذا لم تستلمه خلال بضع دقائق، يمكنك طلب بريد جديد.",
+    "registrationRequestLimitTitle": "تم الوصول إلى حد طلبات التحقق.",
+    "registrationRequestLimitDescription": "لقد طلبت العديد من رسائل التحقق. يرجى الانتظار قبل المحاولة مرة أخرى.",
+    "verificationSuccessTitle": "تم التحقق بنجاح!",
+    "verificationSuccessDescription": "تم التحقق من بريدك الإلكتروني بنجاح. يمكنك الآن تسجيل الدخول والبدء في الاستكشاف. مرحبًا بك!",
+    "invalidTokenTitle": "رمز التحقق غير صالح أو منتهي الصلاحية",
+    "invalidTokenDescription": "رمز التحقق غير صالح أو منتهي الصلاحية. يرجى طلب بريد تحقق جديد والمحاولة مرة أخرى."
   },
   "providerLoginFailed": {
     "title": "فشل التوثيق مع الموفر",
@@ -251,5 +259,18 @@
       "title": "خطأ في الخادم الداخلي",
       "description": "حدث خطأ ما. يرجى المحاولة لاحقًا."
     }
+  },
+  "resetPassword": {
+    "forgotPassword": "نسيت كلمة المرور",
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "forgotPasswordQuestion": "هل نسيت كلمة المرور؟",
+    "enterEmailForReset": "أدخل بريدك الإلكتروني للحصول على رابط إعادة التعيين",
+    "backToLogin": "العودة إلى صفحة تسجيل الدخول",
+    "resetPasswordLimitTitle": "تم الوصول إلى حد طلبات إعادة تعيين كلمة المرور",
+    "resetPasswordLimitDescription": "لقد طلبت العديد من رسائل إعادة تعيين كلمة المرور. يرجى الانتظار قبل المحاولة مرة أخرى.",
+    "resetPasswordEmailSentTitle": "تم إرسال بريد إعادة تعيين كلمة المرور",
+    "resetPasswordEmailSentDescription": "لقد أرسلنا لك بريدًا إلكترونيًا يحتوي على رابط لإعادة تعيين كلمة المرور. يرجى التحقق من بريدك الوارد والنقر على الزر الموجود في البريد للمتابعة.",
+    "resetPasswordSuccessTitle": "تمت إعادة تعيين كلمة المرور بنجاح",
+    "resetPasswordSuccessDescription": "تم تحديث كلمة المرور الخاصة بك بنجاح. يمكنك الآن تسجيل الدخول باستخدام كلمة المرور الجديدة."
   }
 }
