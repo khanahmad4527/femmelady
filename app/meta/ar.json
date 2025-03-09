@@ -72,6 +72,52 @@
     },
     { "og:url": "https://femmelady.store/ar/register" }
   ],
+
+  "/forgot-password": [
+    { "title": "نسيت كلمة المرور - إعادة تعيين حسابك" },
+    {
+      "description": "هل نسيت كلمة المرور؟ اطلب رابط إعادة التعيين لتغيير كلمة المرور بأمان واستعادة الوصول إلى حسابك."
+    },
+    { "og:title": "نسيت كلمة المرور - إعادة تعيين حسابك" },
+    {
+      "og:description": "أعد تعيين كلمة المرور الخاصة بك بسهولة عن طريق طلب رابط إعادة تعيين آمن. حافظ على أمان حسابك وإمكانية الوصول إليه."
+    },
+    { "og:url": "https://femmelady.store/ar/forgot-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/reset-password": [
+    { "title": "إعادة تعيين كلمة المرور - تأمين حسابك" },
+    {
+      "description": "أدخل كلمة المرور الجديدة لإكمال عملية إعادة التعيين وتأمين حسابك."
+    },
+    { "og:title": "إعادة تعيين كلمة المرور - تأمين حسابك" },
+    {
+      "og:description": "قم بتعيين كلمة مرور جديدة لحسابك لاستعادة الوصول. تأكد من استخدام كلمة مرور قوية وآمنة."
+    },
+    { "og:url": "https://femmelady.store/ar/reset-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/verify-email": [
+    { "title": "تحقق من بريدك الإلكتروني - أكمل تسجيلك" },
+    {
+      "description": "قم بتأكيد عنوان بريدك الإلكتروني لتفعيل حسابك وبدء استخدام جميع الميزات."
+    },
+    { "og:title": "تحقق من بريدك الإلكتروني - أكمل تسجيلك" },
+    {
+      "og:description": "انقر على رابط التحقق في بريدك الإلكتروني لتفعيل حسابك والاستمتاع بكامل الميزات."
+    },
+    { "og:url": "https://femmelady.store/ar/verify-email" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
   "/about-us": [
     { "title": "من نحن - تعرف على FemmeLady" },
     {

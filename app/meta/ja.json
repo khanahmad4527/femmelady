@@ -72,6 +72,51 @@
     },
     { "og:url": "https://femmelady.store/ja/register" }
   ],
+  "/forgot-password": [
+    { "title": "パスワードを忘れた - アカウントをリセット" },
+    {
+      "description": "パスワードを忘れましたか？ リセットリンクをリクエストして、安全にパスワードを変更し、アカウントへのアクセスを回復しましょう。"
+    },
+    { "og:title": "パスワードを忘れた - アカウントをリセット" },
+    {
+      "og:description": "安全なリセットリンクをリクエストして、簡単にパスワードをリセットしましょう。アカウントを安全に保ち、アクセス可能に。"
+    },
+    { "og:url": "https://femmelady.store/ja/forgot-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/reset-password": [
+    { "title": "パスワードのリセット - アカウントを保護" },
+    {
+      "description": "新しいパスワードを入力して、リセットプロセスを完了し、アカウントを保護しましょう。"
+    },
+    { "og:title": "パスワードのリセット - アカウントを保護" },
+    {
+      "og:description": "アカウントのアクセスを回復するために、新しいパスワードを設定してください。強力で安全なパスワードを使用してください。"
+    },
+    { "og:url": "https://femmelady.store/ja/reset-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/verify-email": [
+    { "title": "メール認証 - 登録を完了" },
+    {
+      "description": "メールアドレスを確認して、アカウントを有効化し、すべての機能を利用しましょう。"
+    },
+    { "og:title": "メール認証 - 登録を完了" },
+    {
+      "og:description": "メール内の認証リンクをクリックして、アカウントを有効化し、完全なアクセスを取得してください。"
+    },
+    { "og:url": "https://femmelady.store/ja/verify-email" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
   "/about-us": [
     { "title": "私たちについて - Unthaaを知る" },
     {

@@ -72,6 +72,51 @@
     },
     { "og:url": "https://femmelady.store/fr/register" }
   ],
+  "/forgot-password": [
+    { "title": "Mot de passe oublié - Réinitialisez votre compte" },
+    {
+      "description": "Mot de passe oublié ? Demandez un lien de réinitialisation pour modifier votre mot de passe en toute sécurité et retrouver l'accès à votre compte."
+    },
+    { "og:title": "Mot de passe oublié - Réinitialisez votre compte" },
+    {
+      "og:description": "Réinitialisez facilement votre mot de passe en demandant un lien de réinitialisation sécurisé. Gardez votre compte sûr et accessible."
+    },
+    { "og:url": "https://femmelady.store/fr/forgot-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/reset-password": [
+    { "title": "Réinitialisation du mot de passe - Sécurisez votre compte" },
+    {
+      "description": "Entrez votre nouveau mot de passe pour terminer le processus de réinitialisation et sécuriser votre compte."
+    },
+    { "og:title": "Réinitialisation du mot de passe - Sécurisez votre compte" },
+    {
+      "og:description": "Définissez un nouveau mot de passe pour votre compte afin de retrouver l'accès. Assurez-vous d'utiliser un mot de passe fort et sécurisé."
+    },
+    { "og:url": "https://femmelady.store/fr/reset-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/verify-email": [
+    { "title": "Vérifiez votre e-mail - Complétez votre inscription" },
+    {
+      "description": "Confirmez votre adresse e-mail pour activer votre compte et commencer à utiliser toutes les fonctionnalités."
+    },
+    { "og:title": "Vérifiez votre e-mail - Complétez votre inscription" },
+    {
+      "og:description": "Cliquez sur le lien de vérification dans votre e-mail pour activer votre compte et bénéficier d'un accès complet."
+    },
+    { "og:url": "https://femmelady.store/fr/verify-email" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
   "/about-us": [
     { "title": "À propos de nous - Découvrez FemmeLady" },
     {

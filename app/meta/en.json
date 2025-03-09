@@ -72,6 +72,51 @@
     },
     { "og:url": "https://femmelady.store/en/register" }
   ],
+  "/forgot-password": [
+    { "title": "Forgot Password - Reset Your Account" },
+    {
+      "description": "Forgot your password? Request a reset link to securely change your password and regain access to your account."
+    },
+    { "og:title": "Forgot Password - Reset Your Account" },
+    {
+      "og:description": "Easily reset your password by requesting a secure reset link. Keep your account safe and accessible."
+    },
+    { "og:url": "https://femmelady.store/en/forgot-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/reset-password": [
+    { "title": "Reset Password - Secure Your Account" },
+    {
+      "description": "Enter your new password to complete the reset process and secure your account."
+    },
+    { "og:title": "Reset Password - Secure Your Account" },
+    {
+      "og:description": "Set a new password for your account to regain access. Make sure to use a strong and secure password."
+    },
+    { "og:url": "https://femmelady.store/en/reset-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/verify-email": [
+    { "title": "Verify Your Email - Complete Your Registration" },
+    {
+      "description": "Confirm your email address to activate your account and start using all features."
+    },
+    { "og:title": "Verify Your Email - Complete Your Registration" },
+    {
+      "og:description": "Click the verification link in your email to activate your account and enjoy full access."
+    },
+    { "og:url": "https://femmelady.store/en/verify-email" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
   "/about-us": [
     { "title": "About Us - Get to Know FemmeLady" },
     {

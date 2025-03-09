@@ -72,6 +72,52 @@
     },
     { "og:url": "https://femmelady.store/nl/register" }
   ],
+
+  "/forgot-password": [
+    { "title": "Wachtwoord vergeten - Reset je account" },
+    {
+      "description": "Wachtwoord vergeten? Vraag een resetlink aan om je wachtwoord veilig te wijzigen en weer toegang te krijgen tot je account."
+    },
+    { "og:title": "Wachtwoord vergeten - Reset je account" },
+    {
+      "og:description": "Reset eenvoudig je wachtwoord door een veilige resetlink aan te vragen. Houd je account veilig en toegankelijk."
+    },
+    { "og:url": "https://femmelady.store/nl/forgot-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/reset-password": [
+    { "title": "Wachtwoord resetten - Beveilig je account" },
+    {
+      "description": "Voer je nieuwe wachtwoord in om het resetproces te voltooien en je account te beveiligen."
+    },
+    { "og:title": "Wachtwoord resetten - Beveilig je account" },
+    {
+      "og:description": "Stel een nieuw wachtwoord in voor je account om toegang te herstellen. Zorg ervoor dat je een sterk en veilig wachtwoord gebruikt."
+    },
+    { "og:url": "https://femmelady.store/nl/reset-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/verify-email": [
+    { "title": "Verifieer je e-mail - Voltooi je registratie" },
+    {
+      "description": "Bevestig je e-mailadres om je account te activeren en toegang te krijgen tot alle functies."
+    },
+    { "og:title": "Verifieer je e-mail - Voltooi je registratie" },
+    {
+      "og:description": "Klik op de verificatielink in je e-mail om je account te activeren en volledige toegang te krijgen."
+    },
+    { "og:url": "https://femmelady.store/nl/verify-email" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
   "/about-us": [
     { "title": "Over Ons - Leer FemmeLady Kennen" },
     {

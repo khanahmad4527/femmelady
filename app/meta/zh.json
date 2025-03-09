@@ -72,6 +72,51 @@
     },
     { "og:url": "https://femmelady.store/en/register" }
   ],
+  "/forgot-password": [
+    { "title": "忘记密码 - 重置您的账户" },
+    {
+      "description": "忘记了您的密码？请求一个重置链接，以安全地更改密码并重新访问您的账户。"
+    },
+    { "og:title": "忘记密码 - 重置您的账户" },
+    {
+      "og:description": "请求安全的密码重置链接，轻松重置密码。保持您的账户安全和可访问。"
+    },
+    { "og:url": "https://femmelady.store/zh/forgot-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/reset-password": [
+    { "title": "重置密码 - 保护您的账户" },
+    {
+      "description": "输入您的新密码以完成重置过程并保护您的账户。"
+    },
+    { "og:title": "重置密码 - 保护您的账户" },
+    {
+      "og:description": "设置新的密码以恢复账户访问。请确保使用强大且安全的密码。"
+    },
+    { "og:url": "https://femmelady.store/zh/reset-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/verify-email": [
+    { "title": "验证您的电子邮件 - 完成注册" },
+    {
+      "description": "确认您的电子邮件地址以激活您的账户，并开始使用所有功能。"
+    },
+    { "og:title": "验证您的电子邮件 - 完成注册" },
+    {
+      "og:description": "点击电子邮件中的验证链接以激活您的账户并享受完整访问权限。"
+    },
+    { "og:url": "https://femmelady.store/zh/verify-email" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
   "/about-us": [
     { "title": "关于我们 - 了解 FemmeLady" },
     {
