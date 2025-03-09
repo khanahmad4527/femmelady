@@ -1,134 +1,188 @@
 {
   "/": [
-    { "title": "Unthaa - مبني على الجودة، وليس على الكمية" },
+    { "title": "FemmeLady - مبني على الجودة، وليس على الكمية" },
     {
-      "description": "اكتشف Unthaa للحصول على أفضل المنتجات بأسعار مذهلة. متجر شامل عبر الإنترنت لتلبية جميع احتياجاتك."
+      "description": "اكتشف FemmeLady للحصول على أفضل المنتجات بأسعار مذهلة. متجر شامل عبر الإنترنت لتلبية جميع احتياجاتك."
     },
-    { "og:title": "Unthaa - مبني على الجودة، وليس على الكمية" },
+    { "og:title": "FemmeLady - مبني على الجودة، وليس على الكمية" },
     {
-      "og:description": "استكشف أحدث وأفضل المنتجات في Unthaa. تسوّق بثقة!"
+      "og:description": "استكشف أحدث وأفضل المنتجات في FemmeLady. تسوّق بثقة!"
     },
-    { "og:url": "https://unthaa.teicneo.com" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" },
+    { "og:url": "https://femmelady.store" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
     { "twitter:card": "summary" }
   ],
   "/products": [
-    { "title": "تصفح المنتجات - Unthaa" },
+    { "title": "تصفح المنتجات - FemmeLady" },
     {
-      "description": "تصفح مجموعتنا الواسعة من المنتجات عبر الفئات المختلفة. ستجد كل ما تحتاجه في Unthaa."
+      "description": "تصفح مجموعتنا الواسعة من المنتجات عبر الفئات المختلفة. ستجد كل ما تحتاجه في FemmeLady."
     },
-    { "og:title": "تصفح المنتجات - Unthaa" },
+    { "og:title": "تصفح المنتجات - FemmeLady" },
     {
-      "og:description": "اكتشف مجموعة متنوعة من المنتجات بأسعار لا مثيل لها في Unthaa."
+      "og:description": "اكتشف مجموعة متنوعة من المنتجات بأسعار لا مثيل لها في FemmeLady."
     },
-    { "og:url": "https://unthaa.teicneo.com/ar/products" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/ar/products" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/checkout": [
-    { "title": "الدفع - تسوق آمن | Unthaa" },
+    { "title": "الدفع - تسوق آمن | FemmeLady" },
     {
-      "description": "أكمل عملية الدفع الخاصة بك على Unthaa بأمان. خيارات دفع سهلة وسريعة وآمنة."
+      "description": "أكمل عملية الدفع الخاصة بك على FemmeLady بأمان. خيارات دفع سهلة وسريعة وآمنة."
     },
-    { "og:title": "الدفع - Unthaa" },
+    { "og:title": "الدفع - FemmeLady" },
     {
-      "og:description": "أكمل عملية الشراء الخاصة بك بأمان على Unthaa من خلال عملية دفع موثوقة وسريعة."
+      "og:description": "أكمل عملية الشراء الخاصة بك بأمان على FemmeLady من خلال عملية دفع موثوقة وسريعة."
     },
-    { "og:url": "https://unthaa.teicneo.com/ar/checkout" }
+    { "og:url": "https://femmelady.store/ar/checkout" }
   ],
   "/payment": [
-    { "title": "الدفع - أكمل طلبك | Unthaa" },
+    { "title": "الدفع - أكمل طلبك | FemmeLady" },
     {
-      "description": "أكمل عملية الدفع بأمان مع Unthaa. خيارات دفع موثوقة لحماية معاملاتك."
+      "description": "أكمل عملية الدفع بأمان مع FemmeLady. خيارات دفع موثوقة لحماية معاملاتك."
     },
-    { "og:title": "الدفع - Unthaa" },
+    { "og:title": "الدفع - FemmeLady" },
     {
-      "og:description": "ادفع بثقة على Unthaa. عملية دفع آمنة وسريعة وسهلة."
+      "og:description": "ادفع بثقة على FemmeLady. عملية دفع آمنة وسريعة وسهلة."
     },
-    { "og:url": "https://unthaa.teicneo.com/ar/payment" }
+    { "og:url": "https://femmelady.store/ar/payment" }
   ],
   "/login": [
-    { "title": "تسجيل الدخول إلى حسابك - Unthaa" },
+    { "title": "تسجيل الدخول إلى حسابك - FemmeLady" },
     {
-      "description": "قم بتسجيل الدخول إلى حسابك في Unthaa للوصول إلى طلباتك وقائمة الرغبات والتوصيات الشخصية."
+      "description": "قم بتسجيل الدخول إلى حسابك في FemmeLady للوصول إلى طلباتك وقائمة الرغبات والتوصيات الشخصية."
     },
-    { "og:title": "تسجيل الدخول - Unthaa" },
+    { "og:title": "تسجيل الدخول - FemmeLady" },
     {
-      "og:description": "قم بتسجيل الدخول بأمان إلى حسابك في Unthaa واستمر في التسوق بسهولة."
+      "og:description": "قم بتسجيل الدخول بأمان إلى حسابك في FemmeLady واستمر في التسوق بسهولة."
     },
-    { "og:url": "https://unthaa.teicneo.com/ar/login" }
+    { "og:url": "https://femmelady.store/ar/login" }
   ],
   "/register": [
-    { "title": "إنشاء حساب - انضم إلى Unthaa" },
+    { "title": "إنشاء حساب - انضم إلى FemmeLady" },
     {
-      "description": "اشترك للحصول على حساب مجاني في Unthaa واستمتع بتجربة تسوق مخصصة."
+      "description": "اشترك للحصول على حساب مجاني في FemmeLady واستمتع بتجربة تسوق مخصصة."
     },
-    { "og:title": "إنشاء حساب - Unthaa" },
+    { "og:title": "إنشاء حساب - FemmeLady" },
     {
-      "og:description": "قم بإنشاء حساب على Unthaa للحصول على عروض حصرية وتجربة تسوق مخصصة."
+      "og:description": "قم بإنشاء حساب على FemmeLady للحصول على عروض حصرية وتجربة تسوق مخصصة."
     },
-    { "og:url": "https://unthaa.teicneo.com/ar/register" }
+    { "og:url": "https://femmelady.store/ar/register" }
+  ],
+
+  "/forgot-password": [
+    { "title": "نسيت كلمة المرور - إعادة تعيين حسابك" },
+    {
+      "description": "هل نسيت كلمة المرور؟ اطلب رابط إعادة التعيين لتغيير كلمة المرور بأمان واستعادة الوصول إلى حسابك."
+    },
+    { "og:title": "نسيت كلمة المرور - إعادة تعيين حسابك" },
+    {
+      "og:description": "أعد تعيين كلمة المرور الخاصة بك بسهولة عن طريق طلب رابط إعادة تعيين آمن. حافظ على أمان حسابك وإمكانية الوصول إليه."
+    },
+    { "og:url": "https://femmelady.store/ar/forgot-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/reset-password": [
+    { "title": "إعادة تعيين كلمة المرور - تأمين حسابك" },
+    {
+      "description": "أدخل كلمة المرور الجديدة لإكمال عملية إعادة التعيين وتأمين حسابك."
+    },
+    { "og:title": "إعادة تعيين كلمة المرور - تأمين حسابك" },
+    {
+      "og:description": "قم بتعيين كلمة مرور جديدة لحسابك لاستعادة الوصول. تأكد من استخدام كلمة مرور قوية وآمنة."
+    },
+    { "og:url": "https://femmelady.store/ar/reset-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/verify-email": [
+    { "title": "تحقق من بريدك الإلكتروني - أكمل تسجيلك" },
+    {
+      "description": "قم بتأكيد عنوان بريدك الإلكتروني لتفعيل حسابك وبدء استخدام جميع الميزات."
+    },
+    { "og:title": "تحقق من بريدك الإلكتروني - أكمل تسجيلك" },
+    {
+      "og:description": "انقر على رابط التحقق في بريدك الإلكتروني لتفعيل حسابك والاستمتاع بكامل الميزات."
+    },
+    { "og:url": "https://femmelady.store/ar/verify-email" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
   ],
   "/about-us": [
-    { "title": "من نحن - تعرف على Unthaa" },
+    { "title": "من نحن - تعرف على FemmeLady" },
     {
-      "description": "تعرف على المزيد عن Unthaa، قيمنا، مهمتنا، والتزامنا بتقديم منتجات وخدمات ذات جودة عالية."
+      "description": "تعرف على المزيد عن FemmeLady، قيمنا، مهمتنا، والتزامنا بتقديم منتجات وخدمات ذات جودة عالية."
     },
-    { "og:title": "من نحن - تعرف على Unthaa" },
+    { "og:title": "من نحن - تعرف على FemmeLady" },
     {
-      "og:description": "اكتشف قصة Unthaa والتزامنا بتقديم أفضل تجربة تسوق."
+      "og:description": "اكتشف قصة FemmeLady والتزامنا بتقديم أفضل تجربة تسوق."
     },
-    { "og:url": "https://unthaa.teicneo.com/ar/about-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/ar/about-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/contact-us": [
-    { "title": "اتصل بنا - نحن هنا لمساعدتك | Unthaa" },
+    { "title": "اتصل بنا - نحن هنا لمساعدتك | FemmeLady" },
     {
-      "description": "تحتاج إلى مساعدة؟ تواصل مع فريق دعم العملاء في Unthaa لأي استفسارات أو مشكلات."
+      "description": "تحتاج إلى مساعدة؟ تواصل مع فريق دعم العملاء في FemmeLady لأي استفسارات أو مشكلات."
     },
-    { "og:title": "اتصل بنا - Unthaa" },
+    { "og:title": "اتصل بنا - FemmeLady" },
     {
-      "og:description": "تواصل مع Unthaa للحصول على الدعم أو الاستفسارات أو التعليقات. نحن هنا لمساعدتك."
+      "og:description": "تواصل مع FemmeLady للحصول على الدعم أو الاستفسارات أو التعليقات. نحن هنا لمساعدتك."
     },
-    { "og:url": "https://unthaa.teicneo.com/ar/contact-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/ar/contact-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/privacy-policy": [
-    { "title": "سياسة الخصوصية - بياناتك في أمان معنا | Unthaa" },
+    { "title": "سياسة الخصوصية - بياناتك في أمان معنا | FemmeLady" },
     {
-      "description": "اقرأ سياسة الخصوصية الخاصة بـ Unthaa لفهم كيفية التعامل مع بياناتك الشخصية وحمايتها."
+      "description": "اقرأ سياسة الخصوصية الخاصة بـ FemmeLady لفهم كيفية التعامل مع بياناتك الشخصية وحمايتها."
     },
-    { "og:title": "سياسة الخصوصية - Unthaa" },
+    { "og:title": "سياسة الخصوصية - FemmeLady" },
     {
-      "og:description": "في Unthaa، نعطي الأولوية لخصوصيتك ونحمي معلوماتك وفقًا لأعلى المعايير."
+      "og:description": "في FemmeLady، نعطي الأولوية لخصوصيتك ونحمي معلوماتك وفقًا لأعلى المعايير."
     },
-    { "og:url": "https://unthaa.teicneo.com/ar/privacy-policy" },
+    { "og:url": "https://femmelady.store/ar/privacy-policy" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/terms-of-service": [
-    { "title": "شروط الخدمة - اتفاقك مع Unthaa" },
+    { "title": "شروط الخدمة - اتفاقك مع FemmeLady" },
     {
-      "description": "اقرأ شروط الخدمة لفهم السياسات والقواعد التي تحكم استخدامك لـ Unthaa."
+      "description": "اقرأ شروط الخدمة لفهم السياسات والقواعد التي تحكم استخدامك لـ FemmeLady."
     },
-    { "og:title": "شروط الخدمة - Unthaa" },
+    { "og:title": "شروط الخدمة - FemmeLady" },
     {
-      "og:description": "افهم الشروط والأحكام التي تحدد حقوقك ومسؤولياتك على Unthaa."
+      "og:description": "افهم الشروط والأحكام التي تحدد حقوقك ومسؤولياتك على FemmeLady."
     },
-    { "og:url": "https://unthaa.teicneo.com/ar/terms-of-service" },
+    { "og:url": "https://femmelady.store/ar/terms-of-service" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/faq": [
-    { "title": "الأسئلة الشائعة - Unthaa" },
+    { "title": "الأسئلة الشائعة - FemmeLady" },
     {
-      "description": "اعثر على إجابات لأكثر الأسئلة شيوعًا حول التسوق في Unthaa. المساعدة على بعد نقرة واحدة."
+      "description": "اعثر على إجابات لأكثر الأسئلة شيوعًا حول التسوق في FemmeLady. المساعدة على بعد نقرة واحدة."
     },
-    { "og:title": "الأسئلة الشائعة - Unthaa" },
+    { "og:title": "الأسئلة الشائعة - FemmeLady" },
     {
-      "og:description": "احصل على حلول سريعة للاستفسارات الشائعة حول الطلبات، المدفوعات، التوصيل، والمزيد في Unthaa."
+      "og:description": "احصل على حلول سريعة للاستفسارات الشائعة حول الطلبات، المدفوعات، التوصيل، والمزيد في FemmeLady."
     },
-    { "og:url": "https://unthaa.teicneo.com/ar/faq" }
+    { "og:url": "https://femmelady.store/ar/faq" }
   ]
 }

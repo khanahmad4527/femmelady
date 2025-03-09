@@ -11,50 +11,50 @@ import nl from './nl.json';
 import zh from './zh.json';
 
 const base = [
-  { title: 'Unthaa - Built on Quality, Not Numbers' },
+  { title: 'FemmeLady - Built on Quality, Not Numbers' },
   {
     description:
-      'Explore Unthaa for the best products at amazing prices. Your one-stop online shop for all your needs.'
+      'Explore FemmeLady for the best products at amazing prices. Your one-stop online shop for all your needs.'
   },
-  { 'og:title': 'Unthaa - Built on Quality, Not Numbers' },
+  { 'og:title': 'FemmeLady - Built on Quality, Not Numbers' },
   {
     'og:description':
-      'Discover the latest and greatest products at Unthaa. Shop with confidence!'
+      'Discover the latest and greatest products at FemmeLady. Shop with confidence!'
   },
-  { 'og:url': 'https://unthaa.teicneo.com' },
+  { 'og:url': 'https://femmelady.store' },
   {
-    'og:image': 'https://unthaa-assets.teicneo.com/assets/unthaa-logo.png'
+    'og:image': 'https://assets.femmelady.store/femmelady.jpeg'
   },
   { 'twitter:card': 'summary' }
 ];
 
 const notFound = {
   en: [
-    { title: 'Unthaa - Page Not Found' },
+    { title: 'FemmeLady - Page Not Found' },
     { description: 'The page you are looking for does not exist.' }
   ],
   ja: [
-    { title: 'Unthaa - ページが見つかりません' },
+    { title: 'FemmeLady - ページが見つかりません' },
     { description: 'お探しのページは存在しません。' }
   ],
   ar: [
-    { title: 'Unthaa - الصفحة غير موجودة' },
+    { title: 'FemmeLady - الصفحة غير موجودة' },
     { description: 'الصفحة التي تبحث عنها غير موجودة.' }
   ],
   fr: [
-    { title: 'Unthaa - Page non trouvée' },
+    { title: 'FemmeLady - Page non trouvée' },
     { description: 'La page que vous recherchez est introuvable.' }
   ],
   nl: [
-    { title: 'Unthaa - Pagina niet gevonden' },
+    { title: 'FemmeLady - Pagina niet gevonden' },
     { description: 'De pagina die u zoekt, bestaat niet.' }
   ],
   ko: [
-    { title: 'Unthaa - 페이지를 찾을 수 없습니다' },
+    { title: 'FemmeLady - 페이지를 찾을 수 없습니다' },
     { description: '찾고 있는 페이지는 존재하지 않습니다.' }
   ],
   zh: [
-    { title: 'Unthaa - 页面未找到' },
+    { title: 'FemmeLady - 页面未找到' },
     { description: '您正在查找的页面不存在。' }
   ]
 };
@@ -143,13 +143,13 @@ export const getSingleProductPageMeta = ({
 
   const seoData = {
     en: [
-      { title: `${productTranslation?.title} - Buy Now on Unthaa` },
+      { title: `${productTranslation?.title} - Buy Now on FemmeLady` },
       {
-        description: `Get ${productTranslation?.title} for just $${product?.price}. High-quality and trusted by thousands. Available now on Unthaa.`
+        description: `Get ${productTranslation?.title} for just $${product?.price}. High-quality and trusted by thousands. Available now on FemmeLady.`
       },
-      { 'og:title': `${productTranslation?.title} - Unthaa` },
+      { 'og:title': `${productTranslation?.title} - FemmeLady` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
+      { 'og:url': `https://www.femmelady.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
@@ -158,13 +158,13 @@ export const getSingleProductPageMeta = ({
       }
     ],
     nl: [
-      { title: `${productTranslation?.title} - Nu kopen op Unthaa` },
+      { title: `${productTranslation?.title} - Nu kopen op FemmeLady` },
       {
-        description: `Koop ${productTranslation?.title} voor slechts $${product?.price}. Hoogwaardige kwaliteit, vertrouwd door duizenden. Nu beschikbaar op Unthaa.`
+        description: `Koop ${productTranslation?.title} voor slechts $${product?.price}. Hoogwaardige kwaliteit, vertrouwd door duizenden. Nu beschikbaar op FemmeLady.`
       },
-      { 'og:title': `${productTranslation?.title} - Unthaa` },
+      { 'og:title': `${productTranslation?.title} - FemmeLady` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
+      { 'og:url': `https://www.femmelady.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
@@ -173,13 +173,15 @@ export const getSingleProductPageMeta = ({
       }
     ],
     fr: [
-      { title: `${productTranslation?.title} - Achetez maintenant sur Unthaa` },
       {
-        description: `Obtenez ${productTranslation?.title} pour seulement $${product?.price}. Haute qualité et approuvé par des milliers. Disponible maintenant sur Unthaa.`
+        title: `${productTranslation?.title} - Achetez maintenant sur FemmeLady`
       },
-      { 'og:title': `${productTranslation?.title} - Unthaa` },
+      {
+        description: `Obtenez ${productTranslation?.title} pour seulement $${product?.price}. Haute qualité et approuvé par des milliers. Disponible maintenant sur FemmeLady.`
+      },
+      { 'og:title': `${productTranslation?.title} - FemmeLady` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
+      { 'og:url': `https://www.femmelady.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
@@ -192,9 +194,9 @@ export const getSingleProductPageMeta = ({
       {
         description: `${productTranslation?.title}をたったの$${product?.price}で手に入れよう。高品質で多くの人々に信頼されています。今すぐUnthaaで購入可能です。`
       },
-      { 'og:title': `${productTranslation?.title} - Unthaa` },
+      { 'og:title': `${productTranslation?.title} - FemmeLady` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
+      { 'og:url': `https://www.femmelady.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
@@ -203,13 +205,13 @@ export const getSingleProductPageMeta = ({
       }
     ],
     ar: [
-      { title: `${productTranslation?.title} - اشترِ الآن من Unthaa` },
+      { title: `${productTranslation?.title} - اشترِ الآن من FemmeLady` },
       {
-        description: `احصل على ${productTranslation?.title} مقابل فقط $${product?.price}. جودة عالية وموثوق به من قبل الآلاف. متوفر الآن على Unthaa.`
+        description: `احصل على ${productTranslation?.title} مقابل فقط $${product?.price}. جودة عالية وموثوق به من قبل الآلاف. متوفر الآن على FemmeLady.`
       },
-      { 'og:title': `${productTranslation?.title} - Unthaa` },
+      { 'og:title': `${productTranslation?.title} - FemmeLady` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
+      { 'og:url': `https://www.femmelady.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
@@ -222,9 +224,9 @@ export const getSingleProductPageMeta = ({
       {
         description: `${productTranslation?.title}를 단 $${product?.price}에 구매하세요. 고품질이며 수천 명이 신뢰하는 제품입니다. 지금 Unthaa에서 구매 가능합니다.`
       },
-      { 'og:title': `${productTranslation?.title} - Unthaa` },
+      { 'og:title': `${productTranslation?.title} - FemmeLady` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
+      { 'og:url': `https://www.femmelady.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,
@@ -237,9 +239,9 @@ export const getSingleProductPageMeta = ({
       {
         description: `仅需$${product?.price}即可获得${productTranslation?.title}。高质量且受到数千人信任。现在即可在Unthaa购买。`
       },
-      { 'og:title': `${productTranslation?.title} - Unthaa` },
+      { 'og:title': `${productTranslation?.title} - FemmeLady` },
       { 'og:description': productTranslation?.description },
-      { 'og:url': `https://www.unthaa.com/product/${product?.id}` },
+      { 'og:url': `https://www.femmelady.com/product/${product?.id}` },
       {
         'og:image': getImageUrl({
           id: product?.feature_image_1 as string,

@@ -1,135 +1,190 @@
 {
   "/": [
-    { "title": "Unthaa - Built on Quality, Not Numbers" },
+    { "title": "FemmeLady - Built on Quality, Not Numbers" },
     {
-      "description": "Explore Unthaa for the best products at amazing prices. Your one-stop online shop for all your needs."
+      "description": "Explore FemmeLady for the best products at amazing prices. Your one-stop online shop for all your needs."
     },
-    { "og:title": "Unthaa - Built on Quality, Not Numbers" },
+    { "og:title": "FemmeLady - Built on Quality, Not Numbers" },
     {
-      "og:description": "Discover the latest and greatest products at Unthaa. Shop with confidence!"
+      "og:description": "Discover the latest and greatest products at FemmeLady. Shop with confidence!"
     },
-    { "og:url": "https://unthaa.teicneo.com" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" },
+    { "og:url": "https://femmelady.store" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
     { "twitter:card": "summary" }
   ],
   "/products": [
-    { "title": "Browse Products - Unthaa" },
+    { "title": "Browse Products - FemmeLady" },
     {
-      "description": "Browse our wide range of products across categories. Find everything you need at Unthaa."
+      "description": "Browse our wide range of products across categories. Find everything you need at FemmeLady."
     },
-    { "og:title": "Browse Products - Unthaa" },
+    { "og:title": "Browse Products - FemmeLady" },
     {
-      "og:description": "Discover a wide selection of products at unbeatable prices on Unthaa."
+      "og:description": "Discover a wide selection of products at unbeatable prices on FemmeLady."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/products" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/en/products" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/checkout": [
-    { "title": "Checkout - Secure Payment | Unthaa" },
+    { "title": "Checkout - Secure Payment | FemmeLady" },
     {
-      "description": "Securely checkout your favorite products on Unthaa. Easy, fast, and safe payment options."
+      "description": "Securely checkout your favorite products on FemmeLady. Easy, fast, and safe payment options."
     },
-    { "og:title": "Checkout - Unthaa" },
+    { "og:title": "Checkout - FemmeLady" },
     {
-      "og:description": "Securely complete your purchase on Unthaa with fast and reliable checkout."
+      "og:description": "Securely complete your purchase on FemmeLady with fast and reliable checkout."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/checkout" }
+    { "og:url": "https://femmelady.store/en/checkout" }
   ],
   "/payment": [
-    { "title": "Payment - Complete Your Order | Unthaa" },
+    { "title": "Payment - Complete Your Order | FemmeLady" },
     {
-      "description": "Complete your payment securely with Unthaa. Trusted payment options to keep your transactions safe."
+      "description": "Complete your payment securely with FemmeLady. Trusted payment options to keep your transactions safe."
     },
-    { "og:title": "Payment - Unthaa" },
+    { "og:title": "Payment - FemmeLady" },
     {
-      "og:description": "Pay with confidence on Unthaa. Secure, fast, and easy payment process."
+      "og:description": "Pay with confidence on FemmeLady. Secure, fast, and easy payment process."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/payment" }
+    { "og:url": "https://femmelady.store/en/payment" }
   ],
   "/login": [
-    { "title": "Login to Your Account - Unthaa" },
+    { "title": "Login to Your Account - FemmeLady" },
     {
-      "description": "Login to your Unthaa account to access your orders, wishlist, and personalized recommendations."
+      "description": "Login to your FemmeLady account to access your orders, wishlist, and personalized recommendations."
     },
-    { "og:title": "Login - Unthaa" },
+    { "og:title": "Login - FemmeLady" },
     {
-      "og:description": "Securely login to your Unthaa account and continue shopping with ease."
+      "og:description": "Securely login to your FemmeLady account and continue shopping with ease."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/login" }
+    { "og:url": "https://femmelady.store/en/login" }
   ],
   "/register": [
-    { "title": "Create an Account - Join Unthaa" },
+    { "title": "Create an Account - Join FemmeLady" },
     {
-      "description": "Sign up for a free Unthaa account and enjoy a personalized shopping experience."
+      "description": "Sign up for a free FemmeLady account and enjoy a personalized shopping experience."
     },
-    { "og:title": "Register - Unthaa" },
+    { "og:title": "Register - FemmeLady" },
     {
-      "og:description": "Create an account on Unthaa to get access to exclusive deals and a personalized shopping journey."
+      "og:description": "Create an account on FemmeLady to get access to exclusive deals and a personalized shopping journey."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/register" }
+    { "og:url": "https://femmelady.store/en/register" }
+  ],
+  "/forgot-password": [
+    { "title": "Forgot Password - Reset Your Account" },
+    {
+      "description": "Forgot your password? Request a reset link to securely change your password and regain access to your account."
+    },
+    { "og:title": "Forgot Password - Reset Your Account" },
+    {
+      "og:description": "Easily reset your password by requesting a secure reset link. Keep your account safe and accessible."
+    },
+    { "og:url": "https://femmelady.store/en/forgot-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/reset-password": [
+    { "title": "Reset Password - Secure Your Account" },
+    {
+      "description": "Enter your new password to complete the reset process and secure your account."
+    },
+    { "og:title": "Reset Password - Secure Your Account" },
+    {
+      "og:description": "Set a new password for your account to regain access. Make sure to use a strong and secure password."
+    },
+    { "og:url": "https://femmelady.store/en/reset-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/verify-email": [
+    { "title": "Verify Your Email - Complete Your Registration" },
+    {
+      "description": "Confirm your email address to activate your account and start using all features."
+    },
+    { "og:title": "Verify Your Email - Complete Your Registration" },
+    {
+      "og:description": "Click the verification link in your email to activate your account and enjoy full access."
+    },
+    { "og:url": "https://femmelady.store/en/verify-email" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
   ],
   "/about-us": [
-    { "title": "About Us - Get to Know Unthaa" },
+    { "title": "About Us - Get to Know FemmeLady" },
     {
-      "description": "Learn more about Unthaa, our values, mission, and commitment to providing quality products and services."
+      "description": "Learn more about FemmeLady, our values, mission, and commitment to providing quality products and services."
     },
-    { "og:title": "About Us - Get to Know Unthaa" },
+    { "og:title": "About Us - Get to Know FemmeLady" },
     {
-      "og:description": "Discover the story of Unthaa and our dedication to offering the best shopping experience."
+      "og:description": "Discover the story of FemmeLady and our dedication to offering the best shopping experience."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/about-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/en/about-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/contact-us": [
-    { "title": "Contact Us - We’re Here to Help | Unthaa" },
+    { "title": "Contact Us - We’re Here to Help | FemmeLady" },
     {
-      "description": "Need assistance? Get in touch with Unthaa’s customer support team for any questions or concerns."
+      "description": "Need assistance? Get in touch with FemmeLady’s customer support team for any questions or concerns."
     },
-    { "og:title": "Contact Us - Unthaa" },
+    { "og:title": "Contact Us - FemmeLady" },
     {
-      "og:description": "Reach out to Unthaa for support, inquiries, or feedback. We’re here to assist you."
+      "og:description": "Reach out to FemmeLady for support, inquiries, or feedback. We’re here to assist you."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/contact-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/en/contact-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/privacy-policy": [
-    { "title": "Privacy Policy - Your Data is Safe with Us | Unthaa" },
+    { "title": "Privacy Policy - Your Data is Safe with Us | FemmeLady" },
     {
-      "description": "Read Unthaa’s Privacy Policy to understand how we handle and protect your personal data."
+      "description": "Read FemmeLady’s Privacy Policy to understand how we handle and protect your personal data."
     },
-    { "og:title": "Privacy Policy - Unthaa" },
+    { "og:title": "Privacy Policy - FemmeLady" },
     {
-      "og:description": "At Unthaa, we prioritize your privacy and safeguard your information with industry-standard practices."
+      "og:description": "At FemmeLady, we prioritize your privacy and safeguard your information with industry-standard practices."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/privacy-policy" },
+    { "og:url": "https://femmelady.store/en/privacy-policy" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/terms-of-service": [
-    { "title": "Terms of Service - Your Agreement with Unthaa" },
+    { "title": "Terms of Service - Your Agreement with FemmeLady" },
     {
-      "description": "Read our Terms of Service to learn about the policies and rules that govern your use of Unthaa."
+      "description": "Read our Terms of Service to learn about the policies and rules that govern your use of FemmeLady."
     },
-    { "og:title": "Terms of Service - Unthaa" },
+    { "og:title": "Terms of Service - FemmeLady" },
     {
-      "og:description": "Understand the terms and conditions that outline your rights and responsibilities on Unthaa."
+      "og:description": "Understand the terms and conditions that outline your rights and responsibilities on FemmeLady."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/terms-of-service" },
+    { "og:url": "https://femmelady.store/en/terms-of-service" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/faq": [
-    { "title": "Frequently Asked Questions - Unthaa" },
+    { "title": "Frequently Asked Questions - FemmeLady" },
     {
-      "description": "Find answers to the most common questions about shopping on Unthaa. Help is just a click away."
+      "description": "Find answers to the most common questions about shopping on FemmeLady. Help is just a click away."
     },
-    { "og:title": "FAQ - Unthaa" },
+    { "og:title": "FAQ - FemmeLady" },
     {
-      "og:description": "Get quick solutions to common inquiries about orders, payments, delivery, and more on Unthaa."
+      "og:description": "Get quick solutions to common inquiries about orders, payments, delivery, and more on FemmeLady."
     },
-    { "og:url": "https://unthaa.teicneo.com/en/faq" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/en/faq" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

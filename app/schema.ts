@@ -65,6 +65,29 @@ export const registerFormSchema = z
     message: 'authFormValidationError.passwordMismatch'
   });
 
+export const forgotPasswordFormSchema = z.object({
+  email: emailSchema,
+  'cf-turnstile-response': cfTurnstileResponseSchema
+});
+
+export const resetPasswordFormSchema = z
+  .object({
+    password: passwordSchema,
+    confirm_password: z.string().transform(value => value.trim()),
+    'cf-turnstile-response': cfTurnstileResponseSchema
+  })
+  .refine(
+    data => data.password.length > 0 && data.confirm_password.length > 0,
+    {
+      path: ['confirm_password'],
+      message: 'authFormValidationError.confirmPasswordRequired'
+    }
+  )
+  .refine(data => data.password === data.confirm_password, {
+    path: ['confirm_password'],
+    message: 'authFormValidationError.passwordMismatch'
+  });
+
 export const addToCartSchema = z.object({
   cartId: z
     .string({ required_error: 'cart.errors.cartIdRequired' })

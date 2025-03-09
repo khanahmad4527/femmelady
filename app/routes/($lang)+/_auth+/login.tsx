@@ -2,6 +2,7 @@ import {
   Anchor,
   Button,
   Divider,
+  Flex,
   Group,
   Paper,
   PasswordInput,
@@ -18,7 +19,6 @@ import { createUserSession } from '~/auth/session.server';
 import FetcherError from '~/components/error/FetcherError';
 import InvalidProvider from '~/components/error/InvalidProvider';
 import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
-import Marquee from '~/components/Marquee';
 import SocialLogin from '~/components/SocialLogin';
 import { PARAMS } from '~/constant';
 import { useForm } from '~/hooks/useForm';
@@ -35,6 +35,7 @@ import {
 import { handleActionError } from '~/utils/error';
 
 import { Route } from './+types/login';
+import useTurnstileSize from '~/hooks/useTurnstileSize';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -126,8 +127,7 @@ const Login = () => {
   const t = useTranslation();
   const { currentLanguage, env, searchParams } =
     useOutletContext<OutletContext>();
-  const isCompact = useMediaQuery('(max-width: 22em)');
-  const turnstileSize = isCompact ? 'compact' : 'normal';
+  const turnstileSize = useTurnstileSize();
 
   const error = searchParams.get(PARAMS.error);
 
@@ -164,14 +164,8 @@ const Login = () => {
         my="lg"
       />
 
-      <Stack>
-        <Marquee>
-          <Text size="xl" c="yellow">
-            {t('common.continueWithGoogle')}
-          </Text>
-        </Marquee>
-
-        <Form method="POST" onSubmit={handleSubmit}>
+      <Form method="POST" onSubmit={handleSubmit}>
+        <Stack>
           <TextInput
             withAsterisk
             name={'email'}
@@ -191,19 +185,32 @@ const Login = () => {
             {...form.getInputProps('password')}
           />
 
-          <Group my={'md'} justify="space-between">
+          <Flex
+            gap="md"
+            justify="space-between"
+            align={{ base: 'unset', xs: 'end' }}
+            direction={{ base: 'column-reverse', xs: 'row' }}
+          >
             <Anchor
               component={Link}
               prefetch="intent"
-              to={href('/:lang?/register', { lang: currentLanguage })}
+              to={href('/:lang?/forgot-password', { lang: currentLanguage })}
             >
-              {t('login.accountRegister')}
+              {t('resetPassword.forgotPasswordQuestion')}
             </Anchor>
 
             <Button type="submit" loading={state === 'submitting'}>
               {t('login.login')}
             </Button>
-          </Group>
+          </Flex>
+
+          <Anchor
+            component={Link}
+            prefetch="intent"
+            to={href('/:lang?/register', { lang: currentLanguage })}
+          >
+            {t('login.accountRegister')}
+          </Anchor>
 
           <Turnstile
             siteKey={env?.TURNSTILE_SITE_KEY!}
@@ -214,8 +221,8 @@ const Login = () => {
               form.setFieldValue('cf-turnstile-response', token);
             }}
           />
-        </Form>
-      </Stack>
+        </Stack>
+      </Form>
 
       <FetcherError fetcher={fetcher} />
 

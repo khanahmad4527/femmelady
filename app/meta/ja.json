@@ -1,72 +1,121 @@
 {
   "/": [
-    { "title": "Unthaa - 数ではなく品質で築かれる" },
+    { "title": "FemmeLady - 数ではなく品質で築かれる" },
     {
       "description": "Unthaaで最高の製品をお得な価格で探しましょう。あらゆるニーズに応えるワンストップオンラインショップ。"
     },
-    { "og:title": "Unthaa - 数ではなく品質で築かれる" },
+    { "og:title": "FemmeLady - 数ではなく品質で築かれる" },
     {
       "og:description": "Unthaaで最新かつ最高の製品を発見してください。安心してショッピングをお楽しみください！"
     },
-    { "og:url": "https://unthaa.teicneo.com" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" },
+    { "og:url": "https://femmelady.store" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
     { "twitter:card": "summary" }
   ],
   "/products": [
-    { "title": "製品を探す - Unthaa" },
+    { "title": "製品を探す - FemmeLady" },
     {
       "description": "カテゴリを超えた幅広い製品をご覧ください。Unthaaで必要なものがすべて見つかります。"
     },
-    { "og:title": "製品を探す - Unthaa" },
+    { "og:title": "製品を探す - FemmeLady" },
     {
       "og:description": "Unthaaで他にない価格で幅広い製品を見つけましょう。"
     },
-    { "og:url": "https://unthaa.teicneo.com/ja/products" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/ja/products" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/checkout": [
-    { "title": "チェックアウト - 安全な支払い | Unthaa" },
+    { "title": "チェックアウト - 安全な支払い | FemmeLady" },
     {
       "description": "Unthaaでお気に入りの製品を安全にチェックアウト。簡単、迅速、安全な支払いオプション。"
     },
-    { "og:title": "チェックアウト - Unthaa" },
+    { "og:title": "チェックアウト - FemmeLady" },
     {
       "og:description": "Unthaaで迅速で信頼できるチェックアウトで安全に購入を完了しましょう。"
     },
-    { "og:url": "https://unthaa.teicneo.com/ja/checkout" }
+    { "og:url": "https://femmelady.store/ja/checkout" }
   ],
   "/payment": [
-    { "title": "支払い - 注文を完了 | Unthaa" },
+    { "title": "支払い - 注文を完了 | FemmeLady" },
     {
       "description": "Unthaaで安全に支払いを完了してください。信頼できる支払いオプションで取引を保護します。"
     },
-    { "og:title": "支払い - Unthaa" },
+    { "og:title": "支払い - FemmeLady" },
     {
       "og:description": "Unthaaで安心して支払いを完了。安全、迅速、簡単な支払いプロセス。"
     },
-    { "og:url": "https://unthaa.teicneo.com/ja/payment" }
+    { "og:url": "https://femmelady.store/ja/payment" }
   ],
   "/login": [
-    { "title": "アカウントにログイン - Unthaa" },
+    { "title": "アカウントにログイン - FemmeLady" },
     {
       "description": "Unthaaアカウントにログインして注文、ウィッシュリスト、パーソナライズされたおすすめを確認してください。"
     },
-    { "og:title": "ログイン - Unthaa" },
+    { "og:title": "ログイン - FemmeLady" },
     {
       "og:description": "Unthaaアカウントに安全にログインして、快適にショッピングを続けましょう。"
     },
-    { "og:url": "https://unthaa.teicneo.com/ja/login" }
+    { "og:url": "https://femmelady.store/ja/login" }
   ],
   "/register": [
     { "title": "アカウントを作成 - Unthaaに参加" },
     {
       "description": "無料のUnthaaアカウントに登録して、パーソナライズされたショッピング体験をお楽しみください。"
     },
-    { "og:title": "登録 - Unthaa" },
+    { "og:title": "登録 - FemmeLady" },
     {
       "og:description": "Unthaaでアカウントを作成して、特別なオファーやパーソナライズされたショッピングをお楽しみください。"
     },
-    { "og:url": "https://unthaa.teicneo.com/ja/register" }
+    { "og:url": "https://femmelady.store/ja/register" }
+  ],
+  "/forgot-password": [
+    { "title": "パスワードを忘れた - アカウントをリセット" },
+    {
+      "description": "パスワードを忘れましたか？ リセットリンクをリクエストして、安全にパスワードを変更し、アカウントへのアクセスを回復しましょう。"
+    },
+    { "og:title": "パスワードを忘れた - アカウントをリセット" },
+    {
+      "og:description": "安全なリセットリンクをリクエストして、簡単にパスワードをリセットしましょう。アカウントを安全に保ち、アクセス可能に。"
+    },
+    { "og:url": "https://femmelady.store/ja/forgot-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/reset-password": [
+    { "title": "パスワードのリセット - アカウントを保護" },
+    {
+      "description": "新しいパスワードを入力して、リセットプロセスを完了し、アカウントを保護しましょう。"
+    },
+    { "og:title": "パスワードのリセット - アカウントを保護" },
+    {
+      "og:description": "アカウントのアクセスを回復するために、新しいパスワードを設定してください。強力で安全なパスワードを使用してください。"
+    },
+    { "og:url": "https://femmelady.store/ja/reset-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/verify-email": [
+    { "title": "メール認証 - 登録を完了" },
+    {
+      "description": "メールアドレスを確認して、アカウントを有効化し、すべての機能を利用しましょう。"
+    },
+    { "og:title": "メール認証 - 登録を完了" },
+    {
+      "og:description": "メール内の認証リンクをクリックして、アカウントを有効化し、完全なアクセスを取得してください。"
+    },
+    { "og:url": "https://femmelady.store/ja/verify-email" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
   ],
   "/about-us": [
     { "title": "私たちについて - Unthaaを知る" },
@@ -77,33 +126,37 @@
     {
       "og:description": "Unthaaのストーリーと最高のショッピング体験を提供するための取り組みを発見してください。"
     },
-    { "og:url": "https://unthaa.teicneo.com/ja/about-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/ja/about-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/contact-us": [
-    { "title": "お問い合わせ - サポートしています | Unthaa" },
+    { "title": "お問い合わせ - サポートしています | FemmeLady" },
     {
       "description": "お困りですか？質問や懸念事項について、Unthaaのカスタマーサポートチームにご連絡ください。"
     },
-    { "og:title": "お問い合わせ - Unthaa" },
+    { "og:title": "お問い合わせ - FemmeLady" },
     {
       "og:description": "サポート、問い合わせ、またはフィードバックについてUnthaaにお問い合わせください。お手伝いします。"
     },
-    { "og:url": "https://unthaa.teicneo.com/ja/contact-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/ja/contact-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/privacy-policy": [
-    { "title": "プライバシーポリシー - データは安全です | Unthaa" },
+    { "title": "プライバシーポリシー - データは安全です | FemmeLady" },
     {
       "description": "Unthaaのプライバシーポリシーを読み、個人データの取り扱いと保護について理解してください。"
     },
-    { "og:title": "プライバシーポリシー - Unthaa" },
+    { "og:title": "プライバシーポリシー - FemmeLady" },
     {
       "og:description": "Unthaaでは、プライバシーを優先し、業界標準の慣行で情報を保護します。"
     },
-    { "og:url": "https://unthaa.teicneo.com/ja/privacy-policy" },
+    { "og:url": "https://femmelady.store/ja/privacy-policy" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/terms-of-service": [
@@ -111,25 +164,25 @@
     {
       "description": "Unthaaのご利用を規定するポリシーやルールについて学ぶために、利用規約をご覧ください。"
     },
-    { "og:title": "利用規約 - Unthaa" },
+    { "og:title": "利用規約 - FemmeLady" },
     {
       "og:description": "Unthaaでの権利と責任を概説する利用規約をご理解ください。"
     },
-    { "og:url": "https://unthaa.teicneo.com/ja/terms-of-service" },
+    { "og:url": "https://femmelady.store/ja/terms-of-service" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/faq": [
-    { "title": "よくある質問 - Unthaa" },
+    { "title": "よくある質問 - FemmeLady" },
     {
       "description": "Unthaaでのお買い物に関する最も一般的な質問への回答を見つけてください。助けはすぐそこです。"
     },
-    { "og:title": "よくある質問 - Unthaa" },
+    { "og:title": "よくある質問 - FemmeLady" },
     {
       "og:description": "Unthaaでの注文、支払い、配送などに関する一般的な質問への迅速な解決策を見つけてください。"
     },
-    { "og:url": "https://unthaa.teicneo.com/ja/faq" },
-    { "og:image": "https://unthaa.teicneo.com/assets/faq-og-image.jpg" }
+    { "og:url": "https://femmelady.store/ja/faq" },
+    { "og:image": "https://femmelady.store/assets/faq-og-image.jpg" }
   ]
 }

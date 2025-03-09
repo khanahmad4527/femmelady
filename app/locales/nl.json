@@ -39,7 +39,7 @@
       "privacyPolicy": "Privacybeleid",
       "termsOfService": "Gebruiksvoorwaarden"
     },
-    "copyright": "© {copyrightYear} Unthaa. Alle rechten voorbehouden.",
+    "copyright": "© {copyrightYear} FemmeLady. Alle rechten voorbehouden.",
     "signUpAgreement": "Door je aan te melden, ga je akkoord met ons {privacyPolicy} en {termsOfService}.",
     "privacyPolicy": "Privacybeleid",
     "termsOfService": "Gebruiksvoorwaarden",
@@ -68,12 +68,12 @@
     "continueWithGoogle": "Ga door met Google"
   },
   "login": {
-    "welcome": "Welkom bij Unthaa, log in met",
+    "welcome": "Welkom bij FemmeLady, log in met",
     "accountRegister": "Heb je nog geen account? Registreer je",
     "login": "Inloggen"
   },
   "register": {
-    "welcome": "Welkom bij Unthaa, registreer met",
+    "welcome": "Welkom bij FemmeLady, registreer met",
     "accountLogin": "Heb je al een account? Log in",
     "register": "Registreren",
     "includesNumber": "Bevat een cijfer",
@@ -81,7 +81,15 @@
     "includesUppercaseLetter": "Bevat een hoofdletter",
     "includesSpecialSymbol": "Bevat een speciaal symbool",
     "noSpacesAllowed": "Geen spaties toegestaan",
-    "includes8Char": "Bevat ten minste 8 tekens"
+    "includes8Char": "Bevat ten minste 8 tekens",
+    "registrationSuccessfulTitle": "Verificatie-e-mail verzonden",
+    "registrationSuccessfulDescription": "We hebben een verificatie-e-mail gestuurd naar uw geregistreerde e-mailadres. Controleer uw inbox (en spammap) en klik op de link om uw account te verifiëren. Als u het niet binnen enkele minuten ontvangt, kunt u een nieuwe aanvragen.",
+    "registrationRequestLimitTitle": "Limiet voor verificatieverzoeken bereikt.",
+    "registrationRequestLimitDescription": "Je hebt te veel verificatie-e-mails aangevraagd. Wacht even voordat je het opnieuw probeert.",
+    "verificationSuccessTitle": "Verificatie geslaagd!",
+    "verificationSuccessDescription": "Je e-mail is succesvol geverifieerd. Je kunt nu inloggen en beginnen met verkennen. Welkom aan boord!",
+    "invalidTokenTitle": "Ongeldige of verlopen verificatietoken",
+    "invalidTokenDescription": "De verificatietoken is ongeldig of verlopen. Vraag een nieuwe verificatie-e-mail aan en probeer het opnieuw."
   },
   "providerLoginFailed": {
     "title": "Fout bij Provider Authenticatie",
@@ -251,5 +259,18 @@
       "title": "Interne serverfout",
       "description": "Er is iets misgegaan. Probeer het later opnieuw."
     }
+  },
+  "resetPassword": {
+    "forgotPassword": "Wachtwoord vergeten",
+    "resetPassword": "Wachtwoord resetten",
+    "forgotPasswordQuestion": "Wachtwoord vergeten?",
+    "enterEmailForReset": "Voer uw e-mail in om een resetlink te ontvangen",
+    "backToLogin": "Terug naar de inlogpagina",
+    "resetPasswordLimitTitle": "Limiet voor wachtwoordresetverzoeken bereikt",
+    "resetPasswordLimitDescription": "Je hebt te veel wachtwoordreset-e-mails aangevraagd. Wacht even voordat je het opnieuw probeert.",
+    "resetPasswordEmailSentTitle": "Wachtwoord reset e-mail verzonden",
+    "resetPasswordEmailSentDescription": "We hebben je een e-mail gestuurd met een link om je wachtwoord te resetten. Controleer je inbox en klik op de knop in de e-mail om verder te gaan.",
+    "resetPasswordSuccessTitle": "Wachtwoord succesvol opnieuw ingesteld",
+    "resetPasswordSuccessDescription": "Je wachtwoord is succesvol bijgewerkt. Je kunt nu inloggen met je nieuwe wachtwoord."
   }
 }

@@ -1,4 +1,5 @@
 import {
+  Alert,
   Anchor,
   Button,
   Checkbox,
@@ -22,7 +23,6 @@ import { isAuthenticated } from '~/auth/auth.server';
 import FetcherError from '~/components/error/FetcherError';
 import InvalidProvider from '~/components/error/InvalidProvider';
 import ProviderLoginFailed from '~/components/error/ProviderLoginFailed';
-import Marquee from '~/components/Marquee';
 import PasswordComponent from '~/components/PasswordComponent';
 import SocialLogin from '~/components/SocialLogin';
 import { PARAMS } from '~/constant';
@@ -33,6 +33,13 @@ import { OutletContext } from '~/types';
 import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
 
 import { Route } from './+types/register';
+import { handleActionError, throwVerificationLimitError } from '~/utils/error';
+import { directus } from '~/server/directus';
+import { registerUser } from '@directus/sdk';
+import { validateTurnstile } from '~/server/turnstile';
+import { getUserIp, redisClient } from '~/server';
+import { getEnv } from '~/server/env';
+import useTurnstileSize from '~/hooks/useTurnstileSize';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -59,57 +66,73 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 };
 
 export const action: ActionFunction = async ({ request, params }) => {
-  return {};
-  // try {
-  //   const result = getValidLanguageOrRedirect({ params, request });
+  try {
+    const result = getValidLanguageOrRedirect({ params, request });
 
-  //   if (result instanceof Response) {
-  //     return result;
-  //   }
+    if (result instanceof Response) {
+      return result;
+    }
 
-  //   const currentLanguage = result;
+    const currentLanguage = result;
 
-  //   const formData = await request.formData();
+    const formData = await request.formData();
 
-  //   const data = Object.fromEntries(formData);
+    const data = Object.fromEntries(formData);
 
-  //   const validatedData = registerFormSchema.parse(data);
+    const validatedData = registerFormSchema.parse(data);
 
-  //   const outcome = await validateTurnstile({
-  //     request,
-  //     token: validatedData['cf-turnstile-response']
-  //   });
+    const outcome = await validateTurnstile({
+      request,
+      token: validatedData['cf-turnstile-response']
+    });
 
-  //   if (!outcome.success) {
-  //     return {
-  //       title: 'turnstile.errorTitle',
-  //       description: 'turnstile.errorDescription'
-  //     };
-  //   }
+    if (!outcome.success) {
+      return {
+        title: 'turnstile.errorTitle',
+        description: 'turnstile.errorDescription'
+      };
+    }
 
-  //   await directus.request(
-  //     createUser({
-  //       email: validatedData.email,
-  //       first_name: validatedData.first_name,
-  //       last_name: validatedData?.last_name,
-  //       password: validatedData.password
-  //     })
-  //   );
+    const email = validatedData.email;
 
-  //   return redirect(
-  //     buildLocalizedLink({
-  //       url: href('/:lang?', { lang: currentLanguage }),
-  //       paths: [PATHS.login]
-  //     })
-  //   );
-  // } catch (error) {
-  //   return handleActionError({ error, route: 'register' });
-  // }
+    const ip = getUserIp(request);
+
+    // Check rate limit before sending the verification email
+    const { allowed } = await redisClient.checkRateLimit(
+      'email-verification',
+      email,
+      ip!
+    );
+
+    if (!allowed) {
+      return throwVerificationLimitError();
+    }
+
+    const env = getEnv(process.env);
+
+    await directus.request(
+      registerUser(email, validatedData.password, {
+        first_name: validatedData.first_name,
+        last_name: validatedData.last_name,
+        verification_url: buildLocalizedLink({
+          origin: env.APP_URL,
+          url: href('/:lang?/verify-email', {
+            lang: currentLanguage
+          })
+        })
+      })
+    );
+
+    return { title: 'REGISTRATION_SUCCESSFUL' };
+  } catch (error) {
+    return handleActionError({ error, route: 'register' });
+  }
 };
 
 const register = () => {
   const { currentLanguage, searchParams, env } =
     useOutletContext<OutletContext>();
+  const turnstileSize = useTurnstileSize();
 
   const t = useTranslation();
 
@@ -127,7 +150,7 @@ const register = () => {
       password: '',
       confirm_password: '',
       terms: 'on',
-      'cf-turnstile-response': 'XXXXX-XXXXX-XXXXX-XXXXX' // To by pass the form validation
+      'cf-turnstile-response': ''
     }
   });
 
@@ -143,23 +166,14 @@ const register = () => {
       <Text size="lg" fw={500}>
         {t('register.welcome')}
       </Text>
-
       <SocialLogin from={'register'} />
-
       <Divider
         label={t('authForm.continueWithEmail')}
         labelPosition="center"
         my="lg"
       />
-
       <Form method="POST" onSubmit={handleSubmit}>
         <Stack>
-          <Marquee>
-            <Text size="xl" c="yellow">
-              {t('common.continueWithGoogle')}
-            </Text>
-          </Marquee>
-
           <Group align={'start'} grow>
             <TextInput
               withAsterisk
@@ -185,7 +199,6 @@ const register = () => {
             placeholder="jhon@email.com"
             key={form.key('email')}
             {...form.getInputProps('email')}
-            disabled //TODO: remove later, when email verification is implemented
           />
 
           <PasswordComponent form={form} />
@@ -206,24 +219,35 @@ const register = () => {
               {t('register.accountLogin')}
             </Anchor>
             <Button type="submit" loading={state !== 'idle'}>
-              {' '}
               {t('register.register')}
             </Button>
           </Group>
-        </Stack>
 
-        <Turnstile
-          siteKey={env?.TURNSTILE_SITE_KEY!}
-          options={{
-            size: 'invisible'
-          }}
-        />
+          <Turnstile
+            siteKey={env?.TURNSTILE_SITE_KEY!}
+            options={{
+              size: turnstileSize
+            }}
+            onSuccess={token => {
+              form.setFieldValue('cf-turnstile-response', token);
+            }}
+          />
+        </Stack>
       </Form>
 
       <FetcherError fetcher={fetcher} />
 
-      {error === 'invalidProvider' && <InvalidProvider t={t} />}
+      {fetcher.data?.title === 'REGISTRATION_SUCCESSFUL' && (
+        <Alert
+          variant="light"
+          color="green"
+          title={t('register.registrationSuccessfulTitle')}
+        >
+          {t('register.registrationSuccessfulDescription')}
+        </Alert>
+      )}
 
+      {error === 'invalidProvider' && <InvalidProvider t={t} />}
       {error === 'providerLoginFailed' && <ProviderLoginFailed t={t} />}
     </Paper>
   );

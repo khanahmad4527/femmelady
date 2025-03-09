@@ -39,7 +39,7 @@
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service"
     },
-    "copyright": "© {copyrightYear} Unthaa. All rights reserved.",
+    "copyright": "© {copyrightYear} FemmeLady. All rights reserved.",
     "signUpAgreement": "By signing up, you agree to our {privacyPolicy} and {termsOfService}.",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
@@ -68,12 +68,12 @@
     "continueWithGoogle": "Please continue with Google"
   },
   "login": {
-    "welcome": "Welcome to Unthaa, login with",
+    "welcome": "Welcome to FemmeLady, login with",
     "accountRegister": "Don't have an account? Register",
     "login": "Login"
   },
   "register": {
-    "welcome": "Welcome to Unthaa, register with",
+    "welcome": "Welcome to FemmeLady, register with",
     "accountLogin": " Already have an account? Login",
     "register": "Register",
     "includesNumber": "Includes number",
@@ -81,7 +81,15 @@
     "includesUppercaseLetter": "Includes uppercase letter",
     "includesSpecialSymbol": "Includes special symbol",
     "noSpacesAllowed": "No spaces allowed",
-    "includes8Char": "Includes at least 8 characters"
+    "includes8Char": "Includes at least 8 characters",
+    "registrationSuccessfulTitle": "Verification Email Sent",
+    "registrationSuccessfulDescription": "We have sent a verification email to your registered email address. Please check your inbox (and spam folder) and click the link to verify your account. If you don’t receive it within a few minutes, you can request a new one.",
+    "registrationRequestLimitTitle": "Verification request limit reached.",
+    "registrationRequestLimitDescription": "You’ve requested too many verification emails. Please wait before trying again.",
+    "verificationSuccessTitle": "Verification Successful!",
+    "verificationSuccessDescription": "Your email has been successfully verified. You can now log in and start exploring. Welcome aboard!",
+    "invalidTokenTitle": "Invalid or Expired Verification Token",
+    "invalidTokenDescription": "The verification token is either invalid or has expired. Please request a new verification email and try again."
   },
   "providerLoginFailed": {
     "title": "Provider Authentication Failed",
@@ -251,5 +259,18 @@
       "title": "Internal Server Error",
       "description": "Something went wrong. Please try again later."
     }
+  },
+  "resetPassword": {
+    "forgotPassword": "Forgot Password",
+    "resetPassword": "Reset Password",
+    "forgotPasswordQuestion": "Forgot your password?",
+    "enterEmailForReset": "Enter your email to get a reset link",
+    "backToLogin": "Back to the login page",
+    "resetPasswordLimitTitle": "Password Reset Request Limit Reached",
+    "resetPasswordLimitDescription": "You’ve requested too many password reset emails. Please wait before trying again.",
+    "resetPasswordEmailSentTitle": "Password Reset Email Sent",
+    "resetPasswordEmailSentDescription": "We've sent you an email with a link to reset your password. Please check your inbox and click the button in the email to proceed.",
+    "resetPasswordSuccessTitle": "Password Reset Successful",
+    "resetPasswordSuccessDescription": "Your password has been successfully updated. You can now log in with your new password."
   }
 }

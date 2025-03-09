@@ -1,134 +1,190 @@
 {
   "/": [
-    { "title": "Unthaa - Gebouwd op Kwaliteit, Niet op Kwantiteit" },
+    { "title": "FemmeLady - Gebouwd op Kwaliteit, Niet op Kwantiteit" },
     {
-      "description": "Ontdek Unthaa voor de beste producten tegen geweldige prijzen. Jouw online winkel voor al jouw behoeften."
+      "description": "Ontdek FemmeLady voor de beste producten tegen geweldige prijzen. Jouw online winkel voor al jouw behoeften."
     },
-    { "og:title": "Unthaa - Gebouwd op Kwaliteit, Niet op Kwantiteit" },
+    { "og:title": "FemmeLady - Gebouwd op Kwaliteit, Niet op Kwantiteit" },
     {
-      "og:description": "Ontdek de nieuwste en beste producten bij Unthaa. Winkel met vertrouwen!"
+      "og:description": "Ontdek de nieuwste en beste producten bij FemmeLady. Winkel met vertrouwen!"
     },
-    { "og:url": "https://unthaa.teicneo.com" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" },
+    { "og:url": "https://femmelady.store" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
     { "twitter:card": "summary" }
   ],
   "/products": [
-    { "title": "Bekijk Producten - Unthaa" },
+    { "title": "Bekijk Producten - FemmeLady" },
     {
-      "description": "Bekijk ons brede assortiment aan producten in verschillende categorieën. Vind alles wat je nodig hebt bij Unthaa."
+      "description": "Bekijk ons brede assortiment aan producten in verschillende categorieën. Vind alles wat je nodig hebt bij FemmeLady."
     },
-    { "og:title": "Bekijk Producten - Unthaa" },
+    { "og:title": "Bekijk Producten - FemmeLady" },
     {
-      "og:description": "Ontdek een brede selectie producten tegen onverslaanbare prijzen bij Unthaa."
+      "og:description": "Ontdek een brede selectie producten tegen onverslaanbare prijzen bij FemmeLady."
     },
-    { "og:url": "https://unthaa.teicneo.com/nl/products" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/nl/products" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/checkout": [
-    { "title": "Afrekenen - Veilige Betaling | Unthaa" },
+    { "title": "Afrekenen - Veilige Betaling | FemmeLady" },
     {
-      "description": "Reken je favoriete producten veilig af bij Unthaa. Gemakkelijke, snelle en veilige betaalopties."
+      "description": "Reken je favoriete producten veilig af bij FemmeLady. Gemakkelijke, snelle en veilige betaalopties."
     },
-    { "og:title": "Afrekenen - Unthaa" },
+    { "og:title": "Afrekenen - FemmeLady" },
     {
-      "og:description": "Rond je aankoop veilig af bij Unthaa met een snelle en betrouwbare afrekenoptie."
+      "og:description": "Rond je aankoop veilig af bij FemmeLady met een snelle en betrouwbare afrekenoptie."
     },
-    { "og:url": "https://unthaa.teicneo.com/nl/checkout" }
+    { "og:url": "https://femmelady.store/nl/checkout" }
   ],
   "/payment": [
-    { "title": "Betaling - Rond Je Bestelling Af | Unthaa" },
+    { "title": "Betaling - Rond Je Bestelling Af | FemmeLady" },
     {
-      "description": "Rond je betaling veilig af bij Unthaa. Vertrouwde betaalopties voor veilige transacties."
+      "description": "Rond je betaling veilig af bij FemmeLady. Vertrouwde betaalopties voor veilige transacties."
     },
-    { "og:title": "Betaling - Unthaa" },
+    { "og:title": "Betaling - FemmeLady" },
     {
-      "og:description": "Betaal met vertrouwen bij Unthaa. Een veilig, snel en eenvoudig betalingsproces."
+      "og:description": "Betaal met vertrouwen bij FemmeLady. Een veilig, snel en eenvoudig betalingsproces."
     },
-    { "og:url": "https://unthaa.teicneo.com/nl/payment" }
+    { "og:url": "https://femmelady.store/nl/payment" }
   ],
   "/login": [
-    { "title": "Inloggen op Je Account - Unthaa" },
+    { "title": "Inloggen op Je Account - FemmeLady" },
     {
-      "description": "Log in op je Unthaa-account om toegang te krijgen tot je bestellingen, verlanglijstje en persoonlijke aanbevelingen."
+      "description": "Log in op je FemmeLady-account om toegang te krijgen tot je bestellingen, verlanglijstje en persoonlijke aanbevelingen."
     },
-    { "og:title": "Inloggen - Unthaa" },
+    { "og:title": "Inloggen - FemmeLady" },
     {
-      "og:description": "Log veilig in op je Unthaa-account en winkel eenvoudig verder."
+      "og:description": "Log veilig in op je FemmeLady-account en winkel eenvoudig verder."
     },
-    { "og:url": "https://unthaa.teicneo.com/nl/login" }
+    { "og:url": "https://femmelady.store/nl/login" }
   ],
   "/register": [
-    { "title": "Maak een Account Aan - Word Lid van Unthaa" },
+    { "title": "Maak een Account Aan - Word Lid van FemmeLady" },
     {
-      "description": "Meld je gratis aan voor een Unthaa-account en geniet van een gepersonaliseerde winkelervaring."
+      "description": "Meld je gratis aan voor een FemmeLady-account en geniet van een gepersonaliseerde winkelervaring."
     },
-    { "og:title": "Registreren - Unthaa" },
+    { "og:title": "Registreren - FemmeLady" },
     {
-      "og:description": "Maak een account aan bij Unthaa om toegang te krijgen tot exclusieve aanbiedingen en een unieke winkelervaring."
+      "og:description": "Maak een account aan bij FemmeLady om toegang te krijgen tot exclusieve aanbiedingen en een unieke winkelervaring."
     },
-    { "og:url": "https://unthaa.teicneo.com/nl/register" }
+    { "og:url": "https://femmelady.store/nl/register" }
+  ],
+
+  "/forgot-password": [
+    { "title": "Wachtwoord vergeten - Reset je account" },
+    {
+      "description": "Wachtwoord vergeten? Vraag een resetlink aan om je wachtwoord veilig te wijzigen en weer toegang te krijgen tot je account."
+    },
+    { "og:title": "Wachtwoord vergeten - Reset je account" },
+    {
+      "og:description": "Reset eenvoudig je wachtwoord door een veilige resetlink aan te vragen. Houd je account veilig en toegankelijk."
+    },
+    { "og:url": "https://femmelady.store/nl/forgot-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/reset-password": [
+    { "title": "Wachtwoord resetten - Beveilig je account" },
+    {
+      "description": "Voer je nieuwe wachtwoord in om het resetproces te voltooien en je account te beveiligen."
+    },
+    { "og:title": "Wachtwoord resetten - Beveilig je account" },
+    {
+      "og:description": "Stel een nieuw wachtwoord in voor je account om toegang te herstellen. Zorg ervoor dat je een sterk en veilig wachtwoord gebruikt."
+    },
+    { "og:url": "https://femmelady.store/nl/reset-password" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
+  ],
+  "/verify-email": [
+    { "title": "Verifieer je e-mail - Voltooi je registratie" },
+    {
+      "description": "Bevestig je e-mailadres om je account te activeren en toegang te krijgen tot alle functies."
+    },
+    { "og:title": "Verifieer je e-mail - Voltooi je registratie" },
+    {
+      "og:description": "Klik op de verificatielink in je e-mail om je account te activeren en volledige toegang te krijgen."
+    },
+    { "og:url": "https://femmelady.store/nl/verify-email" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    },
+    { "twitter:card": "summary" }
   ],
   "/about-us": [
-    { "title": "Over Ons - Leer Unthaa Kennen" },
+    { "title": "Over Ons - Leer FemmeLady Kennen" },
     {
-      "description": "Kom meer te weten over Unthaa, onze waarden, missie en onze toewijding aan het leveren van kwaliteitsproducten en -diensten."
+      "description": "Kom meer te weten over FemmeLady, onze waarden, missie en onze toewijding aan het leveren van kwaliteitsproducten en -diensten."
     },
-    { "og:title": "Over Ons - Leer Unthaa Kennen" },
+    { "og:title": "Over Ons - Leer FemmeLady Kennen" },
     {
-      "og:description": "Ontdek het verhaal van Unthaa en onze toewijding aan het bieden van de beste winkelervaring."
+      "og:description": "Ontdek het verhaal van FemmeLady en onze toewijding aan het bieden van de beste winkelervaring."
     },
-    { "og:url": "https://unthaa.teicneo.com/nl/about-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/nl/about-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/contact-us": [
-    { "title": "Neem Contact Op - Wij Zijn Hier Om Te Helpen | Unthaa" },
+    { "title": "Neem Contact Op - Wij Zijn Hier Om Te Helpen | FemmeLady" },
     {
-      "description": "Hulp nodig? Neem contact op met het klantenserviceteam van Unthaa voor vragen of zorgen."
+      "description": "Hulp nodig? Neem contact op met het klantenserviceteam van FemmeLady voor vragen of zorgen."
     },
-    { "og:title": "Neem Contact Op - Unthaa" },
+    { "og:title": "Neem Contact Op - FemmeLady" },
     {
-      "og:description": "Neem contact op met Unthaa voor ondersteuning, vragen of feedback. We staan klaar om je te helpen."
+      "og:description": "Neem contact op met FemmeLady voor ondersteuning, vragen of feedback. We staan klaar om je te helpen."
     },
-    { "og:url": "https://unthaa.teicneo.com/nl/contact-us" },
-    { "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png" }
+    { "og:url": "https://femmelady.store/nl/contact-us" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ],
   "/privacy-policy": [
-    { "title": "Privacybeleid - Jouw Gegevens Zijn Veilig Bij Ons | Unthaa" },
     {
-      "description": "Lees het privacybeleid van Unthaa om te begrijpen hoe wij jouw persoonlijke gegevens beheren en beschermen."
+      "title": "Privacybeleid - Jouw Gegevens Zijn Veilig Bij Ons | FemmeLady"
     },
-    { "og:title": "Privacybeleid - Unthaa" },
     {
-      "og:description": "Bij Unthaa geven we prioriteit aan jouw privacy en beschermen we jouw gegevens met branchestandaard praktijken."
+      "description": "Lees het privacybeleid van FemmeLady om te begrijpen hoe wij jouw persoonlijke gegevens beheren en beschermen."
     },
-    { "og:url": "https://unthaa.teicneo.com/nl/privacy-policy" },
+    { "og:title": "Privacybeleid - FemmeLady" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:description": "Bij FemmeLady geven we prioriteit aan jouw privacy en beschermen we jouw gegevens met branchestandaard praktijken."
+    },
+    { "og:url": "https://femmelady.store/nl/privacy-policy" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/terms-of-service": [
-    { "title": "Servicevoorwaarden - Jouw Overeenkomst Met Unthaa" },
+    { "title": "Servicevoorwaarden - Jouw Overeenkomst Met FemmeLady" },
     {
-      "description": "Lees onze servicevoorwaarden om meer te weten te komen over het beleid en de regels die jouw gebruik van Unthaa regelen."
+      "description": "Lees onze servicevoorwaarden om meer te weten te komen over het beleid en de regels die jouw gebruik van FemmeLady regelen."
     },
-    { "og:title": "Servicevoorwaarden - Unthaa" },
+    { "og:title": "Servicevoorwaarden - FemmeLady" },
     {
-      "og:description": "Begrijp de voorwaarden die jouw rechten en verantwoordelijkheden bij Unthaa beschrijven."
+      "og:description": "Begrijp de voorwaarden die jouw rechten en verantwoordelijkheden bij FemmeLady beschrijven."
     },
-    { "og:url": "https://unthaa.teicneo.com/nl/terms-of-service" },
+    { "og:url": "https://femmelady.store/nl/terms-of-service" },
     {
-      "og:image": "https://unthaa-assets.teicneo.com/assets/unthaa-logo.png"
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
   ],
   "/faq": [
-    { "title": "Veelgestelde Vragen - Unthaa" },
+    { "title": "Veelgestelde Vragen - FemmeLady" },
     {
-      "description": "Vind antwoorden op de meest gestelde vragen over winkelen bij Unthaa. Hulp is slechts één klik verwijderd."
+      "description": "Vind antwoorden op de meest gestelde vragen over winkelen bij FemmeLady. Hulp is slechts één klik verwijderd."
     },
-    { "og:title": "Veelgestelde Vragen - Unthaa" },
+    { "og:title": "Veelgestelde Vragen - FemmeLady" },
     {
-      "og:description": "Vind snelle oplossingen voor veelvoorkomende vragen over bestellingen, betalingen, levering en meer bij Unthaa."
+      "og:description": "Vind snelle oplossingen voor veelvoorkomende vragen over bestellingen, betalingen, levering en meer bij FemmeLady."
     },
-    { "og:url": "https://unthaa.teicneo.com/nl/faq" }
+    { "og:url": "https://femmelady.store/nl/faq" }
   ]
 }
