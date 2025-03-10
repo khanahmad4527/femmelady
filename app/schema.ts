@@ -43,8 +43,8 @@ export const registerFormSchema = z
       .transform(value => value.trim()),
     last_name: z
       .string()
-      .optional()
-      .transform(value => (value ? value.trim() : value)),
+      .min(2, { message: 'authFormValidationError.lastNameMin' })
+      .transform(value => value.trim()),
     email: emailSchema,
     password: passwordSchema,
     confirm_password: z.string().transform(value => value.trim()),
