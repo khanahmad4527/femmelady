@@ -97,6 +97,8 @@ export const action: ActionFunction = async ({ request, params }) => {
 
     const ip = getUserIp(request);
 
+    console.log({ ip });
+
     // Check rate limit before sending the verification email
     const { allowed } = await redisClient.checkRateLimit(
       'email-verification',
@@ -185,6 +187,7 @@ const register = () => {
             />
 
             <TextInput
+              withAsterisk
               label={t('authForm.lastName')}
               name="last_name"
               placeholder="Doe"
