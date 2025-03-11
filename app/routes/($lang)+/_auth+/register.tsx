@@ -10,7 +10,6 @@ import {
   Text,
   TextInput
 } from '@mantine/core';
-import { Turnstile } from '@marsidev/react-turnstile';
 import {
   ActionFunction,
   href,
@@ -39,7 +38,7 @@ import { registerUser } from '@directus/sdk';
 import { validateTurnstile } from '~/server/turnstile';
 import { getUserIp, redisClient } from '~/server';
 import { getEnv } from '~/server/env';
-import useTurnstileSize from '~/hooks/useTurnstileSize';
+import CFTurnstile from '~/components/CFTurnstile';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -97,8 +96,6 @@ export const action: ActionFunction = async ({ request, params }) => {
 
     const ip = getUserIp(request);
 
-    console.log({ ip });
-
     // Check rate limit before sending the verification email
     const { allowed } = await redisClient.checkRateLimit(
       'email-verification',
@@ -132,9 +129,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 };
 
 const register = () => {
-  const { currentLanguage, searchParams, env } =
-    useOutletContext<OutletContext>();
-  const turnstileSize = useTurnstileSize();
+  const { currentLanguage, searchParams } = useOutletContext<OutletContext>();
 
   const t = useTranslation();
 
@@ -226,15 +221,7 @@ const register = () => {
             </Button>
           </Group>
 
-          <Turnstile
-            siteKey={env?.TURNSTILE_SITE_KEY!}
-            options={{
-              size: turnstileSize
-            }}
-            onSuccess={token => {
-              form.setFieldValue('cf-turnstile-response', token);
-            }}
-          />
+          <CFTurnstile fetcher={fetcher} form={form} state={state} />
         </Stack>
       </Form>
 

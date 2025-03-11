@@ -13,20 +13,18 @@ import {
   TextInput,
   Title
 } from '@mantine/core';
-import { Turnstile } from '@marsidev/react-turnstile';
-import { ActionFunction, href, Link, useOutletContext } from 'react-router';
+import { ActionFunction, href, Link } from 'react-router';
+import CFTurnstile from '~/components/CFTurnstile';
 import FetcherError from '~/components/error/FetcherError';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { useForm } from '~/hooks/useForm';
 import useTranslation from '~/hooks/useTranslation';
-import useTurnstileSize from '~/hooks/useTurnstileSize';
 import { IconArrowLeft } from '~/icons';
 import { forgotPasswordFormSchema } from '~/schema';
 import { getUserIp, redisClient } from '~/server';
 import { directus } from '~/server/directus';
 import { getEnv } from '~/server/env';
 import { validateTurnstile } from '~/server/turnstile';
-import { OutletContext } from '~/types';
 import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
 import { handleActionError, throwResetPasswordLimitError } from '~/utils/error';
 
@@ -95,10 +93,8 @@ export const action: ActionFunction = async ({ request, params }) => {
 };
 
 const forgotPassword = () => {
-  const { env } = useOutletContext<OutletContext>();
   const { currentLanguage } = useCurrentLanguage();
   const t = useTranslation();
-  const turnstileSize = useTurnstileSize();
 
   const { Form, form, state, fetcher, handleSubmit } = useForm<{
     title: string;
@@ -157,15 +153,7 @@ const forgotPassword = () => {
               </Button>
             </Flex>
 
-            <Turnstile
-              siteKey={env?.TURNSTILE_SITE_KEY!}
-              options={{
-                size: turnstileSize
-              }}
-              onSuccess={token => {
-                form.setFieldValue('cf-turnstile-response', token);
-              }}
-            />
+            <CFTurnstile fetcher={fetcher} form={form} state={state} />
           </Stack>
         </Form>
 

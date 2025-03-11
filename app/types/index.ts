@@ -3,10 +3,10 @@ import { SetURLSearchParams } from 'react-router';
 import { components } from './collections';
 
 export type Env = {
-  DIRECTUS_URL?: string;
-  APP_URL?: string;
-  TURNSTILE_SITE_KEY?: string;
-  CDN_URL?: string;
+  DIRECTUS_URL: string;
+  APP_URL: string;
+  TURNSTILE_SITE_KEY: string;
+  CDN_URL: string;
 };
 export interface OutletContext {
   isLoggedIn: boolean;

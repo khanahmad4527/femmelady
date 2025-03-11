@@ -1,4 +1,4 @@
-import { envSchema } from "~/schema";
+import { envSchema } from '~/schema';
 
 /**
  * This function only export env variables that are going to be use on client side

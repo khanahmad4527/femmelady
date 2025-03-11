@@ -10,7 +10,7 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import { href, Link } from 'react-router';
 
-import { CATEGORIES_WITH_ID_MAP } from '~/constant';
+import { CATEGORIES_WITH_ID_MAP, PARAMS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import useCurrentUrl from '~/hooks/useCurrentUrl';
 import useHeaderFooterContext from '~/hooks/useHeaderFooterContext';
@@ -25,6 +25,7 @@ import LanguageSwitcher from './LanguageSwitcher';
 import Logo from './Logo';
 import MobileDrawer from './MobileDrawer';
 import TopSearchBar from './TopSearchBar';
+import { useSearchParams } from 'react-router';
 
 const Header = () => {
   const [
@@ -40,7 +41,11 @@ const Header = () => {
   const t = useTranslation();
   const { currentLanguage } = useCurrentLanguage();
   const headerFooterContext = useHeaderFooterContext();
-  const { currentUrl } = useCurrentUrl();
+  const {
+    currentUrl,
+    location: { pathname }
+  } = useCurrentUrl();
+  const [searchParams] = useSearchParams();
 
   const { isLoggedIn, cartCount, locale } = headerFooterContext;
 
@@ -49,9 +54,13 @@ const Header = () => {
       id: 'a3f5c2e8-9d4b-46f1-8b47-c1d9a7f83412',
       link: buildLocalizedLink({
         url: href('/:lang?/login', { lang: currentLanguage }),
-        queryParams: {
-          'redirect-to': currentUrl!
-        }
+        // If the current url includes products in the pathname then only add, else not
+        ...(pathname.includes('products') && {
+          queryParams: {
+            'redirect-to':
+              searchParams.get(PARAMS.redirectTo) ?? currentUrl ?? ''
+          }
+        })
       }),
       label: t('login.login')
     },
@@ -59,9 +68,11 @@ const Header = () => {
       id: 'b7e3f6a2-d8c1-44e9-b519-e7c5a4b39127',
       link: buildLocalizedLink({
         url: href('/:lang?/register', { lang: currentLanguage }),
-        queryParams: {
-          'redirect-to': currentUrl!
-        }
+        ...(searchParams.has(PARAMS.redirectTo) && {
+          queryParams: {
+            'redirect-to': searchParams.get(PARAMS.redirectTo) ?? ''
+          }
+        })
       }),
       label: t('register.register')
     }

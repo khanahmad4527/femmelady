@@ -11,7 +11,7 @@ const useCurrentUrl = () => {
     setCurrentUrl(url.toString());
   }, [location]);
 
-  return { currentUrl, setCurrentUrl };
+  return { currentUrl, setCurrentUrl, location };
 };
 
 export default useCurrentUrl;

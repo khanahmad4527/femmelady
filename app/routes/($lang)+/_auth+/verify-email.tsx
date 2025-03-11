@@ -22,7 +22,7 @@ export const ErrorBoundary = () => {
 
   return (
     <Alert
-      w="max-content"
+      w="100%"
       variant="light"
       color="red"
       title={t('register.invalidTokenTitle')}
@@ -37,7 +37,7 @@ const verifyEmail = () => {
   const { currentLanguage } = useCurrentLanguage();
 
   return (
-    <Stack w="max-content">
+    <Stack w="100%">
       <Alert
         variant="light"
         color="green"

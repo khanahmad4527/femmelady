@@ -1,14 +1,11 @@
 import { Alert, Anchor, Box, Button, Group, Paper, Stack } from '@mantine/core';
-import { Turnstile } from '@marsidev/react-turnstile';
-import { href, useOutletContext } from 'react-router';
+import { href } from 'react-router';
 import { Link } from 'react-router';
 import PasswordComponent from '~/components/PasswordComponent';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
 import { useForm } from '~/hooks/useForm';
 import useTranslation from '~/hooks/useTranslation';
-import useTurnstileSize from '~/hooks/useTurnstileSize';
 import { resetPasswordFormSchema } from '~/schema';
-import { OutletContext } from '~/types';
 import { Route } from './+types/reset-password';
 import { directus } from '~/server/directus';
 import { passwordReset } from '@directus/sdk';
@@ -16,6 +13,7 @@ import { invalidTokenError } from '~/utils/error';
 import { getValidLanguageOrRedirect } from '~/utils';
 import { validateTurnstile } from '~/server/turnstile';
 import FetcherError from '~/components/error/FetcherError';
+import CFTurnstile from '~/components/CFTurnstile';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const url = new URL(request.url);
@@ -98,10 +96,8 @@ export const ErrorBoundary = ({ error }: Route.ErrorBoundaryProps) => {
 };
 
 const resetPassword = () => {
-  const { env } = useOutletContext<OutletContext>();
   const { currentLanguage } = useCurrentLanguage();
   const t = useTranslation();
-  const turnstileSize = useTurnstileSize();
 
   const { Form, form, state, fetcher, handleSubmit } = useForm<{
     title: string;
@@ -141,15 +137,7 @@ const resetPassword = () => {
             </Button>
           </Group>
 
-          <Turnstile
-            siteKey={env?.TURNSTILE_SITE_KEY!}
-            options={{
-              size: turnstileSize
-            }}
-            onSuccess={token => {
-              form.setFieldValue('cf-turnstile-response', token);
-            }}
-          />
+          <CFTurnstile fetcher={fetcher} form={form} state={state} />
         </Stack>
       </Form>
 
