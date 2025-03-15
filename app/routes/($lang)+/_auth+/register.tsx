@@ -32,13 +32,18 @@ import { OutletContext } from '~/types';
 import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
 
 import { Route } from './+types/register';
-import { handleActionError, throwVerificationLimitError } from '~/utils/error';
+import {
+  handleActionError,
+  throwDisposableEmailError,
+  throwVerificationLimitError
+} from '~/utils/error';
 import { directus } from '~/server/directus';
 import { registerUser } from '@directus/sdk';
 import { validateTurnstile } from '~/server/turnstile';
 import { getUserIp, redisClient } from '~/server';
 import { getEnv } from '~/server/env';
 import CFTurnstile from '~/components/CFTurnstile';
+import { isDisposableEmail } from '~/server/disposable';
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
   const result = getValidLanguageOrRedirect({ params, request });
@@ -80,6 +85,12 @@ export const action: ActionFunction = async ({ request, params }) => {
 
     const validatedData = registerFormSchema.parse(data);
 
+    const email = validatedData.email;
+
+    if (isDisposableEmail(email)) {
+      return throwDisposableEmailError();
+    }
+
     const outcome = await validateTurnstile({
       request,
       token: validatedData['cf-turnstile-response']
@@ -91,8 +102,6 @@ export const action: ActionFunction = async ({ request, params }) => {
         description: 'turnstile.errorDescription'
       };
     }
-
-    const email = validatedData.email;
 
     const ip = getUserIp(request);
 

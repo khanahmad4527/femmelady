@@ -23,10 +23,15 @@ import { IconArrowLeft } from '~/icons';
 import { forgotPasswordFormSchema } from '~/schema';
 import { getUserIp, redisClient } from '~/server';
 import { directus } from '~/server/directus';
+import { isDisposableEmail } from '~/server/disposable';
 import { getEnv } from '~/server/env';
 import { validateTurnstile } from '~/server/turnstile';
 import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
-import { handleActionError, throwResetPasswordLimitError } from '~/utils/error';
+import {
+  handleActionError,
+  throwDisposableEmailError,
+  throwResetPasswordLimitError
+} from '~/utils/error';
 
 export const action: ActionFunction = async ({ request, params }) => {
   try {
@@ -44,6 +49,12 @@ export const action: ActionFunction = async ({ request, params }) => {
 
     const validatedData = forgotPasswordFormSchema.parse(data);
 
+    const email = validatedData.email;
+
+    if (isDisposableEmail(email)) {
+      return throwDisposableEmailError();
+    }
+
     const outcome = await validateTurnstile({
       request,
       token: validatedData['cf-turnstile-response']
@@ -55,8 +66,6 @@ export const action: ActionFunction = async ({ request, params }) => {
         description: 'turnstile.errorDescription'
       };
     }
-
-    const email = validatedData.email;
 
     const ip = getUserIp(request);
 

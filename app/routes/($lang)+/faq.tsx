@@ -16,6 +16,10 @@ import { getLanguageCode } from '~/utils';
 
 import { Route } from './+types/faq';
 
+export const shouldRevalidate = () => {
+  return false;
+};
+
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const languageCode = getLanguageCode(params);
 

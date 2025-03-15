@@ -89,7 +89,9 @@
     "verificationSuccessTitle": "Verificatie geslaagd!",
     "verificationSuccessDescription": "Je e-mail is succesvol geverifieerd. Je kunt nu inloggen en beginnen met verkennen. Welkom aan boord!",
     "invalidTokenTitle": "Ongeldige of verlopen verificatietoken",
-    "invalidTokenDescription": "De verificatietoken is ongeldig of verlopen. Vraag een nieuwe verificatie-e-mail aan en probeer het opnieuw."
+    "invalidTokenDescription": "De verificatietoken is ongeldig of verlopen. Vraag een nieuwe verificatie-e-mail aan en probeer het opnieuw.",
+    "disposableEmailNotAllowedDescription": "Wij staan geen tijdelijke e-mailadressen toe. Gebruik een echt e-mailadres voor de beveiliging van je account.",
+    "disposableEmailNotAllowedDescriptionTitle": "Tijdelijke e-mails zijn niet toegestaan"
   },
   "providerLoginFailed": {
     "title": "Fout bij Provider Authenticatie",

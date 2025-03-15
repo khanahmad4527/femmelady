@@ -89,7 +89,9 @@
     "verificationSuccessTitle": "Verification Successful!",
     "verificationSuccessDescription": "Your email has been successfully verified. You can now log in and start exploring. Welcome aboard!",
     "invalidTokenTitle": "Invalid or Expired Verification Token",
-    "invalidTokenDescription": "The verification token is either invalid or has expired. Please request a new verification email and try again."
+    "invalidTokenDescription": "The verification token is either invalid or has expired. Please request a new verification email and try again.",
+    "disposableEmailNotAllowedDescription": "We do not allow disposable email addresses. Please use a real email for account security.",
+    "disposableEmailNotAllowedDescriptionTitle": "Disposable Emails Are Not Allowed"
   },
   "providerLoginFailed": {
     "title": "Provider Authentication Failed",

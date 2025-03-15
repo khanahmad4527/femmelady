@@ -1,9 +1,27 @@
 import { z } from 'zod';
 
+const normalizeEmail = (email: string): string => {
+  let [localPart, domain] = email.toLowerCase().split('@');
+
+  if (['gmail.com', 'googlemail.com'].includes(domain)) {
+    // Gmail: Remove dots & `+` aliases
+    localPart = localPart.split('+')[0].replace(/\./g, '');
+  } else if (
+    ['outlook.com', 'hotmail.com', 'icloud.com', 'protonmail.com'].includes(
+      domain
+    )
+  ) {
+    // Other providers: Only remove `+` aliases
+    localPart = localPart.split('+')[0];
+  }
+
+  return `${localPart}@${domain}`;
+};
+
 const emailSchema = z
   .string()
   .email({ message: 'authFormValidationError.invalidEmail' })
-  .transform(value => value.trim().toLowerCase());
+  .transform(value => normalizeEmail(value.trim().toLowerCase()));
 
 const passwordSchema = z
   .string()
