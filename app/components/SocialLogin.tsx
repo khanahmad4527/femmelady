@@ -1,5 +1,5 @@
-import { Center, Group,Paper, Text } from '@mantine/core';
-import { href , useOutletContext } from 'react-router';
+import { Center, Group, Paper, Text } from '@mantine/core';
+import { href, useOutletContext } from 'react-router';
 
 import { PARAMS } from '~/constant';
 import useCurrentLanguage from '~/hooks/useCurrentLanguage';
@@ -18,7 +18,7 @@ const SocialLogin = ({ from }: { from: 'login' | 'register' }) => {
     url: href('/:lang?/login-via-providers', { lang: currentLanguage }),
     queryParams: {
       from,
-      'redirect-to': redirectTo!
+      ...(redirectTo && { 'redirect-to': redirectTo })
     }
   });
 
