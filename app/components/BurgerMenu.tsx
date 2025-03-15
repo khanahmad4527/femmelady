@@ -35,7 +35,7 @@ const BurgerMenu = () => {
           to={buildLocalizedLink({
             url: href('/:lang?/logout', { lang: currentLanguage }),
             queryParams: {
-              'redirect-to': currentUrl!
+              ...(currentUrl && { 'redirect-to': currentUrl })
             }
           })}
         >
