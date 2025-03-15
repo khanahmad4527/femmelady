@@ -89,7 +89,9 @@
     "verificationSuccessTitle": "验证成功！",
     "verificationSuccessDescription": "您的电子邮件已成功验证。现在您可以登录并开始探索。欢迎加入！",
     "invalidTokenTitle": "无效或已过期的验证令牌",
-    "invalidTokenDescription": "验证令牌无效或已过期。请请求新的验证邮件并重试。"
+    "invalidTokenDescription": "验证令牌无效或已过期。请请求新的验证邮件并重试。",
+    "disposableEmailNotAllowedDescription": "我们不允许使用一次性电子邮件地址。请使用真实的电子邮件以确保账户安全。",
+    "disposableEmailNotAllowedDescriptionTitle": "不允许使用一次性电子邮件"
   },
   "providerLoginFailed": {
     "title": "提供商认证失败",

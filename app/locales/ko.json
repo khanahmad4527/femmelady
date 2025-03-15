@@ -89,7 +89,9 @@
     "verificationSuccessTitle": "인증 성공!",
     "verificationSuccessDescription": "이메일이 성공적으로 인증되었습니다. 이제 로그인하여 탐색을 시작할 수 있습니다. 환영합니다!",
     "invalidTokenTitle": "유효하지 않거나 만료된 인증 토큰",
-    "invalidTokenDescription": "인증 토큰이 유효하지 않거나 만료되었습니다. 새 인증 이메일을 요청한 후 다시 시도하세요."
+    "invalidTokenDescription": "인증 토큰이 유효하지 않거나 만료되었습니다. 새 인증 이메일을 요청한 후 다시 시도하세요.",
+    "disposableEmailNotAllowedDescription": "일회용 이메일 주소는 허용되지 않습니다. 계정 보안을 위해 실제 이메일을 사용하세요.",
+    "disposableEmailNotAllowedDescriptionTitle": "일회용 이메일은 허용되지 않습니다"
   },
   "providerLoginFailed": {
     "title": "인증 제공자 인증 실패",

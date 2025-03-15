@@ -89,7 +89,9 @@
     "verificationSuccessTitle": "Vérification réussie !",
     "verificationSuccessDescription": "Votre e-mail a été vérifié avec succès. Vous pouvez maintenant vous connecter et commencer à explorer. Bienvenue à bord !",
     "invalidTokenTitle": "Jeton de vérification invalide ou expiré",
-    "invalidTokenDescription": "Le jeton de vérification est invalide ou expiré. Veuillez demander un nouvel e-mail de vérification et réessayer."
+    "invalidTokenDescription": "Le jeton de vérification est invalide ou expiré. Veuillez demander un nouvel e-mail de vérification et réessayer.",
+    "disposableEmailNotAllowedDescription": "Nous n'autorisons pas les adresses e-mail jetables. Veuillez utiliser une adresse e-mail réelle pour la sécurité de votre compte.",
+    "disposableEmailNotAllowedDescriptionTitle": "Les e-mails temporaires ne sont pas autorisés"
   },
   "providerLoginFailed": {
     "title": "Échec de l'authentification du fournisseur",

@@ -89,7 +89,9 @@
     "verificationSuccessTitle": "確認が成功しました！",
     "verificationSuccessDescription": "あなたのメールアドレスが正常に確認されました。ログインして探索を開始できます。ようこそ！",
     "invalidTokenTitle": "無効または期限切れの確認トークン",
-    "invalidTokenDescription": "確認トークンが無効であるか、期限切れです。新しい確認メールをリクエストして、再試行してください。"
+    "invalidTokenDescription": "確認トークンが無効であるか、期限切れです。新しい確認メールをリクエストして、再試行してください。",
+    "disposableEmailNotAllowedDescription": "使い捨てメールアドレスは許可されていません。アカウントのセキュリティのために実際のメールを使用してください。",
+    "disposableEmailNotAllowedDescriptionTitle": "使い捨てメールは許可されていません"
   },
   "providerLoginFailed": {
     "title": "プロバイダー認証に失敗しました",

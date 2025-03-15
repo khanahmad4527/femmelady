@@ -11,7 +11,8 @@ export type TFetcherError = {
 const ERROR_MAP = {
   LOGIN_REQUIRED: 'LOGIN_REQUIRED',
   VERIFICATION_LIMIT_REACHED: 'VERIFICATION_LIMIT_REACHED',
-  RESET_PASSWORD_LIMIT_REACHED: 'RESET_PASSWORD_LIMIT_REACHED'
+  RESET_PASSWORD_LIMIT_REACHED: 'RESET_PASSWORD_LIMIT_REACHED',
+  DISPOSABLE_EMAIL: 'DISPOSABLE_EMAIL'
 };
 
 export const throwLoginRequiredError = () => {
@@ -24,6 +25,10 @@ export const throwVerificationLimitError = () => {
 
 export const throwResetPasswordLimitError = () => {
   throw new Error(ERROR_MAP.RESET_PASSWORD_LIMIT_REACHED);
+};
+
+export const throwDisposableEmailError = () => {
+  throw new Error(ERROR_MAP.DISPOSABLE_EMAIL);
 };
 
 export const handleActionError = ({
@@ -61,6 +66,14 @@ export const handleActionError = ({
     return {
       title: 'resetPassword.resetPasswordLimitTitle',
       description: 'resetPassword.resetPasswordLimitDescription',
+      error: true
+    };
+  }
+
+  if (error instanceof Error && error.message === ERROR_MAP.DISPOSABLE_EMAIL) {
+    return {
+      title: 'register.disposableEmailNotAllowedDescriptionTitle',
+      description: 'register.disposableEmailNotAllowedDescription',
       error: true
     };
   }

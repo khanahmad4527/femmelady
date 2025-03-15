@@ -32,7 +32,11 @@ import { OutletContext } from '~/types';
 import { buildLocalizedLink, getValidLanguageOrRedirect } from '~/utils';
 
 import { Route } from './+types/register';
-import { handleActionError, throwVerificationLimitError } from '~/utils/error';
+import {
+  handleActionError,
+  throwDisposableEmailError,
+  throwVerificationLimitError
+} from '~/utils/error';
 import { directus } from '~/server/directus';
 import { registerUser } from '@directus/sdk';
 import { validateTurnstile } from '~/server/turnstile';
@@ -84,7 +88,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     const email = validatedData.email;
 
     if (isDisposableEmail(email)) {
-      return {};
+      return throwDisposableEmailError();
     }
 
     const outcome = await validateTurnstile({

@@ -89,7 +89,9 @@
     "verificationSuccessTitle": "تم التحقق بنجاح!",
     "verificationSuccessDescription": "تم التحقق من بريدك الإلكتروني بنجاح. يمكنك الآن تسجيل الدخول والبدء في الاستكشاف. مرحبًا بك!",
     "invalidTokenTitle": "رمز التحقق غير صالح أو منتهي الصلاحية",
-    "invalidTokenDescription": "رمز التحقق غير صالح أو منتهي الصلاحية. يرجى طلب بريد تحقق جديد والمحاولة مرة أخرى."
+    "invalidTokenDescription": "رمز التحقق غير صالح أو منتهي الصلاحية. يرجى طلب بريد تحقق جديد والمحاولة مرة أخرى.",
+    "disposableEmailNotAllowedDescription": "نحن لا نسمح بعناوين البريد الإلكتروني المؤقتة. يرجى استخدام بريد إلكتروني حقيقي لأمان الحساب.",
+    "disposableEmailNotAllowedDescriptionTitle": "لا يُسمح بالبريد الإلكتروني المؤقت"
   },
   "providerLoginFailed": {
     "title": "فشل التوثيق مع الموفر",
