@@ -17,6 +17,3 @@ services:
       TURNSTILE_SECRET_KEY: ${UNTHAA_TURNSTILE_SECRET_KEY}
       TURNSTILE_SITE_KEY: ${UNTHAA_TURNSTILE_SITE_KEY}
       CDN_URL: ${UNTHAA_CDN_URL}
-
-    env_file:
-      - .env
