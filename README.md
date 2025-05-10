@@ -1,4 +1,25 @@
-# 🛍️ FemmeLady Platform
+# 🛍️ FemmeLady
+
+A fully featured multilingual e-commerce platform leveraging Directus for content management, Bunny CDN for optimized media delivery, and Google Cloud for scalable deployments. The app supports robust filtering, user authentication with anti-abuse mechanisms, simulated checkout, and dynamic localization across 7 languages.
+
+## 🌟 Key Features
+
+- **🌍 Multilingual Support**: English, Dutch, French, Arabic, Japanese, Korean, and Chinese
+- **⚡ Modern Stack**: Remix, Directus, Redis, Bunny CDN, Brevo
+- **☁️ Scalable Deployment**: Google Cloud Run + VM via Docker
+- **🔒 Secure Auth**: Google login + Cloudflare Turnstile bot protection
+- **🛒 Smart Shopping**: 
+  - Advanced product filtering/sorting
+  - Shareable URL filters
+  - Full cart system with simulated payments
+- **👑 Admin Controls**: 
+  - Directus-powered dashboard
+  - RBAC/PBAC role management
+- **⚙️ Robust Infrastructure**:
+  - Redis rate-limiting (password recovery)
+  - Bunny CDN media delivery
+  - Zod form validation
+  - Always-on Cloud Run instance
 
 ## 🌍 Languages Supported
 
