@@ -217,7 +217,17 @@
       "expiryMonthRequired": "Le mois d'expiration est requis",
       "expiryYearInvalidFormat": "L'année d'expiration doit être un nombre à 4 chiffres",
       "expiryYearInPast": "L'année d'expiration ne doit pas être dans le passé",
-      "expiryYearRequired": "L'année d'expiration est requise"
+      "expiryYearRequired": "L'année d'expiration est requise",
+      "fullNameRequired": "Le nom complet est requis.",
+      "emailRequired": "L’e-mail est requis.",
+      "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+      "phoneRequired": "Le numéro de téléphone est requis.",
+      "phoneInvalid": "Format de numéro de téléphone invalide.",
+      "addressRequired": "L’adresse est requise.",
+      "cityRequired": "La ville est requise.",
+      "stateRequired": "L’état est requis.",
+      "zipRequired": "Le code postal est requis.",
+      "zipInvalid": "Format de code postal invalide."
     },
     "cardNumber": "Numéro de carte",
     "cvv": "CVV",
@@ -225,7 +235,14 @@
     "expiryYear": "Année d'expiration",
     "cardHolderName": "Nom du titulaire de la carte",
     "orderPlaced": "Commande passée",
-    "orderPlacedSuccess": "Commande passée avec succès"
+    "orderPlacedSuccess": "Commande passée avec succès",
+    "fullName": "Nom complet",
+    "email": "E-mail",
+    "phoneNumber": "Numéro de téléphone",
+    "address": "Adresse",
+    "city": "Ville",
+    "state": "État",
+    "zipCode": "Code postal"
   },
   "cart": {
     "errors": {

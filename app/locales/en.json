@@ -217,7 +217,17 @@
       "expiryMonthRequired": "Expiry month is required",
       "expiryYearInvalidFormat": "Expiry year must be a 4-digit number",
       "expiryYearInPast": "Expiry year must not be in the past",
-      "expiryYearRequired": "Expiry year is required"
+      "expiryYearRequired": "Expiry year is required",
+      "fullNameRequired": "Full name is required.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Please enter a valid email.",
+      "phoneRequired": "Phone number is required.",
+      "phoneInvalid": "Invalid phone number format.",
+      "addressRequired": "Address is required.",
+      "cityRequired": "City is required.",
+      "stateRequired": "State is required.",
+      "zipRequired": "Zip code is required.",
+      "zipInvalid": "Invalid zip code format."
     },
     "cardNumber": "Card Number",
     "cvv": "CVV",
@@ -225,7 +235,14 @@
     "expiryYear": "Expiry Year",
     "cardHolderName": "Card Holder Name",
     "orderPlaced": "Order placed",
-    "orderPlacedSuccess": "Order placed successfully"
+    "orderPlacedSuccess": "Order placed successfully",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "zipCode": "Zip Code"
   },
   "cart": {
     "errors": {

@@ -217,7 +217,17 @@
       "expiryMonthRequired": "有効期限の月は必須です",
       "expiryYearInvalidFormat": "有効期限の年は4桁の数字である必要があります",
       "expiryYearInPast": "有効期限の年は過去であってはなりません",
-      "expiryYearRequired": "有効期限の年は必須です"
+      "expiryYearRequired": "有効期限の年は必須です",
+      "fullNameRequired": "氏名は必須です。",
+      "emailRequired": "メールアドレスは必須です。",
+      "emailInvalid": "有効なメールアドレスを入力してください。",
+      "phoneRequired": "電話番号は必須です。",
+      "phoneInvalid": "無効な電話番号形式です。",
+      "addressRequired": "住所は必須です。",
+      "cityRequired": "市区町村は必須です。",
+      "stateRequired": "都道府県は必須です。",
+      "zipRequired": "郵便番号は必須です。",
+      "zipInvalid": "無効な郵便番号の形式です。"
     },
     "cardNumber": "カード番号",
     "cvv": "CVV",
@@ -225,7 +235,14 @@
     "expiryYear": "有効期限の年",
     "cardHolderName": "カード名義人",
     "orderPlaced": "注文が完了しました",
-    "orderPlacedSuccess": "注文が正常に完了しました"
+    "orderPlacedSuccess": "注文が正常に完了しました",
+    "fullName": "氏名",
+    "email": "メールアドレス",
+    "phoneNumber": "電話番号",
+    "address": "住所",
+    "city": "市区町村",
+    "state": "都道府県",
+    "zipCode": "郵便番号"
   },
   "cart": {
     "errors": {

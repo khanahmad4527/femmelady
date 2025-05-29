@@ -217,7 +217,17 @@
       "expiryMonthRequired": "شهر انتهاء الصلاحية مطلوب",
       "expiryYearInvalidFormat": "يجب أن يتكون سنة الانتهاء من 4 أرقام",
       "expiryYearInPast": "يجب ألا تكون سنة الانتهاء في الماضي",
-      "expiryYearRequired": "سنة الانتهاء مطلوبة"
+      "expiryYearRequired": "سنة الانتهاء مطلوبة",
+      "fullNameRequired": "الاسم الكامل مطلوب.",
+      "emailRequired": "البريد الإلكتروني مطلوب.",
+      "emailInvalid": "يرجى إدخال بريد إلكتروني صالح.",
+      "phoneRequired": "رقم الهاتف مطلوب.",
+      "phoneInvalid": "تنسيق رقم الهاتف غير صالح.",
+      "addressRequired": "العنوان مطلوب.",
+      "cityRequired": "المدينة مطلوبة.",
+      "stateRequired": "الولاية مطلوبة.",
+      "zipRequired": "الرمز البريدي مطلوب.",
+      "zipInvalid": "تنسيق الرمز البريدي غير صالح."
     },
     "cardNumber": "رقم البطاقة",
     "cvv": "CVV",
@@ -225,7 +235,14 @@
     "expiryYear": "سنة انتهاء الصلاحية",
     "cardHolderName": "اسم حامل البطاقة",
     "orderPlaced": "تم تقديم الطلب",
-    "orderPlacedSuccess": "تم تقديم الطلب بنجاح"
+    "orderPlacedSuccess": "تم تقديم الطلب بنجاح",
+    "fullName": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "phoneNumber": "رقم الهاتف",
+    "address": "العنوان",
+    "city": "المدينة",
+    "state": "الولاية",
+    "zipCode": "الرمز البريدي"
   },
   "cart": {
     "errors": {

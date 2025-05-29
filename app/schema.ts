@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 const normalizeEmail = (email: string): string => {
   let [localPart, domain] = email.toLowerCase().split('@');
@@ -166,16 +167,60 @@ const months = Array.from({ length: 12 }, (_, index) => {
   return date.toLocaleString('default', { month: 'long' }).toLowerCase();
 });
 
+const phoneNumberSchema = z
+  .string({ required_error: 'payment.errors.phoneRequired' })
+  .refine(
+    value => {
+      try {
+        const phone = parsePhoneNumberFromString(value);
+        return phone?.isValid() ?? false;
+      } catch {
+        return false;
+      }
+    },
+    {
+      message: 'payment.errors.phoneInvalid'
+    }
+  );
+
 export const paymentFormSchema = z.object({
+  fullName: z
+    .string({ required_error: 'payment.errors.fullNameRequired' })
+    .min(1, 'payment.errors.fullNameRequired'),
+
+  email: z
+    .string({ required_error: 'payment.errors.emailRequired' })
+    .email('payment.errors.emailInvalid'),
+
+  phoneNumber: phoneNumberSchema,
+
+  address: z
+    .string({ required_error: 'payment.errors.addressRequired' })
+    .min(1, 'payment.errors.addressRequired'),
+
+  city: z
+    .string({ required_error: 'payment.errors.cityRequired' })
+    .min(1, 'payment.errors.cityRequired'),
+
+  state: z
+    .string({ required_error: 'payment.errors.stateRequired' })
+    .min(1, 'payment.errors.stateRequired'),
+
+  zipCode: z
+    .string({ required_error: 'payment.errors.zipRequired' })
+    .regex(/^\d{4,10}$/, 'payment.errors.zipInvalid'),
+
   cardNumber: z
     .string({ required_error: 'payment.errors.cardNumberRequired' })
-    .regex(/^[0-9]{13,19}$/, 'payment.errors.cardNumberInvalid'),
+    .regex(/^\d{16}$/, 'payment.errors.cardNumberInvalid'),
 
   cvv: z
     .string({ required_error: 'payment.errors.cvvRequired' })
-    .regex(/^[0-9]{3,4}$/, 'payment.errors.cvvInvalid'),
+    .regex(/^\d{3}$/, 'payment.errors.cvvInvalid'),
 
-  cardHolderName: z.string(),
+  cardHolderName: z
+    .string({ required_error: 'payment.errors.cardHolderNameRequired' })
+    .min(1, 'payment.errors.cardHolderNameRequired'),
 
   expiryMonth: z
     .string({ required_error: 'payment.errors.expiryMonthRequired' })

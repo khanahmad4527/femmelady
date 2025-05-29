@@ -217,7 +217,17 @@
       "expiryMonthRequired": "Vervaldatum maand is verplicht",
       "expiryYearInvalidFormat": "Vervaldatum jaar moet een 4-cijferig nummer zijn",
       "expiryYearInPast": "Vervaldatum jaar mag niet in het verleden liggen",
-      "expiryYearRequired": "Vervaldatum jaar is verplicht"
+      "expiryYearRequired": "Vervaldatum jaar is verplicht",
+      "fullNameRequired": "Volledige naam is verplicht.",
+      "emailRequired": "E-mailadres is verplicht.",
+      "emailInvalid": "Voer een geldig e-mailadres in.",
+      "phoneRequired": "Telefoonnummer is verplicht.",
+      "phoneInvalid": "Ongeldig telefoonnummerformaat.",
+      "addressRequired": "Adres is verplicht.",
+      "cityRequired": "Stad is verplicht.",
+      "stateRequired": "Provincie is verplicht.",
+      "zipRequired": "Postcode is verplicht.",
+      "zipInvalid": "Ongeldig postcodeformaat."
     },
     "cardNumber": "Kaartnummer",
     "cvv": "CVV",
@@ -225,7 +235,14 @@
     "expiryYear": "Vervaldatum jaar",
     "cardHolderName": "Naam kaarthouder",
     "orderPlaced": "Bestelling geplaatst",
-    "orderPlacedSuccess": "Bestelling succesvol geplaatst"
+    "orderPlacedSuccess": "Bestelling succesvol geplaatst",
+    "fullName": "Volledige naam",
+    "email": "E-mail",
+    "phoneNumber": "Telefoonnummer",
+    "address": "Adres",
+    "city": "Stad",
+    "state": "Provincie",
+    "zipCode": "Postcode"
   },
   "cart": {
     "errors": {

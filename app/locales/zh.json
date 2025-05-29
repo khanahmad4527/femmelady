@@ -217,7 +217,17 @@
       "expiryMonthRequired": "到期月份是必需的",
       "expiryYearInvalidFormat": "到期年份必须为4位数字",
       "expiryYearInPast": "到期年份不能是过去的年份",
-      "expiryYearRequired": "到期年份是必需的"
+      "expiryYearRequired": "到期年份是必需的",
+      "fullNameRequired": "全名为必填项。",
+      "emailRequired": "电子邮件为必填项。",
+      "emailInvalid": "请输入有效的电子邮件地址。",
+      "phoneRequired": "电话号码为必填项。",
+      "phoneInvalid": "电话号码格式无效。",
+      "addressRequired": "地址为必填项。",
+      "cityRequired": "城市为必填项。",
+      "stateRequired": "州/省为必填项。",
+      "zipRequired": "邮政编码为必填项。",
+      "zipInvalid": "邮政编码格式无效。"
     },
     "cardNumber": "卡号",
     "cvv": "CVV",
@@ -225,7 +235,14 @@
     "expiryYear": "到期年份",
     "cardHolderName": "卡持有人姓名",
     "orderPlaced": "订单已提交",
-    "orderPlacedSuccess": "订单提交成功"
+    "orderPlacedSuccess": "订单提交成功",
+    "fullName": "全名",
+    "email": "电子邮件",
+    "phoneNumber": "电话号码",
+    "address": "地址",
+    "city": "城市",
+    "state": "州/省",
+    "zipCode": "邮政编码"
   },
   "cart": {
     "errors": {

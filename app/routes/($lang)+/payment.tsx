@@ -61,6 +61,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
 
     const totalPrice = calculateTotalPrice({ carts });
 
+    return {};
     await directus.request(
       withToken(
         token!,
@@ -96,13 +97,7 @@ const Payment = () => {
   const { setCarts, setCartCount, exchangeRate } = useHeaderFooterContext();
   const { Form, form, state, fetcher } = useForm({
     schema: paymentFormSchema,
-    initialValues: {
-      cardNumber: '9999999999999',
-      cvv: '999',
-      cardHolderName: '',
-      expiryMonth: 'march',
-      expiryYear: '2030'
-    }
+    initialValues: {}
   });
 
   const amount = formatCurrency({
@@ -168,15 +163,86 @@ const Payment = () => {
     <Stack w={{ base: '100%', md: 500 }}>
       <Form method="POST">
         <Stack>
-          <Group wrap={'nowrap'} align={'flex-start'} grow>
+          {/* Billing Information */}
+          <TextInput
+            label={t('payment.fullName')}
+            name="fullName"
+            placeholder="John Doe"
+            key={form.key('fullName')}
+            {...form.getInputProps('fullName')}
+            withAsterisk
+          />
+
+          <TextInput
+            label={t('payment.email')}
+            name="email"
+            type="email"
+            placeholder="john@example.com"
+            key={form.key('email')}
+            {...form.getInputProps('email')}
+            withAsterisk
+          />
+
+          <TextInput
+            label={t('payment.phoneNumber')}
+            name="phoneNumber"
+            type="tel"
+            inputMode="tel"
+            placeholder="+1 234 567 8901"
+            key={form.key('phoneNumber')}
+            {...form.getInputProps('phoneNumber')}
+            withAsterisk
+          />
+
+          <TextInput
+            label={t('payment.address')}
+            name="address"
+            placeholder="1234 Main St"
+            key={form.key('address')}
+            {...form.getInputProps('address')}
+            withAsterisk
+          />
+
+          <Group wrap="nowrap" align="flex-start" grow>
+            <TextInput
+              label={t('payment.city')}
+              name="city"
+              placeholder="New York"
+              key={form.key('city')}
+              {...form.getInputProps('city')}
+              withAsterisk
+            />
+            <TextInput
+              label={t('payment.state')}
+              name="state"
+              placeholder="NY"
+              key={form.key('state')}
+              {...form.getInputProps('state')}
+              withAsterisk
+            />
+            <TextInput
+              label={t('payment.zipCode')}
+              name="zipCode"
+              placeholder="10001"
+              pattern="\d{5}"
+              inputMode="numeric"
+              maxLength={5}
+              key={form.key('zipCode')}
+              {...form.getInputProps('zipCode')}
+              withAsterisk
+            />
+          </Group>
+
+          {/* Card Information */}
+          <Group wrap="nowrap" align="flex-start" grow>
             <TextInput
               label={t('payment.cardNumber')}
-              placeholder={formatNumber({
-                userLocale,
-                value: 9999999999999
-              })}
-              type="number"
-              name={'cardNumber'}
+              placeholder="•••• •••• •••• ••••"
+              name="cardNumber"
+              type="text"
+              inputMode="numeric"
+              pattern="\d{16}"
+              maxLength={16}
               key={form.key('cardNumber')}
               {...form.getInputProps('cardNumber')}
               withAsterisk
@@ -184,19 +250,19 @@ const Payment = () => {
 
             <TextInput
               label={t('payment.cvv')}
-              placeholder={formatNumber({
-                userLocale,
-                value: 999
-              })}
-              type="number"
-              name={'cvv'}
+              placeholder="•••"
+              name="cvv"
+              type="text"
+              inputMode="numeric"
+              pattern="^\d{3}$"
+              maxLength={3}
               key={form.key('cvv')}
               {...form.getInputProps('cvv')}
               withAsterisk
             />
           </Group>
 
-          <Group wrap={'nowrap'} align={'flex-start'} grow>
+          <Group wrap="nowrap" align="flex-start" grow>
             <Select
               label={t('payment.expiryMonth')}
               placeholder={getLocalizedMonth({ userLocale, monthIndex: 0 })}
@@ -205,23 +271,20 @@ const Payment = () => {
                 dropdown: classes.dropdown,
                 option: classes.option
               }}
-              name={'expiryMonth'}
+              name="expiryMonth"
               key={form.key('expiryMonth')}
               {...form.getInputProps('expiryMonth')}
               withAsterisk
             />
             <Select
               label={t('payment.expiryYear')}
-              placeholder={formatNumber({
-                userLocale,
-                value: 2000
-              })}
+              placeholder={formatNumber({ userLocale, value: 2000 })}
               data={years}
               classNames={{
                 dropdown: classes.dropdown,
                 option: classes.option
               }}
-              name={'expiryYear'}
+              name="expiryYear"
               key={form.key('expiryYear')}
               {...form.getInputProps('expiryYear')}
               withAsterisk
@@ -230,16 +293,14 @@ const Payment = () => {
 
           <TextInput
             label={t('payment.cardHolderName')}
-            placeholder={'John Doe'}
-            name={'cardHolderName'}
+            placeholder="John Doe"
+            name="cardHolderName"
             key={form.key('cardHolderName')}
             {...form.getInputProps('cardHolderName')}
           />
 
-          <Button loading={state !== 'idle'} color={'black'} type={'submit'}>
-            {t('payment.payAmount', {
-              amount
-            })}
+          <Button loading={state !== 'idle'} color="black" type="submit">
+            {t('payment.payAmount', { amount })}
           </Button>
         </Stack>
       </Form>

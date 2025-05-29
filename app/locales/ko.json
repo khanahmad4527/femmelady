@@ -217,7 +217,17 @@
       "expiryMonthRequired": "만료 월은 필수입니다",
       "expiryYearInvalidFormat": "만료 연도는 4자리 숫자여야 합니다",
       "expiryYearInPast": "만료 연도는 과거일 수 없습니다",
-      "expiryYearRequired": "만료 연도는 필수입니다"
+      "expiryYearRequired": "만료 연도는 필수입니다",
+      "fullNameRequired": "성명을 입력해 주세요.",
+      "emailRequired": "이메일을 입력해 주세요.",
+      "emailInvalid": "유효한 이메일을 입력해 주세요.",
+      "phoneRequired": "전화번호를 입력해 주세요.",
+      "phoneInvalid": "유효하지 않은 전화번호 형식입니다.",
+      "addressRequired": "주소를 입력해 주세요.",
+      "cityRequired": "도시를 입력해 주세요.",
+      "stateRequired": "주/도를 입력해 주세요.",
+      "zipRequired": "우편번호를 입력해 주세요.",
+      "zipInvalid": "유효하지 않은 우편번호 형식입니다."
     },
     "cardNumber": "카드 번호",
     "cvv": "CVV",
@@ -225,7 +235,14 @@
     "expiryYear": "만료 연도",
     "cardHolderName": "카드 소지자 이름",
     "orderPlaced": "주문이 완료되었습니다",
-    "orderPlacedSuccess": "주문이 성공적으로 완료되었습니다"
+    "orderPlacedSuccess": "주문이 성공적으로 완료되었습니다",
+    "fullName": "성명",
+    "email": "이메일",
+    "phoneNumber": "전화번호",
+    "address": "주소",
+    "city": "도시",
+    "state": "주/도",
+    "zipCode": "우편번호"
   },
   "cart": {
     "errors": {
