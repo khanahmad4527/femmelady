@@ -57,10 +57,12 @@ import {
   OutletContext,
   Product,
   ProductCart,
+  ProductColor,
   ProductProductColor,
   ProductProductImage,
   ProductSize,
-  ProductTranslation
+  ProductTranslation,
+  User
 } from '~/types';
 import {
   buildLocalizedLink,
@@ -182,15 +184,139 @@ export const action = async ({ request }: Route.ActionArgs) => {
   return { success: true };
 };
 
+interface AddToCartButtonProps {
+  activeSize: ProductSize;
+  activeColor: ProductColor;
+  cartId: string;
+  quantity: string | null;
+  featureImage1Id?: string;
+  featureImage2Id?: string;
+  fetcher: any;
+}
+
+export function AddToCartButton({
+  activeSize,
+  activeColor,
+  cartId,
+  quantity,
+  featureImage1Id,
+  featureImage2Id,
+  fetcher
+}: AddToCartButtonProps) {
+  const { product } = useLoaderData<{ product: Product }>();
+
+  const outletContext = useOutletContext<OutletContext>();
+
+  const { isLoggedIn, user, utmSource, currentLanguage } = outletContext;
+
+  const { currentUrl } = useCurrentUrl();
+
+  const t = useTranslation();
+
+  const { setCarts } = useHeaderFooterContext();
+
+  // Determine if product is in cart
+  const inCart = (getFirstObjectDto(product?.carts) as ProductCart)
+    ?.cart_id as Cart;
+
+  const disabledAddToBag = Boolean(
+    !isLoggedIn ||
+      !activeSize.stock ||
+      !activeColor.stock ||
+      (inCart?.size === activeSize.id && inCart?.color === activeColor?.id)
+  );
+
+  const url =
+    utmSource && !isLoggedIn
+      ? href('/:lang?/login', { lang: currentLanguage })
+      : href('/:lang?/register', { lang: currentLanguage });
+
+  const redirectText =
+    utmSource && !isLoggedIn ? t('login.login') : t('register.register');
+
+  // If in cart, show "Go to Cart" button
+  if (inCart) {
+    return (
+      <Button
+        color="black"
+        size="md"
+        component={Link}
+        to={href('/:lang?/checkout', { lang: currentLanguage })}
+        fullWidth
+      >
+        {t('products.goToCart')}
+      </Button>
+    );
+  }
+
+  // If not logged in, show redirect to login/register
+  if (!isLoggedIn) {
+    return (
+      <Button
+        color="black"
+        size="md"
+        component={Link}
+        prefetch="intent"
+        to={buildLocalizedLink({
+          url: url!,
+          queryParams: {
+            'redirect-to': currentUrl!,
+            utm_source: utmSource!
+          }
+        })}
+        fullWidth
+      >
+        {redirectText}
+      </Button>
+    );
+  }
+
+  // Else show add to bag button
+  return (
+    <Button
+      type="submit"
+      color="black"
+      size="md"
+      disabled={disabledAddToBag}
+      loading={fetcher.state !== 'idle'}
+      onClick={() => {
+        const data = {
+          date_created: new Date().toISOString(),
+          id: cartId,
+          quantity: Number(quantity),
+          sort: null,
+          user: user?.id,
+          feature_image_1: featureImage1Id,
+          feature_image_2: featureImage2Id,
+          products: [
+            {
+              product_id: {
+                id: product.id,
+                price: product.price,
+                translations: product.translations
+              }
+            }
+          ],
+          color: {
+            translations: activeColor?.translations
+          },
+          size: activeSize
+        } as Cart;
+        setCarts(prev => [data, ...prev]);
+      }}
+      fullWidth
+    >
+      {t('products.addToBag')}
+    </Button>
+  );
+}
+
 const SingleProduct = () => {
   const { product } = useLoaderData<{ product: Product }>();
 
   const outletContext = useOutletContext<OutletContext>();
 
-  const { searchParams, setSearchParams, isLoggedIn, user, env, utmSource } =
-    outletContext;
-
-  const { currentUrl } = useCurrentUrl();
+  const { searchParams, setSearchParams, isLoggedIn, env } = outletContext;
 
   const { setCartCount, setCarts } = useHeaderFooterContext();
   const [quantity, setQuantity] = useState<string | null>('1');
@@ -306,14 +432,6 @@ const SingleProduct = () => {
   const sizeId = activeSize.id;
   const featureImage1Id = getStringDto(currentImageSet?.[0]?.directus_files_id);
   const featureImage2Id = getStringDto(currentImageSet?.[1]?.directus_files_id);
-
-  const url =
-    utmSource && !isLoggedIn
-      ? href('/:lang?/login', { lang: currentLanguage })
-      : href('/:lang?/register', { lang: currentLanguage });
-
-  const redirectText =
-    utmSource && !isLoggedIn ? t('login.login') : t('register.register');
 
   const slideSize = currentImageSet?.length > 3 ? '30%' : '33.33%';
 
@@ -471,7 +589,6 @@ const SingleProduct = () => {
                 quantity={quantity}
                 setQuantity={setQuantity}
               />
-
               <input hidden name={'cartId'} defaultValue={cartId} />
               <input hidden name={'productId'} defaultValue={productId} />
               <input hidden name={'sizeId'} defaultValue={sizeId} />
@@ -487,61 +604,15 @@ const SingleProduct = () => {
                 defaultValue={featureImage2Id}
               />
 
-              {/* If user is not logged in then redirect them to login/register page */}
-              {isLoggedIn ? (
-                <Button
-                  type={'submit'}
-                  color={'black'}
-                  size={'md'}
-                  disabled={disabledAddToBag}
-                  loading={fetcher.state !== 'idle'}
-                  onClick={() => {
-                    const data = {
-                      date_created: new Date().toISOString(),
-                      id: cartId,
-                      quantity: Number(quantity),
-                      sort: null,
-                      user: user?.id,
-                      feature_image_1: featureImage1Id,
-                      feature_image_2: featureImage2Id,
-                      products: [
-                        {
-                          product_id: {
-                            id: productId,
-                            price: product?.price,
-                            translations: product?.translations
-                          }
-                        }
-                      ],
-
-                      color: {
-                        translations: activeColor?.translations
-                      },
-                      size: activeSize
-                    } as Cart;
-                    setCarts(prev => [data, ...prev]);
-                  }}
-                  fullWidth
-                >
-                  {t('products.addToBag')}
-                </Button>
-              ) : (
-                <Button
-                  color={'black'}
-                  size={'md'}
-                  component={Link}
-                  prefetch="intent"
-                  to={buildLocalizedLink({
-                    url,
-                    queryParams: {
-                      'redirect-to': currentUrl!,
-                      utm_source: utmSource!
-                    }
-                  })}
-                >
-                  {redirectText}
-                </Button>
-              )}
+              <AddToCartButton
+                cartId={cartId}
+                activeColor={activeColor}
+                activeSize={activeSize}
+                quantity={quantity}
+                featureImage1Id={featureImage1Id}
+                featureImage2Id={featureImage2Id}
+                fetcher={fetcher}
+              />
             </Stack>
           </fetcher.Form>
 

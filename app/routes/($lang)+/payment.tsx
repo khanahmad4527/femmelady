@@ -61,7 +61,6 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
 
     const totalPrice = calculateTotalPrice({ carts });
 
-    return {};
     await directus.request(
       withToken(
         token!,
