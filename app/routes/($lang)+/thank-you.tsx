@@ -29,7 +29,7 @@ const ThankYouPage = () => {
         mt={'md'}
         component={Link}
         prefetch="intent"
-        to={href('/:lang?', { lang: currentLanguage })}
+        to={href('/:lang?/products', { lang: currentLanguage })}
       >
         {t('common.cartEmptyMessage')}
       </Button>

@@ -560,31 +560,42 @@ export function generateUuidv4(): string {
   return crypto.randomUUID();
 }
 
-export const calculateTotalPrice = ({ carts }: { carts: Cart[] }): number => {
+export const calculateTotalPriceAndQuantity  = ({
+  carts
+}: {
+  carts: Cart[];
+}): { totalPrice: number; totalQuantity: number } => {
   if (!carts || !Array.isArray(carts)) {
     throw new Error('Invalid carts data. Expected an array.');
   }
 
-  return carts.reduce((total, cart) => {
-    const products = (cart.products || []) as ProductCart[];
-    const cartTotal = products.reduce((productTotal, product) => {
-      const price = getFirstObjectDto(product.product_id)?.price;
+  return carts.reduce(
+    (acc, cart) => {
+      const products = (cart.products || []) as ProductCart[];
 
-      if (price === undefined) {
-        throw new Error(
-          `Price not found for product ID: ${product.product_id}`
-        );
+      const cartTotalPrice = products.reduce((productTotal, product) => {
+        const price = getFirstObjectDto(product.product_id)?.price;
+
+        if (price === undefined) {
+          throw new Error(
+            `Price not found for product ID: ${product.product_id}`
+          );
+        }
+
+        return productTotal + price;
+      }, 0);
+
+      if (!cart.quantity) {
+        throw new Error(`Quantity not found for cart ID: ${cart.id}`);
       }
 
-      return productTotal + price;
-    }, 0);
+      acc.totalPrice += cartTotalPrice * cart.quantity;
+      acc.totalQuantity += cart.quantity;
 
-    if (!cart.quantity) {
-      throw new Error(`Quantity not found for cart ID: ${cart.id}`);
-    }
-
-    return total + cartTotal * cart.quantity;
-  }, 0);
+      return acc;
+    },
+    { totalPrice: 0, totalQuantity: 0 }
+  );
 };
 
 export const getLocalizedMonth = ({

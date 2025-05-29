@@ -18,10 +18,10 @@ import classes from '~/styles/Payment.module.scss';
 import { Cart } from '~/types';
 import {
   buildLocalizedLink,
-  calculateTotalPrice,
   formatCurrency,
   formatNumber,
-  getLocalizedMonth
+  getLocalizedMonth,
+  calculateTotalPriceAndQuantity
 } from '~/utils';
 import { handleActionError, throwLoginRequiredError } from '~/utils/error';
 
@@ -36,7 +36,9 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
     token: token!
   })) as Cart[];
 
-  const totalPrice = calculateTotalPrice({ carts });
+  const { totalPrice } = calculateTotalPriceAndQuantity({
+    carts
+  });
 
   return { totalPrice, carts };
 };
@@ -59,7 +61,9 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       token: token!
     })) as Cart[];
 
-    const totalPrice = calculateTotalPrice({ carts });
+    const { totalPrice, totalQuantity } = calculateTotalPriceAndQuantity({
+      carts
+    });
 
     await directus.request(
       withToken(
@@ -72,7 +76,10 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
               product_id: getFirstObjectDto(c?.products)?.product_id
                 ?.id as string
             };
-          })
+          }),
+          quantity: totalQuantity,
+          total: totalPrice,
+          subtotal: totalPrice
         })
       )
     );
@@ -96,8 +103,25 @@ const Payment = () => {
   const { setCarts, setCartCount, exchangeRate } = useHeaderFooterContext();
   const { Form, form, state, fetcher } = useForm({
     schema: paymentFormSchema,
-    initialValues: {}
+    initialValues: {
+      fullName: 'John Doe',
+      email: 'john.doe@example.com',
+      phoneNumber: '+1 234 567 8901',
+      address: '1234 Main St',
+      city: 'New York',
+      state: 'NY',
+      zipCode: '10001',
+      cardNumber: '4111111111111111', // Dummy Visa test card number
+      cvv: '123',
+      cardHolderName: 'John Doe',
+      expiryMonth: 'may',
+      expiryYear: '2028'
+    }
+
+    // {}
   });
+
+  console.log('first', form.getValues());
 
   const amount = formatCurrency({
     currentLanguage,
