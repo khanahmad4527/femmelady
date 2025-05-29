@@ -184,5 +184,19 @@
     },
     { "og:url": "https://femmelady.store/en/faq" },
     { "og:image": "https://femmelady.store/assets/faq-og-image.jpg" }
+  ],
+  "/thank-you": [
+    { "title": "感谢您的购买 - FemmeLady" },
+    {
+      "description": "感谢您的订单！您的购买已确认并正在处理中。您将很快收到确认电子邮件。"
+    },
+    { "og:title": "订单确认 - FemmeLady" },
+    {
+      "og:description": "您的订单已成功提交。感谢您在 FemmeLady 购物。确认邮件已发送。"
+    },
+    { "og:url": "https://femmelady.store/zh/thank-you" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

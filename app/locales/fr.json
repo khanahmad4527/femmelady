@@ -250,7 +250,9 @@
     "notificationTitle": "Article ajouté au panier !",
     "notificationMessage": "Votre article a été ajouté au panier avec succès. Bon shopping !",
     "emptyCartTitle": "Votre panier semble vide",
-    "emptyCartMessage": "Commencez à parcourir nos produits et ajoutez-en au panier !"
+    "emptyCartMessage": "Commencez à parcourir nos produits et ajoutez-en au panier !",
+    "thankYouTitle": "Merci pour votre achat !",
+    "thankYouMessage": "Votre commande a été reçue et est en cours de traitement. Un e-mail de confirmation vous a été envoyé."
   },
   "exceptionHandler": {
     "productNotFound": {

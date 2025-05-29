@@ -250,7 +250,9 @@
     "notificationTitle": "アイテムがカートに追加されました！",
     "notificationMessage": "アイテムは正常にカートに追加されました。楽しいショッピングを！",
     "emptyCartTitle": "カートは空です",
-    "emptyCartMessage": "商品を見て、お気に入りをカートに追加しましょう！"
+    "emptyCartMessage": "商品を見て、お気に入りをカートに追加しましょう！",
+    "thankYouTitle": "ご購入ありがとうございます！",
+    "thankYouMessage": "ご注文は受け付けられ、処理中です。確認メールを送信しました。"
   },
   "exceptionHandler": {
     "productNotFound": {

@@ -186,5 +186,19 @@
     {
       "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
+  ],
+  "/thank-you": [
+    { "title": "Thank You for Your Purchase - FemmeLady" },
+    {
+      "description": "We appreciate your order! Your purchase has been confirmed and is being processed. Expect a confirmation email shortly."
+    },
+    { "og:title": "Order Confirmation - FemmeLady" },
+    {
+      "og:description": "Your order has been successfully placed. Thank you for shopping at FemmeLady. A confirmation email has been sent to you."
+    },
+    { "og:url": "https://femmelady.store/en/thank-you" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

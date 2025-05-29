@@ -184,5 +184,19 @@
     },
     { "og:url": "https://femmelady.store/en/faq" },
     { "og:image": "https://femmelady.store/assets/faq-og-image.jpg" }
+  ],
+  "/thank-you": [
+    { "title": "구매해 주셔서 감사합니다 - FemmeLady" },
+    {
+      "description": "주문해 주셔서 감사합니다! 주문이 확인되었으며 처리 중입니다. 곧 확인 이메일이 전송될 예정입니다."
+    },
+    { "og:title": "주문 확인 - FemmeLady" },
+    {
+      "og:description": "주문이 성공적으로 완료되었습니다. FemmeLady에서 구매해 주셔서 감사합니다. 확인 이메일이 전송되었습니다."
+    },
+    { "og:url": "https://femmelady.store/ko/thank-you" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

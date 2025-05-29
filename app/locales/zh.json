@@ -250,7 +250,9 @@
     "notificationTitle": "商品已添加到购物车！",
     "notificationMessage": "您的商品已成功添加到购物车，祝您购物愉快！",
     "emptyCartTitle": "您的购物车为空",
-    "emptyCartMessage": "开始浏览我们的商品并添加到您的购物车吧！"
+    "emptyCartMessage": "开始浏览我们的商品并添加到您的购物车吧！",
+    "thankYouTitle": "感谢您的购买！",
+    "thankYouMessage": "您的订单已收到并正在处理。确认邮件已发送给您。"
   },
   "exceptionHandler": {
     "productNotFound": {

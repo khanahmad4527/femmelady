@@ -250,7 +250,9 @@
     "notificationTitle": "장바구니에 항목이 추가되었습니다!",
     "notificationMessage": "항목이 성공적으로 장바구니에 추가되었습니다. 즐거운 쇼핑 되세요!",
     "emptyCartTitle": "장바구니가 비어 있습니다",
-    "emptyCartMessage": "상품을 둘러보고 장바구니에 추가해 보세요!"
+    "emptyCartMessage": "상품을 둘러보고 장바구니에 추가해 보세요!",
+    "thankYouTitle": "구매해 주셔서 감사합니다!",
+    "thankYouMessage": "주문이 접수되어 처리 중입니다. 확인 이메일이 발송되었습니다."
   },
   "exceptionHandler": {
     "productNotFound": {

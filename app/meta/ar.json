@@ -184,5 +184,19 @@
       "og:description": "احصل على حلول سريعة للاستفسارات الشائعة حول الطلبات، المدفوعات، التوصيل، والمزيد في FemmeLady."
     },
     { "og:url": "https://femmelady.store/ar/faq" }
+  ],
+  "/thank-you": [
+    { "title": "شكرًا لشرائك - FemmeLady" },
+    {
+      "description": "نشكرك على طلبك! تم تأكيد عملية الشراء وجاري معالجتها. سيتم إرسال رسالة تأكيد إلى بريدك الإلكتروني قريبًا."
+    },
+    { "og:title": "تأكيد الطلب - FemmeLady" },
+    {
+      "og:description": "تم تقديم طلبك بنجاح. شكرًا لتسوقك من FemmeLady. تم إرسال رسالة تأكيد بالبريد الإلكتروني."
+    },
+    { "og:url": "https://femmelady.store/ar/thank-you" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

@@ -184,5 +184,19 @@
     },
     { "og:url": "https://femmelady.store/ja/faq" },
     { "og:image": "https://femmelady.store/assets/faq-og-image.jpg" }
+  ],
+  "/thank-you": [
+    { "title": "ご購入ありがとうございます - FemmeLady" },
+    {
+      "description": "ご注文ありがとうございます！ご購入は確認され、処理中です。確認メールがまもなく送信されます。"
+    },
+    { "og:title": "注文確認 - FemmeLady" },
+    {
+      "og:description": "ご注文が正常に完了しました。FemmeLadyでのお買い上げありがとうございます。確認メールが送信されました。"
+    },
+    { "og:url": "https://femmelady.store/ja/thank-you" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

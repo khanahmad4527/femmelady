@@ -250,7 +250,9 @@
     "notificationTitle": "تم إضافة العنصر إلى السلة!",
     "notificationMessage": "تم إضافة العنصر إلى سلتك بنجاح. تسوق سعيد!",
     "emptyCartTitle": "سلتك فارغة",
-    "emptyCartMessage": "ابدأ بتصفح منتجاتنا وأضف بعض العناصر إلى سلتك!"
+    "emptyCartMessage": "ابدأ بتصفح منتجاتنا وأضف بعض العناصر إلى سلتك!",
+    "thankYouTitle": "شكراً لشرائك!",
+    "thankYouMessage": "تم استلام طلبك وهو قيد المعالجة. تم إرسال بريد إلكتروني للتأكيد إليك."
   },
   "exceptionHandler": {
     "productNotFound": {

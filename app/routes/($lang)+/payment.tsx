@@ -1,7 +1,7 @@
 import { createItem, deleteItems, withToken } from '@directus/sdk';
 import { Alert, Button, Group, Select, Stack, TextInput } from '@mantine/core';
 import { useEffect } from 'react';
-import { href, Link, useLoaderData } from 'react-router';
+import { href, Link, redirect, useLoaderData } from 'react-router';
 
 import { isAuthenticated } from '~/auth/auth.server';
 import NoCart from '~/components/cart/NoCart';
@@ -41,7 +41,7 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return { totalPrice, carts };
 };
 
-export const action = async ({ request }: Route.ActionArgs) => {
+export const action = async ({ request, params }: Route.ActionArgs) => {
   try {
     const { token, isLoggedIn } = await isAuthenticated(request);
 
@@ -81,7 +81,9 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
     await directus.request(withToken(token!, deleteItems('cart', cartIds)));
 
-    return { success: true };
+    return redirect(href('/:lang?/thank-you', { lang: params.lang }));
+
+    // return { success: true };
   } catch (error) {
     return handleActionError({ error });
   }

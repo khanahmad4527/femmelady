@@ -250,7 +250,9 @@
     "notificationTitle": "Item Added to Cart!",
     "notificationMessage": "Your item has been successfully added to the cart. Happy shopping!",
     "emptyCartTitle": "Your cart looks empty",
-    "emptyCartMessage": "Start browsing our products and add some to your cart!"
+    "emptyCartMessage": "Start browsing our products and add some to your cart!",
+    "thankYouTitle": "Thank you for your purchase!",
+    "thankYouMessage": "Your order has been received and is being processed. A confirmation email has been sent to you."
   },
   "exceptionHandler": {
     "productNotFound": {

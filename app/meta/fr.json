@@ -186,5 +186,19 @@
     },
     { "og:url": "https://femmelady.store/fr/faq" },
     { "og:image": "https://femmelady.store/assets/faq-og-image.jpg" }
+  ],
+  "/thank-you": [
+    { "title": "Merci pour votre achat - FemmeLady" },
+    {
+      "description": "Nous vous remercions pour votre commande ! Votre achat a été confirmé et est en cours de traitement. Vous recevrez bientôt un e-mail de confirmation."
+    },
+    { "og:title": "Confirmation de commande - FemmeLady" },
+    {
+      "og:description": "Votre commande a été passée avec succès. Merci d'avoir acheté sur FemmeLady. Un e-mail de confirmation vous a été envoyé."
+    },
+    { "og:url": "https://femmelady.store/fr/thank-you" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

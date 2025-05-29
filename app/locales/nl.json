@@ -250,7 +250,9 @@
     "notificationTitle": "Item toegevoegd aan winkelwagentje!",
     "notificationMessage": "Je item is succesvol toegevoegd aan het winkelwagentje. Veel winkelplezier!",
     "emptyCartTitle": "Je winkelwagentje is leeg",
-    "emptyCartMessage": "Begin met het bladeren door onze producten en voeg er een paar toe aan je winkelwagentje!"
+    "emptyCartMessage": "Begin met het bladeren door onze producten en voeg er een paar toe aan je winkelwagentje!",
+    "thankYouTitle": "Bedankt voor je aankoop!",
+    "thankYouMessage": "Je bestelling is ontvangen en wordt verwerkt. Er is een bevestigingsmail naar je gestuurd."
   },
   "exceptionHandler": {
     "productNotFound": {

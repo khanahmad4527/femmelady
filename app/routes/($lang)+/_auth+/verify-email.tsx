@@ -46,6 +46,7 @@ const verifyEmail = () => {
         {t('register.verificationSuccessDescription')}
       </Alert>
       <Button
+        w="fit-content"
         component={Link}
         to={href('/:lang?/login', { lang: currentLanguage })}
       >

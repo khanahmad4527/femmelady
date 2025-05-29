@@ -186,5 +186,19 @@
       "og:description": "Vind snelle oplossingen voor veelvoorkomende vragen over bestellingen, betalingen, levering en meer bij FemmeLady."
     },
     { "og:url": "https://femmelady.store/nl/faq" }
+  ],
+  "/thank-you": [
+    { "title": "Bedankt voor je aankoop - FemmeLady" },
+    {
+      "description": "Bedankt voor je bestelling! Je aankoop is bevestigd en wordt verwerkt. Je ontvangt binnenkort een bevestigingsmail."
+    },
+    { "og:title": "Bestelbevestiging - FemmeLady" },
+    {
+      "og:description": "Je bestelling is succesvol geplaatst. Bedankt voor je aankoop bij FemmeLady. Je ontvangt een bevestigingsmail."
+    },
+    { "og:url": "https://femmelady.store/nl/thank-you" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }
