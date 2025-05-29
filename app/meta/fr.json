@@ -200,5 +200,19 @@
     {
       "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
+  ],
+  "/orders": [
+    { "title": "Vos commandes - FemmeLady" },
+    {
+      "description": "Suivez et consultez toutes vos commandes passées au même endroit. Vérifiez vos achats, suivez la livraison et gérez votre historique."
+    },
+    { "og:title": "Historique des commandes - FemmeLady" },
+    {
+      "og:description": "Accédez facilement à l'historique de vos commandes sur FemmeLady. Détails, mises à jour de statut, et plus dans votre tableau de bord."
+    },
+    { "og:url": "https://femmelady.store/fr/orders" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

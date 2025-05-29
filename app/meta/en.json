@@ -200,5 +200,19 @@
     {
       "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
+  ],
+  "/orders": [
+    { "title": "Your Orders - FemmeLady" },
+    {
+      "description": "Track and view all your past orders in one place. Review your purchases, check delivery status, and manage your order history."
+    },
+    { "og:title": "Order History - FemmeLady" },
+    {
+      "og:description": "Easily access your order history at FemmeLady. View order details, status updates, and more in your personal dashboard."
+    },
+    { "og:url": "https://femmelady.store/en/orders" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

@@ -84,6 +84,10 @@ export type GenericSingleton = components['schemas']['ItemsAboutUs'];
 export type GenericTranslation =
   components['schemas']['ItemsAboutUsTranslations'];
 
+export type Order = components['schemas']['ItemsOrder'];
+
+export type OrderProduct = components['schemas']['ItemsOrderProductJunction'];
+
 // Define the extended type for `content`
 export interface GenericContent {
   title: string;

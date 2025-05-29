@@ -294,5 +294,17 @@
     "resetPasswordEmailSentDescription": "パスワードをリセットするためのリンクを記載したメールを送信しました。受信トレイを確認し、メール内のボタンをクリックして続行してください。",
     "resetPasswordSuccessTitle": "パスワードのリセットが成功しました",
     "resetPasswordSuccessDescription": "パスワードが正常に更新されました。新しいパスワードでログインできます。"
+  },
+  "orders": {
+    "title": "ご注文履歴",
+    "orderedOn": "注文日",
+    "quantity": "数量",
+    "subtotal": "小計",
+    "total": "合計",
+    "paymentMethod": "支払い方法",
+    "noOrders": "注文が見つかりません",
+    "noOrdersSubtitle": "コレクションを閲覧して、今すぐショッピングを始めましょう。",
+    "browseProducts": "商品を探す",
+    "orderId": "注文ID"
   }
 }

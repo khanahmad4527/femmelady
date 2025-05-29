@@ -198,5 +198,19 @@
     {
       "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
+  ],
+  "/orders": [
+    { "title": "طلباتك - FemmeLady" },
+    {
+      "description": "تتبع وراجع جميع طلباتك السابقة في مكان واحد. راجع مشترياتك، تحقق من حالة التوصيل، وقم بإدارة سجل الطلبات الخاص بك."
+    },
+    { "og:title": "سجل الطلبات - FemmeLady" },
+    {
+      "og:description": "يمكنك الوصول بسهولة إلى سجل طلباتك في FemmeLady. عرض تفاصيل الطلب، تحديثات الحالة، والمزيد في لوحة التحكم الخاصة بك."
+    },
+    { "og:url": "https://femmelady.store/ar/orders" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

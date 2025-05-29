@@ -294,5 +294,17 @@
     "resetPasswordEmailSentDescription": "Nous vous avons envoyé un e-mail contenant un lien pour réinitialiser votre mot de passe. Veuillez vérifier votre boîte de réception et cliquer sur le bouton dans l'e-mail pour continuer.",
     "resetPasswordSuccessTitle": "Réinitialisation du mot de passe réussie",
     "resetPasswordSuccessDescription": "Votre mot de passe a été mis à jour avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe."
+  },
+  "orders": {
+    "title": "Vos commandes",
+    "orderedOn": "Commandé le",
+    "quantity": "Quantité",
+    "subtotal": "Sous-total",
+    "total": "Total",
+    "paymentMethod": "Méthode de paiement",
+    "noOrders": "Aucune commande trouvée",
+    "noOrdersSubtitle": "Parcourez notre collection et commencez vos achats.",
+    "browseProducts": "Parcourir les produits",
+    "orderId": "ID de commande"
   }
 }

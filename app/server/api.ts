@@ -646,3 +646,49 @@ export const getCartsPrice = async ({
     )
   );
 };
+
+export const getOrders = async ({
+  token,
+  languageCode,
+  page,
+  limit = 10
+}: {
+  token: string;
+  languageCode: string;
+  page: number;
+  limit?: number;
+}) => {
+  return await directus.request(
+    withToken(
+      token,
+      readItems('order', {
+        fields: [
+          '*',
+          {
+            products: [
+              '*',
+              { product_id: ['id', 'feature_image_1', { translations: ['*'] }] }
+            ]
+          }
+        ],
+        page,
+        limit: limit,
+        deep: {
+          products: {
+            product_id: {
+              translations: {
+                _filter: { languages_code: languageCode }
+              }
+            }
+          },
+          color: {
+            translations: {
+              _filter: { languages_code: languageCode }
+            }
+          }
+        },
+        sort: ['-date_created']
+      })
+    )
+  );
+};

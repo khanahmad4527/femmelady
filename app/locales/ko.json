@@ -294,5 +294,17 @@
     "resetPasswordEmailSentDescription": "비밀번호를 재설정할 수 있는 링크가 포함된 이메일을 보냈습니다. 받은 편지함을 확인하고 이메일의 버튼을 클릭하여 진행하세요.",
     "resetPasswordSuccessTitle": "비밀번호 재설정 성공",
     "resetPasswordSuccessDescription": "비밀번호가 성공적으로 업데이트되었습니다. 이제 새 비밀번호로 로그인할 수 있습니다."
+  },
+  "orders": {
+    "title": "주문 내역",
+    "orderedOn": "주문일",
+    "quantity": "수량",
+    "subtotal": "소계",
+    "total": "총액",
+    "paymentMethod": "결제 방법",
+    "noOrders": "주문이 없습니다",
+    "noOrdersSubtitle": "컬렉션을 둘러보고 지금 쇼핑을 시작하세요.",
+    "browseProducts": "제품 둘러보기",
+    "orderId": "주문 번호"
   }
 }

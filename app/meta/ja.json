@@ -198,5 +198,19 @@
     {
       "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
+  ],
+  "/orders": [
+    { "title": "ご注文履歴 - FemmeLady" },
+    {
+      "description": "過去の注文をすべて1か所で確認できます。購入履歴を確認し、配送状況をチェックし、注文履歴を管理しましょう。"
+    },
+    { "og:title": "注文履歴 - FemmeLady" },
+    {
+      "og:description": "FemmeLadyで注文履歴に簡単にアクセス。注文の詳細、ステータスの更新などを個人用ダッシュボードで確認できます。"
+    },
+    { "og:url": "https://femmelady.store/ja/orders" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

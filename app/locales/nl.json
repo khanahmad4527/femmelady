@@ -294,5 +294,17 @@
     "resetPasswordEmailSentDescription": "We hebben je een e-mail gestuurd met een link om je wachtwoord te resetten. Controleer je inbox en klik op de knop in de e-mail om verder te gaan.",
     "resetPasswordSuccessTitle": "Wachtwoord succesvol opnieuw ingesteld",
     "resetPasswordSuccessDescription": "Je wachtwoord is succesvol bijgewerkt. Je kunt nu inloggen met je nieuwe wachtwoord."
+  },
+  "orders": {
+    "title": "Jouw bestellingen",
+    "orderedOn": "Besteld op",
+    "quantity": "Aantal",
+    "subtotal": "Subtotaal",
+    "total": "Totaal",
+    "paymentMethod": "Betaalmethode",
+    "noOrders": "Geen bestellingen gevonden",
+    "noOrdersSubtitle": "Bekijk onze collectie en begin vandaag nog met winkelen.",
+    "browseProducts": "Producten bekijken",
+    "orderId": "Bestelnummer"
   }
 }

@@ -198,5 +198,19 @@
     {
       "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
+  ],
+  "/orders": [
+    { "title": "您的订单 - FemmeLady" },
+    {
+      "description": "在一个地方查看并跟踪您所有的历史订单。检查购买记录、查看配送状态并管理订单历史。"
+    },
+    { "og:title": "订单历史记录 - FemmeLady" },
+    {
+      "og:description": "轻松访问您的 FemmeLady 订单历史记录。在个人仪表板中查看订单详情、状态更新等信息。"
+    },
+    { "og:url": "https://femmelady.store/zh/orders" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

@@ -200,5 +200,19 @@
     {
       "og:image": "https://assets.femmelady.store/femmelady.jpeg"
     }
+  ],
+  "/orders": [
+    { "title": "Je bestellingen - FemmeLady" },
+    {
+      "description": "Bekijk en volg al je eerdere bestellingen op één plek. Bekijk je aankopen, volg de bezorgstatus en beheer je bestelgeschiedenis."
+    },
+    { "og:title": "Bestelgeschiedenis - FemmeLady" },
+    {
+      "og:description": "Toegang tot je bestelgeschiedenis bij FemmeLady. Bekijk bestelgegevens, statusupdates en meer in je persoonlijke dashboard."
+    },
+    { "og:url": "https://femmelady.store/nl/orders" },
+    {
+      "og:image": "https://assets.femmelady.store/femmelady.jpeg"
+    }
   ]
 }

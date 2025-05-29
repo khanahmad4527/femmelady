@@ -294,5 +294,17 @@
     "resetPasswordEmailSentDescription": "我们已向您发送了一封包含密码重置链接的电子邮件。请检查您的收件箱，并点击邮件中的按钮以继续。",
     "resetPasswordSuccessTitle": "密码重置成功",
     "resetPasswordSuccessDescription": "您的密码已成功更新。现在您可以使用新密码登录。"
+  },
+  "orders": {
+    "title": "您的订单",
+    "orderedOn": "下单日期",
+    "quantity": "数量",
+    "subtotal": "小计",
+    "total": "总计",
+    "paymentMethod": "支付方式",
+    "noOrders": "未找到订单",
+    "noOrdersSubtitle": "浏览我们的产品系列，立即开始购物。",
+    "browseProducts": "浏览商品",
+    "orderId": "订单编号"
   }
 }

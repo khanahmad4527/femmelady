@@ -25,7 +25,14 @@ const BurgerMenu = () => {
         <Menu.Item leftSection={<IconUser />} disabled>
           {t('header.profile')}
         </Menu.Item>
-        <Menu.Item leftSection={<IconTruckDelivery />} disabled>
+        <Menu.Item
+          component={Link}
+          prefetch="intent"
+          to={buildLocalizedLink({
+            url: href('/:lang?/orders', { lang: currentLanguage })
+          })}
+          leftSection={<IconTruckDelivery />}
+        >
           {t('header.orders')}
         </Menu.Item>
         <Menu.Item
