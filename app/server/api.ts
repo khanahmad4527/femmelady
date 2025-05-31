@@ -692,3 +692,44 @@ export const getOrders = async ({
     )
   );
 };
+
+export const getSingleOrder = async ({
+  id,
+  token,
+  languageCode
+}: {
+  id: string;
+  token: string;
+  languageCode: string;
+}) => {
+  return await directus.request(
+    withToken(
+      token,
+      readItem('order', id, {
+        fields: [
+          '*',
+          {
+            products: [
+              '*',
+              { product_id: ['id', 'feature_image_1', { translations: ['*'] }] }
+            ]
+          }
+        ],
+        deep: {
+          products: {
+            product_id: {
+              translations: {
+                _filter: { languages_code: languageCode }
+              }
+            }
+          },
+          color: {
+            translations: {
+              _filter: { languages_code: languageCode }
+            }
+          }
+        }
+      })
+    )
+  );
+};

@@ -228,7 +228,11 @@
       "cityRequired": "Stad is verplicht.",
       "stateRequired": "Provincie is verplicht.",
       "zipRequired": "Postcode is verplicht.",
-      "zipInvalid": "Ongeldig postcodeformaat."
+      "zipInvalid": "Ongeldig postcodeformaat.",
+      "declinedTitle": "Betaling geweigerd",
+      "declinedDescription": "De kaart is geweigerd. Probeer een andere.",
+      "gatewayErrorTitle": "Gateway-fout",
+      "gatewayErrorDescription": "Er is een probleem opgetreden met de betalingsgateway. Probeer het opnieuw."
     },
     "cardNumber": "Kaartnummer",
     "cvv": "CVV",
@@ -243,7 +247,9 @@
     "address": "Adres",
     "city": "Stad",
     "state": "Provincie",
-    "zipCode": "Postcode"
+    "zipCode": "Postcode",
+    "successTitle": "Betaling geslaagd",
+    "successDescription": "Uw bestelling is succesvol geplaatst."
   },
   "cart": {
     "errors": {

@@ -32,6 +32,7 @@
     "libphonenumber-js": "^1.12.8",
     "mantine-form-zod-resolver": "^1.1.0",
     "node-cache": "^5.1.2",
+    "nodemailer": "^7.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-inner-image-zoom": "^3.0.2",
@@ -43,6 +44,7 @@
   "devDependencies": {
     "@react-router/dev": "^7.1.5",
     "@react-router/remix-config-routes-adapter": "0.0.0-nightly-bf7ecb711-20240911",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
     "@types/react-inner-image-zoom": "^3.0.3",

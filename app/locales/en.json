@@ -228,7 +228,11 @@
       "cityRequired": "City is required.",
       "stateRequired": "State is required.",
       "zipRequired": "Zip code is required.",
-      "zipInvalid": "Invalid zip code format."
+      "zipInvalid": "Invalid zip code format.",
+      "declinedTitle": "Payment Declined",
+      "declinedDescription": "The card was declined. Please try another one.",
+      "gatewayErrorTitle": "Gateway Error",
+      "gatewayErrorDescription": "A problem occurred with the payment gateway. Please try again."
     },
     "cardNumber": "Card Number",
     "cvv": "CVV",
@@ -243,7 +247,9 @@
     "address": "Address",
     "city": "City",
     "state": "State",
-    "zipCode": "Zip Code"
+    "zipCode": "Zip Code",
+    "successTitle": "Payment Successful",
+    "successDescription": "Your order has been placed successfully."
   },
   "cart": {
     "errors": {

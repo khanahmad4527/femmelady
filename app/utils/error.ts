@@ -12,7 +12,9 @@ const ERROR_MAP = {
   LOGIN_REQUIRED: 'LOGIN_REQUIRED',
   VERIFICATION_LIMIT_REACHED: 'VERIFICATION_LIMIT_REACHED',
   RESET_PASSWORD_LIMIT_REACHED: 'RESET_PASSWORD_LIMIT_REACHED',
-  DISPOSABLE_EMAIL: 'DISPOSABLE_EMAIL'
+  DISPOSABLE_EMAIL: 'DISPOSABLE_EMAIL',
+  PAYMENT_GATEWAY_ERROR: 'PAYMENT_GATEWAY_ERROR',
+  PAYMENT_DECLINED: 'PAYMENT_DECLINED'
 };
 
 export const throwLoginRequiredError = () => {
@@ -31,6 +33,14 @@ export const throwDisposableEmailError = () => {
   throw new Error(ERROR_MAP.DISPOSABLE_EMAIL);
 };
 
+export const throwPaymentGatewayError = () => {
+  throw new Error(ERROR_MAP.PAYMENT_GATEWAY_ERROR);
+};
+
+export const throwPaymentDeclinedError = () => {
+  throw new Error(ERROR_MAP.PAYMENT_DECLINED);
+};
+
 export const handleActionError = ({
   error,
   route
@@ -39,6 +49,25 @@ export const handleActionError = ({
   route?: 'register' | 'login';
 }) => {
   console.log(error);
+
+  if (error instanceof Error && error.message === ERROR_MAP.PAYMENT_DECLINED) {
+    return {
+      title: 'payment.errors.declinedTitle',
+      description: 'payment.errors.declinedDescription',
+      error: true
+    };
+  }
+
+  if (
+    error instanceof Error &&
+    error.message === ERROR_MAP.PAYMENT_GATEWAY_ERROR
+  ) {
+    return {
+      title: 'payment.errors.gatewayErrorTitle',
+      description: 'payment.errors.gatewayErrorDescription',
+      error: true
+    };
+  }
 
   if (error instanceof Error && error.message === ERROR_MAP.LOGIN_REQUIRED) {
     return {

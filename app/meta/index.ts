@@ -1,5 +1,5 @@
 import getFirstObjectDto from '~/dto/getFirstObjectDto';
-import { Env, Product, ProductTranslation } from '~/types';
+import { Env, Product, ProductTranslation, TranslationKeys } from '~/types';
 import { getImageUrl } from '~/utils';
 
 import ar from './ar.json';
@@ -301,4 +301,55 @@ export const getSingleProductPageMeta = ({
   }
 
   return base;
+};
+
+export const getSingleOrderPageMeta = ({
+  language,
+  order
+}: {
+  language: TranslationKeys;
+  order: { id: string };
+}) => {
+  const seoData = {
+    en: [
+      { title: `Order #${order.id} - FemmeLady` },
+      { description: `Secure details of your order #${order.id}.` },
+      { robots: 'noindex, nofollow' }
+    ],
+    fr: [
+      { title: `Commande #${order.id} - FemmeLady` },
+      { description: `Détails sécurisés de votre commande #${order.id}.` },
+      { robots: 'noindex, nofollow' }
+    ],
+    nl: [
+      { title: `Bestelling #${order.id} - FemmeLady` },
+      { description: `Beveiligde details van uw bestelling #${order.id}.` },
+      { robots: 'noindex, nofollow' }
+    ],
+    ja: [
+      { title: `注文 #${order.id} - FemmeLady` },
+      { description: `注文 #${order.id} の詳細をご確認ください。` },
+      { robots: 'noindex, nofollow' }
+    ],
+    ar: [
+      { title: `طلب #${order.id} - FemmeLady` },
+      { description: `تفاصيل آمنة لطلبك #${order.id}.` },
+      ,
+      { robots: 'noindex, nofollow' }
+    ],
+    ko: [
+      { title: `주문 #${order.id} - FemmeLady` },
+      { description: `주문 #${order.id}에 대한 보안 세부정보입니다.` },
+      { robots: 'noindex, nofollow' }
+    ],
+    zh: [
+      { title: `订单 #${order.id} - FemmeLady` },
+      { description: `订单 #${order.id} 的安全详细信息。` },
+      { robots: 'noindex, nofollow' }
+    ]
+  };
+
+  const entries = seoData[language] || seoData['en'];
+
+  return entries;
 };

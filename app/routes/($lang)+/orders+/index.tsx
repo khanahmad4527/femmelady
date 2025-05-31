@@ -1,5 +1,5 @@
 import { getLanguageCode, getValidLanguageOrRedirect } from '~/utils';
-import { Route } from './+types/orders';
+import { Route } from './+types/index';
 import { isAuthenticated } from '~/auth/auth.server';
 import { href, redirect } from 'react-router';
 import { getOrders } from '~/server/api';

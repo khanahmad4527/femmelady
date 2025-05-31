@@ -1,4 +1,4 @@
-import { createItem, deleteItems, withToken } from '@directus/sdk';
+import { createItem, deleteItems, readItems, withToken } from '@directus/sdk';
 import { Alert, Button, Group, Select, Stack, TextInput } from '@mantine/core';
 import { useEffect } from 'react';
 import { href, Link, redirect, useLoaderData } from 'react-router';
@@ -15,17 +15,28 @@ import { paymentFormSchema } from '~/schema';
 import { getCartsPrice } from '~/server/api';
 import { directus } from '~/server/directus';
 import classes from '~/styles/Payment.module.scss';
-import { Cart } from '~/types';
+import { Cart, Order } from '~/types';
 import {
   buildLocalizedLink,
   formatCurrency,
   formatNumber,
   getLocalizedMonth,
-  calculateTotalPriceAndQuantity
+  calculateTotalPriceAndQuantity,
+  getSingleTranslation,
+  getLanguageCode
 } from '~/utils';
-import { handleActionError, throwLoginRequiredError } from '~/utils/error';
+import {
+  handleActionError,
+  throwLoginRequiredError,
+  throwPaymentDeclinedError,
+  throwPaymentGatewayError
+} from '~/utils/error';
 
 import { Route } from './+types/payment';
+import {
+  sendOrderConfirmationEmail,
+  sendTransactionFailedEmail
+} from '~/services/email/order-email';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const { token } = await isAuthenticated(request);
@@ -53,7 +64,35 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
 
     const formData = await request.formData();
 
-    paymentFormSchema.parse(Object.fromEntries(formData));
+    const data = paymentFormSchema.parse(Object.fromEntries(formData));
+
+    const customerData = {
+      full_name: data.fullName,
+      email: data.email,
+      phone_number: data.phoneNumber,
+      address: data.address,
+      city: data.city,
+      state: data.state,
+      zip_code: data.zipCode
+    };
+
+    switch (data.cardNumber) {
+      case '5111111111111111':
+        sendTransactionFailedEmail({
+          customer: customerData,
+          to: customerData.email
+        });
+        return throwPaymentDeclinedError();
+
+      case '4111111111111111':
+        sendTransactionFailedEmail({
+          customer: customerData,
+          to: customerData.email
+        });
+        return throwPaymentGatewayError();
+    }
+
+    //6111111111111111 will be approved/all other too
 
     const carts = (await getCartsPrice({
       page: 1,
@@ -65,7 +104,7 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
       carts
     });
 
-    await directus.request(
+    const order = (await directus.request(
       withToken(
         token!,
         createItem('order', {
@@ -79,16 +118,68 @@ export const action = async ({ request, params }: Route.ActionArgs) => {
           }),
           quantity: totalQuantity,
           total: totalPrice,
-          subtotal: totalPrice
+          subtotal: totalPrice,
+          ...customerData
         })
       )
-    );
+    )) as Order;
 
     const cartIds = carts.map(c => c.id);
 
+    const productIds = carts.map(
+      c => getFirstObjectDto(c?.products)?.product_id?.id as string
+    );
+
     await directus.request(withToken(token!, deleteItems('cart', cartIds)));
 
-    return redirect(href('/:lang?/thank-you', { lang: params.lang }));
+    const languageCode = getLanguageCode(params);
+
+    const products = await directus.request(
+      readItems('product', {
+        filter: {
+          id: {
+            _in: productIds
+          }
+        },
+        fields: ['id', 'feature_image_1', { translations: ['title'] }],
+        deep: {
+          translations: {
+            _filter: { languages_code: languageCode }
+          }
+        }
+      })
+    );
+
+    const modifiedProducts = products?.map(p => {
+      const productTranslation = getSingleTranslation(p?.translations);
+
+      return {
+        id: p.id,
+        name: productTranslation?.title,
+        image_url: `http://localhost:8055/assets/${p.feature_image_1}`
+      };
+    }) as {
+      id: string;
+      name: string;
+      image_url: string;
+    }[];
+
+    sendOrderConfirmationEmail({
+      to: customerData.email,
+      orderId: order.id!,
+      products: modifiedProducts,
+      customer: customerData
+    });
+
+    const query = new URLSearchParams({ 'thank-you': 'true' }).toString();
+
+    const redirectUrl =
+      href('/:lang?/orders/:id', {
+        lang: params.lang,
+        id: order.id
+      }) + `?${query}`;
+
+    return redirect(redirectUrl);
 
     // return { success: true };
   } catch (error) {
@@ -101,7 +192,7 @@ const Payment = () => {
   const { currentLanguage, userLocale } = useCurrentLanguage();
   const t = useTranslation();
   const { setCarts, setCartCount, exchangeRate } = useHeaderFooterContext();
-  const { Form, form, state, fetcher } = useForm({
+  const { Form, form, state, fetcher, errors } = useForm({
     schema: paymentFormSchema,
     initialValues: {
       fullName: 'John Doe',
@@ -121,7 +212,7 @@ const Payment = () => {
     // {}
   });
 
-  console.log('first', form.getValues());
+  console.log('errors', errors);
 
   const amount = formatCurrency({
     currentLanguage,

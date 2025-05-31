@@ -228,7 +228,11 @@
       "cityRequired": "La ville est requise.",
       "stateRequired": "L’état est requis.",
       "zipRequired": "Le code postal est requis.",
-      "zipInvalid": "Format de code postal invalide."
+      "zipInvalid": "Format de code postal invalide.",
+      "declinedTitle": "Paiement refusé",
+      "declinedDescription": "La carte a été refusée. Veuillez en essayer une autre.",
+      "gatewayErrorTitle": "Erreur de passerelle",
+      "gatewayErrorDescription": "Un problème est survenu avec la passerelle de paiement. Veuillez réessayer."
     },
     "cardNumber": "Numéro de carte",
     "cvv": "CVV",
@@ -243,7 +247,9 @@
     "address": "Adresse",
     "city": "Ville",
     "state": "État",
-    "zipCode": "Code postal"
+    "zipCode": "Code postal",
+    "successTitle": "Paiement réussi",
+    "successDescription": "Votre commande a été passée avec succès."
   },
   "cart": {
     "errors": {
